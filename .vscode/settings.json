@@ -231,7 +231,7 @@
           "description": "Documentation only changes"
         },
         {
-          "label": "featur(✨)",
+          "label": "feature(✨)",
           "description": "A new feature"
         },
         {
@@ -283,5 +283,13 @@
       "value": "BREAKING CHANGE: ",
       "default": false
     }
-  ]
+  ],
+  "commit-message-editor.dynamicTemplate": [
+    "{type}: {description}",
+    "",
+    "{body}",
+    "",
+    "{breaking_change}"
+  ],
+  "commit-message-editor.view.saveAndClose": true
 }
