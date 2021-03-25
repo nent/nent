@@ -4,17 +4,16 @@
 
 ![MIT](https://badgen.net/github/license/nent/nent?icon=github)
 ![size](https://badgen.net/badgesize/normal/file-url/unpkg.com/@nent/core/dist/nent/nent.esm.js?icon=sourcegraph&color=blue)
-![Dependabot](https://badgen.net/badge/icon/dependabot?icon=dependabot&label)
 ![tree-shaking](https://badgen.net/badge/tree-shaking/enabled?icon=packagephobia)
 ![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 
 [![NPM](https://badgen.net/npm/v/@nent/core?icon&color=blue)](https://www.npmjs.com/package/@nent/core)
-[![CoveragStatus](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=blue)](https://coveralls.io/github/nent/nent)
-[![Gitter](https://badgen.net/badge/chat/on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
+[![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=blue)](https://coveralls.io/github/nent/nent)
+[![gitter](https://badgen.net/badge/chat/on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
 [![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=blue)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
 [![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
 
-These elements encapsulate application functionality using HTML-like elements. This approach keeps the semantics of a web application declarative and 'semi-mono-linguistic'.
+These elements encapsulate application functionality using HTML. This approach keeps the semantics of a web application declarative and mono-linguistic.
 
 > The goal of this project is to empower the next generation of personalized, interactive web-experiences with less friction and less semantic-diversion.
 
@@ -27,26 +26,26 @@ Declarative applications are more deterministic and easier to understand for mor
 - Declared Reactive Actions
 - Async Functions
 
-### Routing: `<x-app-view*>`
+### Routing: `<x-app-*>`
 
 - URL/Hash-based Routing (within a single page!)
 - Fast, SPA-like navigation between pages
 - Guided navigation, wizards & workflows
 
-### Navigation: `<x-app-view-do>`
+### Navigation: `<x-app-*>`
 
 - Guided Navigation
 - Media-Timed Actions
 - Interactive Video
 - Reactive Audio
 
-### Data: `<x-data>`
+### Data: `<x-data-*>`
 
 - Expression Evaluation & Binding
 - Data-Template Rendering
 - Data-driven Rule Evaluation for Navigation
 
-### Content: `<x-content>`
+### Content: `<x-content-*>`
 
 - Dynamic Content Rendering
 - Deferred Content
@@ -104,7 +103,7 @@ npm i @nent/core
 
 The best way to see what these elements can do for your HTML is to take a look at the documentation/demo. The site is built using these elements as a single HTML file with partials pulled in, as-needed.
 
-[![Take a Tour](https://badgen.net/badge/@nent/core:%20demo?color=blue)](https://demo.x-ui.dev)
+[![Take a Tour](https://badgen.net/badge/@nent/core:%20demo?color=blue)](https://nent.dev)
 
 ## Contact
 
