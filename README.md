@@ -14,7 +14,7 @@
 [![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=blue)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
 [![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
 
-These elements encapsulate application functionality using HTML-like elements. This approach keeps the semantics of a web application declarative and 'semi-mono-linguistic'.
+These elements encapsulate application functionality using HTML. This approach keeps the semantics of a web application declarative and mono-linguistic.
 
 > The goal of this project is to empower the next generation of personalized, interactive web-experiences with less friction and less semantic-diversion.
 
