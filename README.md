@@ -27,26 +27,26 @@ Declarative applications are more deterministic and easier to understand for mor
 - Declared Reactive Actions
 - Async Functions
 
-### Routing: `<x-app-view*>`
+### Routing: `<x-app-*>`
 
 - URL/Hash-based Routing (within a single page!)
 - Fast, SPA-like navigation between pages
 - Guided navigation, wizards & workflows
 
-### Navigation: `<x-app-view-do>`
+### Navigation: `<x-app-*>`
 
 - Guided Navigation
 - Media-Timed Actions
 - Interactive Video
 - Reactive Audio
 
-### Data: `<x-data>`
+### Data: `<x-data-*>`
 
 - Expression Evaluation & Binding
 - Data-Template Rendering
 - Data-driven Rule Evaluation for Navigation
 
-### Content: `<x-content>`
+### Content: `<x-content-*>`
 
 - Dynamic Content Rendering
 - Deferred Content
@@ -104,7 +104,7 @@ npm i @nent/core
 
 The best way to see what these elements can do for your HTML is to take a look at the documentation/demo. The site is built using these elements as a single HTML file with partials pulled in, as-needed.
 
-[![Take a Tour](https://badgen.net/badge/@nent/core:%20demo?color=blue)](https://demo.x-ui.dev)
+[![Take a Tour](https://badgen.net/badge/@nent/core:%20demo?color=blue)](https://nent.dev)
 
 ## Contact
 
