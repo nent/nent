@@ -53,5 +53,6 @@
     "testPathIgnorePatterns": [
       "<rootDir>/dist"
     ]
-  }
+  },
+  "gitHead": "2d099e32d2b776e5524723b72527d7fbd8c84d64"
 }
