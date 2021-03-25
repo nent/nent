@@ -4,13 +4,12 @@
 
 ![MIT](https://badgen.net/github/license/nent/nent?icon=github)
 ![size](https://badgen.net/badgesize/normal/file-url/unpkg.com/@nent/core/dist/nent/nent.esm.js?icon=sourcegraph&color=blue)
-![Dependabot](https://badgen.net/badge/icon/dependabot?icon=dependabot&label)
 ![tree-shaking](https://badgen.net/badge/tree-shaking/enabled?icon=packagephobia)
 ![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 
 [![NPM](https://badgen.net/npm/v/@nent/core?icon&color=blue)](https://www.npmjs.com/package/@nent/core)
-[![CoveragStatus](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=blue)](https://coveralls.io/github/nent/nent)
-[![Gitter](https://badgen.net/badge/chat/on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
+[![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=blue)](https://coveralls.io/github/nent/nent)
+[![gitter](https://badgen.net/badge/chat/on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
 [![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=blue)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
 [![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
 
