@@ -1,0 +1,120 @@
+<div class="content">
+  <h1>Content Reveal</h1>
+  <p class="lead">
+    Somethings, just need to be extra.
+  </p>
+  <h2>Animated Reveals</h2>
+  <p>Add a touch of motion to any content with this simple to use component.</p>
+  <div class="d-flex flex-row">
+    <style>
+      .text-effect {
+        overflow: hidden;
+        position: relative;
+        filter: contrast(110%) brightness(190%);
+        background-color: #000;
+        padding: 0 1rem;
+        border: 3px solid palevioletred;
+        border-radius: 3px;
+      }
+
+      .neon {
+        position: relative;
+        background: black;
+        color: transparent;
+        font-size: xx-large;
+        margin: 0;
+      }
+
+      .neon::before,
+      .neon::after {
+        content: attr(data-text);
+        color: white;
+        filter: blur(0.02em);
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+      }
+
+      .neon::after {
+        mix-blend-mode: difference;
+      }
+
+      .gradient,
+      .spotlight {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      .gradient {
+        background: linear-gradient(45deg, red, blue);
+        mix-blend-mode: multiply;
+      }
+
+      .spotlight {
+        animation: light 5s infinite linear;
+        background:
+          radial-gradient(circle, white, transparent 25%) 0 0 / 25% 25%,
+          radial-gradient(circle, white, black 25%) 50% 50% / 12.5% 12.5%;
+        top: -100%;
+        left: -100%;
+        mix-blend-mode: color-dodge;
+      }
+
+      @keyframes light {
+        100% {
+          transform: translate3d(50%, 50%, 0);
+        }
+      }
+    </style>
+    <x-content-reveal direction="up"
+      delay="500"
+      duration="1500"
+      animation-distance="100%"
+      trigger-distance="50%">
+      <div class="text-effect">
+        <h3 class="neon"
+          data-text="A L W A Y S - B E - E X T R A">
+          A L W A Y S - B E - E X T R A</h3>
+        <div class="gradient"></div>
+        <div class="spotlight"></div>
+      </div>
+    </x-content-reveal>
+
+  </div>
+  <blockquote>
+    The text-effect is just CSS. Read more about this element in its
+    documentation, linked to the right.
+  </blockquote>
+  <h3>Example</h3>
+  <p>The following is a direct copy of the reveal element above.</p>
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <x-content-reveal
+        direction="up"
+        delay="500"
+        duration="1500"
+        animation-distance="100%"
+        trigger-distance="50%">
+        ...
+      </x-content-reveal>
+      ```
+    </script>
+  </x-content-markdown>
+  <footer>
+    <a slot="start"
+      href="/content/markdown">
+      <button class="btn btn-secondary">&lt; Markdown</button>
+    </a>
+    <a slot="end"
+      href="/content">
+      <button class="btn btn-primary">Content &gt;</button>
+    </a>
+  </footer>
+</div>

@@ -1,0 +1,64 @@
+<div class="content">
+  <h1>Data System</h1>
+  <p class="lead">These components provide multiple ways to render data into
+    your HTML.</p>
+  <h2>How it works</h2>
+  <p>These components use an expression-based syntax and a data-provider plugin
+    system to provide data in a simple, familiar way. </p>
+  <p>As an example, the following list is created from the browser's storage.
+    It's a list of specialized pages you've visited that track if they've been
+    seen to create a workflow. </p>
+  <blockquote> To learn more about route-tasks, or 'view-do's as we call them,
+    read about them here: <a href="/components/x-app-view-do">
+      <b>&lt;x-app-view-do&gt;</b>
+    </a>
+  </blockquote>
+  <h2>Data Repeater</h2>
+  <p>The following elements demonstrate how a list of data-points was rendered
+    using data plus a template. Learn more about the <a
+      href="/components/x-data-repeat"> <b>&lt;x-data-repeat&gt;</b></a>
+    element and other ways you can provide data. </p>
+  <h3>Visits in Storage:</h3>
+  <ul>
+    <x-data-repeat items="{{storage:visits}}">
+      <template>
+        <li>{{data:item}}</li>
+      </template>
+    </x-data-repeat>
+  </ul>
+  <h4>Under the Hood</h4>
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <ul>
+        <x-data-repeat items="{{storage:visits}}">
+          <template>
+            <li>{{data:item}}</li>
+          </template>
+        </x-data-repeat>
+      </ul>
+      ```
+    </script>
+  </x-content-markdown>
+  <h3>Advanced Topics</h3>
+  <p></p>
+
+  <div class="button-nav">
+    <a href="/data/display"
+      class="btn btn-secondary"> Data Display </a>
+    <a href="/data/expressions"
+      class="btn btn-secondary"> Data Expressions & Predicates </a>
+    <a href="/data/providers"
+      class="btn btn-secondary"> Data Providers </a>
+    <a href="/actions/data"
+      class="btn btn-secondary"> Data Actions </a>
+  </div>
+  <footer>
+    <a slot="start"
+      href="/content"
+      class="btn btn-primary btn-lg"> &lt; Content </a>
+    <a slot="end"
+      href="/actions"
+      class="btn btn-primary btn-lg"> Actions &gt;</a>
+  </footer>
+</div>

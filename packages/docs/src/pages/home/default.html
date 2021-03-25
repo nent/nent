@@ -1,0 +1,57 @@
+<h1 class="mt-3 mb-3">Documentation Application</h1>
+<p class="p-2 lead accent"
+  style="display: flex; flex-direction: row; gap: 1ch">
+  <i class="ri-lightbulb-line fs-1"></i>
+  <span> This app was created using these components. View the source to see how
+    complex routing, guided navigation, automatic presentations, data-binding
+    and more is made possible! </span>
+</p>
+
+<div class="float-end ms-3 mt-2 d-none d-sm-block">
+  <x-content src="/pages/guides.html">
+  </x-content>
+</div>
+<x-content-reveal direction="right"
+  delay="500"
+  duration="1000"
+  animation-distance="100%"
+  trigger-distance="50%">
+  <h2>What is it?</h2>
+  <p>
+    <b class="brand">nent</b> is a set of custom HTML elements (web
+    components) to enrich static HTML files with application features.
+    Our focus is on creating experiential websites with less scripting
+    and no build-process.
+  </p>
+</x-content-reveal>
+<x-content-reveal direction="right"
+  delay="1000"
+  duration="1000"
+  animation-distance="80%"
+  trigger-distance="50%">
+  <h2>What it is not.</h2>
+  <p>
+    <b class="brand">nent</b> functional elements add functionality,
+    NOT
+    design. These elements work <em>with</em> your design. Since it is HTML, you
+    can always use it with any framework, element library or UI kit you want.
+  </p>
+</x-content-reveal>
+<x-content-reveal direction="up"
+  delay="1500"
+  duration="1000"
+  animation-distance="60%"
+  trigger-distance="50%">
+  <h2>Low-Code, No Framework</h2>
+  <p> The elements bring application functionality to HTML with one script
+    reference and no code or build-process. </p>
+</x-content-reveal>
+
+<footer>
+  <a slot="end"
+    href="/start"
+    title="Get Started">
+    <button class="btn btn-primary btn-lg">Get Started &gt;</button>
+  </a>
+</footer>
+</div>

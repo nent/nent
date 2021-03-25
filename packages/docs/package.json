@@ -1,0 +1,45 @@
+{
+  "name": "@nent/docs",
+  "private": true,
+  "version": "0.4.4",
+  "description": "nent docs",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/custom-elements/index.js",
+  "collection": "./dist/collection/collection-manifest.json",
+  "types": "./dist/types/components.d.ts",
+  "scripts": {
+    "--- development ---": "---------------",
+    "start": "run-p watch serve",
+    "serve": "stencil build --dev --watch --serve",
+    "copy": "run-p copy:examples copy:pages",
+    "copy:examples": "copyfiles -u ./src/examples**/*.* ../../docs/examples",
+    "copy:pages": "copyfiles -u ./src/pages**/*.html ../../docs/pages && copyfiles -u ./src/pages**/*.md ../../docs/pages",
+    "new": "stencil generate",
+    "watch": "npm-watch",
+    "--- production ---": "---------------",
+    "build": "stencil build --www"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "4.0.3",
+    "@stencil/core": "2.5.0",
+    "@stencil/postcss": "2.0.0",
+    "autoprefixer": "10.2.5",
+    "bootstrap": "5.0.0-beta3",
+    "postcss": "8.2.8",
+    "postcss-import": "14.0.0",
+    "postcss-scss": "3.0.5",
+    "remixicon": "2.5.0",
+    "tailwindcss": "2.0.4",
+    "workbox-build": "6.1.2"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "5.0.0-beta3",
+    "workbox-window": "6.1.2"
+  },
+  "watch": {
+    "copy": {
+      "test": "src/{examples,pages}/*.*"
+    }
+  }
+}

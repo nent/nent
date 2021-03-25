@@ -1,0 +1,57 @@
+<x-content-reference module
+  inline
+  script-src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"
+  style-src="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css">
+</x-content-reference>
+
+<div class="content">
+  <h1>Present a video</h1>
+  <p>This page became part of an automatically guided-navigation system</p>
+  <p>The next-button is automatically registered to present the next page the
+    user hasn't visited yet.</p>
+  <vm-player no-controls
+    autoplay>
+    <vm-video>
+      <source cross-origin="anonymous"
+        data-src="https://cdn.videvo.net/videvo_files/video/premium/video0290/small_watermarked/_LightShow86_preview.webm"
+        type="video/webm" />
+    </vm-video>
+    <vm-default-ui></vm-default-ui>
+  </vm-player>
+  <progress max="1.0"
+    style="width: 100%"
+    x-percentage-to="value"></progress>
+  <p>Progress: <span x-percentage-to></span></p>
+
+  <div hidden
+    x-int-time="0"
+    x-in-class="fade-in"
+    x-out-time="2"
+    x-out-class="fade-out">
+    <h1>First...</h1>
+  </div>
+
+  <div hidden
+    x-in-time="3"
+    x-in-class="fade-in"
+    x-out-time="5"
+    x-out-class="fade-out">
+    <h1>THEN...</h1>
+  </div>
+
+  <div hidden
+    x-in-time="6"
+    x-in-class="fade-in"
+    x-out-time="9"
+    x-out-class="fade-out">
+    <h1>Finally...</h1>
+  </div>
+  <footer>
+    <a slot="start"
+      x-back
+      class="btn btn-secondary"> &lt; Back </a>
+    <a slot="end"
+      x-next
+      class="btn btn-secondary"> Next &gt; </a>
+  </footer>
+</div>

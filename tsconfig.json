@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2017"],
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es2017",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "preserveConstEnums": true,
+    "resolveJsonModule": true,
+    "stripInternal": true,
+    "strict": true,
+    "typeRoots": ["node_modules/@types"],
+    "noImplicitThis": false
+  },
+  "exclude": ["node_modules", "**/dist", "**/__mocks__"]
+}

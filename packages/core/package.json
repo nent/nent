@@ -1,0 +1,57 @@
+{
+  "name": "@nent/core",
+  "version": "0.4.4",
+  "description": "nent core components",
+  "author": "support <support@nent.dev> (https://nent.dev)",
+  "homepage": "https://nent.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nent/nent",
+    "directory": "packages/core"
+  },
+  "private": false,
+  "sideEffects": false,
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nent/nent/issues",
+    "email": "tech@nent.dev"
+  },
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/custom-elements/index.js",
+  "es2015": "./dist/esm/index.js",
+  "es2017": "./dist/esm/index.js",
+  "types": "./dist/types/components.d.ts",
+  "loader": "./dist/loader",
+  "collection": "./dist/collection/collection-manifest.json",
+  "collection:main": "./dist/collection/index.js",
+  "unpkg": "./dist/nent/nent.esm.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "--- development ---": "---------------",
+    "watch": "stencil build -c stencil.config.docs.ts --watch",
+    "new": "stencil generate",
+    "--- production ---": "---------------",
+    "build": "stencil build --docs-readme",
+    "build:docs": "stencil build -c stencil.config.docs.ts",
+    "--- test ---": "---------------",
+    "test": "stencil test --spec --coverage",
+    "test:watch": "stencil test --dev --spec --watch"
+  },
+  "devDependencies": {
+    "@stencil/core": "2.5.0",
+    "@stencil/sass": "1.4.1",
+    "@stencil/store": "1.4.1",
+    "@types/howler": "2.2.1",
+    "expr-eval": "2.0.2",
+    "jsonata": "1.8.4",
+    "remarkable": "2.0.1"
+  },
+  "jest": {
+    "preset": "@stencil/core/testing",
+    "testPathIgnorePatterns": [
+      "<rootDir>/dist"
+    ]
+  }
+}

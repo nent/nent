@@ -1,0 +1,42 @@
+<div class="content">
+  <h1>Installation</h1>
+  <h2>Cloud Reference</h2>
+  <p class="lead"> No need to install anything. You selected to use these
+    elements by adding a single script reference in the head of your HTML file.
+  </p>
+  <h3>Add Script References</h3>
+  <p>Add the following script tags to the head:</p>
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <head>
+       ...
+        < script
+        type="module"
+        src="https://unpkg.com/@nent/core/dist/nent/nent.esm.js">
+        < /script>
+        < script
+        nomodule
+        src="https://unpkg.com/@nent/core/dist/nent/nent.js">
+        < /script>
+       ...
+      </head>
+      ```
+    </script>
+  </x-content-markdown>
+  <p class="note">Only one of these scripts are imported. Which depends on the
+    browser's support for ESM modules.</p>
+  <footer>
+    <button slot="start"
+      x-back
+      class="btn btn-secondary">&lt; Back</button>
+    <button slot="end"
+      x-next
+      class="btn btn-secondary">Next &gt;</button>
+  </footer>
+  <x-action-activator activate="on-enter">
+    <x-action topic="storage"
+      command="set-data"
+      data-installed="cdn"> </x-action>
+  </x-action-activator>
+</div>

@@ -1,0 +1,71 @@
+:host {
+  display: block;
+  padding-top: 4rem;
+}
+
+table {
+  overflow-x: auto;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: #555;
+  border-width: 1px;
+}
+table thead tr th {
+  background-color: #555;
+  border: solid 2px #555;
+  color: #fff;
+  padding: 1px;
+  text-align: left;
+}
+table tbody tr td {
+  border: solid 2px #555;
+  color: #fff;
+  padding: 10px;
+}
+
+#container {
+  overflow: auto;
+  height: 150px;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #000;
+  border-radius: 10px;
+  color: #999;
+  position: relative;
+}
+
+h3 {
+  margin: 0;
+  border-bottom: 1px solid #555;
+  background-color: #222;
+  position: sticky;
+  top: 0;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#log {
+  padding: 0.5rem;
+  appearance: none;
+  font-size: small;
+}
+
+.log-warn {
+  color: orange;
+}
+.log-error {
+  color: red;
+}
+.log-info {
+  color: skyblue;
+}
+.log-log {
+  color: #555;
+}
+
+.log-warn,
+.log-error {
+  font-weight: bold;
+}

@@ -1,0 +1,29 @@
+<div class="content">
+  <h1>Routing</h1>
+  <h2>Data Routes</h2>
+  <h3>Your Favorite Food</h3>
+  <p>Add a food here, to see how dynamic routes work using random data.</p>
+
+  <div class="form-group mb-3">
+    <label for="name">Favorite Food</label>
+    <x-action-activator target-event="blur,change">
+      <x-action topic="storage"
+        command="set-data">
+      </x-action>
+      <input id="favorite"
+        type="text"
+        required
+        class="form-control"
+        x-value-from="{{storage:favorite}}" />
+    </x-action-activator>
+
+  </div>
+  <footer>
+    <button slot="start"
+      x-back
+      class="btn btn-info">&lt; Back</button>
+    <button slot="end"
+      x-link="/routing/dynamic"
+      class="btn btn-info">Next &gt;</button>
+  </footer>
+</div>

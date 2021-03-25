@@ -1,0 +1,22 @@
+<x-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
+  style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
+</x-content-reference>
+<x-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
+</x-content-reference>
+<x-app-view-do url="/start/select"
+  when="!{{storage:installed}}"
+  page-title="Select Installation"
+  content-src="/pages/start/select.html">
+</x-app-view-do>
+<x-app-view-do url="/start/cdn"
+  page-title="Use w/CDN"
+  visit="optional"
+  content-src="/pages/start/cdn.html">
+</x-app-view-do>
+<x-app-view-do url="/start/npm"
+  page-title="Install w/NPM"
+  visit="optional"
+  content-src="/pages/start/npm.html">
+</x-app-view-do>

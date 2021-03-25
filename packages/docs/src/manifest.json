@@ -1,0 +1,27 @@
+{
+  "name": "nent demo",
+  "short_name": "Nent",
+  "start_url": "/",
+  "display_override": [
+    "window-control-overlay",
+    "minimal-ui"
+  ],
+  "display": "standalone",
+  "description": "PWA made to document and demonstrate apps made with only HTML and nent functional elements.",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "assets/icon/icon192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#ae9ae4",
+  "theme_color": "#ae9ae4"
+}

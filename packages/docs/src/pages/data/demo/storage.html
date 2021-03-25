@@ -1,0 +1,28 @@
+<div class="content">
+
+  <div class="card">
+
+    <div class="card-header">
+      <h2>Storage Data</h2>
+    </div>
+
+    <div class="card-content">
+      <li>
+        <label>Animal</label>
+        <input type="text"
+          required
+          onblur="localStorage.setItem('animal', this.value)"
+          onchange="localStorage.setItem('animal', this.value)"
+          value-from="{{storage:animal}}" />
+      </li>
+    </div>
+  </div>
+  <footer>
+    <a slot="start"
+      x-back
+      class="btn btn-secondary"> &lt; Back </a>
+    <a slot="end"
+      x-next
+      class="btn btn-secondary"> Next &gt; </a>
+  </footer>
+</div>

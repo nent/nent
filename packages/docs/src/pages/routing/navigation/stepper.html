@@ -1,0 +1,157 @@
+<div class="content">
+  <h1>Stepper Navigation</h1>
+  <p class="lead"> Guided navigation using a stepper with back/next format with
+    a convention-based next route automatically determined by the router. </p>
+  <h2>How it Works</h2>
+  <p> You can create smart guided navigation using simple conventions,
+    visit-tracking and data-expressions to guide users through workflows or
+    navigation. </p>
+  <p>By convention, routes are given an order based on how they are declared.
+  </p>
+  <h3>Example</h3>
+
+  <p> In this example, you can see how the routes are defined contribute to the
+    behavior as well as the shared content between pages. </p>
+
+  <a href="/examples/stepper.html"
+    target="_blank"
+    class="btn btn-light float-end my-2 ms-2">
+    <i class="ri-external-link-line"></i>
+    Visit Demo</a>
+  <blockquote>
+    Using just static HTML, this page was able to create a rich
+    navigation system that walks a user through content in a personalized,
+    conversational format.
+  </blockquote>
+
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <x-app app-title="My HTML App" start-url="/home" mode="hash" class="container">
+        <h1 class="mt-3">No-Code Stepper</h1>
+
+        <x-app-view url="/home" page-title="Home">
+          <h2>Home</h2>
+          <div class="content">
+            <p>Click the link below to begin.</p>
+
+            <a class="btn btn-primary btn-lg" href="/survey" x-hide-when="{{storage:food}}">Take Survey</a>
+            <a class="btn btn-light btn-lg" href="/survey/step-1" hidden x-show-when="{{storage:food}}">Retake Survey</a>
+          </div>
+        </x-app-view>
+
+        <x-app-view url="/survey" page-title="Survey" x-cloak>
+          <x-content-reference style-src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
+          </x-content-reference>
+          <h2>Survey</h2>
+          <div class="step" x-class="completed" x-class-when="{{storage:nickname}}">
+            <div class="stepper">
+              <div class="circle"></div>
+              <div class="line"></div>
+            </div>
+            <div class="form">
+              <h3>
+                Step 1
+                <span x-hide-when="!{{storage:nickname}}">
+                  <a href="/survey/step-1">✔️</a>
+                </span>
+              </h3>
+              <x-app-view-do when="!{{storage:nickname}}" url="step-1" page-title="Step 1">
+                <div class="content" class="form-group">
+                  <label class="form-label" for="name">Nick Name</label>
+                  <input
+                    type="text"
+                    required
+                    class="form-control mb-3"
+                    id="name"
+                    onblur="localStorage.setItem('nickname', this.value)"
+                    onchange="localStorage.setItem('nickname', this.value)"
+                    x-value-from="{{storage:nickname}}"
+                    tabindex="0"
+                  />
+                  <a class="btn btn-primary btn-lg" x-next="step-2"> Next </a>
+                </div>
+              </x-app-view-do>
+            </div>
+          </div>
+          <div class="step" x-class="completed" x-class-when="{{storage:show}}">
+            <div class="stepper">
+              <div class="circle"></div>
+              <div class="line"></div>
+            </div>
+            <div>
+              <h3>
+                Step 2
+                <span x-hide-when="!{{storage:show}}">
+                  <a href="/survey/step-2">✔️</a>
+                </span>
+              </h3>
+              <x-app-view-do when="!{{storage:show}}" url="step-2" page-title="Step 2">
+                <div class="content">
+                  <label class="form-label" for="show">TV Show</label>
+                  <input
+                    type="text"
+                    required
+                    id="show"
+                    class="form-control mb-3"
+                    onblur="localStorage.setItem('show', this.value)"
+                    onchange="localStorage.setItem('show', this.value)"
+                    x-value-from="{{storage:show}}"
+                    tabindex="0"
+                  />
+                  <a class="btn btn-primary btn-lg" x-next="step-3">Next</a>
+                </div>
+              </x-app-view-do>
+            </div>
+          </div>
+          <div class="step" x-class="completed" x-class-when="{{storage:food}}">
+            <div class="stepper">
+              <div class="circle"></div>
+            </div>
+            <div>
+              <h3>
+                Step 3
+                <span x-hide-when="!{{storage:food}}">
+                  <a href="/survey/step-3">✔️</a>
+                </span>
+              </h3>
+              <x-app-view-do when="!{{storage:food}}" url="step-3" page-title="Step 3">
+                <div class="content">
+                  <label class="form-label" for="show">Food or Snack</label>
+                  <input
+                    type="text"
+                    required
+                    id="food"
+                    class="form-control mb-3"
+                    onblur="localStorage.setItem('food', this.value)"
+                    onchange="localStorage.setItem('food', this.value)"
+                    x-value-from="{{storage:food}}"
+                    tabindex="0"
+                  />
+                  <a class="btn btn-primary btn-lg" x-next>Next</a>
+                </div>
+              </x-app-view-do>
+            </div>
+          </div>
+
+          <div class="content">
+            <p>Thank you for completing our survey.</p>
+          </div>
+        </x-app-view>
+      </x-app>
+      ```
+    </script>
+  </x-content-markdown>
+
+  <footer>
+
+    <a slot="start"
+      href="/routing/navigation/guided">
+      <button class="btn btn-info btn-lg">&lt; Guided</button>
+    </a>
+    <a slot="end"
+      href="/routing/navigation">
+      <button class="btn btn-secondary"> Navigation &gt;</button>
+    </a>
+  </footer>
+</div>

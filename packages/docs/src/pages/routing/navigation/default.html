@@ -1,0 +1,61 @@
+<div class="content">
+  <h1>Navigation</h1>
+  <p class="lead">Getting around without page refreshes!</p>
+  <h2>How it Works</h2>
+  <p> Regular anchor <b>&lt;a&gt;</b> tags inside the
+
+    <a href="/components/x-app?group=navigation"><b>&lt;x-app&gt;</b></a> tag
+    will have their click intercepted for fast, in-place content
+    replacement without refreshing the entire page.
+  </p>
+  <h3>Simple Navigation</h3>
+  <a href="/examples/simple.html"
+    target="_blank"
+    class="btn btn-light float-end my-2 ms-2">
+    <i class="ri-external-link-line"></i>
+    Visit Demo</a>
+  <p> Every link on this page has been intercepted to try first to perform an
+    in-page content fetch, rather than a full page refresh. </p>
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <x-app-view url="page-1" page-title="Page 1">
+        <h1>Hello World!</h1>
+        <a href="page-2">Page 2</a>
+      </x-app-view>
+      <x-app-view url="page-2" page-title="Page 2">
+        <h1>Another Page</h1>
+        <a href="page-1">Page 1</a>
+      </x-app-view>
+      ```
+    </script>
+  </x-content-markdown>
+  <h3>Advanced Navigation Examples</h3>
+  <p> Guided navigation creates a back/next format with a convention-based next
+    route automatically determined by the router. </p>
+
+  <div class="button-nav">
+
+    <a href="/routing/navigation/guided"
+      class="btn btn-info btn-sm">
+      <i class="ri-gps-line"></i>
+      Guided Navigation
+    </a>
+
+    <a href="/routing/navigation/stepper"
+      class="btn btn-info btn-sm">
+      <i class="ri-database-line"></i>
+      Stepper / Wizard
+    </a>
+  </div>
+  <footer>
+
+    <a slot="start"
+      href="/routing/dynamic"
+      class="btn btn-secondary"> &lt; Dynamic Routes </a>
+
+    <a slot="end"
+      href="/routing"
+      class="btn btn-primary btn-lg"> Routing &gt; </a>
+  </footer>
+</div>

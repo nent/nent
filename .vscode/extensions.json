@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "formulahendry.github-actions",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    "orta.vscode-jest",
+    "ldez.ignore-files",
+    "dbaeumer.vscode-eslint",
+    "rvest.vs-code-prettier-eslint",
+    "natemoo-re.vscode-stencil-tools"
+  ]
+}

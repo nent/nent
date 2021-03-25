@@ -1,0 +1,41 @@
+<x-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
+  style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
+</x-content-reference>
+<x-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
+</x-content-reference>
+
+<div class="content">
+  <h1>Data Expressions</h1>
+  <x-content-markdown>
+    <script type="text/markdown">
+      ## Anatomy of a Data Expression
+
+      Expression Format:
+
+        `{<provider>:<data-key>(?<default>)}`
+
+      * Provider: The data provider name
+      * Data Key: The data value key within the provider \*
+      * Default: An optional default value if the provider's key is empty.
+
+      \* _If there are any dots in the key, the evaluator attempts to parse the base value as JSON, then uses the dot-notation to select a value from the object. For example, the expression `{{session:user.name}}` means the session value 'user' is a JSON object, parse it and replace with the 'name' property._
+
+
+      > See [data providers](/data/providers) to learn how to add custom data providers.
+
+      ## Special Functions
+
+      didVisit('url') => boolean
+    </script>
+  </x-content-markdown>
+  <footer>
+    <a slot="start"
+      href="/data/display"
+      class="btn btn-secondary"> &lt; Display </a>
+    <a slot="end"
+      href="/data/providers"
+      class="btn btn-secondary"> Providers &gt; </a>
+  </footer>
+</div>

@@ -1,0 +1,96 @@
+<x-audio-music-load mode="load"
+  track-id="music"
+  src="/assets/sample-music-1.mp3">
+</x-audio-music-load>
+<x-audio-sound-load track-id="cheer"
+  src="/assets/crowd-cheer.wav">
+</x-audio-sound-load>
+
+<div class="content">
+  <h1>Music & Sound</h1>
+  <p class="lead"> Dual audio layers allow music to play, even across routes
+    while still using sounds activated by interactions or time. </p>
+  <h2>Play music while still reacting to events with sounds!</h2>
+  <p>This technique can be used with animations to create responsive and
+    emissive experiences. </p>
+  <h3>First: Load Music & Sounds</h3>
+  <p> Again, we pre-load all sounds for a route using the <a
+      href="/components/x-audio-sound-load">
+      <b>&lt;x-audio-sound-load&gt;</b>
+    </a> and <a href="/components/x-audio-music-load">
+      <b>&lt;x-audio-music-load&gt;</b>
+    </a> components. This gets the audio ready to play and waits for the start
+    command. </p>
+
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <x-app-view-do ...>
+        <x-audio-music-load
+          mode="load"
+          track-id="music"
+          src="/assets/sample-music-1.mp3">
+        </x-audio-music-load>
+        <x-audio-sound-load
+          track-id="cheer"
+          src="/assets/crowd-cheer.wav">
+        </x-audio-sound-load>
+        ...
+      </x-app-view-do>
+      ```
+      > For the music, we set the mode to **load** so it does not play
+      > right away.
+    </script>
+  </x-content-markdown>
+
+  <h3>Then: Activate</h3>
+  <p> Again, we play the music by sending an <a href="/actions">action </a> with
+    start command using the <a href="/components/x-action-activator">
+      <b>&lt;x-action-activator&gt;</b> </a>, <a
+      href="/components/x-audio-music-action">
+      <b>&lt;x-audio-music-action&gt;</b>
+    </a> and <a href="/components/x-audio-sound-action">
+      <b>&lt;x-audio-sound-action&gt;</b>
+    </a> elements with their command and track-id. </p>
+  <p>
+    <x-action-activator activate="on-element-event">
+      <x-audio-sound-action command="start"
+        track-id="cheer"></x-audio-sound-action>
+      <button class="btn btn-info">
+        <i class="ri-play-circle-line"></i> Play Sound </button>
+    </x-action-activator>
+    <x-action-activator activate="on-element-event">
+      <x-audio-music-action command="start"
+        track-id="music"> </x-audio-music-action>
+      <button type="button"
+        class="btn btn-info">
+        <i class="ri-play-circle-line"></i> Play Music </button>
+    </x-action-activator>
+  </p>
+
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <x-action-activator activate="on-element-event">
+        <x-audio-sound-action command="start" track-id="cheer"> </x-audio-sound-action>
+        <button class="btn btn-info">Play Sound</button>
+      </x-action-activator>
+      <x-action-activator activate="on-element-event">
+        <x-audio-music-action command="start" track-id="music"> </x-audio-music-action>
+        <button type="button" class="btn btn-info">Play Music</button>
+      </x-action-activator>
+      ```
+
+      > We set the activator to **multiple** so it allows us to send
+      > the same action more than once. By default, this is not allowed.
+    </script>
+  </x-content-markdown>
+  <footer>
+    <a slot="start"
+      href="/audio/sound"
+      class="btn btn-secondary"> &lt; Sound </a>
+    <a slot="end"
+      href="/audio/timed"
+      class="btn btn-secondary"> Timed &gt; </a>
+  </footer>
+</div>

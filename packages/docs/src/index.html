@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html dir="ltr"
+  lang="en">
+
+  <head>
+    <title>nent</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <meta http-equiv="x-ua-compatible"
+      content="IE=Edge" />
+    <meta name="description"
+      content="Functional elements to super-charge your HTML" />
+    <meta name="og:title"
+      content="nent" />
+    <meta name="og:description"
+      content="Functional elements to super-charge your HTML" />
+    <meta name="og:image"
+      content="" />
+    <meta name="msapplication-tap-highlight"
+      content="no" />
+    <meta name="apple-mobile-web-app-capable"
+      content="yes" />
+    <meta name="apple-mobile-web-app-title"
+      content="NENT" />
+    <meta name="apple-mobile-web-app-status-bar-style"
+      content="black" />
+    <link rel="apple-touch-icon"
+      href="/assets/icon/apple-touch-icon.png">
+    <meta name="theme-color"
+      content="#ae9ae4" />
+    <link rel="dns-prefetch"
+      href="cdn.jsdelivr.net" />
+    <link rel="preconnect"
+      href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect"
+      href="https://fonts.gstatic.com">
+    <link rel="icon"
+      type="image/ico"
+      href="/assets/favicon.ico" />
+    <link rel="manifest"
+      href="/manifest.json" />
+
+    <!-- nent -->
+    <script type="module"
+      src="/js/nent/nent.esm.js"></script>
+
+    <script type="module"
+      src="/js/docs/docs.esm.js"></script>
+
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-app.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-app-link.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-app-view.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-app-view-list.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-app-analytics.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-app-view-do.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-app-view-not-found.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-content-reference.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-content-share.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-data.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-data-provider-session.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-data-provider-storage.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-elements.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-ui.entry.js" />
+    <link rel="modulepreload"
+      as="script"
+      href="/js/nent/x-ui-theme.entry.js" />
+
+    <style>
+      [x-cloak],
+      [hidden],
+      .hide {
+        display: none;
+      }
+    </style>
+    <!-- Page Styles -->
+    <link rel="stylesheet"
+      href="/js/docs/docs.css" />
+    <link rel="stylesheet"
+      href="/assets/styles.css"
+      media="print"
+      onload="this.media = 'all'" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Blinker:wght@200;400&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media = 'all'" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async
+      defer
+      src="https://www.googletagmanager.com/gtag/js?id=G-SL9WMJ9XVP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push( arguments )
+      }
+      gtag( 'js', new Date() )
+      gtag( 'config', 'G-SL9WMJ9XVP' )
+    </script>
+  </head>
+
+  <body>
+
+    <x-app start-url="/"
+      app-title="nent demo"
+      transition="animate__animated animate__fadeIn">
+
+      <header x-cloak
+        class="navbar">
+
+        <div class="container container-fluid">
+          <h1 class="navbar-brand flex-grow-1">
+            <a href="/home"
+              title="nent home"> nent </a>
+          </h1>
+
+          <div class="flex-row d-flex">
+            <x-content-share headline="nent: super-charged html"
+              class="nav-link text-white fs-2 d-none d-sm-flex"
+              text="Functional elements to make web-applications without leaving the comfort of HTML.">
+              <i class="ri-share-line"></i>
+            </x-content-share>
+
+            <a href="https://github.com/nent/nent"
+              title="Source on GitHub"
+              target="_blank"
+              class="nav-link text-white fs-2 d-none d-sm-flex"
+              rel="noopener">
+              <i class="ri-github-line"></i>
+            </a>
+
+            <a href="https://www.npmjs.com/package/@nent/core"
+              title="Package on NPM"
+              target="_blank"
+              class="nav-link text-white fs-2 d-none d-sm-flex"
+              rel="noopener">
+              <i class="ri-npmjs-line"></i>
+            </a>
+
+            <a href="/home/profile"
+              title="Updated your profile"
+              class="nav-link text-white fs-2">
+              <i class="ri-user-5-line"></i>
+            </a>
+          </div>
+        </div>
+      </header>
+      <nav x-cloak
+        class="navbar-nav bg-dark sticky-top">
+
+        <div class="container container-fluid d-flex flex-row">
+
+          <x-app-link class="nav-link flex-fill tip"
+            title="Get Started"
+            href="/start">
+            <i class="ri-rocket-line"></i>
+            <span class="left">Get Started</span>
+          </x-app-link>
+
+          <x-app-link class="nav-link flex-fill tip"
+            title="Routing System"
+            href="/routing">
+            <i class="ri-route-line"></i>
+            <span>Routing System</span>
+          </x-app-link>
+
+          <x-app-link class="nav-link flex-fill tip"
+            title="Content Components"
+            href="/content">
+            <i class="ri-code-box-line"></i>
+            <span>Content Components</span>
+          </x-app-link>
+
+          <x-app-link class="nav-link flex-fill tip"
+            title="Data System"
+            href="/data">
+            <i class="ri-database-2-line"></i>
+            <span>Data System</span>
+          </x-app-link>
+
+          <x-app-link class="nav-link flex-fill tip"
+            title="Actions System"
+            href="/actions">
+            <i class="ri-flashlight-line"></i>
+            <span>Action System</span>
+          </x-app-link>
+
+          <x-app-link class="nav-link flex-fill tip"
+            title="Audio Components"
+            href="/audio">
+            <i class="ri-music-line"></i>
+            <span class="right">Audio Components</span>
+          </x-app-link>
+
+          <x-app-link class="nav-link flex-shrink-0 tip"
+            title="All Components"
+            href="/components">
+            <i class="ri-settings-6-line"></i>
+            <span class="right">All Components</span>
+          </x-app-link>
+
+          <x-app-link hidden
+            class="nav-link flex-shrink-0 tip"
+            title="Contributing"
+            href="/start/developers">
+            <i class="ri-git-pull-request-line"></i>
+            <span class="right">Developers</span>
+          </x-app-link>
+        </div>
+      </nav>
+
+      <x-data>
+      </x-data>
+
+      <nav aria-label="breadcrumb"
+        class="contained text-end">
+        <x-app-view-list class=""
+          list-class="breadcrumb justify-content-end"
+          active-class="active"
+          item-class="breadcrumb-item"
+          exclude-root>
+        </x-app-view-list>
+      </nav>
+
+      <x-app-view url="/"
+        transition="none"
+        exact>
+        <x-content-reference
+          style-src="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+        </x-content-reference>
+        <x-content-reference
+          style-src="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+        </x-content-reference>
+        <div slot="content">
+          <h1 style="margin:1em 0;">Turbo-charged HTML</h1>
+          <h2 style="margin:1em 0;"> Modern web-application functionality
+            without
+            leaving the comfort of HTML</h2>
+          <h3>Features:</h3>
+          <h4>
+            <i class="ri-route-line"></i> Single-Page URL Routing
+          </h4>
+          <ul>
+            <li>Declarative Routing directly in HTML (no scripting) </li>
+            <li>Variable Data Routes & Remote Data-Driven Content</li>
+            <li>Data Provider System</li>
+          </ul>
+          <h4>
+            <i class="ri-direction-line"></i> Guided Navigation
+          </h4>
+          <ul>
+            <li>Automatic Back & Forward Resolution</li>
+            <li>Sequenced Content: present, educate, inform</li>
+            <li>Sequenced Input: surveys, quiz and display results </li>
+            <li>Sequenced Video: interactive video story-telling</li>
+            <li>Expression-based View &amp; Conditions</li>
+            <li>Stateful: pick up where a user left-off</li>
+          </ul>
+          <h4>
+            <i class="ri-empathize-line"></i> Embedded Data
+          </h4>
+          <ul>
+            <li>Data Tags to render personalized data from a variety of sources
+            </li>
+            <li>Use HTML to access data from your API</li>
+            <li>Capture attention and data, with smart workflows to replace
+              boring forms.</li>
+            <li>Personalize the content for each of your visitors. </li>
+          </ul>
+          <h4>
+            <i class="ri-slideshow-line"></i> Made for Presentations
+          </h4>
+          <ul>
+            <li>Interactive Videos</li>
+            <li>Queued, Timed & Event-based Actions</li>
+            <li>Animated Transitions</li>
+            <li>Background Music & Voice-Overs</li>
+            <li>Animation Hooks</li>
+          </ul>
+          <h2>Built with Love</h2>
+          <ul>
+            <li>
+              <b>Fast:</b> Lightweight and
+
+              <a href="https://developers.google.com/speed/pagespeed/insights/?url=https://demo.x-ui.dev&tab=desktop"
+                rel="noreferrer"
+                target="_blank"> lightening fast</a>: No Framework & Lazy Loaded
+            </li>
+            <li><b>Themeable:</b> BYO UI and themes. <b class="brand">nent</b>
+              stays out of the way.</li>
+            <li><b>Extensible:</b> BYO Data with a plugin system to easily
+              connect your data</li>
+            <li><b>Typed:</b> Built with TypeScript so you can enjoy completely
+              typed components</li>
+            <li><b>Portable:</b> Native web components with hooks to integrate
+              with any framework</li>
+            <li><b>Trackable:</b> Analytics & Behavior Tracking Plugins</li>
+          </ul>
+          <footer>
+            <a href="/home"
+              x-cloak
+              style="padding: .5rem; font-size: xx-large;"
+              class="btn btn-info btn-sm btn-large d-block"> Go to Demo
+            </a>
+          </footer>
+        </div>
+      </x-app-view>
+
+      <x-app-view url="/home"
+        page-title="Home"
+        resolve-tokens
+        src="/pages/home/routes.html"
+        content-src="/pages/home/default.html">
+
+        <x-app-view-do url="/home/name"
+          page-title="Introductions"
+          when="!{{storage:name}}"
+          content-src="/pages/home/intro.html">
+        </x-app-view-do>
+
+        <x-app-view-do url="/home/welcome"
+          page-title="Welcome"
+          visit="always"
+          content-src="/pages/home/welcome.html"
+          transition="animate__animated animate__pulse">
+        </x-app-view-do>
+      </x-app-view>
+
+      <x-app-view url="/start"
+        page-title="Get Started"
+        src="/pages/start/routes.html"
+        content-src="/pages/start/default.html">
+      </x-app-view>
+
+      <x-app-view url="/routing"
+        page-title="Routing System"
+        src="/pages/routing/routes.html"
+        content-src="/pages/routing/default.html"
+        transition="animate__animated animate__fadeIn">
+
+      </x-app-view>
+
+      <x-app-view url="/content"
+        page-title="Content Components"
+        src="/pages/content/routes.html"
+        content-src="/pages/content/default.html">
+      </x-app-view>
+
+      <x-app-view url="/data"
+        page-title="Data System"
+        src="/pages/data/routes.html"
+        content-src="/pages/data/default.html">
+
+      </x-app-view>
+
+      <x-app-view url="/actions"
+        page-title="Action System"
+        src="/pages/actions/routes.html"
+        content-src="/pages/actions/default.html">
+      </x-app-view>
+
+      <x-app-view url="/audio"
+        page-title="Audio Components"
+        src="/pages/audio/routes.html"
+        content-src="/pages/audio/default.html">
+      </x-app-view>
+
+      <x-app-view url="/components"
+        page-title="Components"
+        src="/pages/components/routes.html"
+        content-src="/pages/components/default.html"
+        transition="animate__animated animate__fadeIn">
+      </x-app-view>
+
+      <x-app-view-not-found>
+        <div class="content">
+          <h1>Page Not Found</h1>
+        </div>
+      </x-app-view-not-found>
+
+      <x-app-analytics id="analytics">
+        <script>
+          analytics.addEventListener( 'event', ( e ) => {
+            gtag( e.detail.key, e.detail.value )
+          } )
+          analytics.addEventListener( 'page-view', ( e ) => {
+            gtag( 'page_view', e.detail.pathname )
+          } )
+          analytics.addEventListener( 'view-time', ( e ) => {
+            gtag( e.detail.key, e.detail.value )
+          } )
+        </script>
+      </x-app-analytics>
+      <!-- enable data expressions-->
+      <x-data-provider-session></x-data-provider-session>
+      <x-data-provider-storage></x-data-provider-storage>
+      <x-ui>
+        <!-- enabled UI themes -->
+        <x-ui-theme></x-ui-theme>
+      </x-ui>
+      <x-elements>
+        <!-- enable element manipulation-->
+      </x-elements>
+    </x-app>
+  </body>
+
+</html>

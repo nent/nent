@@ -1,0 +1,76 @@
+<x-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
+  style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
+</x-content-reference>
+<x-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
+</x-content-reference>
+
+<div class="components d-block d-sm-flex">
+  <ul class="d-none d-sm-flex mt-4">
+    <x-data-repeat items-src="/assets/components.json"
+      when="{{route:component}}"
+      no-cache=""
+      filter="components">
+      <template>
+        <li class="mb-1">
+          <x-app-link href="/components/{{data:tag}}">
+            {{data:tag}}
+          </x-app-link>
+          <ul hidden
+            x-show-when="'{{data:tag}}' == '{{route:component}}'">
+            <li hidden
+              x-show-when="{'text':'true', 'name':'actions'} in {{data:docsTags}}">
+
+              <x-app-link href="/components/{{data:tag}}/actions">
+                actions
+              </x-app-link>
+            </li>
+            <li hidden
+              x-show-when="{'text':'true', 'name':'provider'} in {{data:docsTags}}">
+
+              <x-app-link href="/components/{{data:tag}}/provider">
+                provider
+              </x-app-link>
+            </li>
+            <li hidden
+              x-show-when="{'text':'true', 'name':'elements'} in {{data:docsTags}}">
+
+              <x-app-link href="/components/{{data:tag}}/elements">
+                elements
+              </x-app-link>
+            </li>
+          </ul>
+        </li>
+      </template>
+    </x-data-repeat>
+  </ul>
+
+  <x-app-view exact
+    class="flex-shrink"
+    url="/components/:component"
+    page-title="<{{route:component?Details}}>"
+    content-src="/pages/components/component.html">
+  </x-app-view>
+
+  <x-app-view exact
+    class="flex-shrink"
+    url="/components/:component/actions"
+    page-title=" Actions"
+    content-src="/pages/components/actions.html">
+  </x-app-view>
+
+  <x-app-view exact
+    class="flex-shrink"
+    url="/components/:component/elements"
+    page-title="Elements"
+    content-src="/pages/components/elements.html">
+  </x-app-view>
+
+  <x-app-view exact
+    class="flex-shrink"
+    url="/components/:component/provider"
+    page-title="Provider"
+    content-src="/pages/components/provider.html">
+  </x-app-view>
+</div>

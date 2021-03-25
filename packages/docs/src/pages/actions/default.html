@@ -1,0 +1,178 @@
+<x-content-reveal direction="left"
+  delay="500"
+  duration="1000"
+  animation-distance="60%"
+  trigger-distance="50%">
+  <ul
+    class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
+    <li class="list-group-item fw-bold"> Action Components</li>
+    <x-data-repeat items-src="/assets/components.json"
+      filter="components[docsTags[text='actions']]">
+      <template>
+        <li class="list-group-item">
+
+          <a href="/components/{{data:tag}}"> &lt;{{data:tag}}&gt; </a>
+        </li>
+      </template>
+    </x-data-repeat>
+  </ul>
+</x-content-reveal>
+<div class="content">
+  <h1>Action System</h1>
+  <p class="lead"> Actions provide a declarative mechanism for expressing
+    reactive functionality directly in HTML, reducing the need to write and test
+    JavaScript. </p>
+  <h2>Declarative Actions</h2>
+  <p> Actions could be thought of as commands, that are pre-configured to
+    execute in response to a declared event. Once activated, the action becomes
+    a command for the listener to execute. </p>
+  <p> The topic routes the action to the listener. The command is a function on
+    the listener. The listener executes the command using the action-data as
+    function parameters. </p>
+  <p> Actions provide a script-less way to enact functionality in response to a
+    user's actions. They can be used to update data in a store, call an API, or
+    set a cookie. See
+
+    <a href="#listeners">action listeners</a> below to see
+    what actions you can perform or how to install your own listeners.
+  </p>
+  <h4>Action Properties:</h4>
+  <ul>
+    <li>
+      <dt>topic</dt>
+      <dd>The listener's topic (usually the subsystem).</dd>
+    </li>
+    <li>
+      <dt>command</dt>
+      <dd>The task or function to perform.</dd>
+    </li>
+    <li>
+      <dt>data</dt>
+      <dd>The arguments for the command, in a name-value format.</dd>
+    </li>
+  </ul>
+  <blockquote>
+    <b>nent</b> components use a command/event messaging system for
+    inter-element communication. Actions are commands declared with HTML.
+  </blockquote>
+  <h3>Declarative Activation</h3>
+  <p> Actions can also be expressed using the
+
+    <a href="/components/x-action"><b>&lt;x-action&gt;</b></a> element. They
+    should be wrapped within an Action Activator
+
+    <a
+      href="/components/x-action-activator"><b>&lt;x-action-activator&gt;</b></a>
+    element to define how and when the actions within are activated.
+  </p>
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <x-action-activator activate="...">
+        <x-action topic="ui"
+          command="log"
+          data-message="Testing on-enter action"></x-action>
+      </x-action-activator>
+      ```
+    </script>
+  </x-content-markdown>
+  <h4>Advanced Activations</h4>
+  <p>There are more ways to activate actions declaratively. Read more about them
+    here.</p>
+
+  <div class="button-nav">
+    <a href="/actions/activation/events"
+      class="btn btn-secondary">Event Activation </a>
+    <a href="/actions/activation/timed"
+      class="btn btn-secondary">Timed Activation </a>
+    <a href="/actions/activation/elements"
+      class="btn btn-secondary">Element Activation </a>
+  </div>
+  <h3>Script Activation</h3>
+  <p> Actions can be sent to the action messaging system using a standard HTML
+    CustomEvent with the properties above, using the event name:
+    <b>x:actions</b>
+  </p>
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```javascript
+      const action = new CustomEvent('x:actions', {
+        detail: {
+          topic: '<system>',
+          command: '<command>',
+          data: {
+            ...args,
+          },
+        },
+      })
+      this.el.ownerDocument.body.dispatchEvent(customEvent)
+      ```
+    </script>
+  </x-content-markdown>
+  <h3>Mixed Activation</h3>
+  <p> You can also activate an action directly with JavaScript, using the
+    x-action element's <b>activateAction()</b> function. </p>
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <x-action id="actionlog"
+        topic="ui"
+        command="console"
+        data-message="Testing on-enter action">
+      </x-action>
+      ```
+
+      Then in JS:
+
+      ```javascript
+      await actionlog.activateAction()
+      ```
+    </script>
+  </x-content-markdown>
+  <h2>
+    <a id="listeners">Action Listeners</a>
+  </h2>
+  <p> Listeners execute functions or perform tasks based on the action commands.
+    Check out the built-in actions for each of the systems. </p>
+
+  <div class="button-nav">
+    <a hidden
+      class="btn btn-secondary"
+      href="/data/actions">Data Actions</a>
+    <a hidden
+      class="btn btn-secondary"
+      href="/routing/navigation/actions">Navigation Actions</a>
+    <a hidden
+      class="btn btn-secondary"
+      href="/plugins/ui/actions">UI Actions</a>
+    <a hidden
+      class="btn btn-secondary"
+      href="/plugins/elements/actions">Elements Actions</a>
+    <a hidden
+      class="btn btn-secondary"
+      href="/routing/analytics/actions">Analytics Actions</a>
+    <a hidden
+      class="btn btn-secondary"
+      href="/audio/actions">Audio Actions</a>
+    <a hidden
+      class="btn btn-secondary"
+      href="/plugins/video/actions">Video Actions</a>
+    <a hidden
+      class="btn btn-secondary"
+      href="/actions/custom">Custom Actions</a>
+  </div>
+  <footer>
+
+    <a slot="start"
+      href="/data">
+      <button class="btn btn-primary btn-lg">&lt;
+        Data</button>
+    </a>
+
+    <a slot="end"
+      href="/audio">
+      <button class="btn btn-primary btn-lg">Audio
+        &gt;</button>
+    </a>
+  </footer>
+</div>

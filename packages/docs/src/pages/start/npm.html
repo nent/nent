@@ -1,0 +1,49 @@
+<div class="content">
+  <h1>Installation</h1>
+  <h2>Local Package Reference</h2>
+  <p class="lead">Install the package locally with NPM or Yarn.</p>
+  <h3>First: Install the Package</h3>
+  <p>Run the install command of your favorite Node package manager.</p>
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```bash
+      npm i @nent/core
+      ```
+    </script>
+  </x-content-markdown>
+  <h3>Then: Add Script References</h3>
+  <p>Add the following script tags to the head:</p>
+  <x-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <head>
+        ...
+        < script
+          type="module"
+          src="/node_modules/@nent/core/dist/x-ui.esm.js">
+        < /script>
+        < script>
+          nomodule
+          src="/node_modules/@nent/core/dist/x-ui.js">
+        < /script>
+        ...
+      </head>
+      ```
+    </script>
+  </x-content-markdown>
+  <p class="note">Only one of these scripts are imported. Which depends on the
+    browser's support for ESM modules.</p>
+  <footer>
+    <button slot="start"
+      x-back
+      class="btn btn-secondary">&lt; Back</button>
+    <button slot="end"
+      x-next
+      class="btn btn-secondary">Next &gt;</button>
+  </footer>
+  <x-action-activator activate="on-enter">
+    <x-action topic="storage"
+      command="set-data"
+      data-installed="npm"> </x-action>
+  </x-action-activator>
+</div>

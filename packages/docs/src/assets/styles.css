@@ -1,0 +1,615 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  --primary: hsl(256, 23%, 51%);
+  --primary-dark: hsl(256, 23%, 41%);
+  --secondary: hsl(202, 69%, 33%);
+  --secondary-dark: hsl(202, 69%, 27%);
+  --accent: hsl(46, 98%, 67%);
+  --accent-dark: hsl(46, 98%, 47%);
+
+  --text-color: hsl(0, 0%, 0%);
+
+  --background-color: hsl(0, 0%, 100%);
+  --background-color-dark: hsl(0, 0%, 20%);
+
+  --light: hsl(180, 3%, 83%);
+  --dark: hsl(221, 31%, 40%);
+
+  --success: #hsl(115, 37%, 39%);
+  --info: hsl(203, 24%, 47%);
+  --nav-bg: hsl(203, 24%, 47%);
+  --primary-bg: hsl(256, 21%, 31%);
+  --content-max-width: 950px;
+
+  font-family: 'Blinker', sans-serif;
+  background-color: var(--background-color);
+
+  color: var(--text-color);
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+body.dark {
+  --primary: #ae9ae4;
+  --secondary: #347fad;
+  --accent: #fdd757;
+  --text-color: #ffffff;
+  --background-color: #2f3030;
+  --background-color-dark: hsl(0, 0%, 7%);
+  --light: #6f7070;
+  --dark: #3f4f6e;
+  --success: #23461f;
+  --info: #0c3349;
+  --nav-bg: #374663;
+  --bs-primary: var(--primary);
+  --bs-secondary: var(--secondary);
+  --bs-success: var(--success);
+  --bs-info: var(--info);
+  text-shadow: none;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+header {
+  background-color: var(--nav-bg);
+  background-image: linear-gradient(
+    to right,
+    var(--nav-bg),
+    var(--primary)
+  );
+  box-shadow: 0 0 3px 0 #000;
+}
+header h2 {
+  color: white;
+  font-size: large;
+}
+nav button i {
+  color: white;
+}
+nav button:focus {
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+header .navbar-brand a,
+header .navbar-brand a:any-link {
+  color: white;
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 0;
+}
+nav .navbar-brand a:hover {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+nav.bg-dark {
+  margin-top: -1px;
+}
+
+nav.bg-dark i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* setup tooltips */
+.tip {
+  display: flex;
+  position: relative;
+}
+
+.tip span {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.tip span {
+  border: 2px solid var(--accent);
+  border-radius: 2px;
+  background: var(--background-color);
+  color: var(--text-color) !important;
+  padding: 6px 10px;
+  white-space: nowrap;
+  left: -50%;
+  top: 3rem;
+}
+.tip span.right {
+  right: 0;
+  left: auto;
+}
+.tip span.left {
+  left: 0;
+  right: auto;
+}
+
+/* expand */
+.tip:before {
+  transform: scale3d(0.2, 0.2, 1);
+  transition: all 0.2s ease-in-out;
+}
+.tip span {
+  transform: translate3d(0, 6px, 0);
+  transition: all 0.1s ease-in-out;
+}
+.tip:hover:before,
+.tip:hover span {
+  opacity: 1;
+  transform: scale3d(1, 1, 1);
+}
+.tip:hover span {
+  transition: all 0.2s 0.1s ease-in-out;
+}
+
+b.brand {
+  color: var(--primary);
+}
+
+a.link-active:link,
+a.link-active:active,
+a.link-active:visited,
+a.link-active * {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+.accent a,
+.accent a:hover,
+.accent a:visited,
+.accent a:link,
+.accent a:hover {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+#viewdo-logo {
+  padding: 1em 0 1em 1em;
+}
+.dark #viewdo-logo {
+  filter: brightness(0) invert(1);
+}
+
+.dark .introjs-tooltip {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.dark code[class*='language-'],
+.dark pre[class*='language-'] {
+  color: var(--text-color);
+  background-color: rgb(15, 15, 15);
+  text-shadow: none;
+}
+.dark .token {
+  filter: brightness(1.2);
+}
+.dark .token.operator {
+  background-color: rgb(15, 15, 15);
+}
+
+/* ELEMENTS ------ */
+
+h1 {
+  font-size: 2rem;
+  margin-top: 0.75rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2em;
+}
+h3 {
+  font-size: 1.2rem;
+  border-bottom: 1px dotted var(--secondary);
+  padding-bottom: 0.2em;
+  display: flex;
+}
+
+h2,
+h3 {
+  color: var(--primary);
+}
+
+h2,
+h3,
+h4 {
+  margin: 0.75em 0 0.25em 0;
+}
+h3 {
+  clear: right;
+}
+
+h4 {
+  color: var(--text-color);
+  font-size: 1.1em;
+}
+
+p {
+  clear: left;
+}
+
+a,
+a:link,
+a:visited,
+a:active {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+blockquote {
+  background: var(--background-color);
+  border-left: 10px solid var(--primary);
+  margin: 2em 0;
+  padding: 1em;
+}
+blockquote > p {
+  margin: 0;
+}
+
+table {
+  overflow-x: auto;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+
+  border: solid 2px var(--nav-bg);
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+table thead th {
+  background-color: var(--nav-bg);
+  border: solid 2px var(--nav-bg);
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+}
+table tbody td {
+  border: solid 2px var(--nav-bg);
+  color: var(--text-color);
+  padding: 10px;
+}
+
+code {
+  color: var(--text-color);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+footer {
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    var(--background-color)
+  );
+  background-size: fill;
+  position: sticky;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  padding: 3vh 0 1vh 0;
+  overflow: auto;
+}
+footer::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+footer [slot='end'] {
+  float: right;
+  right: 0;
+  margin-left: 0.2rem;
+}
+footer [slot='start'] {
+  float: left;
+  margin-right: 0.2rem;
+}
+
+/* X-APP ---------------*/
+x-app {
+  height: 100vh;
+  width: 100%;
+}
+
+x-app-link a:any-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 400;
+}
+x-app-link a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+x-app-link.text-white a:any-link {
+  color: white;
+}
+
+x-app-view.active-route + x-app-view,
+x-app-view.active-route + x-app-view-not-found {
+  display: none;
+}
+
+.contained,
+x-app x-app-view,
+x-app > x-app-view-not-found {
+  max-width: var(--content-max-width);
+  padding: 0 var(--bs-gutter-x, 0.75rem);
+  margin-right: auto !important;
+  margin-left: auto !important;
+  position: relative;
+}
+
+.breadcrumb {
+  margin: 0;
+  justify-content: start;
+}
+@media (min-width: 376px) {
+  .contained {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+  body::-webkit-scrollbar {
+    width: 1em;
+  }
+  body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--nav-bg);
+    border-left: 1px inset var(--nav-bg);
+    outline: none;
+  }
+}
+
+x-app-view-list {
+  display: block;
+}
+
+x-content-markdown pre {
+  clear: both;
+  margin-top: 1rem;
+  overflow-x: auto;
+  max-width: 100%;
+  border-radius: 10px;
+}
+x-content-markdown h3 code {
+  font-size: larger;
+  font-weight: 700;
+}
+
+x-content-markdown img {
+  max-width: 100%;
+}
+
+/* For some reason, the component styles are not loading */
+x-doc-log {
+  display: block;
+  margin-top: 1rem;
+}
+
+x-audio {
+  position: sticky;
+}
+
+.button-nav {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  align-items: stretch;
+  justify-items: stretch;
+  justify-content: space-between;
+  gap: 0.3em;
+}
+
+.accent {
+  border: solid 2px var(--dark);
+  border-radius: 5px;
+  color: white;
+  background: var(--dark);
+  background-image: linear-gradient(
+    to right,
+    var(--nav-bg),
+    var(--primary)
+  );
+}
+
+.button-nav > * {
+  flex: 1 1 auto;
+  vertical-align: middle;
+}
+
+.components {
+  width: auto;
+  max-width: var(--content-max-width);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-basis: auto;
+}
+.components ul {
+  list-style: none;
+  padding-left: 0;
+  min-width: 25%;
+}
+
+.components x-app-link a {
+  word-wrap: none;
+  overflow-wrap: normal;
+}
+
+.components x-app-view {
+  display: contents;
+}
+.components ul ul {
+  padding-left: 3px;
+}
+
+.component-item {
+  border-radius: 10px;
+  border: 1px solid var(--primary);
+  background-color: var(--primary);
+  background-image: linear-gradient(
+    to right,
+    var(--nav-bg),
+    var(--primary)
+  );
+  margin-bottom: 1rem;
+}
+
+.component-item h4 {
+  color: white;
+  text-shadow: none;
+  font-size: large;
+  padding-left: 1rem;
+  font-weight: 700;
+}
+
+.component-item p {
+  padding: 1rem;
+  margin-bottom: 0;
+  color: #eee;
+}
+.component-item:hover p,
+.component-item:hover h4 {
+  color: #fff;
+}
+
+.component-list {
+  position: static;
+  z-index: 11;
+  margin-top: 3rem;
+}
+.list-group-item.fw-bold {
+  background-color: var(--primary);
+  background-image: linear-gradient(
+    to right,
+    var(--nav-bg),
+    var(--primary)
+  );
+}
+
+/* Bootstrap ------------------*/
+
+.btn * {
+  vertical-align: middle;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-bg);
+}
+.btn-primary:hover {
+  background-color: var(--primary-bg);
+  color: var(--accent);
+  border-color: var(--accent-dark);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: var(--secondary);
+  border-color: var(--secondary-dark);
+}
+
+.btn-info {
+  border-color: white;
+  color: white;
+  background-color: var(--info);
+  border-color: var(--info-dark);
+}
+.btn-info:hover {
+  background-color: var(--info);
+}
+
+a.btn-primary:any-link {
+  color: white;
+}
+a.btn-secondary:any-link {
+  color: white;
+}
+a.btn-info:any-link {
+  color: white;
+}
+
+.btn-light {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+.btn-light:hover {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+.container-fluid {
+  max-width: var(--content-max-width);
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-menu,
+.dropdown-item,
+.dropdown-item-text {
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.dropdown-item a {
+  color: var(--dark);
+  font-weight: 600;
+}
+.dropdown-item a:hover {
+  color: var(--light);
+  text-decoration: none;
+}
+
+.list-group {
+  clear: both;
+  margin-bottom: 1em;
+  color: white;
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.list-group-item {
+  color: white;
+  background-color: var(--primary);
+}
+
+.list-group-item i,
+.list-group-item a {
+  color: white;
+  font-weight: 400;
+}
+
+.list-group-item:hover {
+  background-color: var(--nav-bg);
+}
+
+a:link,
+a:active,
+a:visited,
+a:any-link,
+a:current {
+  text-decoration: none !important;
+}

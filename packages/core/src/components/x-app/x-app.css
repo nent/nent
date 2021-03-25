@@ -1,0 +1,14 @@
+*[hidden],
+*[x-cloak],
+*[x-hide],
+.hide {
+  display: none;
+}
+
+x-app {
+  display: block;
+}
+
+x-app-view.active-route + x-app-view {
+  display: none;
+}

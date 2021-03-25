@@ -1,0 +1,36 @@
+:host {
+  --display: inline-block;
+  --width: 200px;
+  --color: white;
+  --background-color: #000;
+  --border: 1px solid white;
+  --fill: white;
+  --icon-size: 1rem;
+}
+
+:host(.hidden) {
+  display: none;
+}
+
+div {
+  display: var(--display);
+  max-width: var(--width);
+  background-color: var(--background-color);
+  border: var(--border);
+  fill: var(--fill);
+  padding: 0.5em;
+  color: var(--color);
+}
+
+.button {
+  cursor: pointer;
+}
+.button svg {
+  display: flex;
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+
+p {
+  margin: 0;
+}

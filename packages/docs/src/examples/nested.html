@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous" />
+    <title>Loading...</title>
+    <style>
+      [x-cloak] {
+        display: none;
+      }
+
+      nav {
+        display: flex;
+        flex-direction: row;
+      }
+
+      a.active:any-link {
+        text-decoration: none;
+      }
+    </style>
+    <!-- Experience UI -->
+    <script type="module"
+      src="https://unpkg.com/@nent/core@0.2.1/dist/nent/nent.esm.js"></script>
+  </head>
+
+  <body>
+
+    <x-app app-title="My HTML App"
+      start-url="/home"
+      root="/examples/nested.html#/">
+      <nav>
+        <x-app-link class="nav-link"
+          href="/home"
+          active-class="active"> Home </x-app-link>
+        <x-app-link class="nav-link"
+          href="/about"
+          active-class="active"> About </x-app-link>
+      </nav>
+      <x-app-view url="/home"
+        page-title="Home">
+
+        <div class="container"
+          slot="content">
+          <h1>Home</h1>
+          <hr />
+          <h2>Hello World!</h2>
+          <p>Now you have a basic content router.</p>
+          <a href="/home/nested">Nested</a>
+        </div>
+        <x-app-view url="nested"
+          page-title="Nested"
+          x-cloak>
+
+          <div class="container"
+            slot="content">
+            <h1>Home / Nested</h1>
+            <hr />
+            <h2>A child page</h2>
+            <h3>Test</h3>
+            <a href="/home">Back to Home</a>
+          </div>
+        </x-app-view>
+      </x-app-view>
+      <x-app-view url="/about"
+        page-title="About"
+        x-cloak>
+
+        <div class="container"
+          slot="content">
+          <h1>About</h1>
+          <hr />
+          <h2>You now have a multi-page app!</h2>
+        </div>
+      </x-app-view>
+      <x-data-provider-session></x-data-provider-session>
+    </x-app>
+  </body>
+
+</html>

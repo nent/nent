@@ -1,0 +1,42 @@
+<x-data-provider-cookie x-cloak
+  class="container container-fluid shadow-sm p-2 mt-2">
+  <p>This site uses cookies as a data-provider for demonstration purposes. </p>
+  <p>Here's where the lawyers add all their jargon knowing you will likely not
+    read it.</p>
+  <button type="button"
+    class="btn btn-primary float-end"
+    slot="accept">Accept</button>
+  <button type="button"
+    class="btn btn-light"
+    slot="reject">Close</button>
+</x-data-provider-cookie>
+
+<div class="content">
+  <h1>Introductions</h1>
+  <p><b class="brand">nent</b> functional components were built to make it
+    easier to create personalized, conversational web experiences. </p>
+  <p> To demonstrate some of the functional capabilities, here we are going to
+    collect data, store it in your browser and use it later. </p>
+  <p>Tell us what to call you and it will show up in fun ways later.</p>
+
+  <div class="form-group mb-3">
+    <x-action-activator target-element="#next"
+      target-event="click,keydown">
+      <x-action topic="storage"
+        command="set-data">
+        <label for="name">Nickname</label>
+        <input type="text"
+          id="name"
+          required
+          class="form-control"
+          x-value-from="{{storage:name}}" />
+      </x-action>
+    </x-action-activator>
+  </div>
+  <footer>
+    <button slot="end"
+      id="next"
+      x-next
+      class="btn btn-primary btn-lg">Continue &gt;</button>
+  </footer>
+</div>

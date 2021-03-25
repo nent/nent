@@ -1,0 +1,17 @@
+<div class="content">
+  <label class="form-library">Favorite</label>
+  <input type="text"
+    required
+    class="form-control"
+    onblur="sessionStorage.setItem('favorite', this.value)"
+    onchange="sessionStorage.setItem('favorite', this.value)"
+    value-from="{{session:favorite}}" />
+  <footer>
+    <a slot="start"
+      class="btn btn-secondary"
+      x-back> &lt; Back </a>
+    <a slot="end"
+      x-next
+      class="btn btn-secondary"> Next &gt; </a>
+  </footer>
+</div>

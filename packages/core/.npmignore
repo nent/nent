@@ -1,0 +1,13 @@
+
+/coverage
+/docs
+/src
+.github
+.scratch
+node_modules
+.*
+bit.json
+nvm.rc
+renovate.json
+*.log
+__mock__

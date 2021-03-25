@@ -1,0 +1,112 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: main
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 14.x
+      - name: Use cached node_modules
+        id: cache
+        uses: actions/cache@v2.1.4
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
+          restore-keys: |
+            nodeModules-
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+        env:
+          CI: true
+      - run: yarn lint
+      - run: yarn test
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: ./packages/core/coverage/
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          path-to-lcov: ./packages/core/coverage/lcov.info
+          base-path: ./packages/core
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+  build:
+    name: Build
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - name: Node.js 14.x
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 14.x
+      - name: Cache
+        id: cache
+        uses: actions/cache@v2.1.4
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
+          restore-keys: |
+            nodeModules-
+      - name: Yarn
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+        env:
+          CI: true
+      - run: yarn build
+
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.5.0
+      - run: yarn
+      - run: yarn build:docs
+      - run: VERSION=$(npm version patch) >> $GITHUB_ENV
+        working-directory: packages/core
+      #- run: npm publish
+      #  working-directory: packages/core
+      #  env:
+      #    NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH}}
+      # - name: Bump version and push tag
+      #   id: tag_version
+      #   uses: mathieudutour/github-tag-action@v5.3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     custom_tag: ${{ env.XUI_VERSION }}
+      #- name: Push to Docker Hub
+      #  uses: docker/build-push-action@v2
+      #  with:
+      #    username: ${{ secrets.DOCKER_USERNAME }}
+      #    password: ${{ secrets.DOCKER_PASSWORD }}
+      #    repository: nent/nent-docs
+      #    tag_with_ref: true
+      #- name: Create Release
+      #  id: create_release
+      #  uses: actions/create-release@v1
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #  with:
+      #    tag_name: ${{ steps.tag_version.outputs.new_tag }}
+      #    release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+      #    body: ${{ steps.tag_version.outputs.changelog }}
+      #    prerelease: true
+      #    draft: true
