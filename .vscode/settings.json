@@ -157,7 +157,7 @@
     "${MemberTests}",
     "",
     "// Expect result",
-    "expect(${MethodCallResult}).to.be.not.undefined;",
+    "expect(${MethodCallResult}).not.toBeUndefine();",
     "});",
     ""
   ],
@@ -170,7 +170,7 @@
     "${MemberTests}",
     "",
     "// Expect result",
-    "expect(${PropertyGetResult}).equals(${PropertySetVariable});",
+    "expect(${PropertyGetResult}).toBe(${PropertySetVariable});",
     "});",
     ""
   ],
@@ -183,27 +183,27 @@
     "${MemberTests}",
     "",
     "// Expect result",
-    "expect(${MethodCallResult}).to.be.not.undefined;",
+    "expect(${MethodCallResult}).not.toBeUndefined();",
     "});",
     ""
   ],
   "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#1f6fd0",
-    "activityBar.activeBorder": "#ee90bb",
-    "activityBar.background": "#1f6fd0",
-    "activityBar.foreground": "#e7e7e7",
-    "activityBar.inactiveForeground": "#e7e7e799",
-    "activityBarBadge.background": "#ee90bb",
+    "activityBar.activeBackground": "#cec2ef",
+    "activityBar.activeBorder": "#d1714e",
+    "activityBar.background": "#cec2ef",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#d1714e",
     "activityBarBadge.foreground": "#15202b",
-    "statusBar.background": "#1857a4",
-    "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#1f6fd0",
-    "titleBar.activeBackground": "#1857a4",
-    "titleBar.activeForeground": "#e7e7e7",
-    "titleBar.inactiveBackground": "#1857a499",
-    "titleBar.inactiveForeground": "#e7e7e799"
+    "statusBar.background": "#ae9ae4",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#8e72d9",
+    "titleBar.activeBackground": "#ae9ae4",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#ae9ae499",
+    "titleBar.inactiveForeground": "#15202b99"
   },
-  "peacock.remoteColor": "#1857a4",
+  "peacock.remoteColor": "#ae9ae4",
   "commit-message-editor.tokens": [
     {
       "label": "Type",
@@ -215,59 +215,50 @@
           "value": ""
         },
         {
-          "label": "👷 build",
+          "label": "build(👷)",
           "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)"
         },
         {
-          "label": "🧹 chore",
+          "label": "chore(🧹)",
           "description": "Updating grunt tasks etc; no production code change"
         },
         {
-          "label": "⚙️ ci",
+          "label": "ci(⚙️)",
           "description": "Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)"
         },
         {
-          "label": "📝 docs",
+          "label": "docs(📝)",
           "description": "Documentation only changes"
         },
         {
-          "label": "✨ feat",
+          "label": "featur(✨)",
           "description": "A new feature"
         },
         {
-          "label": "🔧 fix",
+          "label": "fix(🔧)",
           "description": "A bug fix"
         },
         {
-          "label": "🛠️ perf",
+          "label": "perf(🛠️)",
           "description": "A code change that improves performance"
         },
         {
-          "label": "🚧 refactor",
+          "label": "refactor(🚧)",
           "description": "A code change that neither fixes a bug nor adds a feature"
         },
         {
-          "label": "🔙 revert"
+          "label": "revert(🔙)"
         },
         {
-          "label": "🌟 style",
+          "label": "style(🌟)",
           "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"
         },
         {
-          "label": "🧪 test",
+          "label": "test(🧪)",
           "description": "Adding missing tests or correcting existing tests"
         }
       ],
       "description": "Type of changes"
-    },
-    {
-      "label": "Scope",
-      "name": "scope",
-      "description": "A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g., \"feat(parser): add ability to parse arrays\".",
-      "type": "text",
-      "multiline": false,
-      "prefix": "(",
-      "suffix": ")"
     },
     {
       "label": "Description",
@@ -291,13 +282,6 @@
       "type": "boolean",
       "value": "BREAKING CHANGE: ",
       "default": false
-    },
-    {
-      "label": "Footer",
-      "name": "footer",
-      "description": "Optional footer",
-      "type": "text",
-      "multiline": false
-    },
+    }
   ]
 }

@@ -15,20 +15,18 @@
   <p>Add the following script tags to the head:</p>
   <x-content-markdown>
     <script type="text/markdown">
-      ```html
-      <head>
-        ...
-        < script
-          type="module"
-          src="/node_modules/@nent/core/dist/x-ui.esm.js">
-        < /script>
-        < script>
-          nomodule
-          src="/node_modules/@nent/core/dist/x-ui.js">
-        < /script>
-        ...
-      </head>
-      ```
+    ```html
+    <head>
+    <script
+      type="module"
+      src="/node_modules/@nent/core/dist/x-ui.esm.js">
+    </script>
+    <script>
+      nomodule
+      src = "/node_modules/@nent/core/dist/x-ui.js" >
+    </script>
+    </head>
+    ```
     </script>
   </x-content-markdown>
   <p class="note">Only one of these scripts are imported. Which depends on the
