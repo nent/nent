@@ -230,8 +230,8 @@
 TODO:
 - [ ] Add view-time capturing to the router with a view-time event with seconds on that exact router
 - [ ] Add presentation timer periodic time events if Analytics is enabled.
-- [ ] Separate x-app into:
+- [ ] Separate n-views into:
   - [ ] app router: n-app > n-app-page > n-app-page-prompt
   - [ ] event delegator and action listener: n-action-bus, n-event-bus
 - [ ] Add n-app-offline (encapsulate a service-worker)
-- [ ] x-content-share -> n-app-share
+- [ ] n-content-share -> n-app-share

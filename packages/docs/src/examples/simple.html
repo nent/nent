@@ -14,7 +14,7 @@
       crossorigin="anonymous" />
     <title>App</title>
     <style>
-      [x-cloak] {
+      [n-cloak] {
         display: none;
       }
 
@@ -37,46 +37,42 @@
   </head>
 
   <body>
-
-    <x-app app-title="App"
+    <n-views app-title="App"
       start-url="/home"
       root="/examples/simple.html#/">
-      <nav class="nav d-flex flex-row">
-        <x-app-link class="nav-link"
+      <nav class="nav d-flex flen-row">
+        <n-view-link class="nav-link"
           href="/home"
           exact
-          active-class="active"> Home </x-app-link>
-        <x-app-link class="nav-link"
+          active-class="active"> Home </n-view-link>
+        <n-view-link class="nav-link"
           href="/about"
-          active-class="active"> About </x-app-link>
+          active-class="active"> About </n-view-link>
       </nav>
-
       <div class="container">
-        <x-app-view url="/home"
+        <n-view url="/home"
           page-title="Home">
           <h1>Home</h1>
           <hr />
-
           <div class="content">
             <h2>Hello World!</h2>
             <p>Now you have a basic content router.</p>
           </div>
-        </x-app-view>
-        <x-app-view url="/about"
+        </n-view>
+        <n-view url="/about"
           page-title="About"
-          x-cloak>
+          n-cloak>
           <h1>About</h1>
           <hr />
-
           <div class="content">
             <h2>About World!</h2>
             <p>AND an about page.</p>
           </div>
-        </x-app-view>
+        </n-view>
       </div>
-      <x-data-provider-session></x-data-provider-session>
-      <x-data-provider-storage></x-data-provider-storage>
-    </x-app>
+      <n-data-session></n-data-session>
+      <n-data-storage></n-data-storage>
+    </n-views>
   </body>
 
 </html>

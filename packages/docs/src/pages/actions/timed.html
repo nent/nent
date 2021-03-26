@@ -1,39 +1,36 @@
-<x-action-activator activate="at-time"
+<n-action-activator activate="at-time"
   time="3">
-  <x-action topic="ui"
+  <n-action topic="app"
     command="log"
-    data-message="3-seconds!"> </x-action>
-</x-action-activator>
-
+    data-message="3-seconds!"> </n-action>
+</n-action-activator>
 <div class="content">
   <h1>Time Activation</h1>
-  <p> Timed actions work using the
-
-    <a href="/components/x-app-view-do">
-      <b>&lt;x-app-view-do/&gt;</b></a> element time system. This system allows
+  <p> Timed actions work using the <a href="/components/n-view-prompt">
+      <b>&lt;n-view-prompt/&gt;</b></a> element time system. This system allows
     developers to fire off actions at a given time, in seconds from route entry.
   </p>
-  <h2>Time: <span x-time-to></span></h2>
+  <h2>Time: <span n-time-to></span></h2>
   <blockquote>You should see a console log message after 3 seconds.</blockquote>
   <h3>Source</h3>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-action-activator activate="at-time" time="3">
-        <x-action topic="ui"
+      <n-action-activator activate="at-time" time="3">
+        <n-action topic="app"
           command="log"
-          data-message="3-seconds has passed."></x-action>
-      </x-action-activator>
+          data-message="3-seconds has passed."></n-action>
+      </n-action-activator>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <x-doc-log></x-doc-log>
   <footer>
     <a slot="start"
-      x-next="/actions/event"
+      n-next="/actions/event"
       class="btn btn-secondary">&lt; Event Activation</a>
     <a slot="end"
-      x-next="/actions/activation/elements"
+      n-next="/actions/activation/elements"
       class="btn btn-secondary">Element Activation &gt;</a>
   </footer>
 </div>

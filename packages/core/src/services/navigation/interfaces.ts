@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-import { LocationSegments } from '../routing'
+import { LocationSegments } from '../routing/interfaces'
 
 export enum NAVIGATION_COMMANDS {
   goNext = 'go-next',

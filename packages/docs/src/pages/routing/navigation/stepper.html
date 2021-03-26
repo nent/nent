@@ -9,42 +9,36 @@
   <p>By convention, routes are given an order based on how they are declared.
   </p>
   <h3>Example</h3>
-
   <p> In this example, you can see how the routes are defined contribute to the
     behavior as well as the shared content between pages. </p>
-
   <a href="/examples/stepper.html"
     target="_blank"
     class="btn btn-light float-end my-2 ms-2">
-    <i class="ri-external-link-line"></i>
-    Visit Demo</a>
-  <blockquote>
-    Using just static HTML, this page was able to create a rich
+    <i class="ri-external-link-line"></i> Visit Demo</a>
+  <blockquote> Using just static HTML, this page was able to create a rich
     navigation system that walks a user through content in a personalized,
-    conversational format.
-  </blockquote>
-
-  <x-content-markdown>
+    conversational format. </blockquote>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-app app-title="My HTML App" start-url="/home" mode="hash" class="container">
+      <n-views app-title="My HTML App" start-url="/home" mode="hash" class="container">
         <h1 class="mt-3">No-Code Stepper</h1>
 
-        <x-app-view url="/home" page-title="Home">
+        <n-view url="/home" page-title="Home">
           <h2>Home</h2>
           <div class="content">
             <p>Click the link below to begin.</p>
 
-            <a class="btn btn-primary btn-lg" href="/survey" x-hide-when="{{storage:food}}">Take Survey</a>
-            <a class="btn btn-light btn-lg" href="/survey/step-1" hidden x-show-when="{{storage:food}}">Retake Survey</a>
+            <a class="btn btn-primary btn-lg" href="/survey" n-hide-when="{{storage:food}}">Take Survey</a>
+            <a class="btn btn-light btn-lg" href="/survey/step-1" hidden n-show-when="{{storage:food}}">Retake Survey</a>
           </div>
-        </x-app-view>
+        </n-view>
 
-        <x-app-view url="/survey" page-title="Survey" x-cloak>
-          <x-content-reference style-src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
-          </x-content-reference>
+        <n-view url="/survey" page-title="Survey" n-cloak>
+          <n-content-reference style-src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
+          </n-content-reference>
           <h2>Survey</h2>
-          <div class="step" x-class="completed" x-class-when="{{storage:nickname}}">
+          <div class="step" n-class="completed" n-class-when="{{storage:nickname}}">
             <div class="stepper">
               <div class="circle"></div>
               <div class="line"></div>
@@ -52,11 +46,11 @@
             <div class="form">
               <h3>
                 Step 1
-                <span x-hide-when="!{{storage:nickname}}">
+                <span n-hide-when="!{{storage:nickname}}">
                   <a href="/survey/step-1">✔️</a>
                 </span>
               </h3>
-              <x-app-view-do when="!{{storage:nickname}}" url="step-1" page-title="Step 1">
+              <n-view-prompt when="!{{storage:nickname}}" url="step-1" page-title="Step 1">
                 <div class="content" class="form-group">
                   <label class="form-label" for="name">Nick Name</label>
                   <input
@@ -66,15 +60,15 @@
                     id="name"
                     onblur="localStorage.setItem('nickname', this.value)"
                     onchange="localStorage.setItem('nickname', this.value)"
-                    x-value-from="{{storage:nickname}}"
+                    n-value-from="{{storage:nickname}}"
                     tabindex="0"
                   />
-                  <a class="btn btn-primary btn-lg" x-next="step-2"> Next </a>
+                  <a class="btn btn-primary btn-lg" n-next="step-2"> Next </a>
                 </div>
-              </x-app-view-do>
+              </n-view-prompt>
             </div>
           </div>
-          <div class="step" x-class="completed" x-class-when="{{storage:show}}">
+          <div class="step" n-class="completed" n-class-when="{{storage:show}}">
             <div class="stepper">
               <div class="circle"></div>
               <div class="line"></div>
@@ -82,11 +76,11 @@
             <div>
               <h3>
                 Step 2
-                <span x-hide-when="!{{storage:show}}">
+                <span n-hide-when="!{{storage:show}}">
                   <a href="/survey/step-2">✔️</a>
                 </span>
               </h3>
-              <x-app-view-do when="!{{storage:show}}" url="step-2" page-title="Step 2">
+              <n-view-prompt when="!{{storage:show}}" url="step-2" page-title="Step 2">
                 <div class="content">
                   <label class="form-label" for="show">TV Show</label>
                   <input
@@ -96,26 +90,26 @@
                     class="form-control mb-3"
                     onblur="localStorage.setItem('show', this.value)"
                     onchange="localStorage.setItem('show', this.value)"
-                    x-value-from="{{storage:show}}"
+                    n-value-from="{{storage:show}}"
                     tabindex="0"
                   />
-                  <a class="btn btn-primary btn-lg" x-next="step-3">Next</a>
+                  <a class="btn btn-primary btn-lg" n-next="step-3">Next</a>
                 </div>
-              </x-app-view-do>
+              </n-view-prompt>
             </div>
           </div>
-          <div class="step" x-class="completed" x-class-when="{{storage:food}}">
+          <div class="step" n-class="completed" n-class-when="{{storage:food}}">
             <div class="stepper">
               <div class="circle"></div>
             </div>
             <div>
               <h3>
                 Step 3
-                <span x-hide-when="!{{storage:food}}">
+                <span n-hide-when="!{{storage:food}}">
                   <a href="/survey/step-3">✔️</a>
                 </span>
               </h3>
-              <x-app-view-do when="!{{storage:food}}" url="step-3" page-title="Step 3">
+              <n-view-prompt when="!{{storage:food}}" url="step-3" page-title="Step 3">
                 <div class="content">
                   <label class="form-label" for="show">Food or Snack</label>
                   <input
@@ -125,26 +119,24 @@
                     class="form-control mb-3"
                     onblur="localStorage.setItem('food', this.value)"
                     onchange="localStorage.setItem('food', this.value)"
-                    x-value-from="{{storage:food}}"
+                    n-value-from="{{storage:food}}"
                     tabindex="0"
                   />
-                  <a class="btn btn-primary btn-lg" x-next>Next</a>
+                  <a class="btn btn-primary btn-lg" n-next>Next</a>
                 </div>
-              </x-app-view-do>
+              </n-view-prompt>
             </div>
           </div>
 
           <div class="content">
             <p>Thank you for completing our survey.</p>
           </div>
-        </x-app-view>
-      </x-app>
+        </n-view>
+      </n-views>
       ```
     </script>
-  </x-content-markdown>
-
+  </n-content-markdown>
   <footer>
-
     <a slot="start"
       href="/routing/navigation/guided">
       <button class="btn btn-info btn-lg">&lt; Guided</button>

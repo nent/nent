@@ -10,9 +10,9 @@ There are data-providers already created for sessionStorage, localStorage and co
 
 To use them, add their tag:
 
-* Browser Session: **session** `<x-data-provider-session>`
-* Browser Storage: **storage** `<x-data-provider-storage>`
-* Cookies: **cookie** `<x-data-provider-cookie>`
+* Browser Session: **session** `<n-data-session>`
+* Browser Storage: **storage** `<n-data-storage>`
+* Cookies: **cookie** `<n-data-cookie>`
 
 Other data-providers that require no configuration are:
 
@@ -48,7 +48,7 @@ Provider Key: '**cookie**'
 
 `{cookie:(key)}`
 
-The cookie provider is registered using a special element **[\<x-data-provider-cookie\>](/components/x-data-provider-cookie)**.
+The cookie provider is registered using a special element **[\<n-data-cookie\>](/components/n-data-cookie)**.
 
 ## Custom Data Providers
 
@@ -174,8 +174,8 @@ export class MyDataProvider {
 Then just include your element somewhere on the page:
 
 ```html
-<x-app>
+<n-views>
   ...
   <my-data-provider></my-data-provider
-></x-app>
+></n-views>
 ```

@@ -1,12 +1,11 @@
-<x-content-reference
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
   style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
-</x-content-reference>
-<x-content-reference
+</n-content-reference>
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
-</x-content-reference>
-
-<x-content-reveal direction="left"
+</n-content-reference>
+<n-content-reveal direction="left"
   delay="500"
   duration="1000"
   animation-distance="60%"
@@ -14,7 +13,7 @@
   <ul
     class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
     <li class="list-group-item fw-bold"> Content Components</li>
-    <x-data-repeat items-src="/assets/components.json"
+    <n-content-data-repeat items-src="/assets/components.json"
       filter="components[docsTags[text='content']]">
       <template>
         <li class="list-group-item">
@@ -23,25 +22,21 @@
           </a>
         </li>
       </template>
-    </x-data-repeat>
+    </n-content-data-repeat>
   </ul>
-</x-content-reveal>
-
-<x-app-view url="/content/include"
+</n-content-reveal>
+<n-view url="/content/include"
   page-title="Partials"
-  content-src="/pages/content/include.html"> </x-app-view>
-
-<x-app-view url="/content/markdown"
+  content-src="/pages/content/include.html"> </n-view>
+<n-view url="/content/markdown"
   page-title="Markdown"
   content-src="/pages/content/markdown.html">
-</x-app-view>
-
-<x-app-view url="/content/share"
+</n-view>
+<n-view url="/content/share"
   page-title="Native Share"
   content-src="/pages/content/share.html">
-</x-app-view>
-
-<x-app-view url="/content/reveal"
+</n-view>
+<n-view url="/content/reveal"
   page-title="Animated Reveal"
   content-src="/pages/content/reveal.html">
-</x-app-view>
+</n-view>

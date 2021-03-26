@@ -157,7 +157,7 @@ Now let’s move out of theory any into our new HTML Elements.
 
 ## Views and Dos
 
-In our examples above, we discussed routes and sub-routes. The routes are expressed in nent using the [\<x-app-view\>](/components/x-app-view) tag and their sub-routes would be [\<x-app-view-do\>](/components/x-app-view-do) tags.
+In our examples above, we discussed routes and sub-routes. The routes are expressed in nent using the [\<n-view\>](/components/n-view) tag and their sub-routes would be [\<n-view-prompt\>](/components/n-view-prompt) tags.
 
 The default visit-requirement is ‘once’, so it can be omitted. Also, if the 'when’ property exists, the visit requirement is always derived from that expression, leaving few occasions where we have to express the visit-strategy.
 
@@ -168,50 +168,50 @@ These tags are explained in detail within their own element requirements, but he
 **Example View.DO Site:**
 
 ```html
-<x-app>
-  <x-app-view path="/start"
+<n-views>
+  <n-view path="/start"
     page-title="Home">
-    <x-app-view-do url="/welcome"
+    <n-view-prompt url="/welcome"
       visit="always">
       ...
-    </x-app-view-do>
-    <x-app-view-do url="/get-name"
+    </n-view-prompt>
+    <n-view-prompt url="/get-name"
       page-title="What's your name?"
       when="name == null"
       type="input">
       ...
-    </x-app-view-do>
-    <x-app-view-do url="/hi-name"
+    </n-view-prompt>
+    <n-view-prompt url="/hi-name"
       page-title="Hello!">
       ...
-    </x-app-view-do>
-    <x-app-view-do url="/video-intro"
+    </n-view-prompt>
+    <n-view-prompt url="/video-intro"
       visit="optional"
       type="video">
       ...
-    </x-app-view-do>
-    <x-app-view url="/about"
+    </n-view-prompt>
+    <n-view url="/about"
       page-title="About Us">
-      <x-app-view-do url="/meet-mike"
+      <n-view-prompt url="/meet-mike"
         page-title="About Mike">
         ...
-      </x-app-view-do>
-      <x-app-view-do url="/meet-paul"
+      </n-view-prompt>
+      <n-view-prompt url="/meet-paul"
         page-title="About Paul">
         ...
-      </x-app-view-do>
-      <x-app-view-do url="/meet-jason"
+      </n-view-prompt>
+      <n-view-prompt url="/meet-jason"
         page-title="About Jason">
         ...
-      </x-app-view-do>
+      </n-view-prompt>
       <x-do url="/meet-max"
         page-title="About Max"
         ...>
-      </x-app-view-do>
+      </n-view-prompt>
       ... home page content
-    </x-app-view>
-  </x-app-view>
-</x-app>
+    </n-view>
+  </n-view>
+</n-views>
 ```
 
 This structure would first ask the newcomer’s name, then use it with a welcome message. It would offer a link to our intro video, but would just go home when they clicked **next**.

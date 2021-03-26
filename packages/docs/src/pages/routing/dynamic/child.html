@@ -1,26 +1,19 @@
 <div class="content">
-
-  <h1>
-    Route-based Content
-  </h1>
+  <h1> Route-based Content </h1>
   <p class="lead">This page uses route and URL data within the content!</p>
   <img style="width: 100%; min-height: 200px;"
     src="https://source.unsplash.com/random/500x200?{{route:item}}" />
   <h2>Learn About '{{route:item}}'</h2>
   <p>{{storage:name}}, you picked a good one!
-
   <h2>Under the Hood</h2>
-  <p> Check out how <b class="brand">nent</b> makes it easy to use
-    route and query-string data directly in your content. </p>
-  <x-content-markdown src="/pages/routing/dynamic/child.md"
+  <p> Check out how <b class="brand">nent</b> makes it easy to use route and
+    query-string data directly in your content. </p>
+  <n-content-markdown src="/pages/routing/dynamic/child.md"
     no-cache="">
-  </x-content-markdown>
-
+  </n-content-markdown>
   <footer>
-
     <a slot="start"
       href="/routing/dynamic"
       class="btn btn-secondary"> &lt; Dynamic </a>
-
   </footer>
 </div>

@@ -6,38 +6,33 @@
     allowing users to bookmark and link to multiple "pages", managed as a single
     file. </p>
   <h2>How it works</h2>
-  <p> By wrapping content in an
-
-    <a href="/components/x-app-view">
-      <b>&lt;x-app-view&gt;</b>
+  <p> By wrapping content in an <a href="/components/n-view">
+      <b>&lt;n-view&gt;</b>
     </a> element and setting the <b>url</b> attribute, the contained-content
     won't be displayed until the URL path matches the path set in the <b>url</b>
-    attribute.
-  </p>
+    attribute. </p>
   <p>Parent routes can have content shared for child routes, like a child-menu
     or sub-nav.</p>
   <h3>Simple Example</h3>
-
   <a hidden
     href="/examples/simple.html"
     target="_blank"
     class="btn btn-light float-end my-2 ms-2">
-    <i class="ri-external-link-line"></i>
-    Visit Demo</a>
+    <i class="ri-external-link-line"></i> Visit Demo</a>
   <p> The following example shows a very simple routing implementation. it is
     used throughout this document, but you can also see a concise example here:
   </p>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-app
+      <n-views
         app-title="My HTML App"
         start-url="/home">
         <header>
           <!-- visible to all pages -->
           App Name
         </header>
-        <x-app-view
+        <n-view
           url="/home"
           page-title="Home">
           <nav class="subnav">
@@ -55,10 +50,10 @@
             <a href="about">
               Sibling Page</a>
           </div>
-          <x-app-view
+          <n-view
             url="nested"
             page-title="Nested"
-            x-cloak>
+            n-cloak>
             <div
             qclass="container"
               slot="content">
@@ -68,69 +63,49 @@
 
               <a href="">Back to Home</a>
             </div>
-          </x-app-view>
-        </x-app-view>
-        <x-app-view
+          </n-view>
+        </n-view>
+        <n-view
           url="/about"
           page-title="About"
-          x-cloak>
+          n-cloak>
           <div class="container"
             slot="content">
             <h1>Sibling Page</h1>
             <h2>You now have a multi-page app!</h2>
             <a href="/home">Back to Home</a>
           </div>
-        </x-app-view>
-      </x-app>
+        </n-view>
+      </n-views>
       ```
       > **TIP:** Content that that should only appear on a route, and not a child-route should be inserted using
       > the `slot="content"` attribute.
     </script>
-  </x-content-markdown>
-
+  </n-content-markdown>
   <h3>Advanced Topics</h3>
-  <p> The routing components can handle complex routing strategies too.
-    Check out some advance use-cases they support below. </p>
-
+  <p> The routing components can handle complex routing strategies too. Check
+    out some advance use-cases they support below. </p>
   <div class="button-nav">
-
     <a href="/routing/lazy"
       class="btn btn-secondary">
-      <i class="ri-rest-time-line"></i>
-      Lazy Routes
-    </a>
-
+      <i class="ri-rest-time-line"></i> Lazy Routes </a>
     <a href="/routing/child"
       class="btn btn-secondary">
-      <i class="ri-stack-line"></i>
-      Child Routes
-    </a>
-
+      <i class="ri-stack-line"></i> Child Routes </a>
     <a href="/routing/dynamic"
       class="btn btn-secondary">
-      <i class="ri-database-line"></i>
-      Dynamic Routes
-    </a>
-
+      <i class="ri-database-line"></i> Dynamic Routes </a>
     <a href="/routing/analytics"
       class="btn btn-secondary">
-      <i class="ri-bar-chart-box-line"></i>
-      Analytics
-    </a>
-
+      <i class="ri-bar-chart-box-line"></i> Analytics </a>
     <a href="/routing/navigation"
       class="btn btn-secondary">
-      <i class="ri-compass-3-line"></i>
-      Navigation
-    </a>
+      <i class="ri-compass-3-line"></i> Navigation </a>
   </div>
-
   <footer>
-
     <a slot="start"
       href="/start"
       class="btn btn-primary btn-lg"> &lt; Install </a>
-
     <a slot="end"
       href="/content"
       class="btn btn-primary btn-lg"> Content &gt; </a>

@@ -5,29 +5,24 @@
   <p> This router supports segment and query-string variables and we provide a
     simple, declarative method for using that data in your application. By using
     special (Node.js Express-based) notation in the <a
-      href="/components/x-app-view">
-      <b>&lt;x-app-view&gt;</b>
-    </a> element's <b>URL</b> attribute, the route data becomes available in
-    our unified <a href="/data/expressions">data expression</a> system. </p>
+      href="/components/n-view">
+      <b>&lt;n-view&gt;</b>
+    </a> element's <b>URL</b> attribute, the route data becomes available in our
+    unified <a href="/data/expressions">data expression</a> system. </p>
   <p> Routes can express dynamic parameters, to provide data-driven views You
     can even use that data in your HTML, again with no code. </p>
   <h3>Contrived Example</h3>
   <p>This page's child-routes demonstrate how dynamic, data-driven routes can be
     used with this routing system.</p>
-
   <div class="button-nav">
     <a href="/routing/dynamic/item/cake"
       class="btn btn-info btn-sm">
-      <i class="ri-cake-2-line"></i>
-      Cake
-    </a>
+      <i class="ri-cake-2-line"></i> Cake </a>
     <a href="/routing/dynamic/item/wine"
       class="btn btn-info btn-sm">
-      <i class="ri-goblet-fill"></i>
-      Wine
-    </a>
-    <x-data-display hidden
-      x-show-when="{{storage:favorite}}">
+      <i class="ri-goblet-fill"></i> Wine </a>
+    <n-content-data hidden
+      n-show-when="{{storage:favorite}}">
       <template>
         <a href="/routing/dynamic/item/{{storage:favorite}}"
           class="btn btn-info btn-sm">
@@ -35,28 +30,26 @@
           {{storage:favorite}}
         </a>
       </template>
-    </x-data-display>
+    </n-content-data>
     <a href="/routing/dynamic/custom"
-      x-hide-when="{{storage:favorite}}"
+      n-hide-when="{{storage:favorite}}"
       class="btn btn-info btn-sm">
-      <i class="ri-discuss-line"></i>
-      Custom Item
-    </a>
+      <i class="ri-discuss-line"></i> Custom Item </a>
   </div>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-app-view url="/data" page-title="Data List">
-        <x-app-view url="/item/:foodKey" page-title="{{route:foodKey}} Details">
+      <n-view url="/data" page-title="Data List">
+        <n-view url="/item/:foodKey" page-title="{{route:foodKey}} Details">
           ... content that uses foodKey to render ...
-        </x-app-view>
+        </n-view>
 
         <a href="/routing/dynamic/item/cake">Cake</a>
         <a href="/routing/dynamic/item/wine">Wine</a>
-      </x-app-view>
+      </n-view>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <footer>
     <a slot="start"
       href="/routing/child"

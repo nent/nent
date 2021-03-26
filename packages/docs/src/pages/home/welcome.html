@@ -1,13 +1,13 @@
 <div class="content">
   <h1> Welcome <span hidden
-      x-show-when="{{storage:installed}}">back</span>
-    <x-data-display text="{{storage:name?Friend}}"></x-data-display>!
+      n-show-when="{{storage:installed}}">back</span>
+    <n-content-data text="{{storage:name?Friend}}"></n-content-data>!
   </h1>
   <p>This page shows up each visit. This kind of route is helpful for
     notifications, consent forms or announcements.</p>
   <footer>
     <button slot="end"
-      x-next
+      n-next
       class="btn btn-primary btn-lg">Continue &gt;</button>
   </footer>
 </div>

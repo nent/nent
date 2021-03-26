@@ -14,7 +14,7 @@
       crossorigin="anonymous" />
     <title>Loading...</title>
     <style>
-      [x-cloak] {
+      [n-cloak] {
         display: none;
       }
     </style>
@@ -24,13 +24,11 @@
   </head>
 
   <body>
-
-    <x-app app-title="My HTML App"
+    <n-views app-title="My HTML App"
       start-url="/home"
       root="stepper.html#/">
-      <x-app-view url="/home"
+      <n-view url="/home"
         page-title="Home">
-
         <div class="container"
           slot="content">
           <h1>Home</h1>
@@ -40,10 +38,9 @@
           <a href="home/nested">Nested Page</a>
           <a href="about">Sibling Page</a>
         </div>
-        <x-app-view url="nested"
+        <n-view url="nested"
           page-title="Nested"
-          x-cloak>
-
+          n-cloak>
           <div class="container"
             slot="content">
             <h1>Nested</h1>
@@ -51,22 +48,21 @@
             <h2>A child page</h2>
             <a href="">Back to Home</a>
           </div>
-        </x-app-view>
-      </x-app-view>
-      <x-app-view url="/about"
+        </n-view>
+      </n-view>
+      <n-view url="/about"
         page-title="About"
-        x-cloak>
-
+        n-cloak>
         <div class="container"
           slot="content">
           <h1>Sibling Page</h1>
           <h2>You now have a multi-page app!</h2>
           <a href="">Back to Home</a>
         </div>
-      </x-app-view>
-      <x-data-provider-session></x-data-provider-session>
-      <x-data-provider-storage></x-data-provider-storage>
-    </x-app>
+      </n-view>
+      <n-data-session></n-data-session>
+      <n-data-storage></n-data-storage>
+    </n-views>
   </body>
 
 </html>

@@ -1,38 +1,37 @@
-<x-content-reference
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
   style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
-</x-content-reference>
-<x-content-reference
+</n-content-reference>
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
-</x-content-reference>
-
-<x-audio display
+</n-content-reference>
+<n-audio display
   class="float-end"
   style="margin-top: 3rem;">
-</x-audio>
-<x-app-view url="/audio/controls"
+</n-audio>
+<n-view url="/audio/controls"
   page-title="Controls"
   visit="optional"
   content-src="/pages/audio/controls.html">
-</x-app-view>
-<x-app-view url="/audio/music"
+</n-view>
+<n-view url="/audio/music"
   page-title="Music"
   content-src="/pages/audio/music.html">
-</x-app-view>
-<x-app-view url="/audio/sound"
+</n-view>
+<n-view url="/audio/sound"
   page-title="Sounds"
   content-src="/pages/audio/sound.html">
-</x-app-view>
-<x-app-view url="/audio/both"
+</n-view>
+<n-view url="/audio/both"
   page-title="Music & Sound"
   content-src="/pages/audio/both.html">
-</x-app-view>
-<x-app-view-do url="/audio/timed"
+</n-view>
+<n-view-prompt url="/audio/timed"
   page-title="Timed Sound"
   visit="optional"
   content-src="/pages/audio/timed.html">
-</x-app-view-do>
-<x-app-view url="/audio/provider"
+</n-view-prompt>
+<n-view url="/audio/provider"
   page-title="Data Provider"
   content-src="/pages/audio/provider.html">
-</x-app-view>
+</n-view>

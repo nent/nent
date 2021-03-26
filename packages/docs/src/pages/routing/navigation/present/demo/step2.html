@@ -1,22 +1,19 @@
-<x-content-reference
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
   style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
-</x-content-reference>
-<x-content-reference
+</n-content-reference>
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
-</x-content-reference>
-
+</n-content-reference>
 <div class="content">
-  <x-content-markdown src="/pages/routing/navigation/guided.md">
-  </x-content-markdown>
+  <n-content-markdown src="/pages/routing/navigation/guided.md">
+  </n-content-markdown>
   <footer>
-
     <a slot="start"
-      x-back
+      n-back
       class="btn btn-secondary"> &lt; Back </a>
-
     <a slot="end"
-      x-next
+      n-next
       class="btn btn-secondary"> Next &gt; </a>
   </footer>
 </div>

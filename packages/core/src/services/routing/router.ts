@@ -1,6 +1,9 @@
 import { RafCallback } from '@stencil/core'
 import { ROUTE_EVENTS } from '../../services/routing/interfaces'
+import { slugify, warn } from '../common'
+import { performLoadElementManipulation } from '../common/elements'
 import { IEventEmitter } from '../common/interfaces'
+import { commonState, onCommonStateChange } from '../common/state'
 import { addDataProvider } from '../data/factory'
 import { DATA_EVENTS } from '../data/interfaces'
 import { NavigationActionListener } from '../navigation/actions'
@@ -30,56 +33,82 @@ export class RouterService {
   private listener!: NavigationActionListener
   public history: HistoryService
   public routes: { [index: string]: Route } = {}
-  private routeData: RoutingDataProvider
-  private queryData: RoutingDataProvider
+  private routeData?: RoutingDataProvider
+  private queryData?: RoutingDataProvider
   constructor(
     private win: Window,
     private readonly writeTask: (t: RafCallback) => void,
-    private eventBus: IEventEmitter,
-    actions: IEventEmitter,
+    public eventBus: IEventEmitter,
+    public actions: IEventEmitter,
     public root: string = '',
     public appTitle: string = '',
     public transition: string = '',
     public scrollTopOffset = 0,
   ) {
     this.history = new HistoryService(win, root)
-    this.listener = new NavigationActionListener(
-      this,
-      eventBus,
-      actions,
-    )
-
-    const locationNotifications = (location: LocationSegments) => {
-      this.notifyDataChange()
-      this.listener.notifyRouteChanged(location)
-      this.listener.notifyRouteFinalized(location)
-    }
-
-    const self = this
-    this.routeData = new RoutingDataProvider(
-      (key: string) => self.location!.params[key],
-    )
-    addDataProvider('route', this.routeData)
-
-    this.queryData = new RoutingDataProvider(
-      (key: string) => self.location!.query[key],
-    )
-    addDataProvider('query', this.queryData)
 
     this.removeHandler = this.history.listen(
       (location: LocationSegments) => {
         this.location = location
-        locationNotifications(location)
+        this.sendLocationNotifications(location)
       },
     )
 
-    locationNotifications(this.history.location)
+    if (commonState.actionsEnabled) this.enableActionListener()
+    else {
+      const actionSubscription = onCommonStateChange(
+        'actionsEnabled',
+        enabled => {
+          if (enabled) {
+            this.enableActionListener()
+            actionSubscription()
+          }
+        },
+      )
+    }
+
+    if (commonState.dataEnabled) this.enableDataProviders()
+    else {
+      const dataSubscription = onCommonStateChange(
+        'dataEnabled',
+        enabled => {
+          if (enabled) {
+            this.enableDataProviders()
+            dataSubscription()
+          }
+        },
+      )
+    }
+
+    this.sendLocationNotifications(this.history.location)
   }
 
-  private notifyDataChange() {
-    this.routeData.changed.emit(DATA_EVENTS.DataChanged, {
+  public enableDataProviders() {
+    this.routeData = new RoutingDataProvider(
+      (key: string) => this.location!.params[key],
+    )
+    addDataProvider('route', this.routeData)
+
+    this.queryData = new RoutingDataProvider(
+      (key: string) => this.location!.query[key],
+    )
+    addDataProvider('query', this.queryData)
+  }
+
+  public enableActionListener() {
+    this.listener = new NavigationActionListener(
+      this,
+      this.eventBus,
+      this.actions,
+    )
+  }
+
+  private sendLocationNotifications(location: LocationSegments) {
+    this.routeData?.changed.emit(DATA_EVENTS.DataChanged, {
       changed: ['route'],
     })
+    this.listener?.notifyRouteChanged(location)
+    this.listener?.notifyRouteFinalized(location)
   }
 
   adjustRootViewUrls(url: string): string {
@@ -107,14 +136,20 @@ export class RouterService {
   }
 
   finalize(startUrl: string) {
+    this.captureInnerLinks(this.win.document.body)
+    if (commonState.elementsEnabled) {
+      performLoadElementManipulation(this.win.document.body)
+    }
+
     if (
       startUrl &&
       startUrl.length > 1 &&
       this.location?.pathname === '/'
     ) {
       this.replaceWithRoute(stripBasename(startUrl, this.root))
+    } else {
+      this.eventBus.emit(ROUTE_EVENTS.Initialized, {})
     }
-    this.eventBus.emit(ROUTE_EVENTS.Initialized, {})
   }
 
   goBack() {
@@ -272,29 +307,48 @@ export class RouterService {
   }
 
   public createRoute(
-    routeElement: HTMLElement,
-    path: string,
-    exact: boolean,
-    pageTitle: string,
-    transition: string | null,
-    scrollTopOffset: number,
+    routeElement: HTMLNViewElement | HTMLNViewPromptElement,
+    parentElement: HTMLNViewElement | null,
     matchSetter: (m: MatchResults | null) => void,
   ) {
-    const route = new Route(
-      this.eventBus,
-      this,
-      routeElement,
-      path,
+    let {
+      url,
       exact,
       pageTitle,
       transition,
       scrollTopOffset,
+    } = routeElement
+
+    const routeKey = slugify(url)
+
+    if (this.routes[routeKey]) {
+      warn(`route: duplicate route detected for ${url}.`)
+    }
+    const parent = parentElement?.url
+      ? this.routes[slugify(parentElement.url)] || null
+      : null
+    if (parent) {
+      url = this.normalizeChildUrl(routeElement.url, parent.path)
+      transition = transition || parent?.transition || transition
+    } else {
+      url = this.adjustRootViewUrls(routeElement.url)
+    }
+    routeElement.url = url
+    routeElement.transition = transition || this.transition
+    const route = new Route(
+      this,
+      routeElement,
+      routeElement.url,
+      exact,
+      pageTitle || parent?.pageTitle,
+      routeElement.transition,
+      scrollTopOffset,
       matchSetter,
-      (self: Route) => {
-        delete this.routes[self.path]
+      () => {
+        delete this.routes[routeKey]
       },
     )
-    this.routes[route.path] = route
+    this.routes[routeKey] = route
     return route
   }
 }

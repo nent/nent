@@ -1,27 +1,27 @@
 <div class="content">
-  <x-data-display x-show-when="{{storage:name}}">
+  <n-content-data n-show-when="{{storage:name}}">
     <template>
       <h1>Dynamic Data for {{storage:name}}</h1>
     </template>
-  </x-data-display>
+  </n-content-data>
   <h2>Visits in Session:</h2>
   <ul>
-    <x-data-repeat items="{{session:visits}}">
+    <n-content-data-repeat items="{{session:visits}}">
       <template>
         <li>{{data:item}}</li>
       </template>
-    </x-data-repeat>
+    </n-content-data-repeat>
   </ul>
   <h2>Visits in Storage:</h2>
   <ul>
-    <x-data-repeat items="{{storage:visits}}">
+    <n-content-data-repeat items="{{storage:visits}}">
       <template>
         <li>{{data:item}}</li>
       </template>
-    </x-data-repeat>
+    </n-content-data-repeat>
   </ul>
   <h2 hidden
-    x-show-when="{{storage:animal}} == 'dog'">I only show up when your
+    n-show-when="{{storage:animal}} == 'dog'">I only show up when your
     spirit-animal is 'dog'</h2>
   <footer>
     <a slot="start"
@@ -30,6 +30,5 @@
     <a slot="end"
       href="/data/expressions"
       class="btn btn-secondary"> Expressions &gt; </a>
-
   </footer>
 </div>

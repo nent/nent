@@ -1,0 +1,14 @@
+*[hidden],
+*[n-cloak],
+*[n-hide],
+.hide {
+  display: none;
+}
+
+n-views {
+  display: block;
+}
+
+n-view.active + n-view {
+  display: none;
+}

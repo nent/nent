@@ -14,13 +14,13 @@
       crossorigin="anonymous" />
     <title>Loading...</title>
     <style>
-      [x-cloak] {
+      [n-cloak] {
         display: none;
       }
 
       nav {
         display: flex;
-        flex-direction: row;
+        flen-direction: row;
       }
 
       a.active:any-link {
@@ -33,21 +33,19 @@
   </head>
 
   <body>
-
-    <x-app app-title="My HTML App"
+    <n-views app-title="My HTML App"
       start-url="/home"
       root="/examples/nested.html#/">
       <nav>
-        <x-app-link class="nav-link"
+        <n-view-link class="nav-link"
           href="/home"
-          active-class="active"> Home </x-app-link>
-        <x-app-link class="nav-link"
+          active-class="active"> Home </n-view-link>
+        <n-view-link class="nav-link"
           href="/about"
-          active-class="active"> About </x-app-link>
+          active-class="active"> About </n-view-link>
       </nav>
-      <x-app-view url="/home"
+      <n-view url="/home"
         page-title="Home">
-
         <div class="container"
           slot="content">
           <h1>Home</h1>
@@ -56,10 +54,9 @@
           <p>Now you have a basic content router.</p>
           <a href="/home/nested">Nested</a>
         </div>
-        <x-app-view url="nested"
+        <n-view url="nested"
           page-title="Nested"
-          x-cloak>
-
+          n-cloak>
           <div class="container"
             slot="content">
             <h1>Home / Nested</h1>
@@ -68,21 +65,20 @@
             <h3>Test</h3>
             <a href="/home">Back to Home</a>
           </div>
-        </x-app-view>
-      </x-app-view>
-      <x-app-view url="/about"
+        </n-view>
+      </n-view>
+      <n-view url="/about"
         page-title="About"
-        x-cloak>
-
+        n-cloak>
         <div class="container"
           slot="content">
           <h1>About</h1>
           <hr />
           <h2>You now have a multi-page app!</h2>
         </div>
-      </x-app-view>
-      <x-data-provider-session></x-data-provider-session>
-    </x-app>
+      </n-view>
+      <n-data-session></n-data-session>
+    </n-views>
   </body>
 
 </html>

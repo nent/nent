@@ -1,35 +1,34 @@
-<x-content-reference
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
   style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
-</x-content-reference>
-<x-content-reference
+</n-content-reference>
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
-</x-content-reference>
-
+</n-content-reference>
 <div class="content">
   <h1>Deep Nested Routing</h1>
   <p class="lead">Go as deep as you need to.</p>
   <h2>How it Works</h2>
-  <p> Each <a href="/components/x-app-view">
-      <b>&lt;x-app-view&gt;</b>
-    </a> element looks for child <a href="/components/x-app-view">
-      <b>&lt;x-app-view&gt;</b>
+  <p> Each <a href="/components/n-view">
+      <b>&lt;n-view&gt;</b>
+    </a> element looks for child <a href="/components/n-view">
+      <b>&lt;n-view&gt;</b>
     </a> elements and ensures they have its own URL in their path. </p>
   <h3>Deep Nested Example</h3>
   <p>Check out the HTML declared to create this route.</p>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-app-view url="routing" page-title="Routing">
-        <x-app-view url="nested" page-title="Nested">
-          <x-app-view url="deep" page-title="Deep Nesting"> ... THIS PAGE .... </x-app-view>
+      <n-view url="routing" page-title="Routing">
+        <n-view url="nested" page-title="Nested">
+          <n-view url="deep" page-title="Deep Nesting"> ... THIS PAGE .... </n-view>
           ... nested content ...
-        </x-app-view>
+        </n-view>
         ... routing content ...
-      </x-app-view>
+      </n-view>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <footer>
     <a slot="start"
       href="/routing/child">

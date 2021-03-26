@@ -45,12 +45,13 @@ describe('route', () => {
       eventBus,
       actionBus,
       '',
-      'App',
+      'Router',
       '',
       0,
     )
 
-    let subject = router.createRoute(
+    let subject = new Route(
+      router,
       page.body,
       '/route',
       true,
@@ -73,7 +74,7 @@ describe('route', () => {
     await page.waitForChanges()
     let anchor = page.body.querySelector('a')
 
-    expect(anchor?.getAttribute('x-attached-click')).not.toBeNull()
+    expect(anchor?.getAttribute('n-attached-click')).not.toBeNull()
 
     anchor?.click()
 
@@ -90,7 +91,7 @@ describe('route', () => {
       eventBus,
       actionBus,
     )
-    let subject = new Route(eventBus, router, page.body, '/route')
+    let subject = new Route(router, page.body, '/route')
 
     let normalized = subject.normalizeChildUrl('child')
     expect(normalized).toBe('/route/child')
@@ -107,10 +108,11 @@ describe('route', () => {
       eventBus,
       actionBus,
       '',
-      'App',
+      'Router',
     )
     const routeElement = page.body.querySelector('div')!
-    let subject = router.createRoute(
+    let subject = new Route(
+      router,
       routeElement,
       '/route',
       true,
@@ -124,7 +126,7 @@ describe('route', () => {
 
     await page.waitForChanges()
 
-    expect(page.doc.title).toBe('Page | App')
+    expect(page.doc.title).toBe('Page | Router')
   })
 
   it('adjustPageTitle - dynamic', async () => {
@@ -135,10 +137,11 @@ describe('route', () => {
       eventBus,
       actionBus,
       '',
-      'App',
+      'Router',
     )
     const routeElement = page.body.querySelector('div')!
-    let subject = router.createRoute(
+    let subject = new Route(
+      router,
       routeElement,
       '/route/:product',
       true,
@@ -152,7 +155,7 @@ describe('route', () => {
 
     await page.waitForChanges()
 
-    expect(page.doc.title).toBe('Widget | App')
+    expect(page.doc.title).toBe('Widget | Router')
   })
 
   it('adjustPageTitle - no page', async () => {
@@ -163,16 +166,16 @@ describe('route', () => {
       eventBus,
       actionBus,
       '',
-      'App',
+      'Router',
     )
     const routeElement = page.body.querySelector('div')!
-    let subject = new Route(eventBus, router, routeElement, '/route')
+    let subject = new Route(router, routeElement, '/route')
 
     subject.adjustTitle()
 
     await page.waitForChanges()
 
-    expect(page.doc.title).toBe('App')
+    expect(page.doc.title).toBe('Router')
   })
 
   it('loadComplete - match', async () => {
@@ -183,10 +186,10 @@ describe('route', () => {
       eventBus,
       actionBus,
       '',
-      'App',
+      'Router',
     )
     const routeElement = page.body.querySelector('div')!
-    let subject = new Route(eventBus, router, routeElement, '/route')
+    let subject = new Route(router, routeElement, '/route')
 
     subject.match = {
       path: '/route',
@@ -197,7 +200,7 @@ describe('route', () => {
 
     await subject.loadCompleted()
 
-    expect(page.doc.title).toBe('App')
+    expect(page.doc.title).toBe('Router')
   })
 
   it('loadComplete - scroll-top', async () => {
@@ -211,7 +214,6 @@ describe('route', () => {
     )
     const routeElement = page.body.querySelector('div')!
     let subject = new Route(
-      eventBus,
       router,
       routeElement,
       '/route',
@@ -248,13 +250,13 @@ describe('route', () => {
       actionBus,
     )
     const routeElement = page.body.querySelector('div')!
-    let subject = new Route(eventBus, router, routeElement, '/route')
+    let subject = new Route(router, routeElement, '/route')
 
     subject.captureInnerLinks()
 
     let anchor = page.body.querySelector('a')
 
-    expect(anchor?.getAttribute('x-attached-click')).not.toBeNull()
+    expect(anchor?.getAttribute('n-attached-click')).not.toBeNull()
 
     anchor?.click()
 

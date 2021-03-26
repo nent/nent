@@ -1,164 +1,147 @@
-<x-audio-music-load track-id="music"
+<n-audio-action-music-load track-id="music"
   src="/assets/sample-music-2.mp3"
   discard="route"
   mode="load">
-</x-audio-music-load>
-
+</n-audio-action-music-load>
 <div class="content">
   <h1>Controls</h1>
   <h2>Player Controls</h2>
-
   <h3>Control with Actions</h3>
   <p> You can make any button control the audio, using the <a
-      href="/components/x-action-activator">
-      <b>&lt;x-action-activator&gt;</b>
-    </a> with the <a href="/components/x-audio-music-action">
-      <b>&lt;x-audio-music-action&gt;</b>
-    </a> components.
-  </p>
-
+      href="/components/n-action-activator">
+      <b>&lt;n-action-activator&gt;</b>
+    </a> with the <a href="/components/n-audio-action-music">
+      <b>&lt;n-audio-action-music&gt;</b>
+    </a> components. </p>
   <h3>Play</h3>
-  <x-action-activator activate="on-element-event">
-    <x-audio-music-action command="play"
-      track-id="music"> </x-audio-music-action>
+  <n-action-activator activate="on-element-event">
+    <n-audio-action-music command="play"
+      track-id="music"> </n-audio-action-music>
     <button type="button"
       class="btn btn-info">
-      <i class="ri-play-line"></i>
-      Play
-    </button>
-  </x-action-activator>
-  <x-content-markdown>
+      <i class="ri-play-line"></i> Play </button>
+  </n-action-activator>
+  <n-content-markdown>
     <script type="text/markdown">
     ```html
-    <x-action-activator
+    <n-action-activator
       activate="on-element-event">
-      <x-audio-music-action
+      <n-audio-action-music
         command="play"
         track-id="music">
-      </x-audio-music-action>
+      </n-audio-action-music>
       <button type="button"
         class="btn btn-info">
         <i class="ri-play-line"></i>
         Play
       </button>
-    </x-action-activator>
+    </n-action-activator>
     ```
     </script>
-  </x-content-markdown>
-
+  </n-content-markdown>
   <h3>Pause / Resume</h3>
-  <x-action-activator activate="on-element-event">
-    <x-audio-music-action command="pause"
+  <n-action-activator activate="on-element-event">
+    <n-audio-action-music command="pause"
       track-id="music">
-    </x-audio-music-action>
+    </n-audio-action-music>
     <button type="button"
       class="btn btn-info">
-      <i class="ri-pause-line"></i>
-      Pause
-    </button>
-  </x-action-activator>
-  <x-action-activator activate="on-element-event">
-    <x-audio-music-action command="resume"
+      <i class="ri-pause-line"></i> Pause </button>
+  </n-action-activator>
+  <n-action-activator activate="on-element-event">
+    <n-audio-action-music command="resume"
       track-id="music">
-    </x-audio-music-action>
+    </n-audio-action-music>
     <button type="button"
       class="btn btn-info">
-      <i class="ri-play-line"></i>
-      Resume
-    </button>
-  </x-action-activator>
-  <x-content-markdown>
+      <i class="ri-play-line"></i> Resume </button>
+  </n-action-activator>
+  <n-content-markdown>
     <script type="text/markdown">
     ```html
-    <x-action-activator
+    <n-action-activator
       activate="on-element-event">
-      <x-audio-music-action
+      <n-audio-action-music
         command="pause"
         track-id="music">
-      </x-audio-music-action>
+      </n-audio-action-music>
       <button type="button"
         class="btn btn-info">
         <i class="ri-pause-line"></i>
         Pause
       </button>
-    </x-action-activator>
-    <x-action-activator
+    </n-action-activator>
+    <n-action-activator
       activate="on-element-event">
-      <x-audio-music-action
+      <n-audio-action-music
         command="resume"
         track-id="music">
-      </x-audio-music-action>
+      </n-audio-action-music>
       <button type="button"
         class="btn btn-info">
         <i class="ri-play-line"></i>
         Resume
       </button>
-    </x-action-activator>
+    </n-action-activator>
     ```
     </script>
-  </x-content-markdown>
-
+  </n-content-markdown>
   <h3>Seek</h3>
-  <x-action-activator activate="on-element-event">
-    <x-audio-music-action command="seek"
+  <n-action-activator activate="on-element-event">
+    <n-audio-action-music command="seek"
       track-id="music"
       value="10">
-    </x-audio-music-action>
+    </n-audio-action-music>
     <button type="button"
       class="btn btn-info">
-      <i class="ri-arrow-right-line"></i>
-      Seek to 10 Seconds
-    </button>
-  </x-action-activator>
-  <x-content-markdown>
+      <i class="ri-arrow-right-line"></i> Seek to 10 Seconds </button>
+  </n-action-activator>
+  <n-content-markdown>
     <script type="text/markdown">
     ```html
-    <x-action-activator
+    <n-action-activator
       activate="on-element-event">
-      <x-audio-music-action
+      <n-audio-action-music
         command="seek"
         track-id="music"
         value="10">
-      </x-audio-music-action>
+      </n-audio-action-music>
       <button type="button"
         class="btn btn-info">
         <i class="ri-arrow-right-line"></i>
         Seek to 10 Seconds
       </button>
-    </x-action-activator>
+    </n-action-activator>
     ```
     </script>
-  </x-content-markdown>
-
+  </n-content-markdown>
   <h3>Stop</h3>
-  <x-action-activator activate="on-element-event">
-    <x-audio-music-action command="stop"
+  <n-action-activator activate="on-element-event">
+    <n-audio-action-music command="stop"
       track-id="music">
-    </x-audio-music-action>
+    </n-audio-action-music>
     <button type="button"
       class="btn btn-info">
-      <i class="ri-stop-line"></i>
-      Stop
-    </button>
-  </x-action-activator>
-  <x-content-markdown>
+      <i class="ri-stop-line"></i> Stop </button>
+  </n-action-activator>
+  <n-content-markdown>
     <script type="text/markdown">
     ```html
-    <x-action-activator
+    <n-action-activator
       activate="on-element-event">
-      <x-audio-music-action
+      <n-audio-action-music
         command="stop"
         track-id="music">
-      </x-audio-music-action>
+      </n-audio-action-music>
       <button type="button"
         class="btn btn-info">
         <i class="ri-arrow-stop-circle-line"></i>
         Stop
       </button>
-    </x-action-activator>
+    </n-action-activator>
     ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <footer>
     <a slot="start"
       href="/audio"

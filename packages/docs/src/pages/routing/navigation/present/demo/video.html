@@ -1,9 +1,8 @@
-<x-content-reference module
+<n-content-reference module
   inline
   script-src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"
   style-src="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css">
-</x-content-reference>
-
+</n-content-reference>
 <div class="content">
   <h1>Present a video</h1>
   <p>This page became part of an automatically guided-navigation system</p>
@@ -20,38 +19,35 @@
   </vm-player>
   <progress max="1.0"
     style="width: 100%"
-    x-percentage-to="value"></progress>
-  <p>Progress: <span x-percentage-to></span></p>
-
+    n-percentage-to="value"></progress>
+  <p>Progress: <span n-percentage-to></span></p>
   <div hidden
-    x-int-time="0"
-    x-in-class="fade-in"
-    x-out-time="2"
-    x-out-class="fade-out">
+    n-int-time="0"
+    n-in-class="fade-in"
+    n-out-time="2"
+    n-out-class="fade-out">
     <h1>First...</h1>
   </div>
-
   <div hidden
-    x-in-time="3"
-    x-in-class="fade-in"
-    x-out-time="5"
-    x-out-class="fade-out">
+    n-in-time="3"
+    n-in-class="fade-in"
+    n-out-time="5"
+    n-out-class="fade-out">
     <h1>THEN...</h1>
   </div>
-
   <div hidden
-    x-in-time="6"
-    x-in-class="fade-in"
-    x-out-time="9"
-    x-out-class="fade-out">
+    n-in-time="6"
+    n-in-class="fade-in"
+    n-out-time="9"
+    n-out-class="fade-out">
     <h1>Finally...</h1>
   </div>
   <footer>
     <a slot="start"
-      x-back
+      n-back
       class="btn btn-secondary"> &lt; Back </a>
     <a slot="end"
-      x-next
+      n-next
       class="btn btn-secondary"> Next &gt; </a>
   </footer>
 </div>

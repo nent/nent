@@ -1,8 +1,7 @@
-<x-audio-sound-load track-id="buzzer"
+<n-audio-action-sound-load track-id="buzzer"
   src="/assets/buzzer.wav"
   discard="none">
-</x-audio-sound-load>
-
+</n-audio-action-sound-load>
 <div class="content">
   <h1>Sounds</h1>
   <p class="lead">This page has on-demand sounds configured to play when buttons
@@ -13,61 +12,58 @@
     attaches them to a button. </p>
   <h3>First: Preload</h3>
   <p> To get the timing perfect, we have to pre-load all sounds for a route
-    using the <a href="/components/x-audio-sound-load">
-      <b>&lt;x-audio-sound-load&gt;</b>
+    using the <a href="/components/n-audio-action-sound-load">
+      <b>&lt;n-audio-action-sound-load&gt;</b>
     </a> component. The default mode for sounds is load. This gets the audio
     ready to play and waits for the start command. </p>
-
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-audio-sound-load
+      <n-audio-action-sound-load
         track-id="buzzer"
         src="/assets/buzzer.wav"
         discard="none">
-      </x-audio-sound-load>
+      </n-audio-action-sound-load>
       ```
       > We set the discard to **none** to tell the player not to discard
       > the sound after it has played, so it can be played again.
     </script>
-  </x-content-markdown>
-
+  </n-content-markdown>
   <h3 class="mt-3">Then: Activate</h3>
   <p> We play the sound by sending an <a href="/actions">action </a> with start
-    command. We can use the <a href="/components/x-action-activator">
-      <b>&lt;x-action-activator&gt;</b>
-    </a> element and special <a href="/components/x-audio-sound-action">
-      <b>&lt;x-audio-sound-action&gt;</b>
+    command. We can use the <a href="/components/n-action-activator">
+      <b>&lt;n-action-activator&gt;</b>
+    </a> element and special <a href="/components/n-audio-action-sound">
+      <b>&lt;n-audio-action-sound&gt;</b>
     </a> elements with the command, and track-id. </p>
   <p>
-    <x-action-activator activate="on-element-event">
-      <x-audio-sound-action command="start"
-        track-id="buzzer"> </x-audio-sound-action>
+    <n-action-activator activate="on-element-event">
+      <n-audio-action-sound command="start"
+        track-id="buzzer"> </n-audio-action-sound>
       <button type="button"
         class="btn btn-info">
         <i class="ri-play-circle-line"></i> Sound </button>
-    </x-action-activator>
+    </n-action-activator>
   </p>
-
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-action-activator
+      <n-action-activator
         activate="on-element-event">
-        <x-audio-sound-action
+        <n-audio-action-sound
           command="start"
           track-id="buzzer">
-        </x-audio-sound-action>
+        </n-audio-action-sound>
         <button type="button"
           class="btn btn-info">
           Sound
         </button>
-      </x-action-activator>
+      </n-action-activator>
       ```
       > We set the activator to **multiple** so it allows us to send
       > the same action more than once. By default, this is not allowed.
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <footer>
     <a slot="start"
       href="/audio/music"

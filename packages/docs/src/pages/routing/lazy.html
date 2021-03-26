@@ -1,44 +1,38 @@
 <div class="content">
   <h1>Lazy Loaded Routes</h1>
   <p class="lead">HTML when you need it, not when you don't.</p>
-  <p>
-    A route's content could be inline or fetched from a remote file as needed.
+  <p> A route's content could be inline or fetched from a remote file as needed.
     This is called "lazy-loaded".</p>
-  <p>
-    You get the benefit of shared layouts and components without the need for
+  <p> You get the benefit of shared layouts and components without the need for
     a application-server, client-side framework or static-site generation
     process. </p>
   <h2>How it Works</h2>
   <p> Instead of wrapping content, you can specify a remote file to fetch with
-    both <a href="/components/x-app-view"><b>&lt;x-app-view&gt;</b></a> and
-    <a href="/components/x-app-view-do"><b>&lt;x-app-view-do&gt;</b></a>
-    elements.
-    The referenced file won't be fetched until the URL path
-    matches the path set in the <b>url</b> attribute.
-  </p>
-  <p>
-    This gives you the the ability to keep the initial page-size light and
-    only fetch heavier HTML fragments when needed.
-  </p>
+    both <a href="/components/n-view"><b>&lt;n-view&gt;</b></a> and <a
+      href="/components/n-view-prompt"><b>&lt;n-view-prompt&gt;</b></a>
+    elements. The referenced file won't be fetched until the URL path matches
+    the path set in the <b>url</b> attribute. </p>
+  <p> This gives you the the ability to keep the initial page-size light and
+    only fetch heavier HTML fragments when needed. </p>
   <h3>Lazy Route Example</h3>
   <p> Include a <b>content-src</b> attribute in the <a
-      href="/components/x-app-view">
-      <b>&lt;x-app-view&gt;</b>
-    </a> or <a href="/components/x-app-view-do">
-      <b>&lt;x-app-view-do&gt;</b>
+      href="/components/n-view">
+      <b>&lt;n-view&gt;</b>
+    </a> or <a href="/components/n-view-prompt">
+      <b>&lt;n-view-prompt&gt;</b>
     </a> components to "lazy-load" the inner-html when the route is activated.
   </p>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-app-view
+      <n-view
         url="page-1"
         page-title="Page 1"
         content-src="/pages/page-1.html">
-      </x-app-view>
+      </n-view>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <blockquote>
     <b>TIP:</b> A mixture of inline and remote content can be used within the
     same route. Be sure to include the <b>slot="content"</b> attribute for
@@ -46,8 +40,8 @@
   </blockquote>
   <h3>Lazy Content</h3>
   <p> There are other ways to lazy-load content. You can use the <a
-      href="/components/x-content"><b>&lt;x-content&gt;</b></a> or <a
-      href="/components/x-content-markdown"><b>&lt;x-content-markdown&gt;</b></a>
+      href="/components/n-content"><b>&lt;n-content&gt;</b></a> or <a
+      href="/components/n-content-markdown"><b>&lt;n-content-markdown&gt;</b></a>
     components along with their <b>defer-load</b> attribute to essentially do
     the same thing. </p>
   <p> When routes are activated they remove the <b>defer-load</b> attribute from

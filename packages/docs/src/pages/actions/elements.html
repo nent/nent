@@ -1,57 +1,48 @@
 <div class="content">
   <h1>Element Activated Actions</h1>
-  <p>
-    Element activation works by attaching an event-listener to
-    specified element.
-  </p>
+  <p> Element activation works by attaching an event-listener to specified
+    element. </p>
   <h2>Wrapped Elements</h2>
-  <p>
-    You can wrap inputs and buttons in the action-elements to activate
-    and add user-data to actions.
-  </p>
+  <p> You can wrap inputs and buttons in the action-elements to activate and add
+    user-data to actions. </p>
   <h3>Wrapped Click Target</h3>
-  <p>
-    The following button has been wrapped with the x-action-activator
-    element. This automatically registers actions to the click-event.
-    <em>Note, since it's the only element, no target-element or event
-      needs to be declared.</em>
+  <p> The following button has been wrapped with the n-action-activator element.
+    This automatically registers actions to the click-event. <em>Note, since
+      it's the only element, no target-element or event needs to be
+      declared.</em>
   </p>
-  <x-action-activator>
-    <x-action topic="ui"
+  <n-action-activator>
+    <n-action topic="app"
       command="log"
       data-message="You clicked the wrapped button.">
-    </x-action>
+    </n-action>
     <button class="btn btn-info">Wrapped Button</button>
-  </x-action-activator>
+  </n-action-activator>
   <x-doc-log></x-doc-log>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-action-activator>
-        <x-action
-          topic="ui"
+      <n-action-activator>
+        <n-action
+          topic="app"
           command="log"
           data-message="You clicked the wrapped button."
         >
-        </x-action>
+        </n-action>
         <button class="btn btn-info">
           Wrapped Button
         </button>
-      </x-action-activator>
+      </n-action-activator>
       ```
     </script>
-  </x-content-markdown>
-
+  </n-content-markdown>
   <h3>Wrapped Input</h3>
-  <p>
-    Action argument data can come from inputs, by wrapping the inputs
-    inside the activator tag.
-  </p>
-  <x-action-activator activate="on-element-event"
+  <p> Action argument data can come from inputs, by wrapping the inputs inside
+    the activator tag. </p>
+  <n-action-activator activate="on-element-event"
     target-element="#send">
-    <x-action topic="ui"
-      command="log"> </x-action>
-
+    <n-action topic="app"
+      command="log"> </n-action>
     <div class="input-group mt-1">
       <input id="message"
         value="I am message you can change!"
@@ -59,19 +50,17 @@
     </div>
     <button id="send"
       class="btn btn-info mt-2"
-      type="button">
-      Send Message
-    </button>
-  </x-action-activator>
+      type="button"> Send Message </button>
+  </n-action-activator>
   <x-doc-log></x-doc-log>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-action-activator
+      <n-action-activator
         activate="on-element-event"
         target-element="#send"
       >
-        <x-action topic="ui" command="log"> </x-action>
+        <n-action topic="app" command="log"> </n-action>
         <div class="input-group">
           <input
             id="message"
@@ -88,20 +77,17 @@
             </button>
           </div>
         </div>
-      </x-action-activator>
+      </n-action-activator>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <h3>Wrapped Form</h3>
-  <p>
-    An action's data can be entirely derived from a form collection of
-    inputs.
+  <p> An action's data can be entirely derived from a form collection of inputs.
   </p>
-  <x-action-activator activate="on-element-event"
+  <n-action-activator activate="on-element-event"
     target-element="#send3">
-    <x-action topic="ui"
-      command="log"> </x-action>
-
+    <n-action topic="app"
+      command="log"> </n-action>
     <div class="form-group mt-1">
       <label for="email">Email</label>
       <input type="email"
@@ -124,20 +110,18 @@
       </select>
       <button type="button"
         id="send3"
-        class="btn btn-info mt-2">
-        Send Form
-      </button>
+        class="btn btn-info mt-2"> Send Form </button>
     </div>
-  </x-action-activator>
+  </n-action-activator>
   <x-doc-log></x-doc-log>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-action-activator
+      <n-action-activator
         activate="on-element-event"
         target-element="#send3"
       >
-        <x-action topic="ui" command="log"> </x-action>
+        <n-action topic="app" command="log"> </n-action>
         <div class="form-group mt-1">
           <label for="email">Email</label>
           <input
@@ -172,49 +156,42 @@
             Send
           </button>
         </div>
-      </x-action-activator>
+      </n-action-activator>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <h2>Unwrapped Elements</h2>
-  <p>
-    In some cases, the element might not be wrappable. The following
-    examples show how to target elements for activating actions
-    without wrapping.
-  </p>
+  <p> In some cases, the element might not be wrappable. The following examples
+    show how to target elements for activating actions without wrapping. </p>
   <h3>Unwrapped Activator</h3>
-  <p>
-    This example shows an action that is activated by a button
-    somewhere else on the page.
-  </p>
-  <x-action-activator activate="on-element-event"
+  <p> This example shows an action that is activated by a button somewhere else
+    on the page. </p>
+  <n-action-activator activate="on-element-event"
     target-element="#button4"
     target-event="click">
-    <x-action topic="ui"
+    <n-action topic="app"
       command="log"
       data-message="You clicked an unwrapped button.">
-    </x-action>
-  </x-action-activator>
+    </n-action>
+  </n-action-activator>
   <button class="btn btn-info"
-    id="button4">
-    Not Wrapped
-  </button>
+    id="button4"> Not Wrapped </button>
   <x-doc-log></x-doc-log>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-action-activator
+      <n-action-activator
         activate="on-element-event"
         target-element="#button4"
         target-event="click"
       >
-        <x-action
-          topic="ui"
+        <n-action
+          topic="app"
           command="log"
           data-message="You clicked an unwrapped button."
         >
-        </x-action>
-      </x-action-activator>
+        </n-action>
+      </n-action-activator>
       <button
         class="btn btn-info
         text-white"
@@ -224,49 +201,44 @@
       </button>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <h3>Unwrapped Activator, Wrapped Data</h3>
-  <p>
-    This example shows an action that is activated by a button
-    somewhere else on the page.
-  </p>
-  <x-action-activator activate="on-element-event"
+  <p> This example shows an action that is activated by a button somewhere else
+    on the page. </p>
+  <n-action-activator activate="on-element-event"
     target-element="#button5"
     target-event="click">
-    <x-action topic="ui"
+    <n-action topic="app"
       command="log"
       data-message="You clicked an unwrapped button.">
-    </x-action>
-    <x-action topic="ui"
+    </n-action>
+    <n-action topic="app"
       command="dir"
       data-inline="An inline value">
       <input type="hidden"
         name="input"
         value="A hidden input value" />
-    </x-action>
-  </x-action-activator>
+    </n-action>
+  </n-action-activator>
   <button class="btn btn-info"
-    id="button5">
-    Not Wrapped
-  </button>
+    id="button5"> Not Wrapped </button>
   <x-doc-log></x-doc-log>
-
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-action-activator
+      <n-action-activator
         activate="on-element-event"
         target-element="#button5"
         target-event="click"
       >
-        <x-action
-          topic="ui"
+        <n-action
+          topic="app"
           command="log"
           data-message="You clicked an unwrapped button."
         >
-        </x-action>
-        <x-action
-          topic="ui"
+        </n-action>
+        <n-action
+          topic="app"
           command="dir"
           data-inline="An inline value"
         >
@@ -275,8 +247,8 @@
             name="input"
             value="A hidden input value"
           />
-        </x-action>
-      </x-action-activator>
+        </n-action>
+      </n-action-activator>
       <button
         class="btn btn-info
         text-white"
@@ -286,13 +258,13 @@
       </button>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <footer>
     <a slot="start"
-      x-next="/actions/activation/timed"
+      href="/actions/activation/timed"
       class="btn btn-secondary">&lt; Timed Activation</a>
     <a slot="end"
-      x-next="/actions"
+      href="/actions"
       class="btn btn-primary">Actions &gt;</a>
   </footer>
 </div>

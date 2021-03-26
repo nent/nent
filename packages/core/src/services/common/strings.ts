@@ -45,7 +45,7 @@ export function toBoolean(value: string) {
  * @param {string} kebabString
  * @return {string}
  */
-export function kebabToCamelCase(kebabString: string) {
+export function kebabToCamelCase(kebabString: string): string {
   return kebabString
     .toLowerCase()
     .replace(/-./g, x => x[1].toUpperCase())
@@ -59,7 +59,7 @@ export function kebabToCamelCase(kebabString: string) {
  * @param {string} value
  * @return {string}
  */
-export function capitalize(value: string) {
+export function capitalize(value: string): string {
   if (isNotValue(value)) return value
   let result = value.toLowerCase().split(' ')
   for (var i = 0; i < result.length; i++) {
@@ -72,7 +72,7 @@ export function capitalize(value: string) {
  * Convert a string into a url-safe slug
  * @param value
  */
-export function slugify(value: String) {
+export function slugify(value: string): string {
   if (isNotValue(value)) return value
   return value
     .toString() // Cast to string
@@ -89,7 +89,7 @@ export function slugify(value: String) {
  * @param value
  * @returns
  */
-export function removeLineFeeds(value: string) {
+export function removeLineFeeds(value: string): string {
   if (isNotValue(value)) return value
   return value
     .split('\n')

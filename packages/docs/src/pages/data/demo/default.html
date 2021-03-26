@@ -1,43 +1,41 @@
 <div class="content">
-  <x-data-display x-show-when="{{storage:name}}">
+  <n-content-data n-show-when="{{storage:name}}">
     <template>
       <h3>Content for {{storage:name}}</h3>
     </template>
-  </x-data-display>
-  <x-data-display when="{{session:favorite}}">
+  </n-content-data>
+  <n-content-data when="{{session:favorite}}">
     <template>
       <h2>Favorite thing: <a href="/data/session-data"> {{session:favorite}}</a>
       </h2>
     </template>
-  </x-data-display>
-  <x-data-display>
+  </n-content-data>
+  <n-content-data>
     <template>
       <h2>Spirit Animal: <a href="/data/storage-data">{{storage:animal}} </a>
       </h2>
     </template>
-  </x-data-display>
+  </n-content-data>
   <h2 hidden
-    x-show-when="{{storage:animal}} == 'dog'">I only show up when your
+    n-show-when="{{storage:animal}} == 'dog'">I only show up when your
     spirit-animal is 'dog'</h2>
-  <x-data-provider-cookie x-cloak>
-
+  <n-data-cookie n-cloak>
     <div class="container container-fluid"
       style="clear: both">
       <p>This site uses just added cookies as a data-provider for demonstration
         purposes.</p>
       <p>Here's where the lawyers add all their jargon knowing you will likely
         not read it.</p>
-
       <div>
         <button type="button"
           class="btn btn-primary btn-lg"
-          x-accept>Accept</button>
+          n-accept>Accept</button>
         <button type="button"
           class="btn"
-          x-reject>Decline</button>
+          n-reject>Decline</button>
       </div>
     </div>
-  </x-data-provider-cookie>
+  </n-data-cookie>
   <footer>
     <a slot="start"
       href="/data">

@@ -1,4 +1,4 @@
-# UI Actions
+# App Actions
 
 The default ui Action Listener is configured to handle commands meant to alter HTML elements
 raised through the [Actions](/actions).
@@ -6,11 +6,11 @@ raised through the [Actions](/actions).
 Topic: `ui`
 
 ```html
-<x-action-activator activate="...">
-  <x-action topic="ui" 
+<n-action-activator activate="...">
+  <n-action topic="app" 
     command="<command>" 
-    data-(key)="(value)"> </x-action>
-</x-action-activator>
+    data-(key)="(value)"> </n-action>
+</n-action-activator>
 ```
 
 ## Commands
@@ -25,11 +25,11 @@ Arguments:
   Set's the theme to 'dark' or 'light'.
 
 ```html
-<x-action-activator activate="...">
-  <x-action topic="ui" 
+<n-action-activator activate="...">
+  <n-action topic="app" 
     command="set-theme" 
-    data-theme="dark"> </x-action>
-</x-action-activator>
+    data-theme="dark"> </n-action>
+</n-action-activator>
 ```
 
 ### `console`
@@ -44,9 +44,9 @@ Arguments:
   Any data that is sent to console.log
 
 ```html
-<x-action-activator activate="...">
-  <x-action topic="ui" 
+<n-action-activator activate="...">
+  <n-action topic="app" 
     command="set-theme" 
-    data-theme="dark"> </x-action>
-</x-action-activator>
+    data-theme="dark"> </n-action>
+</n-action-activator>
 ```

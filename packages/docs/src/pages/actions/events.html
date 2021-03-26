@@ -1,52 +1,48 @@
-<x-action-activator activate="on-enter">
-  <x-action topic="ui"
+<n-action-activator activate="on-enter">
+  <n-action topic="app"
     command="log"
-    data-message="Testing on-enter action"></x-action>
-</x-action-activator>
-<x-action-activator activate="on-exit">
-  <x-action topic="ui"
+    data-message="Testing on-enter action"></n-action>
+</n-action-activator>
+<n-action-activator activate="on-exit">
+  <n-action topic="app"
     command="log"
-    data-message="Testing on-exit action"></x-action>
-</x-action-activator>
-
+    data-message="Testing on-exit action"></n-action>
+</n-action-activator>
 <div class="content">
   <h1>Event Activated Actions</h1>
   <h2>Enter & Exit Events</h2>
-  <p> Actions can be activated by the parent
-
-    <a href="/componemts/x-app-view-do">
-      <b>&lt;x-app-view-do&gt;</b></a> element. The enter and exit only apply
-    when
-    the route is matched exactly.
-  </p>
+  <p> Actions can be activated by the parent <a
+      href="/componemts/n-view-prompt">
+      <b>&lt;n-view-prompt&gt;</b></a> element. The enter and exit only apply
+    when the route is matched exactly. </p>
   <blockquote>You should see log messages in the console. One on entry and one
     on exit of this page.</blockquote>
-  <x-doc-log></x-doc-log>
-  <x-content-markdown>
-    <script type="text/markdown">
+  <n-doc-log>
+    </x-doc-log>
+    <n-content-markdown>
+      <script type="text/markdown">
       ```html
-      <x-action-activator activate="on-enter">
-        <x-action topic="ui"
+      <n-action-activator activate="on-enter">
+        <n-action topic="app"
           command="log"
           data-message="Testing on-enter action">
-        </x-action>
-      </x-action-activator>
-      <x-action-activator activate="on-exit">
-        <x-action topic="ui"
+        </n-action>
+      </n-action-activator>
+      <n-action-activator activate="on-exit">
+        <n-action topic="app"
           command="log"
           data-message="Testing on-exit action">
-        </x-action>
-      </x-action-activator>
+        </n-action>
+      </n-action-activator>
       ```
     </script>
-  </x-content-markdown>
-
-  <footer>
-    <a slot="start"
-      x-next="/actions"
-      class="btn btn-primary">&lt; Actions</a>
-    <a slot="end"
-      x-next="/actions/activation/timed"
-      class="btn btn-secondary">Timed Activation &gt;</a>
-  </footer>
+    </n-content-markdown>
+    <footer>
+      <a slot="start"
+        n-next="/actions"
+        class="btn btn-primary">&lt; Actions</a>
+      <a slot="end"
+        n-next="/actions/activation/timed"
+        class="btn btn-secondary">Timed Activation &gt;</a>
+    </footer>
 </div>

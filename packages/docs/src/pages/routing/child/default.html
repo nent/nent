@@ -6,56 +6,51 @@
   <code class="ms-3"> /route/child-route </code>
   <h2>How it Works</h2>
   <p> The first-level must be a DIRECT child of the <a
-      href="/components/x-app"><b>&lt;x-app&gt;</b></a> element however, any
+      href="/components/n-views"><b>&lt;n-views&gt;</b></a> element however, any
     declared deeper in the HTML will create child-routes. </p>
   <p> Nested routes are declared statically using the <a
-      href="/components/x-app-view"><b>&lt;x-app-view&gt;</b></a> (and <a
-      href="/components/x-app-view-do"><b>&lt;x-app-view-do&gt;</b></a>)
+      href="/components/n-view"><b>&lt;n-view&gt;</b></a> (and <a
+      href="/components/n-view-prompt"><b>&lt;n-view-prompt&gt;</b></a>)
     elements. </p>
   <h3>Child Routes Example</h3>
   <p>Child routes <em>'nested'</em> or <em>'flat'</em> format, depending on your
     taste.</p>
-
   <div class="button-nav">
     <a href="/routing/child/deep"
       class="btn btn-info btn-sm">
-      <i class="ri-treasure-map-fill"></i>
-      Deep Nested Route
-    </a>
+      <i class="ri-treasure-map-fill"></i> Deep Nested Route </a>
   </div>
   <h4 hidden>See Sample</h4>
   <a hidden
     href="/examples/nested.html"
     target="_blank"
     class="btn btn-light float-end my-2 mb-s">
-    <i class="ri-external-link-line"></i>
-    Visit Demo</a>
+    <i class="ri-external-link-line"></i> Visit Demo</a>
   <p hidden>Visit a deep nested route to see how it works.</p>
   <h4>Nested Declaration</h4>
   <p>Routes contain child-routes to semantically express their relationship
     using HTML.</p>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-app-view url="/home" page-title="Home">
-        <x-app-view url="about" page-title="About"> ... about content ... </x-app-view>
-      </x-app-view>
+      <n-view url="/home" page-title="Home">
+        <n-view url="about" page-title="About"> ... about content ... </n-view>
+      </n-view>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <h4>Flat Declaration</h4>
   <p>You can also declare routes without nesting the elements, and use the
-    <b>url</b> path explicitly.
-  </p>
-  <x-content-markdown>
+    <b>url</b> path explicitly. </p>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-app-view url="home" page-title="Home"> ... home content ... </x-app-view>
+      <n-view url="home" page-title="Home"> ... home content ... </n-view>
 
-      <x-app-view url="home/about" page-title="About"> ... about content ... </x-app-view>
+      <n-view url="home/about" page-title="About"> ... about content ... </n-view>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <footer>
     <a slot="start"
       href="/routing/lazy">

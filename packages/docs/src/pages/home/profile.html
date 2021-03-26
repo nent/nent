@@ -2,61 +2,57 @@
   <h1>Your Profile</h1>
   <p>This data does not leave your browser. It is only for demonstration
     purposes.</p>
-  <x-action-activator activate="on-element-event"
+  <n-action-activator activate="on-element-event"
     target-element="#name"
     target-event="blur">
-    <x-action topic="storage"
-      command="set-data"> </x-action>
-
+    <n-action topic="storage"
+      command="set-data"> </n-action>
     <div class="form-group mb-3">
       <label for="name">Nickname</label>
       <input type="text"
         required
         class="form-control"
         id="name"
-        x-value-from="{{storage:name}}" />
+        n-value-from="{{storage:name}}" />
     </div>
-  </x-action-activator>
-
+  </n-action-activator>
   <div class="form-check form-switch">
-    <x-audio-state-switch classes="form-check-input"
-      input-id="audioSwitch"> </x-audio-state-switch>
+    <n-audio-switch classes="form-check-input"
+      input-id="audioSwitch"> </n-audio-switch>
     <label class="form-check-label"
       for="audioSwitch">Audio</label>
   </div>
-
   <div class="form-check form-switch">
-    <x-video-autoplay-switch classes="form-check-input"
-      input-id="autoPlaySwitch"> </x-video-autoplay-switch>
+    <n-video-switch classes="form-check-input"
+      input-id="autoPlaySwitch"> </n-video-switch>
     <label class="form-check-label"
       for="autoPlaySwitch">Auto-play</label>
   </div>
-
   <div class="form-check form-switch">
-    <x-ui-theme-switch classes="form-check-input"
-      input-id="themeSwitch"> </x-ui-theme-switch>
+    <n-app-theme-switch classes="form-check-input"
+      input-id="themeSwitch"> </n-app-theme-switch>
     <label class="form-check-label"
       for="themeSwitch">Dark-Mode</label>
   </div>
-  <x-data-show hidden
+  <n-content-show hidden
     when="{{cookie:consent}} == 'true'">
     <h3>You gave us consent to set a cookie.</h3>
     <p>This is just an example and not meant to be taken seriously.</p>
-    <x-action-activator target-element="#consent">
-      <x-action topic="cookie"
+    <n-action-activator target-element="#consent">
+      <n-action topic="cookie"
         command="set-data"
-        data-consent="false"> </x-action>
-    </x-action-activator>
+        data-consent="false"> </n-action>
+    </n-action-activator>
     <button id="consent"
       class="btn btn-light">Revoke Consent</button>
-  </x-data-show>
+  </n-content-show>
   <footer>
-    <x-action-activator>
-      <x-action topic="navigation"
-        command="go-back"></x-action>
+    <n-action-activator>
+      <n-action topic="navigation"
+        command="go-back"></n-action>
       <button type="button"
         class="btn btn-light">Back</button>
-    </x-action-activator>
+    </n-action-activator>
     <a slot="end"
       href="/home">
       <button type="button"
