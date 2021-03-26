@@ -1,8 +1,10 @@
 jest.mock('../common/logging')
 jest.mock('../data/evaluate.worker')
 
+import { commonStateDispose } from '../common'
 import { dataState } from '../data/state'
 import { VisitStrategy } from './interfaces'
+import { navigationStateDispose } from './state'
 import {
   clearVisits,
   getSessionVisits,
@@ -15,6 +17,11 @@ import {
 
 describe('visits', () => {
   dataState.providerTimeout = 0
+
+  afterEach(() => {
+    commonStateDispose()
+    navigationStateDispose()
+  })
 
   it('markVisit', async () => {
     await markVisit('/fake-url')

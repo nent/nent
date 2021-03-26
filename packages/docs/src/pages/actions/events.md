@@ -17,7 +17,7 @@ const action = new CustomEvent('x:actions', {
   }
 });
 
-const xui = document.querySelector('x-app');
+const xui = document.querySelector('n-views');
 xui.dispatchEvent(action, {
   bubbles: true,
   composed: true,

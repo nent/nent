@@ -1,0 +1,60 @@
+import { Component, h, Host, Prop, State } from '@stencil/core'
+import { appState, onAppChange } from '../n-app/app/state'
+
+/**
+ * This component displays a checkbox to control the
+ * dark-theme setting applied to the ui.
+ *
+ * Default: user-preference
+ *
+ * @system app
+ */
+@Component({
+  tag: 'n-app-theme-switch',
+  shadow: false,
+})
+export class AppThemeSwitch {
+  private uiSubscription!: () => void
+
+  @State() dark: boolean = false
+
+  /**
+   * The class to add to the inner input.
+   */
+  @Prop() classes?: string
+
+  /**
+   * The inner input ID
+   */
+  @Prop() inputId?: string
+
+  componentWillLoad() {
+    this.dark = appState.theme == 'dark'
+    this.uiSubscription = onAppChange('theme', (theme: any) => {
+      this.toggleDarkTheme(theme === 'dark')
+    })
+  }
+
+  private toggleDarkTheme(dark: boolean) {
+    this.dark = dark
+    appState.theme = this.dark ? 'dark' : 'light'
+  }
+
+  disconnectedCallback() {
+    this.uiSubscription()
+  }
+
+  render() {
+    return (
+      <Host>
+        <input
+          type="checkbox"
+          class={this.classes}
+          id={this.inputId}
+          onChange={() => this.toggleDarkTheme(!this.dark)}
+          checked={this.dark}
+        />
+      </Host>
+    )
+  }
+}

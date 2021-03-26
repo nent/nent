@@ -1,5 +1,4 @@
 import { ActionActivationStrategy } from '../actions/interfaces'
-import { IEventEmitter } from '../common/interfaces'
 import { commonState } from '../common/state'
 import { resolveChildElementXAttributes } from '../data/elements'
 import { hasToken, resolveTokens } from '../data/tokens'
@@ -20,7 +19,6 @@ export class Route implements IRoute {
   public previousMatch: MatchResults | null = null
 
   constructor(
-    eventBus: IEventEmitter,
     public router: RouterService,
     public routeElement: HTMLElement,
     public path: string,
@@ -31,18 +29,21 @@ export class Route implements IRoute {
     matchSetter: (m: MatchResults | null) => void = () => {},
     private routeDestroy?: (self: Route) => void,
   ) {
-    this.subscription = eventBus.on(ROUTE_EVENTS.RouteChanged, () => {
-      this.previousMatch = this.match
-      this.match = router.matchPath(
-        {
-          path: this.path,
-          exact: this.exact,
-          strict: true,
-        },
-        this,
-      )
-      matchSetter(this.match)
-    })
+    this.subscription = router.eventBus.on(
+      ROUTE_EVENTS.RouteChanged,
+      () => {
+        this.previousMatch = this.match
+        this.match = router.matchPath(
+          {
+            path: this.path,
+            exact: this.exact,
+            strict: true,
+          },
+          this,
+        )
+        matchSetter(this.match)
+      },
+    )
     this.match = this.router.matchPath(
       {
         path: this.path,
@@ -114,8 +115,8 @@ export class Route implements IRoute {
       })
     }
 
-    this.toggleClass('active-route', match)
-    this.toggleClass('active-route-exact', exact)
+    this.toggleClass('active', match)
+    this.toggleClass('exact', exact)
   }
 
   public captureInnerLinks(root?: HTMLElement) {
@@ -168,10 +169,10 @@ export class Route implements IRoute {
   }
 
   public async activateActions(
-    actionActivators: HTMLXActionActivatorElement[],
+    actionActivators: HTMLNActionActivatorElement[],
     forEvent: ActionActivationStrategy,
     filter: (
-      activator: HTMLXActionActivatorElement,
+      activator: HTMLNActionActivatorElement,
     ) => boolean = _a => true,
   ) {
     await Promise.all(

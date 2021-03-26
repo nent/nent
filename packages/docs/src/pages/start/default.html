@@ -1,47 +1,45 @@
 <div class="content">
   <h1>Get Ready to Go</h1>
-
-  <div x-hide-when="{{storage:installed}} != 'npm'">
+  <div n-hide-when="{{storage:installed}} != 'npm'">
     <h2>Local Reference</h2>
-    <x-action-activator>
-      <x-action topic="storage"
+    <n-action-activator>
+      <n-action topic="storage"
         command="set-data"
         data-installed="cdn">
-      </x-action>
+      </n-action>
       <button class="btn btn-light btn-sm float-end">Switch to Remote</button>
-    </x-action-activator>
+    </n-action-activator>
     <p>Add the local module reference to the document head.</p>
-    <x-content-markdown>
+    <n-content-markdown>
       <script type="text/markdown">
         ```html
         <head>
           ...
           <script
             type="module"
-            src="/node_modules/@nent/core/dist/x-ui.esm.js">
+            src="/node_modules/@nent/core/dist/nent.esm.js">
           < /script>
           <script
             nomodule
-            src="/node_modules/@nent/core/dist/x-ui.js">
+            src="/node_modules/@nent/core/dist/nent.js">
           < /script>
           ...
         </head>
         ```
       </script>
-    </x-content-markdown>
+    </n-content-markdown>
   </div>
-
-  <div x-hide-when="{{storage:installed}} != 'cdn'">
+  <div n-hide-when="{{storage:installed}} != 'cdn'">
     <h2>Remote Reference</h2>
-    <x-action-activator>
-      <x-action topic="storage"
+    <n-action-activator>
+      <n-action topic="storage"
         command="set-data"
         data-installed="npm">
-      </x-action>
+      </n-action>
       <button class="btn btn-light btn-sm float-end">Switch to Local</button>
-    </x-action-activator>
+    </n-action-activator>
     <p>Add the CDN reference to the document head.</p>
-    <x-content-markdown>
+    <n-content-markdown>
       <script type="text/markdown">
         ```html
         <head>
@@ -58,57 +56,31 @@
         </head>
         ```
       </script>
-    </x-content-markdown>
+    </n-content-markdown>
   </div>
-  <h3>Once Referenced</h3>
+  <h3>Development</h3>
   <p>Just add the elements to your page and the element will automatically
     install itself.</p>
-  <p>
-    Start with the
-
-    <a href="/components/x-app"> &lt;x-app&gt; </a> tag to create a multi-page
-    app from a single
-    file:
-  </p>
-  <x-content-markdown>
-    <script type="text/markdown">
-      ```html
-      <x-app
-        app-title="My HTML App"
-        start-url="/home">
-      </x-app>
-      ```
-    </script>
-  </x-content-markdown>
-
+  <n-content-markdown src="/pages/start/conventions.md">
+  </n-content-markdown>
   <h2>Learn More</h2>
   <p>This guide will walk you through the core systems and their components.</p>
-
   <h3>Jump to Topic</h3>
   <p>You can skip ahead to the are you are most interested in.</p>
-
   <div class="button-nav">
     <a href="/content"
       class="btn btn-primary">
-      <i class="ri-code-box-line"></i>
-      Content
-    </a>
+      <i class="ri-code-box-line"></i> Content </a>
     <a href="/data"
       class="btn btn-primary">
-      <i class="ri-database-2-line"></i>
-      Data
-    </a>
+      <i class="ri-database-2-line"></i> Data </a>
     <a href="/actions"
       class="btn btn-primary">
-      <i class="ri-flashlight-line"></i>
-      Actions
-    </a>
+      <i class="ri-flashlight-line"></i> Actions </a>
     <a hidden
       href="/presentations"
       class="btn btn-primary">
-      <i class="ri-slideshow-2-line"></i>
-      Presentations
-    </a>
+      <i class="ri-slideshow-2-line"></i> Presentations </a>
   </div>
   <footer>
     <a slot="end"

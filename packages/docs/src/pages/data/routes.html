@@ -1,12 +1,11 @@
-<x-content-reference
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
   style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
-</x-content-reference>
-<x-content-reference
+</n-content-reference>
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
-</x-content-reference>
-
-<x-content-reveal direction="left"
+</n-content-reference>
+<n-content-reveal direction="left"
   delay="500"
   duration="1000"
   animation-distance="60%"
@@ -14,7 +13,7 @@
   <ul
     class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
     <li class="list-group-item fw-bold">Data Components</li>
-    <x-data-repeat items-src="/assets/components.json"
+    <n-content-data-repeat items-src="/assets/components.json"
       filter="components[docsTags[text='data']]">
       <template>
         <li class="list-group-item">
@@ -23,41 +22,34 @@
           </a>
         </li>
       </template>
-    </x-data-repeat>
+    </n-content-data-repeat>
   </ul>
-</x-content-reveal>
-
-<x-app-view url="/data/expressions"
+</n-content-reveal>
+<n-view url="/data/expressions"
   page-title="Expressions"
   content-src="/pages/data/expressions.html">
-</x-app-view>
-
-<x-app-view url="/data/providers"
+</n-view>
+<n-view url="/data/providers"
   page-title="Providers"
   content-src="/pages/data/providers.html">
-</x-app-view>
-
-<x-app-view url="/data/navigation"
+</n-view>
+<n-view url="/data/navigation"
   page-title="Navigation"
   content-src="/pages/data/navigation.html">
-</x-app-view>
-
-<x-app-view url="/data/display"
+</n-view>
+<n-view url="/data/display"
   page-title="Display"
   content-src="/pages/data/display.html">
-</x-app-view>
-
-<x-app-view url="/data/demo">
-
-  <x-app-view-do url="/data/demo/session-data"
+</n-view>
+<n-view url="/data/demo">
+  <n-view-prompt url="/data/demo/session-data"
     page-title="Session Data"
     when="!{{session:favorite}}"
     content-src="/pages/data/session.html">
-  </x-app-view-do>
-
-  <x-app-view-do url="/data/demo/storage-data"
+  </n-view-prompt>
+  <n-view-prompt url="/data/demo/storage-data"
     page-title="Storage Data"
     when="!{{storage:animal}}"
     content-src="/pages/data/storage.html">
-  </x-app-view-do>
-</x-app-view>
+  </n-view-prompt>
+</n-view>

@@ -9,7 +9,7 @@ export function captureElementsEventOnce<
   event: string,
   eventHandler: (el: TElement, ev: TEvent) => void,
 ) {
-  const attribute = `x-attached-${event}`
+  const attribute = `n-attached-${event}`
   Array.from(rootElement.querySelectorAll(query) || [])
     .map(el => el as TElement)
     .filter(el => !el.hasAttribute(attribute))

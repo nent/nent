@@ -1,13 +1,12 @@
-<x-audio-sound-load track-id="buzzer"
+<n-audio-action-sound-load track-id="buzzer"
   src="/assets/buzzer.wav">
-</x-audio-sound-load>
-<x-action-activator activate="at-time"
+</n-audio-action-sound-load>
+<n-action-activator activate="at-time"
   time="5">
-  <x-audio-sound-action command="start"
+  <n-audio-action-sound command="start"
     track-id="buzzer">
-  </x-audio-sound-action>
-</x-action-activator>
-
+  </n-audio-action-sound>
+</n-action-activator>
 <div class="content">
   <h1>Timed Sounds</h1>
   <p class="lead">This page has a timed sound configured to play after being on
@@ -15,52 +14,49 @@
   <h2>Play a sound at a certain time!</h2>
   <h3>First: Preload</h3>
   <p> To get the timing perfect, again we pre-load the sound using the <a
-      href="/components/x-audio-sound-load">
-      <b>&lt;x-audio-sound-load&gt;</b>
+      href="/components/n-audio-action-sound-load">
+      <b>&lt;n-audio-action-sound-load&gt;</b>
     </a> component. </p>
-
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-audio-sound-load
+      <n-audio-action-sound-load
         track-id="buzzer"
         src="/assets/buzzer.wav">
-      </x-audio-sound-load>
+      </n-audio-action-sound-load>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <h3 class="mt-3">Then: Activate by Time</h3>
   <p> We play the sound by sending an <a href="/actions">action </a> with start
     command after 5 seconds. We use the <a
-      href="/components/x-action-activator">
-      <b>&lt;x-action-activator&gt;</b>
-    </a> element and <a href="/components/x-audio-sound-action">
-      <b>&lt;x-audio-sound-action&gt;</b>
+      href="/components/n-action-activator">
+      <b>&lt;n-action-activator&gt;</b>
+    </a> element and <a href="/components/n-audio-action-sound">
+      <b>&lt;n-audio-action-sound&gt;</b>
     </a> elements with the command and track-id. </p>
-  <h4 class="mt-2 mb-2">
-    Current time: <span x-time-to></span>
+  <h4 class="mt-2 mb-2"> Current time: <span n-time-to></span>
   </h4>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-action-activator
+      <n-action-activator
         activate="at-time"
         time="5">
-        <x-audio-sound-action
+        <n-audio-action-sound
           command="start"
           track-id="buzzer">
-        </x-audio-sound-action>
-      </x-action-activator>
+        </n-audio-action-sound>
+      </n-action-activator>
       ```
     </script>
-  </x-content-markdown>
-
+  </n-content-markdown>
   <footer>
     <a slot="start"
       href="/audio/both"
       class="btn btn-secondary"> &lt; Music & Sound </a>
     <a slot="end"
-      x-next="/audio/provider"
+      n-next="/audio/provider"
       class="btn btn-secondary"> Data &gt; </a>
   </footer>
 </div>

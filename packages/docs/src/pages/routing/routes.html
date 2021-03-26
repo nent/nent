@@ -1,12 +1,11 @@
-<x-content-reference
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
   style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
-</x-content-reference>
-<x-content-reference
+</n-content-reference>
+<n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
-</x-content-reference>
-
-<x-content-reveal direction="left"
+</n-content-reference>
+<n-content-reveal direction="left"
   delay="500"
   slot="content"
   duration="1000"
@@ -16,7 +15,7 @@
     class="component-list list-group btn-group-xl float-end ms-1 d-none d-sm-block">
     <li class="list-group-item fw-bold text-capitalize"> Routing Components
     </li>
-    <x-data-repeat items-src="/assets/components.json"
+    <n-content-data-repeat items-src="/assets/components.json"
       filter="components[docsTags[text='routing']]">
       <template>
         <li class="list-group-item">
@@ -25,50 +24,42 @@
           </a>
         </li>
       </template>
-    </x-data-repeat>
+    </n-content-data-repeat>
   </ul>
-</x-content-reveal>
-
-<x-app-view url="/routing/lazy"
+</n-content-reveal>
+<n-view url="/routing/lazy"
   page-title="Lazy Loaded"
   content-src="/pages/routing/lazy.html">
-</x-app-view>
-
-<x-app-view url="/routing/child"
+</n-view>
+<n-view url="/routing/child"
   page-title="Child Routes"
   content-src="/pages/routing/child/default.html">
-
-  <x-app-view url="/routing/child/deep"
+  <n-view url="/routing/child/deep"
     page-title="Deep Child Route"
     content-src="/pages/routing/child/deep.html">
-  </x-app-view>
-</x-app-view>
-
-<x-app-view url="/routing/dynamic"
+  </n-view>
+</n-view>
+<n-view url="/routing/dynamic"
   page-title="Data Routes"
   content-src="/pages/routing/dynamic/default.html">
-
-  <x-app-view-do url="/routing/dynamic/custom"
+  <n-view-prompt url="/routing/dynamic/custom"
     page-title="Custom Selection"
     content-src="/pages/routing/dynamic/custom.html"
     visit="optional">
-  </x-app-view-do>
-
-  <x-app-view url="/routing/dynamic/item/:item"
+  </n-view-prompt>
+  <n-view url="/routing/dynamic/item/:item"
     page-title="Data Route: {{route:item}}"
     resolve-tokens
     content-src="/pages/routing/dynamic/child.html">
-  </x-app-view>
-</x-app-view>
-
-<x-app-view url="/routing/analytics"
+  </n-view>
+</n-view>
+<n-view url="/routing/analytics"
   page-title="Analytics"
   src="/pages/routing/analytics.html"
   content-src="/pages/routing/analytics.html">
-</x-app-view>
-
-<x-app-view url="/routing/navigation"
+</n-view>
+<n-view url="/routing/navigation"
   page-title="Navigation"
   src="/pages/routing/navigation/routes.html"
   content-src="/pages/routing/navigation/default.html">
-</x-app-view>
+</n-view>

@@ -68,7 +68,7 @@ export interface MatchResults {
 export interface IRoute {
   path: string
   activateActions(
-    actionActivators: HTMLXActionActivatorElement[],
+    actionActivators: HTMLNActionActivatorElement[],
     AtTime: ActionActivationStrategy,
     filter: (activator: any) => boolean,
   ): Promise<void>

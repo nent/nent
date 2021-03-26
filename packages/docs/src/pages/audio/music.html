@@ -1,40 +1,38 @@
-<x-audio-music-load track-id="music-2"
+<n-audio-action-music-load track-id="music-2"
   src="/assets/sample-music-2.mp3"
   discard="route">
-</x-audio-music-load>
-
+</n-audio-action-music-load>
 <div class="content">
   <h1>Music</h1>
   <p class="lead">This page has background music configured. You should start to
     hear music after a moment.</p>
   <h2>Add music to liven up your content!</h2>
   <p>
-    <a href="/components/x-app-view-do"><b>&lt;x-app-view-do&gt;</b></a> routes
+    <a href="/components/n-view-prompt"><b>&lt;n-view-prompt&gt;</b></a> routes
     support background music.
   </p>
   <h2>Load Music</h2>
-  <p> Just include a <a href="/components/x-audio-music-load">
-      <b>&lt;x-audio-music-load&gt;</b>
+  <p> Just include a <a href="/components/n-audio-action-music-load">
+      <b>&lt;n-audio-action-music-load&gt;</b>
     </a> element in the content and it will play as soon as it is loaded. </p>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-app-view-do ...>
-        <x-audio-music-load
+      <n-view-prompt ...>
+        <n-audio-action-music-load
           track-id="music-2"
           src="/assets/sample-music-2.mp3"
           discard="route"
           loop>
-        </x-audio-music-load>
+        </n-audio-action-music-load>
         ...
-      </x-app-view-do>
+      </n-view-prompt>
       ```
 
       > Note discard is set to **route**. This ends the music when we navigate
       > away.
     </script>
-  </x-content-markdown>
-
+  </n-content-markdown>
   <footer>
     <a slot="start"
       href="/audio/controls"

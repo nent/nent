@@ -6,21 +6,20 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { EventAction } from "./services/actions";
-import { RouterService } from "./services/routing/router";
-import { AudioActionListener } from "./components/x-audio/audio/actions";
-import { AudioInfo, AudioRequest } from "./components/x-audio/audio/interfaces";
+import { AudioActionListener } from "./components/n-audio/audio/actions";
+import { AudioInfo, AudioRequest } from "./components/n-audio/audio/interfaces";
 import { ReferenceCompleteResults } from "./services/content";
-import { CookieConsent } from "./components/x-data-provider-cookie/cookie/interfaces";
-import { SetData } from "./components/x-data/data/interfaces";
-import { VideoTimer } from "./components/x-video/video/timer";
+import { CookieConsent } from "./components/n-data-cookie/cookie/interfaces";
+import { SetData } from "./components/n-data/data/interfaces";
+import { VideoTimer } from "./components/n-video/video/timer";
 export namespace Components {
-    interface XAction {
+    interface NAction {
         /**
           * The command to execute.
          */
         "command": string;
         /**
-          * Get the underlying actionEvent instance. Used by the x-action-activator element.
+          * Get the underlying actionEvent instance. Used by the n-action-activator element.
          */
         "getAction": () => Promise<EventAction<any> | null>;
         /**
@@ -32,11 +31,12 @@ export namespace Components {
          */
         "topic": string;
     }
-    interface XActionActivator {
+    interface NActionActivator {
         /**
           * The activation strategy to use for the contained actions.
          */
-        "activate": | 'on-element-event'
+        "activate": | 'on-render'
+    | 'on-element-event'
     | 'on-enter'
     | 'at-time'
     | 'on-exit';
@@ -65,209 +65,39 @@ export namespace Components {
          */
         "time"?: number;
     }
-    interface XApp {
+    interface NAnalytics {
+    }
+    interface NApp {
         /**
-          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
-         */
-        "appTitle"?: string;
-        /**
-          * Turn on debugging to get helpful messages from the routing, data and action systems.
+          * Turn on debugging to get helpful messages from the app, routing, data and action systems.
          */
         "debug": boolean;
         /**
-          * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
+          * Turn off declarative actions for the entire app.
          */
-        "root": string;
-        /**
-          * This is the router service instantiated with this component.
-         */
-        "router": RouterService;
-        /**
-          * Header height or offset for scroll-top on this and all views.
-         */
-        "scrollTopOffset"?: number;
-        /**
-          * This is the start path a user should land on when they first land on this app.
-         */
-        "startUrl": string;
-        /**
-          * Navigation transition between routes. This is a CSS animation class.
-         */
-        "transition"?: string;
+        "disableActions": boolean;
     }
-    interface XAppAnalytics {
+    interface NAppTheme {
+        /**
+          * Change the class name that is added to the body tag when the theme is determined to be dark.
+         */
+        "darkClass": string;
+        /**
+          * Skip adding the class to the body tag, just update the ui state.
+         */
+        "skipClass": boolean;
     }
-    interface XAppLink {
+    interface NAppThemeSwitch {
         /**
-          * The class to add when this HREF is active in the browser
+          * The class to add to the inner input.
          */
-        "activeClass": string;
+        "classes"?: string;
         /**
-          * Provide log messages for path matching.
+          * The inner input ID
          */
-        "debug": boolean;
-        /**
-          * Only active on the exact href match, and not on child routes
-         */
-        "exact": boolean;
-        /**
-          * The destination route for this link
-         */
-        "href": string;
-        /**
-          * Only active on the exact href match using every aspect of the URL including parameters.
-         */
-        "strict": boolean;
+        "inputId"?: string;
     }
-    interface XAppView {
-        /**
-          * Remote URL for this Route's content.
-         */
-        "contentSrc"?: string;
-        /**
-          * Turn on debug statements for load, update and render events.
-         */
-        "debug": boolean;
-        /**
-          * The url for this route should only be matched when it is exact.
-         */
-        "exact": boolean;
-        /**
-          * Return all child elements used for processing. This function is primarily meant for testing.
-         */
-        "getChildren": () => Promise<{ activators: HTMLXActionActivatorElement[]; views: HTMLXAppViewElement[]; dos: HTMLXAppViewDoElement[]; }>;
-        /**
-          * Cross Origin Mode if the content is pulled from a remote location
-         */
-        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
-        /**
-          * The title for this view. This is prefixed before the app title configured in x-app
-         */
-        "pageTitle": string;
-        /**
-          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
-         */
-        "resolveTokens": boolean;
-        /**
-          * The router-service instance  (internal)
-         */
-        "router": RouterService;
-        /**
-          * Header height or offset for scroll-top on this view.
-         */
-        "scrollTopOffset": number;
-        /**
-          * Remote URL for this route's HTML. HTML from this URL will be not be assigned to any slot.  You can add slot='content' to any containers within this HTML if you have a mix of HTML for this exact-route and its children.
-         */
-        "src"?: string;
-        /**
-          * Navigation transition between routes. This is a CSS animation class.
-         */
-        "transition"?: string;
-        /**
-          * The url for this route, including the parent's routes.
-         */
-        "url": string;
-    }
-    interface XAppViewDo {
-        /**
-          * Remote URL for HTML content. Content from this URL will be assigned the 'content' slot.
-         */
-        "contentSrc"?: string;
-        /**
-          * To debug timed elements, set this value to true.
-         */
-        "debug": boolean;
-        /**
-          * The url for this route should only be matched when it is exact.
-         */
-        "exact": boolean;
-        /**
-          * Cross Origin Mode if the content is pulled from a remote location
-         */
-        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
-        /**
-          * When this value exists, the page will automatically progress when the duration in seconds has passed.
-         */
-        "nextAfter"?: number | boolean;
-        /**
-          * The title for this view. This is prefixed before the app title configured in x-app
-         */
-        "pageTitle": string;
-        /**
-          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
-         */
-        "resolveTokens": boolean;
-        /**
-          * Header height or offset for scroll-top on this view.
-         */
-        "scrollTopOffset"?: number;
-        /**
-          * Navigation transition between routes. This is a CSS animation class.
-         */
-        "transition"?: string;
-        /**
-          * The url for this route, including the parent's routes.
-         */
-        "url": string;
-        /**
-          * The visit strategy for this do. once: persist the visit and never force it again always: do not persist, but don't don't show again in-session optional: do not force this view-do ever. It will be available by URL
-         */
-        "visit": 'once' | 'always' | 'optional';
-        /**
-          * If present, the expression must evaluate to true for this route to be sequenced by the parent view. The existence of this value overrides the visit strategy
-         */
-        "when"?: string;
-    }
-    interface XAppViewList {
-        /**
-          * The active-class to use with the x-app-link components.
-         */
-        "activeClass"?: string;
-        /**
-          * Specify if the '/' route should be skipped in the list.
-         */
-        "excludeRoot": boolean;
-        /**
-          * The list-item-class to use with the li tag
-         */
-        "itemClass"?: string;
-        /**
-          * The list-class to use with the UL tag
-         */
-        "listClass"?: string;
-        /**
-          * The display mode for which routes to display.
-         */
-        "mode": 'children' | 'parents' | 'siblings';
-        /**
-          * The router-service instance  (internal)
-         */
-        "router"?: RouterService;
-        /**
-          * The string separator to put between the items.
-         */
-        "separator"?: string;
-    }
-    interface XAppViewNotFound {
-        /**
-          * The title for this view. This is prefixed before the app title configured in x-app
-         */
-        "pageTitle": string;
-        /**
-          * The router-service instance  (internal)
-         */
-        "router": RouterService;
-        /**
-          * Header height or offset for scroll-top on this view.
-         */
-        "scrollTopOffset": number;
-        /**
-          * Navigation transition between routes. This is a CSS animation class.
-         */
-        "transition"?: string;
-    }
-    interface XAudio {
+    interface NAudio {
         /**
           * A reference to the action listener for testing.
          */
@@ -289,7 +119,7 @@ export namespace Components {
          */
         "howlerVersion": string;
     }
-    interface XAudioMusicAction {
+    interface NAudioActionMusic {
         /**
           * The command to execute.
          */
@@ -300,7 +130,7 @@ export namespace Components {
     | 'volume'
     | 'seek';
         /**
-          * Get the underlying actionEvent instance. Used by the x-action-activator element.
+          * Get the underlying actionEvent instance. Used by the n-action-activator element.
          */
         "getAction": () => Promise<EventAction<any>>;
         /**
@@ -320,7 +150,7 @@ export namespace Components {
          */
         "value"?: string | boolean | number;
     }
-    interface XAudioMusicLoad {
+    interface NAudioActionMusicLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
@@ -355,7 +185,7 @@ export namespace Components {
          */
         "trackId": string;
     }
-    interface XAudioSoundAction {
+    interface NAudioActionSound {
         /**
           * The command to execute.
          */
@@ -366,7 +196,7 @@ export namespace Components {
     | 'volume'
     | 'seek';
         /**
-          * Get the underlying actionEvent instance. Used by the x-action-activator element.
+          * Get the underlying actionEvent instance. Used by the n-action-activator element.
          */
         "getAction": () => Promise<EventAction<any>>;
         /**
@@ -386,7 +216,7 @@ export namespace Components {
          */
         "value"?: string | boolean | number;
     }
-    interface XAudioSoundLoad {
+    interface NAudioActionSoundLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
@@ -416,7 +246,7 @@ export namespace Components {
          */
         "trackId": string;
     }
-    interface XAudioStateSwitch {
+    interface NAudioSwitch {
         /**
           * Any classes to add to the input-element directly.
          */
@@ -434,7 +264,49 @@ export namespace Components {
          */
         "setting": 'muted' | 'enabled';
     }
-    interface XContent {
+    interface NContentData {
+        /**
+          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+         */
+        "deferLoad": boolean;
+        /**
+          * The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}
+          * @default null
+         */
+        "text"?: string;
+    }
+    interface NContentDataRepeat {
+        /**
+          * Turn on debug statements for load, update and render events.
+         */
+        "debug": boolean;
+        /**
+          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+         */
+        "deferLoad": boolean;
+        /**
+          * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
+         */
+        "filter"?: string;
+        /**
+          * The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}
+         */
+        "items"?: string;
+        /**
+          * The URL to remote JSON collection to use for the items.
+          * @example /data.json
+         */
+        "itemsSrc"?: string;
+        /**
+          * Force render with data & route changes.
+         */
+        "noCache": boolean;
+        /**
+          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+         */
+        "when"?: string;
+    }
+    interface NContentInclude {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
@@ -456,7 +328,7 @@ export namespace Components {
          */
         "when"?: string;
     }
-    interface XContentMarkdown {
+    interface NContentMarkdown {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
@@ -482,7 +354,7 @@ export namespace Components {
          */
         "when"?: string;
     }
-    interface XContentReference {
+    interface NContentReference {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
@@ -516,7 +388,7 @@ export namespace Components {
          */
         "timeout": number;
     }
-    interface XContentReveal {
+    interface NContentReveal {
         /**
           * How far the element moves in the animation (% of element width/height)
          */
@@ -538,7 +410,7 @@ export namespace Components {
          */
         "triggerDistance": string;
     }
-    interface XContentShare {
+    interface NContentShare {
         /**
           * Headline for the share
          */
@@ -557,25 +429,20 @@ export namespace Components {
          */
         "url"?: string;
     }
-    interface XData {
+    interface NContentShow {
+        /**
+          * The data expression to obtain a predicate for conditionally rendering the inner-contents of this element.
+         */
+        "when": string;
+    }
+    interface NData {
         /**
           * The wait-time, in milliseconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first view-do 'when' predicate an the registration process.
           * @system data
          */
         "providerTimeout": number;
     }
-    interface XDataDisplay {
-        /**
-          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
-         */
-        "deferLoad": boolean;
-        /**
-          * The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}
-          * @default null
-         */
-        "text"?: string;
-    }
-    interface XDataProviderCookie {
+    interface NDataCookie {
         /**
           * Provider name to use in nent expressions.
          */
@@ -589,7 +456,7 @@ export namespace Components {
          */
         "skipConsent": boolean;
     }
-    interface XDataProviderSession {
+    interface NDataSession {
         /**
           * The key prefix to use in storage
          */
@@ -599,7 +466,7 @@ export namespace Components {
          */
         "name": string;
     }
-    interface XDataProviderStorage {
+    interface NDataStorage {
         /**
           * The key prefix to use in storage
          */
@@ -609,68 +476,9 @@ export namespace Components {
          */
         "name": string;
     }
-    interface XDataRepeat {
-        /**
-          * Turn on debug statements for load, update and render events.
-         */
-        "debug": boolean;
-        /**
-          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
-         */
-        "deferLoad": boolean;
-        /**
-          * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
-         */
-        "filter"?: string;
-        /**
-          * The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}
-         */
-        "items"?: string;
-        /**
-          * The URL to remote JSON collection to use for the items.
-          * @example /data.json
-         */
-        "itemsSrc"?: string;
-        /**
-          * Force render with data & route changes.
-         */
-        "noCache": boolean;
-        /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
-         */
-        "when"?: string;
+    interface NElements {
     }
-    interface XDataShow {
-        /**
-          * The data expression to obtain a predicate for conditionally rendering the inner-contents of this element.
-         */
-        "when": string;
-    }
-    interface XElements {
-    }
-    interface XUi {
-    }
-    interface XUiTheme {
-        /**
-          * Change the class name that is added to the body tag when the theme is determined to be dark.
-         */
-        "darkClass": string;
-        /**
-          * Skip adding the class to the body tag, just update the ui state.
-         */
-        "skipClass": boolean;
-    }
-    interface XUiThemeSwitch {
-        /**
-          * The class to add to the inner input.
-         */
-        "classes"?: string;
-        /**
-          * The inner input ID
-         */
-        "inputId"?: string;
-    }
-    interface XVideo {
+    interface NVideo {
         /**
           * To debug timed elements, set this value to true.
          */
@@ -700,13 +508,7 @@ export namespace Components {
          */
         "timer"?: VideoTimer;
     }
-    interface XVideoAutoplay {
-        /**
-          * Controls the video auto-play setting.
-         */
-        "enabled": boolean;
-    }
-    interface XVideoAutoplaySwitch {
+    interface NVideoSwitch {
         /**
           * Any classes to add to the input-element directly.
          */
@@ -720,251 +522,424 @@ export namespace Components {
          */
         "inputId"?: string;
     }
+    interface NView {
+        /**
+          * Remote URL for this Route's content.
+         */
+        "contentSrc"?: string;
+        /**
+          * Turn on debug statements for load, update and render events.
+         */
+        "debug": boolean;
+        /**
+          * The url for this route should only be matched when it is exact.
+         */
+        "exact": boolean;
+        /**
+          * Return all child elements used for processing. This function is primarily meant for testing.
+         */
+        "getChildren": () => Promise<{ activators: HTMLNActionActivatorElement[]; views: HTMLNViewElement[]; dos: HTMLNViewPromptElement[]; }>;
+        /**
+          * Cross Origin Mode if the content is pulled from a remote location
+         */
+        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * The title for this view. This is prefixed before the app title configured in n-views
+         */
+        "pageTitle": string;
+        /**
+          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
+         */
+        "resolveTokens": boolean;
+        /**
+          * Header height or offset for scroll-top on this view.
+         */
+        "scrollTopOffset": number;
+        /**
+          * Remote URL for this route's HTML. HTML from this URL will be not be assigned to any slot.  You can add slot='content' to any containers within this HTML if you have a mix of HTML for this exact-route and its children.
+         */
+        "src"?: string;
+        /**
+          * Navigation transition between routes. This is a CSS animation class.
+         */
+        "transition"?: string;
+        /**
+          * The url for this route, including the parent's routes.
+         */
+        "url": string;
+    }
+    interface NViewLink {
+        /**
+          * The class to add when this HREF is active in the browser
+         */
+        "activeClass": string;
+        /**
+          * Provide log messages for path matching.
+         */
+        "debug": boolean;
+        /**
+          * Only active on the exact href match, and not on child routes
+         */
+        "exact": boolean;
+        /**
+          * The destination route for this link
+         */
+        "href": string;
+        /**
+          * Only active on the exact href match using every aspect of the URL including parameters.
+         */
+        "strict": boolean;
+    }
+    interface NViewLinkList {
+        /**
+          * The active-class to use with the n-view-link components.
+         */
+        "activeClass"?: string;
+        /**
+          * Specify if the '/' route should be skipped in the list.
+         */
+        "excludeRoot": boolean;
+        /**
+          * The list-item-class to use with the li tag
+         */
+        "itemClass"?: string;
+        /**
+          * The list-class to use with the UL tag
+         */
+        "listClass"?: string;
+        /**
+          * The display mode for which routes to display.
+         */
+        "mode": 'children' | 'parents' | 'siblings';
+        /**
+          * The string separator to put between the items.
+         */
+        "separator"?: string;
+    }
+    interface NViewNotFound {
+        /**
+          * The title for this view. This is prefixed before the app title configured in n-views
+         */
+        "pageTitle": string;
+        /**
+          * Header height or offset for scroll-top on this view.
+         */
+        "scrollTopOffset": number;
+        /**
+          * Navigation transition between routes. This is a CSS animation class.
+         */
+        "transition"?: string;
+    }
+    interface NViewPrompt {
+        /**
+          * Remote URL for HTML content. Content from this URL will be assigned the 'content' slot.
+         */
+        "contentSrc"?: string;
+        /**
+          * To debug timed elements, set this value to true.
+         */
+        "debug": boolean;
+        /**
+          * The url for this route should only be matched when it is exact.
+         */
+        "exact": boolean;
+        /**
+          * Cross Origin Mode if the content is pulled from a remote location
+         */
+        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * When this value exists, the page will automatically progress when the duration in seconds has passed.
+         */
+        "nextAfter"?: number | boolean;
+        /**
+          * The title for this view. This is prefixed before the app title configured in n-views
+         */
+        "pageTitle": string;
+        /**
+          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
+         */
+        "resolveTokens": boolean;
+        /**
+          * Header height or offset for scroll-top on this view.
+         */
+        "scrollTopOffset"?: number;
+        /**
+          * Navigation transition between routes. This is a CSS animation class.
+         */
+        "transition"?: string;
+        /**
+          * The url for this route, including the parent's routes.
+         */
+        "url": string;
+        /**
+          * The visit strategy for this do. once: persist the visit and never force it again always: do not persist, but don't don't show again in-session optional: do not force this view-do ever. It will be available by URL
+         */
+        "visit": 'once' | 'always' | 'optional';
+        /**
+          * If present, the expression must evaluate to true for this route to be sequenced by the parent view. The existence of this value overrides the visit strategy
+         */
+        "when"?: string;
+    }
+    interface NViews {
+        /**
+          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
+         */
+        "appTitle"?: string;
+        /**
+          * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
+         */
+        "root": string;
+        /**
+          * Header height or offset for scroll-top on this and all views.
+         */
+        "scrollTopOffset"?: number;
+        /**
+          * This is the start path a user should land on when they first land on this app.
+         */
+        "startUrl": string;
+        /**
+          * Navigation transition between routes. This is a CSS animation class.
+         */
+        "transition"?: string;
+    }
 }
 declare global {
-    interface HTMLXActionElement extends Components.XAction, HTMLStencilElement {
+    interface HTMLNActionElement extends Components.NAction, HTMLStencilElement {
     }
-    var HTMLXActionElement: {
-        prototype: HTMLXActionElement;
-        new (): HTMLXActionElement;
+    var HTMLNActionElement: {
+        prototype: HTMLNActionElement;
+        new (): HTMLNActionElement;
     };
-    interface HTMLXActionActivatorElement extends Components.XActionActivator, HTMLStencilElement {
+    interface HTMLNActionActivatorElement extends Components.NActionActivator, HTMLStencilElement {
     }
-    var HTMLXActionActivatorElement: {
-        prototype: HTMLXActionActivatorElement;
-        new (): HTMLXActionActivatorElement;
+    var HTMLNActionActivatorElement: {
+        prototype: HTMLNActionActivatorElement;
+        new (): HTMLNActionActivatorElement;
     };
-    interface HTMLXAppElement extends Components.XApp, HTMLStencilElement {
+    interface HTMLNAnalyticsElement extends Components.NAnalytics, HTMLStencilElement {
     }
-    var HTMLXAppElement: {
-        prototype: HTMLXAppElement;
-        new (): HTMLXAppElement;
+    var HTMLNAnalyticsElement: {
+        prototype: HTMLNAnalyticsElement;
+        new (): HTMLNAnalyticsElement;
     };
-    interface HTMLXAppAnalyticsElement extends Components.XAppAnalytics, HTMLStencilElement {
+    interface HTMLNAppElement extends Components.NApp, HTMLStencilElement {
     }
-    var HTMLXAppAnalyticsElement: {
-        prototype: HTMLXAppAnalyticsElement;
-        new (): HTMLXAppAnalyticsElement;
+    var HTMLNAppElement: {
+        prototype: HTMLNAppElement;
+        new (): HTMLNAppElement;
     };
-    interface HTMLXAppLinkElement extends Components.XAppLink, HTMLStencilElement {
+    interface HTMLNAppThemeElement extends Components.NAppTheme, HTMLStencilElement {
     }
-    var HTMLXAppLinkElement: {
-        prototype: HTMLXAppLinkElement;
-        new (): HTMLXAppLinkElement;
+    var HTMLNAppThemeElement: {
+        prototype: HTMLNAppThemeElement;
+        new (): HTMLNAppThemeElement;
     };
-    interface HTMLXAppViewElement extends Components.XAppView, HTMLStencilElement {
+    interface HTMLNAppThemeSwitchElement extends Components.NAppThemeSwitch, HTMLStencilElement {
     }
-    var HTMLXAppViewElement: {
-        prototype: HTMLXAppViewElement;
-        new (): HTMLXAppViewElement;
+    var HTMLNAppThemeSwitchElement: {
+        prototype: HTMLNAppThemeSwitchElement;
+        new (): HTMLNAppThemeSwitchElement;
     };
-    interface HTMLXAppViewDoElement extends Components.XAppViewDo, HTMLStencilElement {
+    interface HTMLNAudioElement extends Components.NAudio, HTMLStencilElement {
     }
-    var HTMLXAppViewDoElement: {
-        prototype: HTMLXAppViewDoElement;
-        new (): HTMLXAppViewDoElement;
+    var HTMLNAudioElement: {
+        prototype: HTMLNAudioElement;
+        new (): HTMLNAudioElement;
     };
-    interface HTMLXAppViewListElement extends Components.XAppViewList, HTMLStencilElement {
+    interface HTMLNAudioActionMusicElement extends Components.NAudioActionMusic, HTMLStencilElement {
     }
-    var HTMLXAppViewListElement: {
-        prototype: HTMLXAppViewListElement;
-        new (): HTMLXAppViewListElement;
+    var HTMLNAudioActionMusicElement: {
+        prototype: HTMLNAudioActionMusicElement;
+        new (): HTMLNAudioActionMusicElement;
     };
-    interface HTMLXAppViewNotFoundElement extends Components.XAppViewNotFound, HTMLStencilElement {
+    interface HTMLNAudioActionMusicLoadElement extends Components.NAudioActionMusicLoad, HTMLStencilElement {
     }
-    var HTMLXAppViewNotFoundElement: {
-        prototype: HTMLXAppViewNotFoundElement;
-        new (): HTMLXAppViewNotFoundElement;
+    var HTMLNAudioActionMusicLoadElement: {
+        prototype: HTMLNAudioActionMusicLoadElement;
+        new (): HTMLNAudioActionMusicLoadElement;
     };
-    interface HTMLXAudioElement extends Components.XAudio, HTMLStencilElement {
+    interface HTMLNAudioActionSoundElement extends Components.NAudioActionSound, HTMLStencilElement {
     }
-    var HTMLXAudioElement: {
-        prototype: HTMLXAudioElement;
-        new (): HTMLXAudioElement;
+    var HTMLNAudioActionSoundElement: {
+        prototype: HTMLNAudioActionSoundElement;
+        new (): HTMLNAudioActionSoundElement;
     };
-    interface HTMLXAudioMusicActionElement extends Components.XAudioMusicAction, HTMLStencilElement {
+    interface HTMLNAudioActionSoundLoadElement extends Components.NAudioActionSoundLoad, HTMLStencilElement {
     }
-    var HTMLXAudioMusicActionElement: {
-        prototype: HTMLXAudioMusicActionElement;
-        new (): HTMLXAudioMusicActionElement;
+    var HTMLNAudioActionSoundLoadElement: {
+        prototype: HTMLNAudioActionSoundLoadElement;
+        new (): HTMLNAudioActionSoundLoadElement;
     };
-    interface HTMLXAudioMusicLoadElement extends Components.XAudioMusicLoad, HTMLStencilElement {
+    interface HTMLNAudioSwitchElement extends Components.NAudioSwitch, HTMLStencilElement {
     }
-    var HTMLXAudioMusicLoadElement: {
-        prototype: HTMLXAudioMusicLoadElement;
-        new (): HTMLXAudioMusicLoadElement;
+    var HTMLNAudioSwitchElement: {
+        prototype: HTMLNAudioSwitchElement;
+        new (): HTMLNAudioSwitchElement;
     };
-    interface HTMLXAudioSoundActionElement extends Components.XAudioSoundAction, HTMLStencilElement {
+    interface HTMLNContentDataElement extends Components.NContentData, HTMLStencilElement {
     }
-    var HTMLXAudioSoundActionElement: {
-        prototype: HTMLXAudioSoundActionElement;
-        new (): HTMLXAudioSoundActionElement;
+    var HTMLNContentDataElement: {
+        prototype: HTMLNContentDataElement;
+        new (): HTMLNContentDataElement;
     };
-    interface HTMLXAudioSoundLoadElement extends Components.XAudioSoundLoad, HTMLStencilElement {
+    interface HTMLNContentDataRepeatElement extends Components.NContentDataRepeat, HTMLStencilElement {
     }
-    var HTMLXAudioSoundLoadElement: {
-        prototype: HTMLXAudioSoundLoadElement;
-        new (): HTMLXAudioSoundLoadElement;
+    var HTMLNContentDataRepeatElement: {
+        prototype: HTMLNContentDataRepeatElement;
+        new (): HTMLNContentDataRepeatElement;
     };
-    interface HTMLXAudioStateSwitchElement extends Components.XAudioStateSwitch, HTMLStencilElement {
+    interface HTMLNContentIncludeElement extends Components.NContentInclude, HTMLStencilElement {
     }
-    var HTMLXAudioStateSwitchElement: {
-        prototype: HTMLXAudioStateSwitchElement;
-        new (): HTMLXAudioStateSwitchElement;
+    var HTMLNContentIncludeElement: {
+        prototype: HTMLNContentIncludeElement;
+        new (): HTMLNContentIncludeElement;
     };
-    interface HTMLXContentElement extends Components.XContent, HTMLStencilElement {
+    interface HTMLNContentMarkdownElement extends Components.NContentMarkdown, HTMLStencilElement {
     }
-    var HTMLXContentElement: {
-        prototype: HTMLXContentElement;
-        new (): HTMLXContentElement;
+    var HTMLNContentMarkdownElement: {
+        prototype: HTMLNContentMarkdownElement;
+        new (): HTMLNContentMarkdownElement;
     };
-    interface HTMLXContentMarkdownElement extends Components.XContentMarkdown, HTMLStencilElement {
+    interface HTMLNContentReferenceElement extends Components.NContentReference, HTMLStencilElement {
     }
-    var HTMLXContentMarkdownElement: {
-        prototype: HTMLXContentMarkdownElement;
-        new (): HTMLXContentMarkdownElement;
+    var HTMLNContentReferenceElement: {
+        prototype: HTMLNContentReferenceElement;
+        new (): HTMLNContentReferenceElement;
     };
-    interface HTMLXContentReferenceElement extends Components.XContentReference, HTMLStencilElement {
+    interface HTMLNContentRevealElement extends Components.NContentReveal, HTMLStencilElement {
     }
-    var HTMLXContentReferenceElement: {
-        prototype: HTMLXContentReferenceElement;
-        new (): HTMLXContentReferenceElement;
+    var HTMLNContentRevealElement: {
+        prototype: HTMLNContentRevealElement;
+        new (): HTMLNContentRevealElement;
     };
-    interface HTMLXContentRevealElement extends Components.XContentReveal, HTMLStencilElement {
+    interface HTMLNContentShareElement extends Components.NContentShare, HTMLStencilElement {
     }
-    var HTMLXContentRevealElement: {
-        prototype: HTMLXContentRevealElement;
-        new (): HTMLXContentRevealElement;
+    var HTMLNContentShareElement: {
+        prototype: HTMLNContentShareElement;
+        new (): HTMLNContentShareElement;
     };
-    interface HTMLXContentShareElement extends Components.XContentShare, HTMLStencilElement {
+    interface HTMLNContentShowElement extends Components.NContentShow, HTMLStencilElement {
     }
-    var HTMLXContentShareElement: {
-        prototype: HTMLXContentShareElement;
-        new (): HTMLXContentShareElement;
+    var HTMLNContentShowElement: {
+        prototype: HTMLNContentShowElement;
+        new (): HTMLNContentShowElement;
     };
-    interface HTMLXDataElement extends Components.XData, HTMLStencilElement {
+    interface HTMLNDataElement extends Components.NData, HTMLStencilElement {
     }
-    var HTMLXDataElement: {
-        prototype: HTMLXDataElement;
-        new (): HTMLXDataElement;
+    var HTMLNDataElement: {
+        prototype: HTMLNDataElement;
+        new (): HTMLNDataElement;
     };
-    interface HTMLXDataDisplayElement extends Components.XDataDisplay, HTMLStencilElement {
+    interface HTMLNDataCookieElement extends Components.NDataCookie, HTMLStencilElement {
     }
-    var HTMLXDataDisplayElement: {
-        prototype: HTMLXDataDisplayElement;
-        new (): HTMLXDataDisplayElement;
+    var HTMLNDataCookieElement: {
+        prototype: HTMLNDataCookieElement;
+        new (): HTMLNDataCookieElement;
     };
-    interface HTMLXDataProviderCookieElement extends Components.XDataProviderCookie, HTMLStencilElement {
+    interface HTMLNDataSessionElement extends Components.NDataSession, HTMLStencilElement {
     }
-    var HTMLXDataProviderCookieElement: {
-        prototype: HTMLXDataProviderCookieElement;
-        new (): HTMLXDataProviderCookieElement;
+    var HTMLNDataSessionElement: {
+        prototype: HTMLNDataSessionElement;
+        new (): HTMLNDataSessionElement;
     };
-    interface HTMLXDataProviderSessionElement extends Components.XDataProviderSession, HTMLStencilElement {
+    interface HTMLNDataStorageElement extends Components.NDataStorage, HTMLStencilElement {
     }
-    var HTMLXDataProviderSessionElement: {
-        prototype: HTMLXDataProviderSessionElement;
-        new (): HTMLXDataProviderSessionElement;
+    var HTMLNDataStorageElement: {
+        prototype: HTMLNDataStorageElement;
+        new (): HTMLNDataStorageElement;
     };
-    interface HTMLXDataProviderStorageElement extends Components.XDataProviderStorage, HTMLStencilElement {
+    interface HTMLNElementsElement extends Components.NElements, HTMLStencilElement {
     }
-    var HTMLXDataProviderStorageElement: {
-        prototype: HTMLXDataProviderStorageElement;
-        new (): HTMLXDataProviderStorageElement;
+    var HTMLNElementsElement: {
+        prototype: HTMLNElementsElement;
+        new (): HTMLNElementsElement;
     };
-    interface HTMLXDataRepeatElement extends Components.XDataRepeat, HTMLStencilElement {
+    interface HTMLNVideoElement extends Components.NVideo, HTMLStencilElement {
     }
-    var HTMLXDataRepeatElement: {
-        prototype: HTMLXDataRepeatElement;
-        new (): HTMLXDataRepeatElement;
+    var HTMLNVideoElement: {
+        prototype: HTMLNVideoElement;
+        new (): HTMLNVideoElement;
     };
-    interface HTMLXDataShowElement extends Components.XDataShow, HTMLStencilElement {
+    interface HTMLNVideoSwitchElement extends Components.NVideoSwitch, HTMLStencilElement {
     }
-    var HTMLXDataShowElement: {
-        prototype: HTMLXDataShowElement;
-        new (): HTMLXDataShowElement;
+    var HTMLNVideoSwitchElement: {
+        prototype: HTMLNVideoSwitchElement;
+        new (): HTMLNVideoSwitchElement;
     };
-    interface HTMLXElementsElement extends Components.XElements, HTMLStencilElement {
+    interface HTMLNViewElement extends Components.NView, HTMLStencilElement {
     }
-    var HTMLXElementsElement: {
-        prototype: HTMLXElementsElement;
-        new (): HTMLXElementsElement;
+    var HTMLNViewElement: {
+        prototype: HTMLNViewElement;
+        new (): HTMLNViewElement;
     };
-    interface HTMLXUiElement extends Components.XUi, HTMLStencilElement {
+    interface HTMLNViewLinkElement extends Components.NViewLink, HTMLStencilElement {
     }
-    var HTMLXUiElement: {
-        prototype: HTMLXUiElement;
-        new (): HTMLXUiElement;
+    var HTMLNViewLinkElement: {
+        prototype: HTMLNViewLinkElement;
+        new (): HTMLNViewLinkElement;
     };
-    interface HTMLXUiThemeElement extends Components.XUiTheme, HTMLStencilElement {
+    interface HTMLNViewLinkListElement extends Components.NViewLinkList, HTMLStencilElement {
     }
-    var HTMLXUiThemeElement: {
-        prototype: HTMLXUiThemeElement;
-        new (): HTMLXUiThemeElement;
+    var HTMLNViewLinkListElement: {
+        prototype: HTMLNViewLinkListElement;
+        new (): HTMLNViewLinkListElement;
     };
-    interface HTMLXUiThemeSwitchElement extends Components.XUiThemeSwitch, HTMLStencilElement {
+    interface HTMLNViewNotFoundElement extends Components.NViewNotFound, HTMLStencilElement {
     }
-    var HTMLXUiThemeSwitchElement: {
-        prototype: HTMLXUiThemeSwitchElement;
-        new (): HTMLXUiThemeSwitchElement;
+    var HTMLNViewNotFoundElement: {
+        prototype: HTMLNViewNotFoundElement;
+        new (): HTMLNViewNotFoundElement;
     };
-    interface HTMLXVideoElement extends Components.XVideo, HTMLStencilElement {
+    interface HTMLNViewPromptElement extends Components.NViewPrompt, HTMLStencilElement {
     }
-    var HTMLXVideoElement: {
-        prototype: HTMLXVideoElement;
-        new (): HTMLXVideoElement;
+    var HTMLNViewPromptElement: {
+        prototype: HTMLNViewPromptElement;
+        new (): HTMLNViewPromptElement;
     };
-    interface HTMLXVideoAutoplayElement extends Components.XVideoAutoplay, HTMLStencilElement {
+    interface HTMLNViewsElement extends Components.NViews, HTMLStencilElement {
     }
-    var HTMLXVideoAutoplayElement: {
-        prototype: HTMLXVideoAutoplayElement;
-        new (): HTMLXVideoAutoplayElement;
-    };
-    interface HTMLXVideoAutoplaySwitchElement extends Components.XVideoAutoplaySwitch, HTMLStencilElement {
-    }
-    var HTMLXVideoAutoplaySwitchElement: {
-        prototype: HTMLXVideoAutoplaySwitchElement;
-        new (): HTMLXVideoAutoplaySwitchElement;
+    var HTMLNViewsElement: {
+        prototype: HTMLNViewsElement;
+        new (): HTMLNViewsElement;
     };
     interface HTMLElementTagNameMap {
-        "x-action": HTMLXActionElement;
-        "x-action-activator": HTMLXActionActivatorElement;
-        "x-app": HTMLXAppElement;
-        "x-app-analytics": HTMLXAppAnalyticsElement;
-        "x-app-link": HTMLXAppLinkElement;
-        "x-app-view": HTMLXAppViewElement;
-        "x-app-view-do": HTMLXAppViewDoElement;
-        "x-app-view-list": HTMLXAppViewListElement;
-        "x-app-view-not-found": HTMLXAppViewNotFoundElement;
-        "x-audio": HTMLXAudioElement;
-        "x-audio-music-action": HTMLXAudioMusicActionElement;
-        "x-audio-music-load": HTMLXAudioMusicLoadElement;
-        "x-audio-sound-action": HTMLXAudioSoundActionElement;
-        "x-audio-sound-load": HTMLXAudioSoundLoadElement;
-        "x-audio-state-switch": HTMLXAudioStateSwitchElement;
-        "x-content": HTMLXContentElement;
-        "x-content-markdown": HTMLXContentMarkdownElement;
-        "x-content-reference": HTMLXContentReferenceElement;
-        "x-content-reveal": HTMLXContentRevealElement;
-        "x-content-share": HTMLXContentShareElement;
-        "x-data": HTMLXDataElement;
-        "x-data-display": HTMLXDataDisplayElement;
-        "x-data-provider-cookie": HTMLXDataProviderCookieElement;
-        "x-data-provider-session": HTMLXDataProviderSessionElement;
-        "x-data-provider-storage": HTMLXDataProviderStorageElement;
-        "x-data-repeat": HTMLXDataRepeatElement;
-        "x-data-show": HTMLXDataShowElement;
-        "x-elements": HTMLXElementsElement;
-        "x-ui": HTMLXUiElement;
-        "x-ui-theme": HTMLXUiThemeElement;
-        "x-ui-theme-switch": HTMLXUiThemeSwitchElement;
-        "x-video": HTMLXVideoElement;
-        "x-video-autoplay": HTMLXVideoAutoplayElement;
-        "x-video-autoplay-switch": HTMLXVideoAutoplaySwitchElement;
+        "n-action": HTMLNActionElement;
+        "n-action-activator": HTMLNActionActivatorElement;
+        "n-analytics": HTMLNAnalyticsElement;
+        "n-app": HTMLNAppElement;
+        "n-app-theme": HTMLNAppThemeElement;
+        "n-app-theme-switch": HTMLNAppThemeSwitchElement;
+        "n-audio": HTMLNAudioElement;
+        "n-audio-action-music": HTMLNAudioActionMusicElement;
+        "n-audio-action-music-load": HTMLNAudioActionMusicLoadElement;
+        "n-audio-action-sound": HTMLNAudioActionSoundElement;
+        "n-audio-action-sound-load": HTMLNAudioActionSoundLoadElement;
+        "n-audio-switch": HTMLNAudioSwitchElement;
+        "n-content-data": HTMLNContentDataElement;
+        "n-content-data-repeat": HTMLNContentDataRepeatElement;
+        "n-content-include": HTMLNContentIncludeElement;
+        "n-content-markdown": HTMLNContentMarkdownElement;
+        "n-content-reference": HTMLNContentReferenceElement;
+        "n-content-reveal": HTMLNContentRevealElement;
+        "n-content-share": HTMLNContentShareElement;
+        "n-content-show": HTMLNContentShowElement;
+        "n-data": HTMLNDataElement;
+        "n-data-cookie": HTMLNDataCookieElement;
+        "n-data-session": HTMLNDataSessionElement;
+        "n-data-storage": HTMLNDataStorageElement;
+        "n-elements": HTMLNElementsElement;
+        "n-video": HTMLNVideoElement;
+        "n-video-switch": HTMLNVideoSwitchElement;
+        "n-view": HTMLNViewElement;
+        "n-view-link": HTMLNViewLinkElement;
+        "n-view-link-list": HTMLNViewLinkListElement;
+        "n-view-not-found": HTMLNViewNotFoundElement;
+        "n-view-prompt": HTMLNViewPromptElement;
+        "n-views": HTMLNViewsElement;
     }
 }
 declare namespace LocalJSX {
-    interface XAction {
+    interface NAction {
         /**
           * The command to execute.
          */
@@ -974,11 +949,12 @@ declare namespace LocalJSX {
          */
         "topic": string;
     }
-    interface XActionActivator {
+    interface NActionActivator {
         /**
           * The activation strategy to use for the contained actions.
          */
-        "activate"?: | 'on-element-event'
+        "activate"?: | 'on-render'
+    | 'on-element-event'
     | 'on-enter'
     | 'at-time'
     | 'on-exit';
@@ -1003,45 +979,7 @@ declare namespace LocalJSX {
          */
         "time"?: number;
     }
-    interface XApp {
-        /**
-          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
-         */
-        "appTitle"?: string;
-        /**
-          * Turn on debugging to get helpful messages from the routing, data and action systems.
-         */
-        "debug"?: boolean;
-        /**
-          * These events are **`<x-app>`** command-requests for action handlers to perform tasks. Any handles should cancel the event.
-         */
-        "onX:actions"?: (event: CustomEvent<any>) => void;
-        /**
-          * Listen for events that occurred within the **`<x-app>`** system.
-         */
-        "onX:events"?: (event: CustomEvent<any>) => void;
-        /**
-          * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
-         */
-        "root"?: string;
-        /**
-          * This is the router service instantiated with this component.
-         */
-        "router": RouterService;
-        /**
-          * Header height or offset for scroll-top on this and all views.
-         */
-        "scrollTopOffset"?: number;
-        /**
-          * This is the start path a user should land on when they first land on this app.
-         */
-        "startUrl"?: string;
-        /**
-          * Navigation transition between routes. This is a CSS animation class.
-         */
-        "transition"?: string;
-    }
-    interface XAppAnalytics {
+    interface NAnalytics {
         /**
           * Raised analytics events.
          */
@@ -1055,173 +993,45 @@ declare namespace LocalJSX {
          */
         "onView-time"?: (event: CustomEvent<any>) => void;
     }
-    interface XAppLink {
+    interface NApp {
         /**
-          * The class to add when this HREF is active in the browser
-         */
-        "activeClass"?: string;
-        /**
-          * Provide log messages for path matching.
+          * Turn on debugging to get helpful messages from the app, routing, data and action systems.
          */
         "debug"?: boolean;
         /**
-          * Only active on the exact href match, and not on child routes
+          * Turn off declarative actions for the entire app.
          */
-        "exact"?: boolean;
+        "disableActions"?: boolean;
         /**
-          * The destination route for this link
+          * These events are **`<n-views>`** command-requests for action handlers to perform tasks. Any handles should cancel the event.
          */
-        "href": string;
+        "onNent:actions"?: (event: CustomEvent<any>) => void;
         /**
-          * Only active on the exact href match using every aspect of the URL including parameters.
+          * Listen for events that occurred within the **`<n-views>`** system.
          */
-        "strict"?: boolean;
+        "onNent:events"?: (event: CustomEvent<any>) => void;
     }
-    interface XAppView {
+    interface NAppTheme {
         /**
-          * Remote URL for this Route's content.
+          * Change the class name that is added to the body tag when the theme is determined to be dark.
          */
-        "contentSrc"?: string;
+        "darkClass"?: string;
         /**
-          * Turn on debug statements for load, update and render events.
+          * Skip adding the class to the body tag, just update the ui state.
          */
-        "debug"?: boolean;
-        /**
-          * The url for this route should only be matched when it is exact.
-         */
-        "exact"?: boolean;
-        /**
-          * Cross Origin Mode if the content is pulled from a remote location
-         */
-        "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
-        /**
-          * The title for this view. This is prefixed before the app title configured in x-app
-         */
-        "pageTitle"?: string;
-        /**
-          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
-         */
-        "resolveTokens"?: boolean;
-        /**
-          * The router-service instance  (internal)
-         */
-        "router": RouterService;
-        /**
-          * Header height or offset for scroll-top on this view.
-         */
-        "scrollTopOffset"?: number;
-        /**
-          * Remote URL for this route's HTML. HTML from this URL will be not be assigned to any slot.  You can add slot='content' to any containers within this HTML if you have a mix of HTML for this exact-route and its children.
-         */
-        "src"?: string;
-        /**
-          * Navigation transition between routes. This is a CSS animation class.
-         */
-        "transition"?: string;
-        /**
-          * The url for this route, including the parent's routes.
-         */
-        "url": string;
+        "skipClass"?: boolean;
     }
-    interface XAppViewDo {
+    interface NAppThemeSwitch {
         /**
-          * Remote URL for HTML content. Content from this URL will be assigned the 'content' slot.
+          * The class to add to the inner input.
          */
-        "contentSrc"?: string;
+        "classes"?: string;
         /**
-          * To debug timed elements, set this value to true.
+          * The inner input ID
          */
-        "debug"?: boolean;
-        /**
-          * The url for this route should only be matched when it is exact.
-         */
-        "exact"?: boolean;
-        /**
-          * Cross Origin Mode if the content is pulled from a remote location
-         */
-        "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
-        /**
-          * When this value exists, the page will automatically progress when the duration in seconds has passed.
-         */
-        "nextAfter"?: number | boolean;
-        /**
-          * The title for this view. This is prefixed before the app title configured in x-app
-         */
-        "pageTitle"?: string;
-        /**
-          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
-         */
-        "resolveTokens"?: boolean;
-        /**
-          * Header height or offset for scroll-top on this view.
-         */
-        "scrollTopOffset"?: number;
-        /**
-          * Navigation transition between routes. This is a CSS animation class.
-         */
-        "transition"?: string;
-        /**
-          * The url for this route, including the parent's routes.
-         */
-        "url": string;
-        /**
-          * The visit strategy for this do. once: persist the visit and never force it again always: do not persist, but don't don't show again in-session optional: do not force this view-do ever. It will be available by URL
-         */
-        "visit"?: 'once' | 'always' | 'optional';
-        /**
-          * If present, the expression must evaluate to true for this route to be sequenced by the parent view. The existence of this value overrides the visit strategy
-         */
-        "when"?: string;
+        "inputId"?: string;
     }
-    interface XAppViewList {
-        /**
-          * The active-class to use with the x-app-link components.
-         */
-        "activeClass"?: string;
-        /**
-          * Specify if the '/' route should be skipped in the list.
-         */
-        "excludeRoot"?: boolean;
-        /**
-          * The list-item-class to use with the li tag
-         */
-        "itemClass"?: string;
-        /**
-          * The list-class to use with the UL tag
-         */
-        "listClass"?: string;
-        /**
-          * The display mode for which routes to display.
-         */
-        "mode"?: 'children' | 'parents' | 'siblings';
-        /**
-          * The router-service instance  (internal)
-         */
-        "router"?: RouterService;
-        /**
-          * The string separator to put between the items.
-         */
-        "separator"?: string;
-    }
-    interface XAppViewNotFound {
-        /**
-          * The title for this view. This is prefixed before the app title configured in x-app
-         */
-        "pageTitle"?: string;
-        /**
-          * The router-service instance  (internal)
-         */
-        "router": RouterService;
-        /**
-          * Header height or offset for scroll-top on this view.
-         */
-        "scrollTopOffset"?: number;
-        /**
-          * Navigation transition between routes. This is a CSS animation class.
-         */
-        "transition"?: string;
-    }
-    interface XAudio {
+    interface NAudio {
         /**
           * A reference to the action listener for testing.
          */
@@ -1243,7 +1053,7 @@ declare namespace LocalJSX {
          */
         "howlerVersion"?: string;
     }
-    interface XAudioMusicAction {
+    interface NAudioActionMusic {
         /**
           * The command to execute.
          */
@@ -1266,7 +1076,7 @@ declare namespace LocalJSX {
          */
         "value"?: string | boolean | number;
     }
-    interface XAudioMusicLoad {
+    interface NAudioActionMusicLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
@@ -1293,7 +1103,7 @@ declare namespace LocalJSX {
          */
         "trackId": string;
     }
-    interface XAudioSoundAction {
+    interface NAudioActionSound {
         /**
           * The command to execute.
          */
@@ -1316,7 +1126,7 @@ declare namespace LocalJSX {
          */
         "value"?: string | boolean | number;
     }
-    interface XAudioSoundLoad {
+    interface NAudioActionSoundLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
@@ -1338,7 +1148,7 @@ declare namespace LocalJSX {
          */
         "trackId": string;
     }
-    interface XAudioStateSwitch {
+    interface NAudioSwitch {
         /**
           * Any classes to add to the input-element directly.
          */
@@ -1356,7 +1166,49 @@ declare namespace LocalJSX {
          */
         "setting"?: 'muted' | 'enabled';
     }
-    interface XContent {
+    interface NContentData {
+        /**
+          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+         */
+        "deferLoad"?: boolean;
+        /**
+          * The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}
+          * @default null
+         */
+        "text"?: string;
+    }
+    interface NContentDataRepeat {
+        /**
+          * Turn on debug statements for load, update and render events.
+         */
+        "debug"?: boolean;
+        /**
+          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+         */
+        "deferLoad"?: boolean;
+        /**
+          * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
+         */
+        "filter"?: string;
+        /**
+          * The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}
+         */
+        "items"?: string;
+        /**
+          * The URL to remote JSON collection to use for the items.
+          * @example /data.json
+         */
+        "itemsSrc"?: string;
+        /**
+          * Force render with data & route changes.
+         */
+        "noCache"?: boolean;
+        /**
+          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+         */
+        "when"?: string;
+    }
+    interface NContentInclude {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
@@ -1378,7 +1230,7 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
-    interface XContentMarkdown {
+    interface NContentMarkdown {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
@@ -1404,7 +1256,7 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
-    interface XContentReference {
+    interface NContentReference {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
@@ -1438,7 +1290,7 @@ declare namespace LocalJSX {
          */
         "timeout"?: number;
     }
-    interface XContentReveal {
+    interface NContentReveal {
         /**
           * How far the element moves in the animation (% of element width/height)
          */
@@ -1460,7 +1312,7 @@ declare namespace LocalJSX {
          */
         "triggerDistance"?: string;
     }
-    interface XContentShare {
+    interface NContentShare {
         /**
           * Headline for the share
          */
@@ -1474,25 +1326,20 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
-    interface XData {
+    interface NContentShow {
+        /**
+          * The data expression to obtain a predicate for conditionally rendering the inner-contents of this element.
+         */
+        "when": string;
+    }
+    interface NData {
         /**
           * The wait-time, in milliseconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first view-do 'when' predicate an the registration process.
           * @system data
          */
         "providerTimeout"?: number;
     }
-    interface XDataDisplay {
-        /**
-          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
-         */
-        "deferLoad"?: boolean;
-        /**
-          * The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}
-          * @default null
-         */
-        "text"?: string;
-    }
-    interface XDataProviderCookie {
+    interface NDataCookie {
         /**
           * Provider name to use in nent expressions.
          */
@@ -1506,7 +1353,7 @@ declare namespace LocalJSX {
          */
         "skipConsent"?: boolean;
     }
-    interface XDataProviderSession {
+    interface NDataSession {
         /**
           * The key prefix to use in storage
          */
@@ -1516,7 +1363,7 @@ declare namespace LocalJSX {
          */
         "name"?: string;
     }
-    interface XDataProviderStorage {
+    interface NDataStorage {
         /**
           * The key prefix to use in storage
          */
@@ -1526,68 +1373,9 @@ declare namespace LocalJSX {
          */
         "name"?: string;
     }
-    interface XDataRepeat {
-        /**
-          * Turn on debug statements for load, update and render events.
-         */
-        "debug"?: boolean;
-        /**
-          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
-         */
-        "deferLoad"?: boolean;
-        /**
-          * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
-         */
-        "filter"?: string;
-        /**
-          * The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}
-         */
-        "items"?: string;
-        /**
-          * The URL to remote JSON collection to use for the items.
-          * @example /data.json
-         */
-        "itemsSrc"?: string;
-        /**
-          * Force render with data & route changes.
-         */
-        "noCache"?: boolean;
-        /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
-         */
-        "when"?: string;
+    interface NElements {
     }
-    interface XDataShow {
-        /**
-          * The data expression to obtain a predicate for conditionally rendering the inner-contents of this element.
-         */
-        "when": string;
-    }
-    interface XElements {
-    }
-    interface XUi {
-    }
-    interface XUiTheme {
-        /**
-          * Change the class name that is added to the body tag when the theme is determined to be dark.
-         */
-        "darkClass"?: string;
-        /**
-          * Skip adding the class to the body tag, just update the ui state.
-         */
-        "skipClass"?: boolean;
-    }
-    interface XUiThemeSwitch {
-        /**
-          * The class to add to the inner input.
-         */
-        "classes"?: string;
-        /**
-          * The inner input ID
-         */
-        "inputId"?: string;
-    }
-    interface XVideo {
+    interface NVideo {
         /**
           * To debug timed elements, set this value to true.
          */
@@ -1617,13 +1405,7 @@ declare namespace LocalJSX {
          */
         "timer"?: VideoTimer;
     }
-    interface XVideoAutoplay {
-        /**
-          * Controls the video auto-play setting.
-         */
-        "enabled"?: boolean;
-    }
-    interface XVideoAutoplaySwitch {
+    interface NVideoSwitch {
         /**
           * Any classes to add to the input-element directly.
          */
@@ -1637,81 +1419,255 @@ declare namespace LocalJSX {
          */
         "inputId"?: string;
     }
+    interface NView {
+        /**
+          * Remote URL for this Route's content.
+         */
+        "contentSrc"?: string;
+        /**
+          * Turn on debug statements for load, update and render events.
+         */
+        "debug"?: boolean;
+        /**
+          * The url for this route should only be matched when it is exact.
+         */
+        "exact"?: boolean;
+        /**
+          * Cross Origin Mode if the content is pulled from a remote location
+         */
+        "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * The title for this view. This is prefixed before the app title configured in n-views
+         */
+        "pageTitle"?: string;
+        /**
+          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
+         */
+        "resolveTokens"?: boolean;
+        /**
+          * Header height or offset for scroll-top on this view.
+         */
+        "scrollTopOffset"?: number;
+        /**
+          * Remote URL for this route's HTML. HTML from this URL will be not be assigned to any slot.  You can add slot='content' to any containers within this HTML if you have a mix of HTML for this exact-route and its children.
+         */
+        "src"?: string;
+        /**
+          * Navigation transition between routes. This is a CSS animation class.
+         */
+        "transition"?: string;
+        /**
+          * The url for this route, including the parent's routes.
+         */
+        "url": string;
+    }
+    interface NViewLink {
+        /**
+          * The class to add when this HREF is active in the browser
+         */
+        "activeClass"?: string;
+        /**
+          * Provide log messages for path matching.
+         */
+        "debug"?: boolean;
+        /**
+          * Only active on the exact href match, and not on child routes
+         */
+        "exact"?: boolean;
+        /**
+          * The destination route for this link
+         */
+        "href": string;
+        /**
+          * Only active on the exact href match using every aspect of the URL including parameters.
+         */
+        "strict"?: boolean;
+    }
+    interface NViewLinkList {
+        /**
+          * The active-class to use with the n-view-link components.
+         */
+        "activeClass"?: string;
+        /**
+          * Specify if the '/' route should be skipped in the list.
+         */
+        "excludeRoot"?: boolean;
+        /**
+          * The list-item-class to use with the li tag
+         */
+        "itemClass"?: string;
+        /**
+          * The list-class to use with the UL tag
+         */
+        "listClass"?: string;
+        /**
+          * The display mode for which routes to display.
+         */
+        "mode"?: 'children' | 'parents' | 'siblings';
+        /**
+          * The string separator to put between the items.
+         */
+        "separator"?: string;
+    }
+    interface NViewNotFound {
+        /**
+          * The title for this view. This is prefixed before the app title configured in n-views
+         */
+        "pageTitle"?: string;
+        /**
+          * Header height or offset for scroll-top on this view.
+         */
+        "scrollTopOffset"?: number;
+        /**
+          * Navigation transition between routes. This is a CSS animation class.
+         */
+        "transition"?: string;
+    }
+    interface NViewPrompt {
+        /**
+          * Remote URL for HTML content. Content from this URL will be assigned the 'content' slot.
+         */
+        "contentSrc"?: string;
+        /**
+          * To debug timed elements, set this value to true.
+         */
+        "debug"?: boolean;
+        /**
+          * The url for this route should only be matched when it is exact.
+         */
+        "exact"?: boolean;
+        /**
+          * Cross Origin Mode if the content is pulled from a remote location
+         */
+        "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * When this value exists, the page will automatically progress when the duration in seconds has passed.
+         */
+        "nextAfter"?: number | boolean;
+        /**
+          * The title for this view. This is prefixed before the app title configured in n-views
+         */
+        "pageTitle"?: string;
+        /**
+          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
+         */
+        "resolveTokens"?: boolean;
+        /**
+          * Header height or offset for scroll-top on this view.
+         */
+        "scrollTopOffset"?: number;
+        /**
+          * Navigation transition between routes. This is a CSS animation class.
+         */
+        "transition"?: string;
+        /**
+          * The url for this route, including the parent's routes.
+         */
+        "url": string;
+        /**
+          * The visit strategy for this do. once: persist the visit and never force it again always: do not persist, but don't don't show again in-session optional: do not force this view-do ever. It will be available by URL
+         */
+        "visit"?: 'once' | 'always' | 'optional';
+        /**
+          * If present, the expression must evaluate to true for this route to be sequenced by the parent view. The existence of this value overrides the visit strategy
+         */
+        "when"?: string;
+    }
+    interface NViews {
+        /**
+          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
+         */
+        "appTitle"?: string;
+        /**
+          * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
+         */
+        "root"?: string;
+        /**
+          * Header height or offset for scroll-top on this and all views.
+         */
+        "scrollTopOffset"?: number;
+        /**
+          * This is the start path a user should land on when they first land on this app.
+         */
+        "startUrl"?: string;
+        /**
+          * Navigation transition between routes. This is a CSS animation class.
+         */
+        "transition"?: string;
+    }
     interface IntrinsicElements {
-        "x-action": XAction;
-        "x-action-activator": XActionActivator;
-        "x-app": XApp;
-        "x-app-analytics": XAppAnalytics;
-        "x-app-link": XAppLink;
-        "x-app-view": XAppView;
-        "x-app-view-do": XAppViewDo;
-        "x-app-view-list": XAppViewList;
-        "x-app-view-not-found": XAppViewNotFound;
-        "x-audio": XAudio;
-        "x-audio-music-action": XAudioMusicAction;
-        "x-audio-music-load": XAudioMusicLoad;
-        "x-audio-sound-action": XAudioSoundAction;
-        "x-audio-sound-load": XAudioSoundLoad;
-        "x-audio-state-switch": XAudioStateSwitch;
-        "x-content": XContent;
-        "x-content-markdown": XContentMarkdown;
-        "x-content-reference": XContentReference;
-        "x-content-reveal": XContentReveal;
-        "x-content-share": XContentShare;
-        "x-data": XData;
-        "x-data-display": XDataDisplay;
-        "x-data-provider-cookie": XDataProviderCookie;
-        "x-data-provider-session": XDataProviderSession;
-        "x-data-provider-storage": XDataProviderStorage;
-        "x-data-repeat": XDataRepeat;
-        "x-data-show": XDataShow;
-        "x-elements": XElements;
-        "x-ui": XUi;
-        "x-ui-theme": XUiTheme;
-        "x-ui-theme-switch": XUiThemeSwitch;
-        "x-video": XVideo;
-        "x-video-autoplay": XVideoAutoplay;
-        "x-video-autoplay-switch": XVideoAutoplaySwitch;
+        "n-action": NAction;
+        "n-action-activator": NActionActivator;
+        "n-analytics": NAnalytics;
+        "n-app": NApp;
+        "n-app-theme": NAppTheme;
+        "n-app-theme-switch": NAppThemeSwitch;
+        "n-audio": NAudio;
+        "n-audio-action-music": NAudioActionMusic;
+        "n-audio-action-music-load": NAudioActionMusicLoad;
+        "n-audio-action-sound": NAudioActionSound;
+        "n-audio-action-sound-load": NAudioActionSoundLoad;
+        "n-audio-switch": NAudioSwitch;
+        "n-content-data": NContentData;
+        "n-content-data-repeat": NContentDataRepeat;
+        "n-content-include": NContentInclude;
+        "n-content-markdown": NContentMarkdown;
+        "n-content-reference": NContentReference;
+        "n-content-reveal": NContentReveal;
+        "n-content-share": NContentShare;
+        "n-content-show": NContentShow;
+        "n-data": NData;
+        "n-data-cookie": NDataCookie;
+        "n-data-session": NDataSession;
+        "n-data-storage": NDataStorage;
+        "n-elements": NElements;
+        "n-video": NVideo;
+        "n-video-switch": NVideoSwitch;
+        "n-view": NView;
+        "n-view-link": NViewLink;
+        "n-view-link-list": NViewLinkList;
+        "n-view-not-found": NViewNotFound;
+        "n-view-prompt": NViewPrompt;
+        "n-views": NViews;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "x-action": LocalJSX.XAction & JSXBase.HTMLAttributes<HTMLXActionElement>;
-            "x-action-activator": LocalJSX.XActionActivator & JSXBase.HTMLAttributes<HTMLXActionActivatorElement>;
-            "x-app": LocalJSX.XApp & JSXBase.HTMLAttributes<HTMLXAppElement>;
-            "x-app-analytics": LocalJSX.XAppAnalytics & JSXBase.HTMLAttributes<HTMLXAppAnalyticsElement>;
-            "x-app-link": LocalJSX.XAppLink & JSXBase.HTMLAttributes<HTMLXAppLinkElement>;
-            "x-app-view": LocalJSX.XAppView & JSXBase.HTMLAttributes<HTMLXAppViewElement>;
-            "x-app-view-do": LocalJSX.XAppViewDo & JSXBase.HTMLAttributes<HTMLXAppViewDoElement>;
-            "x-app-view-list": LocalJSX.XAppViewList & JSXBase.HTMLAttributes<HTMLXAppViewListElement>;
-            "x-app-view-not-found": LocalJSX.XAppViewNotFound & JSXBase.HTMLAttributes<HTMLXAppViewNotFoundElement>;
-            "x-audio": LocalJSX.XAudio & JSXBase.HTMLAttributes<HTMLXAudioElement>;
-            "x-audio-music-action": LocalJSX.XAudioMusicAction & JSXBase.HTMLAttributes<HTMLXAudioMusicActionElement>;
-            "x-audio-music-load": LocalJSX.XAudioMusicLoad & JSXBase.HTMLAttributes<HTMLXAudioMusicLoadElement>;
-            "x-audio-sound-action": LocalJSX.XAudioSoundAction & JSXBase.HTMLAttributes<HTMLXAudioSoundActionElement>;
-            "x-audio-sound-load": LocalJSX.XAudioSoundLoad & JSXBase.HTMLAttributes<HTMLXAudioSoundLoadElement>;
-            "x-audio-state-switch": LocalJSX.XAudioStateSwitch & JSXBase.HTMLAttributes<HTMLXAudioStateSwitchElement>;
-            "x-content": LocalJSX.XContent & JSXBase.HTMLAttributes<HTMLXContentElement>;
-            "x-content-markdown": LocalJSX.XContentMarkdown & JSXBase.HTMLAttributes<HTMLXContentMarkdownElement>;
-            "x-content-reference": LocalJSX.XContentReference & JSXBase.HTMLAttributes<HTMLXContentReferenceElement>;
-            "x-content-reveal": LocalJSX.XContentReveal & JSXBase.HTMLAttributes<HTMLXContentRevealElement>;
-            "x-content-share": LocalJSX.XContentShare & JSXBase.HTMLAttributes<HTMLXContentShareElement>;
-            "x-data": LocalJSX.XData & JSXBase.HTMLAttributes<HTMLXDataElement>;
-            "x-data-display": LocalJSX.XDataDisplay & JSXBase.HTMLAttributes<HTMLXDataDisplayElement>;
-            "x-data-provider-cookie": LocalJSX.XDataProviderCookie & JSXBase.HTMLAttributes<HTMLXDataProviderCookieElement>;
-            "x-data-provider-session": LocalJSX.XDataProviderSession & JSXBase.HTMLAttributes<HTMLXDataProviderSessionElement>;
-            "x-data-provider-storage": LocalJSX.XDataProviderStorage & JSXBase.HTMLAttributes<HTMLXDataProviderStorageElement>;
-            "x-data-repeat": LocalJSX.XDataRepeat & JSXBase.HTMLAttributes<HTMLXDataRepeatElement>;
-            "x-data-show": LocalJSX.XDataShow & JSXBase.HTMLAttributes<HTMLXDataShowElement>;
-            "x-elements": LocalJSX.XElements & JSXBase.HTMLAttributes<HTMLXElementsElement>;
-            "x-ui": LocalJSX.XUi & JSXBase.HTMLAttributes<HTMLXUiElement>;
-            "x-ui-theme": LocalJSX.XUiTheme & JSXBase.HTMLAttributes<HTMLXUiThemeElement>;
-            "x-ui-theme-switch": LocalJSX.XUiThemeSwitch & JSXBase.HTMLAttributes<HTMLXUiThemeSwitchElement>;
-            "x-video": LocalJSX.XVideo & JSXBase.HTMLAttributes<HTMLXVideoElement>;
-            "x-video-autoplay": LocalJSX.XVideoAutoplay & JSXBase.HTMLAttributes<HTMLXVideoAutoplayElement>;
-            "x-video-autoplay-switch": LocalJSX.XVideoAutoplaySwitch & JSXBase.HTMLAttributes<HTMLXVideoAutoplaySwitchElement>;
+            "n-action": LocalJSX.NAction & JSXBase.HTMLAttributes<HTMLNActionElement>;
+            "n-action-activator": LocalJSX.NActionActivator & JSXBase.HTMLAttributes<HTMLNActionActivatorElement>;
+            "n-analytics": LocalJSX.NAnalytics & JSXBase.HTMLAttributes<HTMLNAnalyticsElement>;
+            "n-app": LocalJSX.NApp & JSXBase.HTMLAttributes<HTMLNAppElement>;
+            "n-app-theme": LocalJSX.NAppTheme & JSXBase.HTMLAttributes<HTMLNAppThemeElement>;
+            "n-app-theme-switch": LocalJSX.NAppThemeSwitch & JSXBase.HTMLAttributes<HTMLNAppThemeSwitchElement>;
+            "n-audio": LocalJSX.NAudio & JSXBase.HTMLAttributes<HTMLNAudioElement>;
+            "n-audio-action-music": LocalJSX.NAudioActionMusic & JSXBase.HTMLAttributes<HTMLNAudioActionMusicElement>;
+            "n-audio-action-music-load": LocalJSX.NAudioActionMusicLoad & JSXBase.HTMLAttributes<HTMLNAudioActionMusicLoadElement>;
+            "n-audio-action-sound": LocalJSX.NAudioActionSound & JSXBase.HTMLAttributes<HTMLNAudioActionSoundElement>;
+            "n-audio-action-sound-load": LocalJSX.NAudioActionSoundLoad & JSXBase.HTMLAttributes<HTMLNAudioActionSoundLoadElement>;
+            "n-audio-switch": LocalJSX.NAudioSwitch & JSXBase.HTMLAttributes<HTMLNAudioSwitchElement>;
+            "n-content-data": LocalJSX.NContentData & JSXBase.HTMLAttributes<HTMLNContentDataElement>;
+            "n-content-data-repeat": LocalJSX.NContentDataRepeat & JSXBase.HTMLAttributes<HTMLNContentDataRepeatElement>;
+            "n-content-include": LocalJSX.NContentInclude & JSXBase.HTMLAttributes<HTMLNContentIncludeElement>;
+            "n-content-markdown": LocalJSX.NContentMarkdown & JSXBase.HTMLAttributes<HTMLNContentMarkdownElement>;
+            "n-content-reference": LocalJSX.NContentReference & JSXBase.HTMLAttributes<HTMLNContentReferenceElement>;
+            "n-content-reveal": LocalJSX.NContentReveal & JSXBase.HTMLAttributes<HTMLNContentRevealElement>;
+            "n-content-share": LocalJSX.NContentShare & JSXBase.HTMLAttributes<HTMLNContentShareElement>;
+            "n-content-show": LocalJSX.NContentShow & JSXBase.HTMLAttributes<HTMLNContentShowElement>;
+            "n-data": LocalJSX.NData & JSXBase.HTMLAttributes<HTMLNDataElement>;
+            "n-data-cookie": LocalJSX.NDataCookie & JSXBase.HTMLAttributes<HTMLNDataCookieElement>;
+            "n-data-session": LocalJSX.NDataSession & JSXBase.HTMLAttributes<HTMLNDataSessionElement>;
+            "n-data-storage": LocalJSX.NDataStorage & JSXBase.HTMLAttributes<HTMLNDataStorageElement>;
+            "n-elements": LocalJSX.NElements & JSXBase.HTMLAttributes<HTMLNElementsElement>;
+            "n-video": LocalJSX.NVideo & JSXBase.HTMLAttributes<HTMLNVideoElement>;
+            "n-video-switch": LocalJSX.NVideoSwitch & JSXBase.HTMLAttributes<HTMLNVideoSwitchElement>;
+            "n-view": LocalJSX.NView & JSXBase.HTMLAttributes<HTMLNViewElement>;
+            "n-view-link": LocalJSX.NViewLink & JSXBase.HTMLAttributes<HTMLNViewLinkElement>;
+            "n-view-link-list": LocalJSX.NViewLinkList & JSXBase.HTMLAttributes<HTMLNViewLinkListElement>;
+            "n-view-not-found": LocalJSX.NViewNotFound & JSXBase.HTMLAttributes<HTMLNViewNotFoundElement>;
+            "n-view-prompt": LocalJSX.NViewPrompt & JSXBase.HTMLAttributes<HTMLNViewPromptElement>;
+            "n-views": LocalJSX.NViews & JSXBase.HTMLAttributes<HTMLNViewsElement>;
         }
     }
 }

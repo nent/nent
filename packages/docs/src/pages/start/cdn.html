@@ -6,7 +6,7 @@
   </p>
   <h3>Add Script References</h3>
   <p>Add the following script tags to the head:</p>
-  <x-content-markdown>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
       <head>
@@ -23,20 +23,20 @@
       </head>
       ```
     </script>
-  </x-content-markdown>
+  </n-content-markdown>
   <p class="note">Only one of these scripts are imported. Which depends on the
     browser's support for ESM modules.</p>
   <footer>
     <button slot="start"
-      x-back
+      n-back
       class="btn btn-secondary">&lt; Back</button>
     <button slot="end"
-      x-next
+      n-next
       class="btn btn-secondary">Next &gt;</button>
   </footer>
-  <x-action-activator activate="on-enter">
-    <x-action topic="storage"
+  <n-action-activator activate="on-enter">
+    <n-action topic="storage"
       command="set-data"
-      data-installed="cdn"> </x-action>
-  </x-action-activator>
+      data-installed="cdn"> </n-action>
+  </n-action-activator>
 </div>

@@ -5,7 +5,7 @@ import { Component, Element, h, writeTask } from '@stencil/core'
   styleUrl: 'x-doc-log.css',
   shadow: true,
 })
-export class XDocLog {
+export class DocLog {
   @Element() el!: HTMLXDocLogElement
   // private log!: HTMLDivElement
   // private logContainer!: HTMLDivElement

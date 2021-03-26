@@ -21,44 +21,44 @@ These elements encapsulate application functionality using HTML. This approach k
 
 Declarative applications are more deterministic and easier to understand for more levels of expertise. These components are segmented into option sub-systems to only require what you need:
 
-### Actions: `<x-action-*>`
+### Actions: `<n-action-*>`
 
 - Declared Reactive Actions
 - Async Functions
 
-### Routing: `<x-app-*>`
+### Routing: `<n-app-*>`
 
 - URL/Hash-based Routing (within a single page!)
 - Fast, SPA-like navigation between pages
 - Guided navigation, wizards & workflows
 
-### Navigation: `<x-app-*>`
+### Navigation: `<n-app-*>`
 
 - Guided Navigation
 - Media-Timed Actions
 - Interactive Video
 - Reactive Audio
 
-### Data: `<x-data-*>`
+### Data: `<n-data-*>`
 
 - Expression Evaluation & Binding
 - Data-Template Rendering
 - Data-driven Rule Evaluation for Navigation
 
-### Content: `<x-content-*>`
+### Content: `<n-content-*>`
 
 - Dynamic Content Rendering
 - Deferred Content
 - Markdown Rendering
 - Remote HTML
 
-### UI: `<x-ui>`
+### UI: `<n-ui>`
 
 - Interface Management
 - Theme Management
 - UI Component Integrations
 
-### Elements: `<x-elements>`
+### Elements: `<n-elements>`
 
 - HTML Manipulation w/ Declared Actions
 - "JQuery as an Async Tag"
@@ -127,15 +127,15 @@ Thank you to the Ionic team and their fabulous [**Stencil.js** SDK](https://sten
 
 Also, thank you to the creators and contributors to all open-source efforts, but especially to the libraries we love and use in our plugin components:
 
-#### Data `<x-data>`
+#### Data `<n-data>`
 
 - **SilentMatt**: [expression evaluator](https://github.com/silentmatt/expr-eval) for a declarative expression parser
 - **JSONata**: [JSONata](https://jsonata.org/) another declarative approach for solving problems, this uses expressions to query JSON.
 
-#### Audio `<x-audio>`
+#### Audio `<n-audio>`
 
 - **howler.js**: [howler-js](https://github.com/goldfire/howler.js) best audio library for managing audio files
 
-#### Markdown `<x-content-markdown>`
+#### Markdown `<n-content-markdown>`
 
 - **remarkable**: [remarkable](https://jonschlinkert.github.io/remarkable/demo/) Ridiculously fast markdown to HTML processing.

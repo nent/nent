@@ -20,7 +20,7 @@ const {
   StaleWhileRevalidate,
 } = workbox.strategies
 
-skipWaiting()
+self.skipWaiting()
 clientsClaim()
 
 const OFFLINE_VERSION = 1

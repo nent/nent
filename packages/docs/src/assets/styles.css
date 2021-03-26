@@ -314,34 +314,35 @@ footer [slot='start'] {
   margin-right: 0.2rem;
 }
 
-/* X-APP ---------------*/
-x-app {
+/* nent  ---------------*/
+n-views,
+n-app {
   height: 100vh;
   width: 100%;
 }
 
-x-app-link a:any-link {
+n-view-link a:any-link {
   color: var(--primary);
   text-decoration: none;
   font-weight: 400;
 }
-x-app-link a:hover {
+n-view-link a:hover {
   color: var(--accent);
   text-decoration: none;
 }
 
-x-app-link.text-white a:any-link {
+n-view-link.text-white a:any-link {
   color: white;
 }
 
-x-app-view.active-route + x-app-view,
-x-app-view.active-route + x-app-view-not-found {
+n-view.active + n-view,
+n-view.active + n-view-not-found {
   display: none;
 }
 
 .contained,
-x-app x-app-view,
-x-app > x-app-view-not-found {
+n-views n-view,
+n-views > n-view-not-found {
   max-width: var(--content-max-width);
   padding: 0 var(--bs-gutter-x, 0.75rem);
   margin-right: auto !important;
@@ -373,23 +374,23 @@ x-app > x-app-view-not-found {
   }
 }
 
-x-app-view-list {
+n-view-link-list {
   display: block;
 }
 
-x-content-markdown pre {
+n-content-markdown pre {
   clear: both;
   margin-top: 1rem;
   overflow-x: auto;
   max-width: 100%;
   border-radius: 10px;
 }
-x-content-markdown h3 code {
+n-content-markdown h3 code {
   font-size: larger;
   font-weight: 700;
 }
 
-x-content-markdown img {
+n-content-markdown img {
   max-width: 100%;
 }
 
@@ -399,7 +400,7 @@ x-doc-log {
   margin-top: 1rem;
 }
 
-x-audio {
+n-audio {
   position: sticky;
 }
 
@@ -444,12 +445,12 @@ x-audio {
   min-width: 25%;
 }
 
-.components x-app-link a {
+.components n-view-link a {
   word-wrap: none;
   overflow-wrap: normal;
 }
 
-.components x-app-view {
+.components n-view {
   display: contents;
 }
 .components ul ul {

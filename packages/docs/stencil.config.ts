@@ -5,7 +5,7 @@ import { sass } from '@stencil/sass'
 const config: Config = {
   namespace: 'docs',
   excludeUnusedDependencies: true,
-  preamble: 'view.DO 2021',
+  preamble: 'nent 2021',
   globalStyle: 'src/index.scss',
   plugins: [
     sass(),

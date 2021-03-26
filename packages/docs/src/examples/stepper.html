@@ -15,7 +15,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" />
     <title>Loading...</title>
     <style>
-      [x-cloak],
+      [n-cloak],
       [hidden] {
         display: none;
       }
@@ -27,9 +27,9 @@
       .step {
         background-color: cream;
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-start;
+        flen-direction: row;
+        flen-wrap: wrap;
+        justify-content: flen-start;
         line-height: 1.5em;
         padding: 10px;
       }
@@ -49,7 +49,7 @@
         /*   visibility: visible; */
       }
 
-      .step x-app-view-do {
+      .step n-view-prompt {
         margin-left: 10px;
       }
 
@@ -112,179 +112,145 @@
   </head>
 
   <body>
-
-    <x-app app-title="My HTML App"
+    <n-views app-title="My HTML App"
       start-url="/home"
       root="/examples/stepper.html#/"
       class="container">
       <h1 class="mt-3">No-Code Stepper</h1>
-
-      <x-app-view url="/home"
+      <n-view url="/home"
         page-title="Home">
         <h2>Home</h2>
-
         <div class="content">
           <p>Click the link below to begin.</p>
-
           <a class="btn btn-primary btn-lg"
             href="/survey"
-            x-hide-when="{{storage:food}}">Take Survey</a>
-
+            n-hide-when="{{storage:food}}">Take Survey</a>
           <a class="btn btn-light btn-lg"
             href="/survey/step-1"
             hidden
-            x-show-when="{{storage:food}}">Retake Survey</a>
+            n-show-when="{{storage:food}}">Retake Survey</a>
         </div>
-      </x-app-view>
-
-      <x-app-view url="/survey"
+      </n-view>
+      <n-view url="/survey"
         page-title="Survey"
-        x-cloak>
-        <x-content-reference
+        n-cloak>
+        <n-content-reference
           style-src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
-        </x-content-reference>
+        </n-content-reference>
         <h2>Survey</h2>
-
         <div class="step"
-          x-class="completed"
-          x-class-when="{{storage:nickname}}">
-
+          n-class="completed"
+          n-class-when="{{storage:nickname}}">
           <div class="stepper">
-
             <div class="circle"></div>
-
             <div class="line"></div>
           </div>
-
           <div class="form">
-            <h3> Step 1 <span x-hide-when="!{{storage:nickname}}">
-
+            <h3> Step 1 <span n-hide-when="!{{storage:nickname}}">
                 <a href="/survey/step-1">✔️</a>
               </span>
             </h3>
-
-            <x-app-view-do when="!{{storage:nickname}}"
+            <n-view-prompt when="!{{storage:nickname}}"
               url="step-1"
               page-title="Step 1">
-
               <div class="content"
                 class="form-group">
                 <label class="form-label"
                   for="nickname">Nick Name</label>
-                <x-action-activator target-element="a">
-                  <x-action topic="storage"
+                <n-action-activator target-element="a">
+                  <n-action topic="storage"
                     command="set-data">
-                  </x-action>
+                  </n-action>
                   <input type="text"
                     required
                     class="form-control mb-3"
                     id="nickname"
-                    x-value-from="{{storage:nickname}}"
+                    n-value-from="{{storage:nickname}}"
                     tabindex="0" />
-
                   <a class="btn btn-primary btn-lg"
-                    x-next="/survey/step-2"> Next </a>
-                </x-action-activator>
+                    n-next="/survey/step-2"> Next </a>
+                </n-action-activator>
               </div>
-            </x-app-view-do>
+            </n-view-prompt>
           </div>
         </div>
-
         <div class="step"
-          x-class="completed"
-          x-class-when="{{storage:show}}">
-
+          n-class="completed"
+          n-class-when="{{storage:show}}">
           <div class="stepper">
-
             <div class="circle"></div>
-
             <div class="line"></div>
           </div>
-
           <div>
-            <h3> Step 2 <span x-hide-when="!{{storage:show}}">
-
+            <h3> Step 2 <span n-hide-when="!{{storage:show}}">
                 <a href="/survey/step-2">✔️</a>
               </span>
             </h3>
-
-            <x-app-view-do when="!{{storage:show}}"
+            <n-view-prompt when="!{{storage:show}}"
               url="step-2"
               page-title="Step 2">
-
               <div class="content">
                 <label class="form-label"
                   for="show">TV Show</label>
-                <x-action-activator target-element="a">
-                  <x-action topic="storage"
+                <n-action-activator target-element="a">
+                  <n-action topic="storage"
                     command="set-data">
-                  </x-action>
+                  </n-action>
                   <input type="text"
                     required
                     id="show"
                     class="form-control mb-3"
-                    x-value-from="{{storage:show}}"
+                    n-value-from="{{storage:show}}"
                     tabindex="0" />
-
                   <a class="btn btn-primary btn-lg"
-                    x-next="/survey/step-3">Next</a>
-                </x-action-activator>
+                    n-next="/survey/step-3">Next</a>
+                </n-action-activator>
               </div>
-            </x-app-view-do>
+            </n-view-prompt>
           </div>
         </div>
-
         <div class="step"
-          x-class="completed"
-          x-class-when="{{storage:food}}">
-
+          n-class="completed"
+          n-class-when="{{storage:food}}">
           <div class="stepper">
-
             <div class="circle"></div>
           </div>
-
           <div>
-            <h3> Step 3 <span x-hide-when="!{{storage:food}}">
-
+            <h3> Step 3 <span n-hide-when="!{{storage:food}}">
                 <a href="/survey/step-3">✔️</a>
               </span>
             </h3>
-
-            <x-app-view-do when="!{{storage:food}}"
+            <n-view-prompt when="!{{storage:food}}"
               url="step-3"
               page-title="Step 3">
-
               <div class="content">
                 <label class="form-label"
                   for="show">Food or Snack</label>
-                <x-action-activator target-element="a">
-                  <x-action topic="storage"
+                <n-action-activator target-element="a">
+                  <n-action topic="storage"
                     command="set-data">
                     <input type="text"
                       required
                       id="food"
                       class="form-control mb-3"
-                      x-value-from="{{storage:food}}"
+                      n-value-from="{{storage:food}}"
                       tabindex="0" />
-
                     <a class="btn btn-primary btn-lg"
-                      x-next>Next</a>
-                </x-action-activator>
+                      n-next>Next</a>
+                </n-action-activator>
               </div>
-            </x-app-view-do>
+            </n-view-prompt>
           </div>
         </div>
-
         <div class="content">
           <p>Thank you for completing our survey.</p>
-
           <a class="btn btn-light btn-lg"
             href="/home">Return Home </a>
         </div>
-      </x-app-view>
-      <x-data-provider-session></x-data-provider-session>
-      <x-data-provider-storage></x-data-provider-storage>
-    </x-app>
+      </n-view>
+      <n-data-session></n-data-session>
+      <n-data-storage></n-data-storage>
+    </n-views>
   </body>
 
 </html>

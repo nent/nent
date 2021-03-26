@@ -11,10 +11,20 @@ export interface IEventActionListener {
 }
 
 export enum ActionActivationStrategy {
+  OnRender = 'on-render',
   OnEnter = 'on-enter',
   OnExit = 'on-exit',
   AtTime = 'at-time',
   OnElementEvent = 'on-element-event',
+  /** Future
+   * OnScrolledIntoView
+   * OnScrollDown
+   * OnScrollUp
+   * OnPageResize
+   * OnNetworkDisconnect
+   * OnNetworkReconnect
+   * OnEvent (event bus)
+   */
 }
 
 export interface EventAction<T> {
@@ -27,8 +37,8 @@ export const ACTIONS_DOM_EVENT = 'x:actions'
 export const EVENTS_DOM_EVENT = 'x:events'
 
 export interface IActionElement {
-  command: any
-  topic: any
+  command: string
+  topic: string
   getAction(): Promise<EventAction<any> | null>
   sendAction(data?: any): Promise<void>
 }

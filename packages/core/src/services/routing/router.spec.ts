@@ -192,7 +192,7 @@ describe('router', () => {
     await page.waitForChanges()
     let anchor = page.body.querySelector('a')
 
-    expect(anchor?.getAttribute('x-attached-click')).not.toBeNull()
+    expect(anchor?.getAttribute('n-attached-click')).not.toBeNull()
 
     anchor?.click()
 

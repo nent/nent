@@ -1,4 +1,4 @@
-<x-content-reveal direction="left"
+<n-content-reveal direction="left"
   delay="500"
   duration="1000"
   animation-distance="60%"
@@ -6,17 +6,16 @@
   <ul
     class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
     <li class="list-group-item fw-bold"> Audio Components</li>
-    <x-data-repeat items-src="/assets/components.json"
+    <n-content-data-repeat items-src="/assets/components.json"
       filter="components[docsTags[text='audio']]">
       <template>
         <li class="list-group-item">
           <a href="/components/{{data:tag}}"> &lt;{{data:tag}}&gt; </a>
         </li>
       </template>
-    </x-data-repeat>
+    </n-content-data-repeat>
   </ul>
-</x-content-reveal>
-
+</n-content-reveal>
 <div class="">
   <h1>Reactive Audio</h1>
   <p class="lead">Reactive audio to accompany pages, actions, events or anything
@@ -50,51 +49,36 @@
   </ul>
   <h2>Enable Audio</h2>
   <p> To enable audio, you must first add the <a
-      href="/components/x-audio"><b>&lt;x-audio&gt;</b> </a> to the page. </p>
-  <x-content-markdown>
+      href="/components/n-audio"><b>&lt;n-audio&gt;</b> </a> to the page. </p>
+  <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <x-audio>
-      </x-audio>
+      <n-audio>
+      </n-audio>
       ```
     </script>
-  </x-content-markdown>
-
+  </n-content-markdown>
   <h3 class="mt-3">Advanced Topics</h3>
-
   <div class="button-nav">
     <a href="/audio/controls"
       class="btn btn-secondary">
-      <i class="ri-sound-module-line"></i>
-      Controls
-    </a>
+      <i class="ri-sound-module-line"></i> Controls </a>
     <a href="/audio/music"
       class="btn btn-secondary">
-      <i class="ri-music-line"></i>
-      Music
-    </a>
+      <i class="ri-music-line"></i> Music </a>
     <a href="/audio/sound"
       class="btn btn-secondary">
-      <i class="ri-volume-up-line"></i>
-      Sounds
-    </a>
+      <i class="ri-volume-up-line"></i> Sounds </a>
     <a href="/audio/both"
       class="btn btn-secondary">
-      <i class="ri-music-2-line"></i>
-      Music & Sounds
-    </a>
+      <i class="ri-music-2-line"></i> Music & Sounds </a>
     <a href="/audio/timed"
       class="btn btn-secondary">
-      <i class="ri-timer-flash-line"></i>
-      Timed Sounds
-    </a>
+      <i class="ri-timer-flash-line"></i> Timed Sounds </a>
     <a href="/audio/provider"
       class="btn btn-secondary">
-      <i class="ri-database-line"></i>
-      Data Provider
-    </a>
+      <i class="ri-database-line"></i> Data Provider </a>
   </div>
-
   <footer>
     <a slot="start"
       href="/actions"

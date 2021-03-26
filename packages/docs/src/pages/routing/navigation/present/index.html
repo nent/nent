@@ -1,176 +1,150 @@
-<x-app-view url="/presentations"
+<n-view url="/presentations"
   page-title="Guided Routing"
   content-src="/pages/presentations/default.html">
-
-  <x-app-view url="guided"
+  <n-view url="guided"
     page-title="Guided Navigation"
     content-src="/pages/routing/navigation/guided.html">
-
-    <x-app-view url="demo"
+    <n-view url="demo"
       page-title="Guided Demo"
       content-src="/pages/presentations/demo/default.html">
-
-      <x-app-view-do url="video"
+      <n-view-prompt url="video"
         page-title="Guided: Intro"
         visit="always"
         content-src="/pages/presentations/demo/video.html">
-        <x-action-activator activate="at-time"
+        <n-action-activator activate="at-time"
           time="9.9">
-          <x-action topic="navigation"
+          <n-action topic="navigation"
             command="go-to"
-            data-path="video-1"> </x-action>
-        </x-action-activator>
-      </x-app-view-do>
-
-      <x-app-view-do url="video-1"
+            data-path="video-1"> </n-action>
+        </n-action-activator>
+      </n-view-prompt>
+      <n-view-prompt url="video-1"
         page-title="Guided: Part 1"
         visit="always"
         content-src="/pages/presentations/demo/video.html">
-        <x-action-activator activate="at-time"
+        <n-action-activator activate="at-time"
           time="9.9">
-          <x-action topic="navigation"
+          <n-action topic="navigation"
             command="go-to"
-            data-path="video-2"> </x-action>
-        </x-action-activator>
-      </x-app-view-do>
-
-      <x-app-view-do url="video-2"
+            data-path="video-2"> </n-action>
+        </n-action-activator>
+      </n-view-prompt>
+      <n-view-prompt url="video-2"
         page-title="Guided: Part 2"
         visit="always"
         content-src="/pages/presentations/demo/video.html">
-        <x-action-activator activate="at-time"
+        <n-action-activator activate="at-time"
           time="9.9">
-          <x-action topic="navigation"
+          <n-action topic="navigation"
             command="go-to"
-            data-path="video-3"> </x-action>
-        </x-action-activator>
-      </x-app-view-do>
-
-      <x-app-view-do url="video-3"
+            data-path="video-3"> </n-action>
+        </n-action-activator>
+      </n-view-prompt>
+      <n-view-prompt url="video-3"
         page-title="Guided: Part 3"
         visit="always"
         content-src="/pages/presentations/demo/video.html">
-      </x-app-view-do>
-
-      <x-app-view-do url="animation"
+      </n-view-prompt>
+      <n-view-prompt url="animation"
         page-title="Guided: Animated HTML"
         visit="always"
         next-after="30"
         content-src="/pages/presentations/demo/timed.html">
-      </x-app-view-do>
-    </x-app-view>
-
-    <x-app-view url="sequential"
+      </n-view-prompt>
+    </n-view>
+    <n-view url="sequential"
       page-title="Sequential Routes"
       content-src="/pages/routing/navigation/guided/sequential.html">
-
-      <x-app-view url="demo"
+      <n-view url="demo"
         page-title="Sequential Demo"
         content-src="/pages/presentations/demo/complete.html">
-
-        <x-app-view-do url="step-1"
+        <n-view-prompt url="step-1"
           page-title="Step 1"
           visit="always"
           content-src="/pages/presentations/demo/step1.html">
-        </x-app-view-do>
-
-        <x-app-view-do url="step-2"
+        </n-view-prompt>
+        <n-view-prompt url="step-2"
           page-title="Step 2"
           visit="always"
           content-src="/pages/presentations/demo/step2.html">
-        </x-app-view-do>
-
-        <x-app-view-do url="step-3"
+        </n-view-prompt>
+        <n-view-prompt url="step-3"
           page-title="Step 3"
           visit="always"
           content-src="/pages/presentations/demo/step3.html">
-        </x-app-view-do>
-      </x-app-view>
-    </x-app-view>
-
-    <x-app-view url="smart"
+        </n-view-prompt>
+      </n-view>
+    </n-view>
+    <n-view url="smart"
       page-title="Smart Routes"
       content-src="/pages/routing/navigation/guided/smart.html">
-
-      <x-app-view url="demo"
+      <n-view url="demo"
         page-title="Smart Demo"
         content-src="/pages/presentations/demo/complete.html">
-
-        <x-app-view-do url="step-1"
+        <n-view-prompt url="step-1"
           page-title="Step 1"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step1.html">
-        </x-app-view-do>
-
-        <x-app-view-do url="step-2"
+        </n-view-prompt>
+        <n-view-prompt url="step-2"
           page-title="Step 2"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step2.html">
-        </x-app-view-do>
-
-        <x-app-view-do url="step-3"
+        </n-view-prompt>
+        <n-view-prompt url="step-3"
           page-title="Step 3"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step3.html">
-        </x-app-view-do>
-      </x-app-view>
-    </x-app-view>
-
-    <x-app-view url="timed"
+        </n-view-prompt>
+      </n-view>
+    </n-view>
+    <n-view url="timed"
       page-title="Timed Routes"
       content-src="/pages/routing/navigation/guided/timed.html">
-
-      <x-app-view url="demo"
+      <n-view url="demo"
         page-title="Timed Demo"
         content-src="/pages/presentations/demo/complete.html">
-
-        <x-app-view-do url="step-1"
+        <n-view-prompt url="step-1"
           page-title="Step 1"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step1.html">
-        </x-app-view-do>
-
-        <x-app-view-do url="step-2"
+        </n-view-prompt>
+        <n-view-prompt url="step-2"
           page-title="Step 2"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step2.html">
-        </x-app-view-do>
-
-        <x-app-view-do url="step-3"
+        </n-view-prompt>
+        <n-view-prompt url="step-3"
           page-title="Step 3"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step3.html">
-        </x-app-view-do>
-      </x-app-view>
-
-      <x-app-view-do url="video"
+        </n-view-prompt>
+      </n-view>
+      <n-view-prompt url="video"
         page-title="Timed w/Video"
         visit="optional"
         content-src="/pages/presentations/demo/video.html">
-      </x-app-view-do>
-
-      <x-app-view-do url="animation"
+      </n-view-prompt>
+      <n-view-prompt url="animation"
         page-title="Auto Next"
         visit="optional"
         next-after="30"
         content-src="/pages/presentations/demo/timed.html">
-      </x-app-view-do>
-    </x-app-view>
-
-    <x-app-view url="conditional"
+      </n-view-prompt>
+    </n-view>
+    <n-view url="conditional"
       page-title="Conditional Routing"
       content-src="/pages/routing/navigation/guided/conditional.html">
-    </x-app-view>
-
-    <x-app-view url="tutorial"
+    </n-view>
+    <n-view url="tutorial"
       page-title="Guided Navigation Tutorial"
       content-src="/pages/routing/navigation/guided/tutorial.html">
-    </x-app-view>
-  </x-app-view>
-</x-app-view>
+    </n-view>
+  </n-view>
+</n-view>

@@ -1,0 +1,66 @@
+# X-APP
+
+The root component is the base container for the view-engine and its child components. This element should contain root-level HTML that is global to every view along with [\<n-view\>](/components/n-view) components placed within any global-html.
+
+
+This component is the root container for all routing. It provides an entry-point for the content-routing.
+
+## Responsibilities
+
+* Action Bus Delegation
+* Event Bus Delegation
+* Page title
+
+For more information on routing, check out the [routing](/routing) documentation. Also, check out the [\<n-view\>](/components/n-view) and [\<n-view-prompt\>](/components/n-view-prompt) components.
+
+
+<!-- Auto Generated Below -->
+
+
+## Usage
+
+### Basic
+
+```html
+<n-views>
+  ...
+  <n-view ...></n-view>
+  <n-view ...></n-view>
+  ...
+</n-views>
+```
+
+
+### Complex
+
+The example sets an offset for scrolling, a global page transition and has a non-default start page.
+
+```html
+<n-views app-title='Sample Site' 
+  scroll-top-offset='0' 
+  transition='fade-in' 
+  start-url='/home' 
+  >
+  ...
+  <n-view ...></n-view>
+  <n-view ...></n-view>
+  ...
+</n-views>
+```
+
+
+
+## Properties
+
+| Property          | Attribute           | Description                                                                                                                  | Type                  | Default     |
+| ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------- | ----------- |
+| `appTitle`        | `app-title`         | This is the application / site title. If the views or dos have titles, this is added as a suffix.                            | `string`, `undefined` | `undefined` |
+| `root`            | `root`              | This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths. | `string`              | `'/'`       |
+| `scrollTopOffset` | `scroll-top-offset` | Header height or offset for scroll-top on this and all views.                                                                | `number`, `undefined` | `undefined` |
+| `startUrl`        | `start-url`         | This is the start path a user should land on when they first land on this app.                                               | `string`              | `'/'`       |
+| `transition`      | `transition`        | Navigation transition between routes. This is a CSS animation class.                                                         | `string`, `undefined` | `undefined` |
+
+
+----------------------------------------------
+
+nent 2021 - all rights reserved

@@ -1,12 +1,12 @@
 <h1>All Components</h1>
-<x-data-repeat items-src="/assets/components.json"
+<n-content-data-repeat items-src="/assets/components.json"
   filter="components">
   <template>
     <div class="component-item">
-      <x-app-link href="/components/{{data:tag}}">
+      <n-view-link href="/components/{{data:tag}}">
         <h4>&lt;{{data:tag}}&gt;</h4>
         <p class="animate_animated animate__slideOutDown">{{data:docs}}</p>
-      </x-app-link>
+      </n-view-link>
     </div>
   </template>
-</x-data-repeat>
+</n-content-data-repeat>

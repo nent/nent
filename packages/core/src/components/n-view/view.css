@@ -1,0 +1,17 @@
+:host {
+  display: none;
+}
+:host(.active) {
+  display: inherit;
+}
+:host(.active) ::slotted([slot='content']),
+:host(.exact) div[slot='content'] {
+  display: none;
+}
+:host(.exact) {
+  display: inherit;
+}
+:host(.exact) ::slotted([slot='content']),
+:host(.exact) div[slot='content'] {
+  display: inherit;
+}

@@ -4,7 +4,7 @@ import { InMemoryProvider } from '../data/providers/memory'
 import { dataState, dataStateDispose } from '../data/state'
 import { ScrollHistory } from './scroll'
 
-describe('ScrollHistory', () => {
+describe('scroll', () => {
   let page: SpecPage
   let win: Window
   let session: InMemoryProvider

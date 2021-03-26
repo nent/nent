@@ -1,0 +1,61 @@
+:host {
+  display: block;
+}
+@keyframes slide-up {
+  0% {
+    transform: translateY(var(--distance));
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(var(--distance));
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(var(--distance));
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(var(--distance));
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.n-reveal {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+  animation-duration: 500ms;
+}
+
+.slide-up {
+  animation-name: slide-up;
+}
+
+.slide-down {
+  animation-name: slide-down;
+}
+
+.slide-right {
+  animation-name: slide-right;
+}
+
+.slide-left {
+  animation-name: slide-right;
+}
