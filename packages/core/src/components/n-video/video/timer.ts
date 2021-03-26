@@ -4,8 +4,8 @@ import {
   IViewDoTimer,
   TimeDetails,
   TIMER_EVENTS,
-} from '../../n-view-prompt/media/interfaces'
-import { getTimeDetails } from '../../n-view-prompt/media/time'
+} from '../../n-view-prompt/services/interfaces'
+import { getTimeDetails } from '../../n-view-prompt/services/time'
 
 export class VideoTimer extends EventEmitter implements IViewDoTimer {
   constructor(

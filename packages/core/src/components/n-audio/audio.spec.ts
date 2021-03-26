@@ -6,8 +6,8 @@ import { actionBus, eventBus } from '../../services/actions'
 import { contentStateDispose } from '../../services/content/state'
 import { ContentReference } from '../n-content-reference/content-reference'
 import { Audio } from './audio'
-import { AudioActionListener } from './audio/actions'
-import { audioState, audioStateDispose } from './audio/state'
+import { AudioActionListener } from './services/actions'
+import { audioState, audioStateDispose } from './services/state'
 
 describe('n-audio', () => {
   beforeEach(() => {

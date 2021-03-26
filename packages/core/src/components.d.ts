@@ -6,11 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { EventAction } from "./services/actions";
-import { AudioActionListener } from "./components/n-audio/audio/actions";
-import { AudioInfo, AudioRequest } from "./components/n-audio/audio/interfaces";
+import { AudioActionListener } from "./components/n-audio/services/actions";
+import { AudioInfo, AudioRequest } from "./components/n-audio/services/interfaces";
 import { ReferenceCompleteResults } from "./services/content";
 import { CookieConsent } from "./components/n-data-cookie/cookie/interfaces";
-import { SetData } from "./components/n-data/data/interfaces";
+import { SetData } from "./components/n-data/services/interfaces";
 import { VideoTimer } from "./components/n-video/video/timer";
 export namespace Components {
     interface NAction {

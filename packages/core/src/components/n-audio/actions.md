@@ -18,8 +18,12 @@ TOPIC: `audio`
 This command enables audio for all music, sound and video.
 
 ```html
-<n-action-activator activate="...">
-  <n-action topic="audio" command="enable"></n-action>
+<n-action-activator 
+  activate="...">
+  <n-action 
+    topic="audio" 
+    command="enable">
+  </n-action>
 </n-action-activator>
 ```
 
@@ -28,8 +32,12 @@ This command enables audio for all music, sound and video.
 This command disables audio for all music, sound and video.
 
 ```html
-<n-action-activator activate="...">
-  <n-action topic="audio" command="set-data" data-(key)="(value)">
+<n-action-activator 
+  activate="...">
+  <n-action 
+    topic="audio" 
+    command="set-data" 
+    data-(key)="(value)">
   </n-action>
 </n-action-activator>
 ```
@@ -51,8 +59,12 @@ Arguments:
   The value to set.
 
 ```html
-<n-action-activator activate="...">
-  <n-action topic="audio" command="set-data" data-(key)="(value)">
+<n-action-activator 
+  activate="...">
+  <n-action 
+    topic="audio" 
+    command="set-data" 
+    data-(key)="(value)">
   </n-action>
 </n-action-activator>
 ```
@@ -60,15 +72,7 @@ Arguments:
 
 #### start
 
-This command instructs the player to immediately play the given pre-loaded track based on the **id**. If the track isn't present in the bin, this command is ignored.
-
-**Data**:
-
-```json
-{
-  'id': '<id>'
-}
-```
+This command instructs the player to immediately play the given pre-loaded track based on the **track-id**. If the track isn't present in the loader, this command is ignored.
 
 #### pause
 
@@ -82,38 +86,14 @@ This command resumes audio if it was paused.
 
 This command instructs the player to set its own 'muted' property to the value in the payload. Meaning the same command is used for mute and un-mute.
 
-**Data**:
-
-```json
-{
-  'mute': true | false
-}
-```
 
 #### volume
 
 Set the audio player volume at a level 0 to 100.
 
-**Data**:
-
-```json
-{
-  'id': '<id>'
-}
-```
-
 #### seek \*
 
-Set the audio track to to the given time in seconds, but only if the **id** matches the that of the active track. Otherwise, it is ignored. If the current track is paused, it will remain paused, at the requested time. Otherwise, the track is changed audibly.
-
-**Data**:
-
-```json
-{
-  'id': '<id>',
-  'time': <time>
-}
-```
+Set the audio track to to the given time in seconds, but only if the **track-id** matches the that of the active track. Otherwise, it is ignored. If the current track is paused, it will remain paused, at the requested time. Otherwise, the track is changed audibly.
 
 #### Other Commands
 

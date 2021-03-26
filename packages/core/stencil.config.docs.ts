@@ -1,15 +1,26 @@
 import { Config } from '@stencil/core'
+import visualizer from 'rollup-plugin-visualizer'
 const config: Config = {
   namespace: 'nent',
   preamble: 'nent 2021',
   hashFileNames: false,
-  enableCache: true,
-  enableCacheStats: true,
+  rollupPlugins: {
+    after: [
+      visualizer({
+        filename: '../../docs/stats.html',
+      }),
+    ],
+  },
   outputTargets: [
+    {
+      type: 'docs-vscode',
+      file: '../../docs/assets/custom-elements.json',
+    },
     {
       type: 'docs-json',
       file: '../../docs/assets/components.json',
       strict: true,
+      typesFile: '../../docs/js/nent/nent.d.t',
     },
     {
       type: 'www',

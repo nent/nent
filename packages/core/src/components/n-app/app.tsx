@@ -14,7 +14,7 @@ import {
 } from '../../services/actions'
 import { debugIf, log } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
-import { AppActionListener } from './app/actions'
+import { AppActionListener } from './services/actions'
 
 /**
  * This component enables app services. These are console logging

@@ -26,8 +26,8 @@ import { navigationState } from '../../services/navigation/state'
 import { recordVisit } from '../../services/navigation/visits'
 import { MatchResults } from '../../services/routing/interfaces'
 import { Route } from '../../services/routing/route'
-import { IViewDoTimer, ViewDoService } from './media'
-import { ElementTimer } from './media/timer'
+import { IViewDoTimer, ViewDoService } from './services'
+import { ElementTimer } from './services/timer'
 
 /**
  * This element represents a specialized child-route for a parent \<n-view\> component.

@@ -12,11 +12,14 @@ import {
   IActionElement,
 } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
-import { AudioType, AUDIO_TOPIC } from '../n-audio/audio/interfaces'
+import {
+  AudioType,
+  AUDIO_TOPIC,
+} from '../n-audio/services/interfaces'
 import {
   audioState,
   onAudioStateChange,
-} from '../n-audio/audio/state'
+} from '../n-audio/services/state'
 
 /**
  * This element represents an action to be fired. This

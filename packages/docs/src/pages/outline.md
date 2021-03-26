@@ -7,9 +7,9 @@
     - [X] Name
     - [X] Accept Cookie
     - [ ] Install App
-      * Auto Updates
-      * Offline Capable
-      * Disclaimer
+         * Auto Updates
+         * Offline Capable
+         * Disclaimer
   - [X] Welcome Back
 
 - 🚀 Get Started

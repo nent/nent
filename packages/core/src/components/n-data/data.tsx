@@ -3,7 +3,7 @@ import { debugIf } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import { clearDataProviders } from '../../services/data/factory'
 import { dataState } from '../../services/data/state'
-import { DataListener } from './data/actions'
+import { DataListener } from './services/actions'
 
 /**
  * This component enables the Data Provider system. It hosts

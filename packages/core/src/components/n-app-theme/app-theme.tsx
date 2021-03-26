@@ -1,5 +1,5 @@
 import { Component, Element, Prop } from '@stencil/core'
-import { appState, onAppChange } from '../n-app/app/state'
+import { appState, onAppChange } from '../n-app/services/state'
 
 /**
  * This component checks for the preferred light/dark theme preference of the

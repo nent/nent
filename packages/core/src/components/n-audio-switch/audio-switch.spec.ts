@@ -7,7 +7,10 @@ import {
 } from '../../services/data/factory'
 import { IDataProvider } from '../../services/data/interfaces'
 import { InMemoryProvider } from '../../services/data/providers/memory'
-import { audioState, audioStateDispose } from '../n-audio/audio/state'
+import {
+  audioState,
+  audioStateDispose,
+} from '../n-audio/services/state'
 import { AudioSwitch } from './audio-switch'
 
 describe('n-audio-switch', () => {

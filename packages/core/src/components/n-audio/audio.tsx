@@ -11,9 +11,9 @@ import { debugIf } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import { ReferenceCompleteResults } from '../../services/content/interfaces'
 import { addDataProvider } from '../../services/data/factory'
-import { AudioActionListener } from './audio/actions'
-import { AudioDataProvider } from './audio/provider'
-import { audioState, onAudioStateChange } from './audio/state'
+import { AudioActionListener } from './services/actions'
+import { AudioDataProvider } from './services/provider'
+import { audioState, onAudioStateChange } from './services/state'
 
 /**
  * Use this element only once per page to enable audio features.

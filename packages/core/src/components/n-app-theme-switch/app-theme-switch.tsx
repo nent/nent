@@ -1,5 +1,5 @@
 import { Component, h, Host, Prop, State } from '@stencil/core'
-import { appState, onAppChange } from '../n-app/app/state'
+import { appState, onAppChange } from '../n-app/services/state'
 
 /**
  * This component displays a checkbox to control the

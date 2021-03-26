@@ -14,11 +14,11 @@ import {
   AudioRequest,
   AudioType,
   AUDIO_TOPIC,
-} from '../n-audio/audio/interfaces'
+} from '../n-audio/services/interfaces'
 import {
   audioState,
   onAudioStateChange,
-} from '../n-audio/audio/state'
+} from '../n-audio/services/state'
 
 /**
  * This component declares audio used within this \<n-view-prompt\> route.

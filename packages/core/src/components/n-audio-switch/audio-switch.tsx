@@ -5,11 +5,11 @@ import { IServiceProvider } from '../../services/data/interfaces'
 import {
   AUDIO_EVENTS,
   AUDIO_TOPIC,
-} from '../n-audio/audio/interfaces'
+} from '../n-audio/services/interfaces'
 import {
   audioState,
   onAudioStateChange,
-} from '../n-audio/audio/state'
+} from '../n-audio/services/state'
 
 /**
  * This component exposes a checkbox to enable or disable global audio for background sounds and video.

@@ -9,25 +9,31 @@ Only properties of type `boolean`, `string` or `number` are reflected as an
 The presence of a boolean attribute indicate the value of its property is `true`. Its absence indicates that the value of the property is `false`. The value of boolean attributes is ignored, only their presence or absence is relevant.
 
 ```html
-<n-content-include></n-content-include>
+<n-content-include>
+
+</n-content-include>
 <!-- "defer-load" is false -->
-<!-- -->
-<n-content-include defer-load></n-content-include>
+<n-content-include 
+  defer-load>
+</n-content-include>
 <!-- "defer-load" is true -->
-<!-- -->
-<n-content-include defer-load="true"></n-content-include>
+<n-content-include 
+  defer-load="true">
+</n-content-include>
 <!-- "defer-load" is true -->
-<!-- -->
-<n-content-include defer-load="foo"></n-content-include>
+<n-content-include 
+  defer-load="foo">
+</n-content-include>
 <!-- "defer-load" is true -->
-<!-- -->
-<n-content-include defer-load="false"></n-content-include>
+<n-content-include 
+  defer-load="false">
+</n-content-include>
 <!-- !! "defer-load" is true -->
 ```
 
 ### Code Completion
 
-Shoelace ships with a `custom-elements.json` file that can be used to describe its components to supportive editors, providing code completion (also known as "code hinting" or "IntelliSense"). To enable this, you need to tell your editor where this file is.
+nent ships with a `custom-elements.json` file that can be used to describe its components to support IntelliSense in your IDE (also known as "code hinting"). To enable this, you need to tell your editor where this file is.
 
 ### VS Code
 

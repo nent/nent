@@ -8,7 +8,7 @@ import {
   addDataProvider,
   removeDataProvider,
 } from '../../services/data/factory'
-import { DATA_COMMANDS, SetData } from '../n-data/data/interfaces'
+import { DATA_COMMANDS, SetData } from '../n-data/services/interfaces'
 import { SessionService } from './session/service'
 
 @Component({

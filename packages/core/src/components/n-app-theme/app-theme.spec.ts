@@ -1,5 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { appState, appStateDispose } from '../n-app/app/state'
+import { appState, appStateDispose } from '../n-app/services/state'
 import { AppTheme } from './app-theme'
 
 describe('n-app-theme', () => {
