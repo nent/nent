@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 
+import { isValue } from '../../common'
 import { LocationSegments } from '../interfaces'
 
 /**
@@ -144,6 +145,7 @@ export function parseQueryString(query: string) {
  * @returns
  */
 export function getPossiblePaths(path: string) {
+  if (!isValue(path)) return []
   let workingPath = path.slice()
   const results: string[] = [path.slice()]
   let index = workingPath.lastIndexOf('/')

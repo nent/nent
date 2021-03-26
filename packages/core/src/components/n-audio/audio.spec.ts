@@ -1,6 +1,6 @@
 jest.mock('../../services/common/logging')
-jest.mock('./audio/track')
-jest.mock('./audio/actions')
+jest.mock('./services/track')
+jest.mock('./services/actions')
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
 import { contentStateDispose } from '../../services/content/state'

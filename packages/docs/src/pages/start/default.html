@@ -12,17 +12,20 @@
     <p>Add the local module reference to the document head.</p>
     <n-content-markdown>
       <script type="text/markdown">
-        ```text
+        ```html
         <head>
           ...
           <script
             type="module"
             src="/node_modules/@nent/core/dist/nent.esm.js">
-          </script>
-      <script
+          < /script>
+          <script
             nomodule
             src="/node_modules/@nent/core/dist/nent.js">
-          </script> ... </head> ```
+          < /script>
+          ...
+        </head>
+        ```
       </script>
     </n-content-markdown>
   </div>
@@ -39,8 +42,9 @@
     <n-content-markdown>
       <script type="text/markdown">
         ```html
-
-      <head> ... <script
+        <head>
+         ...
+          <script
             type="module"
             src="https://unpkg.com/@nent/core/dist/nent/nent.esm.js">
           < /script>

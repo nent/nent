@@ -63,7 +63,7 @@ header {
     var(--nav-bg),
     var(--primary)
   );
-  box-shadow: 0 0 3px 0 #000;
+  box-shadow: 0 0 3px 0 rgb(0, 0, 0);
 }
 header h2 {
   color: white;
@@ -80,8 +80,9 @@ nav button:focus {
 header .navbar-brand a,
 header .navbar-brand a:any-link {
   color: white;
-  font-size: 4rem;
-  font-weight: 400;
+  font-size: 6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   margin: 0;
 }
 nav .navbar-brand a:hover {
@@ -150,10 +151,10 @@ b.brand {
   color: var(--primary);
 }
 
-a.link-active:link,
-a.link-active:active,
-a.link-active:visited,
-a.link-active * {
+a.active:link,
+a.active:active,
+a.active:visited,
+a.active * {
   color: var(--accent) !important;
   font-weight: 600;
 }
