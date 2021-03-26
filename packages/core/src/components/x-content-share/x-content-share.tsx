@@ -34,7 +34,7 @@ export class XContentShare {
   /**
    * The URL we are sharing
    */
-  @Prop() url?: string
+  @Prop({ mutable: true }) url?: string
 
   componentWillLoad() {
     if (!this.url) {
@@ -45,6 +45,7 @@ export class XContentShare {
       if (canonicalElement) {
         url = canonicalElement.href
       }
+      this.url = url
     }
   }
 
