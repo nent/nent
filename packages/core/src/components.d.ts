@@ -544,6 +544,11 @@ export namespace Components {
          */
         "headline"?: string;
         /**
+          * Manual share method for more complex scenarios
+          * @param data
+         */
+        "share": (data?: { title?: string | undefined; text?: string | undefined; url?: string | undefined; } | null | undefined) => Promise<void>;
+        /**
           * The textual body of web share
          */
         "text"?: string;

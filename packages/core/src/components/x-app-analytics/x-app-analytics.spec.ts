@@ -2,7 +2,7 @@ jest.mock('../../services/common/logging')
 jest.mock('../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
-import { actionBus } from '../../services/actions'
+import { actionBus, eventBus } from '../../services/actions'
 import { XAppViewDo } from '../x-app-view-do/x-app-view-do'
 import { XAppView } from '../x-app-view/x-app-view'
 import { XApp } from '../x-app/x-app'
@@ -15,6 +15,7 @@ import { XAppAnalytics } from './x-app-analytics'
 describe('x-app-analytics', () => {
   afterEach(async () => {
     actionBus.removeAllListeners()
+    eventBus.removeAllListeners()
   })
   it('renders and subscribes to page views', async () => {
     const page = await newSpecPage({
@@ -49,7 +50,7 @@ describe('x-app-analytics', () => {
       },
     )
 
-    const router = page.body.querySelector('x-app')?.router
+    const router = page.root?.router
 
     router?.goToRoute('/start')
 
@@ -61,7 +62,7 @@ describe('x-app-analytics', () => {
 
     analytics.remove()
 
-    const subject = page.body.querySelector('x-app')
+    const subject = page.root
     subject?.remove()
   })
 
@@ -113,8 +114,7 @@ describe('x-app-analytics', () => {
     expect(viewTimes.length).toBe(2)
     analytics.remove()
 
-    const subject = page.body.querySelector('x-app')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('renders and subscribes to custom events', async () => {
@@ -164,7 +164,7 @@ describe('x-app-analytics', () => {
     expect(events[0].rating).toBe('is HOT!')
     analytics.remove()
 
-    const subject = page.body.querySelector('x-app')
+    const subject = page.root
     subject?.remove()
   })
 })
