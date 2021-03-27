@@ -12,10 +12,10 @@ import {
   dataStateDispose,
 } from '../../services/data/state'
 import { ROUTE_EVENTS } from '../../services/routing/interfaces'
-import { ContentDataRepeat } from './content-data-repeat'
+import { ContentDataRepeat } from './content-repeat'
 import remoteData from './test/data.json'
 
-describe('n-content-data-repeat', () => {
+describe('n-content-repeat', () => {
   let provider: InMemoryProvider
   beforeEach(() => {
     dataState.enabled = true
@@ -33,38 +33,38 @@ describe('n-content-data-repeat', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [ContentDataRepeat],
-      html: `<n-content-data-repeat defer-load><div></div></n-content-data-repeat>`,
+      html: `<n-content-repeat defer-load><div></div></n-content-repeat>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-content-data-repeat defer-load="">
+      <n-content-repeat defer-load="">
         <div></div>
-      </n-content-data-repeat>
+      </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-data-repeat')
+    const subject = page.body.querySelector('n-content-repeat')
     subject?.remove()
   })
 
   it('render inline array', async () => {
     const page = await newSpecPage({
       components: [ContentDataRepeat],
-      html: `<n-content-data-repeat items="[1,2,3]">
+      html: `<n-content-repeat items="[1,2,3]">
               <template><b>{{data:item}}</b></template>
-             </n-content-data-repeat>`,
+             </n-content-repeat>`,
     })
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data-repeat items="[1,2,3]">
+      <n-content-repeat items="[1,2,3]">
         <template><b>{{data:item}}</b></template>
         <div class="data-content">
           <b>1</b>
           <b>2</b>
           <b>3</b>
         </div>
-      </n-content-data-repeat>
+      </n-content-repeat>
     `)
-    const subject = page.body.querySelector('n-content-data-repeat')
+    const subject = page.body.querySelector('n-content-repeat')
     subject?.remove()
   })
 
@@ -74,14 +74,14 @@ describe('n-content-data-repeat', () => {
 
     const page = await newSpecPage({
       components: [ContentDataRepeat],
-      html: `<n-content-data-repeat items="{{some:list}}">
+      html: `<n-content-repeat items="{{some:list}}">
               <template><b>{{data:item}}</b></template>
-             </n-content-data-repeat>`,
+             </n-content-repeat>`,
     })
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data-repeat items="{{some:list}}">
+      <n-content-repeat items="{{some:list}}">
         <template><b>{{data:item}}</b></template>
         <div class="data-content">
           <b>0</b>
@@ -89,26 +89,26 @@ describe('n-content-data-repeat', () => {
           <b>8</b>
           <b>7</b>
         </div>
-      </n-content-data-repeat>
+      </n-content-repeat>
     `)
-    const subject = page.body.querySelector('n-content-data-repeat')
+    const subject = page.body.querySelector('n-content-repeat')
     subject?.remove()
   })
 
   it('render scripted array', async () => {
     const page = await newSpecPage({
       components: [ContentDataRepeat],
-      html: `<n-content-data-repeat>
+      html: `<n-content-repeat>
         <script type="text/json">
         ["dogs", "cats", "bears", "birds"]
         </script>
         <template><b>{{data:item}}</b></template>
-      </n-content-data-repeat>`,
+      </n-content-repeat>`,
     })
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data-repeat>
+      <n-content-repeat>
         <script type="text/json">
         ["dogs", "cats", "bears", "birds"]
         </script>
@@ -119,10 +119,10 @@ describe('n-content-data-repeat', () => {
           <b>bears</b>
           <b>birds</b>
         </div>
-      </n-content-data-repeat>
+      </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-data-repeat')
+    const subject = page.body.querySelector('n-content-repeat')
     subject?.remove()
   })
 
@@ -138,24 +138,24 @@ describe('n-content-data-repeat', () => {
       }),
     )
 
-    await page.setContent(`<n-content-data-repeat items-src="items.json">
+    await page.setContent(`<n-content-repeat items-src="items.json">
         <template><b>{{data:item}}</b></template>
-      </n-content-data-repeat>`)
+      </n-content-repeat>`)
 
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data-repeat items-src="items.json">
+      <n-content-repeat items-src="items.json">
         <template><b>{{data:item}}</b></template>
         <div class="data-content">
           <b>1</b>
           <b>2</b>
           <b>3</b>
         </div>
-      </n-content-data-repeat>
+      </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-data-repeat')
+    const subject = page.body.querySelector('n-content-repeat')
     subject?.remove()
   })
 
@@ -179,21 +179,21 @@ describe('n-content-data-repeat', () => {
         }),
       )
 
-    await page.setContent(`<n-content-data-repeat items-src="items.json" no-cache>
+    await page.setContent(`<n-content-repeat items-src="items.json" no-cache>
         <template><b>{{data:item}}</b></template>
-      </n-content-data-repeat>`)
+      </n-content-repeat>`)
 
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data-repeat items-src="items.json" no-cache>
+      <n-content-repeat items-src="items.json" no-cache>
         <template><b>{{data:item}}</b></template>
         <div class="data-content">
           <b>1</b>
           <b>2</b>
           <b>3</b>
         </div>
-      </n-content-data-repeat>
+      </n-content-repeat>
     `)
 
     eventBus.emit(DATA_EVENTS.DataChanged, {})
@@ -201,7 +201,7 @@ describe('n-content-data-repeat', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data-repeat items-src="items.json" no-cache>
+      <n-content-repeat items-src="items.json" no-cache>
         <template><b>{{data:item}}</b></template>
         <div class="data-content">
           <b>1</b>
@@ -210,10 +210,10 @@ describe('n-content-data-repeat', () => {
           <b>4</b>
           <b>5</b>
         </div>
-      </n-content-data-repeat>
+      </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-data-repeat')
+    const subject = page.body.querySelector('n-content-repeat')
     subject?.remove()
   })
 
@@ -237,16 +237,16 @@ describe('n-content-data-repeat', () => {
         }),
       )
 
-    await page.setContent(`<n-content-data-repeat items-src="items.json">
+    await page.setContent(`<n-content-repeat items-src="items.json">
         <template><b>{{data:item}}</b></template>
-      </n-content-data-repeat>`)
+      </n-content-repeat>`)
 
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data-repeat items-src="items.json">
+      <n-content-repeat items-src="items.json">
         <template><b>{{data:item}}</b></template>
-      </n-content-data-repeat>
+      </n-content-repeat>
     `)
 
     eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
@@ -254,12 +254,12 @@ describe('n-content-data-repeat', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data-repeat items-src="items.json">
+      <n-content-repeat items-src="items.json">
         <template><b>{{data:item}}</b></template>
-      </n-content-data-repeat>
+      </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-data-repeat')
+    const subject = page.body.querySelector('n-content-repeat')
     subject?.remove()
   })
 
@@ -275,14 +275,14 @@ describe('n-content-data-repeat', () => {
       }),
     )
 
-    await page.setContent(`<n-content-data-repeat items-src="data.json" filter="[Account.Order.Product.SKU]">
+    await page.setContent(`<n-content-repeat items-src="data.json" filter="[Account.Order.Product.SKU]">
         <template><b>{{data:item}}</b></template>
-      </n-content-data-repeat>`)
+      </n-content-repeat>`)
 
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data-repeat items-src="data.json" filter="[Account.Order.Product.SKU]">
+      <n-content-repeat items-src="data.json" filter="[Account.Order.Product.SKU]">
         <template><b>{{data:item}}</b></template>
         <div class="data-content">
           <b>0406654608</b>
@@ -290,10 +290,10 @@ describe('n-content-data-repeat', () => {
           <b>040657863</b>
           <b>0406654603</b>
         </div>
-      </n-content-data-repeat>
+      </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-data-repeat')
+    const subject = page.body.querySelector('n-content-repeat')
     subject?.remove()
   })
 })

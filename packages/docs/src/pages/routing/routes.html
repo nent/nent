@@ -15,7 +15,7 @@
     class="component-list list-group btn-group-xl float-end ms-1 d-none d-sm-block">
     <li class="list-group-item fw-bold text-capitalize"> Routing Components
     </li>
-    <n-content-data-repeat items-src="/assets/components.json"
+    <n-content-repeat items-src="/assets/components.json"
       filter="components[docsTags[text='routing']]">
       <template>
         <li class="list-group-item">
@@ -24,7 +24,7 @@
           </a>
         </li>
       </template>
-    </n-content-data-repeat>
+    </n-content-repeat>
   </ul>
 </n-content-reveal>
 <n-view url="/routing/lazy"

@@ -30,14 +30,14 @@ import { filterData } from './filter/jsonata.worker'
  * @system data
  */
 @Component({
-  tag: 'n-content-data-repeat',
-  styles: `n-content-data-repeat { display: contents; }`,
+  tag: 'n-content-repeat',
+  styles: `n-content-repeat { display: contents; }`,
   shadow: false,
 })
 export class ContentDataRepeat {
   private dataSubscription!: () => void
   private routeSubscription!: () => void
-  @Element() el!: HTMLNContentDataRepeatElement
+  @Element() el!: HTMLNContentRepeatElement
   @State() innerTemplate!: string
   @State() resolvedTemplate!: string
   @State() dynamicContent: HTMLElement | null = null
@@ -94,7 +94,7 @@ export class ContentDataRepeat {
   }
 
   async componentWillLoad() {
-    debugIf(this.debug, 'n-content-data-repeat: loading')
+    debugIf(this.debug, 'n-content-repeat: loading')
     this.dataSubscription = eventBus.on(
       DATA_EVENTS.DataChanged,
       () => {
@@ -112,7 +112,7 @@ export class ContentDataRepeat {
     if (this.childTemplate === null) {
       warnIf(
         this.debug,
-        'n-content-data-repeat: missing child <template> tag',
+        'n-content-repeat: missing child <template> tag',
       )
     } else {
       this.innerTemplate = this.childTemplate.innerHTML
@@ -137,21 +137,23 @@ export class ContentDataRepeat {
     const innerContent = await this.resolveHtml(items)
     if (innerContent) {
       this.dynamicContent = this.el.ownerDocument.createElement('div')
-      this.dynamicContent.className = this.contentKey!
-      this.dynamicContent.innerHTML = innerContent
+      this.dynamicContent!.className = this.contentKey!
+      this.dynamicContent!.innerHTML = innerContent
       if (commonState.elementsEnabled) {
-        await resolveChildElementXAttributes(this.dynamicContent)
+        await resolveChildElementXAttributes(this.dynamicContent!)
       }
-      this.dynamicContent.innerHTML = innerContent
+      this.dynamicContent!.innerHTML = innerContent
       if (navigationState?.router) {
-        navigationState.router?.captureInnerLinks(this.dynamicContent)
+        navigationState.router?.captureInnerLinks(
+          this.dynamicContent!,
+        )
       }
       this.el.append(this.dynamicContent)
     }
   }
 
   private async resolveHtml(items: any[]) {
-    debugIf(this.debug, 'n-content-data-repeat: resolving html')
+    debugIf(this.debug, 'n-content-repeat: resolving html')
     let shouldRender = !this.deferLoad
     if (shouldRender && this.when)
       shouldRender = await evaluatePredicate(this.when)
@@ -160,7 +162,7 @@ export class ContentDataRepeat {
       return null
     }
 
-    // DebugIf(this.debug, `n-content-data-repeat: innerItems ${JSON.stringify(this.resolvedItems || [])}`);
+    // DebugIf(this.debug, `n-content-repeat: innerItems ${JSON.stringify(this.resolvedItems || [])}`);
     if (this.innerTemplate) {
       let resolvedTemplate = ''
 
@@ -193,7 +195,7 @@ export class ContentDataRepeat {
       } catch (error) {
         warnIf(
           this.debug,
-          `n-content-data-repeat: unable to deserialize JSON: ${error}`,
+          `n-content-repeat: unable to deserialize JSON: ${error}`,
         )
       }
     } else if (this.itemsSrc) {
@@ -201,7 +203,7 @@ export class ContentDataRepeat {
     } else {
       warnIf(
         this.debug,
-        'n-content-data-repeat: you must include at least one of the following: items, json-src or a <script> element with a JSON array.',
+        'n-content-repeat: you must include at least one of the following: items, json-src or a <script> element with a JSON array.',
       )
     }
     if (this.filter) {
@@ -212,7 +214,7 @@ export class ContentDataRepeat {
 
       debugIf(
         this.debug,
-        `n-content-data-repeat: filtering: ${filterString}`,
+        `n-content-repeat: filtering: ${filterString}`,
       )
       items = await filterData(filterString, items)
     }
@@ -223,7 +225,7 @@ export class ContentDataRepeat {
     try {
       debugIf(
         this.debug,
-        `n-content-data-repeat: fetching items from ${this.itemsSrc}`,
+        `n-content-repeat: fetching items from ${this.itemsSrc}`,
       )
 
       const response = await window.fetch(this.itemsSrc!)
@@ -233,12 +235,12 @@ export class ContentDataRepeat {
       }
       warnIf(
         this.debug,
-        `n-content-data-repeat: Unable to parse response from ${this.itemsSrc}`,
+        `n-content-repeat: Unable to parse response from ${this.itemsSrc}`,
       )
     } catch (err) {
       warnIf(
         this.debug,
-        `n-content-data-repeat: Unable to parse response from ${this.itemsSrc}: ${err}`,
+        `n-content-repeat: Unable to parse response from ${this.itemsSrc}: ${err}`,
       )
     }
     return []
@@ -252,7 +254,7 @@ export class ContentDataRepeat {
         itemsString = await resolveTokens(itemsString)
         debugIf(
           this.debug,
-          `n-content-data-repeat: items resolved to ${itemsString}`,
+          `n-content-repeat: items resolved to ${itemsString}`,
         )
       }
 
@@ -260,7 +262,7 @@ export class ContentDataRepeat {
     } catch (error) {
       warnIf(
         this.debug,
-        `n-content-data-repeat: unable to deserialize JSON: ${error}`,
+        `n-content-repeat: unable to deserialize JSON: ${error}`,
       )
     }
     return items

@@ -18,9 +18,9 @@ Using the `<n-content-share>` component description.
 
 | Property   | Attribute  | Description                   | Type                  | Default     |
 | ---------- | ---------- | ----------------------------- | --------------------- | ----------- |
-| `headline` | `headline` | Headline for the share        | `string`, `undefined` | `undefined` |
-| `text`     | `text`     | The textual body of web share | `string`, `undefined` | `undefined` |
-| `url`      | `url`      | The URL we are sharing        | `string`, `undefined` | `undefined` |
+| `headline` | `headline` | Headline for the share        | `string \| undefined` | `undefined` |
+| `text`     | `text`     | The textual body of web share | `string \| undefined` | `undefined` |
+| `url`      | `url`      | The URL we are sharing        | `string \| undefined` | `undefined` |
 
 
 ## Methods

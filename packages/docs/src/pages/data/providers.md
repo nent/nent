@@ -71,7 +71,7 @@ new CustomEvent('x:actions', {
 })
 ```
 
-Then, assuming your instance has a data item with key **name**, your HTML can use this value in an the expression: `{{my_provider:name}}`
+Assuming your instance has a data item with key **name**, your HTML can use this value in the expression: `{{my_provider:name}}`
 
 **Data Provider Interface:**
 

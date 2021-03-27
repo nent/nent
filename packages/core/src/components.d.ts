@@ -264,48 +264,6 @@ export namespace Components {
          */
         "setting": 'muted' | 'enabled';
     }
-    interface NContentData {
-        /**
-          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
-         */
-        "deferLoad": boolean;
-        /**
-          * The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}
-          * @default null
-         */
-        "text"?: string;
-    }
-    interface NContentDataRepeat {
-        /**
-          * Turn on debug statements for load, update and render events.
-         */
-        "debug": boolean;
-        /**
-          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
-         */
-        "deferLoad": boolean;
-        /**
-          * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
-         */
-        "filter"?: string;
-        /**
-          * The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}
-         */
-        "items"?: string;
-        /**
-          * The URL to remote JSON collection to use for the items.
-          * @example /data.json
-         */
-        "itemsSrc"?: string;
-        /**
-          * Force render with data & route changes.
-         */
-        "noCache": boolean;
-        /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
-         */
-        "when"?: string;
-    }
     interface NContentInclude {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -388,6 +346,37 @@ export namespace Components {
          */
         "timeout": number;
     }
+    interface NContentRepeat {
+        /**
+          * Turn on debug statements for load, update and render events.
+         */
+        "debug": boolean;
+        /**
+          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+         */
+        "deferLoad": boolean;
+        /**
+          * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
+         */
+        "filter"?: string;
+        /**
+          * The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}
+         */
+        "items"?: string;
+        /**
+          * The URL to remote JSON collection to use for the items.
+          * @example /data.json
+         */
+        "itemsSrc"?: string;
+        /**
+          * Force render with data & route changes.
+         */
+        "noCache": boolean;
+        /**
+          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+         */
+        "when"?: string;
+    }
     interface NContentReveal {
         /**
           * How far the element moves in the animation (% of element width/height)
@@ -434,6 +423,17 @@ export namespace Components {
           * The data expression to obtain a predicate for conditionally rendering the inner-contents of this element.
          */
         "when": string;
+    }
+    interface NContentTemplate {
+        /**
+          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+         */
+        "deferLoad": boolean;
+        /**
+          * The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}
+          * @default null
+         */
+        "text"?: string;
     }
     interface NData {
         /**
@@ -776,18 +776,6 @@ declare global {
         prototype: HTMLNAudioSwitchElement;
         new (): HTMLNAudioSwitchElement;
     };
-    interface HTMLNContentDataElement extends Components.NContentData, HTMLStencilElement {
-    }
-    var HTMLNContentDataElement: {
-        prototype: HTMLNContentDataElement;
-        new (): HTMLNContentDataElement;
-    };
-    interface HTMLNContentDataRepeatElement extends Components.NContentDataRepeat, HTMLStencilElement {
-    }
-    var HTMLNContentDataRepeatElement: {
-        prototype: HTMLNContentDataRepeatElement;
-        new (): HTMLNContentDataRepeatElement;
-    };
     interface HTMLNContentIncludeElement extends Components.NContentInclude, HTMLStencilElement {
     }
     var HTMLNContentIncludeElement: {
@@ -806,6 +794,12 @@ declare global {
         prototype: HTMLNContentReferenceElement;
         new (): HTMLNContentReferenceElement;
     };
+    interface HTMLNContentRepeatElement extends Components.NContentRepeat, HTMLStencilElement {
+    }
+    var HTMLNContentRepeatElement: {
+        prototype: HTMLNContentRepeatElement;
+        new (): HTMLNContentRepeatElement;
+    };
     interface HTMLNContentRevealElement extends Components.NContentReveal, HTMLStencilElement {
     }
     var HTMLNContentRevealElement: {
@@ -823,6 +817,12 @@ declare global {
     var HTMLNContentShowElement: {
         prototype: HTMLNContentShowElement;
         new (): HTMLNContentShowElement;
+    };
+    interface HTMLNContentTemplateElement extends Components.NContentTemplate, HTMLStencilElement {
+    }
+    var HTMLNContentTemplateElement: {
+        prototype: HTMLNContentTemplateElement;
+        new (): HTMLNContentTemplateElement;
     };
     interface HTMLNDataElement extends Components.NData, HTMLStencilElement {
     }
@@ -915,14 +915,14 @@ declare global {
         "n-audio-action-sound": HTMLNAudioActionSoundElement;
         "n-audio-action-sound-load": HTMLNAudioActionSoundLoadElement;
         "n-audio-switch": HTMLNAudioSwitchElement;
-        "n-content-data": HTMLNContentDataElement;
-        "n-content-data-repeat": HTMLNContentDataRepeatElement;
         "n-content-include": HTMLNContentIncludeElement;
         "n-content-markdown": HTMLNContentMarkdownElement;
         "n-content-reference": HTMLNContentReferenceElement;
+        "n-content-repeat": HTMLNContentRepeatElement;
         "n-content-reveal": HTMLNContentRevealElement;
         "n-content-share": HTMLNContentShareElement;
         "n-content-show": HTMLNContentShowElement;
+        "n-content-template": HTMLNContentTemplateElement;
         "n-data": HTMLNDataElement;
         "n-data-cookie": HTMLNDataCookieElement;
         "n-data-session": HTMLNDataSessionElement;
@@ -1166,48 +1166,6 @@ declare namespace LocalJSX {
          */
         "setting"?: 'muted' | 'enabled';
     }
-    interface NContentData {
-        /**
-          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
-         */
-        "deferLoad"?: boolean;
-        /**
-          * The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}
-          * @default null
-         */
-        "text"?: string;
-    }
-    interface NContentDataRepeat {
-        /**
-          * Turn on debug statements for load, update and render events.
-         */
-        "debug"?: boolean;
-        /**
-          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
-         */
-        "deferLoad"?: boolean;
-        /**
-          * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
-         */
-        "filter"?: string;
-        /**
-          * The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}
-         */
-        "items"?: string;
-        /**
-          * The URL to remote JSON collection to use for the items.
-          * @example /data.json
-         */
-        "itemsSrc"?: string;
-        /**
-          * Force render with data & route changes.
-         */
-        "noCache"?: boolean;
-        /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
-         */
-        "when"?: string;
-    }
     interface NContentInclude {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -1290,6 +1248,37 @@ declare namespace LocalJSX {
          */
         "timeout"?: number;
     }
+    interface NContentRepeat {
+        /**
+          * Turn on debug statements for load, update and render events.
+         */
+        "debug"?: boolean;
+        /**
+          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+         */
+        "deferLoad"?: boolean;
+        /**
+          * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
+         */
+        "filter"?: string;
+        /**
+          * The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}
+         */
+        "items"?: string;
+        /**
+          * The URL to remote JSON collection to use for the items.
+          * @example /data.json
+         */
+        "itemsSrc"?: string;
+        /**
+          * Force render with data & route changes.
+         */
+        "noCache"?: boolean;
+        /**
+          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+         */
+        "when"?: string;
+    }
     interface NContentReveal {
         /**
           * How far the element moves in the animation (% of element width/height)
@@ -1331,6 +1320,17 @@ declare namespace LocalJSX {
           * The data expression to obtain a predicate for conditionally rendering the inner-contents of this element.
          */
         "when": string;
+    }
+    interface NContentTemplate {
+        /**
+          * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+         */
+        "deferLoad"?: boolean;
+        /**
+          * The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}
+          * @default null
+         */
+        "text"?: string;
     }
     interface NData {
         /**
@@ -1608,14 +1608,14 @@ declare namespace LocalJSX {
         "n-audio-action-sound": NAudioActionSound;
         "n-audio-action-sound-load": NAudioActionSoundLoad;
         "n-audio-switch": NAudioSwitch;
-        "n-content-data": NContentData;
-        "n-content-data-repeat": NContentDataRepeat;
         "n-content-include": NContentInclude;
         "n-content-markdown": NContentMarkdown;
         "n-content-reference": NContentReference;
+        "n-content-repeat": NContentRepeat;
         "n-content-reveal": NContentReveal;
         "n-content-share": NContentShare;
         "n-content-show": NContentShow;
+        "n-content-template": NContentTemplate;
         "n-data": NData;
         "n-data-cookie": NDataCookie;
         "n-data-session": NDataSession;
@@ -1647,14 +1647,14 @@ declare module "@stencil/core" {
             "n-audio-action-sound": LocalJSX.NAudioActionSound & JSXBase.HTMLAttributes<HTMLNAudioActionSoundElement>;
             "n-audio-action-sound-load": LocalJSX.NAudioActionSoundLoad & JSXBase.HTMLAttributes<HTMLNAudioActionSoundLoadElement>;
             "n-audio-switch": LocalJSX.NAudioSwitch & JSXBase.HTMLAttributes<HTMLNAudioSwitchElement>;
-            "n-content-data": LocalJSX.NContentData & JSXBase.HTMLAttributes<HTMLNContentDataElement>;
-            "n-content-data-repeat": LocalJSX.NContentDataRepeat & JSXBase.HTMLAttributes<HTMLNContentDataRepeatElement>;
             "n-content-include": LocalJSX.NContentInclude & JSXBase.HTMLAttributes<HTMLNContentIncludeElement>;
             "n-content-markdown": LocalJSX.NContentMarkdown & JSXBase.HTMLAttributes<HTMLNContentMarkdownElement>;
             "n-content-reference": LocalJSX.NContentReference & JSXBase.HTMLAttributes<HTMLNContentReferenceElement>;
+            "n-content-repeat": LocalJSX.NContentRepeat & JSXBase.HTMLAttributes<HTMLNContentRepeatElement>;
             "n-content-reveal": LocalJSX.NContentReveal & JSXBase.HTMLAttributes<HTMLNContentRevealElement>;
             "n-content-share": LocalJSX.NContentShare & JSXBase.HTMLAttributes<HTMLNContentShareElement>;
             "n-content-show": LocalJSX.NContentShow & JSXBase.HTMLAttributes<HTMLNContentShowElement>;
+            "n-content-template": LocalJSX.NContentTemplate & JSXBase.HTMLAttributes<HTMLNContentTemplateElement>;
             "n-data": LocalJSX.NData & JSXBase.HTMLAttributes<HTMLNDataElement>;
             "n-data-cookie": LocalJSX.NDataCookie & JSXBase.HTMLAttributes<HTMLNDataCookieElement>;
             "n-data-session": LocalJSX.NDataSession & JSXBase.HTMLAttributes<HTMLNDataSessionElement>;

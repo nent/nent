@@ -5,19 +5,19 @@
 ui - app
 
 x-action               n-action
-x-app                  n-router
+x-app                  n-views
 
 
 
-x-app-view-not-found    n-route-not-found
-x-app-view-do           n-route-prompt
-x-app-view              n-route
-x-app-link              n-route-link
-x-app-view-list         n-route-link-list
+x-app-view-not-found    n-view-not-found
+x-app-view-do           n-view-prompt
+x-app-view              n-view
+x-app-link              n-view-link
+x-app-view-list         n-view-link-list
 
 x-content               n-content-include
-x-data-display          n-content-data
-x-data-repeater         n-content-data-repeat
+x-data-display          n-content-template
+x-data-repeater         n-content-repeat
 x-data-show             n-content-show
 x-elements              n-content-actions
 
@@ -29,11 +29,11 @@ x-app-analytics         n-analytics
 ui                      n-app
 
 
-x-audio-state-switch    audio-switch
+x-audio-state-switch    n-audio-switch
 
-x-audio-music-load      audio-action-music-load
-x-audio-sound-load      audio-action-sound-load
-x-audio-music-action    audio-action-music
-x-audio-sound-action    audio-action-sound
+x-audio-music-load      n-audio-action-music-load
+x-audio-sound-load      n-audio-action-sound-load
+x-audio-music-action    n-audio-action-music
+x-audio-sound-action    n-audio-action-sound
 
-x-video-autoplay-switch
+x-video-autoplay-switch n-video-switch

@@ -24,8 +24,8 @@ import { ROUTE_EVENTS } from '../../services/routing/interfaces'
  * @system data
  */
 @Component({
-  tag: 'n-content-data',
-  styleUrl: 'content-data.css',
+  tag: 'n-content-template',
+  styleUrl: 'content-template.css',
   shadow: false,
 })
 export class ContentData {
@@ -86,7 +86,9 @@ export class ContentData {
           this.childScript.textContent || '',
         )
       } catch (error) {
-        warn(`n-content-data: unable to deserialize JSON: ${error}`)
+        warn(
+          `n-content-template: unable to deserialize JSON: ${error}`,
+        )
       }
     }
     this.removeAllChildNodes(this.el)

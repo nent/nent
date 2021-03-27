@@ -1,6 +1,4 @@
-# nent functional elements
-
-![Pre-Release](https://via.placeholder.com/728x50/2d8dc9/FFFFFF?text=PREVIEW+RELEASE)
+# NENT: Web Application Elements
 
 ![MIT](https://badgen.net/github/license/nent/nent?icon=github)
 ![size](https://badgen.net/badgesize/normal/file-url/unpkg.com/@nent/core/dist/nent/nent.esm.js?icon=sourcegraph&color=blue)
@@ -13,80 +11,107 @@
 [![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=blue)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
 [![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
 
-These elements encapsulate application functionality using HTML. This approach keeps the semantics of a web application declarative and mono-linguistic.
+## What is Nent?
 
-> The goal of this project is to empower the next generation of personalized, interactive web-experiences with less friction and less semantic-diversion.
+Nent is a library of function-elements (web-components) that add new features aimed for developing web applications.
 
-## Application Functionality, Expressed in HTML
+> 'Nent' comes from the word compo-*nent* and it is the uncreative result of my tech-brain doing 'branding'.  
 
-Declarative applications are more deterministic and easier to understand for more levels of expertise. These components are segmented into option sub-systems to only require what you need:
+## Motivation
 
-### Actions: `<n-action-*>`
+The goal of this project is to empower the next generation of web developers to create web-experiences with less development and deployment friction, within a single semantic-system. (Really though, I just needed to make high-performing, lightweight, web-applications quickly -- without complex builds, or frameworks.)
 
-- Declared Reactive Actions
-- Async Functions
+## Declared Functionality
 
-### Routing: `<n-app-*>`
+Each elements encapsulate a feature or functionality, like routing, dynamic templates, and reusable-partials.
 
-- URL/Hash-based Routing (within a single page!)
-- Fast, SPA-like navigation between pages
-- Guided navigation, wizards & workflows
+Simple web applications could be completely declarative, using HTML semantics. 
 
-### Navigation: `<n-app-*>`
+Declarative System Advantages:
 
+* Easier to understand and reason about
+* Easier to maintain, with reduced side-effects
+* Deterministic, and testable with static-analysis 
+* More accessible / approachable to a wider range of humans. 
+
+### System Groups
+
+The elements are named and grouped by their system or sub-system, with shared services enabled with a root-tag. 
+
+Sub-systems add functionality to other systems. For instance, view routes can use data-expressions in their content when the data-system is included.
+
+### Views: `<n-views-*>`
+This is the routing and navigation system
+- Single Page Application Routing
+- Fast navigation between views
+- Page History
+- Route Transitions
+- Nested Layouts
+- Nav Links with Active Route detection
+- Navigation Lists:
+  Nav Bars, Child Menus and Breadcrumbs
 - Guided Navigation
-- Media-Timed Actions
-- Interactive Video
-- Reactive Audio
-
-### Data: `<n-data-*>`
-
-- Expression Evaluation & Binding
-- Data-Template Rendering
-- Data-driven Rule Evaluation for Navigation
-
+- View-Timed Actions
+- View Entry / Exit Actions
+  
 ### Content: `<n-content-*>`
-
 - Dynamic Content Rendering
 - Deferred Content
 - Markdown Rendering
 - Remote HTML
 
-### UI: `<n-ui>`
+### App: `<n-app-*>`
+- Page/Document Management
+- Theme Detection & Control
+- Console Logging
+- UI Component Kit Integrations
+- PWA Support (coming)
 
-- Interface Management
-- Theme Management
-- UI Component Integrations
+### Actions: `<n-action-*>`
+- Declared Actions
+- Reactive Activators
+- Exposes the Event / Action Bus to the DOM
+- Async Functions
+
+### Data: `<n-data-*>`
+- Adds: Expression Evaluation to conditionally rendered content
+- Adds: Data-Template Rendering to `Content`
+- Adds: Data-driven Rule Evaluation to `route-prompt`
 
 ### Elements: `<n-elements>`
+- DOM Element Manipulation
 
-- HTML Manipulation w/ Declared Actions
-- "JQuery as an Async Tag"
+### Audio:
+- Reactive Audio
+- Voice-overs
+- Background Music
+
+### Analytics:
+- Page Views
+- Page TImes 
+- Custom Events
+
+### Video:
+- Interactive Video
+- Video-Timed Actions
 
 ## Installation
 
-Add a single script-reference tag into your HTML page's head so the browser can figure out how to interpret our elements -- and that's it.
-
 > This is a pre-release project and is subject to breaking-changes and incomplete features. Thank you for trying it out!
 
-### CDN
+Add a script-reference to the page head:
 
+### CDN:
 ```html
 <head>
-  ...
   <script
     type="module"
     src="https://unpkg.com/@nent/core/dist/nent/nent.esm.js"
   ></script>
-  ....
 </head>
 ```
 
-NPM
-
-```bash
-npm i @nent/core
-```
+### NPM:
 
 ```html
 <head>
@@ -99,11 +124,15 @@ npm i @nent/core
 </head>
 ```
 
-### Learn More
+```bash
+npm i @nent/core
+yarn add @nent/core
+```
+## Learn More
 
-The best way to see what these elements can do for your HTML is to take a look at the documentation/demo. The site is built using these elements as a single HTML file with partials pulled in, as-needed.
+The best way to see what these elements in actoin, is to take a look at the documentation demo. The installable app is built using these elements in a single HTML file (with child-routes and partials lazy-loaded, as-needed).
 
-[![Take a Tour](https://badgen.net/badge/@nent/core:%20demo?color=blue)](https://nent.dev)
+[![Take the Tour](https://badgen.net/badge/@nent/core:%20demo?color=blue)](https://nent.dev)
 
 ## Contact
 
@@ -113,7 +142,7 @@ If you like the idea, join us! Or give it a star.
 
 If you have requests, ideas or feedback, join the discussion on Gitter:
 
-[![Gitter](https://badgen.net/badge/chat/with%20me%20on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
+[![gitter](https://badgen.net/badge/chat/with%20me%20on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
 
 Reach out to me personally:
 
@@ -127,15 +156,7 @@ Thank you to the Ionic team and their fabulous [**Stencil.js** SDK](https://sten
 
 Also, thank you to the creators and contributors to all open-source efforts, but especially to the libraries we love and use in our plugin components:
 
-#### Data `<n-data>`
-
-- **SilentMatt**: [expression evaluator](https://github.com/silentmatt/expr-eval) for a declarative expression parser
-- **JSONata**: [JSONata](https://jsonata.org/) another declarative approach for solving problems, this uses expressions to query JSON.
-
-#### Audio `<n-audio>`
-
-- **howler.js**: [howler-js](https://github.com/goldfire/howler.js) best audio library for managing audio files
-
-#### Markdown `<n-content-markdown>`
-
-- **remarkable**: [remarkable](https://jonschlinkert.github.io/remarkable/demo/) Ridiculously fast markdown to HTML processing.
+- **expr-eval**: [declarative expression parser](https://github.com/silentmatt/expr-eval) 
+- **jsonata**: [declarative data query/filter/transformation](https://jsonata.org/) 
+- **howler**: [easy-to-use audio playback tools](https://github.com/goldfire/howler.js) 
+- **remarkable**: [ridiculously fast markdown processing.](https://jonschlinkert.github.io/remarkable/demo/) 

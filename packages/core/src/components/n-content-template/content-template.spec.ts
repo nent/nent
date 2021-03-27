@@ -10,9 +10,9 @@ import {
   dataState,
   dataStateDispose,
 } from '../../services/data/state'
-import { ContentData } from './content-data'
+import { ContentData } from './content-template'
 
-describe('n-content-data', () => {
+describe('n-content-template', () => {
   let session: InMemoryProvider
 
   beforeEach(() => {
@@ -30,66 +30,66 @@ describe('n-content-data', () => {
   it('renders simple strings', async () => {
     const page = await newSpecPage({
       components: [ContentData],
-      html: `<n-content-data text="foo"></n-content-data>`,
+      html: `<n-content-template text="foo"></n-content-template>`,
     })
 
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data text="foo">
+      <n-content-template text="foo">
         <span class="dynamic">
           foo
         </span>
-      </n-content-data>
+      </n-content-template>
     `)
-    const subject = page.body.querySelector('n-content-data')
+    const subject = page.body.querySelector('n-content-template')
     subject?.remove()
   })
 
   it('renders child template', async () => {
     const page = await newSpecPage({
       components: [ContentData],
-      html: `<n-content-data>
+      html: `<n-content-template>
               <template>
                 <p>Hello Jason!</p>
               </template>
-             </n-content-data>`,
+             </n-content-template>`,
     })
 
     expect(page.root).toEqualHtml(`
-      <n-content-data>
+      <n-content-template>
         <div class="dynamic">
           <p>Hello Jason!</p>
         </div>
-      </n-content-data>
+      </n-content-template>
     `)
 
-    const subject = page.body.querySelector('n-content-data')
+    const subject = page.body.querySelector('n-content-template')
     subject?.remove()
   })
 
   it('renders inline data to child template', async () => {
     const page = await newSpecPage({
       components: [ContentData],
-      html: `<n-content-data>
+      html: `<n-content-template>
               <script type="application/json">
               { "name": "Forrest" }
               </script>
               <template>
                 <p>Hello {{data:name}}!</p>
               </template>
-             </n-content-data>`,
+             </n-content-template>`,
     })
 
     expect(page.root).toEqualHtml(`
-      <n-content-data>
+      <n-content-template>
         <div class="dynamic">
           <p>Hello Forrest!</p>
         </div>
-      </n-content-data>
+      </n-content-template>
     `)
 
-    const subject = page.body.querySelector('n-content-data')
+    const subject = page.body.querySelector('n-content-template')
     subject?.remove()
   })
 
@@ -97,22 +97,22 @@ describe('n-content-data', () => {
     await session.set('name', 'Tom')
     const page = await newSpecPage({
       components: [ContentData],
-      html: `<n-content-data>
+      html: `<n-content-template>
               <template>
                 <p>Hello {{session:name}}!</p>
               </template>
-             </n-content-data>`,
+             </n-content-template>`,
     })
 
     expect(page.root).toEqualHtml(`
-      <n-content-data>
+      <n-content-template>
         <div class="dynamic">
         <p>Hello Tom!</p>
         </div>
-      </n-content-data>
+      </n-content-template>
     `)
 
-    const subject = page.body.querySelector('n-content-data')
+    const subject = page.body.querySelector('n-content-template')
     subject?.remove()
   })
 
@@ -120,19 +120,19 @@ describe('n-content-data', () => {
     await session.set('name', 'Tom')
     const page = await newSpecPage({
       components: [ContentData],
-      html: `<n-content-data>
+      html: `<n-content-template>
               <template>
                 <p>Hello {{session:name}}!</p>
               </template>
-             </n-content-data>`,
+             </n-content-template>`,
     })
 
     expect(page.root).toEqualHtml(`
-      <n-content-data>
+      <n-content-template>
         <div class="dynamic">
           <p>Hello Tom!</p>
         </div>
-      </n-content-data>
+      </n-content-template>
     `)
 
     await session.set('name', 'Tomy')
@@ -141,14 +141,14 @@ describe('n-content-data', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-data>
+      <n-content-template>
         <div class="dynamic">
           <p>Hello Tomy!</p>
         </div>
-      </n-content-data>
+      </n-content-template>
     `)
 
-    const subject = page.body.querySelector('n-content-data')
+    const subject = page.body.querySelector('n-content-template')
     subject?.remove()
   })
 })

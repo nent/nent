@@ -12,7 +12,7 @@ Render data directly into HTML using declarative expressions. This element rende
 ### Basic
 
 ```html
-<n-content-data text='{{expression}}'> </n-content-data>
+<n-content-template text='{{expression}}'> </n-content-template>
 ```
 
 The expression can be any string or an expression with tokens from a registered provider.
@@ -22,11 +22,11 @@ The expression can be any string or an expression with tokens from a registered 
 This component supports HTML string interpolation within a child template tag. The values get resolved, just like the expression. The values in the attributes replace the tokens in the content.
 
 ```html
-<n-content-data>
+<n-content-template>
   <template>
     <h1>Hello {{expression}}!</h1>
   </template>
-</n-content-data>
+</n-content-template>
 ```
 
 > This component only supports template interpolation within the **\<template\>** tag.
@@ -36,11 +36,11 @@ This component supports HTML string interpolation within a child template tag. T
 This component supports HTML string interpolation within a child template tag. The values get resolved, just like the expression. The values in the attributes replace the tokens in the content.
 
 ```html
-<n-content-data>
+<n-content-template>
   <template>
     <h1>Hello {{session:name}}!</h1>
   </template>
-</n-content-data>
+</n-content-template>
 ```
 
 
@@ -49,17 +49,17 @@ This component supports HTML string interpolation within a child template tag. T
 You can provide the data to use for this component directly in-line using a inner script tag.
 
 ```html
-<n-content-data>
-  <script type='text/json'>
+<n-content-template>
+  <script type="text/json">
   {
-    'name': 'Stella',
-    'age': 35
+    "name": "Stella",
+    "age": 35
   }
   </script>
   <template>
     <h1>{{data:name}} is {{data:age}}</h1>
   </template>
-</n-content-data>
+</n-content-template>
 ```
 
 
@@ -69,7 +69,7 @@ You can provide the data to use for this component directly in-line using a inne
 | Property    | Attribute    | Description                                                                                                  | Type                  | Default     |
 | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------ | --------------------- | ----------- |
 | `deferLoad` | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute. | `boolean`             | `false`     |
-| `text`      | `text`       | The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}    | `string`, `undefined` | `undefined` |
+| `text`      | `text`       | The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}    | `string \| undefined` | `undefined` |
 
 
 ----------------------------------------------

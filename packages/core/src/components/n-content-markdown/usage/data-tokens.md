@@ -1,7 +1,7 @@
 
 ### Resolve Tokens
 
-This component can optionally render data-tokens directly without the need for the [\<n-content-data\>](/components/n-content-data) component. Just add the **resolve-tokens** attribute.
+This component can optionally render data-tokens directly without the need for the [\<n-content-template\>](/components/n-content-template) component. Just add the **resolve-tokens** attribute.
 
 ```html
 <!-- Do not set the `src` attribute -->

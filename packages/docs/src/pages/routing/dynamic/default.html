@@ -21,7 +21,7 @@
     <a href="/routing/dynamic/item/wine"
       class="btn btn-info btn-sm">
       <i class="ri-goblet-fill"></i> Wine </a>
-    <n-content-data hidden
+    <n-content-template hidden
       n-show-when="{{storage:favorite}}">
       <template>
         <a href="/routing/dynamic/item/{{storage:favorite}}"
@@ -30,7 +30,7 @@
           {{storage:favorite}}
         </a>
       </template>
-    </n-content-data>
+    </n-content-template>
     <a href="/routing/dynamic/custom"
       n-hide-when="{{storage:favorite}}"
       class="btn btn-info btn-sm">

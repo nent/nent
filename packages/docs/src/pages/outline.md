@@ -24,11 +24,25 @@
   - [X] Overview
   - [X] Partial Components
     - [X] Content Include
+    - [X] Content Template
+    - [X] Content Repeat
     - [X] Content Markdown
     - [X] Content Reveal
-    - [X] Content Share
 
-- 🔀 Routing System
+-  📱 App Elements    
+    - [ ] Overview
+    - [ ] Components
+      - [ ] Theme Detection & Controls
+      - [ ] UI Component Integrations
+      - [ ] Native Share
+      - [ ] PWA 
+        - [ ] Checks in dev-mode
+        - [ ] Add / Warn about Required Tags         
+          - [ ] Service Worker
+          - [ ] Handles manifest.json
+          - [ ] Sets Up Offline  
+
+- 🔀 Routing
   - [X] How it works
   - [ ] Installation
     - [ ] Components
@@ -45,7 +59,7 @@
   - [ ] Required Routes 
     - [ ] Example
 
-  - 🧭 Route Navigation
+  - 🧭 Navigation
     - [X] Overview
     - [ ] Navigation Elements    
       - [ ] Route Link
@@ -100,6 +114,8 @@
       - [ ] Page Title
       - [ ] Content Tokens
       - [ ] Personalized Animations
+
+
 - 🌠 Action System
   - [X] How it works
     - [X] Activation
@@ -130,6 +146,8 @@
       - [ ] Video
     - [ ] Custom
       - [ ] Register new provider
+
+
 - 🎧 Audio Elements
   - [X] How it works
   - [X] Installation
@@ -145,7 +163,9 @@
   - [ ] Advanced Examples
     - [X] Music Action Example 
     - [X] Sound Action Example 
-    - [X] Music, with Timed Sounds Example   
+    - [X] Music, with Timed Sounds Example
+
+
 - 📺 Video Elements
     - [ ] How it works
     - [ ] Installation
@@ -167,7 +187,9 @@
       - [ ] Custom Event Actions
     - ✨ Presentation Component
       - [ ] View-Time Reporting 
-  - [X] Element Manipulation
+
+
+  - [X] Element Listener
     - [X] How it works
     - [X] Extends Core
       - [X] X-Attributes
@@ -177,8 +199,10 @@
         - [X] Content
     - [X] Installation
     - [X] Action Listener
-  - [X] UI System
-    - [X] How it works
+
+
+  
+       
     - [X] Default Provider
       - [X] Installation
       - [X] Action Listener

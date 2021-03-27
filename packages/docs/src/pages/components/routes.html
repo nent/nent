@@ -7,7 +7,7 @@
 </n-content-reference>
 <div class="components d-block d-sm-flex">
   <ul class="d-none d-sm-flex mt-4">
-    <n-content-data-repeat items-src="/assets/components.json"
+    <n-content-repeat items-src="/assets/components.json"
       when="{{route:component}}"
       no-cache=""
       filter="components">
@@ -42,7 +42,7 @@
           </ul>
         </li>
       </template>
-    </n-content-data-repeat>
+    </n-content-repeat>
   </ul>
   <n-view exact
     class="flex-shrink"

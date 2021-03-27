@@ -19,10 +19,10 @@ This element represents an action to be fired. This specialized action encapsula
 
 | Property               | Attribute  | Description                        | Type                                                             | Default     |
 | ---------------------- | ---------- | ---------------------------------- | ---------------------------------------------------------------- | ----------- |
-| `command` _(required)_ | `command`  | The command to execute.            | `'mute'`, `'pause'`, `'resume'`, `'seek'`, `'start'`, `'volume'` | `undefined` |
-| `topic`                | `topic`    | Readonly topic                     | `'audio'`                                                        | `'audio'`   |
-| `trackId`              | `track-id` | The track to target.               | `string`, `undefined`                                            | `undefined` |
-| `value`                | `value`    | The value payload for the command. | `boolean`, `number`, `string`, `undefined`                       | `undefined` |
+| `command` _(required)_ | `command`  | The command to execute.            | `"mute" \| "pause" \| "resume" \| "seek" \| "start" \| "volume"` | `undefined` |
+| `topic`                | `topic`    | Readonly topic                     | `"audio"`                                                        | `'audio'`   |
+| `trackId`              | `track-id` | The track to target.               | `string \| undefined`                                            | `undefined` |
+| `value`                | `value`    | The value payload for the command. | `boolean \| number \| string \| undefined`                       | `undefined` |
 
 
 ## Methods

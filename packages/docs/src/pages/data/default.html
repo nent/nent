@@ -16,27 +16,27 @@
   <h2>Data Repeater</h2>
   <p>The following elements demonstrate how a list of data-points was rendered
     using data plus a template. Learn more about the <a
-      href="/components/n-content-data-repeat">
-      <b>&lt;n-content-data-repeat&gt;</b></a> element and other ways you can
-    provide data. </p>
+      href="/components/n-content-repeat">
+      <b>&lt;n-content-repeat&gt;</b></a> element and other ways you can provide
+    data. </p>
   <h3>Visits in Storage:</h3>
   <ul>
-    <n-content-data-repeat items="{{storage:visits}}">
+    <n-content-repeat items="{{storage:visits}}">
       <template>
         <li>{{data:item}}</li>
       </template>
-    </n-content-data-repeat>
+    </n-content-repeat>
   </ul>
   <h4>Under the Hood</h4>
   <n-content-markdown>
     <script type="text/markdown">
       ```html
       <ul>
-        <n-content-data-repeat items="{{storage:visits}}">
+        <n-content-repeat items="{{storage:visits}}">
           <template>
             <li>{{data:item}}</li>
           </template>
-        </n-content-data-repeat>
+        </n-content-repeat>
       </ul>
       ```
     </script>

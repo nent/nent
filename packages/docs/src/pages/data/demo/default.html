@@ -1,21 +1,21 @@
 <div class="content">
-  <n-content-data n-show-when="{{storage:name}}">
+  <n-content-template n-show-when="{{storage:name}}">
     <template>
       <h3>Content for {{storage:name}}</h3>
     </template>
-  </n-content-data>
-  <n-content-data when="{{session:favorite}}">
+  </n-content-template>
+  <n-content-template when="{{session:favorite}}">
     <template>
       <h2>Favorite thing: <a href="/data/session-data"> {{session:favorite}}</a>
       </h2>
     </template>
-  </n-content-data>
-  <n-content-data>
+  </n-content-template>
+  <n-content-template>
     <template>
       <h2>Spirit Animal: <a href="/data/storage-data">{{storage:animal}} </a>
       </h2>
     </template>
-  </n-content-data>
+  </n-content-template>
   <h2 hidden
     n-show-when="{{storage:animal}} == 'dog'">I only show up when your
     spirit-animal is 'dog'</h2>
