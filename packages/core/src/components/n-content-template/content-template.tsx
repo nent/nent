@@ -32,7 +32,7 @@ export class ContentData {
   private dataSubscription!: () => void
   private routeSubscription!: () => void
   private contentClass = 'dynamic'
-  @Element() el!: HTMLNContentDataElement
+  @Element() el!: HTMLNContentTemplateElement
   @State() innerTemplate!: string
   @State() innerData: any
   @State() contentElement: HTMLElement | null = null

@@ -216,7 +216,7 @@
         - [X] Culture
         - [X] Random
     - [X] Custom Providers
-      - [X] Roadmap
+      - [X] Road-map
         - [X] Ionic
         - [X] Shoelace
         - [X] UI Kit
@@ -237,7 +237,7 @@
   - [X] Examples *
     - [X] Adaptive Survey
     - [X] Progressive Forms
-    - [X] CYOA Short Story
+    - [X] Choose-your-own-adventure-style Short Story
     - [X] Interactive Video Experience
     - [X] Explanation Presentation
       - [X] Interactive Content

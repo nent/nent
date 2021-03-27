@@ -130,7 +130,7 @@ yarn add @nent/core
 ```
 ## Learn More
 
-The best way to see what these elements in actoin, is to take a look at the documentation demo. The installable app is built using these elements in a single HTML file (with child-routes and partials lazy-loaded, as-needed).
+The best way to see what these elements in action, is to take a look at the documentation demo. The install-able app is built using these elements in a single HTML file (with child-routes and partials lazy-loaded, as-needed).
 
 [![Take the Tour](https://badgen.net/badge/@nent/core:%20demo?color=blue)](https://nent.dev)
 
