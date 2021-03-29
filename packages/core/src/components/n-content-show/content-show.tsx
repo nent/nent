@@ -18,7 +18,7 @@ import { ROUTE_EVENTS } from '../../services/routing/interfaces'
  * To learn more about predicates, check out the
  * expressions documentation.
  *
- *  @system data
+ *  @system content
  */
 @Component({
   tag: 'n-content-show',

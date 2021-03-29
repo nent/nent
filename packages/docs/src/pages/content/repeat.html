@@ -1,0 +1,25 @@
+<div class="content">
+  <h1>Content Repeater</h1>
+  <h2>Repeating Templates</h2>
+  <n-content-markdown src="/pages/content/repeat">
+  </n-content-markdown>
+  <footer>
+    <h3>Result</h3>
+    <ul>
+      <n-content-repeat items="{{session:visits}}">
+        <script>
+          ['one', 'two', 'three']
+        </script>
+        <template>
+          <li>{{data:item}}</li>
+        </template>
+      </n-content-repeat>
+    </ul>
+    <a slot="start"
+      href="/content/markdown"
+      class="btn btn-secondary"> &lt; Markdown </a>
+    <a slot="end"
+      href="/content/repeat"
+      class="btn btn-secondary"> Repeater &gt; </a>
+  </footer>
+</div>

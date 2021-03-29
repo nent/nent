@@ -42,10 +42,10 @@ export class ViewLink {
   @Prop({ mutable: true }) href!: string
 
   /**
-   * The class to add when this HREF is active
+   * The class to add when the matching route is active
    * in the browser
    */
-  @Prop() activeClass = 'link-active'
+  @Prop() activeClass = 'active'
 
   /**
    * Only active on the exact href match,

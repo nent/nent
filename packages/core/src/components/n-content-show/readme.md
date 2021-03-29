@@ -1,12 +1,13 @@
-# X-DATA-SHOW
+# N-CONTENT-SHOW
 
 This tag conditionally renders child elements based on the configured predicate applied to the when value predicate. To learn more about predicates, check out the [expressions](/data/expressions) documentation.
 
-## Usage
+## Element
 
 ```html
-<n-content-show when='<expression>'>
-... contents ...
+<n-content-show 
+  when='<expression>'>
+  ... contents ...
 </n-content-show>
 ```
 
@@ -30,4 +31,4 @@ This tag conditionally renders child elements based on the configured predicate 
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

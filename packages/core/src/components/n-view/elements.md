@@ -1,4 +1,4 @@
-# X-APP-VIEW
+# N-APP-VIEW
 
 Child Attribute Detection & Resolution
 

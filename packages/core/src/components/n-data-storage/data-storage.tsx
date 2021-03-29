@@ -21,6 +21,8 @@ import { StorageService } from './storage/service'
  * leverages the browser 'long-term' data storage.
  *
  * @system data
+ * @actions true
+ * @provider true
  */
 export class DataStorage {
   private provider!: StorageService

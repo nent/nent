@@ -1,6 +1,6 @@
-# n-video-switch
+# N-VIDEO-SWITCH
 
-The `<n-video-switch>` component displays a checkbox to control the autoplay setting used for video playback - as well as automatic navigation to the next page, when a video ends.
+The `<n-video-switch>` component displays a checkbox to control the autoplay setting used for video playback - as well as automatic navigation to the next page when a video ends.
 
 Default: enabled
 
@@ -24,11 +24,11 @@ Add the `<n-video-switch>` component to any page to allow the user to adjust the
 
 | Property       | Attribute       | Description                                            | Type                  | Default     |
 | -------------- | --------------- | ------------------------------------------------------ | --------------------- | ----------- |
-| `classes`      | `classes`       | Any classes to add to the input-element directly.      | `string \| undefined` | `undefined` |
+| `classes`      | `classes`       | Any classes to add to the input-element directly.      | `string`, `undefined` | `undefined` |
 | `dataProvider` | `data-provider` | The data provider to store the audio-enabled state in. | `string`              | `'storage'` |
-| `inputId`      | `input-id`      | The id field to add to the input-element directly.     | `string \| undefined` | `undefined` |
+| `inputId`      | `input-id`      | The id field to add to the input-element directly.     | `string`, `undefined` | `undefined` |
 
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

@@ -1,8 +1,15 @@
-# X-DATA-DISPLAY
+# N-CONTENT-TEMPLATE
 
 Render data directly into HTML using declarative expressions. This element renders the expression with all data-tokens replaced with the values provided by the provider.
 
+## Element
 
+<n-content-template>
+  <template>
+    <any>{{expression}}</any>
+  </template>
+</n-content-template>
+```
 
 <!-- Auto Generated Below -->
 
@@ -69,9 +76,9 @@ You can provide the data to use for this component directly in-line using a inne
 | Property    | Attribute    | Description                                                                                                  | Type                  | Default     |
 | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------ | --------------------- | ----------- |
 | `deferLoad` | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute. | `boolean`             | `false`     |
-| `text`      | `text`       | The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}    | `string \| undefined` | `undefined` |
+| `text`      | `text`       | The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}    | `string`, `undefined` | `undefined` |
 
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

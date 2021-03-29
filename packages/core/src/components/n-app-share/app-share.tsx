@@ -12,15 +12,15 @@ import {
 /**
  * This component leverages the browser's web-share
  * API to give the application a native-app feel.
- * @system content
+ * @system app
  */
 @Component({
-  tag: 'n-content-share',
-  styleUrl: 'content-share.css',
+  tag: 'n-app-share',
+  styleUrl: 'app-share.css',
   shadow: true,
 })
 export class ContentShare {
-  @Element() el!: HTMLNContentShareElement
+  @Element() el!: HTMLNAppShareElement
   /**
    * Headline for the share
    */

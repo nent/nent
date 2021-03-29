@@ -1,6 +1,8 @@
-# X-UI
+# N-APP
 
-This component enables the UI plugin listener. This is required to add UI components that are activated using actions.
+This component enables application installment features and UI management plugins. This is required to add components that are activated using actions.
+
+## Element
 
 ```html
 <n-app>
@@ -37,4 +39,4 @@ This component enables the UI plugin listener. This is required to add UI compon
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

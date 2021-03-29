@@ -1,6 +1,6 @@
-# X-ACTION
+# N-ACTION
 
-This element holds the data that **is** the Action submitted through [Actions](/actions). The parent tag defines how and when the child actions are submitted through [Actions](/actions).
+This element holds the data that **is** the Action submitted through [Actions](/actions) bus. The parent tag defines how and when the child actions are submitted through [Actions](/actions).
 
 > This element does not activate these actions automatically. They need to be activated through script, or by wrapping them in an [\<n-action-activator\>](/components/n-action-activator) tag.
 
@@ -107,4 +107,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

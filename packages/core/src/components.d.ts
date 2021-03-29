@@ -77,6 +77,25 @@ export namespace Components {
          */
         "disableActions": boolean;
     }
+    interface NAppShare {
+        /**
+          * Headline for the share
+         */
+        "headline"?: string;
+        /**
+          * Manual share method for more complex scenarios
+          * @param data
+         */
+        "share": (data?: { title?: string | undefined; text?: string | undefined; url?: string | undefined; } | null | undefined) => Promise<void>;
+        /**
+          * The textual body of web share
+         */
+        "text"?: string;
+        /**
+          * The URL we are sharing
+         */
+        "url"?: string;
+    }
     interface NAppTheme {
         /**
           * Change the class name that is added to the body tag when the theme is determined to be dark.
@@ -399,25 +418,6 @@ export namespace Components {
          */
         "triggerDistance": string;
     }
-    interface NContentShare {
-        /**
-          * Headline for the share
-         */
-        "headline"?: string;
-        /**
-          * Manual share method for more complex scenarios
-          * @param data
-         */
-        "share": (data?: { title?: string | undefined; text?: string | undefined; url?: string | undefined; } | null | undefined) => Promise<void>;
-        /**
-          * The textual body of web share
-         */
-        "text"?: string;
-        /**
-          * The URL we are sharing
-         */
-        "url"?: string;
-    }
     interface NContentShow {
         /**
           * The data expression to obtain a predicate for conditionally rendering the inner-contents of this element.
@@ -570,7 +570,7 @@ export namespace Components {
     }
     interface NViewLink {
         /**
-          * The class to add when this HREF is active in the browser
+          * The class to add when the matching route is active in the browser
          */
         "activeClass": string;
         /**
@@ -728,6 +728,12 @@ declare global {
         prototype: HTMLNAppElement;
         new (): HTMLNAppElement;
     };
+    interface HTMLNAppShareElement extends Components.NAppShare, HTMLStencilElement {
+    }
+    var HTMLNAppShareElement: {
+        prototype: HTMLNAppShareElement;
+        new (): HTMLNAppShareElement;
+    };
     interface HTMLNAppThemeElement extends Components.NAppTheme, HTMLStencilElement {
     }
     var HTMLNAppThemeElement: {
@@ -805,12 +811,6 @@ declare global {
     var HTMLNContentRevealElement: {
         prototype: HTMLNContentRevealElement;
         new (): HTMLNContentRevealElement;
-    };
-    interface HTMLNContentShareElement extends Components.NContentShare, HTMLStencilElement {
-    }
-    var HTMLNContentShareElement: {
-        prototype: HTMLNContentShareElement;
-        new (): HTMLNContentShareElement;
     };
     interface HTMLNContentShowElement extends Components.NContentShow, HTMLStencilElement {
     }
@@ -907,6 +907,7 @@ declare global {
         "n-action-activator": HTMLNActionActivatorElement;
         "n-analytics": HTMLNAnalyticsElement;
         "n-app": HTMLNAppElement;
+        "n-app-share": HTMLNAppShareElement;
         "n-app-theme": HTMLNAppThemeElement;
         "n-app-theme-switch": HTMLNAppThemeSwitchElement;
         "n-audio": HTMLNAudioElement;
@@ -920,7 +921,6 @@ declare global {
         "n-content-reference": HTMLNContentReferenceElement;
         "n-content-repeat": HTMLNContentRepeatElement;
         "n-content-reveal": HTMLNContentRevealElement;
-        "n-content-share": HTMLNContentShareElement;
         "n-content-show": HTMLNContentShowElement;
         "n-content-template": HTMLNContentTemplateElement;
         "n-data": HTMLNDataElement;
@@ -983,7 +983,7 @@ declare namespace LocalJSX {
         /**
           * Raised analytics events.
          */
-        "onEvent"?: (event: CustomEvent<any>) => void;
+        "onCustom-event"?: (event: CustomEvent<any>) => void;
         /**
           * Page views.
          */
@@ -1010,6 +1010,20 @@ declare namespace LocalJSX {
           * Listen for events that occurred within the **`<n-views>`** system.
          */
         "onNent:events"?: (event: CustomEvent<any>) => void;
+    }
+    interface NAppShare {
+        /**
+          * Headline for the share
+         */
+        "headline"?: string;
+        /**
+          * The textual body of web share
+         */
+        "text"?: string;
+        /**
+          * The URL we are sharing
+         */
+        "url"?: string;
     }
     interface NAppTheme {
         /**
@@ -1301,20 +1315,6 @@ declare namespace LocalJSX {
          */
         "triggerDistance"?: string;
     }
-    interface NContentShare {
-        /**
-          * Headline for the share
-         */
-        "headline"?: string;
-        /**
-          * The textual body of web share
-         */
-        "text"?: string;
-        /**
-          * The URL we are sharing
-         */
-        "url"?: string;
-    }
     interface NContentShow {
         /**
           * The data expression to obtain a predicate for conditionally rendering the inner-contents of this element.
@@ -1463,7 +1463,7 @@ declare namespace LocalJSX {
     }
     interface NViewLink {
         /**
-          * The class to add when this HREF is active in the browser
+          * The class to add when the matching route is active in the browser
          */
         "activeClass"?: string;
         /**
@@ -1600,6 +1600,7 @@ declare namespace LocalJSX {
         "n-action-activator": NActionActivator;
         "n-analytics": NAnalytics;
         "n-app": NApp;
+        "n-app-share": NAppShare;
         "n-app-theme": NAppTheme;
         "n-app-theme-switch": NAppThemeSwitch;
         "n-audio": NAudio;
@@ -1613,7 +1614,6 @@ declare namespace LocalJSX {
         "n-content-reference": NContentReference;
         "n-content-repeat": NContentRepeat;
         "n-content-reveal": NContentReveal;
-        "n-content-share": NContentShare;
         "n-content-show": NContentShow;
         "n-content-template": NContentTemplate;
         "n-data": NData;
@@ -1639,6 +1639,7 @@ declare module "@stencil/core" {
             "n-action-activator": LocalJSX.NActionActivator & JSXBase.HTMLAttributes<HTMLNActionActivatorElement>;
             "n-analytics": LocalJSX.NAnalytics & JSXBase.HTMLAttributes<HTMLNAnalyticsElement>;
             "n-app": LocalJSX.NApp & JSXBase.HTMLAttributes<HTMLNAppElement>;
+            "n-app-share": LocalJSX.NAppShare & JSXBase.HTMLAttributes<HTMLNAppShareElement>;
             "n-app-theme": LocalJSX.NAppTheme & JSXBase.HTMLAttributes<HTMLNAppThemeElement>;
             "n-app-theme-switch": LocalJSX.NAppThemeSwitch & JSXBase.HTMLAttributes<HTMLNAppThemeSwitchElement>;
             "n-audio": LocalJSX.NAudio & JSXBase.HTMLAttributes<HTMLNAudioElement>;
@@ -1652,7 +1653,6 @@ declare module "@stencil/core" {
             "n-content-reference": LocalJSX.NContentReference & JSXBase.HTMLAttributes<HTMLNContentReferenceElement>;
             "n-content-repeat": LocalJSX.NContentRepeat & JSXBase.HTMLAttributes<HTMLNContentRepeatElement>;
             "n-content-reveal": LocalJSX.NContentReveal & JSXBase.HTMLAttributes<HTMLNContentRevealElement>;
-            "n-content-share": LocalJSX.NContentShare & JSXBase.HTMLAttributes<HTMLNContentShareElement>;
             "n-content-show": LocalJSX.NContentShow & JSXBase.HTMLAttributes<HTMLNContentShowElement>;
             "n-content-template": LocalJSX.NContentTemplate & JSXBase.HTMLAttributes<HTMLNContentTemplateElement>;
             "n-data": LocalJSX.NData & JSXBase.HTMLAttributes<HTMLNDataElement>;

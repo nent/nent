@@ -2,7 +2,7 @@ import { Config } from '@stencil/core'
 import visualizer from 'rollup-plugin-visualizer'
 const config: Config = {
   namespace: 'nent',
-  preamble: 'nent 2021',
+  preamble: 'NENT 2021',
   hashFileNames: false,
   rollupPlugins: {
     after: [

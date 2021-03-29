@@ -12,7 +12,7 @@
   trigger-distance="50%">
   <ul
     class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
-    <li class="list-group-item fw-bold"> Content Components</li>
+    <li class="list-group-item fw-bold"> Content Elements</li>
     <n-content-repeat items-src="/assets/components.json"
       filter="components[docsTags[text='content']]">
       <template>
@@ -32,9 +32,13 @@
   page-title="Markdown"
   content-src="/pages/content/markdown.html">
 </n-view>
-<n-view url="/content/share"
-  page-title="Native Share"
-  content-src="/pages/content/share.html">
+<n-view url="/content/template"
+  page-title="Template"
+  content-src="/pages/content/template.html">
+</n-view>
+<n-view url="/content/repeat"
+  page-title="Repeater"
+  content-src="/pages/content/repeat.html">
 </n-view>
 <n-view url="/content/reveal"
   page-title="Animated Reveal"

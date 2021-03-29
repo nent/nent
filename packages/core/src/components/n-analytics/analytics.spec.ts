@@ -46,7 +46,7 @@ describe('n-analytics', () => {
 
     const analytics = page.body.querySelector(
       'n-analytics',
-    ) as HTMLAnalyticsElement
+    ) as HTMLNAnalyticsElement
 
     const pageView = []
     //@ts-ignore
@@ -85,7 +85,7 @@ describe('n-analytics', () => {
 
     const analytics = page.body.querySelector(
       'n-analytics',
-    ) as HTMLAnalyticsElement
+    ) as HTMLNAnalyticsElement
 
     const viewTimes = []
     //@ts-ignore
@@ -141,9 +141,12 @@ describe('n-analytics', () => {
 
     const events: any[] = []
     //@ts-ignore
-    analytics!.addEventListener('event', (e: CustomEvent<string>) => {
-      events.push(e.detail)
-    })
+    analytics!.addEventListener(
+      'custom-event',
+      (e: CustomEvent<string>) => {
+        events.push(e.detail)
+      },
+    )
 
     actionBus.emit(ANALYTICS_TOPIC, {
       topic: ANALYTICS_TOPIC,

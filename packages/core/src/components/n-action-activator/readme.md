@@ -1,14 +1,14 @@
-# X-ACTION-ACTIVATOR
+# N-ACTION-ACTIVATOR
 
 This element defines how and when a group of Actions, defined with the [\<n-action\>](/components/n-action) element, are submitted through the [actions system](/actions).
 
 ## Activation Strategies
 
-The **activate** attribute define the strategy for activating all child actions, in the order they appear.
+The **activate** attribute defines the strategy for activating all child actions in the order they appear.
 
 ### `on-element-event`
 
-The default strategy is `on-element-event` can be used anywhere. The child actions will fire when the target element raises the target event.
+The default strategy is `on-element-event` which can be used anywhere. The child-actions will fire when the target element raises the target event.
 
 ```html
 <n-action-activator
@@ -88,7 +88,6 @@ Activation occurs when the parent route has been activated for the given time wi
 ```
 
 
-
 <!-- Auto Generated Below -->
 
 
@@ -98,7 +97,7 @@ Activation occurs when the parent route has been activated for the given time wi
 
 ## Basic Usage
 
-This element should only ever contain child [\<n-action\>](/components/n-action) tags. The attributes tells the parent The parent tag defines how and when the child actions are submitted through the [actions system](/actions).
+This element should only ever contain child [\<n-action\>](/components/n-action) tags. The attributes define how and when the child-actions are submitted through the [actions system](/actions).
 
 ```html
 <n-action-activator
@@ -120,12 +119,12 @@ This element should only ever contain child [\<n-action\>](/components/n-action)
 
 | Property        | Attribute        | Description                                                                                                                                                                                                       | Type                                                                        | Default              |
 | --------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | -------------------- |
-| `activate`      | `activate`       | The activation strategy to use for the contained actions.                                                                                                                                                         | `"at-time" \| "on-element-event" \| "on-enter" \| "on-exit" \| "on-render"` | `'on-element-event'` |
+| `activate`      | `activate`       | The activation strategy to use for the contained actions.                                                                                                                                                         | `'at-time'`, `'on-element-event'`, `'on-enter'`, `'on-exit'`, `'on-render'` | `'on-element-event'` |
 | `debug`         | `debug`          | Turn on debug statements for load, update and render events.                                                                                                                                                      | `boolean`                                                                   | `false`              |
 | `once`          | `once`           | Limit the activation to ONCE. This could be helpful if an action has side-effects if it is run multiple times.  Note: the activation state is stored in memory and does not persist across refreshes.             | `boolean`                                                                   | `false`              |
-| `targetElement` | `target-element` | The element to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelector function to find the element.  For use with activate="on-element-event" Only! | `string \| undefined`                                                       | `undefined`          |
+| `targetElement` | `target-element` | The element to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelector function to find the element.  For use with activate="on-element-event" Only! | `string`, `undefined`                                                       | `undefined`          |
 | `targetEvent`   | `target-event`   | This is the name of the event/s to listen to on the target element separated by comma.                                                                                                                            | `string`                                                                    | `'click,keydown'`    |
-| `time`          | `time`           | The time, in seconds at which the contained actions should be submitted.  For use with activate="at-time" Only!                                                                                                   | `number \| undefined`                                                       | `undefined`          |
+| `time`          | `time`           | The time, in seconds at which the contained actions should be submitted.  For use with activate="at-time" Only!                                                                                                   | `number`, `undefined`                                                       | `undefined`          |
 
 
 ## Methods
@@ -143,4 +142,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

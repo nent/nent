@@ -155,7 +155,7 @@ a.active:link,
 a.active:active,
 a.active:visited,
 a.active * {
-  color: var(--accent) !important;
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -197,7 +197,9 @@ a.active * {
 
 h1 {
   font-size: 2rem;
-  margin-top: 0.75rem;
+  line-height: 1;
+  margin: 0;
+  vertical-align: middle;
 }
 
 h2 {
@@ -351,17 +353,16 @@ n-views > n-view-not-found {
   position: relative;
 }
 
+n-view-link-list {
+  display: block;
+  height: 1rem;
+}
+
 .breadcrumb {
   margin: 0;
   justify-content: start;
 }
 @media (min-width: 376px) {
-  .contained {
-    position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 10;
-  }
   body::-webkit-scrollbar {
     width: 1em;
   }
@@ -375,8 +376,11 @@ n-views > n-view-not-found {
   }
 }
 
-n-view-link-list {
-  display: block;
+.breadcrumb a.active:link,
+.breadcrumb a.active:active,
+.breadcrumb a.active:visited,
+.breadcrumb a.active:any-link {
+  color: var(--primary)
 }
 
 n-content-markdown pre {

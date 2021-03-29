@@ -43,7 +43,7 @@ describe('n-view-link-list', () => {
         <ol>
           <li>
             <n-view-link>
-              <a class="link-active" href="/" n-attached-click="">
+              <a class="active" href="/" n-attached-click="">
                 Home
               </a>
             </n-view-link>
@@ -88,7 +88,7 @@ describe('n-view-link-list', () => {
           </li>
           <li>
             <n-view-link>
-              <a class="link-active" href="/home/page1" n-attached-click="">
+              <a class="active" href="/home/page1" n-attached-click="">
                 Page 1
               </a>
             </n-view-link>
@@ -139,7 +139,7 @@ describe('n-view-link-list', () => {
           </li>
           <li>
             <n-view-link>
-              <a class="link-active" href="/home/:item" n-attached-click="">
+              <a class="active" href="/home/:item" n-attached-click="">
                 dogs
               </a>
             </n-view-link>
@@ -199,7 +199,7 @@ describe('n-view-link-list', () => {
           </li>
           <li>
             <n-view-link>
-              <a class="link-active" href="/home/page1" n-attached-click="">
+              <a class="active" href="/home/page1" n-attached-click="">
                 Page 1
               </a>
             </n-view-link>

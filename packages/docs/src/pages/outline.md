@@ -258,4 +258,4 @@ TODO:
   - [ ] app router: n-app > n-app-page > n-app-page-prompt
   - [ ] event delegator and action listener: n-action-bus, n-event-bus
 - [ ] Add n-app-offline (encapsulate a service-worker)
-- [ ] n-content-share -> n-app-share
+- [ ] n-app-share -> n-app-share

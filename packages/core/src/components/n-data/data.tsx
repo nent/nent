@@ -10,6 +10,7 @@ import { DataListener } from './services/actions'
  * the action-listener that registers providers.  Add this tag
  * to that page to enable token-replacement.
  *
+ * @system data
  * @actions true
  */
 @Component({

@@ -1,21 +1,21 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { ContentShare } from './content-share'
+import { ContentShare } from './app-share'
 
-describe('n-content-share', () => {
+describe('n-app-share', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [ContentShare],
-      html: `<n-content-share>
+      html: `<n-app-share>
             share me
-            </n-content-share>`,
+            </n-app-share>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-content-share>
+      <n-app-share>
       <mock:shadow-root>
          <slot></slot>
        </mock:shadow-root>
         share me
-      </n-content-share>
+      </n-app-share>
     `)
   })
 })

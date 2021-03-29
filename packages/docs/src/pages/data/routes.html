@@ -12,7 +12,7 @@
   trigger-distance="50%">
   <ul
     class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
-    <li class="list-group-item fw-bold">Data Components</li>
+    <li class="list-group-item fw-bold">Data Elements</li>
     <n-content-repeat items-src="/assets/components.json"
       filter="components[docsTags[text='data']]">
       <template>
@@ -36,10 +36,6 @@
 <n-view url="/data/navigation"
   page-title="Navigation"
   content-src="/pages/data/navigation.html">
-</n-view>
-<n-view url="/data/display"
-  page-title="Display"
-  content-src="/pages/data/display.html">
 </n-view>
 <n-view url="/data/demo">
   <n-view-prompt url="/data/demo/session-data"

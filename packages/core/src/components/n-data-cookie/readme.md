@@ -1,4 +1,4 @@
-# X-DATA-PROVIDER-COOKIE
+# N-DATA-COOKIE
 
 This component enables the **Cookie Data Provider**, after requesting consent from the user. The consent message and the accept/reject button are customizable.
 
@@ -8,7 +8,7 @@ This store is long-lived from the same browser, but for very small data items. T
 
 Provider Key: '**cookie**'
 
-`{{cookie:(key)}`
+`{{cookie:(key)}}`
 
 When included on the page, this component automatically shows a banner to collect consent from the user. You MUST supply clickable elements and decorate them with **n-accept** and **n-reject** attributes, respecting the user's decision.
 
@@ -71,4 +71,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

@@ -87,8 +87,9 @@ export class ViewLinkList {
           if (router) {
             this.subscribe()
             routerSubscription()
+          } else {
+            this.matchSubscription?.call(this)
           }
-          routerSubscription()
         },
       )
     }
@@ -102,15 +103,8 @@ export class ViewLinkList {
         this.match = match ? { ...match } : null
       },
     )
-    this.finalizeSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteFinalized,
-      ({ route, match }: { route: Route; match: MatchResults }) => {
-        this.route = { ...route } as Route
-        this.match = match ? { ...match } : null
-      },
-    )
-
     this.route = navigationState.router?.exactRoute || null
+    this.match = navigationState.router?.exactRoute?.match || null
   }
 
   async componentWillRender() {

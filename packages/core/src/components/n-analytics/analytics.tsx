@@ -13,7 +13,7 @@ import { AnalyticsActionListener } from './analytics/actions'
  * This component serves as a proxy to delegate event-based
  * functions to be consumed by various analytics snippets.
  *
- * @system routing
+ * @system analytics
  * @actions true
  */
 @Component({
@@ -27,7 +27,7 @@ export class Analytics {
    * Raised analytics events.
    */
   @Event({
-    eventName: 'event',
+    eventName: 'custom-event',
     composed: false,
     cancelable: false,
     bubbles: false,

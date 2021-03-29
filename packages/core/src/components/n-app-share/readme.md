@@ -1,14 +1,6 @@
-# n-content-share
+# N-APP-SHARE
 
-The `<n-content-share>` component description
-
-
-Using the `<n-content-share>` component description.
-
-```html
-<n-content-share ...>
-</n-content-share>
-```
+The `<n-app-share>` component description
 
 
 <!-- Auto Generated Below -->
@@ -18,9 +10,9 @@ Using the `<n-content-share>` component description.
 
 | Property   | Attribute  | Description                   | Type                  | Default     |
 | ---------- | ---------- | ----------------------------- | --------------------- | ----------- |
-| `headline` | `headline` | Headline for the share        | `string \| undefined` | `undefined` |
-| `text`     | `text`     | The textual body of web share | `string \| undefined` | `undefined` |
-| `url`      | `url`      | The URL we are sharing        | `string \| undefined` | `undefined` |
+| `headline` | `headline` | Headline for the share        | `string`, `undefined` | `undefined` |
+| `text`     | `text`     | The textual body of web share | `string`, `undefined` | `undefined` |
+| `url`      | `url`      | The URL we are sharing        | `string`, `undefined` | `undefined` |
 
 
 ## Methods
@@ -38,4 +30,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

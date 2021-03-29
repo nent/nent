@@ -28,6 +28,8 @@ import { CookieService } from './cookie/service'
  * message and the accept/reject button are customizable.
  *
  * @system data
+ * @actions true
+ * @provider true
  */
 @Component({
   tag: 'n-data-cookie',

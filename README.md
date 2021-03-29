@@ -11,19 +11,19 @@
 [![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=blue)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
 [![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
 
-## What is Nent?
+## What is NENT?
 
-Nent is a library of function-elements (web-components) that add new features aimed for developing web applications.
+NENT is a library of function-elements (web-components) that add new features aimed at developing web applications.
 
 > 'Nent' comes from the word compo-*nent* and it is the uncreative result of my tech-brain doing 'branding'.  
 
 ## Motivation
 
-The goal of this project is to empower the next generation of web developers to create web-experiences with less development and deployment friction, within a single semantic-system. (Really though, I just needed to make high-performing, lightweight, web-applications quickly -- without complex builds, or frameworks.)
+The goal of this project is to empower the next generation of web developers to create web experiences with less development and deployment friction, within a single semantic-system. (Really though, I just needed to make high-performing, lightweight, web-applications quickly -- without complex builds or frameworks.)
 
 ## Declared Functionality
 
-Each elements encapsulate a feature or functionality, like routing, dynamic templates, and reusable-partials.
+Each element encapsulates a feature or functionality, like routing, dynamic templates, and reusable-partials.
 
 Simple web applications could be completely declarative, using HTML semantics. 
 
@@ -32,7 +32,7 @@ Declarative System Advantages:
 * Easier to understand and reason about
 * Easier to maintain, with reduced side-effects
 * Deterministic, and testable with static-analysis 
-* More accessible / approachable to a wider range of humans. 
+* More accessible/approachable to a wider range of humans. 
 
 ### System Groups
 
@@ -41,59 +41,63 @@ The elements are named and grouped by their system or sub-system, with shared se
 Sub-systems add functionality to other systems. For instance, view routes can use data-expressions in their content when the data-system is included.
 
 ### Views: `<n-views-*>`
-This is the routing and navigation system
+Independent routing and navigation system.
+
 - Single Page Application Routing
 - Fast navigation between views
 - Page History
 - Route Transitions
 - Nested Layouts
 - Nav Links with Active Route detection
-- Navigation Lists:
-  Nav Bars, Child Menus and Breadcrumbs
+- Nav Lists: \
+  Nav-Bars, Child Menus, and Breadcrumbs
 - Guided Navigation
-- View-Timed Actions
-- View Entry / Exit Actions
   
 ### Content: `<n-content-*>`
-- Dynamic Content Rendering
+Independent elements for features around content HTML.
+- Content Templates
 - Deferred Content
+- Content Data Injection
 - Markdown Rendering
-- Remote HTML
+- Remote HTML / Partials
 
 ### App: `<n-app-*>`
-- Page/Document Management
-- Theme Detection & Control
-- Console Logging
-- UI Component Kit Integrations
+Independent elements related to the file as an application.
+- App Console Logging
+- App Theme Detection & Control
+- UI Component Kit Integrations (Ionic, shoelace, Material, etc)
 - PWA Support (coming)
+- Expose Event/Actions to the DOM
 
 ### Actions: `<n-action-*>`
+Data structure elements to declare functions and their activations. 
 - Declared Actions
 - Reactive Activators
-- Exposes the Event / Action Bus to the DOM
-- Async Functions
+- Add Custom Async Functions
 
 ### Data: `<n-data-*>`
-- Adds: Expression Evaluation to conditionally rendered content
-- Adds: Data-Template Rendering to `Content`
-- Adds: Data-driven Rule Evaluation to `route-prompt`
+Optional enhancements elements to add data-functionality and data-providers.
+- Expression Evaluation
+- Token Resolution
+- Conditional Rule Evaluation
 
 ### Elements: `<n-elements>`
-- DOM Element Manipulation
+An optional element that creates an action listener to handle requests for light DOM updates
 
-### Audio:
-- Reactive Audio
-- Voice-overs
+### Audio: `<n-audio-*>`
+Optional audio elements to display a player and create an action listener for audio commands. The player orchestrates audio playback in an opinionated format, with best practices. 
+- Voice-over Audio
+- Event Sounds
 - Background Music
 
-### Analytics:
+### Analytics: `<n-analytics>`
+An optional element that creates an action listener that delegates analytics-specific events and route-changes to a script-configurable element for integration.
 - Page Views
-- Page TImes 
+- View Times 
 - Custom Events
 
-### Video:
-- Interactive Video
-- Video-Timed Actions
+### Video: `<n-video-*>`
+Optional wrapper element to normalize video-events between various video players to enable media-timed events for synchronized actions. Useful for automatically navigating when a video ends or updating the content based on the video time.
 
 ## Installation
 
@@ -152,7 +156,7 @@ Reach out to me personally:
 
 ### Built on the shoulders of giants!
 
-Thank you to the Ionic team and their fabulous [**Stencil.js** SDK](https://stenciljs.com) for the best way to build lightening fast, native elements.
+Thank you to the Ionic team and their fabulous [**Stencil.js** SDK](https://stenciljs.com) for the best way to build lightning-fast, native elements.
 
 Also, thank you to the creators and contributors to all open-source efforts, but especially to the libraries we love and use in our plugin components:
 

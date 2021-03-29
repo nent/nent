@@ -21,6 +21,8 @@ import { SessionService } from './session/service'
  *  It leverages the short-lived browser storage.
  *
  *  @system data
+ *  @actions true
+ *  @provider true
  */
 export class DataSession {
   private provider!: SessionService

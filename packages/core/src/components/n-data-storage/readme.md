@@ -1,4 +1,4 @@
-# X-DATA-PROVIDER-STORAGE
+# N-DATA-STORAGE
 
 This component enables the **Storage Data Provider**.
 
@@ -8,7 +8,7 @@ This store is short-lived within the browsing storage of an exact browser. This 
 
 Provider Key: '**storage**' (or custom)
 
-`{{storage:(key)}`
+`{{storage:(key)}}`
 
 <!-- Auto Generated Below -->
 
@@ -25,10 +25,10 @@ Provider Key: '**storage**' (or custom)
 
 | Property    | Attribute    | Description                               | Type                  | Default     |
 | ----------- | ------------ | ----------------------------------------- | --------------------- | ----------- |
-| `keyPrefix` | `key-prefix` | The key prefix to use in storage          | `string \| undefined` | `undefined` |
+| `keyPrefix` | `key-prefix` | The key prefix to use in storage          | `string`, `undefined` | `undefined` |
 | `name`      | `name`       | Provider name to use in nent expressions. | `string`              | `'storage'` |
 
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

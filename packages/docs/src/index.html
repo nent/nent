@@ -3,7 +3,7 @@
   lang="en">
 
   <head>
-    <title>nent</title>
+    <title>NENT.</title>
     <meta charset="utf-8" />
     <meta name="viewport"
       content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
@@ -12,7 +12,7 @@
     <meta name="description"
       content="Functional elements to super-charge your HTML" />
     <meta name="og:title"
-      content="nent" />
+      content="NENT." />
     <meta name="og:description"
       content="Functional elements to super-charge your HTML" />
     <meta name="og:image"
@@ -71,7 +71,7 @@
       href="/js/nent/n-content-reference.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/js/nent/n-content-share.entry.js" />
+      href="/js/nent/n-app-share.entry.js" />
     <link rel="modulepreload"
       as="script"
       href="/js/nent/n-data.entry.js" />
@@ -99,11 +99,11 @@
     </style>
     <!-- Page Styles -->
     <link rel="stylesheet"
-      href="/js/docs/docs.css" />
-    <link rel="stylesheet"
-      href="/assets/styles.css"
+      href="/js/docs/docs.css"
       media="print"
       onload="this.media = 'all'" />
+    <link rel="stylesheet"
+      href="/assets/styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Blinker:wght@200;400&display=swap"
       rel="stylesheet"
@@ -112,51 +112,53 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async
       defer
-      src="https://www.googletagmanager.com/gtag/js?id=G-SL9WMJ9XVP"></script>
+      src="https://www.googletagmanager.com/gtag/js?id=G-XYMNMQ1G1X"></script>
     <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
         dataLayer.push( arguments )
       }
       gtag( 'js', new Date() )
-      gtag( 'config', 'G-SL9WMJ9XVP' )
+      gtag( 'config', 'G-XYMNMQ1G1X' )
     </script>
   </head>
 
   <body>
     <n-app>
+      <n-data>
+      </n-data>
       <n-views start-url="/"
-        app-title="nent demo"
+        app-title="nent"
         transition="animate__animated animate__fadeIn">
         <header n-cloak
           class="navbar">
           <div class="container container-fluid">
             <h1 class="navbar-brand flex-grow-1">
               <a href="/home"
-                title="nent home"> nent. </a>
+                title="home"> nent </a>
             </h1>
             <div class="flex-row d-flex">
-              <n-content-share headline="nent: super-charged html"
-                class="nav-link text-white fs-2 d-none d-sm-flex"
+              <n-app-share headline="nent: function elements"
+                class="nav-link text-white fs-2"
                 text="Functional elements to make web-applications without leaving the comfort of HTML.">
                 <i class="ri-share-line"></i>
-              </n-content-share>
+              </n-app-share>
               <a href="https://github.com/nent/nent"
-                title="Source on GitHub"
+                title="GitHub"
                 target="_blank"
                 class="nav-link text-white fs-2 d-none d-sm-flex"
                 rel="noopener">
                 <i class="ri-github-line"></i>
               </a>
               <a href="https://www.npmjs.com/package/@nent/core"
-                title="Package on NPM"
+                title="NPM"
                 target="_blank"
                 class="nav-link text-white fs-2 d-none d-sm-flex"
                 rel="noopener">
                 <i class="ri-npmjs-line"></i>
               </a>
               <a href="/home/profile"
-                title="Updated your profile"
+                title="Profile"
                 class="nav-link text-white fs-2">
                 <i class="ri-user-5-line"></i>
               </a>
@@ -173,40 +175,47 @@
               <span class="left">Get Started</span>
             </n-view-link>
             <n-view-link class="nav-link flex-fill tip"
-              title="Routing System"
+              title="View Routing"
               href="/routing">
               <i class="ri-route-line"></i>
-              <span>Routing System</span>
+              <span>View Routing</span>
             </n-view-link>
             <n-view-link class="nav-link flex-fill tip"
-              title="Content Components"
+              title="Content"
               href="/content">
               <i class="ri-code-box-line"></i>
-              <span>Content Components</span>
+              <span>Content</span>
+            </n-view-link>
+            <n-view-link hidden
+              class="nav-link flex-fill tip"
+              title="App "
+              href="/app">
+              <i class="ri-install-line"></i>
+              <span>App</span>
             </n-view-link>
             <n-view-link class="nav-link flex-fill tip"
-              title="Data System"
+              title="Data "
               href="/data">
               <i class="ri-database-2-line"></i>
-              <span>Data System</span>
+              <span>Data</span>
             </n-view-link>
             <n-view-link class="nav-link flex-fill tip"
-              title="Actions System"
+              title="Actions"
               href="/actions">
               <i class="ri-flashlight-line"></i>
-              <span>Action System</span>
+              <span>Actions</span>
             </n-view-link>
             <n-view-link class="nav-link flex-fill tip"
-              title="Audio Components"
+              title="Audio"
               href="/audio">
               <i class="ri-music-line"></i>
-              <span class="right">Audio Components</span>
+              <span class="right">Audio</span>
             </n-view-link>
             <n-view-link class="nav-link flex-shrink-0 tip"
-              title="All Components"
+              title="Elements"
               href="/components">
               <i class="ri-settings-6-line"></i>
-              <span class="right">All Components</span>
+              <span class="right">Elements</span>
             </n-view-link>
             <n-view-link hidden
               class="nav-link flex-shrink-0 tip"
@@ -218,7 +227,7 @@
           </div>
         </nav>
         <nav aria-label="breadcrumb"
-          class="contained text-end">
+          class="bread-nav contained text-end">
           <n-view-link-list class=""
             list-class="breadcrumb justify-content-end"
             active-class="active"
@@ -236,50 +245,94 @@
             style-src="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
           </n-content-reference>
           <div slot="content">
-            <h1 style="margin:1em 0;">Turbo-charged HTML</h1>
-            <h2 style="margin:1em 0;"> Modern web-application functionality
-              without leaving the comfort of HTML</h2>
-            <h3>Features:</h3>
-            <h4>
-              <i class="ri-route-line"></i> Single-Page URL Routing
-            </h4>
+            <h1 style="margin:1em 0;">Application Elements</h1>
+            <h2 style="margin:1em 0;"> Application functionality without leaving
+              the comfort of HTML</h2>
+            <h3 id="app-n-app-">
+              <i class="ri-install-line"></i> App
+            </h3>
+            <p>Independent elements related to the file as an application.</p>
             <ul>
-              <li>Declarative Routing directly in HTML (no scripting) </li>
-              <li>Variable Data Routes & Remote Data-Driven Content</li>
-              <li>Data Provider System</li>
+              <li>App Console Logging</li>
+              <li>App Theme Detection &amp; Control</li>
+              <li>UI Component Kit Integrations (Ionic, shoelace, Material, etc)
+              </li>
+              <li>PWA Support (coming)</li>
+              <li>Expose Event/Actions to the DOM</li>
             </ul>
-            <h4>
-              <i class="ri-direction-line"></i> Guided Navigation
-            </h4>
+            <h3 id="views-n-views-">
+              <i class="ri-route-line"></i> Routing
+            </h3>
+            <p>Independent routing and navigation system.</p>
             <ul>
-              <li>Automatic Back & Forward Resolution</li>
-              <li>Sequenced Content: present, educate, inform</li>
-              <li>Sequenced Input: surveys, quiz and display results </li>
-              <li>Sequenced Video: interactive video story-telling</li>
-              <li>Expression-based View &amp; Conditions</li>
-              <li>Stateful: pick up where a user left-off</li>
+              <li>Single Page Application Routing</li>
+              <li>Fast navigation between views</li>
+              <li>Page History</li>
+              <li>Route Transitions</li>
+              <li>Nested Layouts</li>
+              <li>Nav Links with Active Route detection</li>
+              <li>Nav Lists: <br> Nav-Bars, Child Menus, and Breadcrumbs</li>
+              <li>Guided Navigation</li>
             </ul>
-            <h4>
-              <i class="ri-empathize-line"></i> Embedded Data
-            </h4>
+            <h3 id="content-n-content-">
+              <i class="ri-code-box-line"></i> Content Features
+            </h3>
+            <p>Independent elements for features around content HTML.</p>
             <ul>
-              <li>Data Tags to render personalized data from a variety of
-                sources </li>
-              <li>Use HTML to access data from your API</li>
-              <li>Capture attention and data, with smart workflows to replace
-                boring forms.</li>
-              <li>Personalize the content for each of your visitors. </li>
+              <li>Content Templates</li>
+              <li>Deferred Content</li>
+              <li>Content Data Injection</li>
+              <li>Markdown Rendering</li>
+              <li>Remote HTML / Partials</li>
             </ul>
-            <h4>
-              <i class="ri-slideshow-line"></i> Made for Presentations
-            </h4>
+            <h3 id="actions-n-action-">
+              <i class="ri-flashlight-line"></i> Actions
+            </h3>
+            <p>Data structure elements to declare functions and their
+              activations.</p>
             <ul>
-              <li>Interactive Videos</li>
-              <li>Queued, Timed & Event-based Actions</li>
-              <li>Animated Transitions</li>
-              <li>Background Music & Voice-Overs</li>
-              <li>Animation Hooks</li>
+              <li>Declared Actions</li>
+              <li>Reactive Activators</li>
+              <li>Add Custom Async Functions</li>
             </ul>
+            <h3 id="data-n-data-">
+              <i class="ri-database-2-line"></i> Data Systems
+            </h3>
+            <p>Optional enhancements elements to add data-functionality and
+              data-providers.</p>
+            <ul>
+              <li>Expression Evaluation</li>
+              <li>Token Resolution</li>
+              <li>Conditional Rule Evaluation</li>
+            </ul>
+            <h3 id="elements-n-elements"> Elements:
+              <code>&lt;n-elements&gt;</code></h3>
+            <p>Optional element that creates an action listener to handle
+              requests for light DOM updates</p>
+            <h4 id="audio-n-audio-">Audio: <code>&lt;n-audio-*&gt;</code></h4>
+            <p>Optional audio elements to display a player and create an action
+              listener for audio commands. The player orchestrate audio playback
+              in an opinionated format, with best practices.</p>
+            <ul>
+              <li>Voice-over Audio</li>
+              <li>Event Sounds</li>
+              <li>Background Music</li>
+            </ul>
+            <h3 id="analytics-n-analytics"> Analytics:
+              <code>&lt;n-analytics&gt;</code></h3>
+            <p>Optional element that creates an action listener that delegates
+              analytics-specific events and route-changes to a
+              script-configurable element for integration.</p>
+            <ul>
+              <li>Page Views</li>
+              <li>View Times</li>
+              <li>Custom Events</li>
+            </ul>
+            <h3 id="video-n-video-"> Video: <code>&lt;n-video-*&gt;</code></h3>
+            <p>Optional wrapper element to normalize video-events between
+              various video players to enable media-timed events for
+              synchronized actions. Useful for automatically navigating when a
+              video ends or updating the content based on the video time.</p>
             <h2>Built with Love</h2>
             <ul>
               <li>
@@ -333,13 +386,13 @@
           content-src="/pages/start/default.html">
         </n-view>
         <n-view url="/routing"
-          page-title="Routing System"
+          page-title="View Routing"
           src="/pages/routing/routes.html"
           content-src="/pages/routing/default.html"
           transition="animate__animated animate__fadeIn">
         </n-view>
         <n-view url="/content"
-          page-title="Content Components"
+          page-title="Content Elements"
           src="/pages/content/routes.html"
           content-src="/pages/content/default.html">
         </n-view>
@@ -354,12 +407,12 @@
           content-src="/pages/actions/default.html">
         </n-view>
         <n-view url="/audio"
-          page-title="Audio Components"
+          page-title="Audio Elements"
           src="/pages/audio/routes.html"
           content-src="/pages/audio/default.html">
         </n-view>
         <n-view url="/components"
-          page-title="Components"
+          page-title="Elements"
           src="/pages/components/routes.html"
           content-src="/pages/components/default.html"
           transition="animate__animated animate__fadeIn">
@@ -371,23 +424,21 @@
         </n-view-not-found>
         <n-analytics id="analytics">
           <script>
-          analytics.addEventListener( 'event', ( e ) => {
-            gtag( e.detail.key, e.detail.value )
-          } )
-          analytics.addEventListener( 'page-view', ( e ) => {
-            gtag( 'page_view', e.detail.pathname )
-          } )
-          analytics.addEventListener( 'view-time', ( e ) => {
-            gtag( e.detail.key, e.detail.value )
-          } )
-        </script>
+            analytics.addEventListener( 'custom-event', ( e ) => {
+              gtag( e.detail.key, e.detail.value )
+            } )
+            analytics.addEventListener( 'page-view', ( e ) => {
+              gtag( 'page_view', e.detail.pathname )
+            } )
+            analytics.addEventListener( 'view-time', ( e ) => {
+              gtag( e.detail.key, e.detail.value )
+            } )
+          </script>
         </n-analytics>
-        <n-data>
-          <!-- enable data expressions-->
-          <n-data-session></n-data-session>
-          <n-data-storage></n-data-storage>
-        </n-data>
       </n-views>
+      <!-- enable data expressions-->
+      <n-data-session></n-data-session>
+      <n-data-storage></n-data-storage>
       <n-elements>
         <!-- enable element manipulation-->
       </n-elements>

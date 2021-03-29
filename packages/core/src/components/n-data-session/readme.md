@@ -1,4 +1,4 @@
-# X-DATA-PROVIDER-SESSION
+# N-DATA-SESSION
 
 This component enables the **Session Data Provider**.
 
@@ -8,7 +8,7 @@ This store is short-lived within the browsing session of an exact browser. This 
 
 Provider Key: '**session**'
 
-`{{session:(key)}`
+`{{session:(key)}}`
 
 <!-- Auto Generated Below -->
 
@@ -25,10 +25,10 @@ Provider Key: '**session**'
 
 | Property    | Attribute    | Description                               | Type                  | Default     |
 | ----------- | ------------ | ----------------------------------------- | --------------------- | ----------- |
-| `keyPrefix` | `key-prefix` | The key prefix to use in storage          | `string \| undefined` | `undefined` |
+| `keyPrefix` | `key-prefix` | The key prefix to use in storage          | `string`, `undefined` | `undefined` |
 | `name`      | `name`       | Provider name to use in nent expressions. | `string`              | `'session'` |
 
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

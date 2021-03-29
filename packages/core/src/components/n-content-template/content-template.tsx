@@ -21,7 +21,7 @@ import { ROUTE_EVENTS } from '../../services/routing/interfaces'
  * This element renders the expression with all data-tokens
  * replaced with the values provided by the provider.
  *
- * @system data
+ * @system content
  */
 @Component({
   tag: 'n-content-template',

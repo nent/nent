@@ -4,7 +4,7 @@ import visualizer from 'rollup-plugin-visualizer'
 import { JsonDocs } from './stencil.config.utils'
 const config: Config = {
   namespace: 'nent',
-  preamble: 'nent 2021',
+  preamble: 'NENT 2021',
   hashFileNames: false,
   rollupPlugins: {
     after: [
@@ -26,7 +26,7 @@ const config: Config = {
     },
     {
       type: 'docs-readme',
-      footer: `nent 2021 - all rights reserved`,
+      footer: `NENT 2021 - all rights reserved`,
       dependencies: true,
       strict: true,
     },

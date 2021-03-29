@@ -1,6 +1,6 @@
-# X-APP-LINK
+# N-VIEW-LINK
 
-The element should be used in-place of an `a` tag to navigate without refreshing the page. This element supports an active-class that will be applied when the route in **href** matches the route of the app. This is helpful for menus, bread-crumbs and tabs.
+The element should be used in place of an `a` tag to navigate without refreshing the page. This element supports an active-class that will be applied when the route in `href` matches the route of the app. This is helpful for menus, bread-crumbs, and tabs.
 
 
 
@@ -11,7 +11,7 @@ The element should be used in-place of an `a` tag to navigate without refreshing
 
 ### Menu
 
-When used in a menu or navigation system, you can leverage the active-class that is added when the href-route is active.
+When used in a menu or navigation system, you can leverage the active-class that is added when the route is active.
 
 ```html
 <n-view-link href='/route' active-class='my-active-class'> ... </n-view-link>
@@ -20,7 +20,7 @@ When used in a menu or navigation system, you can leverage the active-class that
 
 ### View
 
-To create a link to a route, simply use the route in the href attribute.
+To create a link to a route, simply use the route in the `href` attribute.
 
 ```html
 <n-view-link href='/route'> ... </n-view-link>
@@ -54,4 +54,4 @@ graph TD;
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

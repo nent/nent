@@ -35,7 +35,7 @@ describe('n-view-link', () => {
     })
     expect(page.root).toEqualHtml(`
       <n-view-link>
-        <a class="link-active" n-attached-click="">
+        <a class="active" n-attached-click="">
         </a>
       </n-view-link>
     `)
@@ -57,14 +57,14 @@ describe('n-view-link', () => {
 
     let linkEl = page.body.querySelector('n-view-link')
     let anchor = page.body.querySelector('a')
-    expect(anchor?.classList.contains('link-active')).toBe(false)
+    expect(anchor?.classList.contains('active')).toBe(false)
 
     anchor!.click()
     await page.waitForChanges()
 
     expect(navigationState.router!.location.pathname).toBe('/foo')
 
-    expect(anchor?.classList.contains('link-active')).toBe(true)
+    expect(anchor?.classList.contains('active')).toBe(true)
     linkEl?.remove()
 
     page.root?.remove()

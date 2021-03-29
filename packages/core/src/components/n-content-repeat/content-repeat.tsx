@@ -27,7 +27,7 @@ import { filterData } from './filter/jsonata.worker'
  * The item template uses value expressions to insert data from any
  * data provider as well as the item in the array.
  *
- * @system data
+ * @system content
  */
 @Component({
   tag: 'n-content-repeat',

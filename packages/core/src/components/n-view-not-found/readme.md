@@ -1,4 +1,4 @@
-# X-VIEW-NOT-FOUND
+# N-VIEW-NOT-FOUND
 
 The `<n-view-not-found>` should be placed at the end of the content,
 inside the n-views component. It shows up when no views
@@ -34,9 +34,9 @@ Using the `<n-view-not-found>` component .
 | ----------------- | ------------------- | ------------------------------------------------------------------------------------ | --------------------- | ------------- |
 | `pageTitle`       | `page-title`        | The title for this view. This is prefixed before the app title configured in n-views | `string`              | `'Not Found'` |
 | `scrollTopOffset` | `scroll-top-offset` | Header height or offset for scroll-top on this view.                                 | `number`              | `0`           |
-| `transition`      | `transition`        | Navigation transition between routes. This is a CSS animation class.                 | `string \| undefined` | `undefined`   |
+| `transition`      | `transition`        | Navigation transition between routes. This is a CSS animation class.                 | `string`, `undefined` | `undefined`   |
 
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved

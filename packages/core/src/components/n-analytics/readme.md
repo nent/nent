@@ -1,11 +1,11 @@
-# X-APP-ANALYTICS
+# N-ANALYTICS
 
 The [\<n-analytics\>](/components/n-analytics) component delegates internal analytics commands to DOM events
 allowing developers to connect events to any analytics provider.
 
 ## Actions
 
-This component can respond to actions. See 
+This component can respond to actions. See the  [actions](/components/n-analytics/actions) documentation for more information.
 
 
 <!-- Auto Generated Below -->
@@ -35,7 +35,7 @@ This component can respond to actions. See
   ...
   <n-analytics id='analytics'>
     <script>
-      analytics.addEventListener('event', e => {
+      analytics.addEventListener('custom-event', e => {
         console.log(`event: ${JSON.stringify(e.detail)}`)
         gtag(e.detail.key, e.detail.value)
       })
@@ -70,4 +70,4 @@ Using the [\<n-analytics\>](/components/n-analytics) is simple, but does require
 
 ----------------------------------------------
 
-nent 2021 - all rights reserved
+NENT 2021 - all rights reserved
