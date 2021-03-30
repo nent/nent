@@ -40,7 +40,7 @@
     "test:watch": "stencil test --dev --spec --watch"
   },
   "devDependencies": {
-    "@stencil/core": "2.5.1",
+    "@stencil/core": "2.5.2",
     "@stencil/sass": "1.4.1",
     "@stencil/store": "1.4.1",
     "@types/howler": "2.2.1",
