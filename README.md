@@ -1,7 +1,7 @@
 # NENT: Web Application Elements
 
 ![MIT](https://badgen.net/github/license/nent/nent?icon=github)
-![size](https://badgen.net/badgesize/normal/file-url/unpkg.com/@nent/core/dist/nent/nent.esm.js?icon=sourcegraph&color=blue)
+![size](https://badgen.net/badgesize/normal/file-url/cdn.jsdelivr.net/npm/@nent/core/dist/esm/nent.js?icon=sourcegraph&color=blue)
 ![tree-shaking](https://badgen.net/badge/tree-shaking/enabled?icon=packagephobia)
 ![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 
@@ -110,7 +110,7 @@ Add a script-reference to the page head:
 <head>
   <script
     type="module"
-    src="https://unpkg.com/@nent/core/dist/nent/nent.esm.js"
+    src="https://cdn.jsdelivr.net/npm/@nent/core/dist/esm/nent.jss"
   ></script>
 </head>
 ```
@@ -122,7 +122,7 @@ Add a script-reference to the page head:
   ...
   <script
     type="module"
-    src="~/node_modules/@nent/core/dist/nent/nent.esm.js"
+    src="~/node_modules/@nent/core/dist/esm/nent.esm.js"
   ></script>
   ....
 </head>
@@ -130,6 +130,7 @@ Add a script-reference to the page head:
 
 ```bash
 npm i @nent/core
+# or
 yarn add @nent/core
 ```
 ## Learn More
@@ -160,7 +161,7 @@ Thank you to the Ionic team and their fabulous [**Stencil.js** SDK](https://sten
 
 Also, thank you to the creators and contributors to all open-source efforts, but especially to the libraries we love and use in our plugin components:
 
-- **expr-eval**: [declarative expression parser](https://github.com/silentmatt/expr-eval) 
-- **jsonata**: [declarative data query/filter/transformation](https://jsonata.org/) 
-- **howler**: [easy-to-use audio playback tools](https://github.com/goldfire/howler.js) 
-- **remarkable**: [ridiculously fast markdown processing.](https://jonschlinkert.github.io/remarkable/demo/) 
+- **expr-eval**: n-data [declarative expression parser](https://github.com/silentmatt/expr-eval) 
+- **jsonata**: n-content-repeat [declarative data query/filter/transformation](https://jsonata.org/) 
+- **howler**: n-audio [easy-to-use audio playback tools](https://github.com/goldfire/howler.js) 
+- **remarkable**: n-content-markdown [ridiculously fast markdown processing.](https://jonschlinkert.github.io/remarkable/demo/) 

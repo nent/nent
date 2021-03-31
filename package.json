@@ -45,7 +45,7 @@
     "clean:core": "rm -fR ./packages/core/dist && rm -fR ./packages/core/coverage",
     "clean:docs": "rm -fR ./docs",
     "prepare": "husky install",
-    "prepublishOnly": "pinst --disable && cp README.md ./packages/core",
+    "prepublishOnly": "pinst --disable && cp README.md ./packages/core/README.md",
     "postpublish": "pinst --enable && rm ./packages/core/README.md"
   },
   "devDependencies": {

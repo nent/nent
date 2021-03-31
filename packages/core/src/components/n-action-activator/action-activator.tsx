@@ -44,6 +44,9 @@ export class ActionActivator {
    * activation strategy. This element uses the HTML Element querySelectorAll
    * function to find the element/s based on the query in this attribute.
    *
+   * If left blank, this element looks for child elements matching:
+   * 'a,button,input[type=button]'
+   *
    * For use with activate="on-element-event" Only!
    */
   @Prop() targetElement?: string
@@ -173,38 +176,43 @@ export class ActionActivator {
     })
 
     if (this.activate === ActionActivationStrategy.OnElementEvent) {
-      const element = this.targetElement
-        ? this.el.ownerDocument.querySelector(this.targetElement)
-        : this.el.querySelector(
-            ':enabled:not(n-action):not(n-audio-action-music):not(n-audio-action-sound):not(script):not(n-action-activator)',
-          )
+      const elements = this.targetElement
+        ? this.el.ownerDocument.querySelectorAll(this.targetElement)
+        : this.el.querySelectorAll('a,button,input[type=button]')
 
-      if (!element) {
+      if (!elements || elements.length == 0) {
         warn(
           `n-action-activator: ${
             this.parent?.path || ''
-          } no elements found for '${this.targetElement || 'na'}'`,
+          } no elements found for '${this.targetElement}'`,
         )
       } else {
         debugIf(
           this.debug,
-          `n-action-activator: element found ${element.nodeName}`,
+          `n-action-activator: elements found ${elements.length}`,
         )
-        const events = this.targetEvent
-          .split(',')
-          .filter(e => isValue(e))
 
-        events.forEach(event => {
-          this.debug,
-            `n-action-activator: element event ${event} registered on ${element.nodeName}`,
-            element.addEventListener(event, async () => {
-              const { path } = this.parent || { path: '' }
-              debugIf(
-                this.debug,
-                `n-action-activator: ${path} received ${element.nodeName} ${this.targetEvent} event`,
-              )
-              await this.activateActions()
-            })
+        elements.forEach(element => {
+          debugIf(
+            this.debug,
+            `n-action-activator: element found ${element.nodeName}`,
+          )
+          const events = this.targetEvent
+            .split(',')
+            .filter(e => isValue(e))
+
+          events.forEach(event => {
+            this.debug,
+              `n-action-activator: element event ${event} registered on ${element.nodeName}`,
+              element.addEventListener(event, async () => {
+                const { path } = this.parent || { path: '' }
+                debugIf(
+                  this.debug,
+                  `n-action-activator: ${path} received ${element.nodeName} ${this.targetEvent} event`,
+                )
+                await this.activateActions()
+              })
+          })
         })
       }
     } else if (this.activate === ActionActivationStrategy.OnRender) {
