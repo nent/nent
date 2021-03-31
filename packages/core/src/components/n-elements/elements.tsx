@@ -38,5 +38,6 @@ export class Elements {
 
   disconnectedCallback() {
     this.listener.destroy()
+    commonState.elementsEnabled = false
   }
 }
