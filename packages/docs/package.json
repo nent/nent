@@ -21,11 +21,11 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "4.0.3",
-    "@stencil/core": "2.5.1",
+    "@stencil/core": "2.5.2",
     "@stencil/postcss": "2.0.0",
     "autoprefixer": "10.2.5",
     "bootstrap": "5.0.0-beta3",
-    "postcss": "8.2.8",
+    "postcss": "8.2.9",
     "postcss-import": "14.0.0",
     "postcss-scss": "3.0.5",
     "remixicon": "2.5.0",
