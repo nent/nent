@@ -17,7 +17,7 @@ To:
 
 ## Tag Changes
 
-Perform these changes in this order:
+Perform these changes in this order, for HTML, SCSS/CSS and Liquid files:
 
 
 ### 1) Routing
@@ -106,7 +106,17 @@ Renamed audio-action components to include the action namespace to start a new c
     x-video-autoplay-switch n-video-switch
 
 
-### 8) Rename remaining from x-* to n-*.
+## Global Find-Replace
+
+After all the tag-specific changes are made above, a global find-replace on `x-` to `n-` can be made in HTML, SCSS/CSS, and Liquid files.
+
+It should update the remaining tags:
 
     x-action*               n-action
     x-action-activator      n-action-activator
+    x-elements              n-elements
+  
+It should also capture any attributes that used to start with x-*: 
+
+    x-hide-when             n-hide-when
+    x-show-when             n-show-when
