@@ -36,9 +36,61 @@ This component supports three ways to express the collection or where it comes f
 
 ## Usage
 
-### Basic
+### Attributes
+
+The **items** attribute can be any array-string or an [expression](/data/expressions) to pull data from a registered provider.
+
+### Items from Attribute (Simple Array)
+
+```html
+<n-content-repeat items="['one','two','three']">
+  <template>
+    <div>{{data:item}}</div>
+  </template>
+</n-content-repeat>
+```
+
+### Items from Attribute (Provider Array)
+
+```html
+<n-content-repeat items='{{storage:cart-items}}'>
+  <template>
+    <div>{{data:productName}}</div>
+  </template>
+</n-content-repeat>
+```
 
 
+### Remote
+
+### Items from Remote URL (Remote Array)
+
+```html
+<n-content-repeat items-src='/data/items.json'>
+  <template>
+    <div style='color: {{data:color}};'>{{data:name}}</div>
+  </template>
+</n-content-repeat>
+```
+
+
+### Script
+
+### Items from Inline Script (Object Array)
+
+```html
+<n-content-repeat>
+  <script type='application/json'>
+    [
+      { 'color': 'blue', 'name': 'Bob' },
+      { 'color': 'red', 'name': 'Sally' }
+    ]
+  </script>
+  <template>
+    <div style='color: {{data:color}};'>{{data:name}}</div>
+  </template>
+</n-content-repeat>
+```
 
 
 
@@ -48,11 +100,11 @@ This component supports three ways to express the collection or where it comes f
 | ----------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | ----------- |
 | `debug`     | `debug`      | Turn on debug statements for load, update and render events.                                                                                    | `boolean`             | `false`     |
 | `deferLoad` | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.                                    | `boolean`             | `false`     |
-| `filter`    | `filter`     | The JSONata query to filter the json items see <https://try.jsonata.org> for more info.                                                         | `string`, `undefined` | `undefined` |
-| `items`     | `items`      | The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}                                   | `string`, `undefined` | `undefined` |
-| `itemsSrc`  | `items-src`  | The URL to remote JSON collection to use for the items.                                                                                         | `string`, `undefined` | `undefined` |
+| `filter`    | `filter`     | The JSONata query to filter the json items see <https://try.jsonata.org> for more info.                                                         | `string \| undefined` | `undefined` |
+| `items`     | `items`      | The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}                                   | `string \| undefined` | `undefined` |
+| `itemsSrc`  | `items-src`  | The URL to remote JSON collection to use for the items.                                                                                         | `string \| undefined` | `undefined` |
 | `noCache`   | `no-cache`   | Force render with data & route changes.                                                                                                         | `boolean`             | `false`     |
-| `when`      | `when`       | A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute) | `string`, `undefined` | `undefined` |
+| `when`      | `when`       | A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute) | `string \| undefined` | `undefined` |
 
 
 ----------------------------------------------

@@ -11,7 +11,7 @@ Default: user-preference
 
 ### Basic
 
-
+Add the `<n-app-theme-switch>` component to any page to allow the user to adjust the setting. You can style it using standard CSS and if necessary, add CSS styles directly to the input element using the **classes** attribute.
 
 
 
@@ -19,8 +19,8 @@ Default: user-preference
 
 | Property  | Attribute  | Description                          | Type                  | Default     |
 | --------- | ---------- | ------------------------------------ | --------------------- | ----------- |
-| `classes` | `classes`  | The class to add to the inner input. | `string`, `undefined` | `undefined` |
-| `inputId` | `input-id` | The inner input ID                   | `string`, `undefined` | `undefined` |
+| `classes` | `classes`  | The class to add to the inner input. | `string \| undefined` | `undefined` |
+| `inputId` | `input-id` | The inner input ID                   | `string \| undefined` | `undefined` |
 
 
 ----------------------------------------------

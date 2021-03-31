@@ -18,12 +18,12 @@ The View Component and its attributes provide the page context & functionality:
 
 ```html
 <n-views>
-  <n-view url='/' 
+  <n-view path='/' 
     page-title='Home' 
     transition='fade-in'> 
     ... 
   </n-view>
-  <n-view url='/about' 
+  <n-view path='/about' 
     page-title='About Us' 
     scroll-top-offset='20'> 
     ... 
@@ -39,11 +39,11 @@ Views can hold any HTML, including View components. This implicitly creates chil
 
 ```html
 <n-views>
-  <n-view url='/'> 
+  <n-view path='/'> 
   ... 
   </n-view>
-  <n-view url='/about'>
-    <n-view url='/location'>
+  <n-view path='/about'>
+    <n-view path='/location'>
     ... 
     </n-view>
   </n-view>
@@ -72,18 +72,18 @@ At that point, the inner HTML content is finally revealed. Using this convention
 
 ## Properties
 
-| Property           | Attribute           | Description                                                                                                                                                                                                                     | Type                                                 | Default     |
-| ------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------- |
-| `contentSrc`       | `content-src`       | Remote URL for this Route's content.                                                                                                                                                                                            | `string`, `undefined`                                | `undefined` |
-| `debug`            | `debug`             | Turn on debug statements for load, update and render events.                                                                                                                                                                    | `boolean`                                            | `false`     |
-| `exact`            | `exact`             | The url for this route should only be matched when it is exact.                                                                                                                                                                 | `boolean`                                            | `false`     |
-| `mode`             | `mode`              | Cross Origin Mode if the content is pulled from a remote location                                                                                                                                                               | `'cors'`, `'navigate'`, `'no-cors'`, `'same-origin'` | `'cors'`    |
-| `pageTitle`        | `page-title`        | The title for this view. This is prefixed before the app title configured in n-views                                                                                                                                            | `string`                                             | `''`        |
-| `resolveTokens`    | `resolve-tokens`    | Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML | `boolean`                                            | `false`     |
-| `scrollTopOffset`  | `scroll-top-offset` | Header height or offset for scroll-top on this view.                                                                                                                                                                            | `number`                                             | `0`         |
-| `src`              | `src`               | Remote URL for this route's HTML. HTML from this URL will be not be assigned to any slot.  You can add slot='content' to any containers within this HTML if you have a mix of HTML for this exact-route and its children.       | `string`, `undefined`                                | `undefined` |
-| `transition`       | `transition`        | Navigation transition between routes. This is a CSS animation class.                                                                                                                                                            | `string`, `undefined`                                | `undefined` |
-| `url` _(required)_ | `url`               | The url for this route, including the parent's routes.                                                                                                                                                                          | `string`                                             | `undefined` |
+| Property            | Attribute           | Description                                                                                                                                                                                                                     | Type                                                 | Default     |
+| ------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------- |
+| `contentSrc`        | `content-src`       | Remote URL for this Route's content.                                                                                                                                                                                            | `string \| undefined`                                | `undefined` |
+| `debug`             | `debug`             | Turn on debug statements for load, update and render events.                                                                                                                                                                    | `boolean`                                            | `false`     |
+| `exact`             | `exact`             | The path for this route should only be matched when it is exact.                                                                                                                                                                 | `boolean`                                            | `false`     |
+| `mode`              | `mode`              | Cross Origin Mode if the content is pulled from a remote location                                                                                                                                                               | `"cors"`, `"navigate"`, `"no-cors"`, `"same-origin"` | `'cors'`    |
+| `pageTitle`         | `page-title`        | The title for this view. This is prefixed before the app title configured in n-views                                                                                                                                            | `string`                                             | `''`        |
+| `path` _(required)_ | `path`              | The path for this route, including the parent's routes, excluding the router's root.                                                                                                                                            | `string`                                             | `undefined` |
+| `resolveTokens`     | `resolve-tokens`    | Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML | `boolean`                                            | `false`     |
+| `scrollTopOffset`   | `scroll-top-offset` | Header height or offset for scroll-top on this view.                                                                                                                                                                            | `number`                                             | `0`         |
+| `src`               | `src`               | Remote URL for this route's HTML. HTML from this URL will be not be assigned to any slot.  You can add slot='content' to any containers within this HTML if you have a mix of HTML for this exact-route and its children.       | `string \| undefined`                                | `undefined` |
+| `transition`        | `transition`        | Navigation transition between routes. This is a CSS animation class.                                                                                                                                                            | `string \| undefined`                                | `undefined` |
 
 
 ## Methods
@@ -104,8 +104,8 @@ Type: `Promise<{ activators: HTMLNActionActivatorElement[]; views: HTMLNViewElem
 
 | Slot        | Description                                                                                                                                                       |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `'content'` | The content route is rendered only when the route           matches EXACTLY. Note: This HTML is removed when the           route changes.                         |
-| `'default'` | The default slot is rendered when this route is           activated, visible by default to all routes matching           the route URL (typically, child routes). |
+| `"content"` | The content route is rendered only when the route           matches EXACTLY. Note: This HTML is removed when the           route changes.                         |
+| `"default"` | The default slot is rendered when this route is           activated, visible by default to all routes matching           the route URL (typically, child routes). |
 
 
 ----------------------------------------------

@@ -75,9 +75,9 @@ If audio has replay set to true, re-entry to the originating state will re-activ
 | Property               | Attribute    | Description                                                                                                  | Type                          | Default     |
 | ---------------------- | ------------ | ------------------------------------------------------------------------------------------------------------ | ----------------------------- | ----------- |
 | `deferLoad`            | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute. | `boolean`                     | `false`     |
-| `discard`              | `discard`    | The discard strategy the player should use for this file.                                                    | `'next'`, `'none'`, `'route'` | `'route'`   |
+| `discard`              | `discard`    | The discard strategy the player should use for this file.                                                    | `"next"`, `"none"`, `"route"` | `'route'`   |
 | `loop`                 | `loop`       | Set this to true to have the audio file loop.                                                                | `boolean`                     | `false`     |
-| `mode`                 | `mode`       | This is loading strategy that determines what is should do after the file is retrieved.                      | `'load'`, `'play'`, `'queue'` | `'queue'`   |
+| `mode`                 | `mode`       | This is loading strategy that determines what is should do after the file is retrieved.                      | `"load"`, `"play"`, `"queue"` | `'queue'`   |
 | `src` _(required)_     | `src`        | The path to the audio-file.                                                                                  | `string`                      | `undefined` |
 | `trackId` _(required)_ | `track-id`   | The identifier for this music track                                                                          | `string`                      | `undefined` |
 
@@ -86,7 +86,7 @@ If audio has replay set to true, re-entry to the originating state will re-activ
 
 ### `getAction() => Promise<EventAction<AudioInfo | AudioRequest | any>>`
 
-Get the underlying action-event instance.
+Get the underlying actionEvent instance.
 
 #### Returns
 
@@ -96,7 +96,7 @@ Type: `Promise<EventAction<any>>`
 
 ### `sendAction(data?: Record<string, any> | undefined) => Promise<void>`
 
-Send this action to the action messaging system.
+Send this action to the the action messaging system.
 
 #### Returns
 

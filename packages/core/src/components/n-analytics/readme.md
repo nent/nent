@@ -61,11 +61,11 @@ Using the [\<n-analytics\>](/components/n-analytics) is simple, but does require
 
 ## Events
 
-| Event       | Description              | Type               |
-| ----------- | ------------------------ | ------------------ |
-| `event`     | Raised analytics events. | `CustomEvent<any>` |
-| `page-view` | Page views.              | `CustomEvent<any>` |
-| `view-time` | View percentage views.   | `CustomEvent<any>` |
+| Event          | Description              | Type               |
+| -------------- | ------------------------ | ------------------ |
+| `custom-event` | Raised analytics events. | `CustomEvent<any>` |
+| `page-view`    | Page views.              | `CustomEvent<any>` |
+| `view-time`    | View percentage views.   | `CustomEvent<any>` |
 
 
 ----------------------------------------------

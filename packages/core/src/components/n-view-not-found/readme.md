@@ -34,7 +34,7 @@ Using the `<n-view-not-found>` component .
 | ----------------- | ------------------- | ------------------------------------------------------------------------------------ | --------------------- | ------------- |
 | `pageTitle`       | `page-title`        | The title for this view. This is prefixed before the app title configured in n-views | `string`              | `'Not Found'` |
 | `scrollTopOffset` | `scroll-top-offset` | Header height or offset for scroll-top on this view.                                 | `number`              | `0`           |
-| `transition`      | `transition`        | Navigation transition between routes. This is a CSS animation class.                 | `string`, `undefined` | `undefined`   |
+| `transition`      | `transition`        | Navigation transition between routes. This is a CSS animation class.                 | `string \| undefined` | `undefined`   |
 
 
 ----------------------------------------------
