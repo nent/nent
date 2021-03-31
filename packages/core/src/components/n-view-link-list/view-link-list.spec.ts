@@ -33,7 +33,7 @@ describe('n-view-link-list', () => {
       html: `
       <n-views>
         <n-view-link-list></n-view-link-list>
-        <n-view url="/" page-title="Home"></n-view>
+        <n-view path="/" page-title="Home"></n-view>
       </n-views>`,
     })
 
@@ -50,7 +50,7 @@ describe('n-view-link-list', () => {
           </li>
         </ol>
       </n-view-link-list>
-      <n-view class="active exact" page-title="Home" url="/">
+      <n-view class="active exact" page-title="Home" path="/">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -68,9 +68,9 @@ describe('n-view-link-list', () => {
       html: `
       <n-views>
         <n-view-link-list></n-view-link-list>
-        <n-view url="/home" page-title="Home">
+        <n-view path="/home" page-title="Home">
         </n-view>
-        <n-view url="/home/page1" page-title="Page 1"></n-view>
+        <n-view path="/home/page1" page-title="Page 1"></n-view>
       </n-views>`,
       url: 'http://local.com/home/page1',
     })
@@ -95,13 +95,13 @@ describe('n-view-link-list', () => {
           </li>
         </ol>
       </n-view-link-list>
-      <n-view class="active " page-title="Home" url="/home">
+      <n-view class="active " page-title="Home" path="/home">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
         </mock:shadow-root>
       </n-view>
-      <n-view class="active exact" page-title="Page 1" url="/home/page1">
+      <n-view class="active exact" page-title="Page 1" path="/home/page1">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -119,9 +119,9 @@ describe('n-view-link-list', () => {
       html: `
       <n-views>
         <n-view-link-list></n-view-link-list>
-        <n-view url="/home" page-title="Home">
+        <n-view path="/home" page-title="Home">
         </n-view>
-        <n-view url="/home/:item" page-title="{{route:item}}"></n-view>
+        <n-view path="/home/:item" page-title="{{route:item}}"></n-view>
       </n-views>`,
       url: 'http://local.com/home/dogs',
     })
@@ -146,13 +146,13 @@ describe('n-view-link-list', () => {
           </li>
         </ol>
       </n-view-link-list>
-      <n-view class="active " page-title="Home" url="/home">
+      <n-view class="active " page-title="Home" path="/home">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
         </mock:shadow-root>
       </n-view>
-      <n-view class="active exact" page-title="{{route:item}}" url="/home/:item">
+      <n-view class="active exact" page-title="{{route:item}}" path="/home/:item">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -170,11 +170,11 @@ describe('n-view-link-list', () => {
       html: `
       <n-views>
         <n-view-link-list></n-view-link-list>
-        <n-view url="/" page-title="Root">
+        <n-view path="/" page-title="Root">
         </n-view>
-        <n-view url="/home" page-title="Home">
+        <n-view path="/home" page-title="Home">
         </n-view>
-        <n-view url="/home/page1" page-title="Page 1"></n-view>
+        <n-view path="/home/page1" page-title="Page 1"></n-view>
       </n-views>`,
       url: 'http://local.com/home/page1',
     })
@@ -206,19 +206,19 @@ describe('n-view-link-list', () => {
           </li>
         </ol>
       </n-view-link-list>
-      <n-view class="active " page-title="Root" url="/">
+      <n-view class="active " page-title="Root" path="/">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
         </mock:shadow-root>
       </n-view>
-      <n-view class="active " page-title="Home" url="/home">
+      <n-view class="active " page-title="Home" path="/home">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
         </mock:shadow-root>
       </n-view>
-      <n-view class="active exact" page-title="Page 1" url="/home/page1">
+      <n-view class="active exact" page-title="Page 1" path="/home/page1">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>

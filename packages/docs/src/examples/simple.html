@@ -38,7 +38,7 @@
 
   <body>
     <n-views app-title="App"
-      start-url="/home"
+      start-path="/home"
       root="/examples/simple.html#/">
       <nav class="nav d-flex flen-row">
         <n-view-link class="nav-link"
@@ -50,7 +50,7 @@
           active-class="active"> About </n-view-link>
       </nav>
       <div class="container">
-        <n-view url="/home"
+        <n-view path="/home"
           page-title="Home">
           <h1>Home</h1>
           <hr />
@@ -59,7 +59,7 @@
             <p>Now you have a basic content router.</p>
           </div>
         </n-view>
-        <n-view url="/about"
+        <n-view path="/about"
           page-title="About"
           n-cloak>
           <h1>About</h1>

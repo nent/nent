@@ -29,11 +29,10 @@ For more routing information, check out the [routing](/routing) documentation.
 The example sets an offset for scrolling, a global page transition and has a non-default start page.
 
 ```html
-<n-views 
-  app-title='Sample Site' 
+<n-views app-title='Sample Site' 
   scroll-top-offset='0' 
   transition='fade-in' 
-  start-url='/home' 
+  start-path='/home' 
   >
   ...
   <n-view ...></n-view>
@@ -48,11 +47,11 @@ The example sets an offset for scrolling, a global page transition and has a non
 
 | Property          | Attribute           | Description                                                                                                                  | Type                  | Default     |
 | ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------- | ----------- |
-| `appTitle`        | `app-title`         | This is the application / site title. If the views or dos have titles, this is added as a suffix.                            | `string`, `undefined` | `undefined` |
+| `appTitle`        | `app-title`         | This is the application / site title. If the views or dos have titles, this is added as a suffix.                            | `string \| undefined` | `undefined` |
 | `root`            | `root`              | This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths. | `string`              | `'/'`       |
-| `scrollTopOffset` | `scroll-top-offset` | Header height or offset for scroll-top on this and all views.                                                                | `number`, `undefined` | `undefined` |
+| `scrollTopOffset` | `scroll-top-offset` | Header height or offset for scroll-top on this and all views.                                                                | `number \| undefined` | `undefined` |
 | `startUrl`        | `start-url`         | This is the start path a user should land on when they first land on this app.                                               | `string`              | `'/'`       |
-| `transition`      | `transition`        | Navigation transition between routes. This is a CSS animation class.                                                         | `string`, `undefined` | `undefined` |
+| `transition`      | `transition`        | Navigation transition between routes. This is a CSS animation class.                                                         | `string \| undefined` | `undefined` |
 
 
 ----------------------------------------------

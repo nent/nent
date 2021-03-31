@@ -171,40 +171,40 @@ These tags are explained in detail within their own element requirements, but he
 <n-views>
   <n-view path="/start"
     page-title="Home">
-    <n-view-prompt url="/welcome"
+    <n-view-prompt path="/welcome"
       visit="always">
       ...
     </n-view-prompt>
-    <n-view-prompt url="/get-name"
+    <n-view-prompt path="/get-name"
       page-title="What's your name?"
       when="name == null"
       type="input">
       ...
     </n-view-prompt>
-    <n-view-prompt url="/hi-name"
+    <n-view-prompt path="/hi-name"
       page-title="Hello!">
       ...
     </n-view-prompt>
-    <n-view-prompt url="/video-intro"
+    <n-view-prompt path="/video-intro"
       visit="optional"
       type="video">
       ...
     </n-view-prompt>
-    <n-view url="/about"
+    <n-view path="/about"
       page-title="About Us">
-      <n-view-prompt url="/meet-mike"
+      <n-view-prompt path="/meet-mike"
         page-title="About Mike">
         ...
       </n-view-prompt>
-      <n-view-prompt url="/meet-paul"
+      <n-view-prompt path="/meet-paul"
         page-title="About Paul">
         ...
       </n-view-prompt>
-      <n-view-prompt url="/meet-jason"
+      <n-view-prompt path="/meet-jason"
         page-title="About Jason">
         ...
       </n-view-prompt>
-      <x-do url="/meet-max"
+      <n-view-prompt path="/meet-max"
         page-title="About Max"
         ...>
       </n-view-prompt>

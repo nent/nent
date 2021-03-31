@@ -53,7 +53,7 @@ export namespace Components {
          */
         "once": boolean;
         /**
-          * The element to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelector function to find the element.  For use with activate="on-element-event" Only!
+          * The element or elements to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelectorAll function to find the element/s based on the query in this attribute.  For use with activate="on-element-event" Only!
          */
         "targetElement"?: string;
         /**
@@ -548,6 +548,10 @@ export namespace Components {
          */
         "pageTitle": string;
         /**
+          * The path for this route, including the parent's routes, excluding the router's root.
+         */
+        "path": string;
+        /**
           * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
          */
         "resolveTokens": boolean;
@@ -563,10 +567,6 @@ export namespace Components {
           * Navigation transition between routes. This is a CSS animation class.
          */
         "transition"?: string;
-        /**
-          * The url for this route, including the parent's routes.
-         */
-        "url": string;
     }
     interface NViewLink {
         /**
@@ -656,6 +656,10 @@ export namespace Components {
          */
         "pageTitle": string;
         /**
+          * The path for this prompt route, including the parent's routes, excluding the router's root.
+         */
+        "path": string;
+        /**
           * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
          */
         "resolveTokens": boolean;
@@ -667,10 +671,6 @@ export namespace Components {
           * Navigation transition between routes. This is a CSS animation class.
          */
         "transition"?: string;
-        /**
-          * The url for this route, including the parent's routes.
-         */
-        "url": string;
         /**
           * The visit strategy for this do. once: persist the visit and never force it again always: do not persist, but don't don't show again in-session optional: do not force this view-do ever. It will be available by URL
          */
@@ -696,7 +696,7 @@ export namespace Components {
         /**
           * This is the start path a user should land on when they first land on this app.
          */
-        "startUrl": string;
+        "startPath": string;
         /**
           * Navigation transition between routes. This is a CSS animation class.
          */
@@ -967,7 +967,7 @@ declare namespace LocalJSX {
          */
         "once"?: boolean;
         /**
-          * The element to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelector function to find the element.  For use with activate="on-element-event" Only!
+          * The element or elements to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelectorAll function to find the element/s based on the query in this attribute.  For use with activate="on-element-event" Only!
          */
         "targetElement"?: string;
         /**
@@ -1441,6 +1441,10 @@ declare namespace LocalJSX {
          */
         "pageTitle"?: string;
         /**
+          * The path for this route, including the parent's routes, excluding the router's root.
+         */
+        "path": string;
+        /**
           * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
          */
         "resolveTokens"?: boolean;
@@ -1456,10 +1460,6 @@ declare namespace LocalJSX {
           * Navigation transition between routes. This is a CSS animation class.
          */
         "transition"?: string;
-        /**
-          * The url for this route, including the parent's routes.
-         */
-        "url": string;
     }
     interface NViewLink {
         /**
@@ -1549,6 +1549,10 @@ declare namespace LocalJSX {
          */
         "pageTitle"?: string;
         /**
+          * The path for this prompt route, including the parent's routes, excluding the router's root.
+         */
+        "path": string;
+        /**
           * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
          */
         "resolveTokens"?: boolean;
@@ -1560,10 +1564,6 @@ declare namespace LocalJSX {
           * Navigation transition between routes. This is a CSS animation class.
          */
         "transition"?: string;
-        /**
-          * The url for this route, including the parent's routes.
-         */
-        "url": string;
         /**
           * The visit strategy for this do. once: persist the visit and never force it again always: do not persist, but don't don't show again in-session optional: do not force this view-do ever. It will be available by URL
          */
@@ -1589,7 +1589,7 @@ declare namespace LocalJSX {
         /**
           * This is the start path a user should land on when they first land on this app.
          */
-        "startUrl"?: string;
+        "startPath"?: string;
         /**
           * Navigation transition between routes. This is a CSS animation class.
          */

@@ -29,11 +29,11 @@ describe('n-analytics', () => {
       components: [ViewRouter, View, ViewPrompt, Analytics],
       url: 'http://test/',
       html: `<n-views>
-        <n-view url='/start'>
-          <n-view-prompt url="step-1">
+        <n-view path='/start'>
+          <n-view-prompt path="step-1">
             <a id='s1' n-next>NEXT</a>
           </n-view-prompt>
-          <n-view-prompt url="step-2">
+          <n-view-prompt path="step-2">
             <a id='b2' n-back>BACK</a>
             <a id='s2' n-next>NEXT</a>
           </n-view-prompt>

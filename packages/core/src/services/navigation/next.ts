@@ -4,7 +4,7 @@ import { IViewDo, VisitStrategy } from './interfaces'
 import { hasVisited } from './visits'
 
 async function applyPredicate(viewDo: IViewDo): Promise<IViewDo> {
-  let { when, url, visit = VisitStrategy.once } = viewDo
+  let { when, path: url, visit = VisitStrategy.once } = viewDo
   let visited = await hasVisited(url)
   if (dataState.enabled && when) {
     const shouldGo = await evaluatePredicate(when)
@@ -15,7 +15,7 @@ async function applyPredicate(viewDo: IViewDo): Promise<IViewDo> {
       visit = VisitStrategy.optional
     }
   }
-  return { when, visit, visited, url }
+  return { when, visit, visited, path: url }
 }
 
 async function findFirstUnvisited(

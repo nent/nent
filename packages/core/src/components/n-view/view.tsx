@@ -85,13 +85,13 @@ export class View {
   @Prop() transition?: string
 
   /**
-   * The url for this route, including the parent's
-   * routes.
+   * The path for this route, including the parent's
+   * routes, excluding the router's root.
    */
-  @Prop({ mutable: true, reflect: true }) url!: string
+  @Prop({ mutable: true, reflect: true }) path!: string
 
   /**
-   * The url for this route should only be matched
+   * The path for this route should only be matched
    * when it is exact.
    */
   @Prop() exact: boolean = false
@@ -184,11 +184,11 @@ export class View {
   }
 
   componentWillLoad() {
-    debugIf(this.debug, `n-view: ${this.url} loading`)
+    debugIf(this.debug, `n-view: ${this.path} loading`)
 
     if (!navigationState.router) {
       warn(
-        `n-view: ${this.url} cannot load outside of an n-views element`,
+        `n-view: ${this.path} cannot load outside of an n-views element`,
       )
       return
     }
@@ -227,7 +227,7 @@ export class View {
     this.dataSubscription = eventBus.on(
       DATA_EVENTS.DataChanged,
       async () => {
-        debugIf(this.debug, `n-view: ${this.url} data changed `)
+        debugIf(this.debug, `n-view: ${this.path} data changed `)
         if (this.match) await resolveChildElementXAttributes(this.el)
         //
         forceUpdate(this)
@@ -236,10 +236,10 @@ export class View {
   }
 
   async componentWillRender() {
-    debugIf(this.debug, `n-view: ${this.url} will render`)
+    debugIf(this.debug, `n-view: ${this.path} will render`)
 
     if (this.match) {
-      debugIf(this.debug, `n-view: ${this.url} route is matched `)
+      debugIf(this.debug, `n-view: ${this.path} route is matched `)
       if (this.routeElement == null) {
         this.routeElement = await this.resolveRouteElement()
         this.routeElement?.childNodes.forEach(n => {
@@ -249,12 +249,12 @@ export class View {
 
       debugIf(
         this.debug,
-        `n-view: ${this.url} found ${this.childViews.length} child views`,
+        `n-view: ${this.path} found ${this.childViews.length} child views`,
       )
 
       debugIf(
         this.debug,
-        `n-view: ${this.url} found ${this.childViewDos.length} child view-dos`,
+        `n-view: ${this.path} found ${this.childViewDos.length} child view-dos`,
       )
     }
 
@@ -262,15 +262,15 @@ export class View {
     if (this.match?.isExact) {
       debugIf(
         this.debug,
-        `n-view: ${this.url} route is exactly matched `,
+        `n-view: ${this.path} route is exactly matched `,
       )
       const viewDos = this.childViewDos.map(el => {
-        const { url, when, visit } = el
-        return { url, when, visit }
+        const { path, when, visit } = el
+        return { path, when, visit }
       })
       const nextDo = await resolveNext(viewDos)
       if (nextDo) {
-        this.route.replaceWithRoute(nextDo.url)
+        this.route.replaceWithRoute(nextDo.path)
         return
       } else {
         markVisit(this.match.url)
@@ -284,7 +284,7 @@ export class View {
   private async resolveRouteElement() {
     debugIf(
       this.debug,
-      `n-view: ${this.url} fetching content from ${this.src}`,
+      `n-view: ${this.path} fetching content from ${this.src}`,
     )
     if (!this.src) {
       return null
@@ -307,7 +307,7 @@ export class View {
       return div
     } catch {
       warn(
-        `n-view: ${this.url} Unable to retrieve from ${this.contentSrc}`,
+        `n-view: ${this.path} Unable to retrieve from ${this.contentSrc}`,
       )
       return null
     }
@@ -316,7 +316,7 @@ export class View {
   private async resolveContentElement() {
     debugIf(
       this.debug,
-      `n-view: ${this.url} fetching content from ${this.contentSrc}`,
+      `n-view: ${this.path} fetching content from ${this.contentSrc}`,
     )
     if (!this.contentSrc) {
       return null
@@ -340,14 +340,14 @@ export class View {
       return div
     } catch {
       warn(
-        `n-view: ${this.url} Unable to retrieve from ${this.contentSrc}`,
+        `n-view: ${this.path} Unable to retrieve from ${this.contentSrc}`,
       )
       return null
     }
   }
 
   async componentDidRender() {
-    debugIf(this.debug, `n-view: ${this.url} did render`)
+    debugIf(this.debug, `n-view: ${this.path} did render`)
     if (commonState.actionsEnabled) {
       if (this.match?.isExact) {
         await this.route?.activateActions(
@@ -376,7 +376,7 @@ export class View {
   }
 
   render() {
-    debugIf(this.debug, `n-view: ${this.url} render`)
+    debugIf(this.debug, `n-view: ${this.path} render`)
     replaceHtmlInElement(
       this.el,
       `#${this.contentKey}`,

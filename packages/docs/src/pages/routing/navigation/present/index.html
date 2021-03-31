@@ -1,13 +1,13 @@
-<n-view url="/presentations"
+<n-view path="/presentations"
   page-title="Guided Routing"
   content-src="/pages/presentations/default.html">
-  <n-view url="guided"
+  <n-view path="guided"
     page-title="Guided Navigation"
     content-src="/pages/routing/navigation/guided.html">
-    <n-view url="demo"
+    <n-view path="demo"
       page-title="Guided Demo"
       content-src="/pages/presentations/demo/default.html">
-      <n-view-prompt url="video"
+      <n-view-prompt path="video"
         page-title="Guided: Intro"
         visit="always"
         content-src="/pages/presentations/demo/video.html">
@@ -18,7 +18,7 @@
             data-path="video-1"> </n-action>
         </n-action-activator>
       </n-view-prompt>
-      <n-view-prompt url="video-1"
+      <n-view-prompt path="video-1"
         page-title="Guided: Part 1"
         visit="always"
         content-src="/pages/presentations/demo/video.html">
@@ -29,7 +29,7 @@
             data-path="video-2"> </n-action>
         </n-action-activator>
       </n-view-prompt>
-      <n-view-prompt url="video-2"
+      <n-view-prompt path="video-2"
         page-title="Guided: Part 2"
         visit="always"
         content-src="/pages/presentations/demo/video.html">
@@ -40,60 +40,60 @@
             data-path="video-3"> </n-action>
         </n-action-activator>
       </n-view-prompt>
-      <n-view-prompt url="video-3"
+      <n-view-prompt path="video-3"
         page-title="Guided: Part 3"
         visit="always"
         content-src="/pages/presentations/demo/video.html">
       </n-view-prompt>
-      <n-view-prompt url="animation"
+      <n-view-prompt path="animation"
         page-title="Guided: Animated HTML"
         visit="always"
         next-after="30"
         content-src="/pages/presentations/demo/timed.html">
       </n-view-prompt>
     </n-view>
-    <n-view url="sequential"
+    <n-view path="sequential"
       page-title="Sequential Routes"
       content-src="/pages/routing/navigation/guided/sequential.html">
-      <n-view url="demo"
+      <n-view path="demo"
         page-title="Sequential Demo"
         content-src="/pages/presentations/demo/complete.html">
-        <n-view-prompt url="step-1"
+        <n-view-prompt path="step-1"
           page-title="Step 1"
           visit="always"
           content-src="/pages/presentations/demo/step1.html">
         </n-view-prompt>
-        <n-view-prompt url="step-2"
+        <n-view-prompt path="step-2"
           page-title="Step 2"
           visit="always"
           content-src="/pages/presentations/demo/step2.html">
         </n-view-prompt>
-        <n-view-prompt url="step-3"
+        <n-view-prompt path="step-3"
           page-title="Step 3"
           visit="always"
           content-src="/pages/presentations/demo/step3.html">
         </n-view-prompt>
       </n-view>
     </n-view>
-    <n-view url="smart"
+    <n-view path="smart"
       page-title="Smart Routes"
       content-src="/pages/routing/navigation/guided/smart.html">
-      <n-view url="demo"
+      <n-view path="demo"
         page-title="Smart Demo"
         content-src="/pages/presentations/demo/complete.html">
-        <n-view-prompt url="step-1"
+        <n-view-prompt path="step-1"
           page-title="Step 1"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step1.html">
         </n-view-prompt>
-        <n-view-prompt url="step-2"
+        <n-view-prompt path="step-2"
           page-title="Step 2"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step2.html">
         </n-view-prompt>
-        <n-view-prompt url="step-3"
+        <n-view-prompt path="step-3"
           page-title="Step 3"
           visit="always"
           next-after="10"
@@ -101,48 +101,48 @@
         </n-view-prompt>
       </n-view>
     </n-view>
-    <n-view url="timed"
+    <n-view path="timed"
       page-title="Timed Routes"
       content-src="/pages/routing/navigation/guided/timed.html">
-      <n-view url="demo"
+      <n-view path="demo"
         page-title="Timed Demo"
         content-src="/pages/presentations/demo/complete.html">
-        <n-view-prompt url="step-1"
+        <n-view-prompt path="step-1"
           page-title="Step 1"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step1.html">
         </n-view-prompt>
-        <n-view-prompt url="step-2"
+        <n-view-prompt path="step-2"
           page-title="Step 2"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step2.html">
         </n-view-prompt>
-        <n-view-prompt url="step-3"
+        <n-view-prompt path="step-3"
           page-title="Step 3"
           visit="always"
           next-after="10"
           content-src="/pages/presentations/demo/step3.html">
         </n-view-prompt>
       </n-view>
-      <n-view-prompt url="video"
+      <n-view-prompt path="video"
         page-title="Timed w/Video"
         visit="optional"
         content-src="/pages/presentations/demo/video.html">
       </n-view-prompt>
-      <n-view-prompt url="animation"
+      <n-view-prompt path="animation"
         page-title="Auto Next"
         visit="optional"
         next-after="30"
         content-src="/pages/presentations/demo/timed.html">
       </n-view-prompt>
     </n-view>
-    <n-view url="conditional"
+    <n-view path="conditional"
       page-title="Conditional Routing"
       content-src="/pages/routing/navigation/guided/conditional.html">
     </n-view>
-    <n-view url="tutorial"
+    <n-view path="tutorial"
       page-title="Guided Navigation Tutorial"
       content-src="/pages/routing/navigation/guided/tutorial.html">
     </n-view>

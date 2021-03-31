@@ -67,8 +67,8 @@ export class ViewLink {
 
   get parentUrl() {
     return (
-      this.el.closest('n-view-prompt')?.url ||
-      this.el.closest('n-view')?.url
+      this.el.closest('n-view-prompt')?.path ||
+      this.el.closest('n-view')?.path
     )
   }
 

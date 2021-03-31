@@ -43,7 +43,7 @@ export class ViewRouter {
    * This is the start path a user should
    * land on when they first land on this app.
    */
-  @Prop() startUrl: string = '/'
+  @Prop() startPath: string = '/'
 
   /**
    * Header height or offset for scroll-top on this
@@ -67,7 +67,7 @@ export class ViewRouter {
 
   async componentDidLoad() {
     debugIf(commonState.debug, 'n-views: initialized')
-    navigationState.router!.finalize(this.startUrl)
+    navigationState.router!.finalize(this.startPath)
   }
 
   disconnectedCallback() {

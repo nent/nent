@@ -75,11 +75,10 @@ export class ViewPrompt {
   @Prop() transition?: string
 
   /**
-   * The url for this route, including the parent's
-   * routes.
-   *
+   * The path for this prompt route, including the parent's
+   * routes, excluding the router's root.
    */
-  @Prop({ mutable: true, reflect: true }) url!: string
+  @Prop({ mutable: true, reflect: true }) path!: string
 
   /**
    * The url for this route should only be matched
@@ -147,18 +146,18 @@ export class ViewPrompt {
   }
 
   componentWillLoad() {
-    debugIf(this.debug, `n-view-prompt: ${this.url} loading`)
+    debugIf(this.debug, `n-view-prompt: ${this.path} loading`)
 
     if (!navigationState.router) {
       warn(
-        `n-view-prompt: ${this.url} cannot load outside of an n-views element`,
+        `n-view-prompt: ${this.path} cannot load outside of an n-views element`,
       )
       return
     }
 
     if (!this.parentView) {
       warn(
-        `n-view-prompt: ${this.url} cannot load outside of an n-views element`,
+        `n-view-prompt: ${this.path} cannot load outside of an n-views element`,
       )
       return
     }
@@ -202,10 +201,10 @@ export class ViewPrompt {
   }
 
   async componentWillRender() {
-    debugIf(this.debug, `n-view-prompt: ${this.url} will render`)
+    debugIf(this.debug, `n-view-prompt: ${this.path} will render`)
 
     if (this.match?.isExact) {
-      debugIf(this.debug, `n-view-prompt: ${this.url} on-enter`)
+      debugIf(this.debug, `n-view-prompt: ${this.path} on-enter`)
 
       const autoNext = Boolean(this.nextAfter && this.nextAfter > 0)
       const duration = autoNext ? (this.nextAfter as number) : 0
@@ -232,7 +231,7 @@ export class ViewPrompt {
         await this.service.captureChildElements(this.contentElement)
 
       await this.service.beginTimer()
-      await recordVisit(this.visit as VisitStrategy, this.url)
+      await recordVisit(this.visit as VisitStrategy, this.path)
     } else {
       this.service?.cleanup()
     }
@@ -262,14 +261,14 @@ export class ViewPrompt {
       return div
     } catch {
       warn(
-        `n-view-prompt: ${this.url} Unable to retrieve from ${this.contentSrc}`,
+        `n-view-prompt: ${this.path} Unable to retrieve from ${this.contentSrc}`,
       )
       return null
     }
   }
 
   render() {
-    debugIf(this.debug, `n-view-prompt: ${this.url} render`)
+    debugIf(this.debug, `n-view-prompt: ${this.path} render`)
     replaceHtmlInElement(
       this.el,
       `#${this.contentKey}`,
@@ -284,7 +283,7 @@ export class ViewPrompt {
   }
 
   async componentDidRender() {
-    debugIf(this.debug, `n-view-prompt: ${this.url} did render`)
+    debugIf(this.debug, `n-view-prompt: ${this.path} did render`)
     if (commonState.actionsEnabled) {
       if (this.match?.isExact) {
         await this.route?.activateActions(

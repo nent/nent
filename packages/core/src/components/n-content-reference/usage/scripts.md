@@ -5,10 +5,10 @@
 <html>
   <head></head>
   <body>
-    <n-view url='/home'>
+    <n-view path='/home'>
       <n-content-reference script-src='lib/script.js' />
     </n-view>
-    <n-view url='/page-1'>
+    <n-view path='/page-1'>
       <n-content-reference script-src='lib/script.js' />
     </n-view>
   </body>
@@ -23,10 +23,10 @@
     <script src='lib/script.js'></script>
   </head>
   <body>
-    <n-view url='/home'>
+    <n-view path='/home'>
       <n-content-reference script-src='lib/script.js' />
     </n-view>
-    <n-view url='/page-1'>
+    <n-view path='/page-1'>
       <n-content-reference script-src='lib/script.js' />
     </n-view>
   </body>

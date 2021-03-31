@@ -14,20 +14,9 @@ export enum ROUTE_EVENTS {
   Initialized = 'initialized',
 }
 
-export type Prompt = (
-  location: LocationSegments,
-  action: string,
-) => string
-
 export interface RouteViewOptions {
   scrollTopOffset?: number
   scrollToId?: string
-}
-
-export interface RouteSubscription {
-  isMatch: boolean
-  groupId?: string
-  groupIndex?: number
 }
 
 export type LocationSegmentPart =

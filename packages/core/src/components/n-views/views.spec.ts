@@ -24,7 +24,7 @@ describe('n-views', () => {
     const page = await newSpecPage({
       components: [ViewRouter],
       url: 'http://hello.com/',
-      html: `<n-views start-url='/home'>
+      html: `<n-views start-path='/home'>
        <h1>Hello</h1>
      </n-views>`,
     })
@@ -32,7 +32,7 @@ describe('n-views', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-  <n-views start-url='/home'>
+  <n-views start-path='/home'>
     <h1>
       Hello
     </h1>
@@ -55,7 +55,7 @@ describe('n-views', () => {
     const page = await newSpecPage({
       components: [ViewRouter],
       url: 'http://hello.com/hello',
-      html: `<n-views start-url='/home' root="/hello">
+      html: `<n-views start-path='/home' root="/hello">
        <h1>Hello</h1>
      </n-views>`,
     })
@@ -63,7 +63,7 @@ describe('n-views', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-  <n-views start-url='/home' root="/hello">
+  <n-views start-path='/home' root="/hello">
     <h1>
       Hello
     </h1>
@@ -82,7 +82,7 @@ describe('n-views', () => {
     const page = await newSpecPage({
       components: [ViewRouter],
       url: 'http://hello.com/hello',
-      html: `<n-views hash start-url='/home' root="/hello">
+      html: `<n-views hash start-path='/home' root="/hello">
        <h1>Hello</h1>
      </n-views>`,
     })
@@ -90,7 +90,7 @@ describe('n-views', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-  <n-views hash start-url='/home' root="/hello">
+  <n-views hash start-path='/home' root="/hello">
     <h1>
       Hello
     </h1>
@@ -111,7 +111,7 @@ describe('n-views', () => {
     const page = await newSpecPage({
       components: [ViewRouter],
       url: 'http://hello.com/path/hello.html',
-      html: `<n-views start-url='/home' root="/path/hello.html">
+      html: `<n-views start-path='/home' root="/path/hello.html">
        <h1>Hello</h1>
      </n-views>`,
     })
@@ -119,7 +119,7 @@ describe('n-views', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-  <n-views start-url='/home' root="/path/hello.html">
+  <n-views start-path='/home' root="/path/hello.html">
     <h1>
       Hello
     </h1>

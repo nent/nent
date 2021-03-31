@@ -27,13 +27,13 @@
       ```html
       <n-views
         app-title="My HTML App"
-        start-url="/home">
+        start-path="/home">
         <header>
           <!-- visible to all pages -->
           App Name
         </header>
         <n-view
-          url="/home"
+          path="/home"
           page-title="Home">
           <nav class="subnav">
             <!-- visible to all /home/* routes -->
@@ -51,7 +51,7 @@
               Sibling Page</a>
           </div>
           <n-view
-            url="nested"
+            path="nested"
             page-title="Nested"
             n-cloak>
             <div
@@ -66,7 +66,7 @@
           </n-view>
         </n-view>
         <n-view
-          url="/about"
+          path="/about"
           page-title="About"
           n-cloak>
           <div class="container"

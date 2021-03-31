@@ -27,31 +27,31 @@ describe('next-resolver: find next', () => {
     toDos = [
       {
         when: '!{{session:name}}',
-        url: '/name',
+        path: '/name',
       },
       {
         when: '!{{session:email}}',
-        url: '/email',
+        path: '/email',
       },
       {
         when: '!{{session:color}}',
-        url: '/color',
+        path: '/color',
       },
       {
         visit: VisitStrategy.once,
-        url: '/once',
+        path: '/once',
       },
       {
         visit: VisitStrategy.once,
-        url: '/terms',
+        path: '/terms',
       },
       {
         visit: VisitStrategy.optional,
-        url: '/optional',
+        path: '/optional',
       },
       {
         visit: VisitStrategy.always,
-        url: '/always',
+        path: '/always',
       },
     ]
   }
@@ -59,7 +59,7 @@ describe('next-resolver: find next', () => {
   it('when resolves to true', async () => {
     setupBasicPath()
     const result = await resolveNext(toDos)
-    expect(result?.url).toBe('/name')
+    expect(result?.path).toBe('/name')
   })
 
   it('when resolves to true, visited', async () => {
@@ -67,7 +67,7 @@ describe('next-resolver: find next', () => {
     toDos[0].visited = true
 
     const result = await resolveNext(toDos)
-    expect(result?.url).toBe('/name')
+    expect(result?.path).toBe('/name')
   })
 
   it('multiple when resolution, find first', async () => {
@@ -75,7 +75,7 @@ describe('next-resolver: find next', () => {
     await session.set('name', 'biden')
 
     const result = await resolveNext(toDos)
-    expect(result?.url).toBe('/email')
+    expect(result?.path).toBe('/email')
   })
 
   it('multiple when resolution, find first visited', async () => {
@@ -84,7 +84,7 @@ describe('next-resolver: find next', () => {
     toDos[1].visited = true
 
     const result = await resolveNext(toDos)
-    expect(result?.url).toBe('/email')
+    expect(result?.path).toBe('/email')
   })
 
   it('multiple when resolution, find first of three', async () => {
@@ -93,7 +93,7 @@ describe('next-resolver: find next', () => {
     await session.set('email', 'j@biden.com')
 
     const result = await resolveNext(toDos)
-    expect(result?.url).toBe('/color')
+    expect(result?.path).toBe('/color')
   })
 
   it('multiple when resolution, find first unvisited', async () => {
@@ -103,7 +103,7 @@ describe('next-resolver: find next', () => {
     await session.set('color', 'red')
 
     const result = await resolveNext(toDos)
-    expect(result?.url).toBe('/once')
+    expect(result?.path).toBe('/once')
   })
 
   it('multiple when resolution, find first once visited', async () => {
@@ -115,7 +115,7 @@ describe('next-resolver: find next', () => {
     await markVisit('/once')
 
     const result = await resolveNext(toDos)
-    expect(result?.url).toBe('/terms')
+    expect(result?.path).toBe('/terms')
   })
 
   it('multiple when resolution, find first once all visited', async () => {
@@ -128,7 +128,7 @@ describe('next-resolver: find next', () => {
     await markVisit('/terms')
 
     const result = await resolveNext(toDos)
-    expect(result?.url).toBe('/always')
+    expect(result?.path).toBe('/always')
   })
 
   it('multiple when resolution, find first unmet condition once all visited', async () => {
@@ -141,6 +141,6 @@ describe('next-resolver: find next', () => {
     await markVisit('/terms')
 
     const result = await resolveNext(toDos)
-    expect(result?.url).toBe('/name')
+    expect(result?.path).toBe('/name')
   })
 })

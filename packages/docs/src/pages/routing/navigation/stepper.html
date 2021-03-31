@@ -21,10 +21,10 @@
   <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <n-views app-title="My HTML App" start-url="/home" mode="hash" class="container">
+      <n-views app-title="My HTML App" start-path="/home" mode="hash" class="container">
         <h1 class="mt-3">No-Code Stepper</h1>
 
-        <n-view url="/home" page-title="Home">
+        <n-view path="/home" page-title="Home">
           <h2>Home</h2>
           <div class="content">
             <p>Click the link below to begin.</p>
@@ -34,7 +34,7 @@
           </div>
         </n-view>
 
-        <n-view url="/survey" page-title="Survey" n-cloak>
+        <n-view path="/survey" page-title="Survey" n-cloak>
           <n-content-reference style-src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
           </n-content-reference>
           <h2>Survey</h2>
@@ -50,7 +50,7 @@
                   <a href="/survey/step-1">✔️</a>
                 </span>
               </h3>
-              <n-view-prompt when="!{{storage:nickname}}" url="step-1" page-title="Step 1">
+              <n-view-prompt when="!{{storage:nickname}}" path="step-1" page-title="Step 1">
                 <div class="content" class="form-group">
                   <label class="form-label" for="name">Nick Name</label>
                   <input
@@ -58,8 +58,6 @@
                     required
                     class="form-control mb-3"
                     id="name"
-                    onblur="localStorage.setItem('nickname', this.value)"
-                    onchange="localStorage.setItem('nickname', this.value)"
                     n-value-from="{{storage:nickname}}"
                     tabindex="0"
                   />
@@ -80,7 +78,7 @@
                   <a href="/survey/step-2">✔️</a>
                 </span>
               </h3>
-              <n-view-prompt when="!{{storage:show}}" url="step-2" page-title="Step 2">
+              <n-view-prompt when="!{{storage:show}}" path="step-2" page-title="Step 2">
                 <div class="content">
                   <label class="form-label" for="show">TV Show</label>
                   <input
@@ -88,8 +86,6 @@
                     required
                     id="show"
                     class="form-control mb-3"
-                    onblur="localStorage.setItem('show', this.value)"
-                    onchange="localStorage.setItem('show', this.value)"
                     n-value-from="{{storage:show}}"
                     tabindex="0"
                   />
@@ -109,7 +105,7 @@
                   <a href="/survey/step-3">✔️</a>
                 </span>
               </h3>
-              <n-view-prompt when="!{{storage:food}}" url="step-3" page-title="Step 3">
+              <n-view-prompt when="!{{storage:food}}" path="step-3" page-title="Step 3">
                 <div class="content">
                   <label class="form-label" for="show">Food or Snack</label>
                   <input
@@ -117,8 +113,6 @@
                     required
                     id="food"
                     class="form-control mb-3"
-                    onblur="localStorage.setItem('food', this.value)"
-                    onchange="localStorage.setItem('food', this.value)"
                     n-value-from="{{storage:food}}"
                     tabindex="0"
                   />

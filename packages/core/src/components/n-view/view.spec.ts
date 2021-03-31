@@ -30,7 +30,7 @@ describe('n-view', () => {
     const page = await newSpecPage({
       components: [ViewRouter, View],
       html: `<n-views >
-        <n-view url='/'>
+        <n-view path='/'>
         </n-view>
        </n-views>`,
     })
@@ -38,7 +38,7 @@ describe('n-view', () => {
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
       <n-views>
-        <n-view class="active exact" url="/">
+        <n-view class="active exact" path="/">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
@@ -67,7 +67,7 @@ describe('n-view', () => {
 
     page.setContent(`
     <n-views>
-      <n-view src="fake.html" url="/test">
+      <n-view src="fake.html" path="/test">
       </n-view>
     </n-views>
     `)
@@ -76,7 +76,7 @@ describe('n-view', () => {
 
     expect(page.root).toEqualHtml(`
     <n-views>
-      <n-view class="active exact" src="fake.html" url="/test">
+      <n-view class="active exact" src="fake.html" path="/test">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -105,7 +105,7 @@ describe('n-view', () => {
 
     page.setContent(`
     <n-views>
-      <n-view content-src="fake.html" url="/test">
+      <n-view content-src="fake.html" path="/test">
       </n-view>
     </n-views>
     `)
@@ -114,7 +114,7 @@ describe('n-view', () => {
 
     expect(page.root).toEqualHtml(`
     <n-views>
-      <n-view class="active exact" content-src="fake.html" url="/test">
+      <n-view class="active exact" content-src="fake.html" path="/test">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -146,9 +146,9 @@ describe('n-view', () => {
 
     page.setContent(`
     <n-views>
-      <n-view content-src="fake.html" url="/test">
+      <n-view content-src="fake.html" path="/test">
       </n-view>
-      <n-view url="/bye">
+      <n-view path="/bye">
         <h1>Hi</h1>
       </n-view>
     </n-views>
@@ -158,7 +158,7 @@ describe('n-view', () => {
 
     expect(page.root).toEqualHtml(`
     <n-views>
-      <n-view class="active exact" content-src="fake.html" url="/test">
+      <n-view class="active exact" content-src="fake.html" path="/test">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -169,7 +169,7 @@ describe('n-view', () => {
           </h1>
         </div>
       </n-view>
-      <n-view url="/bye">
+      <n-view path="/bye">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -187,13 +187,13 @@ describe('n-view', () => {
 
     expect(page.root).toEqualHtml(`
     <n-views>
-      <n-view  content-src="fake.html" url="/test">
+      <n-view  content-src="fake.html" path="/test">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
         </mock:shadow-root>
       </n-view>
-      <n-view class="active exact" url="/bye">
+      <n-view class="active exact" path="/bye">
          <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -212,9 +212,9 @@ describe('n-view', () => {
       url: 'http://test/',
       html: `
     <n-views>
-      <n-view url="/">
-        <n-view url="lev-1">
-          <n-view url="lev-2">
+      <n-view path="/">
+        <n-view path="lev-1">
+          <n-view path="lev-2">
             <n-action-activator activate="on-enter">
               <n-action topic="test" command="doit" data-data="level-3">
               </n-action>

@@ -5,17 +5,17 @@
 <n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
 </n-content-reference>
-<n-view-prompt url="/start/select"
+<n-view-prompt path="/start/select"
   when="!{{storage:installed}}"
   page-title="Select Installation"
   content-src="/pages/start/select.html">
 </n-view-prompt>
-<n-view-prompt url="/start/cdn"
+<n-view-prompt path="/start/cdn"
   page-title="Use w/CDN"
   visit="optional"
   content-src="/pages/start/cdn.html">
 </n-view-prompt>
-<n-view-prompt url="/start/npm"
+<n-view-prompt path="/start/npm"
   page-title="Install w/NPM"
   visit="optional"
   content-src="/pages/start/npm.html">

@@ -46,8 +46,8 @@ describe('n-view-prompt', () => {
       components: [ViewRouter, View, ViewPrompt],
       url: 'http://test/',
       html: `<n-views>
-        <n-view url='/foo'>
-          <n-view-prompt url="/go">
+        <n-view path='/foo'>
+          <n-view-prompt path="/go">
           </n-view-prompt>
         </n-view>
       </n-views>`,
@@ -57,12 +57,12 @@ describe('n-view-prompt', () => {
 
     expect(page.root).toEqualHtml(`
     <n-views>
-      <n-view url="/foo">
+      <n-view path="/foo">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
         </mock:shadow-root>
-        <n-view-prompt hidden="" url="/foo/go" >
+        <n-view-prompt hidden="" path="/foo/go" >
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
@@ -83,8 +83,8 @@ describe('n-view-prompt', () => {
       url: 'http://test.com/',
       html: `
       <n-views>
-        <n-view url='/'>
-          <n-view-prompt url="go">
+        <n-view path='/'>
+          <n-view-prompt path="go">
             <a n-next>Next</a>
           </n-view-prompt>
           <div slot="content">
@@ -99,13 +99,13 @@ describe('n-view-prompt', () => {
 
     expect(page.root).toEqualHtml(`
     <n-views>
-      <n-view class="active " url="/">
+      <n-view class="active " path="/">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content">
           </slot>
         </mock:shadow-root>
-        <n-view-prompt class="active exact" url="/go" >
+        <n-view-prompt class="active exact" path="/go" >
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
@@ -135,12 +135,12 @@ describe('n-view-prompt', () => {
     const page = await newSpecPage({
       components: [ViewRouter, View, ViewPrompt],
       url: 'http://test.com/',
-      html: `<n-views start-url='/start'>
-        <n-view url='/start'>
-          <n-view-prompt url="step-1">
+      html: `<n-views start-path='/start'>
+        <n-view path='/start'>
+          <n-view-prompt path="step-1">
             <a id='s1' n-next>NEXT</a>
           </n-view-prompt>
-          <n-view-prompt url="step-2">
+          <n-view-prompt path="step-2">
             <a id='b2' n-back>BACK</a>
             <a id='s2' n-next>NEXT</a>
           </n-view-prompt>
@@ -178,12 +178,12 @@ describe('n-view-prompt', () => {
     const page = await newSpecPage({
       components: [ViewRouter, View, ViewPrompt],
       url: 'http://test/',
-      html: `<n-views start-url='/start'>
-        <n-view url='/start'>
-          <n-view-prompt url="step-1">
+      html: `<n-views start-path='/start'>
+        <n-view path='/start'>
+          <n-view-prompt path="step-1">
             <a id='s1' n-next>NEXT</a>
           </n-view-prompt>
-          <n-view-prompt url="step-2">
+          <n-view-prompt path="step-2">
             <a id='b2' href="step-1">BACK</a>
             <a id='s2' n-next>NEXT</a>
           </n-view-prompt>
@@ -222,7 +222,7 @@ describe('n-view-prompt', () => {
       components: [ViewRouter, View, ViewPrompt],
       url: 'http://test/',
       html: `<n-view>
-        <n-view-prompt url="/go">
+        <n-view-prompt path="/go">
         </n-view-prompt>
       </n-view>
       `,
@@ -236,7 +236,7 @@ describe('n-view-prompt', () => {
         <slot></slot>
         <slot name="content"></slot>
       </mock:shadow-root>
-      <n-view-prompt hidden="" url="/go" >
+      <n-view-prompt hidden="" path="/go" >
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -253,7 +253,7 @@ describe('n-view-prompt', () => {
       components: [ViewRouter, View, ViewPrompt],
       url: 'http://test/',
       html: `
-      <n-view-prompt url="/go">
+      <n-view-prompt path="/go">
       </n-view-prompt>
       `,
     })
@@ -261,7 +261,7 @@ describe('n-view-prompt', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-view-prompt hidden="" url="/go" >
+      <n-view-prompt hidden="" path="/go" >
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -287,8 +287,8 @@ describe('n-view-prompt', () => {
 
     page.setContent(`
     <n-views>
-      <n-view url="/">
-        <n-view-prompt content-src="fake.html" url="/test">
+      <n-view path="/">
+        <n-view-prompt content-src="fake.html" path="/test">
         </n-view-prompt>
       </n-view>
     </n-views>
@@ -298,12 +298,12 @@ describe('n-view-prompt', () => {
 
     expect(page.root).toEqualHtml(`
       <n-views>
-        <n-view class="active" url="/">
+        <n-view class="active" path="/">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
           </mock:shadow-root>
-          <n-view-prompt class="active exact" content-src="fake.html" url="/test">
+          <n-view-prompt class="active exact" content-src="fake.html" path="/test">
             <mock:shadow-root>
               <slot></slot>
               <slot name="content"></slot>
@@ -340,8 +340,8 @@ describe('n-view-prompt', () => {
 
     page.setContent(`
     <n-views>
-      <n-view url="/">
-        <n-view-prompt content-src="fake.html" url="/test">
+      <n-view path="/">
+        <n-view-prompt content-src="fake.html" path="/test">
         </n-view-prompt>
       </n-view>
     </n-views>
@@ -351,12 +351,12 @@ describe('n-view-prompt', () => {
 
     expect(page.root).toEqualHtml(`
       <n-views>
-        <n-view class="active" url="/">
+        <n-view class="active" path="/">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
           </mock:shadow-root>
-          <n-view-prompt class="active exact" content-src="fake.html" url="/test">
+          <n-view-prompt class="active exact" content-src="fake.html" path="/test">
             <mock:shadow-root>
               <slot></slot>
               <slot name="content"></slot>
@@ -389,8 +389,8 @@ describe('n-view-prompt', () => {
 
     page.setContent(`
     <n-views>
-      <n-view url="/">
-        <n-view-prompt content-src="fake.html" url="/test" resolve-tokens>
+      <n-view path="/">
+        <n-view-prompt content-src="fake.html" path="/test" resolve-tokens>
         </n-view-prompt>
       </n-view>
     </n-views>
@@ -400,12 +400,12 @@ describe('n-view-prompt', () => {
 
     expect(page.root).toEqualHtml(`
       <n-views>
-        <n-view class="active" url="/">
+        <n-view class="active" path="/">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
           </mock:shadow-root>
-          <n-view-prompt class="active exact" content-src="fake.html" url="/test" resolve-tokens>
+          <n-view-prompt class="active exact" content-src="fake.html" path="/test" resolve-tokens>
             <mock:shadow-root>
               <slot></slot>
               <slot name="content"></slot>
@@ -435,8 +435,8 @@ describe('n-view-prompt', () => {
 
     page.setContent(`
     <n-views>
-      <n-view url="/">
-        <n-view-prompt url="/test"
+      <n-view path="/">
+        <n-view-prompt path="/test"
           video-target="#video">
           <video id="video"></video>
         </n-view-prompt>

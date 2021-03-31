@@ -1,39 +1,97 @@
 
 
+# Tag Changes
+
+Perform these changes in this order:
 
 
-ui - app
+## 1) Routing
 
-x-action               n-action
-x-app                  n-views
+Routing components have been removed from the app namespace, from x-app-* to n-*:
+
+  x-app                   n-views
+  x-app-view-not-found    n-view-not-found
+  
+  x-app-view              n-view
+  x-app-link              n-view-link
+  x-app-view-list         n-view-link-list
+
+Routing view-do renamed to view-prompt:
+
+  x-app-view-do           n-view-prompt
+
+Attribute URL in a-views, n-view and n-view-prompt changed to path:
+
+  start-url=""            start-path=""
+  url=""                  path=""
+
+Topic 'routing', data-url renamed to data-path.
+
+  data-url                data-path
+
+## 2) Analytics
+
+Analytics also pulled from the app namespace, from x-app-* to n-*:
+
+  x-app-analytics         n-analytics
+
+## 3) App (was UI)
+
+The UI components have been renamed from x-ui-* to n-app-*: 
+
+  x-ui                    n-app
+  x-ui-theme              n-app-theme
+  x-ui-theme-switch       n-app-theme-switch
+
+Content share was moved to the App namespace as it will be part of the PWA functionality group:
+
+  x-content-share         n-app-share
+
+TOPIC: renamed from 'ui' to 'app'
+
+  topic="ui"              topic="app"
+
+## 4) Data 
+
+The data components have been split up.
+
+Content w/data moved to n-content-*:
+
+  x-data-display            n-content-template
+  x-data-repeater           n-content-repeat
+  x-data-show               n-content-show
+
+Data provider names simplified: x-data-provider-* to n-data-*
+
+  x-data-provider-cookie    n-data-cookie
+  x-data-provider-session   n-data-session
+  x-data-provider-storage   n-data-storage
+
+## 5) Content
+
+Content include was renamed (again, sorry):
+
+  x-content                 n-content-include
+
+## 6) Audio
+
+Simplified the audio-state switch name:
+
+  x-audio-state-switch    n-audio-switch
+
+Renamed audio-action components to include the action namespace to start a new convention of cross-namespace naming:
+
+  x-audio-music-load      n-audio-action-music-load
+  x-audio-sound-load      n-audio-action-sound-load
+  x-audio-music-action    n-audio-action-music
+  x-audio-sound-action    n-audio-action-sound
+
+## 7) Video
+
+  x-video-autoplay-switch n-video-switch
 
 
+## 8) Rename remaining from x-* to n-*.
 
-x-app-view-not-found    n-view-not-found
-x-app-view-do           n-view-prompt
-x-app-view              n-view
-x-app-link              n-view-link
-x-app-view-list         n-view-link-list
-
-x-content               n-content-include
-x-data-display          n-content-template
-x-data-repeater         n-content-repeat
-x-data-show             n-content-show
-x-elements              n-content-actions
-
-x-data-provider         n-data
-
-
-x-app-analytics         n-analytics
-
-ui                      n-app
-
-
-x-audio-state-switch    n-audio-switch
-
-x-audio-music-load      n-audio-action-music-load
-x-audio-sound-load      n-audio-action-sound-load
-x-audio-music-action    n-audio-action-music
-x-audio-sound-action    n-audio-action-sound
-
-x-video-autoplay-switch n-video-switch
+x-action*               n-action
+x-action-activator      n-action-activator

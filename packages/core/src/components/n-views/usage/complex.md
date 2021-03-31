@@ -5,7 +5,7 @@ The example sets an offset for scrolling, a global page transition and has a non
 <n-views app-title='Sample Site' 
   scroll-top-offset='0' 
   transition='fade-in' 
-  start-url='/home' 
+  start-path='/home' 
   >
   ...
   <n-view ...></n-view>

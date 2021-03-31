@@ -50,7 +50,7 @@ describe('n-view-link', () => {
       html: `
       <n-views>
         <n-view-link href="/foo">Go to Foo</n-view-link>
-        <n-view url="/foo">
+        <n-view path="/foo">
         </n-view>
       </n-views>`,
     })

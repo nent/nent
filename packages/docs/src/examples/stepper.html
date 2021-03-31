@@ -113,11 +113,11 @@
 
   <body>
     <n-views app-title="My HTML App"
-      start-url="/home"
+      start-path="/home"
       root="/examples/stepper.html#/"
       class="container">
       <h1 class="mt-3">No-Code Stepper</h1>
-      <n-view url="/home"
+      <n-view path="/home"
         page-title="Home">
         <h2>Home</h2>
         <div class="content">
@@ -131,7 +131,7 @@
             n-show-when="{{storage:food}}">Retake Survey</a>
         </div>
       </n-view>
-      <n-view url="/survey"
+      <n-view path="/survey"
         page-title="Survey"
         n-cloak>
         <n-content-reference
@@ -151,7 +151,7 @@
               </span>
             </h3>
             <n-view-prompt when="!{{storage:nickname}}"
-              url="step-1"
+              path="step-1"
               page-title="Step 1">
               <div class="content"
                 class="form-group">
@@ -187,7 +187,7 @@
               </span>
             </h3>
             <n-view-prompt when="!{{storage:show}}"
-              url="step-2"
+              path="step-2"
               page-title="Step 2">
               <div class="content">
                 <label class="form-label"
@@ -221,7 +221,7 @@
               </span>
             </h3>
             <n-view-prompt when="!{{storage:food}}"
-              url="step-3"
+              path="step-3"
               page-title="Step 3">
               <div class="content">
                 <label class="form-label"

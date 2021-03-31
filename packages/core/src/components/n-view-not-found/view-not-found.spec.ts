@@ -87,7 +87,7 @@ describe('n-view-not-found', () => {
     const page = await newSpecPage({
       components: [ViewRouter, View, ViewNotFound],
       html: `<n-views>
-        <n-view url='/'>
+        <n-view path='/'>
         </n-view>
         <n-view-not-found>
           <h1>Not Found</h1>
@@ -98,7 +98,7 @@ describe('n-view-not-found', () => {
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
       <n-views>
-        <n-view class="active exact" url="/">
+        <n-view class="active exact" path="/">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
@@ -118,7 +118,7 @@ describe('n-view-not-found', () => {
     const page = await newSpecPage({
       components: [ViewRouter, View, ViewNotFound],
       html: `<n-views>
-        <n-view url='/home'>
+        <n-view path='/home'>
         </n-view>
         <n-view-not-found>
           <h1>Not Found</h1>
@@ -131,7 +131,7 @@ describe('n-view-not-found', () => {
 
     expect(page.root).toEqualHtml(`
       <n-views>
-        <n-view url="/home">
+        <n-view path="/home">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
@@ -155,7 +155,7 @@ describe('n-view-not-found', () => {
 
     expect(page.root).toEqualHtml(`
       <n-views>
-        <n-view class="active exact" url="/home">
+        <n-view class="active exact" path="/home">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
@@ -173,7 +173,7 @@ describe('n-view-not-found', () => {
 
     expect(page.root).toEqualHtml(`
       <n-views>
-        <n-view  url="/home">
+        <n-view  path="/home">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>

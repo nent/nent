@@ -25,25 +25,25 @@
     </n-content-repeat>
   </ul>
 </n-content-reveal>
-<n-view url="/data/expressions"
+<n-view path="/data/expressions"
   page-title="Expressions"
   content-src="/pages/data/expressions.html">
 </n-view>
-<n-view url="/data/providers"
+<n-view path="/data/providers"
   page-title="Providers"
   content-src="/pages/data/providers.html">
 </n-view>
-<n-view url="/data/navigation"
+<n-view path="/data/navigation"
   page-title="Navigation"
   content-src="/pages/data/navigation.html">
 </n-view>
-<n-view url="/data/demo">
-  <n-view-prompt url="/data/demo/session-data"
+<n-view path="/data/demo">
+  <n-view-prompt path="/data/demo/session-data"
     page-title="Session Data"
     when="!{{session:favorite}}"
     content-src="/pages/data/session.html">
   </n-view-prompt>
-  <n-view-prompt url="/data/demo/storage-data"
+  <n-view-prompt path="/data/demo/storage-data"
     page-title="Storage Data"
     when="!{{storage:animal}}"
     content-src="/pages/data/storage.html">

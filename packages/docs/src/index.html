@@ -127,7 +127,7 @@
     <n-app>
       <n-data>
       </n-data>
-      <n-views start-url="/"
+      <n-views start-path="/"
         app-title="nent"
         transition="animate__animated animate__fadeIn">
         <header n-cloak
@@ -235,7 +235,7 @@
             exclude-root>
           </n-view-link-list>
         </nav>
-        <n-view url="/"
+        <n-view path="/"
           transition="none"
           exact>
           <n-content-reference
@@ -363,55 +363,55 @@
         <!-- enabled app themes -->
         <n-app-theme>
         </n-app-theme>
-        <n-view url="/home"
+        <n-view path="/home"
           page-title="Home"
           resolve-tokens
           src="/pages/home/routes.html"
           content-src="/pages/home/default.html">
-          <n-view-prompt url="/home/name"
+          <n-view-prompt path="/home/name"
             page-title="Introductions"
             when="!{{storage:name}}"
             content-src="/pages/home/intro.html">
           </n-view-prompt>
-          <n-view-prompt url="/home/welcome"
+          <n-view-prompt path="/home/welcome"
             page-title="Welcome"
             visit="always"
             content-src="/pages/home/welcome.html"
             transition="animate__animated animate__pulse">
           </n-view-prompt>
         </n-view>
-        <n-view url="/start"
+        <n-view path="/start"
           page-title="Get Started"
           src="/pages/start/routes.html"
           content-src="/pages/start/default.html">
         </n-view>
-        <n-view url="/routing"
+        <n-view path="/routing"
           page-title="View Routing"
           src="/pages/routing/routes.html"
           content-src="/pages/routing/default.html"
           transition="animate__animated animate__fadeIn">
         </n-view>
-        <n-view url="/content"
+        <n-view path="/content"
           page-title="Content Elements"
           src="/pages/content/routes.html"
           content-src="/pages/content/default.html">
         </n-view>
-        <n-view url="/data"
+        <n-view path="/data"
           page-title="Data System"
           src="/pages/data/routes.html"
           content-src="/pages/data/default.html">
         </n-view>
-        <n-view url="/actions"
+        <n-view path="/actions"
           page-title="Action System"
           src="/pages/actions/routes.html"
           content-src="/pages/actions/default.html">
         </n-view>
-        <n-view url="/audio"
+        <n-view path="/audio"
           page-title="Audio Elements"
           src="/pages/audio/routes.html"
           content-src="/pages/audio/default.html">
         </n-view>
-        <n-view url="/components"
+        <n-view path="/components"
           page-title="Elements"
           src="/pages/components/routes.html"
           content-src="/pages/components/default.html"

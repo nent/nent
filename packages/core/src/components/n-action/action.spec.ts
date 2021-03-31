@@ -104,7 +104,7 @@ describe('n-action', () => {
     expect(event).not.toBeNull()
 
     action?.sendAction({
-      url: '/test',
+      path: '/test',
     })
 
     await page.waitForChanges()

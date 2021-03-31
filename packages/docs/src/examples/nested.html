@@ -34,7 +34,7 @@
 
   <body>
     <n-views app-title="My HTML App"
-      start-url="/home"
+      start-path="/home"
       root="/examples/nested.html#/">
       <nav>
         <n-view-link class="nav-link"
@@ -44,7 +44,7 @@
           href="/about"
           active-class="active"> About </n-view-link>
       </nav>
-      <n-view url="/home"
+      <n-view path="/home"
         page-title="Home">
         <div class="container"
           slot="content">
@@ -54,7 +54,7 @@
           <p>Now you have a basic content router.</p>
           <a href="/home/nested">Nested</a>
         </div>
-        <n-view url="nested"
+        <n-view path="nested"
           page-title="Nested"
           n-cloak>
           <div class="container"
@@ -67,7 +67,7 @@
           </div>
         </n-view>
       </n-view>
-      <n-view url="/about"
+      <n-view path="/about"
         page-title="About"
         n-cloak>
         <div class="container"

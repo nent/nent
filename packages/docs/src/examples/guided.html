@@ -25,9 +25,9 @@
 
   <body>
     <n-views app-title="My HTML App"
-      start-url="/home"
+      start-path="/home"
       root="stepper.html#/">
-      <n-view url="/home"
+      <n-view path="/home"
         page-title="Home">
         <div class="container"
           slot="content">
@@ -38,7 +38,7 @@
           <a href="home/nested">Nested Page</a>
           <a href="about">Sibling Page</a>
         </div>
-        <n-view url="nested"
+        <n-view path="nested"
           page-title="Nested"
           n-cloak>
           <div class="container"
@@ -50,7 +50,7 @@
           </div>
         </n-view>
       </n-view>
-      <n-view url="/about"
+      <n-view path="/about"
         page-title="About"
         n-cloak>
         <div class="container"

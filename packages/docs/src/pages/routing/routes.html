@@ -26,38 +26,38 @@
     </n-content-repeat>
   </ul>
 </n-content-reveal>
-<n-view url="/routing/lazy"
+<n-view path="/routing/lazy"
   page-title="Lazy Loaded"
   content-src="/pages/routing/lazy.html">
 </n-view>
-<n-view url="/routing/child"
+<n-view path="/routing/child"
   page-title="Child Routes"
   content-src="/pages/routing/child/default.html">
-  <n-view url="/routing/child/deep"
+  <n-view path="/routing/child/deep"
     page-title="Deep Child Route"
     content-src="/pages/routing/child/deep.html">
   </n-view>
 </n-view>
-<n-view url="/routing/dynamic"
+<n-view path="/routing/dynamic"
   page-title="Data Routes"
   content-src="/pages/routing/dynamic/default.html">
-  <n-view-prompt url="/routing/dynamic/custom"
+  <n-view-prompt path="/routing/dynamic/custom"
     page-title="Custom Selection"
     content-src="/pages/routing/dynamic/custom.html"
     visit="optional">
   </n-view-prompt>
-  <n-view url="/routing/dynamic/item/:item"
+  <n-view path="/routing/dynamic/item/:item"
     page-title="Data Route: {{route:item}}"
     resolve-tokens
     content-src="/pages/routing/dynamic/child.html">
   </n-view>
 </n-view>
-<n-view url="/routing/analytics"
+<n-view path="/routing/analytics"
   page-title="Analytics"
   src="/pages/routing/analytics.html"
   content-src="/pages/routing/analytics.html">
 </n-view>
-<n-view url="/routing/navigation"
+<n-view path="/routing/navigation"
   page-title="Navigation"
   src="/pages/routing/navigation/routes.html"
   content-src="/pages/routing/navigation/default.html">

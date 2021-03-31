@@ -111,11 +111,11 @@ export class RouterService {
     this.listener?.notifyRouteFinalized(location)
   }
 
-  adjustRootViewUrls(url: string): string {
+  adjustRootViewUrls(path: string): string {
     let stripped =
-      this.root && hasBasename(url, this.root)
-        ? url.slice(this.root.length)
-        : url
+      this.root && hasBasename(path, this.root)
+        ? path.slice(this.root.length)
+        : path
     if (isFilename(this.root)) {
       return '#' + addLeadingSlash(stripped)
     }
@@ -312,33 +312,33 @@ export class RouterService {
     matchSetter: (m: MatchResults | null) => void,
   ) {
     let {
-      url,
+      path,
       exact,
       pageTitle,
       transition,
       scrollTopOffset,
     } = routeElement
 
-    const routeKey = slugify(url)
+    const routeKey = slugify(path)
 
     if (this.routes[routeKey]) {
-      warn(`route: duplicate route detected for ${url}.`)
+      warn(`route: duplicate route detected for ${path}.`)
     }
-    const parent = parentElement?.url
-      ? this.routes[slugify(parentElement.url)] || null
+    const parent = parentElement?.path
+      ? this.routes[slugify(parentElement.path)] || null
       : null
     if (parent) {
-      url = this.normalizeChildUrl(routeElement.url, parent.path)
+      path = this.normalizeChildUrl(routeElement.path, parent.path)
       transition = transition || parent?.transition || transition
     } else {
-      url = this.adjustRootViewUrls(routeElement.url)
+      path = this.adjustRootViewUrls(routeElement.path)
     }
-    routeElement.url = url
+    routeElement.path = path
     routeElement.transition = transition || this.transition
     const route = new Route(
       this,
       routeElement,
-      routeElement.url,
+      routeElement.path,
       exact,
       pageTitle || parent?.pageTitle,
       routeElement.transition,

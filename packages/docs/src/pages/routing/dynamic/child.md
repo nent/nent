@@ -23,8 +23,8 @@ The following is the HTML on this page.
 The following illustrates how the route was configured.
 
 ```html
-<n-view url="/data" page-title="Data Routes">
-  <n-view url="/:item" page-title="Info on {{route:item}}">
+<n-view path="/data" page-title="Data Routes">
+  <n-view path="/:item" page-title="Info on {{route:item}}">
     ... this content ...
   </n-view>
 </n-view>

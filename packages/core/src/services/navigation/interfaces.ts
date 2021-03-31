@@ -31,6 +31,6 @@ export interface IViewDo {
   visit?: VisitStrategy | string
   when?: string
   visited?: boolean
-  url: string
+  path: string
   [key: string]: any
 }
