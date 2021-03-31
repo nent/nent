@@ -99,9 +99,14 @@ export class ContentReference {
   }
 
   private async getStylePromise(element: HTMLHeadElement) {
-    if (this.styleSrc && !hasReference(this.styleSrc)) {
+    if (this.styleSrc) {
       const url = this.styleSrc
       return new Promise<void>(resolve => {
+        if (hasReference(this.styleSrc!)) {
+          this.registered(ReferenceType.styles, true)
+          resolve()
+          return
+        }
         this.linkElement = this.el.ownerDocument.createElement('link')
         this.linkElement.href = url
         this.linkElement.rel = 'stylesheet'
@@ -129,9 +134,14 @@ export class ContentReference {
 
   private getScriptPromise(element: HTMLHeadElement) {
     // Make the style reference
-    if (this.scriptSrc && !hasReference(this.scriptSrc)) {
+    if (this.scriptSrc) {
       const url = this.scriptSrc
       return new Promise<void>(resolve => {
+        if (hasReference(this.scriptSrc!)) {
+          this.registered(ReferenceType.script, true)
+          resolve()
+          return
+        }
         this.scriptElement = this.el.ownerDocument.createElement(
           'script',
         )
