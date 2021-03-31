@@ -532,7 +532,7 @@ export namespace Components {
          */
         "debug": boolean;
         /**
-          * The url for this route should only be matched when it is exact.
+          * The path for this route should only be matched when it is exact.
          */
         "exact": boolean;
         /**
@@ -1429,7 +1429,7 @@ declare namespace LocalJSX {
          */
         "debug"?: boolean;
         /**
-          * The url for this route should only be matched when it is exact.
+          * The path for this route should only be matched when it is exact.
          */
         "exact"?: boolean;
         /**

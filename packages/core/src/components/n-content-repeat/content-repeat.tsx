@@ -11,6 +11,7 @@ import { eventBus } from '../../services/actions'
 import {
   commonState,
   debugIf,
+  onCommonStateChange,
   valueToArray,
   warnIf,
 } from '../../services/common'
@@ -95,19 +96,55 @@ export class ContentDataRepeat {
 
   async componentWillLoad() {
     debugIf(this.debug, 'n-content-repeat: loading')
-    this.dataSubscription = eventBus.on(
-      DATA_EVENTS.DataChanged,
-      () => {
-        forceUpdate(this)
-      },
-    )
 
-    this.routeSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteChanged,
-      () => {
-        forceUpdate(this)
-      },
-    )
+    if (commonState.dataEnabled) {
+      this.dataSubscription = eventBus.on(
+        DATA_EVENTS.DataChanged,
+        () => {
+          forceUpdate(this)
+        },
+      )
+    } else {
+      const dataEnabledSubscription = onCommonStateChange(
+        'dataEnabled',
+        enabled => {
+          if (enabled) {
+            this.dataSubscription = eventBus.on(
+              DATA_EVENTS.DataChanged,
+              () => {
+                forceUpdate(this)
+              },
+            )
+            dataEnabledSubscription()
+          }
+        },
+      )
+    }
+
+    if (commonState.routingEnabled) {
+      this.routeSubscription = eventBus.on(
+        ROUTE_EVENTS.RouteChanged,
+        () => {
+          forceUpdate(this)
+        },
+      )
+    } else {
+      const routingEnabledSubscription = onCommonStateChange(
+        'routingEnabled',
+        enabled => {
+          if (enabled) {
+            this.routeSubscription = eventBus.on(
+              ROUTE_EVENTS.RouteChanged,
+              () => {
+                forceUpdate(this)
+              },
+            )
+            routingEnabledSubscription()
+            navigationState.router?.captureInnerLinks(this.el)
+          }
+        },
+      )
+    }
 
     if (this.childTemplate === null) {
       warnIf(

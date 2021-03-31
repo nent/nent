@@ -40,9 +40,9 @@ export class ActionActivator {
     | 'on-exit' = 'on-element-event'
 
   /**
-   * The element to watch for events when using the OnElementEvent
-   * activation strategy. This element uses the HTML Element querySelector
-   * function to find the element.
+   * The element or elements to watch for events when using the OnElementEvent
+   * activation strategy. This element uses the HTML Element querySelectorAll
+   * function to find the element/s based on the query in this attribute.
    *
    * For use with activate="on-element-event" Only!
    */
@@ -99,7 +99,7 @@ export class ActionActivator {
         debugIf(
           this.debug,
           `n-action-activator:  ${
-            this.parent?.url || ''
+            this.parent?.path || ''
           } Activating [${this.activate}~{topic: ${
             action?.topic
           }, command:${action?.command}]`,
@@ -145,12 +145,12 @@ export class ActionActivator {
   async componentDidLoad() {
     debugIf(
       this.debug,
-      `n-action-activator: ${this.parent?.url || ''} loading`,
+      `n-action-activator: ${this.parent?.path || ''} loading`,
     )
     if (this.childActions.length === 0) {
       warn(
         `n-action-activator: ${
-          this.parent?.url || ''
+          this.parent?.path || ''
         } no children actions detected`,
       )
       return
@@ -163,7 +163,7 @@ export class ActionActivator {
       const dataString = JSON.stringify(action.data)
       debugIf(
         this.debug,
-        `n-action-activator: ${this.parent?.url || ''} registered [${
+        `n-action-activator: ${this.parent?.path || ''} registered [${
           this.activate
         }~{topic: ${action?.topic}, command:${
           action?.command
@@ -182,7 +182,7 @@ export class ActionActivator {
       if (!element) {
         warn(
           `n-action-activator: ${
-            this.parent?.url || ''
+            this.parent?.path || ''
           } no elements found for '${this.targetElement || 'na'}'`,
         )
       } else {
@@ -198,10 +198,10 @@ export class ActionActivator {
           this.debug,
             `n-action-activator: element event ${event} registered on ${element.nodeName}`,
             element.addEventListener(event, async () => {
-              const { url } = this.parent || { url: '' }
+              const { path } = this.parent || { path: '' }
               debugIf(
                 this.debug,
-                `n-action-activator: ${url} received ${element.nodeName} ${this.targetEvent} event`,
+                `n-action-activator: ${path} received ${element.nodeName} ${this.targetEvent} event`,
               )
               await this.activateActions()
             })

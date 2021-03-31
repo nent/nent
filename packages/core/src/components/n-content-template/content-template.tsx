@@ -9,7 +9,10 @@ import {
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { warn } from '../../services/common/logging'
-import { commonState } from '../../services/common/state'
+import {
+  commonState,
+  onCommonStateChange,
+} from '../../services/common/state'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
@@ -59,22 +62,55 @@ export class ContentData {
     return this.el.querySelector('script')
   }
 
-  async componentWillLoad() {
-    if (commonState.dataEnabled)
+  componentWillLoad() {
+    if (commonState.dataEnabled) {
       this.dataSubscription = eventBus.on(
         DATA_EVENTS.DataChanged,
         () => {
           forceUpdate(this)
         },
       )
+    } else {
+      const dataEnabledSubscription = onCommonStateChange(
+        'dataEnabled',
+        enabled => {
+          if (enabled) {
+            this.dataSubscription = eventBus.on(
+              DATA_EVENTS.DataChanged,
+              () => {
+                forceUpdate(this)
+              },
+            )
+            dataEnabledSubscription()
+          }
+        },
+      )
+    }
 
-    if (commonState.routingEnabled)
+    if (commonState.routingEnabled) {
       this.routeSubscription = eventBus.on(
         ROUTE_EVENTS.RouteChanged,
         () => {
           forceUpdate(this)
         },
       )
+    } else {
+      const routingEnabledSubscription = onCommonStateChange(
+        'routingEnabled',
+        enabled => {
+          if (enabled) {
+            this.routeSubscription = eventBus.on(
+              ROUTE_EVENTS.RouteChanged,
+              () => {
+                forceUpdate(this)
+              },
+            )
+            routingEnabledSubscription()
+            navigationState.router?.captureInnerLinks(this.el)
+          }
+        },
+      )
+    }
 
     if (this.childTemplate !== null) {
       this.innerTemplate = this.childTemplate.innerHTML
@@ -90,13 +126,6 @@ export class ContentData {
           `n-content-template: unable to deserialize JSON: ${error}`,
         )
       }
-    }
-    this.removeAllChildNodes(this.el)
-  }
-
-  private removeAllChildNodes(rootElement: HTMLElement) {
-    while (rootElement.firstChild !== null) {
-      rootElement.firstChild.remove()
     }
   }
 
@@ -136,8 +165,9 @@ export class ContentData {
     if (commonState.elementsEnabled) {
       await resolveChildElementXAttributes(container)
     }
-    if (navigationState.router)
+    if (navigationState.router) {
       navigationState.router?.captureInnerLinks(container)
+    }
     return container
   }
 

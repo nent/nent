@@ -58,6 +58,9 @@ describe('n-content-template', () => {
 
     expect(page.root).toEqualHtml(`
       <n-content-template>
+        <template>
+          <p>Hello Jason!</p>
+        </template>
         <div class="dynamic">
           <p>Hello Jason!</p>
         </div>
@@ -72,9 +75,7 @@ describe('n-content-template', () => {
     const page = await newSpecPage({
       components: [ContentData],
       html: `<n-content-template>
-              <script type="application/json">
-              { "name": "Forrest" }
-              </script>
+              <script type="application/json">{ "name": "Forrest" }</script>
               <template>
                 <p>Hello {{data:name}}!</p>
               </template>
@@ -83,6 +84,9 @@ describe('n-content-template', () => {
 
     expect(page.root).toEqualHtml(`
       <n-content-template>
+        <script type="application/json">{ "name": "Forrest" }</script><template>
+          <p>Hello {{data:name}}!</p>
+        </template>
         <div class="dynamic">
           <p>Hello Forrest!</p>
         </div>
@@ -106,6 +110,9 @@ describe('n-content-template', () => {
 
     expect(page.root).toEqualHtml(`
       <n-content-template>
+        <template>
+          <p>Hello {{session:name}}!</p>
+        </template>
         <div class="dynamic">
         <p>Hello Tom!</p>
         </div>
@@ -129,6 +136,9 @@ describe('n-content-template', () => {
 
     expect(page.root).toEqualHtml(`
       <n-content-template>
+        <template>
+          <p>Hello {{session:name}}!</p>
+        </template>
         <div class="dynamic">
           <p>Hello Tom!</p>
         </div>
@@ -142,6 +152,9 @@ describe('n-content-template', () => {
 
     expect(page.root).toEqualHtml(`
       <n-content-template>
+        <template>
+          <p>Hello {{session:name}}!</p>
+        </template>
         <div class="dynamic">
           <p>Hello Tomy!</p>
         </div>

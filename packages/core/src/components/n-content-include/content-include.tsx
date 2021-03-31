@@ -8,7 +8,11 @@ import {
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
-import { commonState, warn } from '../../services/common'
+import {
+  commonState,
+  onCommonStateChange,
+  warn,
+} from '../../services/common'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveRemoteContent } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
@@ -78,12 +82,43 @@ export class ContentInclude {
             forceUpdate(this)
           },
         )
+      } else {
+        const dataEnabledSubscription = onCommonStateChange(
+          'dataEnabled',
+          enabled => {
+            if (enabled) {
+              this.dataSubscription = eventBus.on(
+                DATA_EVENTS.DataChanged,
+                () => {
+                  forceUpdate(this)
+                },
+              )
+              dataEnabledSubscription()
+            }
+          },
+        )
       }
       if (commonState.routingEnabled) {
         this.routeSubscription = eventBus.on(
           ROUTE_EVENTS.RouteChanged,
           () => {
             forceUpdate(this)
+          },
+        )
+      } else {
+        const routingEnabledSubscription = onCommonStateChange(
+          'routingEnabled',
+          enabled => {
+            if (enabled) {
+              this.routeSubscription = eventBus.on(
+                ROUTE_EVENTS.RouteChanged,
+                () => {
+                  forceUpdate(this)
+                },
+              )
+              routingEnabledSubscription()
+              navigationState.router?.captureInnerLinks(this.el)
+            }
           },
         )
       }
