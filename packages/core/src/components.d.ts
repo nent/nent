@@ -53,7 +53,7 @@ export namespace Components {
          */
         "once": boolean;
         /**
-          * The element or elements to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelectorAll function to find the element/s based on the query in this attribute.  For use with activate="on-element-event" Only!
+          * The element or elements to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelectorAll function to find the element/s based on the query in this attribute.  If left blank, this element looks for child elements matching: 'a,button,input[type=button]'  For use with activate="on-element-event" Only!
          */
         "targetElement"?: string;
         /**
@@ -967,7 +967,7 @@ declare namespace LocalJSX {
          */
         "once"?: boolean;
         /**
-          * The element or elements to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelectorAll function to find the element/s based on the query in this attribute.  For use with activate="on-element-event" Only!
+          * The element or elements to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelectorAll function to find the element/s based on the query in this attribute.  If left blank, this element looks for child elements matching: 'a,button,input[type=button]'  For use with activate="on-element-event" Only!
          */
         "targetElement"?: string;
         /**
