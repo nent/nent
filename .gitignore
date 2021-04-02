@@ -10,3 +10,6 @@ loader
 /docs
 coverage
 stats
+
+# Local Netlify folder
+.netlify
