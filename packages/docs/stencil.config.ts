@@ -51,6 +51,9 @@ const config: Config = {
         {
           src: 'serve.json',
         },
+        {
+          src: '_redirects',
+        },
       ],
     },
   ],
