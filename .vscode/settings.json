@@ -1,7 +1,4 @@
 {
-  "css.validate": false,
-  "less.validate": false,
-  "scss.validate": false,
   "cSpell.words": [
     "Codacy",
     "Debouncing",
@@ -297,5 +294,6 @@
     "",
     "{breaking_change}"
   ],
-  "commit-message-editor.view.saveAndClose": true
+  "commit-message-editor.view.saveAndClose": true,
+  "html.format.wrapLineLength": 80
 }

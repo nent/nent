@@ -54,8 +54,5 @@
       "<rootDir>/dist"
     ]
   },
-  "gitHead": "229559fdf5d8b2539a6288c0e96092f59d5e3a25",
-  "dependencies": {
-    "uhtml": "^2.7.1"
-  }
+  "gitHead": "229559fdf5d8b2539a6288c0e96092f59d5e3a25"
 }
