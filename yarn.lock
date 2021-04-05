@@ -4351,7 +4351,7 @@ eslint-module-utils@^2.6.0:
     debug "^2.6.9"
     pkg-dir "^2.0.0"
 
-eslint-plugin-clean-regex@^0.5.1:
+eslint-plugin-clean-regex@0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-clean-regex/-/eslint-plugin-clean-regex-0.5.1.tgz#1fc8d61a1df2702d8f267d58ac101f5243e7ef7c"
   integrity sha512-ZuZxP2V2s2LI2OZPUF5eQQtgUQv1/Z7jDI2DG5GEHGM9D0T0LSbcg8ViuFolrOOmUP7dCz+JHN4gDQWyeDdvJg==
