@@ -29,7 +29,7 @@
     "postcss-import": "14.0.1",
     "postcss-scss": "3.0.5",
     "remixicon": "2.5.0",
-    "tailwindcss": "2.0.4",
+    "tailwindcss": "2.1.0",
     "workbox-build": "6.1.2"
   },
   "license": "MIT",
