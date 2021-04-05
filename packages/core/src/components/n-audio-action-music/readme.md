@@ -39,7 +39,7 @@ Type: `Promise<EventAction<any>>`
 
 ### `sendAction(data?: Record<string, any> | undefined) => Promise<void>`
 
-Send this action to the message-bus.
+Send this action to the the action messaging system.
 
 #### Returns
 

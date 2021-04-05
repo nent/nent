@@ -13,32 +13,32 @@
 
 ## What is NENT?
 
-NENT is a library of function-elements (web-components) that add new features aimed at developing web applications.
+NENT is a library of functional elements (web components) that extend HTML with web application-specific features.
 
-> 'Nent' comes from the word compo-*nent* and it is the uncreative result of my tech-brain doing 'branding'.  
+> 'Nent' comes from the word compo**nent** and it is the uncreative attempt at branding.  
 
 ## Motivation
 
-The goal of this project is to empower the next generation of web developers to create web experiences with less development and deployment friction, within a single semantic-system. (Really though, I just needed to make high-performing, lightweight, web-applications quickly -- without complex builds or frameworks.)
+The goal of this project is to empower the next generation of web developers to create web experiences with less development and deployment friction, all within the semantics of HTML. (Truth: I just needed to make high-performing, lightweight, web applications quickly -- without a complex build or framework - declarative applications are a happy side-effect).
 
 ## Declared Functionality
 
-Each element encapsulates a feature or functionality, like routing, dynamic templates, and reusable-partials.
+Each element encapsulates a feature or function. Functions like URL-routing, dynamic content, data-merged templates, and reusable partials can be individually used without pulling in an entire framework or library.
 
-Simple web applications could be completely declarative, using HTML semantics. 
+Simple web experiences can be completely declared using HTML.
 
-Declarative System Advantages:
+Declarative-Applications:
 
-* Easier to understand and reason about
-* Easier to maintain, with reduced side-effects
-* Deterministic, and testable with static-analysis 
-* More accessible/approachable to a wider range of humans. 
+* Are easier to understand and reason about 
+* Easier to maintain, with reduced side-effects 
+* Deterministic and testable with static-analysis  
+* More approachable to a wider range of skill levels 
 
 ### System Groups
 
-The elements are named and grouped by their system or sub-system, with shared services enabled with a root-tag. 
+The elements are named and grouped by their sub-system. In some cases, shared services are enabled with a system-level element.
 
-Sub-systems add functionality to other systems. For instance, view routes can use data-expressions in their content when the data-system is included.
+Sub-systems add functionality to other systems. For instance, view routes can use data expressions in their content when the data system is included.
 
 ### Views: `<n-views-*>`
 Independent routing and navigation system.
@@ -97,11 +97,11 @@ An optional element that creates an action listener that delegates analytics-spe
 - Custom Events
 
 ### Video: `<n-video-*>`
-Optional wrapper element to normalize video-events between various video players to enable media-timed events for synchronized actions. Useful for automatically navigating when a video ends or updating the content based on the video time.
+Optional wrapper element to normalize video events between various video players to enable media-timed events for synchronized actions. Useful for automatically navigating when a video ends or updating the content based on the video time.
 
 ## Installation
 
-> This is a pre-release project and is subject to breaking-changes and incomplete features. Thank you for trying it out!
+> This is a pre-release project and is subject to breaking changes and incomplete features. Thank you for trying it out!
 
 Add a script-reference to the page head:
 
@@ -135,7 +135,7 @@ yarn add @nent/core
 ```
 ## Learn More
 
-The best way to see what these elements in action, is to take a look at the documentation demo. The install-able app is built using these elements in a single HTML file (with child-routes and partials lazy-loaded, as-needed).
+The best way to see what these elements in action, is to take a look at the documentation demo. The installable app is built using these elements in a single HTML file (with child-routes and partials lazy-loaded, as-needed).
 
 [![Take the Tour](https://badgen.net/badge/@nent/core:%20demo?color=blue)](https://nent.dev)
 

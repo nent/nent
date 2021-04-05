@@ -16,7 +16,8 @@
     "url": "https://github.com/nent/nent/issues",
     "email": "tech@nent.dev"
   },
-  "main": "./dist/index.cjs.js",
+  "browser": "/dist/nent/nent.esm.js",
+  "main": "./dist/index.js",
   "module": "./dist/custom-elements/index.js",
   "es2015": "./dist/esm/index.js",
   "es2017": "./dist/esm/index.js",
@@ -44,6 +45,7 @@
     "@stencil/sass": "1.4.1",
     "@stencil/store": "1.4.1",
     "@types/howler": "2.2.2",
+    "eslint-plugin-clean-regex": "^0.5.1",
     "expr-eval": "2.0.2",
     "jsonata": "1.8.4",
     "remarkable": "2.0.1"

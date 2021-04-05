@@ -4,14 +4,15 @@ module.exports = {
     ecmaVersion: 2017
   },
   extends: [
-    "plugin:@stencil/recommended"
+    "plugin:@stencil/recommended",
+    "plugin:clean-regex/recommended"
   ],
   settings: {
     react: {
       "version": "16.7"
     }
   },
-  plugins: ["prettier"],
+  plugins: ["prettier", "clean-regex"],
   rules: {
     '@stencil/strict-boolean-conditions': 0,
     '@stencil/strict-mutable': 0,

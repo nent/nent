@@ -9,9 +9,9 @@ import { evalExpression } from './evaluate.worker'
 import { ExpressionContext } from './interfaces'
 import { hasToken, resolveTokens } from './tokens'
 
-const operatorRegex = /(in |for |[\>\<\+\-\=]{1})/gi
+const operatorRegex = /(in |for |[><+\-=])/gi
 
-const funcRegEx = /[\{]{0,2}didVisit\(['"](.*)["']\)[\}]{0,2}/gi
+const funcRegEx = /\{{0,2}didVisit\(['"](.*)["']\)\}{0,2}/gi
 
 export function hasExpression(value: string) {
   return value.match(operatorRegex) || value.match(funcRegEx)

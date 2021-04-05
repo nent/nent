@@ -16,9 +16,9 @@ import {
 import { DataItemProvider } from './providers/item'
 import { dataState } from './state'
 
-const tokenRegEx = /\{\{([\w\-]*):([\w]*)((?:\[[0-9]+\]|\.)[\w\.\-\]]+)?(?:\?([\w_.-]*))?\}\}/gi
+const tokenRegEx = /\{\{([\w-]*):(\w*)((?:\[\d+\]|\.)[\w.\-\]]+)?(?:\?([\w.-]*))?\}\}/g
 
-const escapeStringsRegex = /['"]?([a-zA-Z\/]{1}[\w-/_?.]+)['"]?/gi
+const escapeStringsRegex = /['"]?([a-z/][\w-/?.]+)['"]?/gi
 
 export function hasToken(value: string) {
   return value.match(tokenRegEx)
