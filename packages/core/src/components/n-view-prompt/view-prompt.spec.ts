@@ -92,7 +92,6 @@ describe('n-view-prompt', () => {
           </div>
         </n-view>
       </n-views>`,
-      autoApplyChanges: true,
     })
 
     await page.waitForChanges()

@@ -2,6 +2,7 @@ jest.mock('../../services/data/evaluate.worker')
 jest.mock('../../services/common/logging')
 
 import { newSpecPage } from '@stencil/core/testing'
+import { eventBus } from '../../services/actions'
 import {
   commonState,
   commonStateDispose,
@@ -26,6 +27,7 @@ describe('n-view-link-list', () => {
     dataStateDispose()
     commonStateDispose()
     navigationStateDispose()
+    eventBus.removeAllListeners()
   })
   it('renders single home route', async () => {
     const page = await newSpecPage({
@@ -139,7 +141,7 @@ describe('n-view-link-list', () => {
           </li>
           <li>
             <n-view-link>
-              <a class="active" href="/home/:item" n-attached-click="">
+              <a class="active" href="/home/dogs" n-attached-click="">
                 dogs
               </a>
             </n-view-link>

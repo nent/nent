@@ -48,7 +48,7 @@
     "@stencil/sass": "1.4.1",
     "@stencil/store": "1.4.1",
     "@types/howler": "2.2.2",
-    "eslint-plugin-clean-regex": "^0.5.1",
+    "eslint-plugin-clean-regex": "0.5.1",
     "expr-eval": "2.0.2",
     "jsonata": "1.8.4",
     "remarkable": "2.0.1"
