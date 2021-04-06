@@ -1,10 +1,10 @@
 # Session Data Providers
 
-> Data Providers a read-only data-store to resolve using expressions.
+This provider uses a browser cookie to store key-value pairs. The data provider allows for displaying or using cookie data in NENT.
 
-This provider uses the built-in key-value store in the browser to persist data across page-refreshes during a single browsing sessions.
+This store is long-lived from the same browser, but for very small data items.
 
-Cookies: **cookie** `<n-data-cookie>`
+> Data Providers are a read-only data store used by NENT to resolve data expressions.
 
 ## Installation
 
@@ -14,10 +14,10 @@ The cookie provider is registered using a component **[\<n-data-cookie\>](/compo
 <n-data-cookie name="cookie"> </n-data-cookie>
 ```
 
-### Cookie Storage
-
-This store is long-lived from the same browser, but for very small data items.
+### Sample Token
 
 Provider Key: '**cookie**'
 
-`{cookie:(key)}`
+Sample Token: `{{cookie:key}}`
+
+> Where key is the key of the value you are displaying

@@ -16,8 +16,7 @@
     "url": "https://github.com/nent/nent/issues",
     "email": "tech@nent.dev"
   },
-  "browser": "/dist/nent/nent.esm.js",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs.js",
   "module": "./dist/custom-elements/index.js",
   "es2015": "./dist/esm/index.js",
   "es2017": "./dist/esm/index.js",
@@ -26,6 +25,7 @@
   "collection": "./dist/collection/collection-manifest.json",
   "collection:main": "./dist/collection/index.js",
   "unpkg": "./dist/nent/nent.esm.js",
+  "custom-elements": "./dist/custom-elements.json",
   "files": [
     "dist/"
   ],

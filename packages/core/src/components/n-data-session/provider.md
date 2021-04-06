@@ -1,10 +1,8 @@
 # Session Data Providers
 
-> Data Providers a read-only data-store to resolve using expressions.
+This provider uses the built-in key-value store in the browser to persist data across page refreshes during a single browsing session.
 
-This provider uses the built-in key-value store in the browser to persist data across page-refreshes during a single browsing sessions.
-
-Browser Session: **session**
+> Data Providers are a read-only data store used by NENT to resolve data expressions.
 
 ## Installation
 
@@ -15,10 +13,10 @@ The session provider is registered using a component **[\<n-data-session\>](/com
 </n-data-session>
 ```
 
-### Session Storage
-
-This store is short-lived and used to track 'session visits' and other temporary values.
+### Sample Token
 
 Provider Key: '**session**'
 
-`{<name>:(<key>}`
+Sample Token: `{{session:key}}`
+
+> Where key is the key of the value you are displaying

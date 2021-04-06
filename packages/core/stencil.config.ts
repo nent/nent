@@ -4,7 +4,6 @@ import visualizer from 'rollup-plugin-visualizer'
 import { JsonDocs } from './stencil.config.utils'
 const config: Config = {
   namespace: 'nent',
-  preamble: 'NENT 2021',
   hashFileNames: false,
   rollupPlugins: {
     after: [
@@ -32,7 +31,7 @@ const config: Config = {
     },
     {
       type: 'docs-vscode',
-      file: 'dist/custom-elements/custom-elements.json',
+      file: 'dist/custom-elements.json',
     },
     JsonDocs,
     {

@@ -1,10 +1,8 @@
 # Storage Data Providers
 
-> Data Providers a read-only data-store to resolve using expressions.
-
 This provider uses the built-in key-value store in the browser to persist data across browsing sessions within the same browser.
 
-Browser Storage: **storage**
+> Data Providers are a read-only data store used by NENT to resolve data expressions.
 
 ## Installation
 
@@ -17,10 +15,10 @@ The storage provider is registered using a component **[\<n-data-storage\>](/com
 </n-data-storage>
 ```
 
-## Local Storage
-
-This store is long-lived from the same browser. and used to track 'session visits' and other temporary values.
+### Sample Token
 
 Provider Key: '**storage**'
 
-`{<name>:(<key>}`
+Sample Token: `{{storage:key}}`
+
+> Where key is the key of the value you are displaying
