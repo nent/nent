@@ -28,6 +28,7 @@ import { renderMarkdown } from './markdown/remarkable.worker'
  * from an inline-template or from a remote source.
  *
  * @system content
+ * @extension data
  */
 @Component({
   tag: 'n-content-markdown',

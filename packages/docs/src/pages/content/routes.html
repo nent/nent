@@ -14,7 +14,7 @@
     class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
     <li class="list-group-item fw-bold"> Content Elements</li>
     <n-content-repeat items-src="/assets/components.json"
-      filter="components[docsTags[text='content']]">
+      filter="components[docsTags[name='system' and text='content']]">
       <template>
         <li class="list-group-item">
 

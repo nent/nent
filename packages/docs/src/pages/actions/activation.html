@@ -1,0 +1,52 @@
+<h4>Advanced Activations</h4>
+<p>There are more ways to activate actions declaratively. Read more about them
+  here.</p>
+<div class="button-nav">
+  <a href="/actions/activation/events"
+    class="btn btn-secondary">Event Activation </a>
+  <a href="/actions/activation/timed"
+    class="btn btn-secondary">Timed Activation </a>
+  <a href="/actions/activation/elements"
+    class="btn btn-secondary">Element Activation </a>
+</div>
+<h3>Script Activation</h3>
+<p> Actions can be sent to the action messaging system using a standard HTML
+  CustomEvent with the properties above, using the event name:
+  <b>nent:actions</b>
+</p>
+<n-content-markdown>
+  <script type="text/markdown">
+    ```javascript
+    const action = new CustomEvent('nent:actions', {
+      detail: {
+        topic: '<system>',
+        command: '<command>',
+        data: {
+          ...args,
+        },
+      },
+    })
+    this.el.ownerDocument.body.dispatchEvent(customEvent)
+    ```
+  </script>
+</n-content-markdown>
+<h3>Mixed Activation</h3>
+<p> You can also activate an action directly with JavaScript, using the n-action
+  element's <b>activateAction()</b> function. </p>
+<n-content-markdown>
+  <script type="text/markdown">
+    ```html
+    <n-action id="actionlog"
+      topic="app"
+      command="console"
+      data-message="Testing on-enter action">
+    </n-action>
+    ```
+
+    Then in JS:
+
+    ```javascript
+    await actionlog.activateAction()
+    ```
+  </script>
+</n-content-markdown>

@@ -19,8 +19,8 @@ Add the `<n-app-theme-switch>` component to any page to allow the user to adjust
 
 | Property  | Attribute  | Description                          | Type                  | Default     |
 | --------- | ---------- | ------------------------------------ | --------------------- | ----------- |
-| `classes` | `classes`  | The class to add to the inner input. | `string \| undefined` | `undefined` |
-| `inputId` | `input-id` | The inner input ID                   | `string \| undefined` | `undefined` |
+| `classes` | `classes`  | The class to add to the inner input. | `string`, `undefined` | `undefined` |
+| `inputId` | `input-id` | The inner input ID                   | `string`, `undefined` | `undefined` |
 
 
 ----------------------------------------------

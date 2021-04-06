@@ -65,8 +65,6 @@ export namespace Components {
          */
         "time"?: number;
     }
-    interface NAnalytics {
-    }
     interface NApp {
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
@@ -76,6 +74,8 @@ export namespace Components {
           * Turn off declarative actions for the entire app.
          */
         "disableActions": boolean;
+    }
+    interface NAppAnalytics {
     }
     interface NAppShare {
         /**
@@ -716,17 +716,17 @@ declare global {
         prototype: HTMLNActionActivatorElement;
         new (): HTMLNActionActivatorElement;
     };
-    interface HTMLNAnalyticsElement extends Components.NAnalytics, HTMLStencilElement {
-    }
-    var HTMLNAnalyticsElement: {
-        prototype: HTMLNAnalyticsElement;
-        new (): HTMLNAnalyticsElement;
-    };
     interface HTMLNAppElement extends Components.NApp, HTMLStencilElement {
     }
     var HTMLNAppElement: {
         prototype: HTMLNAppElement;
         new (): HTMLNAppElement;
+    };
+    interface HTMLNAppAnalyticsElement extends Components.NAppAnalytics, HTMLStencilElement {
+    }
+    var HTMLNAppAnalyticsElement: {
+        prototype: HTMLNAppAnalyticsElement;
+        new (): HTMLNAppAnalyticsElement;
     };
     interface HTMLNAppShareElement extends Components.NAppShare, HTMLStencilElement {
     }
@@ -905,8 +905,8 @@ declare global {
     interface HTMLElementTagNameMap {
         "n-action": HTMLNActionElement;
         "n-action-activator": HTMLNActionActivatorElement;
-        "n-analytics": HTMLNAnalyticsElement;
         "n-app": HTMLNAppElement;
+        "n-app-analytics": HTMLNAppAnalyticsElement;
         "n-app-share": HTMLNAppShareElement;
         "n-app-theme": HTMLNAppThemeElement;
         "n-app-theme-switch": HTMLNAppThemeSwitchElement;
@@ -979,20 +979,6 @@ declare namespace LocalJSX {
          */
         "time"?: number;
     }
-    interface NAnalytics {
-        /**
-          * Raised analytics events.
-         */
-        "onCustom-event"?: (event: CustomEvent<any>) => void;
-        /**
-          * Page views.
-         */
-        "onPage-view"?: (event: CustomEvent<any>) => void;
-        /**
-          * View percentage views.
-         */
-        "onView-time"?: (event: CustomEvent<any>) => void;
-    }
     interface NApp {
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
@@ -1010,6 +996,20 @@ declare namespace LocalJSX {
           * Listen for events that occurred within the **`<n-views>`** system.
          */
         "onNent:events"?: (event: CustomEvent<any>) => void;
+    }
+    interface NAppAnalytics {
+        /**
+          * Raised analytics events.
+         */
+        "onCustom-event"?: (event: CustomEvent<any>) => void;
+        /**
+          * Page views.
+         */
+        "onPage-view"?: (event: CustomEvent<any>) => void;
+        /**
+          * View percentage views.
+         */
+        "onView-time"?: (event: CustomEvent<any>) => void;
     }
     interface NAppShare {
         /**
@@ -1598,8 +1598,8 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "n-action": NAction;
         "n-action-activator": NActionActivator;
-        "n-analytics": NAnalytics;
         "n-app": NApp;
+        "n-app-analytics": NAppAnalytics;
         "n-app-share": NAppShare;
         "n-app-theme": NAppTheme;
         "n-app-theme-switch": NAppThemeSwitch;
@@ -1637,8 +1637,8 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "n-action": LocalJSX.NAction & JSXBase.HTMLAttributes<HTMLNActionElement>;
             "n-action-activator": LocalJSX.NActionActivator & JSXBase.HTMLAttributes<HTMLNActionActivatorElement>;
-            "n-analytics": LocalJSX.NAnalytics & JSXBase.HTMLAttributes<HTMLNAnalyticsElement>;
             "n-app": LocalJSX.NApp & JSXBase.HTMLAttributes<HTMLNAppElement>;
+            "n-app-analytics": LocalJSX.NAppAnalytics & JSXBase.HTMLAttributes<HTMLNAppAnalyticsElement>;
             "n-app-share": LocalJSX.NAppShare & JSXBase.HTMLAttributes<HTMLNAppShareElement>;
             "n-app-theme": LocalJSX.NAppTheme & JSXBase.HTMLAttributes<HTMLNAppThemeElement>;
             "n-app-theme-switch": LocalJSX.NAppThemeSwitch & JSXBase.HTMLAttributes<HTMLNAppThemeSwitchElement>;

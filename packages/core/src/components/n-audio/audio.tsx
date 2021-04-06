@@ -21,8 +21,8 @@ import { audioState, onAudioStateChange } from './services/state'
  * <https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js>
  *
  * @system audio
- * @actions true
- * @provider true
+ * @extension actions
+ * @extension provider
  *
  */
 @Component({

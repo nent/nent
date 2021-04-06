@@ -11,11 +11,11 @@ import {
 import { ViewPrompt } from '../n-view-prompt/view-prompt'
 import { View } from '../n-view/view'
 import { ViewRouter } from '../n-views/views'
-import { Analytics } from './analytics'
+import { Analytics } from './app-analytics'
 import {
   ANALYTICS_COMMANDS,
   ANALYTICS_TOPIC,
-} from './analytics/interfaces'
+} from './app-analytics/interfaces'
 
 describe('n-app-analytics', () => {
   afterEach(async () => {

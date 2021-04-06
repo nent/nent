@@ -11,19 +11,18 @@ import {
 import { DATA_COMMANDS, SetData } from '../n-data/services/interfaces'
 import { StorageService } from './storage/service'
 
-@Component({
-  tag: 'n-data-storage',
-  shadow: false,
-})
-
 /**
  * This component enables the **Storage Data Provider**, that
  * leverages the browser 'long-term' data storage.
  *
  * @system data
- * @actions true
- * @provider true
+ * @extension actions
+ * @extension provider
  */
+@Component({
+  tag: 'n-data-storage',
+  shadow: false,
+})
 export class DataStorage {
   private provider!: StorageService
   private actionSubscription?: () => void

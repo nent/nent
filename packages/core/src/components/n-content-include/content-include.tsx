@@ -26,6 +26,7 @@ import { ROUTE_EVENTS } from '../../services/routing/interfaces'
  * into the page when when and where you tell it too, as soon as it renders.
  *
  * @system content
+ * @extension data
  */
 @Component({
   tag: 'n-content-include',

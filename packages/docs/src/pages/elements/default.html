@@ -1,6 +1,19 @@
 <div class="content">
   <h1>Elements System</h1>
   <h2>Manipulating HTML</h2>
+  <h3>Supporting Components</h3>
+  <p>Learn more about how data can be used in supporting elements.</p>
+  <ul>
+    <n-content-repeat items-src="/assets/components.json"
+      filter="components[docsTags[name='system' and name='elements']]">
+      <template>
+        <li>
+          <a href="/components/{{data:tag}}"> {{data:tag}} with Elements
+          </a>
+        </li>
+      </template>
+    </n-content-repeat>
+  </ul>
   <footer>
     <a slot="start"
       href="/">

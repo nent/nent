@@ -15,7 +15,7 @@
 
 NENT is a library of functional elements (web components) that extend HTML with web application-specific features.
 
-> 'Nent' comes from the word compo**nent** and it is the uncreative attempt at branding.  
+> 'Nent' comes from the word compo**nent** and it is my tech-brain, uncreative attempt at branding.  
 
 ## Motivation
 
@@ -90,7 +90,7 @@ Optional audio elements to display a player and create an action listener for au
 - Event Sounds
 - Background Music
 
-### Analytics: `<n-analytics>`
+### Analytics: `<n-app-analytics>`
 An optional element that creates an action listener that delegates analytics-specific events and route-changes to a script-configurable element for integration.
 - Page Views
 - View Times 

@@ -7,7 +7,7 @@
     class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
     <li class="list-group-item fw-bold"> Audio Elements</li>
     <n-content-repeat items-src="/assets/components.json"
-      filter="components[docsTags[text='audio']]">
+      filter="components[docsTags[name='system' and text='audio']]">
       <template>
         <li class="list-group-item">
           <a href="/components/{{data:tag}}"> &lt;{{data:tag}}&gt; </a>

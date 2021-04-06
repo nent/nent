@@ -11,19 +11,18 @@ import {
 import { DATA_COMMANDS, SetData } from '../n-data/services/interfaces'
 import { SessionService } from './session/service'
 
+/**
+ * This component enables the **Session Data Provider**.
+ * It leverages the short-lived browser storage.
+ *
+ * @system data
+ * @extension actions
+ * @extension provider
+ */
 @Component({
   tag: 'n-data-session',
-  shadow: false,
+  shadow: true,
 })
-
-/**
- *  This component enables the **Session Data Provider**.
- *  It leverages the short-lived browser storage.
- *
- *  @system data
- *  @actions true
- *  @provider true
- */
 export class DataSession {
   private provider!: SessionService
   private actionSubscription?: () => void

@@ -1,36 +1,32 @@
 <div class="content">
   <h1>Data System</h1>
-  <p class="lead">These components provide multiple ways to render data into
-    your HTML.</p>
+  <p class="lead">Provide multiple ways to use data within your HTML.</p>
   <h2>How it works</h2>
-  <p>These components use an expression-based syntax and a data-provider plugin
-    system to provide data in a simple, familiar way. </p>
-  <p>As an example, the following list is created from the browser's storage.
-    It's a list of specialized pages you've visited that track if they've been
-    seen to create a workflow. </p>
-  <blockquote> To learn more about route-tasks, or 'view-do's as we call them,
-    read about them here: <a href="/components/n-view-prompt">
-      <b>&lt;n-view-prompt&gt;</b>
-    </a>
-  </blockquote>
-  <h2>Data Repeater</h2>
-  <p>The following elements demonstrate how a list of data-points was rendered
-    using data plus a template. Learn more about the <a
-      href="/components/n-content-repeat">
-      <b>&lt;n-content-repeat&gt;</b></a> element and other ways you can provide
-    data. </p>
-  <h3>Visits in Storage:</h3>
-  <ul>
-    <n-content-repeat items="{{storage:visits}}">
-      <template>
-        <li>{{data:item}}</li>
-      </template>
-    </n-content-repeat>
-  </ul>
-  <h4>Under the Hood</h4>
+  <p>The <a href="/components/n-data">
+      <b>&lt;n-data&gt;</b></a> component extends the functionality of other
+    elements by introducing a data-provider system along with an
+    expression-resolution system for using data in a simple, declarative way.
+  </p>
+  <p>Once enabled data can be injected in HTML using tokens:
+  <pre>{{source:key}}</pre>
+  </p>
+  <h2>Content Repeat Example</h2>
+  <p>Assuming a list of URLs visited are stored within the browser's built-in
+    storage, you can render that list in your HTML by enabling the <a
+      href="/components/n-data">
+      <b>&lt;n-data&gt;</b></a> system and installing the <a
+      href="/components/n-data-storage">
+      <b>&lt;n-data-storage&gt;</b></a> provider. </p>
+  <p>The <a href="/components/n-content-repeat">
+      <b>&lt;n-content-repeat&gt;</b></a> element can then reference the list
+    using the expression: </p>
+  <pre>{{storage:visits}}</pre>
   <n-content-markdown>
     <script type="text/markdown">
       ```html
+      <n-data>
+        <n-data-storage></n-data-storage>
+      </n-data>
       <ul>
         <n-content-repeat items="{{storage:visits}}">
           <template>
@@ -41,24 +37,55 @@
       ```
     </script>
   </n-content-markdown>
-  <h3>Advanced Topics</h3>
-  <p></p>
-  <div class="button-nav">
-    <a href="/data/display"
-      class="btn btn-secondary"> Data Display </a>
-    <a href="/data/expressions"
-      class="btn btn-secondary"> Data Expressions & Predicates </a>
-    <a href="/data/providers"
-      class="btn btn-secondary"> Data Providers </a>
-    <a href="/actions/data"
-      class="btn btn-secondary"> Data Actions </a>
-  </div>
-  <footer>
-    <a slot="start"
-      href="/content"
-      class="btn btn-primary btn-lg"> &lt; Content </a>
-    <a slot="end"
-      href="/actions"
-      class="btn btn-primary btn-lg"> Actions &gt;</a>
-  </footer>
+  <h4>Results:</h3>
+    <ul>
+      <n-content-repeat items="{{storage:visits}}">
+        <template>
+        <li>{{data:item}}</li>
+      </template>
+      </n-content-repeat>
+    </ul>
+    <h3>Supporting Components</h3>
+    <p>Learn more about how data can be used in supporting elements.</p>
+    <h4>Extended Data Functionality</h4>
+    <ul>
+      <n-content-repeat items-src="/assets/components.json"
+        filter="components[docsTags[text='data']]">
+        <template>
+          <li>
+            <a href="/components/{{data:tag}}/data">{{data:tag}} data-extensions
+            </a>
+          </li>
+        </template>
+      </n-content-repeat>
+    </ul>
+    <h4>Data Providers</h4>
+    <ul>
+      <n-content-repeat items-src="/assets/components.json"
+        filter="components[docsTags[text='provider']]">
+        <template>
+          <li>
+            <a href="/components/{{data:tag}}/provider">{{data:tag}} provider
+            </a>
+          </li>
+        </template>
+      </n-content-repeat>
+    </ul>
+    <h3>Advanced Topics</h3>
+    <p>Learn more about supporting element and other ways you can provide data.
+    </p>
+    <div class="button-nav">
+      <a href="/data/expressions"
+        class="btn btn-secondary"> Expressions & Predicates </a>
+      <a href="/actions/data"
+        class="btn btn-secondary"> Data Actions </a>
+    </div>
+    <footer>
+      <a slot="start"
+        href="/content"
+        class="btn btn-primary btn-lg"> &lt; Content </a>
+      <a slot="end"
+        href="/actions"
+        class="btn btn-primary btn-lg"> Actions &gt;</a>
+    </footer>
 </div>

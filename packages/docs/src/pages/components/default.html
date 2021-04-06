@@ -7,6 +7,15 @@
         <h4>&lt;{{data:tag}}&gt;</h4>
         <p class="animate_animated animate__slideOutDown">{{data:docs}}</p>
       </n-view-link>
-    </div>
-  </template>
+      <n-content-repeat no-cache
+        items="{{data:docsTags}}"
+        when="{{route:component}}"
+        no-cache=""
+        filter="name='extension'">
+        <template>
+          <p>{{data:name}} : {{data:text}}</p>
+        </template>
+</n-content-repeat>
+</div>
+</template>
 </n-content-repeat>

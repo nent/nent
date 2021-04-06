@@ -25,6 +25,7 @@ import { ROUTE_EVENTS } from '../../services/routing/interfaces'
  * replaced with the values provided by the provider.
  *
  * @system content
+ * @extension data
  */
 @Component({
   tag: 'n-content-template',

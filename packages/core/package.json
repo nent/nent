@@ -31,8 +31,11 @@
   ],
   "scripts": {
     "--- development ---": "---------------",
-    "watch": "stencil build -c stencil.config.docs.ts --watch",
+    "start": "run-p watch:ts watch",
+    "watch:ts": "stencil build -c stencil.config.docs.ts --watch",
     "new": "stencil generate",
+    "copy": "copyfiles -u ./src/components/**/*.md ../../docs/pages/components",
+    "watch": "npm-watch",
     "--- production ---": "---------------",
     "build": "stencil build --docs-readme",
     "build:docs": "stencil build -c stencil.config.docs.ts",
@@ -55,6 +58,11 @@
     "testPathIgnorePatterns": [
       "<rootDir>/dist"
     ]
+  },
+  "watch": {
+    "copy": {
+      "test": "src/**/*.md"
+    }
   },
   "gitHead": "229559fdf5d8b2539a6288c0e96092f59d5e3a25"
 }

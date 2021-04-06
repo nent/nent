@@ -123,8 +123,8 @@ If inline is present, the source would be nested inside this element, otherwise,
 | `inline`    | `inline`     | When inline the link/script tags are rendered in-place rather than added to the head.                        | `boolean`             | `false`     |
 | `module`    | `module`     | Import the script file as a module.                                                                          | `boolean`             | `false`     |
 | `noModule`  | `no-module`  | Declare the script only for use when modules aren't supported                                                | `boolean`             | `false`     |
-| `scriptSrc` | `script-src` | The script file to reference.                                                                                | `string \| undefined` | `undefined` |
-| `styleSrc`  | `style-src`  | The css file to reference                                                                                    | `string \| undefined` | `undefined` |
+| `scriptSrc` | `script-src` | The script file to reference.                                                                                | `string`, `undefined` | `undefined` |
+| `styleSrc`  | `style-src`  | The css file to reference                                                                                    | `string`, `undefined` | `undefined` |
 | `timeout`   | `timeout`    | Timeout (in milliseconds) to wait for the references to load.                                                | `number`              | `1000`      |
 
 

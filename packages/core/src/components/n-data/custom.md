@@ -1,65 +1,16 @@
-# Data Providers
+# Custom Provider
 
-Data Providers _provide_ the underlying data-store for expressions to resolve using data from a variety of sources. Also, since custom providers can be added, you can extend your HTML with customizations, personalization and route-conditions with ANY data-set.
+Data Providers are the underlying data-store for expressions. You can extend your HTML with data from your own provider by registering a custom provider.
 
 > The Data Provider system is a way to normalize data access for use within Data Expressions.
 
-## Built-in Data Providers
+To register a provider, provide a unique name and an instance that implements IDataProvider and that data will become available within the expression system, once registered.
 
-There are data-providers already created for sessionStorage, localStorage and cookies.
 
-To use them, add their tag:
-
-* Browser Session: **session** `<n-data-session>`
-* Browser Storage: **storage** `<n-data-storage>`
-* Cookies: **cookie** `<n-data-cookie>`
-
-Other data-providers that require no configuration are:
-
-* Route: **route**
-* Query: **query**
-* Inline Data: **data**
-
-**Example:**
-
-  `{{storage:name?Friend}}`
-
-### Session Storage
-
-This store is short-lived and used to track 'session visits' and other temporary values.
-
-Provider Key: '**session**'
-
-`{session:(key)}`
-
-### Local Storage
-
-This store is long-lived from the same browser. and used to track 'session visits' and other temporary values.
-
-Provider Key: '**storage**'
-
-`{storage:(key)}`
-
-### Cookie Storage
-
-This store is long-lived from the same browser, but for very small data items.
-
-Provider Key: '**cookie**'
-
-`{cookie:(key)}`
-
-The cookie provider is registered using a special element **[\<n-data-cookie\>](/components/n-data-cookie)**.
-
-## Custom Data Providers
-
-You can extend this system by adding your own provider, using a Data Provider Action.
-
-To register a provider, provide a unique name and an instance that implements IDataProvider and that data will become available within the expression system.
-
-**Custom Event to Register a Provider:**
+**Register Provider:**
 
 ```typescript
-new CustomEvent('x:actions', {
+new CustomEvent('nent:actions', {
   detail: {
     topic: 'data'
     command: "register-provider",
@@ -118,7 +69,7 @@ All that is needed by the data-system is a custom event with an instance of your
 
 ```javascript
 const customProvider = new MyProvider(); // IDataProvider
-const event = new CustomEvent('x:actions', {
+const event = new CustomEvent('nent:actions', {
   detail: {
     topic: 'data',
     command: 'register-provider'
@@ -151,7 +102,7 @@ export class MyDataProvider {
    * and register the provider for use in expressions.
    */
   @Event({
-    eventName: 'x:events',
+    eventName: 'nent:events',
     bubbles: true,
     composed: true,
   })

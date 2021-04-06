@@ -1,6 +1,6 @@
-# N-APP-VIEW
+# N-VIEW: Element Extension
 
-Child Attribute Detection & Resolution
+When the [n-elements](/components/n-elements) system is enabled, child content can be modified using special attributes.
 
 ## Install `\<n-elements\>`
 
@@ -8,7 +8,7 @@ Child Attribute Detection & Resolution
 <n-elements></n-elements>
 ```
 
-The following attributes are queried to resolve certain data-values or show/hide conditions for all child elements.
+The following attributes are queried to resolve certain data values or show/hide conditions for all child elements.
 
 ### Hide When: [n-hide-when]
 

@@ -3,7 +3,7 @@ import { JsonDocs } from '@stencil/core/internal/stencil-public-docs'
 import fs from 'fs'
 import { version } from './package.json'
 
-const badSeparatorRegEx = /\s*\\\|\s*/gi
+const badSeparatorRegEx = /\s*\\\|\s*/g
 
 const JsonDocs: OutputTargetDocsCustom = {
   type: 'docs-custom',

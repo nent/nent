@@ -7,7 +7,7 @@ Event Name: **actionEvent**
 ### Custom Event
 
 ```typescript
-const action = new CustomEvent('x:actions', {
+const action = new CustomEvent('nent:actions', {
   detail: {
     topic: "<topic",
     command: "<command>",
@@ -17,15 +17,14 @@ const action = new CustomEvent('x:actions', {
   }
 });
 
-const xui = document.querySelector('n-views');
-xui.dispatchEvent(action, {
+document.dispatchEvent(action, {
   bubbles: true,
   composed: true,
 });
 
 ```
 
-## Using the ActionBus
+## Using the Action Bus
 
 ```typescript
 

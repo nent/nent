@@ -23,6 +23,7 @@ describe('n-data-session', () => {
     })
     expect(page.root).toEqualHtml(`
       <n-data-session>
+        <mock:shadow-root></mock:shadow-root>
       </n-data-session>
     `)
   })

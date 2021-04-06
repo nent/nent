@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core'
 import visualizer from 'rollup-plugin-visualizer'
+import { JsonDocs } from './stencil.config.utils'
 const config: Config = {
   namespace: 'nent',
   preamble: 'NENT 2021',
@@ -16,11 +17,10 @@ const config: Config = {
       type: 'docs-vscode',
       file: '../../docs/assets/custom-elements.json',
     },
+    JsonDocs,
     {
       type: 'docs-json',
       file: '../../docs/assets/components.json',
-      strict: true,
-      typesFile: '../../docs/js/nent/nent.d.t',
     },
     {
       type: 'www',

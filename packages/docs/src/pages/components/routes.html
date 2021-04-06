@@ -16,30 +16,6 @@
           <n-view-link href="/components/{{data:tag}}">
             {{data:tag}}
           </n-view-link>
-          <ul hidden
-            n-show-when="'{{data:tag}}' == '{{route:component}}'">
-            <li hidden
-              n-show-when="{'text':'true', 'name':'actions'} in {{data:docsTags}}">
-
-              <n-view-link href="/components/{{data:tag}}/actions">
-                actions
-              </n-view-link>
-            </li>
-            <li hidden
-              n-show-when="{'text':'true', 'name':'provider'} in {{data:docsTags}}">
-
-              <n-view-link href="/components/{{data:tag}}/provider">
-                provider
-              </n-view-link>
-            </li>
-            <li hidden
-              n-show-when="{'text':'true', 'name':'elements'} in {{data:docsTags}}">
-
-              <n-view-link href="/components/{{data:tag}}/elements">
-                elements
-              </n-view-link>
-            </li>
-          </ul>
         </li>
       </template>
     </n-content-repeat>
@@ -53,19 +29,25 @@
   <n-view exact
     class="flex-shrink"
     path="/components/:component/actions"
-    page-title=" Actions"
+    page-title="actions"
     content-src="/pages/components/actions.html">
   </n-view>
   <n-view exact
     class="flex-shrink"
+    path="/components/:component/provider"
+    page-title="data provider"
+    content-src="/pages/components/provider.html">
+  </n-view>
+  <n-view exact
+    class="flex-shrink"
     path="/components/:component/elements"
-    page-title="Elements"
+    page-title="extended: elements"
     content-src="/pages/components/elements.html">
   </n-view>
   <n-view exact
     class="flex-shrink"
-    path="/components/:component/provider"
-    page-title="Provider"
-    content-src="/pages/components/provider.html">
+    path="/components/:component/data"
+    page-title="extended: data"
+    content-src="/pages/components/data.html">
   </n-view>
 </div>

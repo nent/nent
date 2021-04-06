@@ -14,7 +14,7 @@
     class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
     <li class="list-group-item fw-bold">Data Elements</li>
     <n-content-repeat items-src="/assets/components.json"
-      filter="components[docsTags[text='data']]">
+      filter="components[docsTags[name='system' and text='data']]">
       <template>
         <li class="list-group-item">
 
@@ -28,14 +28,6 @@
 <n-view path="/data/expressions"
   page-title="Expressions"
   content-src="/pages/data/expressions.html">
-</n-view>
-<n-view path="/data/providers"
-  page-title="Providers"
-  content-src="/pages/data/providers.html">
-</n-view>
-<n-view path="/data/navigation"
-  page-title="Navigation"
-  content-src="/pages/data/navigation.html">
 </n-view>
 <n-view path="/data/demo">
   <n-view-prompt path="/data/demo/session-data"

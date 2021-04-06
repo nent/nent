@@ -13,11 +13,11 @@
   "repository": "https://github.com/nent/nent.git",
   "scripts": {
     ":dev ---": "---------------",
-    "start": "run-p core:watch docs:start",
+    "start": "run-p core:start docs:start",
     "serve": "npx serve docs",
     ":core  ---": "---------------",
     "core:build": "yarn workspace @nent/core run build",
-    "core:watch": "yarn workspace @nent/core run watch",
+    "core:start": "yarn workspace @nent/core run start",
     "core:build:docs": "yarn workspace @nent/core run build:docs",
     ":docs  ---": "---------------",
     "docs:build": "yarn workspace @nent/docs run build",

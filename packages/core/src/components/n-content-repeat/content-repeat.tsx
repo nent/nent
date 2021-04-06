@@ -29,6 +29,7 @@ import { filterData } from './filter/jsonata.worker'
  * data provider as well as the item in the array.
  *
  * @system content
+ * @extension data
  */
 @Component({
   tag: 'n-content-repeat',
@@ -227,7 +228,12 @@ export class ContentDataRepeat {
       items = await this.resolveItemsExpression()
     } else if (this.childScript) {
       try {
-        const text = this.childScript.textContent?.replace('\n', '')
+        let text =
+          this.childScript.textContent?.replace('\n', '') || ''
+        text =
+          commonState.dataEnabled && hasToken(text)
+            ? await resolveTokens(text, true)
+            : text
         items = valueToArray(JSON.parse(text || '[]'))
       } catch (error) {
         warnIf(

@@ -15,7 +15,7 @@
 
 NENT is a library of functional elements (web components) that extend HTML with web application-specific features.
 
-> 'Nent' comes from the word compo**nent** and it is the uncreative attempt at branding.  
+> 'Nent' comes from the word compo**nent** and it is my tech-brain, uncreative attempt at branding.  
 
 ## Motivation
 

@@ -42,11 +42,10 @@ import { Route } from '../../services/routing/route'
  * @slot content - The content route is rendered only when the route
  *                 matches EXACTLY. Note: This HTML is removed when the
  *                 route changes.
- *
- *
  * @system routing
- * @elements true
  *
+ * @extension elements
+ * @extension data
  */
 @Component({
   tag: 'n-view',

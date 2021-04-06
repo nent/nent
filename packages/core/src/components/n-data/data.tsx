@@ -6,12 +6,13 @@ import { dataState } from '../../services/data/state'
 import { DataListener } from './services/actions'
 
 /**
- * This component enables the Data Provider system. It hosts
+ * This element enables the Data Provider system. It hosts
  * the action-listener that registers providers.  Add this tag
  * to that page to enable token-replacement.
  *
  * @system data
- * @actions true
+ * @extension actions
+ * @extension custom
  */
 @Component({
   tag: 'n-data',
@@ -26,6 +27,7 @@ export class Data {
    * This is to accommodate a possible lag between
    * evaluation before the first view-do 'when' predicate
    * an the registration process.
+   *
    * @system data
    */
   @Prop() providerTimeout: number = 500

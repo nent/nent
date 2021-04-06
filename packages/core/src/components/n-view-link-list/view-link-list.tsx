@@ -44,6 +44,7 @@ export class ViewLinkList {
     link: boolean
     path: string
     title: string
+    match: MatchResults | null
   }> | null = null
 
   /**
@@ -126,6 +127,7 @@ export class ViewLinkList {
     link: boolean
     path: string
     title: string
+    match: MatchResults | null
   }> | null> {
     if (route) {
       let paths =
@@ -144,6 +146,7 @@ export class ViewLinkList {
             link: !!route,
             path: resolvedPath,
             title,
+            match: route?.match || null,
           }
         }),
       )
@@ -153,6 +156,17 @@ export class ViewLinkList {
       return routes || null
     }
     return null
+  }
+
+  private getUrl(route: any) {
+    let url = route.match?.url || route.path
+    if (this.match) {
+      Object.keys(this.match?.params).forEach(param => {
+        url = url.replace(`:${param}`, this.match!.params[param])
+      })
+    }
+
+    return url
   }
 
   render() {
@@ -169,7 +183,7 @@ export class ViewLinkList {
               <li class={itemClasses}>
                 {r.link ? (
                   <n-view-link
-                    href={r.path}
+                    href={this.getUrl(r)}
                     exact={true}
                     activeClass={this.activeClass}
                   >

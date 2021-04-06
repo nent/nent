@@ -11,7 +11,8 @@ import { RouterService } from '../../services/routing/router'
  * components placed within any global-html.
  *
  * @system routing
- * @actions true
+ * @extension actions
+ * @extension elements
  */
 @Component({
   tag: 'n-views',

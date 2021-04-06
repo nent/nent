@@ -23,7 +23,8 @@ import { AppActionListener } from './services/actions'
  * menus, etc. The basic provider is used to toggle dark-mode.
  *
  * @system app
- * @actions true
+ * @extension actions
+ * @extension custom
  */
 @Component({
   tag: 'n-app',

@@ -7,10 +7,9 @@
     class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
     <li class="list-group-item fw-bold"> Action Elements</li>
     <n-content-repeat items-src="/assets/components.json"
-      filter="components[docsTags[text='actions']]">
+      filter="components[docsTags[name='system' and text='actions']]">
       <template>
         <li class="list-group-item">
-
           <a href="/components/{{data:tag}}"> &lt;{{data:tag}}&gt; </a>
         </li>
       </template>
@@ -22,6 +21,8 @@
   <p class="lead"> Actions provide a declarative mechanism for expressing
     reactive functionality directly in HTML, reducing the need to write and test
     JavaScript. </p>
+  <p>The action system extends the functionality of other elements by
+    introducing a declarative way to express reactive functionality. </p>
   <h2>Declarative Actions</h2>
   <p> Actions could be thought of as commands, that are pre-configured to
     execute in response to a declared event. Once activated, the action becomes
@@ -52,7 +53,8 @@
     <b>nent</b> components use a command/event messaging system for
     inter-element communication. Actions are commands declared with HTML.
   </blockquote>
-  <h3>Declarative Activation</h3>
+  <h2>Activation</h2>
+  <p></p>
   <p> Actions can also be expressed using the <a
       href="/components/n-action"><b>&lt;n-action&gt;</b></a> element. They
     should be wrapped within an Action Activator <a
@@ -60,98 +62,37 @@
     element to define how and when the actions within are activated. </p>
   <n-content-markdown>
     <script type="text/markdown">
-      ```html
-      <n-action-activator activate="...">
-        <n-action topic="app"
-          command="log"
-          data-message="Testing on-enter action"></n-action>
-      </n-action-activator>
-      ```
-    </script>
+    ```html
+    <n-action-activator activate="...">
+      <n-action topic="app"
+        command="log"
+        data-message="Testing on-enter action"></n-action>
+    </n-action-activator>
+    ```
+  </script>
   </n-content-markdown>
-  <h4>Advanced Activations</h4>
-  <p>There are more ways to activate actions declaratively. Read more about them
-    here.</p>
   <div class="button-nav">
-    <a href="/actions/activation/events"
-      class="btn btn-secondary">Event Activation </a>
-    <a href="/actions/activation/timed"
-      class="btn btn-secondary">Timed Activation </a>
-    <a href="/actions/activation/elements"
-      class="btn btn-secondary">Element Activation </a>
+    <a class="btn btn-secondary"
+      href="/actions/activation">Activating Actions</a>
   </div>
-  <h3>Script Activation</h3>
-  <p> Actions can be sent to the action messaging system using a standard HTML
-    CustomEvent with the properties above, using the event name:
-    <b>x:actions</b>
-  </p>
-  <n-content-markdown>
-    <script type="text/markdown">
-      ```javascript
-      const action = new CustomEvent('x:actions', {
-        detail: {
-          topic: '<system>',
-          command: '<command>',
-          data: {
-            ...args,
-          },
-        },
-      })
-      this.el.ownerDocument.body.dispatchEvent(customEvent)
-      ```
-    </script>
-  </n-content-markdown>
-  <h3>Mixed Activation</h3>
-  <p> You can also activate an action directly with JavaScript, using the
-    n-action element's <b>activateAction()</b> function. </p>
-  <n-content-markdown>
-    <script type="text/markdown">
-      ```html
-      <n-action id="actionlog"
-        topic="app"
-        command="console"
-        data-message="Testing on-enter action">
-      </n-action>
-      ```
-
-      Then in JS:
-
-      ```javascript
-      await actionlog.activateAction()
-      ```
-    </script>
-  </n-content-markdown>
   <h2>
-    <a id="listeners">Action Listeners</a>
+    <a id="listeners">Component Actions</a>
   </h2>
   <p> Listeners execute functions or perform tasks based on the action commands.
     Check out the built-in actions for each of the systems. </p>
-  <div class="button-nav">
-    <a hidden
-      class="btn btn-secondary"
-      href="/data/actions">Data Actions</a>
-    <a hidden
-      class="btn btn-secondary"
-      href="/routing/navigation/actions">Navigation Actions</a>
-    <a hidden
-      class="btn btn-secondary"
-      href="/plugins/ui/actions">UI Actions</a>
-    <a hidden
-      class="btn btn-secondary"
-      href="/plugins/elements/actions">Elements Actions</a>
-    <a hidden
-      class="btn btn-secondary"
-      href="/routing/analytics/actions">Analytics Actions</a>
-    <a hidden
-      class="btn btn-secondary"
-      href="/audio/actions">Audio Actions</a>
-    <a hidden
-      class="btn btn-secondary"
-      href="/plugins/video/actions">Video Actions</a>
-    <a hidden
-      class="btn btn-secondary"
-      href="/actions/custom">Custom Actions</a>
-  </div>
+  <h3>Component Listeners</h3>
+  <p>Learn more about the actions supported in the following elements.</p>
+  <ul>
+    <n-content-repeat items-src="/assets/components.json"
+      filter="components[docsTags[name='extension' and text='actions']]">
+      <template>
+      <li>
+        <a href="/components/{{data:tag}}/actions"> {{data:tag}} actions
+        </a>
+      </li>
+    </template>
+    </n-content-repeat>
+  </ul>
   <footer>
     <a slot="start"
       href="/data">

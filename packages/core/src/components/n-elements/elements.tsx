@@ -9,7 +9,7 @@ import { ElementsActionListener } from './elements/actions'
  * attributes or to execute functions on the DOM without code.
  *
  * @system elements
- * @actions true
+ * @extension actions
  */
 @Component({
   tag: 'n-elements',

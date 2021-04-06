@@ -38,8 +38,8 @@ import { ElementTimer } from './services/timer'
  * audio, video and timed actions.
  *
  * @system routing
- * @elements true
- *
+ * @extension elements
+ * @extension data
  */
 @Component({
   tag: 'n-view-prompt',

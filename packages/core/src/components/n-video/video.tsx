@@ -11,8 +11,7 @@ import { VideoTimer } from './video/timer'
  * menus, etc. The basic provider is used to toggle dark-mode.
  *
  * @system video
- * @actions true
- *
+ * @extension actions
  */
 @Component({
   tag: 'n-video',
