@@ -13,6 +13,7 @@ import { RouterService } from '../../services/routing/router'
  * @system routing
  * @extension actions
  * @extension elements
+ * @extension provider
  */
 @Component({
   tag: 'n-views',
