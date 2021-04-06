@@ -46,7 +46,7 @@ describe('n-app-analytics', () => {
 
     const analytics = page.body.querySelector(
       'n-app-analytics',
-    ) as HTMLNAnalyticsElement
+    ) as HTMLNAppAnalyticsElement
 
     const pageView = []
     //@ts-ignore
@@ -85,7 +85,7 @@ describe('n-app-analytics', () => {
 
     const analytics = page.body.querySelector(
       'n-app-analytics',
-    ) as HTMLNAnalyticsElement
+    ) as HTMLNAppAnalyticsElement
 
     const viewTimes = []
     //@ts-ignore
@@ -137,7 +137,7 @@ describe('n-app-analytics', () => {
 
     const analytics = page.body.querySelector(
       'n-app-analytics',
-    ) as HTMLNAnalyticsElement
+    ) as HTMLNAppAnalyticsElement
 
     const events: any[] = []
     //@ts-ignore

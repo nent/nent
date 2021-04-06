@@ -80,8 +80,8 @@ export function slugify(value: string): string {
     .normalize('NFD') // The normalize() method returns the Unicode Normalization Form of a given string.
     .trim() // Remove whitespace from both sides of a string
     .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .replace(/[^\w-]+/g, '') // Remove all non-word chars
+    .replace(/-{2,}/g, '-') // Replace multiple - with single -
 }
 
 /**

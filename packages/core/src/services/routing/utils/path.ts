@@ -11,7 +11,7 @@ import { LocationSegments } from '../interfaces'
  */
 export function ensureBasename(path: string, prefix: string) {
   let result = hasBasename(path, prefix) ? path : `${prefix}/${path}`
-  result = stripTrailingSlash(result.replace(/[/]{2,}/gi, '/'))
+  result = stripTrailingSlash(result.replace(/\/{2,}/g, '/'))
   return addLeadingSlash(result)
 }
 

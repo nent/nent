@@ -254,7 +254,7 @@ export const tokensToFunction = (tokens: Token[]): PathFunction => {
  * Escape a regular expression string.
  */
 export const escapeString = (string: string) =>
-  string.replace(/([.+*?=^!:${}()[\]|/\\])/g, '\\$1')
+  string.replace(/([.+*?=^!:${}()\[\]|/\\])/g, '\\$1')
 
 /**
  * Escape the capturing group by escaping special characters and meaning.

@@ -1,3 +1,4 @@
+jest.mock('../../services/common/logging')
 import { newSpecPage } from '@stencil/core/testing'
 import { App } from './app'
 
