@@ -50,7 +50,7 @@
     <h4>Extended Data Functionality</h4>
     <ul>
       <n-content-repeat items-src="/assets/components.json"
-        filter="components[docsTags[text='data']]">
+        filter="components[docsTags[name='extension' and text='data']]">
         <template>
           <li>
             <a href="/components/{{data:tag}}/data">{{data:tag}} data-extensions
@@ -62,7 +62,7 @@
     <h4>Data Providers</h4>
     <ul>
       <n-content-repeat items-src="/assets/components.json"
-        filter="components[docsTags[text='provider']]">
+        filter="components[docsTags[name='extension' and text='provider']]">
         <template>
           <li>
             <a href="/components/{{data:tag}}/provider">{{data:tag}} provider
