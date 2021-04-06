@@ -7,7 +7,7 @@ import {
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonState, LocationSegments } from '../../services/common'
-import { AnalyticsActionListener } from './analytics/actions'
+import { AnalyticsActionListener } from './services/actions'
 
 /**
  * This component serves as a proxy to delegate event-based
@@ -17,7 +17,7 @@ import { AnalyticsActionListener } from './analytics/actions'
  * @actions true
  */
 @Component({
-  tag: 'n-analytics',
+  tag: 'n-app-analytics',
   shadow: false,
 })
 export class Analytics {

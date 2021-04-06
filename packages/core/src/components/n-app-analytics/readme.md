@@ -1,11 +1,11 @@
 # N-ANALYTICS
 
-The [\<n-analytics\>](/components/n-analytics) component delegates internal analytics commands to DOM events
+The [\<n-app-analytics\>](/components/n-app-analytics) component delegates internal analytics commands to DOM events
 allowing developers to connect events to any analytics provider.
 
 ## Actions
 
-This component can respond to actions. See the  [actions](/components/n-analytics/actions) documentation for more information.
+This component can respond to actions. See the  [actions](/components/n-app-analytics/actions) documentation for more information.
 
 
 <!-- Auto Generated Below -->
@@ -33,7 +33,7 @@ This component can respond to actions. See the  [actions](/components/n-analytic
 </head>
 <body>
   ...
-  <n-analytics id='analytics'>
+  <n-app-analytics id='analytics'>
     <script>
       analytics.addEventListener('custom-event', e => {
         console.log(`event: ${JSON.stringify(e.detail)}`)
@@ -48,14 +48,14 @@ This component can respond to actions. See the  [actions](/components/n-analytic
         gtag(e.detail.key, e.detail.value)
       })
     </script>
-  </n-analytics>
+  </n-app-analytics>
 </body>
 ```
 
 
 ### Basic
 
-Using the [\<n-analytics\>](/components/n-analytics) is simple, but does require some scripting.
+Using the [\<n-app-analytics\>](/components/n-app-analytics) is simple, but does require some scripting.
 
 
 

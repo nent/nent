@@ -15,7 +15,7 @@ Topic: `analytics`
 
 ### `send-event`
 
-Sends the payload to the onEvent handler in n-analytics component.
+Sends the payload to the onEvent handler in n-app-analytics component.
 
 - **(key:value)[]**\
   All key-values pairs are sent to the handler.
@@ -33,7 +33,7 @@ Sends the payload to the onEvent handler in n-analytics component.
 
 ### `send-view-time`
 
-Sends the payload to the onEvent handler in n-analytics component.
+Sends the payload to the onEvent handler in n-app-analytics component.
 
 - **(key-values)[]**\
   All key-values pairs are sent to the handler.
@@ -51,7 +51,7 @@ Sends the payload to the onEvent handler in n-analytics component.
 
 ### `send-page-view`
 
-Sends the payload to the onEvent handler in n-analytics component.
+Sends the payload to the onEvent handler in n-app-analytics component.
 
 - **(key:value)[]**\
   All key-values pairs are sent to the handler.

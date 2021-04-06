@@ -59,7 +59,7 @@
       href="/js/nent/n-view-link-list.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/js/nent/n-analytics.entry.js" />
+      href="/js/nent/n-app-analytics.entry.js" />
     <link rel="modulepreload"
       as="script"
       href="/js/nent/n-view-prompt.entry.js" />
@@ -318,8 +318,8 @@
               <li>Event Sounds</li>
               <li>Background Music</li>
             </ul>
-            <h3 id="analytics-n-analytics"> Analytics:
-              <code>&lt;n-analytics&gt;</code></h3>
+            <h3 id="analytics-n-app-analytics"> Analytics:
+              <code>&lt;n-app-analytics&gt;</code></h3>
             <p>Optional element that creates an action listener that delegates
               analytics-specific events and route-changes to a
               script-configurable element for integration.</p>
@@ -422,7 +422,7 @@
             <h1>Page Not Found</h1>
           </div>
         </n-view-not-found>
-        <n-analytics id="analytics">
+        <n-app-analytics id="analytics">
           <script>
             analytics.addEventListener( 'custom-event', ( e ) => {
               gtag( e.detail.key, e.detail.value )
@@ -434,7 +434,7 @@
               gtag( e.detail.key, e.detail.value )
             } )
           </script>
-        </n-analytics>
+        </n-app-analytics>
       </n-views>
       <!-- enable data expressions-->
       <n-data-session></n-data-session>

@@ -18,7 +18,7 @@
 </head>
 <body>
   ...
-  <n-analytics id='analytics'>
+  <n-app-analytics id='analytics'>
     <script>
       analytics.addEventListener('custom-event', e => {
         console.log(`event: ${JSON.stringify(e.detail)}`)
@@ -33,6 +33,6 @@
         gtag(e.detail.key, e.detail.value)
       })
     </script>
-  </n-analytics>
+  </n-app-analytics>
 </body>
 ```

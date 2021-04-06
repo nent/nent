@@ -17,7 +17,7 @@ import {
   ANALYTICS_TOPIC,
 } from './analytics/interfaces'
 
-describe('n-analytics', () => {
+describe('n-app-analytics', () => {
   afterEach(async () => {
     commonStateDispose()
     eventBus.removeAllListeners()
@@ -39,13 +39,13 @@ describe('n-analytics', () => {
           </n-view-prompt>
           done!
         </n-view>
-        <n-analytics>
-        </n-analytics>
+        <n-app-analytics>
+        </n-app-analytics>
       </n-views>`,
     })
 
     const analytics = page.body.querySelector(
-      'n-analytics',
+      'n-app-analytics',
     ) as HTMLNAnalyticsElement
 
     const pageView = []
@@ -78,13 +78,13 @@ describe('n-analytics', () => {
       components: [ViewRouter, View, ViewPrompt, Analytics],
       url: 'http://test/',
       html: `<n-views>
-        <n-analytics>
-        </n-analytics>
+        <n-app-analytics>
+        </n-app-analytics>
       </n-views>`,
     })
 
     const analytics = page.body.querySelector(
-      'n-analytics',
+      'n-app-analytics',
     ) as HTMLNAnalyticsElement
 
     const viewTimes = []
@@ -130,13 +130,13 @@ describe('n-analytics', () => {
       components: [ViewRouter, View, ViewPrompt, Analytics],
       url: 'http://test/',
       html: `<n-views>
-        <n-analytics>
-        </n-analytics>
+        <n-app-analytics>
+        </n-app-analytics>
       </n-views>`,
     })
 
     const analytics = page.body.querySelector(
-      'n-analytics',
+      'n-app-analytics',
     ) as HTMLNAnalyticsElement
 
     const events: any[] = []
