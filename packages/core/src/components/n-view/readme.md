@@ -20,22 +20,22 @@ The View Component and its attributes provide the page context & functionality:
 
 ### Elements
 
- Read more here: 
+ Read more here:
 
 
 ## Usage
 
 ```html
 <n-views>
-  <n-view path='/' 
-    page-title='Home' 
-    transition='fade-in'> 
-    ... 
+  <n-view path='/'
+    page-title='Home'
+    transition='fade-in'>
+    ...
   </n-view>
-  <n-view path='/about' 
-    page-title='About Us' 
-    scroll-top-offset='20'> 
-    ... 
+  <n-view path='/about'
+    page-title='About Us'
+    scroll-top-offset='20'>
+    ...
   </n-view>
 </n-views>
 ```
@@ -48,12 +48,12 @@ Views can hold any HTML, including View components. This implicitly creates chil
 
 ```html
 <n-views>
-  <n-view path='/'> 
-  ... 
+  <n-view path='/'>
+  ...
   </n-view>
   <n-view path='/about'>
     <n-view path='/location'>
-    ... 
+    ...
     </n-view>
   </n-view>
 </n-views>

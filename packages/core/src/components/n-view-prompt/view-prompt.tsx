@@ -30,14 +30,12 @@ import { getChildInputValidity } from './services'
 
 /**
  * This element represents a specialized child-route for a parent \<n-view\> component.
- * It represents a sub-route that has special presentation and workflow behaviors.
+ * It represents a sub-route that has required and workflow behaviors.
  *
- * They are used to create presentation, wizards, input workflows, or step by step instructions or
- * wherever you want guided or automatic navigation. These are the only routes that support
- * audio, video and timed actions.
+ * They are used to create, wizards, input workflows, or step by step instructions or
+ * wherever you want guided or automatic navigation.
  *
  * @system routing
- * @extension elements
  * @extension data
  */
 @Component({

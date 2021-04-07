@@ -2,6 +2,35 @@
 
 
 
+#### Presentation Features
+
+- Supports [video](/video) support:
+  * Video Timer becomes the basis for Timed Actions
+  * Auto-Play w/Global Setting
+  * Auto-Next available on Video End
+  * Video Supports Global Audio Preferences
+- Supports [audio](/audio) support:
+  * Time & Event-based Sounds \* Voice Over
+  * Background Music
+  * Voice-overs
+- Supports [actions](/actions):
+  * At route entrance
+  * At a given time
+  * At a given user interaction
+  * Before route exit
+- Built-in timer & and optional duration:
+  * Synced to video (respecting scrub, pause, etc)
+  * Based on time elapsed since the entrance
+  * Hide and show elements at certain times
+  * Time-based animation class toggling
+  * Time-based navigation or when the video ends.
+- Automatic visibility resolution for child elements using special attributes.
+- Automatic next and back handlers for child elements using special attributes.
+- Automatic time/percentage value insertion for child elements using special attributes.
+
+
+
+
 <!-- Auto Generated Below -->
 
 

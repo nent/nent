@@ -41,7 +41,6 @@ import { markVisit } from '../n-views/services/visits'
  *                 route changes.
  * @system routing
  *
- * @extension elements
  * @extension data
  */
 @Component({

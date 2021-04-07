@@ -135,11 +135,11 @@ describe('n-view-prompt', () => {
       html: `<n-views start-path='/start'>
         <n-view path='/start'>
           <n-view-prompt path="step-1">
-            <a id='s1' n-next>NEXT</a>
+            <a id='s1' href="..">NEXT</a>
           </n-view-prompt>
           <n-view-prompt path="step-2">
             <a id='b2' n-back>BACK</a>
-            <a id='s2' n-next>NEXT</a>
+            <a id='s2' href="..">NEXT</a>
           </n-view-prompt>
           done!
         </n-view>
@@ -178,11 +178,11 @@ describe('n-view-prompt', () => {
       html: `<n-views start-path='/start'>
         <n-view path='/start'>
           <n-view-prompt path="step-1">
-            <a id='s1' n-next>NEXT</a>
+            <a id='s1' href="..">NEXT</a>
           </n-view-prompt>
           <n-view-prompt path="step-2">
             <a id='b2' href="step-1">BACK</a>
-            <a id='s2' n-next>NEXT</a>
+            <a id='s2' href="..">NEXT</a>
           </n-view-prompt>
           done!
         </n-view>

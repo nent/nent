@@ -1,4 +1,4 @@
-# Navigation Actions
+# N-VIEWS: Actions
 
 The Navigation Action Listener is configured to handle commands raised through the [actions system](/actions).
 

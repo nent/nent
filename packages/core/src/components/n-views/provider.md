@@ -28,8 +28,8 @@ Provider Key: **query**
 
 Provider Key: **visits**
 
-    {{query:session}}
+    {{visits:session}}
 
-    {{query:stored}}
+    {{visits:stored}}
 
-    {{query:all}}
+    {{visits:all}}

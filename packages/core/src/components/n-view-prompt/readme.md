@@ -15,13 +15,12 @@ Much like its parent, [\<n-view\>](/components/n-view), basic routing informatio
   <n-view-prompt
     path='<sub-path>'
     page-title='<route title>'
-    display='page|modal|full'
     visit='always|once|optional'
     when='<expression predicate>'
-    content-src='<remote html'
+    src='<remote html with route sand children>'
+    content-src='<remote content html>'
     transition='<animation-enter>'
     scroll-top-offset=''
-    next-after='<seconds before next>'
   >
     ...
   </n-view-prompt>
@@ -29,7 +28,7 @@ Much like its parent, [\<n-view\>](/components/n-view), basic routing informatio
 </n-view>
 ```
 
-> The **when** attribute is a data-expression that overrides the **visit** strategy. It is a predicate that produces a boolean result. **true: visit=always** false: visit=optional
+> The **when** attribute is a data expression that overrides the **visit** strategy. It is a predicate that produces a boolean result. **true: visit=always** false: visit=optional
 
 ### How it works
 
@@ -57,7 +56,7 @@ This route will be activated once for each new visit to the page. (Visit 'once' 
 </n-view-prompt>
 ```
 
-> By default, the visit-strategy is 'once'. In this case, the visit is stored in the local storage. Any subsequent visits to this page with the same browser won't see it again.
+> By default, the visit strategy is 'once'. In this case, the visit is stored in the local storage. Any subsequent visits to this page with the same browser won't see it again.
 
 ### Present Each Visit
 
@@ -108,34 +107,6 @@ This route will be activated only through navigation. This is helpful for opt-in
   ...
 </n-view-prompt>
 ```
-
-> **Important**: When linking from a [\<n-view-prompt\>](/components/n-view-prompt) to another any other route, you using a [\<n-view-link\>](/components/n-view-link), validation and visit tracking is not performed. To mark the current route 'visited', add a **'n-next'** attribute to any clickable element.
-
-#### Presentation Features
-
-- Supports [video](/video) support:
-  * Video Timer becomes the basis for Timed Actions
-  * Auto-Play w/Global Setting
-  * Auto-Next available on Video End
-  * Video Supports Global Audio Preferences
-- Supports [audio](/audio) support:
-  * Time & Event-based Sounds \* Voice Over
-  * Background Music
-  * Voice-overs
-- Supports [actions](/actions):
-  * At route entrance
-  * At a given time
-  * At a given user interaction
-  * Before route exit
-- Built-in timer & and optional duration:
-  * Synced to video (respecting scrub, pause, etc)
-  * Based on time elapsed since the entrance
-  * Hide and show elements at certain times
-  * Time-based animation class toggling
-  * Time-based navigation or when the video ends.
-- Automatic visibility resolution for child elements using special attributes.
-- Automatic next and back handlers for child elements using special attributes.
-- Automatic time/percentage value insertion for child elements using special attributes.
 
 ### Routing & Guided Navigation
 

@@ -17,6 +17,7 @@ import { warn } from '../../services/common/logging'
  * This specialized action contains the time attribute,
  * allowing it to be activated directly within the n-presentation
  * element (no n-action-activator needed)
+ *
  * @system presentation
  *
  */
