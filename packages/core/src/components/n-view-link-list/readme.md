@@ -13,7 +13,6 @@
 | `itemClass`   | `item-class`   | The list-item-class to use with the li tag               | `string`, `undefined`                   | `undefined` |
 | `listClass`   | `list-class`   | The list-class to use with the UL tag                    | `string`, `undefined`                   | `undefined` |
 | `mode`        | `mode`         | The display mode for which routes to display.            | `'children'`, `'parents'`, `'siblings'` | `'parents'` |
-| `separator`   | `separator`    | The string separator to put between the items.           | `string`, `undefined`                   | `undefined` |
 
 
 ## Dependencies
