@@ -11,7 +11,7 @@ import {
   dataState,
   dataStateDispose,
 } from '../../services/data/state'
-import { ROUTE_EVENTS } from '../../services/routing/interfaces'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentDataRepeat } from './content-repeat'
 import remoteData from './test/data.json'
 

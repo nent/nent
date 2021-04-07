@@ -17,8 +17,8 @@ import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { resolveTokens } from '../../services/data/tokens'
-import { navigationState } from '../../services/navigation/state'
-import { ROUTE_EVENTS } from '../../services/routing/interfaces'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
+import { navigationState } from '../n-views/services/state'
 /**
  * Render data directly into HTML using declarative expressions.
  * This element renders the expression with all data-tokens

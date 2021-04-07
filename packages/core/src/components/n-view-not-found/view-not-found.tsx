@@ -7,8 +7,8 @@ import {
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
-import { navigationState } from '../../services/navigation/state'
-import { ROUTE_EVENTS } from '../../services/routing/interfaces'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
+import { navigationState } from '../n-views/services/state'
 
 /**
  * This component should be placed at the end of the content,

@@ -37,6 +37,7 @@ export class ActionActivator {
     | 'on-element-event'
     | 'on-enter'
     | 'at-time'
+    | 'at-time-end'
     | 'on-exit' = 'on-element-event'
 
   /**
@@ -47,7 +48,7 @@ export class ActionActivator {
    * If left blank, this element looks for child elements matching:
    * 'a,button,input[type=button]'
    *
-   * For use with activate="on-element-event" Only!
+   * For use with activate="on-element-event" and "at-time"
    */
   @Prop() targetElement?: string
 
@@ -101,11 +102,7 @@ export class ActionActivator {
         //const dataString = JSON.stringify(data)
         debugIf(
           this.debug,
-          `n-action-activator:  ${
-            this.parent?.path || ''
-          } Activating [${this.activate}~{topic: ${
-            action?.topic
-          }, command:${action?.command}]`,
+          `n-action-activator: activating [${this.activate}~{topic: ${action?.topic}, command:${action?.command}]`,
         )
         await action.sendAction(values)
       }),
@@ -116,15 +113,6 @@ export class ActionActivator {
 
   private get childInputs() {
     return this.el.querySelectorAll('input,select,textarea')
-  }
-
-  private get parent():
-    | HTMLNViewPromptElement
-    | HTMLNViewElement
-    | null {
-    return (
-      this.el.closest('n-view-prompt') || this.el.closest('n-view')
-    )
   }
 
   private get childActions(): IActionElement[] {
@@ -146,16 +134,9 @@ export class ActionActivator {
   }
 
   async componentDidLoad() {
-    debugIf(
-      this.debug,
-      `n-action-activator: ${this.parent?.path || ''} loading`,
-    )
+    debugIf(this.debug, `n-action-activator: loading`)
     if (this.childActions.length === 0) {
-      warn(
-        `n-action-activator: ${
-          this.parent?.path || ''
-        } no children actions detected`,
-      )
+      warn(`n-action-activator: no children actions detected`)
       return
     }
 
@@ -166,11 +147,7 @@ export class ActionActivator {
       const dataString = JSON.stringify(action.data)
       debugIf(
         this.debug,
-        `n-action-activator: ${this.parent?.path || ''} registered [${
-          this.activate
-        }~{topic: ${action?.topic}, command:${
-          action?.command
-        }, data: ${dataString}}}] `,
+        `n-action-activator: registered [${this.activate}~{topic: ${action?.topic}, command:${action?.command}, data: ${dataString}}}] `,
       )
       this.actions.push(a)
     })
@@ -182,9 +159,7 @@ export class ActionActivator {
 
       if (!elements || elements.length == 0) {
         warn(
-          `n-action-activator: ${
-            this.parent?.path || ''
-          } no elements found for '${this.targetElement}'`,
+          `n-action-activator: no elements found for '${this.targetElement}'`,
         )
       } else {
         debugIf(
@@ -205,10 +180,9 @@ export class ActionActivator {
             this.debug,
               `n-action-activator: element event ${event} registered on ${element.nodeName}`,
               element.addEventListener(event, async () => {
-                const { path } = this.parent || { path: '' }
                 debugIf(
                   this.debug,
-                  `n-action-activator: ${path} received ${element.nodeName} ${this.targetEvent} event`,
+                  `n-action-activator: received ${element.nodeName} ${this.targetEvent} event`,
                 )
                 await this.activateActions()
               })

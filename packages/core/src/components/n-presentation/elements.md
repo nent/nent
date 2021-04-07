@@ -17,7 +17,7 @@ To make guided-navigation easy, you can add attributes to set-up event-handlers 
 ```html
 <any n-next />
 or
-<any n-next='view' />
+<any href='view' />
 ```
 
 ## [n-back]

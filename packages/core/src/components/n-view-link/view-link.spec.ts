@@ -8,11 +8,11 @@ import {
   commonStateDispose,
 } from '../../services/common'
 import { dataStateDispose } from '../../services/data/state'
+import { View } from '../n-view/view'
 import {
   navigationState,
   navigationStateDispose,
-} from '../../services/navigation/state'
-import { View } from '../n-view/view'
+} from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { ViewLink } from './view-link'
 

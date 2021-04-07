@@ -8,10 +8,7 @@ import {
   Prop,
   State,
 } from '@stencil/core'
-import {
-  ActionActivationStrategy,
-  eventBus,
-} from '../../services/actions'
+import { eventBus } from '../../services/actions'
 import {
   commonState,
   debugIf,
@@ -23,11 +20,11 @@ import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveRemoteContent } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
-import { resolveNext } from '../../services/navigation/next'
-import { navigationState } from '../../services/navigation/state'
-import { markVisit } from '../../services/navigation/visits'
-import { MatchResults } from '../../services/routing/interfaces'
-import { Route } from '../../services/routing/route'
+import { MatchResults } from '../n-views/services/interfaces'
+import { resolveNext } from '../n-views/services/next'
+import { Route } from '../n-views/services/route'
+import { navigationState } from '../n-views/services/state'
+import { markVisit } from '../n-views/services/visits'
 
 /**
  * The View component holds a segment of content visible only when
@@ -146,7 +143,7 @@ export class View {
     dos: HTMLNViewPromptElement[]
   }> {
     return {
-      activators: this.actionActivators,
+      activators: this.route.actionActivators,
       views: this.childViews,
       dos: this.childViewDos,
     }
@@ -156,30 +153,16 @@ export class View {
     return this.el.parentElement?.closest('n-view') || null
   }
 
-  private get actionActivators(): HTMLNActionActivatorElement[] {
-    return Array.from(
-      this.el.querySelectorAll('n-action-activator'),
-    ).filter(e => this.isChild(e))
-  }
-
   private get childViewDos(): HTMLNViewPromptElement[] {
     return Array.from(
       this.el.querySelectorAll('n-view-prompt') || [],
-    ).filter(e => this.isChild(e))
+    ).filter(e => this.route.isChild(e))
   }
 
   private get childViews(): HTMLNViewElement[] {
     return Array.from(
       this.el.querySelectorAll('n-view') || [],
-    ).filter(e => this.isChild(e))
-  }
-
-  private isChild(element: HTMLElement) {
-    return (
-      element.closest('n-view') == this.el ||
-      element.parentElement == this.el ||
-      element.parentElement?.closest('n-view') === this.el
-    )
+    ).filter(e => this.route.isChild(e))
   }
 
   componentWillLoad() {
@@ -275,8 +258,6 @@ export class View {
         markVisit(this.match.url)
         this.contentElement = await this.resolveContentElement()
       }
-    } else {
-      this.resetContent()
     }
   }
 
@@ -345,35 +326,6 @@ export class View {
     }
   }
 
-  async componentDidRender() {
-    debugIf(this.debug, `n-view: ${this.path} did render`)
-    if (commonState.actionsEnabled) {
-      if (this.match?.isExact) {
-        await this.route?.activateActions(
-          this.actionActivators,
-          ActionActivationStrategy.OnEnter,
-        )
-      } else {
-        if (this.route?.didExit()) {
-          await this.route?.activateActions(
-            this.actionActivators,
-            ActionActivationStrategy.OnExit,
-          )
-        }
-      }
-    }
-    await this.route?.loadCompleted()
-  }
-
-  private resetContent() {
-    this.contentElement = null
-  }
-
-  disconnectedCallback() {
-    this.dataSubscription?.call(this)
-    this.route?.destroy()
-  }
-
   render() {
     debugIf(this.debug, `n-view: ${this.path} render`)
     replaceHtmlInElement(
@@ -388,5 +340,19 @@ export class View {
         <slot name="content" />
       </Host>
     )
+  }
+
+  async componentDidRender() {
+    debugIf(this.debug, `n-view: ${this.path} did render`)
+    await this.route?.loadCompleted()
+    if (!this.route.match?.isExact) {
+      this.contentElement?.remove()
+      this.contentElement = null
+    }
+  }
+
+  disconnectedCallback() {
+    this.dataSubscription?.call(this)
+    this.route?.destroy()
   }
 }

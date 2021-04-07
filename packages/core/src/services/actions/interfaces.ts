@@ -15,6 +15,7 @@ export enum ActionActivationStrategy {
   OnEnter = 'on-enter',
   OnExit = 'on-exit',
   AtTime = 'at-time',
+  AtTimeEnd = 'at-time-end',
   OnElementEvent = 'on-element-event',
   /** Future
    * OnScrolledIntoView

@@ -5,7 +5,7 @@ import {
 } from '../../services/data/factory'
 import { IDataProvider } from '../../services/data/interfaces'
 import { InMemoryProvider } from '../../services/data/providers/memory'
-import { videoState } from '../n-video/video/state'
+import { videoState } from '../n-video/services/state'
 import { VideoSwitch } from './video-switch'
 
 describe('n-video-switch', () => {

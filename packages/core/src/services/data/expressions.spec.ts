@@ -5,7 +5,7 @@ import {
   clearVisits,
   hasVisited,
   markVisit,
-} from '../navigation/visits'
+} from '../../components/n-views/services/visits'
 import {
   convertFromJson,
   evaluateExpression,
@@ -206,7 +206,9 @@ describe('evaluatePredicate', () => {
 
   it('evaluates did not visit', async () => {
     await clearVisits()
-    const value = await evaluatePredicate(`{{didVisit('/foo')}}`)
+    const value = await evaluatePredicate(
+      `'/foo' in {{session:visits}}`,
+    )
     expect(value).toBe(false)
   })
 

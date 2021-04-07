@@ -25,13 +25,12 @@ export class MockRoute implements IRoute {
   public goToRoute(_path: string) {}
 
   public async activateActions(
-    actionActivators: HTMLNActionActivatorElement[],
     forEvent: ActionActivationStrategy,
     filter: (
       activator: HTMLNActionActivatorElement,
     ) => boolean = _a => true,
   ) {
-    await activateActionActivators(actionActivators, forEvent, filter)
+    await activateActionActivators([], forEvent, filter)
   }
 
   public destroy() {}

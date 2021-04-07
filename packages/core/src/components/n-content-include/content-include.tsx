@@ -18,8 +18,8 @@ import { resolveRemoteContent } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
-import { navigationState } from '../../services/navigation/state'
-import { ROUTE_EVENTS } from '../../services/routing/interfaces'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
+import { navigationState } from '../n-views/services/state'
 
 /**
  * This component fetches remote HTML and renders it safely and directly

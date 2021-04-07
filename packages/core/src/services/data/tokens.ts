@@ -91,7 +91,8 @@ export async function resolveTokens(
       : value?.toString() || ''
     if (forExpression && !isObject(value)) {
       if (isNotValue(value) || value === '') replacement = 'null'
-      else replacement = value!.replace(escapeStringsRegex, `'$1'`)
+      else
+        replacement = replacement!.replace(escapeStringsRegex, `'$1'`)
     }
 
     result = result.replace(expression, replacement)

@@ -9,15 +9,15 @@ import {
 import { eventBus } from '../../services/actions'
 import { slugify } from '../../services/common'
 import {
-  navigationState,
-  onNavigationChange,
-} from '../../services/navigation/state'
-import {
   MatchResults,
   ROUTE_EVENTS,
-} from '../../services/routing/interfaces'
-import { Route } from '../../services/routing/route'
-import { getPossiblePaths } from '../../services/routing/utils'
+} from '../n-views/services/interfaces'
+import { Route } from '../n-views/services/route'
+import {
+  navigationState,
+  onNavigationChange,
+} from '../n-views/services/state'
+import { getPossiblePaths } from '../n-views/services/utils'
 
 /**
  * Display a list of routes related to the current route.
@@ -30,7 +30,7 @@ import { getPossiblePaths } from '../../services/routing/utils'
  */
 @Component({
   tag: 'n-view-link-list',
-  styleUrl: 'view-link-list.css',
+  styles: 'n-view-link-list { display: block; }',
   shadow: false,
 })
 export class ViewLinkList {

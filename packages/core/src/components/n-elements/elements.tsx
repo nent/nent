@@ -1,7 +1,7 @@
 import { Component, h, Host } from '@stencil/core'
 import { debugIf } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
-import { ElementsActionListener } from './elements/actions'
+import { ElementsActionListener } from './services/actions'
 
 /**
  * This element enables element manipulation through n-actions.

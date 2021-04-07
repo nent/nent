@@ -7,13 +7,13 @@ import {
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonState, LocationSegments } from '../../services/common'
-import { AnalyticsActionListener } from './app-analytics/actions'
+import { AnalyticsActionListener } from './services/actions'
 
 /**
  * This component serves as a proxy to delegate event-based
  * functions to be consumed by various analytics snippets.
  *
- * @system analytics
+ * @system app
  * @extension actions
  */
 @Component({

@@ -19,8 +19,8 @@ import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { hasToken, resolveTokens } from '../../services/data/tokens'
-import { navigationState } from '../../services/navigation/state'
-import { ROUTE_EVENTS } from '../../services/routing/interfaces'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
+import { navigationState } from '../n-views/services/state'
 import { filterData } from './filter/jsonata.worker'
 
 /**

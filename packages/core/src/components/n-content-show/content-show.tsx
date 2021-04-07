@@ -10,7 +10,7 @@ import {
 import { eventBus } from '../../services/actions'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
-import { ROUTE_EVENTS } from '../../services/routing/interfaces'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 
 /**
  * This element conditionally renders child elements based on the

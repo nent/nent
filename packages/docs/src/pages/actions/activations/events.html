@@ -1,0 +1,45 @@
+<h1>Route Events</h1>
+<h2> Enter & Exit Events</h2>
+<p> Actions can be activated by the parent route element. The enter and exit
+  only apply when the route is matched exactly. </p>
+<blockquote>You should see log messages in the console. One on entry and one on
+  exit of this page.</blockquote>
+<n-content-markdown>
+  <script type="text/markdown">
+    ```html
+
+    <n-action-activator activate="on-enter">
+      <n-action topic="app"
+        command="log"
+        data-message="Testing on-enter action">
+      </n-action>
+    </n-action-activator>
+    <n-action-activator activate="on-exit">
+      <n-action topic="app"
+        command="log"
+        data-message="Testing on-exit action">
+      </n-action>
+    </n-action-activator>
+    ```
+  </script>
+</n-content-markdown>
+<footer>
+  <a slot="start"
+    href="/actions/activation"
+    class="btn btn-primary">&lt; Activations</a>
+  <a slot="end"
+    href="/actions/activation/timed"
+    class="btn btn-info">Timed Activation &gt;</a>
+</footer>
+<n-action-activator activate="on-enter">
+  <n-action topic="app"
+    command="log"
+    data-message="Testing on-enter action">
+  </n-action>
+</n-action-activator>
+<n-action-activator activate="on-exit">
+  <n-action topic="app"
+    command="log"
+    data-message="Testing on-exit action">
+  </n-action>
+</n-action-activator>

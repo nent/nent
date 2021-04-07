@@ -8,9 +8,9 @@ import {
   commonStateDispose,
 } from '../../services/common'
 import { DATA_EVENTS } from '../../services/data/interfaces'
-import { navigationState } from '../../services/navigation/state'
 import { ActionActivator } from '../n-action-activator/action-activator'
 import { Action } from '../n-action/action'
+import { navigationState } from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { View } from './view'
 

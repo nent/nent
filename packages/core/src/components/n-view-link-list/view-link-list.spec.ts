@@ -11,9 +11,9 @@ import {
   dataState,
   dataStateDispose,
 } from '../../services/data/state'
-import { navigationStateDispose } from '../../services/navigation/state'
 import { ViewLink } from '../n-view-link/view-link'
 import { View } from '../n-view/view'
+import { navigationStateDispose } from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { ViewLinkList } from './view-link-list'
 

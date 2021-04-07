@@ -72,25 +72,30 @@ export class NPresentation {
     this.timer =
       (timerElement?.timer as ITimer) ||
       new FrameTimer(window, 0, 0, this.debug)
-
-    this.presentation = new PresentationService(
-      this.el,
-      this.timer,
-      navigationState.router?.exactRoute || null,
-      this.debug,
-      this.nextAfter,
-    )
   }
 
   render() {
     return <Host></Host>
   }
+
   componentDidRender() {
-    this.presentation?.beginTimer()
+    if (this.timer) {
+      this.presentation = new PresentationService(
+        this.el,
+        this.timer,
+        navigationState.router?.exactRoute || null,
+        this.debug,
+        this.nextAfter,
+      )
+
+      this.presentation?.beginTimer()
+    }
   }
 
   disconnectedCallback() {
     this.timer?.destroy()
+    this.timer = null
     this.presentation?.cleanup()
+    delete this.presentation
   }
 }

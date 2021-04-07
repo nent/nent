@@ -4,18 +4,18 @@ jest.mock('../../services/data/evaluate.worker')
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonStateDispose } from '../../services/common'
+import { ViewPrompt } from '../n-view-prompt/view-prompt'
+import { View } from '../n-view/view'
 import {
   navigationState,
   navigationStateDispose,
-} from '../../services/navigation/state'
-import { ViewPrompt } from '../n-view-prompt/view-prompt'
-import { View } from '../n-view/view'
+} from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { Analytics } from './app-analytics'
 import {
   ANALYTICS_COMMANDS,
   ANALYTICS_TOPIC,
-} from './app-analytics/interfaces'
+} from './services/interfaces'
 
 describe('n-app-analytics', () => {
   afterEach(async () => {

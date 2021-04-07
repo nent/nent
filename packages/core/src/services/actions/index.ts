@@ -1,4 +1,5 @@
 import { EventEmitter } from '../common/emitter'
+export * from './elements'
 export * from './interfaces'
 export { actionBus, eventBus }
 

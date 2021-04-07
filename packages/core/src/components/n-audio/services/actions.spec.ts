@@ -4,7 +4,7 @@ jest.mock('./track')
 import { newSpecPage, SpecPage } from '@stencil/core/testing'
 import { EventEmitter } from '../../../services/common'
 import { sleep } from '../../../services/common/promises'
-import { ROUTE_EVENTS } from '../../../services/routing/interfaces'
+import { ROUTE_EVENTS } from '../../n-views/services/interfaces'
 import { AudioActionListener } from './actions'
 import {
   AudioType,

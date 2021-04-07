@@ -11,7 +11,8 @@ import { AudioInfo, AudioRequest } from "./components/n-audio/services/interface
 import { ReferenceCompleteResults } from "./services/content";
 import { CookieConsent } from "./components/n-data-cookie/cookie/interfaces";
 import { SetData } from "./components/n-data/services/interfaces";
-import { VideoTimer } from "./components/n-video/video/timer";
+import { ITimer } from "./components/n-presentation/services/interfaces";
+import { EventAction as EventAction1 } from "./services/actions/interfaces";
 export namespace Components {
     interface NAction {
         /**
@@ -39,6 +40,7 @@ export namespace Components {
     | 'on-element-event'
     | 'on-enter'
     | 'at-time'
+    | 'at-time-end'
     | 'on-exit';
         /**
           * Manually activate all actions within this activator.
@@ -53,7 +55,7 @@ export namespace Components {
          */
         "once": boolean;
         /**
-          * The element or elements to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelectorAll function to find the element/s based on the query in this attribute.  If left blank, this element looks for child elements matching: 'a,button,input[type=button]'  For use with activate="on-element-event" Only!
+          * The element or elements to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelectorAll function to find the element/s based on the query in this attribute.  If left blank, this element looks for child elements matching: 'a,button,input[type=button]'  For use with activate="on-element-event" and "at-time"
          */
         "targetElement"?: string;
         /**
@@ -478,6 +480,64 @@ export namespace Components {
     }
     interface NElements {
     }
+    interface NPresentation {
+        /**
+          * To debug timed elements, set this value to true.
+         */
+        "debug": boolean;
+        /**
+          * Go to the next view after a given time if a number is present, otherwise when the end-event occurs.
+         */
+        "nextAfter": number | boolean;
+        /**
+          * The timer instance for a manual timer.
+         */
+        "timer": ITimer | null;
+        /**
+          * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates on manually and starts it immediately
+         */
+        "timerElement"?: string;
+    }
+    interface NPresentationAction {
+        /**
+          * The time this should execute
+         */
+        "atTime"?: number | 'end';
+        /**
+          * The command to execute.
+         */
+        "command": string;
+        /**
+          * Get the underlying actionEvent instance. Used by the n-action-activator element.
+         */
+        "getAction": () => Promise<EventAction<any> | null>;
+        /**
+          * Send this action to the the action messaging system.
+         */
+        "sendAction": (data?: Record<string, any> | undefined) => Promise<void>;
+        /**
+          * This is the topic this action-command is targeting.
+         */
+        "topic": string;
+    }
+    interface NPresentationTimer {
+        /**
+          * To debug timed elements, set this value to true.
+         */
+        "debug": boolean;
+        /**
+          * Duration before the timer stops and raises the ended event. 0 = never
+         */
+        "duration": number;
+        /**
+          * Timer start time.
+         */
+        "start": number;
+        /**
+          * Normalized timer.
+         */
+        "timer": ITimer;
+    }
     interface NVideo {
         /**
           * To debug timed elements, set this value to true.
@@ -504,9 +564,9 @@ export namespace Components {
          */
         "timeProperty": string;
         /**
-          * Normalized video event timer.
+          * Normalized timer.
          */
-        "timer"?: VideoTimer;
+        "timer": ITimer;
     }
     interface NVideoSwitch {
         /**
@@ -590,6 +650,8 @@ export namespace Components {
          */
         "strict": boolean;
     }
+    interface NViewLinkBack {
+    }
     interface NViewLinkList {
         /**
           * The active-class to use with the n-view-link components.
@@ -616,6 +678,8 @@ export namespace Components {
          */
         "separator"?: string;
     }
+    interface NViewLinkNext {
+    }
     interface NViewNotFound {
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
@@ -631,6 +695,7 @@ export namespace Components {
         "transition"?: string;
     }
     interface NViewPrompt {
+        "back": (element: string, eventName: string) => Promise<void>;
         /**
           * Remote URL for HTML content. Content from this URL will be assigned the 'content' slot.
          */
@@ -647,10 +712,7 @@ export namespace Components {
           * Cross Origin Mode if the content is pulled from a remote location
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
-        /**
-          * When this value exists, the page will automatically progress when the duration in seconds has passed.
-         */
-        "nextAfter"?: number | boolean;
+        "next": (element: string, eventName: string, path?: string | null | undefined) => Promise<void>;
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
@@ -854,6 +916,24 @@ declare global {
         prototype: HTMLNElementsElement;
         new (): HTMLNElementsElement;
     };
+    interface HTMLNPresentationElement extends Components.NPresentation, HTMLStencilElement {
+    }
+    var HTMLNPresentationElement: {
+        prototype: HTMLNPresentationElement;
+        new (): HTMLNPresentationElement;
+    };
+    interface HTMLNPresentationActionElement extends Components.NPresentationAction, HTMLStencilElement {
+    }
+    var HTMLNPresentationActionElement: {
+        prototype: HTMLNPresentationActionElement;
+        new (): HTMLNPresentationActionElement;
+    };
+    interface HTMLNPresentationTimerElement extends Components.NPresentationTimer, HTMLStencilElement {
+    }
+    var HTMLNPresentationTimerElement: {
+        prototype: HTMLNPresentationTimerElement;
+        new (): HTMLNPresentationTimerElement;
+    };
     interface HTMLNVideoElement extends Components.NVideo, HTMLStencilElement {
     }
     var HTMLNVideoElement: {
@@ -878,11 +958,23 @@ declare global {
         prototype: HTMLNViewLinkElement;
         new (): HTMLNViewLinkElement;
     };
+    interface HTMLNViewLinkBackElement extends Components.NViewLinkBack, HTMLStencilElement {
+    }
+    var HTMLNViewLinkBackElement: {
+        prototype: HTMLNViewLinkBackElement;
+        new (): HTMLNViewLinkBackElement;
+    };
     interface HTMLNViewLinkListElement extends Components.NViewLinkList, HTMLStencilElement {
     }
     var HTMLNViewLinkListElement: {
         prototype: HTMLNViewLinkListElement;
         new (): HTMLNViewLinkListElement;
+    };
+    interface HTMLNViewLinkNextElement extends Components.NViewLinkNext, HTMLStencilElement {
+    }
+    var HTMLNViewLinkNextElement: {
+        prototype: HTMLNViewLinkNextElement;
+        new (): HTMLNViewLinkNextElement;
     };
     interface HTMLNViewNotFoundElement extends Components.NViewNotFound, HTMLStencilElement {
     }
@@ -928,11 +1020,16 @@ declare global {
         "n-data-session": HTMLNDataSessionElement;
         "n-data-storage": HTMLNDataStorageElement;
         "n-elements": HTMLNElementsElement;
+        "n-presentation": HTMLNPresentationElement;
+        "n-presentation-action": HTMLNPresentationActionElement;
+        "n-presentation-timer": HTMLNPresentationTimerElement;
         "n-video": HTMLNVideoElement;
         "n-video-switch": HTMLNVideoSwitchElement;
         "n-view": HTMLNViewElement;
         "n-view-link": HTMLNViewLinkElement;
+        "n-view-link-back": HTMLNViewLinkBackElement;
         "n-view-link-list": HTMLNViewLinkListElement;
+        "n-view-link-next": HTMLNViewLinkNextElement;
         "n-view-not-found": HTMLNViewNotFoundElement;
         "n-view-prompt": HTMLNViewPromptElement;
         "n-views": HTMLNViewsElement;
@@ -957,6 +1054,7 @@ declare namespace LocalJSX {
     | 'on-element-event'
     | 'on-enter'
     | 'at-time'
+    | 'at-time-end'
     | 'on-exit';
         /**
           * Turn on debug statements for load, update and render events.
@@ -967,7 +1065,7 @@ declare namespace LocalJSX {
          */
         "once"?: boolean;
         /**
-          * The element or elements to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelectorAll function to find the element/s based on the query in this attribute.  If left blank, this element looks for child elements matching: 'a,button,input[type=button]'  For use with activate="on-element-event" Only!
+          * The element or elements to watch for events when using the OnElementEvent activation strategy. This element uses the HTML Element querySelectorAll function to find the element/s based on the query in this attribute.  If left blank, this element looks for child elements matching: 'a,button,input[type=button]'  For use with activate="on-element-event" and "at-time"
          */
         "targetElement"?: string;
         /**
@@ -1375,6 +1473,56 @@ declare namespace LocalJSX {
     }
     interface NElements {
     }
+    interface NPresentation {
+        /**
+          * To debug timed elements, set this value to true.
+         */
+        "debug"?: boolean;
+        /**
+          * Go to the next view after a given time if a number is present, otherwise when the end-event occurs.
+         */
+        "nextAfter"?: number | boolean;
+        /**
+          * The timer instance for a manual timer.
+         */
+        "timer"?: ITimer | null;
+        /**
+          * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates on manually and starts it immediately
+         */
+        "timerElement"?: string;
+    }
+    interface NPresentationAction {
+        /**
+          * The time this should execute
+         */
+        "atTime"?: number | 'end';
+        /**
+          * The command to execute.
+         */
+        "command": string;
+        /**
+          * This is the topic this action-command is targeting.
+         */
+        "topic": string;
+    }
+    interface NPresentationTimer {
+        /**
+          * To debug timed elements, set this value to true.
+         */
+        "debug"?: boolean;
+        /**
+          * Duration before the timer stops and raises the ended event. 0 = never
+         */
+        "duration"?: number;
+        /**
+          * Timer start time.
+         */
+        "start"?: number;
+        /**
+          * Normalized timer.
+         */
+        "timer": ITimer;
+    }
     interface NVideo {
         /**
           * To debug timed elements, set this value to true.
@@ -1401,9 +1549,9 @@ declare namespace LocalJSX {
          */
         "timeProperty"?: string;
         /**
-          * Normalized video event timer.
+          * Normalized timer.
          */
-        "timer"?: VideoTimer;
+        "timer": ITimer;
     }
     interface NVideoSwitch {
         /**
@@ -1483,6 +1631,8 @@ declare namespace LocalJSX {
          */
         "strict"?: boolean;
     }
+    interface NViewLinkBack {
+    }
     interface NViewLinkList {
         /**
           * The active-class to use with the n-view-link components.
@@ -1508,6 +1658,8 @@ declare namespace LocalJSX {
           * The string separator to put between the items.
          */
         "separator"?: string;
+    }
+    interface NViewLinkNext {
     }
     interface NViewNotFound {
         /**
@@ -1540,10 +1692,6 @@ declare namespace LocalJSX {
           * Cross Origin Mode if the content is pulled from a remote location
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
-        /**
-          * When this value exists, the page will automatically progress when the duration in seconds has passed.
-         */
-        "nextAfter"?: number | boolean;
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
@@ -1621,11 +1769,16 @@ declare namespace LocalJSX {
         "n-data-session": NDataSession;
         "n-data-storage": NDataStorage;
         "n-elements": NElements;
+        "n-presentation": NPresentation;
+        "n-presentation-action": NPresentationAction;
+        "n-presentation-timer": NPresentationTimer;
         "n-video": NVideo;
         "n-video-switch": NVideoSwitch;
         "n-view": NView;
         "n-view-link": NViewLink;
+        "n-view-link-back": NViewLinkBack;
         "n-view-link-list": NViewLinkList;
+        "n-view-link-next": NViewLinkNext;
         "n-view-not-found": NViewNotFound;
         "n-view-prompt": NViewPrompt;
         "n-views": NViews;
@@ -1660,11 +1813,16 @@ declare module "@stencil/core" {
             "n-data-session": LocalJSX.NDataSession & JSXBase.HTMLAttributes<HTMLNDataSessionElement>;
             "n-data-storage": LocalJSX.NDataStorage & JSXBase.HTMLAttributes<HTMLNDataStorageElement>;
             "n-elements": LocalJSX.NElements & JSXBase.HTMLAttributes<HTMLNElementsElement>;
+            "n-presentation": LocalJSX.NPresentation & JSXBase.HTMLAttributes<HTMLNPresentationElement>;
+            "n-presentation-action": LocalJSX.NPresentationAction & JSXBase.HTMLAttributes<HTMLNPresentationActionElement>;
+            "n-presentation-timer": LocalJSX.NPresentationTimer & JSXBase.HTMLAttributes<HTMLNPresentationTimerElement>;
             "n-video": LocalJSX.NVideo & JSXBase.HTMLAttributes<HTMLNVideoElement>;
             "n-video-switch": LocalJSX.NVideoSwitch & JSXBase.HTMLAttributes<HTMLNVideoSwitchElement>;
             "n-view": LocalJSX.NView & JSXBase.HTMLAttributes<HTMLNViewElement>;
             "n-view-link": LocalJSX.NViewLink & JSXBase.HTMLAttributes<HTMLNViewLinkElement>;
+            "n-view-link-back": LocalJSX.NViewLinkBack & JSXBase.HTMLAttributes<HTMLNViewLinkBackElement>;
             "n-view-link-list": LocalJSX.NViewLinkList & JSXBase.HTMLAttributes<HTMLNViewLinkListElement>;
+            "n-view-link-next": LocalJSX.NViewLinkNext & JSXBase.HTMLAttributes<HTMLNViewLinkNextElement>;
             "n-view-not-found": LocalJSX.NViewNotFound & JSXBase.HTMLAttributes<HTMLNViewNotFoundElement>;
             "n-view-prompt": LocalJSX.NViewPrompt & JSXBase.HTMLAttributes<HTMLNViewPromptElement>;
             "n-views": LocalJSX.NViews & JSXBase.HTMLAttributes<HTMLNViewsElement>;

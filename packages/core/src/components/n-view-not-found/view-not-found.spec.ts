@@ -3,11 +3,11 @@ jest.mock('../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
+import { View } from '../n-view/view'
 import {
   navigationState,
   navigationStateDispose,
-} from '../../services/navigation/state'
-import { View } from '../n-view/view'
+} from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { ViewNotFound } from './view-not-found'
 

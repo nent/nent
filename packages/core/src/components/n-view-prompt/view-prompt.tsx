@@ -7,10 +7,7 @@ import {
   Prop,
   State,
 } from '@stencil/core'
-import {
-  ActionActivationStrategy,
-  eventBus,
-} from '../../services/actions'
+import { eventBus } from '../../services/actions'
 import {
   commonState,
   debugIf,
@@ -136,10 +133,6 @@ export class ViewPrompt {
     return this.el.closest('n-view')
   }
 
-  private get actionActivators(): HTMLNActionActivatorElement[] {
-    return Array.from(this.el.querySelectorAll('n-action-activator'))
-  }
-
   componentWillLoad() {
     debugIf(this.debug, `n-view-prompt: ${this.path} loading`)
 
@@ -233,13 +226,10 @@ export class ViewPrompt {
 
     if (this.match?.isExact) {
       debugIf(this.debug, `n-view-prompt: ${this.path} on-enter`)
-
-      this.contentElement =
-        this.contentElement || (await this.resolveContentElement())
-
+      this.contentElement = await this.resolveContentElement()
       await recordVisit(this.visit as VisitStrategy, this.path)
     } else {
-      this.contentElement = null
+      this.contentElement?.remove()
     }
   }
 
@@ -289,21 +279,11 @@ export class ViewPrompt {
   }
 
   async componentDidRender() {
-    debugIf(this.debug, `n-view-prompt: ${this.path} did render`)
-    if (commonState.actionsEnabled) {
-      if (this.match?.isExact) {
-        await this.route?.activateActions(
-          this.actionActivators,
-          ActionActivationStrategy.OnEnter,
-        )
-      } else if (this.route?.didExit()) {
-        await this.route?.activateActions(
-          this.actionActivators,
-          ActionActivationStrategy.OnExit,
-        )
-      }
-    }
     await this.route?.loadCompleted()
+    if (!this.route.match?.isExact) {
+      this.contentElement?.remove()
+      this.contentElement = null
+    }
   }
 
   disconnectedCallback() {

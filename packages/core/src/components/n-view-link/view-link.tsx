@@ -9,13 +9,13 @@ import {
 import { eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common'
 import {
-  navigationState,
-  onNavigationChange,
-} from '../../services/navigation/state'
-import {
   MatchResults,
   ROUTE_EVENTS,
-} from '../../services/routing/interfaces'
+} from '../n-views/services/interfaces'
+import {
+  navigationState,
+  onNavigationChange,
+} from '../n-views/services/state'
 
 /**
  * The element should be used in-place of an `a` tag to navigate without

@@ -18,7 +18,6 @@ The Navigation Action Listener is configured to handle commands raised through t
 
 This tells the navigation system to go to the next [`n-view-prompt`](/components/n-view-prompt) route or back to the parent [`n-view`](/components/n-view) route.
 
-> This command has no effect outside of a `n-view-prompt` route.
 
 ```html
 <n-action-activator activate="...">
@@ -33,8 +32,8 @@ This tells the navigation system to go to a specific route.
 
 Arguments:
 
-* **url** (required)\
-  The url to navigate to, programmatically.
+* **path** (required)\
+  The path to navigate to, programmatically.
 
 ```html
 <n-action-activator activate="...">

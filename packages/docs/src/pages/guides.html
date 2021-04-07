@@ -2,9 +2,9 @@
   <li class="list-group-item">
     <a href="/start"
       class="stretched-link">
-      <i n-hide-when="didVisit('/start')"
+      <i n-hide-when="'/start' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="didVisit('/start')"
+      <i n-show-when="'/start' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
       <i class="ri-rocket-2-line"></i> Get Started </a>
@@ -12,9 +12,9 @@
   <li class="list-group-item">
     <a href="/app"
       class="stretched-link">
-      <i n-hide-when="didVisit('/app')"
+      <i n-hide-when="'/app' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="didVisit('/app')"
+      <i n-show-when="'/app' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
       <i class="ri-install-line"></i> App Elements</a>
@@ -22,9 +22,9 @@
   <li class="list-group-item">
     <a href="/actions"
       class="stretched-link">
-      <i n-hide-when="didVisit('/actions')"
+      <i n-hide-when="'/actions' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="didVisit('/actions')"
+      <i n-show-when="'/actions' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
       <i class="ri-flashlight-line"></i> Action Elements </a>
@@ -32,9 +32,9 @@
   <li class="list-group-item">
     <a href="/routing"
       class="stretched-link">
-      <i n-hide-when="didVisit('/routing')"
+      <i n-hide-when="'/routing' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="didVisit('/routing')"
+      <i n-show-when="'/routing' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
       <i class="ri-route-line"></i> Routing Elements</a>
@@ -42,9 +42,9 @@
   <li class="list-group-item">
     <a href="/content"
       class="stretched-link">
-      <i n-hide-when="didVisit('/content')"
+      <i n-hide-when="'/content' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="didVisit('/content')"
+      <i n-show-when="'/content' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
       <i class="ri-code-box-line"></i> Content Elements</a>
@@ -52,9 +52,9 @@
   <li class="list-group-item">
     <a href="/data"
       class="stretched-link">
-      <i n-hide-when="didVisit('/data')"
+      <i n-hide-when="'/data' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="didVisit('/data')"
+      <i n-show-when="'/data' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
       <i class="ri-database-2-line"></i> Data Extension</a>
@@ -62,9 +62,9 @@
   <li class="list-group-item">
     <a href="/elements"
       class="stretched-link">
-      <i n-hide-when="didVisit('/elements')"
+      <i n-hide-when="'/elements' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="didVisit('/elements')"
+      <i n-show-when="'/elements' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
       <i class="ri-plug-line"></i> Elements Extension</a>
@@ -72,9 +72,9 @@
   <li class="list-group-item">
     <a href="/audio"
       class="stretched-link">
-      <i n-hide-when="didVisit('/audio')"
+      <i n-hide-when="'/audio' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="didVisit('/audio')"
+      <i n-show-when="'/audio' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
       <i class="ri-music-line"></i> Audio Elements</a>
@@ -82,9 +82,9 @@
   <li class="list-group-item">
     <a href="/presentation"
       class="stretched-link">
-      <i n-hide-when="didVisit('/presentation')"
+      <i n-hide-when="'/presentation' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="didVisit('/presentation')"
+      <i n-show-when="'/presentation' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
       <i class="ri-movie-line"></i> Presentations</a>
@@ -93,9 +93,9 @@
     class="list-group-item">
     <a href="/developers"
       class="stretched-link">
-      <i n-hide-when="didVisit('/developers')"
+      <i n-hide-when="'/developers' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="didVisit('/developers')"
+      <i n-show-when="'/developers' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
       <i class="ri-git-pull-request-line"></i> Contributing </a>

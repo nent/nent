@@ -20,73 +20,113 @@
     - [X] Install NPM
     - [X] Insert Base Tag
 
-- 📑 Content Elements
-  - [X] Overview
-  - [X] Partial Components
-    - [X] Content Include
-    - [X] Content Template
-    - [X] Content Repeat
-    - [X] Content Markdown
-    - [X] Content Reveal
 
 -  📱 App Elements    
     - [ ] Overview
     - [ ] Components
       - [ ] Theme Detection & Controls
-      - [ ] UI Component Integrations
+      - [ ] Custom Component Integrations
       - [ ] Native Share
+      - [ ] Analytics 
+         - [ ] Overview
+         - [X] Installation
+           - [ ] Example
+         - Extensions:
+           - 🌠Action System 
+             - [ ] Custom Event Actions
+           - ✨ Presentation Component
+             - [ ] View-Time Reporting 
       - [ ] PWA 
         - [ ] Checks in dev-mode
         - [ ] Add / Warn about Required Tags         
           - [ ] Service Worker
           - [ ] Handles manifest.json
           - [ ] Sets Up Offline  
-
+    - [X] Default Provider
+      - [X] Installation
+      - [X] Action Listener
+        - [X] Set Theme
+        - [X] Log
+    - [X] Custom Providers
+      - [ ] Road-map
+        - [ ] Ionic
+        - [ ] Shoelace
+        - [ ] UI Kit
+        - [ ] Bootstrap
+    - [ ] Data Provider *
+      - [ ] Date
+      - [ ] Time
+      - [ ] Timezones
+      - [ ] Language
+      - [ ] Culture
+      - [ ] Random
+        - 
+- 🌠 Action System
+  - [X] How it works
+    - [X] Activation
+    - [X] Listeners
+  - [X] Activation Strategies
+    - [ ] Event Bus Events
+    - [X] View Events
+    - [X] Element Events
+    - [X] Timed Events (View Do only)
+  - [X] Action Elements
+    - [X] Action
+    - [X] Action Activator
+    - [X] Actions (action-bus event-listener)
+    - [X] Events (event-bus delegation)
+  - [X] Listeners    
+      - [X] Custom
+      - 
+- 📑 Content Elements
+  - [X] Overview
+  - [X] Components
+    - [X] Content Include
+    - [X] Content Template
+    - [X] Content Repeat
+    - [X] Content Markdown
+    - [X] Content Reveal    - 
+    - [X] Content Show
+    - [X] Content Template
+    - 
 - 🔀 Routing
   - [X] How it works
   - [ ] Installation
     - [ ] Components
-      - [ ] Router 
-      - [ ] Route
-      - [ ] Route Prompt *
+      - [ ] Views 
+      - [ ] View
+      - [ ] View Prompt *
     - [ ] Simple Example
   - [X] Lazy Routes
     - - [X] Example
   - [X] Child Routes
     - [X] Nested vs Flat
-    - - [X] Example
-  
+    - - [X] Example  
   - [ ] Required Routes 
     - [ ] Example
-
   - 🧭 Navigation
     - [X] Overview
     - [ ] Navigation Elements    
-      - [ ] Route Link
-      - [ ] Route Next (encapsulate 'get-next' from siblings)
-      - [ ] Route Back (history back, or previous sibling)
-      - [ ] Route List
+      - [ ] View Link
+      - [ ] View Link Next (encapsulate 'get-next' from siblings)
+      - [ ] View Link Back (history back, or previous sibling)
+      - [ ] View Link List
         - [ ] Ancestors (breadcrumbs)
         - [ ] Children (sub-nav)
         - [ ] Siblings (way-finding, progress)
-  
-  - [ ] Extensions:
+  - [X] Extensions:
     + 🌠 Action System:
-      - [ ] Navigation Actions
+      - [X] Navigation Actions
     + 💠 Data System:
-      - [ ] Route Token Resolution
-      - [ ] Route Data Tokens
-      - [ ] Conditional Route Prompts
-      - [ ] Dynamic Route
-
+      - [X] Route Token Resolution
+      - [X] Route Data Tokens
+      - [X] Conditional Route Prompts
+      - [X] Dynamic Route
 
 - 💠 Data System
   - [X] How it works
-  - [ ] Installation
-  - [X] Data Elements
-    - [ ] Data Display
-    - [ ] Data Repeat
-    - [ ] Data Embed (no-template)
+  - [X] Installation
+  
   - [X] Expressions
   - [ ] Predicates
   - [ ] Providers
@@ -114,38 +154,6 @@
       - [ ] Page Title
       - [ ] Content Tokens
       - [ ] Personalized Animations
-
-
-- 🌠 Action System
-  - [X] How it works
-    - [X] Activation
-    - [X] Listeners
-  - [X] Activation Strategies
-    - [ ] Event Bus Events
-    - [X] View Events
-    - [X] Element Events
-    - [X] Timed Events (View Do only)
-  - [ ] Action Elements
-    - [ ] Action
-    - [ ] Action Activator
-    - [ ] Actions (action-bus event-listener)
-    - [ ] Events (event-bus delegation)
-  - [X] Listeners
-    - [ ] Core
-      - [ ] Routing
-      - [ ] 💠Data
-        - [ ] Register new provider
-    - [ ] Available Add-ons
-      - [ ] Analytics
-      - [ ] Audio
-      - [ ] Cookie
-      - [ ] Elements
-      - [ ] Session
-      - [ ] Storage
-      - [ ] UI
-      - [ ] Video
-    - [ ] Custom
-      - [ ] Register new provider
 
 
 - 🎧 Audio Elements
@@ -178,49 +186,20 @@
     - ✨ Presentation Component
       - [ ] Video as Timer   
 
-- [ ] Analytics Element
-  - [ ] Overview
-  - [X] Installation
-    - [ ] Example
-  - Extensions:
-    - 🌠Action System 
-      - [ ] Custom Event Actions
-    - ✨ Presentation Component
-      - [ ] View-Time Reporting 
 
-
-  - [X] Element Listener
-    - [X] How it works
-    - [X] Extends Core
+  - [X] Elements Extension
+    - [ ] How it works
+    - [ ] Extends Core
       - [X] X-Attributes
-        - [X] App
-        - [X] Views
-        - [X] Presentation
-        - [X] Content
-    - [X] Installation
-    - [X] Action Listener
-
-
+        - [ ] App
+        - [ ] Views
+        - [ ] Presentation
+        - [ ] Content
+    - [ ] Installation
+    - [ ] Action Listener
   
        
-    - [X] Default Provider
-      - [X] Installation
-      - [X] Action Listener
-        - [X] Set Theme
-        - [X] Log
-      - [X] Data Provider *
-        - [X] Date
-        - [X] Time
-        - [X] Timezones
-        - [X] Language
-        - [X] Culture
-        - [X] Random
-    - [X] Custom Providers
-      - [X] Road-map
-        - [X] Ionic
-        - [X] Shoelace
-        - [X] UI Kit
-        - [X] Bootstrap
+
   
 - [X] Advanced
 - [X] Guides:

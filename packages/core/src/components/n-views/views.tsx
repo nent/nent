@@ -1,8 +1,8 @@
 import { Component, h, Host, Prop, writeTask } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonState, debugIf } from '../../services/common'
-import { navigationState } from '../../services/navigation/state'
-import { RouterService } from '../../services/routing/router'
+import { RouterService } from './services/router'
+import { navigationState } from './services/state'
 
 /**
  * The root component is the base container for the view-engine and its

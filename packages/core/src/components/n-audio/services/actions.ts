@@ -1,7 +1,7 @@
 import { EventAction } from '../../../services/actions/interfaces'
 import { EventEmitter, IEventEmitter } from '../../../services/common'
 import { debugIf } from '../../../services/common/logging'
-import { ROUTE_EVENTS } from '../../../services/routing/interfaces'
+import { ROUTE_EVENTS } from '../../n-views/services/interfaces'
 import {
   AudioInfo,
   AudioRequest,

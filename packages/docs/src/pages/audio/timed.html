@@ -1,13 +1,13 @@
 <n-audio-action-sound-load track-id="buzzer"
   src="https://storage.googleapis.com/nent-static/docs/audio/thank-you.wav">
 </n-audio-action-sound-load>
-<n-action-activator activate="at-time"
-  time="5">
-  <n-audio-action-sound command="start"
-    track-id="buzzer">
-  </n-audio-action-sound>
-</n-action-activator>
-<div class="content">
+<n-presentation class="content">
+  <n-action-activator activate="at-time"
+    time="5">
+    <n-audio-action-sound command="start"
+      track-id="buzzer">
+    </n-audio-action-sound>
+  </n-action-activator>
   <h1>Timed Sounds</h1>
   <p class="lead">This page has a timed sound configured to play after being on
     the page for 5 seconds.</p>
@@ -56,7 +56,7 @@
       href="/audio/both"
       class="btn btn-secondary"> &lt; Music & Sound </a>
     <a slot="end"
-      n-next="/audio/provider"
+      href="/audio/provider"
       class="btn btn-secondary"> Data &gt; </a>
   </footer>
-</div>
+</n-presentation>

@@ -6,7 +6,7 @@ import {
   onVideoChange,
   videoState,
   VIDEO_EVENTS,
-} from '../n-video/video/index'
+} from '../n-video/services/index'
 
 /**
  * This component displays a checkbox to control the autoplay setting,
