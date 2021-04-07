@@ -32,8 +32,12 @@ export interface TimeDetails {
   duration: number
 }
 
-export interface IViewDoTimer extends IEventEmitter {
+export interface ITimer extends IEventEmitter {
   currentTime: TimeDetails
   begin(): void
   destroy(): void
+}
+
+export interface IElementTimer {
+  timer: ITimer
 }

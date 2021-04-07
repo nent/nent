@@ -162,7 +162,6 @@ Add this component to a route component to force a prompt ahead of the parent co
 | `debug`             | `debug`             | To debug timed elements, set this value to true.                                                                                                                                                                                | `boolean`                                            | `false`     |
 | `exact`             | `exact`             | The url for this route should only be matched when it is exact.                                                                                                                                                                 | `boolean`                                            | `true`      |
 | `mode`              | `mode`              | Cross Origin Mode if the content is pulled from a remote location                                                                                                                                                               | `'cors'`, `'navigate'`, `'no-cors'`, `'same-origin'` | `'cors'`    |
-| `nextAfter`         | `next-after`        | When this value exists, the page will automatically progress when the duration in seconds has passed.                                                                                                                           | `boolean`, `number`, `undefined`                     | `false`     |
 | `pageTitle`         | `page-title`        | The title for this view. This is prefixed before the app title configured in n-views                                                                                                                                            | `string`                                             | `''`        |
 | `path` _(required)_ | `path`              | The path for this prompt route, including the parent's routes, excluding the router's root.                                                                                                                                     | `string`                                             | `undefined` |
 | `resolveTokens`     | `resolve-tokens`    | Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML | `boolean`                                            | `false`     |
@@ -170,6 +169,29 @@ Add this component to a route component to force a prompt ahead of the parent co
 | `transition`        | `transition`        | Navigation transition between routes. This is a CSS animation class.                                                                                                                                                            | `string`, `undefined`                                | `undefined` |
 | `visit`             | `visit`             | The visit strategy for this do. once: persist the visit and never force it again always: do not persist, but don't don't show again in-session optional: do not force this view-do ever. It will be available by URL            | `'always'`, `'once'`, `'optional'`                   | `'once'`    |
 | `when`              | `when`              | If present, the expression must evaluate to true for this route to be sequenced by the parent view. The existence of this value overrides the visit strategy                                                                    | `string`, `undefined`                                | `undefined` |
+
+
+## Methods
+
+### `back(element: string, eventName: string) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `next(element: string, eventName: string, path?: string | null | undefined) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ----------------------------------------------

@@ -1,10 +1,12 @@
 import { debugIf, EventEmitter } from '../../../services/common'
-import { IViewDoTimer, TimeDetails, TIMER_EVENTS } from './interfaces'
-import { getTimeDetails } from './time'
+import {
+  ITimer,
+  TimeDetails,
+  TIMER_EVENTS,
+} from '../../n-presentation/services/interfaces'
+import { getTimeDetails } from '../../n-presentation/services/time'
 
-export class ElementTimer
-  extends EventEmitter
-  implements IViewDoTimer {
+export class FrameTimer extends EventEmitter implements ITimer {
   private timer: number = 0
   constructor(
     private provider: AnimationFrameProvider,
@@ -16,16 +18,17 @@ export class ElementTimer
 
     debugIf(
       this.debug,
-      `element-timer: starting timer w/ ${duration} duration`,
+      `presentation-timer: starting timer w/ ${duration} duration`,
     )
     this.currentTime = getTimeDetails(start, 0, duration)
   }
   currentTime: TimeDetails
 
-  begin(): void {
+  begin(): ITimer {
     this.timer = this.provider.requestAnimationFrame(current => {
       this.interval(current)
     })
+    return this
   }
 
   private interval(time: number) {
@@ -38,7 +41,7 @@ export class ElementTimer
     if (this.duration && updatedTime.elapsed > this.duration) {
       debugIf(
         this.debug,
-        `element-timer: presentation ended at ${time} [not redirecting]`,
+        `presentation-timer: timer ended at ${time}`,
       )
       this.provider.cancelAnimationFrame(this.timer)
       this.emit(TIMER_EVENTS.OnEnd)

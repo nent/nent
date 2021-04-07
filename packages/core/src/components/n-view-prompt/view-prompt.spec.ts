@@ -12,11 +12,11 @@ import { contentStateDispose } from '../../services/content'
 import { addDataProvider } from '../../services/data/factory'
 import { InMemoryProvider } from '../../services/data/providers/memory'
 import { dataState } from '../../services/data/state'
+import { View } from '../n-view/view'
 import {
   navigationState,
   navigationStateDispose,
-} from '../../services/navigation/state'
-import { View } from '../n-view/view'
+} from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { ViewPrompt } from './view-prompt'
 
@@ -85,7 +85,6 @@ describe('n-view-prompt', () => {
       <n-views>
         <n-view path='/'>
           <n-view-prompt path="go">
-            <a n-next>Next</a>
           </n-view-prompt>
           <div slot="content">
             Hello
@@ -109,7 +108,6 @@ describe('n-view-prompt', () => {
             <slot></slot>
             <slot name="content"></slot>
           </mock:shadow-root>
-          <a n-attached-click="" n-attached-keydown="" n-next="">Next</a>
         </n-view-prompt>
         <div slot="content">
             Hello

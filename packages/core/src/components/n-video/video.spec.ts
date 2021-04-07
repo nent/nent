@@ -1,7 +1,7 @@
 jest.mock('../../services/common/logging')
 
 import { newSpecPage } from '@stencil/core/testing'
-import { videoStateDispose } from '../n-video/video/state'
+import { videoStateDispose } from './services/state'
 import { Video } from './video'
 
 describe('n-video', () => {

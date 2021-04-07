@@ -2,7 +2,7 @@ import { newSpecPage } from '@stencil/core/testing'
 import {
   TimeDetails,
   TIMER_EVENTS,
-} from '../../n-view-prompt/services/interfaces'
+} from '../../n-presentation/services/interfaces'
 import { VideoTimer } from './timer'
 
 describe('element-timer:', () => {

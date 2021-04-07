@@ -3,6 +3,7 @@ import {
   Element,
   h,
   Host,
+  Method,
   Prop,
   State,
 } from '@stencil/core'
@@ -21,13 +22,14 @@ import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveRemoteContent } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
-import { VisitStrategy } from '../../services/navigation/interfaces'
-import { navigationState } from '../../services/navigation/state'
-import { recordVisit } from '../../services/navigation/visits'
-import { MatchResults } from '../../services/routing/interfaces'
-import { Route } from '../../services/routing/route'
-import { IViewDoTimer, ViewDoService } from './services'
-import { ElementTimer } from './services/timer'
+import {
+  MatchResults,
+  VisitStrategy,
+} from '../n-views/services/interfaces'
+import { Route } from '../n-views/services/route'
+import { navigationState } from '../n-views/services/state'
+import { recordVisit } from '../n-views/services/visits'
+import { getChildInputValidity } from './services'
 
 /**
  * This element represents a specialized child-route for a parent \<n-view\> component.
@@ -49,7 +51,6 @@ import { ElementTimer } from './services/timer'
 export class ViewPrompt {
   private dataSubscription!: () => void
   private route!: Route
-  private service?: ViewDoService
   @Element() el!: HTMLNViewPromptElement
   @State() match: MatchResults | null = null
   @State() contentElement: HTMLElement | null = null
@@ -102,12 +103,6 @@ export class ViewPrompt {
    * the visit strategy
    */
   @Prop() when?: string
-
-  /**
-   * When this value exists, the page will
-   * automatically progress when the duration in seconds has passed.
-   */
-  @Prop() nextAfter?: number | boolean = false
 
   /**
    * Remote URL for HTML content. Content from this
@@ -200,41 +195,51 @@ export class ViewPrompt {
     )
   }
 
+  /**
+   */
+  @Method()
+  public async back(element: string, eventName: string) {
+    debugIf(
+      this.debug,
+      `n-view-prompt: ${this.route.path} back fired from ${element}:${eventName}`,
+    )
+    this.route.goBack()
+  }
+
+  /**
+   */
+  @Method()
+  public async next(
+    element: string,
+    eventName: string,
+    path?: string | null,
+  ) {
+    debugIf(
+      this.debug,
+      `n-view-prompt: ${this.route.path} next fired from ${element}:${eventName}`,
+    )
+    const valid = getChildInputValidity(this.el)
+    if (valid) {
+      if (path) {
+        this.route.goToRoute(path)
+      } else {
+        this.route.goToParentRoute()
+      }
+    }
+  }
+
   async componentWillRender() {
     debugIf(this.debug, `n-view-prompt: ${this.path} will render`)
 
     if (this.match?.isExact) {
       debugIf(this.debug, `n-view-prompt: ${this.path} on-enter`)
 
-      const autoNext = Boolean(this.nextAfter && this.nextAfter > 0)
-      const duration = autoNext ? (this.nextAfter as number) : 0
-
-      const timer: IViewDoTimer =
-        this.el.querySelector('n-video')?.timer ||
-        new ElementTimer(
-          window,
-          duration,
-          performance.now(),
-          this.debug,
-        )
-
-      this.service = new ViewDoService(
-        this.el,
-        timer,
-        this.route,
-        autoNext,
-        this.debug,
-      )
       this.contentElement =
         this.contentElement || (await this.resolveContentElement())
-      if (this.contentElement && commonState.elementsEnabled)
-        await this.service.captureChildElements(this.contentElement)
 
-      await this.service.beginTimer()
       await recordVisit(this.visit as VisitStrategy, this.path)
     } else {
       this.contentElement = null
-      this.service?.cleanup()
     }
   }
 
@@ -303,7 +308,6 @@ export class ViewPrompt {
 
   disconnectedCallback() {
     this.dataSubscription?.call(this)
-    this.service?.cleanup?.call(this)
     this.route.destroy()
   }
 }

@@ -10,17 +10,17 @@ import {
 import { contentStateDispose } from '../../../services/content/state'
 import { ActionActivator } from '../../n-action-activator/action-activator'
 import { Action } from '../../n-action/action'
-import { ElementsActionListener } from '../../n-elements/elements/actions'
+import { ElementsActionListener } from '../../n-elements/services/actions'
+import { MockRequestAnimationFrameProvider } from '../../n-presentation-timer/services/mocks/frame-provider'
+import { MockRoute } from '../../n-presentation-timer/services/mocks/route'
+import { FrameTimer } from '../../n-presentation-timer/services/timer'
 import { Video } from '../../n-video/video'
 import { TIMER_EVENTS } from './interfaces'
-import { MockRequestAnimationFrameProvider } from './mocks/frame-provider'
-import { MockRoute } from './mocks/view'
-import { ViewDoService } from './service'
-import { ElementTimer } from './timer'
+import { PresentationService } from './presentation'
 
-describe('view-do', () => {
-  let subject: ViewDoService
-  let timer: ElementTimer
+describe('presentation', () => {
+  let subject: PresentationService
+  let timer: FrameTimer
   const animationFrameProvider = new MockRequestAnimationFrameProvider()
 
   beforeEach(async () => {
@@ -46,13 +46,12 @@ describe('view-do', () => {
       `,
     })
 
-    timer = new ElementTimer(animationFrameProvider, 60, 0)
+    timer = new FrameTimer(animationFrameProvider, 60, 0)
 
-    subject = new ViewDoService(
+    subject = new PresentationService(
       page.body,
       timer,
       new MockRoute(),
-      false,
       false,
     )
 
@@ -87,10 +86,11 @@ describe('view-do', () => {
 
     expect(xVideo?.timer).not.toBeNull()
 
-    subject = new ViewDoService(
+    subject = new PresentationService(
       page.body,
       xVideo!.timer!,
       new MockRoute(),
+      false,
     )
     await subject.beginTimer()
 
@@ -111,9 +111,13 @@ describe('view-do', () => {
       </div>
       `,
     })
-    timer = new ElementTimer(animationFrameProvider, 60, 0)
+    timer = new FrameTimer(animationFrameProvider, 60, 0)
 
-    subject = new ViewDoService(page.body, timer, new MockRoute())
+    subject = new PresentationService(
+      page.body,
+      timer,
+      new MockRoute(),
+    )
 
     await subject.beginTimer()
     animationFrameProvider.triggerNextAnimationFrame(60000)
@@ -121,52 +125,38 @@ describe('view-do', () => {
     expect(p?.innerText).toBe('100%')
   })
 
-  it('captures n-next & n-back', async () => {
+  it('next on end', async () => {
     const page = await newSpecPage({
       components: [],
       html: `
       <div>
         <input id=="name" required value="Walter" />
-        <a n-next>Next</a>
-        <a n-back>Back</a>
-        <a n-link="/foo">Foo</a>
       </div>
       `,
     })
-    timer = new ElementTimer(animationFrameProvider, 0, 0)
+    timer = new FrameTimer(animationFrameProvider, 0, 0)
 
     const route = new MockRoute()
 
-    const goToParentRoute = jest
-      .spyOn(route, 'goToParentRoute')
+    const goNext = jest
+      .spyOn(route, 'goNext')
       .mockImplementationOnce(() => {})
 
-    const goBack = jest
-      .spyOn(route, 'goBack')
-      .mockImplementationOnce(() => {})
+    subject = new PresentationService(
+      page.body,
+      timer,
+      route,
+      false,
+      true,
+    )
 
-    let goRoute = ''
-    const goToRoute = jest
-      .spyOn(route, 'goToRoute')
-      .mockImplementationOnce(url => {
-        goRoute = url
-      })
+    await subject.beginTimer()
 
-    subject = new ViewDoService(page.body, timer, route)
+    timer.emit(TIMER_EVENTS.OnEnd)
 
-    page.body.querySelector<HTMLAnchorElement>('a[n-next]')!.click()
+    await page.waitForChanges()
 
-    expect(goToParentRoute).toBeCalled()
-
-    page.body.querySelector<HTMLAnchorElement>('a[n-back]')!.click()
-
-    expect(goBack).toBeCalled()
-
-    page.body.querySelector<HTMLAnchorElement>('a[n-link]')!.click()
-
-    expect(goToRoute).toBeCalledWith('/foo')
-
-    expect(goRoute).toBe('/foo')
+    expect(goNext).toBeCalled()
   })
 
   it('captures n-time-in,n-in-class, n-time-out, n-out-class', async () => {
@@ -181,14 +171,20 @@ describe('view-do', () => {
         Cool Thing
       </div>
       `,
-      autoRouterlyChanges: true,
+      autoApplyChanges: true,
     })
 
-    timer = new ElementTimer(animationFrameProvider, 10, 0)
+    timer = new FrameTimer(animationFrameProvider, 10, 0)
 
     // listener.initialize(page.win, actionBus, eventBus)
 
-    subject = new ViewDoService(page.body, timer, new MockRoute())
+    subject = new PresentationService(
+      page.body,
+      timer,
+      new MockRoute(),
+      true,
+      false,
+    )
     await subject.beginTimer()
 
     animationFrameProvider.triggerNextAnimationFrame(1500)
@@ -249,11 +245,15 @@ describe('view-do', () => {
             `,
     })
 
-    timer = new ElementTimer(animationFrameProvider, 10, 0)
+    timer = new FrameTimer(animationFrameProvider, 10, 0)
 
     listener.initialize(page.win, actionBus, eventBus)
 
-    subject = new ViewDoService(page.body, timer, new MockRoute())
+    subject = new PresentationService(
+      page.body,
+      timer,
+      new MockRoute(),
+    )
     await subject.beginTimer()
 
     animationFrameProvider.triggerNextAnimationFrame(1500)

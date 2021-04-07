@@ -19,7 +19,7 @@ export class VideoActionListener {
       async (ev: EventAction<any>) => {
         debugIf(
           this.debug,
-          `n-video-listener: event received ${ev.topic}:${ev.command}`,
+          `n-video actions: event received ${ev.topic}:${ev.command}`,
         )
         await this.commandReceived(ev.command, ev.data)
       },

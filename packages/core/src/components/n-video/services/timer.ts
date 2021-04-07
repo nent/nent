@@ -1,13 +1,13 @@
 import { EventEmitter } from '../../../services/common/emitter'
 import { warn } from '../../../services/common/logging'
 import {
-  IViewDoTimer,
+  ITimer,
   TimeDetails,
   TIMER_EVENTS,
-} from '../../n-view-prompt/services/interfaces'
-import { getTimeDetails } from '../../n-view-prompt/services/time'
+} from '../../n-presentation/services/interfaces'
+import { getTimeDetails } from '../../n-presentation/services/time'
 
-export class VideoTimer extends EventEmitter implements IViewDoTimer {
+export class VideoTimer extends EventEmitter implements ITimer {
   constructor(
     private video: HTMLMediaElement | any,
     private timeEvent: string = 'timeupdate',

@@ -1,8 +1,8 @@
-# N-VIEW-PROMPT: Data Extension
+# N-VIEW-PROMPT: Data Tokens
 
-When the [n-data](/components/n-data) system is enabled, data tokens can be used in the `content-src` attribute, as well as in the content. 
+When the [n-data](/components/n-data) system is enabled, data tokens can be used in the `src` and `content-src` attributes, as well as in child elements. 
 
-To enable token resolution, include the `resolve-tokens` attribute.
+To enable token resolution in child elements include the `resolve-tokens` attribute.
 
 ## Token Attributes
 
@@ -13,7 +13,6 @@ To enable token resolution, include the `resolve-tokens` attribute.
   >
 </n-view-prompt>
 ```
-
 
 ## Token Content
 

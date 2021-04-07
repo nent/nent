@@ -2,9 +2,13 @@ import { Component, Element, h, Host, Prop } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf, warn } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
-import { VideoActionListener } from './video/actions'
-import { videoState } from './video/state'
-import { VideoTimer } from './video/timer'
+import {
+  IElementTimer,
+  ITimer,
+} from '../n-presentation/services/interfaces'
+import { VideoActionListener } from './services/actions'
+import { videoState } from './services/state'
+import { VideoTimer } from './services/timer'
 /**
  * This component enables th UI services. These are typically
  * web component plug-ins to manage things like Modals, Drawers,
@@ -17,7 +21,7 @@ import { VideoTimer } from './video/timer'
   tag: 'n-video',
   shadow: false,
 })
-export class Video {
+export class Video implements IElementTimer {
   private listener!: VideoActionListener
   @Element() el!: HTMLNVideoElement
 
@@ -59,9 +63,9 @@ export class Video {
   @Prop() debug = false
 
   /**
-   * Normalized video event timer.
+   * Normalized timer.
    */
-  @Prop({ mutable: true }) timer?: VideoTimer
+  @Prop({ mutable: true }) timer!: ITimer
 
   private get childVideo(): HTMLMediaElement | null {
     return this.el.querySelector(this.targetElement)
@@ -99,7 +103,7 @@ export class Video {
 
   async componentDidRender() {
     const video = this.childVideo
-    if (video == null) return
+    if (video == null || !this.timer) return
 
     if (videoState.autoplay) {
       await video.play?.call(this)

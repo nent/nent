@@ -1,15 +1,19 @@
 /* istanbul ignore file */
 
-import { ActionActivationStrategy } from '../../../../services/actions'
+import {
+  ActionActivationStrategy,
+  activateActionActivators,
+} from '../../../../services/actions'
 import {
   IRoute,
   MatchResults,
-} from '../../../../services/routing/interfaces'
+} from '../../../n-views/services/interfaces'
 
 export class MockRoute implements IRoute {
   public path: string = 'fake'
   public match: MatchResults | null = null
   public scrollOnNextRender = false
+  goNext(): void {}
   goBack(): void {}
   goToParentRoute(): void {}
   public previousMatch: MatchResults | null = null
@@ -27,12 +31,7 @@ export class MockRoute implements IRoute {
       activator: HTMLNActionActivatorElement,
     ) => boolean = _a => true,
   ) {
-    await Promise.all(
-      actionActivators
-        .filter(activator => activator.activate === forEvent)
-        .filter(filter)
-        .map(async activator => await activator.activateActions()),
-    )
+    await activateActionActivators(actionActivators, forEvent, filter)
   }
 
   public destroy() {}
