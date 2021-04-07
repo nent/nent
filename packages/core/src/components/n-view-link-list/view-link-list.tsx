@@ -100,8 +100,8 @@ export class ViewLinkList {
     this.matchSubscription = eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
       ({ route, match }: { route: Route; match: MatchResults }) => {
-        this.route = { ...route } as Route
-        this.match = match ? { ...match } : null
+        this.route = route
+        this.match = match
       },
     )
     this.route = navigationState.router?.exactRoute || null
@@ -130,8 +130,7 @@ export class ViewLinkList {
     match: MatchResults | null
   }> | null> {
     if (route) {
-      let paths =
-        this.getRoutePaths(route.match?.url || route.path) || []
+      let paths = this.getRoutePaths(route.path) || []
       if (this.excludeRoot && paths[0] == '/') paths.shift()
 
       let routes = await Promise.all(
@@ -179,11 +178,11 @@ export class ViewLinkList {
       <Host>
         {this.routes ? (
           <ol class={this.listClass}>
-            {this.routes?.map(r => [
+            {this.routes?.map((r, i) => [
               <li class={itemClasses}>
                 {r.link ? (
                   <n-view-link
-                    href={this.getUrl(r)}
+                    path={this.getUrl(r)}
                     exact={true}
                     activeClass={this.activeClass}
                   >
@@ -191,7 +190,9 @@ export class ViewLinkList {
                   </n-view-link>
                 ) : null}
               </li>,
-              this.separator ? <li>{this.separator}</li> : null,
+              this.separator && i < this.routes!.length - 1 ? (
+                <li>{this.separator}</li>
+              ) : null,
             ])}
           </ol>
         ) : null}

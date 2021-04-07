@@ -3,7 +3,7 @@
   lang="en">
 
   <head>
-    <title>NENT.</title>
+    <title>NENT</title>
     <meta charset="utf-8" />
     <meta name="viewport"
       content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
@@ -128,7 +128,7 @@
       <n-data>
       </n-data>
       <n-views start-path="/"
-        app-title="nent"
+        app-title="NENT"
         transition="animate__animated animate__fadeIn">
         <header n-cloak
           class="navbar">
@@ -139,7 +139,7 @@
             </h1>
             <div class="flex-row d-flex">
               <n-app-share headline="nent: function elements"
-                class="nav-link text-white fs-2"
+                class="nav-link text-white fs-2 ps-0"
                 text="Functional elements to make web-applications without leaving the comfort of HTML.">
                 <i class="ri-share-line"></i>
               </n-app-share>
@@ -170,57 +170,62 @@
           <div class="container container-fluid d-flex flex-row">
             <n-view-link class="nav-link flex-fill tip"
               title="Get Started"
-              href="/start">
+              path="/start">
               <i class="ri-rocket-line"></i>
               <span class="left">Get Started</span>
             </n-view-link>
             <n-view-link class="nav-link flex-fill tip"
-              title="View Routing"
-              href="/routing">
-              <i class="ri-route-line"></i>
-              <span>View Routing</span>
-            </n-view-link>
-            <n-view-link class="nav-link flex-fill tip"
-              title="Content"
-              href="/content">
-              <i class="ri-code-box-line"></i>
-              <span>Content</span>
-            </n-view-link>
-            <n-view-link hidden
-              class="nav-link flex-fill tip"
               title="App "
-              href="/app">
+              path="/app">
               <i class="ri-install-line"></i>
               <span>App</span>
             </n-view-link>
             <n-view-link class="nav-link flex-fill tip"
-              title="Data "
-              href="/data">
-              <i class="ri-database-2-line"></i>
-              <span>Data</span>
-            </n-view-link>
-            <n-view-link class="nav-link flex-fill tip"
               title="Actions"
-              href="/actions">
+              path="/actions">
               <i class="ri-flashlight-line"></i>
               <span>Actions</span>
             </n-view-link>
             <n-view-link class="nav-link flex-fill tip"
+              title="Routing"
+              path="/routing">
+              <i class="ri-route-line"></i>
+              <span>Routing</span>
+            </n-view-link>
+            <n-view-link class="nav-link flex-fill tip"
+              title="Content"
+              path="/content">
+              <i class="ri-code-box-line"></i>
+              <span>Content</span>
+            </n-view-link>
+            <n-view-link class="nav-link flex-fill tip"
+              title="Data "
+              path="/data">
+              <i class="ri-database-2-line"></i>
+              <span>Data</span>
+            </n-view-link>
+            <n-view-link class="nav-link flex-fill tip"
               title="Audio"
-              href="/audio">
+              path="/audio">
               <i class="ri-music-line"></i>
               <span class="right">Audio</span>
             </n-view-link>
+            <n-view-link class="nav-link flex-fill tip"
+              title="Presentations"
+              path="/presentations">
+              <i class="ri-movie-line"></i>
+              <span class="right">Presentations</span>
+            </n-view-link>
             <n-view-link class="nav-link flex-shrink-0 tip"
-              title="Elements"
-              href="/components">
+              title="Components"
+              path="/components">
               <i class="ri-settings-6-line"></i>
-              <span class="right">Elements</span>
+              <span class="right">Components</span>
             </n-view-link>
             <n-view-link hidden
               class="nav-link flex-shrink-0 tip"
               title="Contributing"
-              href="/start/developers">
+              path="/start/developers">
               <i class="ri-git-pull-request-line"></i>
               <span class="right">Developers</span>
             </n-view-link>
@@ -245,94 +250,116 @@
             style-src="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
           </n-content-reference>
           <div slot="content">
-            <h1 style="margin:1em 0;">Application Elements</h1>
-            <h2 style="margin:1em 0;"> Application functionality without leaving
-              the comfort of HTML</h2>
-            <h3 id="app-n-app-">
-              <i class="ri-install-line"></i> App
-            </h3>
-            <p>Independent elements related to the file as an application.</p>
-            <ul>
-              <li>App Console Logging</li>
-              <li>App Theme Detection &amp; Control</li>
-              <li>UI Component Kit Integrations (Ionic, shoelace, Material, etc)
-              </li>
-              <li>PWA Support (coming)</li>
-              <li>Expose Event/Actions to the DOM</li>
-            </ul>
-            <h3 id="views-n-views-">
-              <i class="ri-route-line"></i> Routing
-            </h3>
-            <p>Independent routing and navigation system.</p>
-            <ul>
-              <li>Single Page Application Routing</li>
-              <li>Fast navigation between views</li>
-              <li>Page History</li>
-              <li>Route Transitions</li>
-              <li>Nested Layouts</li>
-              <li>Nav Links with Active Route detection</li>
-              <li>Nav Lists: <br> Nav-Bars, Child Menus, and Breadcrumbs</li>
-              <li>Guided Navigation</li>
-            </ul>
-            <h3 id="content-n-content-">
-              <i class="ri-code-box-line"></i> Content Features
-            </h3>
-            <p>Independent elements for features around content HTML.</p>
-            <ul>
-              <li>Content Templates</li>
-              <li>Deferred Content</li>
-              <li>Content Data Injection</li>
-              <li>Markdown Rendering</li>
-              <li>Remote HTML / Partials</li>
-            </ul>
-            <h3 id="actions-n-action-">
-              <i class="ri-flashlight-line"></i> Actions
-            </h3>
-            <p>Data structure elements to declare functions and their
-              activations.</p>
-            <ul>
-              <li>Declared Actions</li>
-              <li>Reactive Activators</li>
-              <li>Add Custom Async Functions</li>
-            </ul>
-            <h3 id="data-n-data-">
-              <i class="ri-database-2-line"></i> Data Systems
-            </h3>
-            <p>Optional enhancements elements to add data-functionality and
-              data-providers.</p>
-            <ul>
-              <li>Expression Evaluation</li>
-              <li>Token Resolution</li>
-              <li>Conditional Rule Evaluation</li>
-            </ul>
-            <h3 id="elements-n-elements"> Elements:
-              <code>&lt;n-elements&gt;</code></h3>
-            <p>Optional element that creates an action listener to handle
-              requests for light DOM updates</p>
-            <h4 id="audio-n-audio-">Audio: <code>&lt;n-audio-*&gt;</code></h4>
-            <p>Optional audio elements to display a player and create an action
-              listener for audio commands. The player orchestrate audio playback
-              in an opinionated format, with best practices.</p>
-            <ul>
-              <li>Voice-over Audio</li>
-              <li>Event Sounds</li>
-              <li>Background Music</li>
-            </ul>
-            <h3 id="analytics-n-app-analytics"> Analytics:
-              <code>&lt;n-app-analytics&gt;</code></h3>
-            <p>Optional element that creates an action listener that delegates
-              analytics-specific events and route-changes to a
-              script-configurable element for integration.</p>
-            <ul>
-              <li>Page Views</li>
-              <li>View Times</li>
-              <li>Custom Events</li>
-            </ul>
-            <h3 id="video-n-video-"> Video: <code>&lt;n-video-*&gt;</code></h3>
-            <p>Optional wrapper element to normalize video-events between
-              various video players to enable media-timed events for
-              synchronized actions. Useful for automatically navigating when a
-              video ends or updating the content based on the video time.</p>
+            <h1>Functional Elements</h1>
+            <p class="lead"> Application functionality without leaving the
+              comfort of HTML </p>
+            <div id="features">
+              <div>
+                <h3 id="app">
+                  <i class="ri-install-line"></i> App Elements
+                </h3>
+                <p>Independent elements related to the file as an application.
+                </p>
+                <ul>
+                  <li>App Console Logging</li>
+                  <li>App Theme Detection &amp; Control</li>
+                  <li>UI Component Kit Integrations (Ionic, shoelace, Material,
+                    etc) </li>
+                  <li>PWA Support (coming)</li>
+                  <li>Expose Event/Actions to the DOM</li>
+                </ul>
+              </div>
+              <div>
+                <h3 id="actions">
+                  <i class="ri-flashlight-line"></i> Action Elements
+                </h3>
+                <p>Action elements to declare event-based functionality for NENT
+                  and custom components.</p>
+                <ul>
+                  <li>Declared Actions</li>
+                  <li>Reactive Activators</li>
+                  <li>Add Custom Async Functions</li>
+                </ul>
+              </div>
+              <div>
+                <h3 id="routing">
+                  <i class="ri-route-line"></i> Routing Elements
+                </h3>
+                <p>Independent view routing and navigation system.</p>
+                <ul>
+                  <li>Single Page Application Routing</li>
+                  <li>Fast navigation between views</li>
+                  <li>Page History</li>
+                  <li>Route Transitions</li>
+                  <li>Nested Layouts</li>
+                  <li>Nav Links with Active Route detection</li>
+                  <li>Nav Lists: <br> Nav-Bars, Child Menus, and Breadcrumbs
+                  </li>
+                  <li>Guided Navigation</li>
+                </ul>
+              </div>
+              <div>
+                <h3 id="content">
+                  <i class="ri-code-box-line"></i> Content Elements
+                </h3>
+                <p>Independent elements for features around content HTML.</p>
+                <ul>
+                  <li>Content Templates</li>
+                  <li>Deferred Content</li>
+                  <li>Content Data Injection</li>
+                  <li>Markdown Rendering</li>
+                  <li>Remote HTML / Partials</li>
+                </ul>
+              </div>
+              <div>
+                <h3 id="data">
+                  <i class="ri-database-2-line"></i> Data Extension
+                </h3>
+                <p>Optional enhancements elements to add data-functionality and
+                  data-providers.</p>
+                <ul>
+                  <li>Data Expression Evaluations for Conditioned Elements</li>
+                  <li>Data Token Resolution for any Data Provider</li>
+                  <li>Conditional Rule Evaluation for Guided Navigation</li>
+                </ul>
+              </div>
+              <div>
+                <h3 id="audio">
+                  <i class="ri-music-line"></i> Audio Elements
+                </h3>
+                <p>Optional elements to display a global player for declared
+                  audio commands. The player orchestrates audio playback in a
+                  declared, reactive and unobtrusive way.</p>
+                <ul>
+                  <li>Voice-over Audio</li>
+                  <li>Event-based Sounds</li>
+                  <li>Route-driven Background Music</li>
+                </ul>
+              </div>
+              <div>
+                <h3 id="presentation">
+                  <i class="ri-movie-line"></i>Presentation Elements
+                </h3>
+                <p>Optional elements to normalize timing events between various
+                  video players or time on route</p>
+                <ul>
+                  <li>Time-based Action Activation</li>
+                  <li>Automatic Navigation by Time or Media Events</li>
+                  <li>Video-based Content Updates</li>
+                </ul>
+              </div>
+              <div>
+                <h3 id="elements">
+                  <i class="ri-plug-line"></i> Element Extension
+                </h3>
+                <p>Optional extension that allows for light DOM manipulation</p>
+                <ul>
+                  <li>Declarative HTML Manipulation</li>
+                  <li>Special Attributes for Conditional on Any Element</li>
+                  <li>Conditional Rule Evaluation</li>
+                </ul>
+              </div>
+            </div>
             <h2>Built with Love</h2>
             <ul>
               <li>
@@ -343,7 +370,7 @@
                 Loaded
               </li>
               <li><b>Themeable:</b> BYO UI System, designs and themes. <b
-                  class="brand">nent</b> stays out of the way.</li>
+                  class="brand">NENT</b> stays out of the way.</li>
               <li><b>Extensible:</b> BYO Data with a plugin system to easily
                 connect your data</li>
               <li><b>Typed:</b> Built with TypeScript so you can enjoy
@@ -355,7 +382,6 @@
             <footer>
               <a href="/home"
                 n-cloak
-                style="padding: .5rem; font-size: xx-large;"
                 class="btn btn-info btn-sm btn-large d-block"> Go to Demo </a>
             </footer>
           </div>
@@ -385,6 +411,16 @@
           src="/pages/start/routes.html"
           content-src="/pages/start/default.html">
         </n-view>
+        <n-view path="/app"
+          page-title="App Elements"
+          src="/pages/app/routes.html"
+          content-src="/pages/app/default.html">
+        </n-view>
+        <n-view path="/actions"
+          page-title="Action System"
+          src="/pages/actions/routes.html"
+          content-src="/pages/actions/default.html">
+        </n-view>
         <n-view path="/routing"
           page-title="View Routing"
           src="/pages/routing/routes.html"
@@ -397,22 +433,27 @@
           content-src="/pages/content/default.html">
         </n-view>
         <n-view path="/data"
-          page-title="Data System"
+          page-title="Data Extension"
           src="/pages/data/routes.html"
           content-src="/pages/data/default.html">
         </n-view>
-        <n-view path="/actions"
-          page-title="Action System"
-          src="/pages/actions/routes.html"
-          content-src="/pages/actions/default.html">
+        <n-view path="/elements"
+          page-title="Element Extension"
+          src="/pages/elements/routes.html"
+          content-src="/pages/elements/default.html">
         </n-view>
         <n-view path="/audio"
           page-title="Audio Elements"
           src="/pages/audio/routes.html"
           content-src="/pages/audio/default.html">
         </n-view>
+        <n-view path="/presentation"
+          page-title="Presentation Elements"
+          src="/pages/presentation/routes.html"
+          content-src="/pages/presentation/default.html">
+        </n-view>
         <n-view path="/components"
-          page-title="Elements"
+          page-title="Components"
           src="/pages/components/routes.html"
           content-src="/pages/components/default.html"
           transition="animate__animated animate__fadeIn">

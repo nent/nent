@@ -49,7 +49,7 @@ describe('n-view-link', () => {
       components: [ViewRouter, View, ViewLink],
       html: `
       <n-views>
-        <n-view-link href="/foo">Go to Foo</n-view-link>
+        <n-view-link path="/foo">Go to Foo</n-view-link>
         <n-view path="/foo">
         </n-view>
       </n-views>`,

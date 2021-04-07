@@ -39,7 +39,7 @@ export class ViewLink {
   /**
    * The destination route for this link
    */
-  @Prop({ mutable: true }) href!: string
+  @Prop({ mutable: true }) path!: string
 
   /**
    * The class to add when the matching route is active
@@ -81,16 +81,16 @@ export class ViewLink {
         router => {
           if (router) {
             this.subscribe()
+            routerSubscription()
           }
-          routerSubscription()
         },
       )
     }
   }
 
   private subscribe() {
-    this.href = navigationState.router!.resolvePathname(
-      this.href,
+    this.path = navigationState.router!.resolvePathname(
+      this.path,
       this.parentUrl || '/',
     )
 
@@ -98,7 +98,7 @@ export class ViewLink {
       ROUTE_EVENTS.RouteFinalized,
       () => {
         const match = navigationState.router!.matchPath({
-          path: this.href,
+          path: this.path,
           exact: this.exact,
           strict: this.strict,
         })
@@ -107,7 +107,7 @@ export class ViewLink {
       },
     )
     this.match = navigationState.router?.matchPath({
-      path: this.href,
+      path: this.path,
       exact: this.exact,
       strict: this.strict,
     })
@@ -120,13 +120,13 @@ export class ViewLink {
       !router ||
       router?.isModifiedEvent(e) ||
       !router?.history ||
-      !this.href
+      !this.path
     ) {
       return
     }
 
     e.preventDefault()
-    router.goToRoute(this.href)
+    router.goToRoute(this.path)
   }
 
   disconnectedCallback() {
@@ -136,7 +136,7 @@ export class ViewLink {
   render() {
     debugIf(
       this.debug,
-      `n-view-link: ${this.href} matched: ${this.match != null}`,
+      `n-view-link: ${this.path} matched: ${this.match != null}`,
     )
 
     const classes = {
@@ -152,7 +152,7 @@ export class ViewLink {
     return (
       <Host onClick={(e: MouseEvent) => this.handleClick(e)}>
         <a
-          href={this.href}
+          href={this.path}
           title={this.el.title}
           {...anchorAttributes}
           n-attached-click
