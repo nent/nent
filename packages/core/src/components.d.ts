@@ -584,7 +584,7 @@ export namespace Components {
         /**
           * The destination route for this link
          */
-        "href": string;
+        "path": string;
         /**
           * Only active on the exact href match using every aspect of the URL including parameters.
          */
@@ -1477,7 +1477,7 @@ declare namespace LocalJSX {
         /**
           * The destination route for this link
          */
-        "href": string;
+        "path": string;
         /**
           * Only active on the exact href match using every aspect of the URL including parameters.
          */

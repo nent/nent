@@ -233,6 +233,7 @@ export class ViewPrompt {
       await this.service.beginTimer()
       await recordVisit(this.visit as VisitStrategy, this.path)
     } else {
+      this.contentElement = null
       this.service?.cleanup()
     }
   }
