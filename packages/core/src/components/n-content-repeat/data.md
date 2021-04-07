@@ -1,4 +1,4 @@
-# N-CONTENT-REPEAT: Data Extension
+# N-CONTENT-REPEAT: Data 
 
 When the [n-data](/components/n-data) system is enabled, data tokens can be used in the `items-src` attribute, as well as in the script child element. 
 

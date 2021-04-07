@@ -1,21 +1,13 @@
-<h1>All Elements</h1>
+<h1>Components</h1>
+<h2></h2>
 <n-content-repeat items-src="/assets/components.json"
   filter="components">
   <template>
     <div class="component-item">
-      <n-view-link href="/components/{{data:tag}}">
+      <n-view-link path="/components/{{data:tag}}">
         <h4>&lt;{{data:tag}}&gt;</h4>
         <p class="animate_animated animate__slideOutDown">{{data:docs}}</p>
       </n-view-link>
-      <n-content-repeat no-cache
-        items="{{data:docsTags}}"
-        when="{{route:component}}"
-        no-cache=""
-        filter="name='extension'">
-        <template>
-          <p>{{data:name}} : {{data:text}}</p>
-        </template>
-</n-content-repeat>
-</div>
-</template>
+    </div>
+  </template>
 </n-content-repeat>

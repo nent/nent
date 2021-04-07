@@ -17,30 +17,32 @@
     <script type="text/markdown">
     ```html
     <head>
-    <script
+    <scrip+
       type="module"
       src="/node_modules/@nent/core/dist/nent.esm.js">
-    </script>
-    <script>
+    </scrip+>
+    <scrip+>
       nomodule
-      src = "/node_modules/@nent/core/dist/nent.js" >
-    </script>
-    </head> ```
+      src = "/node_modules/@nent/core/dist/nent.js">
+    </scrip+>
+    </head>
+    ```
     </script>
   </n-content-markdown>
   <p class="note">Only one of these scripts are imported. Which depends on the
     browser's support for ESM modules.</p>
   <footer>
     <button slot="start"
-      n-back
-      class="btn btn-secondary">&lt; Back</button>
+      n-back="/start/select"
+      class="btn btn-secondary">&lt; Select</button>
     <button slot="end"
-      n-next
-      class="btn btn-secondary">Next &gt;</button>
+      n-next="/start/conventions"
+      class="btn btn-secondary">Conventions &gt;</button>
   </footer>
   <n-action-activator activate="on-enter">
     <n-action topic="storage"
       command="set-data"
-      data-installed="npm"> </n-action>
+      data-installed="npm">
+    </n-action>
   </n-action-activator>
 </div>

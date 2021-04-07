@@ -5,8 +5,11 @@ html {
 body {
   --primary: hsl(256, 23%, 51%);
   --primary-dark: hsl(256, 23%, 41%);
+  --primary-bg: hsl(256, 21%, 31%);
+
   --secondary: hsl(202, 69%, 33%);
   --secondary-dark: hsl(202, 69%, 27%);
+
   --accent: hsl(46, 98%, 67%);
   --accent-dark: hsl(46, 98%, 47%);
 
@@ -19,14 +22,17 @@ body {
   --dark: hsl(221, 31%, 40%);
 
   --success: #hsl(115, 37%, 39%);
+  --success-dark: #hsl(115, 37%, 29%);
+
   --info: hsl(203, 24%, 47%);
+  --info-dark: hsl(203, 24%, 27%);
+
   --nav-bg: hsl(203, 24%, 47%);
-  --primary-bg: hsl(256, 21%, 31%);
+
   --content-max-width: 950px;
 
   font-family: 'Blinker', sans-serif;
   background-color: var(--background-color);
-
   color: var(--text-color);
   max-width: 100vw;
   overflow-x: hidden;
@@ -37,7 +43,7 @@ body.dark {
   --primary: #ae9ae4;
   --secondary: #347fad;
   --accent: #fdd757;
-  --text-color: #ffffff;
+  --text-color: white;
   --background-color: #2f3030;
   --background-color-dark: hsl(0, 0%, 7%);
   --light: #6f7070;
@@ -97,6 +103,11 @@ nav.bg-dark {
 nav.bg-dark i {
   font-size: 1.5rem;
   color: white;
+}
+
+nav.bg-dark .active i {
+  font-size: 1.5rem;
+  color: var(--accent);
 }
 
 /* setup tooltips */
@@ -168,17 +179,6 @@ a.active * {
   font-weight: 600;
 }
 
-#viewdo-logo {
-  padding: 1em 0 1em 1em;
-}
-.dark #viewdo-logo {
-  filter: brightness(0) invert(1);
-}
-
-.dark .introjs-tooltip {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
 
 .dark code[class*='language-'],
 .dark pre[class*='language-'] {
@@ -191,6 +191,29 @@ a.active * {
 }
 .dark .token.operator {
   background-color: rgb(15, 15, 15);
+}
+
+#features > div ul {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 2s ease-out;
+}
+#features > div:hover ul {
+  max-height: 500px;
+  transition: max-height 1s ease-in;
+}
+
+@media (min-width: 540px) {
+  #features {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  #features > div {
+    flex: 0 50%;
+    padding: .3rem;
+  }
 }
 
 /* ELEMENTS ------ */
@@ -225,6 +248,11 @@ h4 {
 }
 h3 {
   clear: right;
+}
+
+h3 i {
+  padding: 0 .1rem 0 0;
+  color: white;
 }
 
 h4 {
@@ -273,7 +301,7 @@ table {
 table thead th {
   background-color: var(--nav-bg);
   border: solid 2px var(--nav-bg);
-  color: #fff;
+  color: white;
   padding: 10px;
   text-align: left;
 }
@@ -322,6 +350,10 @@ n-views,
 n-app {
   height: 100vh;
   width: 100%;
+}
+
+n-views n-view {
+  margin-top: .5rem;
 }
 
 n-view-link a:any-link {
@@ -489,7 +521,7 @@ n-audio {
 }
 .component-item:hover p,
 .component-item:hover h4 {
-  color: #fff;
+  color: white;
 }
 
 .component-list {
@@ -497,13 +529,26 @@ n-audio {
   z-index: 11;
   margin-top: 3rem;
 }
-.list-group-item.fw-bold {
-  background-color: var(--primary);
-  background-image: linear-gradient(
-    to right,
-    var(--nav-bg),
-    var(--primary)
-  );
+
+.list-group {
+  clear: right;
+  color: white;
+  border-color: var(--primary);
+  background-color: var(--dark);
+}
+.list-group-item {
+  background: transparent;
+  color: var(--text-color);
+}
+
+.list-group-item i,
+.list-group-item a {
+  color: white;
+  font-weight: 400;
+}
+
+.list-group-item:hover {
+  background-color: var(--nav-bg);
 }
 
 /* Bootstrap ------------------*/
@@ -512,21 +557,37 @@ n-audio {
   vertical-align: middle;
 }
 
+.btn i,
+a.stretched-link i{
+  line-height: 1rem;
+  vertical-align: middle;
+  padding-right: .2em;
+}
+
+
 .btn:hover {
   text-decoration: none;
 }
 
 .btn-primary {
   background-color: var(--primary-bg);
+  border-color: var(--primary-bg);
+  color: white;
+}
+a.btn-primary:any-link {
+  color: white;
 }
 .btn-primary:hover {
   background-color: var(--primary-bg);
-  color: var(--accent);
-  border-color: var(--accent-dark);
+  border-color: var(--primary-dark);
 }
 
 .btn-secondary {
   background-color: var(--secondary);
+  border-color: var(--secondary);
+  color: white;
+}
+a.btn-secondary:any-link {
   color: white;
 }
 .btn-secondary:hover {
@@ -535,23 +596,16 @@ n-audio {
 }
 
 .btn-info {
-  border-color: white;
-  color: white;
   background-color: var(--info);
-  border-color: var(--info-dark);
-}
-.btn-info:hover {
-  background-color: var(--info);
-}
-
-a.btn-primary:any-link {
-  color: white;
-}
-a.btn-secondary:any-link {
+  border-color: var(--info);
   color: white;
 }
 a.btn-info:any-link {
   color: white;
+}
+.btn-info:hover {
+  background-color: var(--info);
+  border-color: var(--info-dark);
 }
 
 .btn-light {
@@ -589,28 +643,6 @@ a.btn-info:any-link {
   text-decoration: none;
 }
 
-.list-group {
-  clear: both;
-  margin-bottom: 1em;
-  color: white;
-  border-color: var(--primary);
-  background-color: var(--primary);
-}
-
-.list-group-item {
-  color: white;
-  background-color: var(--primary);
-}
-
-.list-group-item i,
-.list-group-item a {
-  color: white;
-  font-weight: 400;
-}
-
-.list-group-item:hover {
-  background-color: var(--nav-bg);
-}
 
 a:link,
 a:active,

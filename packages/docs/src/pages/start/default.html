@@ -1,95 +1,42 @@
 <div class="content">
-  <h1>Get Ready to Go</h1>
-  <div n-hide-when="{{storage:installed}} != 'npm'">
-    <h2>Local Reference</h2>
-    <n-action-activator>
-      <n-action topic="storage"
-        command="set-data"
-        data-installed="cdn">
-      </n-action>
-      <button class="btn btn-light btn-sm float-end">Switch to Remote</button>
-    </n-action-activator>
-    <p>Add the local module reference to the document head.</p>
-    <n-content-markdown>
-      <script type="text/markdown">
-        ```html
-        <head>
-          ...
-          <script
-            type="module"
-            src="/node_modules/@nent/core/dist/nent.esm.js">
-          < /script>
-          <script
-            nomodule
-            src="/node_modules/@nent/core/dist/nent.js">
-          < /script>
-          ...
-        </head>
-        ```
-      </script>
-    </n-content-markdown>
-  </div>
-  <div n-hide-when="{{storage:installed}} != 'cdn'">
-    <h2>Remote Reference</h2>
-    <n-action-activator>
-      <n-action topic="storage"
-        command="set-data"
-        data-installed="npm">
-      </n-action>
-      <button class="btn btn-light btn-sm float-end">Switch to Local</button>
-    </n-action-activator>
-    <p>Add the CDN reference to the document head.</p>
-    <n-content-markdown>
-      <script type="text/markdown">
-        ```html
-        <head>
-         ...
-          <script
-            type="module"
-            src="https://unpkg.com/@nent/core/dist/nent/nent.esm.js">
-          < /script>
-          <script
-            nomodule
-            src="https://unpkg.com/@nent/core/dist/nent/nent.js">
-          < /script>
-         ...
-        </head>
-        ```
-      </script>
-    </n-content-markdown>
-  </div>
-  <h3>Development</h3>
-  <p>Just add the elements to your page and the element will automatically
-    install itself.</p>
-  <n-content-markdown src="/pages/start/conventions.md">
-  </n-content-markdown>
-  <h2>Learn More</h2>
-  <p>This guide will walk you through the core systems and their components.</p>
-  <h3>Jump to Topic</h3>
-  <p>You can skip ahead to the are you are most interested in.</p>
+  <h1>Ready to Learn</h1>
+  <p class="lead">This guide will walk you through the core systems and their
+    components.</p>
+  <h2>Not quite ready?</h2>
+  <p>No worries, you can return to these topics easily</p>
   <div class="button-nav">
-    <a href="/routing/navigation"
-      class="btn btn-primary">
-      <i class="ri-compass-line"></i> Navigation </a>
-    <a href="/content"
-      class="btn btn-primary">
-      <i class="ri-code-box-line"></i> Content </a>
-    <a hidden
-      href="/app">
-      <i class="ri-install-line"></i> App </a>
-    <a href="/actions"
-      class="btn btn-primary">
-      <i class="ri-flashlight-line"></i> Actions </a>
-    <a href="/data"
-      class="btn btn-primary">
-      <i class="ri-database-2-line"></i> Data </a>
-    <a href="/audio"
-      class="btn btn-primary">
-      <i class="ri-music-line"></i> Audio </a>
+    <a href="/start/select"
+      class="btn btn-secondary btn-sm"> Install </a>
+    <a href="/start/conventions"
+      class="btn btn-secondary btn-sm"> Conventions </a>
+    <a href="/start/develop"
+      class="btn btn-secondary btn-sm"> Develop </a>
   </div>
-  <footer>
-    <a slot="end"
-      href="/routing"
-      class="btn btn-primary btn-lg">Begin Tutorial: Routing &gt;</a>
-  </footer>
+  <h3>Jump to Topic</h2>
+    <p>You can skip ahead to the are you are most interested in.</p>
+    <div class="button-nav">
+      <a href="/routing/navigation"
+        class="btn btn-primary">
+        <i class="ri-compass-line"></i> Navigation </a>
+      <a href="/content"
+        class="btn btn-primary">
+        <i class="ri-code-box-line"></i> Content </a>
+      <a hidden
+        href="/app">
+        <i class="ri-install-line"></i> App </a>
+      <a href="/actions"
+        class="btn btn-primary">
+        <i class="ri-flashlight-line"></i> Actions </a>
+      <a href="/data"
+        class="btn btn-primary">
+        <i class="ri-database-2-line"></i> Data </a>
+      <a href="/audio"
+        class="btn btn-primary">
+        <i class="ri-music-line"></i> Audio </a>
+    </div>
+    <footer>
+      <a slot="end"
+        href="/routing"
+        class="btn btn-primary">Begin Tutorial: Routing &gt;</a>
+    </footer>
 </div>

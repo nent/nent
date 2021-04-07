@@ -2,7 +2,7 @@
 
 The Elements Action Listener is configured to handle commands raised through the [actions system](/actions).
 
-Topic: `elements`
+## Topic: `elements`
 
 ```html
 <n-action-activator activate="...">

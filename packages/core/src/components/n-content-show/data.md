@@ -1,4 +1,4 @@
-# N-CONTENT-SHOW: Data Extension
+# N-CONTENT-SHOW: Data
 
 When the [n-data](/components/n-data) system is enabled, data tokens can be used in the `when` attribute. 
 

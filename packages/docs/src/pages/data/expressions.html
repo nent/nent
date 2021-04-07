@@ -9,32 +9,39 @@
   <h1>Data Expressions</h1>
   <n-content-markdown>
     <script type="text/markdown">
-      ## Anatomy of a Data Expression
+      ## Anatomy of a Data Token
 
-      Expression Format:
+      Expressions resolve data from a provider, using a special notation that tells nent where to look and how to parse.
 
-        `{<provider>:<data-key>(?<default>)}`
+      #### Expression Format
 
-      * Provider: The data provider name
-      * Data Key: The data value key within the provider \*
-      * Default: An optional default value if the provider's key is empty.
+      * provider: The data provider name
+      * data-key: The data value key within the provider \*
+      * default: An optional default value if the provider's key is empty.
 
       \* _If there are any dots in the key, the evaluator attempts to parse the base value as JSON, then uses the dot-notation to select a value from the object. For example, the expression `{{session:user.name}}` means the session value 'user' is a JSON object, parse it and replace with the 'name' property._
 
+      ```javascript
+      {{<provider>:<data-key>(?<default>)}}
+      ```
 
-      > See [data providers](/data/providers) to learn how to add custom data providers.
+      > See [custom providers](/components/n-data/custom) to learn how to add custom data providers.
 
       ## Special Functions
 
       didVisit('url') => boolean
+
+      ```javascript
+      {{didVisit('/home')}}
+      ```
     </script>
   </n-content-markdown>
   <footer>
     <a slot="start"
-      href="/data/display"
-      class="btn btn-secondary"> &lt; Display </a>
+      href="/data"
+      class="btn btn-primary"> &lt; Data </a>
     <a slot="end"
-      href="/data/providers"
-      class="btn btn-secondary"> Providers &gt; </a>
+      href="/data"
+      class="btn btn-primary"> Data &gt; </a>
   </footer>
 </div>

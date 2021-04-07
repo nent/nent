@@ -50,7 +50,7 @@
     </li>
   </ul>
   <blockquote>
-    <b>nent</b> components use a command/event messaging system for
+    <b>NENT</b> components use a command/event messaging system for
     inter-element communication. Actions are commands declared with HTML.
   </blockquote>
   <h2>Activation</h2>
@@ -71,16 +71,16 @@
     ```
   </script>
   </n-content-markdown>
+  <h3>Advanced Activations</h3>
+  <p>Learn more ways to activate actions.</p>
   <div class="button-nav">
     <a class="btn btn-secondary"
       href="/actions/activation">Activating Actions</a>
   </div>
-  <h2>
-    <a id="listeners">Component Actions</a>
-  </h2>
-  <p> Listeners execute functions or perform tasks based on the action commands.
-    Check out the built-in actions for each of the systems. </p>
-  <h3>Component Listeners</h3>
+  <h2> Action Listeners </h2>
+  <p>Many NENT components and systems support actions to make changes or react
+    to user-input. </p>
+  <h3>Component Actions</h3>
   <p>Learn more about the actions supported in the following elements.</p>
   <ul>
     <n-content-repeat items-src="/assets/components.json"
@@ -93,6 +93,13 @@
     </template>
     </n-content-repeat>
   </ul>
+  <h3>Custom Actions</h3>
+  <p>You can also register your own action-listener through the <a
+      href="/components/n-app">n-app</a> component. </a></p>
+  <div class="button-nav">
+    <a class="btn btn-secondary"
+      href="/components/n-app/custom">Custom Actions</a>
+  </div>
   <footer>
     <a slot="start"
       href="/data">

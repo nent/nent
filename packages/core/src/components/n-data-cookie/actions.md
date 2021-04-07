@@ -2,7 +2,7 @@
 
 The Cookie Action Listener can write or delete cookie data.
 
-Topic: `cookie`
+## Topic: `cookie`
 
 ```html
 <n-action-activator activate="...">

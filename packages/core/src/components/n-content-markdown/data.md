@@ -1,4 +1,4 @@
-# N-CONTENT-MARKDOWN: Data Extension
+# N-CONTENT-MARKDOWN: Data
 
 When the [n-data](/components/n-data) system is enabled, data tokens can be used in the `src` attribute, as well as in the inline markdown script child. 
 

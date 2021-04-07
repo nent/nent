@@ -1,4 +1,4 @@
-# Audio Action Listener
+# N-AUDIO: Actions
 
 The Audio Action Listener listens for action commands to control audio during presentations.
 
@@ -76,7 +76,7 @@ This command instructs the player to immediately play the given pre-loaded track
 
 #### pause
 
-This command pauses active audio, if something is playing.
+This command pauses audio if something is playing.
 
 #### resume
 
@@ -93,7 +93,7 @@ Set the audio player volume at a level 0 to 100.
 
 #### seek \*
 
-Set the audio track to to the given time in seconds, but only if the **track-id** matches the that of the active track. Otherwise, it is ignored. If the current track is paused, it will remain paused, at the requested time. Otherwise, the track is changed audibly.
+Set the audio track to the given time in seconds, but only if the **track-id** matches that of the active track. Otherwise, it is ignored. If the current track is paused, it will remain paused, at the requested time. Otherwise, the track is changed audibly.
 
 #### Other Commands
 
@@ -116,7 +116,7 @@ This command instructs the player to immediately play this audio clip. If a trac
 
 #### queue
 
-This is the primary method for loading audio-tracks to the player. It instructs the player to play this as soon as the player becomes available, but after anything that is currently playing.
+This is the primary method for loading audio tracks to the player. It instructs the player to play this as soon as the player becomes available, but after anything that is currently playing.
 
 **Data**:
 

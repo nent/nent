@@ -1,4 +1,4 @@
-# N-CONTENT-INCLUDE: Data Extension
+# N-CONTENT-INCLUDE: Data
 
 When the [n-data](/components/n-data) system is enabled, data tokens can be used in the `src` attribute, as well as in the remote file contents. 
 

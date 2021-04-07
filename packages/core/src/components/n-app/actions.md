@@ -1,8 +1,8 @@
-# App Action Listener
+# N-APP: Actions
 
 The App Action Listener is configured to handle commands meant to manage the page as an app. Read more about [actions](/actions).
 
-Topic: `app`
+## Topic: `app`
 
 ```html
 <n-action-activator activate="...">
@@ -31,7 +31,7 @@ Arguments:
 </n-action-activator>
 ```
 
-### `console`
+### `log`
 
 Writes data to the console using console.log()
 
@@ -39,13 +39,58 @@ Writes data to the console using console.log()
 
 Arguments:
 
-* **data** (required)\
+* **message** (required)\
   Any data that is sent to console.log
 
 ```html
-<n-action-activator activate="...">
+<n-action-activator activate="on-render">
   <n-action topic="app" 
-    command="set-theme" 
-    data-theme="dark"> </n-action>
+    command="log" 
+    data-message="Hello world."> 
+  </n-action>
 </n-action-activator>
 ```
+
+### `warn`
+
+Writes data to the console using console.log()
+
+> Same as `console.warn()` in JavaScript
+
+Arguments:
+
+* **message** (required)\
+  Any data that is sent to console.warn
+
+```html
+<n-action-activator activate="on-render">
+  <n-action topic="app" 
+    command="warn" 
+    data-message="Hello world."> 
+  </n-action>
+</n-action-activator>
+```
+
+### `dir`
+
+Writes data to the console using console.dir()
+
+> Same as `console.dir()` in JavaScript
+
+Arguments:
+
+* **<any>** (required)\
+  Any data that is sent to console.dir
+
+```html
+<n-action-activator activate="on-render">
+  <n-action topic="app" 
+    command="dir" 
+    data-message="Hello world."> 
+  </n-action>
+</n-action-activator>
+```
+
+### `register-provider`
+
+Register a new app-provider. See [custom data](/components/n-app/custom) for more information.

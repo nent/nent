@@ -10,6 +10,12 @@
   <p>Once enabled data can be injected in HTML using tokens:
   <pre>{{source:key}}</pre>
   </p>
+  <h3>Token Expressions</h3>
+  <p>Learn more about expressions and predicates.</p>
+  <div class="button-nav">
+    <a href="/data/expressions"
+      class="btn btn-secondary"> Expressions & Predicates </a>
+  </div>
   <h2>Content Repeat Example</h2>
   <p>Assuming a list of URLs visited are stored within the browser's built-in
     storage, you can render that list in your HTML by enabling the <a
@@ -71,14 +77,12 @@
         </template>
       </n-content-repeat>
     </ul>
-    <h3>Advanced Topics</h3>
-    <p>Learn more about supporting element and other ways you can provide data.
-    </p>
+    <h3>Custom Provider</h3>
+    <p>You can also register your own data provider through the <a
+        href="/components/n-data">n-data</a> component. </a></p>
     <div class="button-nav">
-      <a href="/data/expressions"
-        class="btn btn-secondary"> Expressions & Predicates </a>
-      <a href="/actions/data"
-        class="btn btn-secondary"> Data Actions </a>
+      <a class="btn btn-secondary"
+        href="/components/n-data/custom">Custom Providers</a>
     </div>
     <footer>
       <a slot="start"

@@ -1,32 +1,51 @@
 # Custom Provider
 
-Data Providers are the underlying data-store for expressions. You can extend your HTML with data from your own provider by registering a custom provider.
+Data Providers are the underlying data-store for expressions. You can extend your HTML with data from a custom provider by registering it.
 
 > The Data Provider system is a way to normalize data access for use within Data Expressions.
 
-To register a provider, provide a unique name and an instance that implements IDataProvider and that data will become available within the expression system, once registered.
+## Register Custom Provider
 
+To add a custom data provider, or a declarative action function-provider, first add the `n-data` element:
 
-**Register Provider:**
-
-```typescript
-new CustomEvent('nent:actions', {
-  detail: {
-    topic: 'data'
-    command: "register-provider",
-    data: {
-      name: 'my_provider',
-      provider: providerInstance
-    }
-  }
-})
+```html
+<n-data>  
+</n-data>
 ```
 
-Assuming your instance has a data item with key **name**, your HTML can use this value in the expression: `{{my_provider:name}}`
 
-**Data Provider Interface:**
+Then register your provider, by raising a custom event `nent:actions` with an instance of your provider in the following format.
 
-```typescript
+
+```javascript
+
+const customProvider = {
+  doSomething: (...args) => { }
+}
+const event = new CustomEvent('nent:actions', {
+  detail: {
+    topic: 'data',
+    command: 'register-provider'
+    data: {
+      name: 'custom',
+      provider: customProvider,
+    },
+  }
+});
+
+document.body.dispatchEvent(event, { bubbles: true, composed: true})
+
+```
+
+Provide a unique name and an instance that implements IDataProvider and that data will become available within the expression system, once registered.
+
+For example, assuming your instance has a data item with key **name**, your HTML can use this value in the expression: 
+
+    {{custom:name}}
+
+#### Data Provider Interface
+
+```javascript
 export interface IDataProvider {
   get(key: string): Promise<string>
   set(key: string, value: string): Promise<void>
@@ -36,12 +55,23 @@ export interface IDataProvider {
 
 ### Data Changed Event
 
-To notify the system that your underlying data has changed, the interface includes a simple event emitter. Emit 'data-changed' from an emitter and all elements using your value will re-render with the new data value.
+To notify the system that your underlying data has changed, the interface includes a simple event emitter. Emit `data-changed` from an emitter and all elements using your value will re-render with the new data value.
+
+```javascript
+export interface IDataProvider {
+  ...
+  set(key: string, value: string): Promise<void> {
+    // my set 
+    this.changed.emit('data-changed')
+  }
+  changed: EventEmitter
+}
+```
 
 ### Sample Data Provider
 
-```typescript
-import { DATA_EVENTS, IDataProvider, EventEmitter } from '@nent/core'
+```javascript
+import { EventEmitter } from '@nent/core'
 
 export class MyProvider implements IDataProvider {
   data = {}
@@ -54,7 +84,7 @@ export class MyProvider implements IDataProvider {
   }
   async set(key: string, value: string): Promise<void> {
     this.data[key] = value.slice()
-    this.changed.emit(DATA_EVENTS.DataChanged)
+    this.changed.emit('data-changed')
   }
 
   changed: EventEmitter
@@ -63,9 +93,11 @@ export class MyProvider implements IDataProvider {
 
 ### Sample Registrations
 
-#### Native JS
+#### Native
 
-All that is needed by the data-system is a custom event with an instance of your provider in the details.data.provider property. _Note: be sure the event is composed, so it can reach shadow-dom listeners._
+All that is needed by the data system is a custom event with an instance of your provider in the `detail.data.provider` property. 
+
+_Note: be sure the event is composed, so it can reach shadow-dom listeners._
 
 ```javascript
 const customProvider = new MyProvider(); // IDataProvider
@@ -84,9 +116,9 @@ document.body.dispatchEvent(event, { bubbles: true, composed: true})
 
 ```
 
-#### As Component [StencilJS]
+#### Stencil Component
 
-```typescript
+```javascript
 import { Component, Event, EventEmitter, Prop, State, h } from '@stencil/core'
 
 @Component({
@@ -102,7 +134,7 @@ export class MyDataProvider {
    * and register the provider for use in expressions.
    */
   @Event({
-    eventName: 'nent:events',
+    eventName: 'nent:actions',
     bubbles: true,
     composed: true,
   })
@@ -125,8 +157,8 @@ export class MyDataProvider {
 Then just include your element somewhere on the page:
 
 ```html
-<n-views>
+<n-data>
   ...
-  <my-data-provider></my-data-provider
-></n-views>
+  <my-data-provider></my-data-provider>
+</n-data>
 ```

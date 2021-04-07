@@ -2,7 +2,7 @@
 
 The Storage Action Listener can write or delete cookie data.
 
-Topic: `storage`
+## Topic: `storage`
 
 ```html
 <n-action-activator activate="...">

@@ -1,9 +1,8 @@
-# Data Action Listener
+# N-DATA: Actions
 
-The Data Action Listener listens for action commands to request updates from the
-given data-providers.
+The Data Action Listener listens for action commands to request updates from the given data providers.
 
-Topic: `data`
+## Topic: `data`
 
 ```html
 <n-action-activator activate="...">
@@ -19,4 +18,4 @@ Topic: `data`
 
 ### `register-provider`
 
-Register a new data-provider. See [Data Providers](/data/providers) for more information.
+Register a new data-provider. See [custom data](/components/n-data/custom) for more information.

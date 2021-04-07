@@ -2,7 +2,7 @@
 
 The Session Action Listener can write or delete cookie data.
 
-Topic: `session`
+## Topic: `session`
 
 ```html
 <n-action-activator activate="...">

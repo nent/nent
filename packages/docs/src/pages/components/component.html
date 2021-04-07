@@ -1,17 +1,16 @@
 <div>
-  <ul>
-    <li>Extensions: </li>
+  <ul class="float-end">
     <n-content-repeat no-cache
       items-src="/assets/components.json"
       when="{{route:component}}"
       no-cache=""
       filter="components[tag='{{route:component}}'].docsTags[name='extension']">
       <template>
-        <li>
-          <n-view-link
+        <li class="text-end">
+          <a class="text-capitalize m-0 fs-4"
             href="{{route:component}}/{{data:text}}">
-            {{data:text}}
-          </n-view-link>
+           {{data:text}}
+          </a>
         </li>
     </template>
     </n-content-repeat>

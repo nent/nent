@@ -13,7 +13,7 @@
       filter="components">
       <template>
         <li class="mb-1">
-          <n-view-link href="/components/{{data:tag}}">
+          <n-view-link path="/components/{{data:tag}}">
             {{data:tag}}
           </n-view-link>
         </li>
@@ -28,26 +28,8 @@
   </n-view>
   <n-view exact
     class="flex-shrink"
-    path="/components/:component/actions"
-    page-title="actions"
-    content-src="/pages/components/actions.html">
-  </n-view>
-  <n-view exact
-    class="flex-shrink"
-    path="/components/:component/provider"
-    page-title="data provider"
-    content-src="/pages/components/provider.html">
-  </n-view>
-  <n-view exact
-    class="flex-shrink"
-    path="/components/:component/elements"
-    page-title="extended: elements"
-    content-src="/pages/components/elements.html">
-  </n-view>
-  <n-view exact
-    class="flex-shrink"
-    path="/components/:component/data"
-    page-title="extended: data"
-    content-src="/pages/components/data.html">
+    path="/components/:component/:extension"
+    page-title="{{route:extension}}"
+    content-src="/pages/components/extension.html">
   </n-view>
 </div>
