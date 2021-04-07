@@ -482,6 +482,10 @@ export namespace Components {
     }
     interface NPresentation {
         /**
+          * Send analytics view-time percentages for this presentation using the event name
+         */
+        "analytics"?: string;
+        /**
           * To debug timed elements, set this value to true.
          */
         "debug": boolean;
@@ -1474,6 +1478,10 @@ declare namespace LocalJSX {
     interface NElements {
     }
     interface NPresentation {
+        /**
+          * Send analytics view-time percentages for this presentation using the event name
+         */
+        "analytics"?: string;
         /**
           * To debug timed elements, set this value to true.
          */

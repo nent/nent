@@ -8,6 +8,7 @@ class StateModel {
   enabled!: boolean
   muted!: boolean
   debug!: boolean
+  tracksPlayed!: Array<string>
 }
 
 const store = createStore<StateModel>({
@@ -16,6 +17,7 @@ const store = createStore<StateModel>({
   enabled: true,
   muted: false,
   debug: false,
+  tracksPlayed: [],
 })
 
 const { state, onChange, dispose, reset } = store

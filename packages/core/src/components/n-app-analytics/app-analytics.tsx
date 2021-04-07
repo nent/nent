@@ -28,7 +28,7 @@ export class Analytics {
    */
   @Event({
     eventName: 'custom-event',
-    composed: false,
+    composed: true,
     cancelable: false,
     bubbles: false,
   })
@@ -39,7 +39,7 @@ export class Analytics {
    */
   @Event({
     eventName: 'page-view',
-    composed: false,
+    composed: true,
     cancelable: false,
     bubbles: false,
   })
@@ -50,7 +50,7 @@ export class Analytics {
    */
   @Event({
     eventName: 'view-time',
-    composed: false,
+    composed: true,
     cancelable: false,
     bubbles: false,
   })

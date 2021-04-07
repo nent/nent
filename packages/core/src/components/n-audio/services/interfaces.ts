@@ -48,7 +48,7 @@ export enum AUDIO_EVENTS {
 }
 
 export enum DiscardStrategy {
-  route = 'view',
+  route = 'route',
   next = 'next',
   none = 'none',
 }

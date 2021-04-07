@@ -52,6 +52,12 @@ export class NPresentation {
    */
   @Prop() nextAfter: number | boolean = false
 
+  /**
+   * Send analytics view-time percentages for this presentation
+   * using the event name
+   */
+  @Prop() analytics?: string
+
   componentWillLoad() {
     let timerElement: any = this.timerElement
       ? this.el.querySelector(this.timerElement) ||
@@ -86,6 +92,7 @@ export class NPresentation {
         navigationState.router?.exactRoute || null,
         this.debug,
         this.nextAfter,
+        this.analytics,
       )
 
       this.presentation?.beginTimer()

@@ -4,6 +4,7 @@ import { AudioInfo, DiscardStrategy } from './interfaces'
 import { AudioLoader } from './list-loader'
 import { AudioQueue } from './list-queue'
 import { PlayerBase } from './player-base'
+import { markTrack } from './tracks'
 
 export class MusicPlayer extends PlayerBase {
   loader: AudioLoader = new AudioLoader()
@@ -31,7 +32,7 @@ export class MusicPlayer extends PlayerBase {
     this.changed()
   }
 
-  public playTrack(trackId: string) {
+  public async playTrack(trackId: string) {
     const track = this.loader.findTrack(trackId)
     if (track) {
       this.loader.stop()
@@ -44,6 +45,7 @@ export class MusicPlayer extends PlayerBase {
       this.discard(DiscardStrategy.next)
       this.active = this.queue.getNext()
       this.active?.play()
+      await markTrack(trackId)
       this.changed()
     }
   }

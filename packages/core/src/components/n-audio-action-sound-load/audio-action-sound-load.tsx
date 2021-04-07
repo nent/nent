@@ -21,6 +21,7 @@ import {
   audioState,
   onAudioStateChange,
 } from '../n-audio/services/state'
+import { playedTrack } from '../n-audio/services/tracks'
 
 /**
  * This component declares audio used within this \<n-view-prompt\> route.
@@ -97,6 +98,8 @@ export class AudioSoundLoad {
     const action = await this.getAction()
     if (data) Object.assign(action.data, data)
     if (audioState.hasAudioComponent) {
+      const trackPlayed = await playedTrack(this.trackId)
+      if (this.mode == 'play' && trackPlayed) return
       actionBus.emit(action.topic, action)
     } else {
       const dispose = onAudioStateChange(

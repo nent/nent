@@ -470,9 +470,11 @@
             } )
             analytics.addEventListener( 'page-view', ( e ) => {
               gtag( 'page_view', e.detail.pathname )
+
             } )
             analytics.addEventListener( 'view-time', ( e ) => {
-              gtag( e.detail.key, e.detail.value )
+              gtag( e.detail.event, e.detail.percentage )
+              console.dir(e.detail.elapsed)
             } )
           </script>
         </n-app-analytics>

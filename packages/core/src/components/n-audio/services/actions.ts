@@ -58,12 +58,12 @@ export class AudioActionListener {
 
     this.actionSubscription = this.actionBus.on(
       AUDIO_TOPIC,
-      (ev: EventAction<any>) => {
+      async (ev: EventAction<any>) => {
         debugIf(
           this.debug,
           `audio-listener: action received ${ev.topic}:${ev.command}`,
         )
-        this.commandReceived(ev.command, ev.data)
+        await this.commandReceived(ev.command, ev.data)
         audioState.hasAudio = this.hasAudio
       },
     )
@@ -160,7 +160,7 @@ export class AudioActionListener {
 
   // Private members
 
-  private commandReceived(
+  private async commandReceived(
     command: string,
     data: AudioInfo | AudioRequest | boolean,
   ) {
@@ -221,9 +221,9 @@ export class AudioActionListener {
         const audio = data as AudioInfo
         const { type, trackId } = audio
         if (type == AudioType.music) {
-          this.music.playTrack(trackId!)
+          await this.music.playTrack(trackId!)
         } else if (type == AudioType.sound) {
-          this.sound.playTrack(trackId!)
+          await this.sound.playTrack(trackId!)
         } else {
           return
         }
