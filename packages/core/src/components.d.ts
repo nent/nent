@@ -479,6 +479,10 @@ export namespace Components {
         "name": string;
     }
     interface NElements {
+        /**
+          * Turn on debug statements for load, update and render events.
+         */
+        "debug": boolean;
     }
     interface NPresentation {
         /**
@@ -677,10 +681,6 @@ export namespace Components {
           * The display mode for which routes to display.
          */
         "mode": 'children' | 'parents' | 'siblings';
-        /**
-          * The string separator to put between the items.
-         */
-        "separator"?: string;
     }
     interface NViewLinkNext {
     }
@@ -1476,6 +1476,10 @@ declare namespace LocalJSX {
         "name"?: string;
     }
     interface NElements {
+        /**
+          * Turn on debug statements for load, update and render events.
+         */
+        "debug"?: boolean;
     }
     interface NPresentation {
         /**
@@ -1662,10 +1666,6 @@ declare namespace LocalJSX {
           * The display mode for which routes to display.
          */
         "mode"?: 'children' | 'parents' | 'siblings';
-        /**
-          * The string separator to put between the items.
-         */
-        "separator"?: string;
     }
     interface NViewLinkNext {
     }

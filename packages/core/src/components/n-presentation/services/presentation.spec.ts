@@ -15,6 +15,7 @@ import { MockRequestAnimationFrameProvider } from '../../n-presentation-timer/se
 import { MockRoute } from '../../n-presentation-timer/services/mocks/route'
 import { FrameTimer } from '../../n-presentation-timer/services/timer'
 import { Video } from '../../n-video/video'
+import { NPresentation } from '../presentation'
 import { TIMER_EVENTS } from './interfaces'
 import { PresentationService } from './presentation'
 
@@ -232,8 +233,8 @@ describe('presentation', () => {
   it('processes timed actions', async () => {
     const listener = new ElementsActionListener()
     const page = await newSpecPage({
-      components: [ActionActivator, Action],
-      html: `<div>
+      components: [NPresentation, ActionActivator, Action],
+      html: `<n-presentation>
               <p hidden>Show me!</p>
               <n-action-activator activate="at-time" time="1">
                 <n-action topic="elements" command="remove-attribute"
@@ -258,12 +259,12 @@ describe('presentation', () => {
 
     animationFrameProvider.triggerNextAnimationFrame(1500)
 
-    expect(timer.currentTime?.elapsed).toBe(1.5)
+    expect(timer.currentTime?.elapsed).toBeGreaterThan(1)
 
     await page.waitForChanges()
 
     expect(page.body.innerHTML).toEqualHtml(
-      `<div>
+      `<n-presentation>
         <p>Show me!</p>
         <n-action-activator activate="at-time" time="1">
           <!---->
@@ -272,7 +273,7 @@ describe('presentation', () => {
             data-attribute="hidden">
           </n-action>
         </n-action-activator>
-       </div>
+       </n-presentation>
       `,
     )
 

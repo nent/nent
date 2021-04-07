@@ -5,7 +5,8 @@
   <p>Add a food here, to see how dynamic routes work using random data.</p>
   <div class="form-group mb-3">
     <label for="name">Favorite Food</label>
-    <n-action-activator target-event="blur,change">
+    <n-action-activator target-element="#favorite"
+      target-event="blur,change">
       <n-action topic="storage"
         command="set-data">
       </n-action>
@@ -17,11 +18,9 @@
     </n-action-activator>
   </div>
   <footer>
-    <button slot="start"
-      n-back
-      class="btn btn-info">&lt; Back</button>
-    <button slot="end"
-      n-link="/routing/dynamic"
-      class="btn btn-info">Next &gt;</button>
+    <n-view-link-back slot="start"
+      class="btn btn-info">&lt; Back</n-view-link-back>
+    <n-view-link-next slot="end"
+      class="btn btn-info">Next &gt;</n-view-link-next>
   </footer>
 </div>

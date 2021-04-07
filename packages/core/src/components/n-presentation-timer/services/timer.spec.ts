@@ -26,14 +26,14 @@ describe('frame-timer:', () => {
 
     animationFrameProvider.triggerNextAnimationFrame(1000)
     expect(subject.currentTime).toBeDefined()
-    expect(subject.currentTime!.seconds).toBe(1)
+    expect(subject.currentTime!.elapsed).toBe(1)
 
     animationFrameProvider.triggerNextAnimationFrame(2000)
     expect(subject.currentTime).toBeDefined()
-    expect(subject.currentTime!.seconds).toBe(2)
+    expect(subject.currentTime!.elapsed).toBe(2)
     expect(intervals.length).toBe(2)
 
-    animationFrameProvider.triggerNextAnimationFrame(60000)
+    animationFrameProvider.triggerNextAnimationFrame(60001)
     expect(subject.currentTime!.minutes).toBe(1)
     expect(subject.currentTime!.elapsed).toBe(60)
 

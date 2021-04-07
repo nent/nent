@@ -29,7 +29,7 @@ export class NPresentation {
   /**
    * The timer instance for a manual timer.
    */
-  @Prop() timer: ITimer | null = null
+  @Prop({ mutable: true }) timer: ITimer | null = null
 
   /**
    * The element selector for the timer-element to

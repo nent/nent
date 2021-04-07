@@ -66,6 +66,13 @@ export interface IRoute {
   goToParentRoute(): void
 }
 
+export type RouteInfo = {
+  match: MatchResults | null
+  path: string
+  routeElement: HTMLElement
+  pageTitle: string
+}
+
 export enum NAVIGATION_COMMANDS {
   goNext = 'go-next',
   goTo = 'go-to',

@@ -1,5 +1,5 @@
 import { RafCallback } from '@stencil/core'
-import { slugify, warn } from '../../../services/common'
+import { warn } from '../../../services/common'
 import { performLoadElementManipulation } from '../../../services/common/elements'
 import { IEventEmitter } from '../../../services/common/interfaces'
 import {
@@ -40,7 +40,7 @@ export class RouterService {
   private readonly removeHandler!: () => void
   private listener!: NavigationActionListener
   public history: HistoryService
-  public routes: { [index: string]: Route } = {}
+  public routes: Route[] = []
   private routeData?: RoutingDataProvider
   private queryData?: RoutingDataProvider
   private visitData?: RoutingDataProvider
@@ -288,17 +288,15 @@ export class RouterService {
   }
 
   public get exactRoutes() {
-    return Object.keys(this.routes).filter(
-      r => this.routes[r].match?.isExact,
-    )
+    return this.routes.filter(r => r.match?.isExact)
   }
 
   public get matchedRoutes() {
-    return Object.keys(this.routes).filter(r => this.routes[r].match)
+    return this.routes.filter(r => r.match)
   }
 
   public get hasRoutes() {
-    return Object.keys(this.routes).length > 0
+    return this.routes.length > 0
   }
 
   public hasExactRoute() {
@@ -306,7 +304,7 @@ export class RouterService {
   }
 
   public get exactRoute() {
-    if (this.hasExactRoute()) return this.routes[this.exactRoutes[0]]
+    if (this.hasExactRoute()) return this.exactRoutes[0]
     return null
   }
 
@@ -348,7 +346,7 @@ export class RouterService {
     } = routeElement
 
     const parent = parentElement?.path
-      ? this.routes[slugify(parentElement.path)] || null
+      ? this.routes.find(r => r.path == parentElement?.path) || null
       : null
     if (parent) {
       path = this.normalizeChildUrl(routeElement.path, parent.path)
@@ -359,9 +357,7 @@ export class RouterService {
     routeElement.path = path
     routeElement.transition = transition || this.transition
 
-    const routeKey = slugify(path)
-
-    if (this.routes[routeKey]) {
+    if (this.routes.find(r => r.path == path)) {
       warn(`route: duplicate route detected for ${path}.`)
     }
 
@@ -375,10 +371,10 @@ export class RouterService {
       scrollTopOffset,
       matchSetter,
       () => {
-        delete this.routes[routeKey]
+        this.routes = this.routes.filter(r => r == route)
       },
     )
-    this.routes[routeKey] = route
+    this.routes.push(route)
     return route
   }
 }

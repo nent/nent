@@ -81,8 +81,8 @@ export class ViewLink {
         router => {
           if (router) {
             this.subscribe()
-            routerSubscription()
           }
+          routerSubscription()
         },
       )
     }

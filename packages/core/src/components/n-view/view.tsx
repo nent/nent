@@ -210,8 +210,6 @@ export class View {
       DATA_EVENTS.DataChanged,
       async () => {
         debugIf(this.debug, `n-view: ${this.path} data changed `)
-        if (this.match) await resolveChildElementXAttributes(this.el)
-        //
         forceUpdate(this)
       },
     )

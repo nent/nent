@@ -10,7 +10,7 @@ import {
   dataState,
   dataStateDispose,
 } from '../../services/data/state'
-import { ROUTE_EVENTS } from '../../services/routing/interfaces'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentShow } from './content-show'
 
 describe('n-content-show', () => {

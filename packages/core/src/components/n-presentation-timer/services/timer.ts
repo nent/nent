@@ -25,8 +25,6 @@ export class FrameTimer extends EventEmitter implements ITimer {
   currentTime: TimeDetails
 
   begin(): ITimer {
-    this.start = performance.now()
-    this.currentTime.elapsed = 0
     this.timer = this.provider.requestAnimationFrame(current => {
       this.interval(current)
     })

@@ -16,7 +16,9 @@ To operate the player, it is easiest to just use the `<n-audio-load-*>` componen
 
 ```html
 <n-view-prompt>
-  <n-audio-action-sound-load track-id='<unique-id>' src='<url>'>
+  <n-audio-action-sound-load 
+    track-id='<unique-id>' 
+    src='<url>'>
   </n-audio-action-sound-load>
   <n-action-activator ...>
     <n-audio-action-sound

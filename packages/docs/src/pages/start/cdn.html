@@ -25,12 +25,12 @@
   <p class="note">Only one of these scripts are imported. Which depends on the
     browser's support for ESM modules.</p>
   <footer>
-    <button slot="start"
-      n-back="/start/select"
-      class="btn btn-secondary">&lt; Select</button>
-    <button slot="end"
+    <a slot="start"
+      href="/start/select"
+      class="btn btn-secondary">&lt; Select</a>
+    <a slot="end"
       href="/start/conventions"
-      class="btn btn-secondary">Conventions &gt;</button>
+      class="btn btn-secondary">Conventions &gt;</a>
   </footer>
   <n-action-activator activate="on-enter">
     <n-action topic="storage"

@@ -3,7 +3,7 @@ import { dataState } from '../../../services/data/state'
 import { IViewPrompt, VisitStrategy } from './interfaces'
 import { hasVisited } from './visits'
 
-async function applyPredicate(
+export async function applyViewPredicate(
   viewPrompt: IViewPrompt,
 ): Promise<IViewPrompt> {
   let { when, path: url, visit = VisitStrategy.once } = viewPrompt
@@ -33,7 +33,7 @@ export async function resolveNext(
   childViewDos: Array<IViewPrompt>,
 ): Promise<IViewPrompt | null> {
   const converted = await Promise.all(
-    childViewDos.map(e => applyPredicate(e)),
+    childViewDos.map(e => applyViewPredicate(e)),
   )
 
   const result = findFirstUnvisited(converted)

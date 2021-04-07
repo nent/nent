@@ -193,6 +193,7 @@ a.active * {
   background-color: rgb(15, 15, 15);
 }
 
+/**
 #features > div ul {
   max-height: 0;
   overflow: hidden;
@@ -215,6 +216,7 @@ a.active * {
     padding: .3rem;
   }
 }
+**/
 
 /* ELEMENTS ------ */
 
@@ -385,7 +387,7 @@ n-views > n-view-not-found {
   position: relative;
 }
 
-n-view-link-list {
+n-view-link-list#breadcrumb {
   display: block;
   height: 1rem;
 }
@@ -449,6 +451,9 @@ n-audio {
   justify-items: stretch;
   justify-content: space-between;
   gap: 0.3em;
+  padding: 0;
+  margin: 1em 0;
+  list-style: none;
 }
 
 .accent {

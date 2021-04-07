@@ -1,4 +1,9 @@
-import { ensureBasename, getPossiblePaths, hasBasename } from './path'
+import {
+  ensureBasename,
+  getParentPath,
+  getPossibleParentPaths,
+  hasBasename,
+} from './path'
 
 describe('match-path:', () => {
   it('renders', async () => {})
@@ -49,7 +54,7 @@ describe('path-utils', () => {
 
     const path = '/'
 
-    const parents = getPossiblePaths(path)
+    const parents = getPossibleParentPaths(path)
     expect(parents.length).toBe(routes.length)
     expect(parents[0]).toBe(routes[0])
   })
@@ -59,7 +64,7 @@ describe('path-utils', () => {
 
     const path = '/routing'
 
-    const parents = getPossiblePaths(path)
+    const parents = getPossibleParentPaths(path)
     expect(parents.length).toBe(routes.length)
     expect(parents[0]).toBe(routes[0])
   })
@@ -69,7 +74,7 @@ describe('path-utils', () => {
 
     const path = '/routing/navigation'
 
-    const parents = getPossiblePaths(path)
+    const parents = getPossibleParentPaths(path)
 
     expect(parents.length).toBe(routes.length)
     expect(parents[0]).toBe(routes[0])
@@ -86,7 +91,7 @@ describe('path-utils', () => {
 
     const path = '/routing/navigation/guided'
 
-    const parents = getPossiblePaths(path)
+    const parents = getPossibleParentPaths(path)
 
     expect(parents.length).toBe(routes.length)
     expect(parents[0]).toBe(routes[0])
@@ -105,7 +110,7 @@ describe('path-utils', () => {
 
     const path = '/routing/navigation/guided/tutorial'
 
-    const parents = getPossiblePaths(path)
+    const parents = getPossibleParentPaths(path)
 
     expect(parents.length).toBe(routes.length)
     expect(parents[0]).toBe(routes[0])
@@ -125,12 +130,44 @@ describe('path-utils', () => {
 
     const path = '/routing/navigation/guided/tutorial'
 
-    const parents = getPossiblePaths(path)
+    const parents = getPossibleParentPaths(path)
 
     expect(parents.length).toBe(routes.length)
     expect(parents[0]).toBe(routes[0])
     expect(parents[1]).toBe(routes[1])
     expect(parents[2]).toBe(routes[2])
     expect(parents[3]).toBe(routes[3])
+  })
+})
+
+describe('getParentPath', () => {
+  it('/books/author/title/page', async () => {
+    const parent = getParentPath('/books/author/title/page')
+
+    expect(parent).toBe('/books/author/title')
+  })
+
+  it('/books/author/title', async () => {
+    const parent = getParentPath('/books/author/title')
+
+    expect(parent).toBe('/books/author')
+  })
+
+  it('/books/author', async () => {
+    const parent = getParentPath('/books/author')
+
+    expect(parent).toBe('/books')
+  })
+
+  it('/books/author/', async () => {
+    const parent = getParentPath('/books/author/')
+
+    expect(parent).toBe('/books')
+  })
+
+  it('/books', async () => {
+    const parent = getParentPath('/books')
+
+    expect(parent).toBe('/')
   })
 })

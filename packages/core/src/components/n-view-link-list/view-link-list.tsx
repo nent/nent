@@ -7,7 +7,6 @@ import {
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
-import { slugify } from '../../services/common'
 import {
   MatchResults,
   ROUTE_EVENTS,
@@ -17,7 +16,6 @@ import {
   navigationState,
   onNavigationChange,
 } from '../n-views/services/state'
-import { getPossiblePaths } from '../n-views/services/utils'
 
 /**
  * Display a list of routes related to the current route.
@@ -39,23 +37,12 @@ export class ViewLinkList {
   @State() match: MatchResults | null = null
   private matchSubscription?: () => void
   private finalizeSubscription?: () => void
-  @State() routes: Array<{
-    active: boolean
-    link: boolean
-    path: string
-    title: string
-    match: MatchResults | null
-  }> | null = null
+  @State() routes: Route[] | any[] = []
 
   /**
    * The display mode for which routes to display.
    */
   @Prop() mode: 'children' | 'parents' | 'siblings' = 'parents'
-
-  /**
-   * The string separator to put between the items.
-   */
-  @Prop() separator?: string
 
   /**
    * The active-class to use with the n-view-link components.
@@ -109,52 +96,21 @@ export class ViewLinkList {
   }
 
   async componentWillRender() {
-    this.routes = await this.getRoutes(this.route)
+    let routes = (await this.getRoutes()) || []
+    if (this.excludeRoot && routes[0]?.path == '/') routes.shift()
+
+    this.routes = routes
   }
 
-  private getRoutePaths(path: string) {
+  private getRoutes() {
     switch (this.mode) {
       case 'parents':
-        return getPossiblePaths(path)
+        return this.route?.getParentRoutes() || null
+      case 'siblings':
+        return this.route?.getSiblingRoutes() || null
+      case 'children':
+        return this.route?.getChildRoutes() || null
     }
-    return null
-  }
-
-  private async getRoutes(
-    route: Route | null,
-  ): Promise<Array<{
-    active: boolean
-    link: boolean
-    path: string
-    title: string
-    match: MatchResults | null
-  }> | null> {
-    if (route) {
-      let paths = this.getRoutePaths(route.path) || []
-      if (this.excludeRoot && paths[0] == '/') paths.shift()
-
-      let routes = await Promise.all(
-        paths.map(async path => {
-          const route = navigationState.router?.routes[slugify(path)]
-          const resolvedPath =
-            route?.match?.path.toString() || route?.path || path
-          const title = (await route?.resolvedTitle()) || ''
-
-          return {
-            active: route?.match?.isExact || false,
-            link: !!route,
-            path: resolvedPath,
-            title,
-            match: route?.match || null,
-          }
-        }),
-      )
-
-      routes = routes.filter(r => r.link)
-
-      return routes || null
-    }
-    return null
   }
 
   private getUrl(route: any) {
@@ -178,21 +134,16 @@ export class ViewLinkList {
       <Host>
         {this.routes ? (
           <ol class={this.listClass}>
-            {this.routes?.map((r, i) => [
+            {this.routes?.map((r: any) => [
               <li class={itemClasses}>
-                {r.link ? (
-                  <n-view-link
-                    path={this.getUrl(r)}
-                    exact={true}
-                    activeClass={this.activeClass}
-                  >
-                    {r.title}
-                  </n-view-link>
-                ) : null}
+                <n-view-link
+                  path={this.getUrl(r)}
+                  exact={true}
+                  activeClass={this.activeClass}
+                >
+                  {r.title}
+                </n-view-link>
               </li>,
-              this.separator && i < this.routes!.length - 1 ? (
-                <li>{this.separator}</li>
-              ) : null,
             ])}
           </ol>
         ) : null}

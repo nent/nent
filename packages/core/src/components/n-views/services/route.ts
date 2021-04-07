@@ -1,6 +1,5 @@
 import { activateActionActivators } from '../../../services/actions/elements'
 import { ActionActivationStrategy } from '../../../services/actions/interfaces'
-import { warn } from '../../../services/common/logging'
 import { commonState } from '../../../services/common/state'
 import { resolveChildElementXAttributes } from '../../../services/data/elements'
 import {
@@ -15,6 +14,11 @@ import {
 } from './interfaces'
 import { RouterService } from './router'
 import { isAbsolute } from './utils/location'
+import {
+  getChildRoutes,
+  getPossibleParentPaths,
+  getSiblingRoutes,
+} from './utils/path'
 import { matchesAreEqual } from './utils/path-match'
 
 export class Route implements IRoute {
@@ -173,12 +177,62 @@ export class Route implements IRoute {
     this.router.history.goBack()
   }
 
-  public goNext() {
-    warn('route: NOT YET IMPLEMENTED')
+  public async goNext() {
+    const next = await this.nextRoute()
+    if (next) this.router.goToRoute(next.path)
+  }
+
+  public async nextRoute(): Promise<Route | null> {
+    const siblings = this.getSiblingRoutes()
+    let next = siblings
+      .slice(this.siblingIndex() + 1)
+      .find(
+        r =>
+          r.routeElement.tagName == 'n-view' ||
+          (r.routeElement as HTMLNViewPromptElement).visit !=
+            'optional',
+      )
+    if (next) return next
+    const parents = await (await this.getParentRoutes()).reverse()
+    return parents[1] || parents[2]
+  }
+
+  public async getParentRoutes() {
+    const parents = await Promise.all(
+      getPossibleParentPaths(this.path)
+        .map(path => this.router.routes!.find(p => p.path == path))
+        .filter(r => r)
+        .map(async route => {
+          const resolvedPath =
+            route?.match?.path.toString() || route?.path
+          const title = (await route?.resolvedTitle()) || ''
+          return Object.assign({}, route, {
+            path: resolvedPath,
+            title,
+          })
+        }),
+    )
+
+    return parents
   }
 
   public goToParentRoute() {
     this.router.goToParentRoute()
+  }
+
+  public getSiblingRoutes() {
+    return getSiblingRoutes(this.path, this.router.routes)
+  }
+
+  private siblingIndex() {
+    const siblings = this.getSiblingRoutes()
+    return siblings.findIndex(p => p.path == this.path)
+  }
+
+  public async getChildRoutes() {
+    return getChildRoutes(this.path, this.router.routes).filter(
+      r => r.routeElement.tagName.toLocaleLowerCase() == 'n-view',
+    )
   }
 
   public goToRoute(path: string) {
