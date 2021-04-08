@@ -1,7 +1,43 @@
 {
   "rewrites": [
     {
-      "source": "/*",
+      "source": "/home/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/start/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/app/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/actions/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/routing/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/content/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/data/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/audio/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/components/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/elements/**",
       "destination": "/index.html"
     }
   ]

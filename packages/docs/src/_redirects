@@ -1,1 +1,10 @@
-/* /index.html 200
+/home/*           /index.html 200
+/start/*          /index.html 200
+/app/*            /index.html 200
+/actions/*        /index.html 200
+/content/*        /index.html 200
+/data/*           /index.html 200
+/audio/*          /index.html 200
+/video/*          /index.html 200
+/presentation/*   /index.html 200
+/elements/*       /index.html 200

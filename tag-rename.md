@@ -48,7 +48,7 @@ Topic 'routing', data-url renamed to data-path.
 
 Analytics also pulled from the app namespace, from x-app-* to n-*:
 
-    x-app-analytics         n-analytics
+    x-app-analytics         n-app-analytics
 
 ### 3) App (was UI)
 

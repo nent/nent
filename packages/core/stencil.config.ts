@@ -32,6 +32,12 @@ const config: Config = {
     {
       type: 'docs-vscode',
       file: 'dist/custom-elements.json',
+      sourceCodeBaseUrl:
+        'https://github.com/nent/nent/tree/main/packages/core/src/components/',
+    },
+    {
+      type: 'docs-vscode',
+      file: '../vscode/html.html-data.json',
     },
     JsonDocs,
     {

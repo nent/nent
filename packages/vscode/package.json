@@ -1,0 +1,46 @@
+{
+  "name": "@nent/vscode-extensions",
+  "version": "0.4.1",
+  "description": "Add nent-component hinting for HTML files.",
+  "keywords": [
+    "nent",
+    "vscode",
+    "web-components",
+    "framework",
+    "agnostic"
+  ],
+  "author": "Jason <jason@nent.dev>",
+  "homepage": "https://github.com/nent/nent/tree/main/packages/vscode#readme",
+  "license": "MIT",
+  "publisher": "NENT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nent/nent.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/nent/nent/issues"
+  },
+  "engines": {
+    "vscode": "^1.55.0"
+  },
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "contributes": {
+    "html": {
+      "customData": [
+        "./html.html-data.json"
+      ]
+    },
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/snippets.code-snippets"
+      }
+    ]
+  }
+}
