@@ -31,8 +31,6 @@ readmeFiles.forEach( path => {
   if ( fileContents.match( badSeparatorRegEx ) ) {
     fileContents = fileContents
       .replace( badSeparatorRegEx, '`, `' )
-      .split( '"' )
-      .join( `'` )
 
     fs.writeFileSync( path, fileContents )
   }
