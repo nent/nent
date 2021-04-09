@@ -28,7 +28,7 @@ const config: Config = {
     {
       type: 'www',
       dir: '../../docs',
-      buildDir: 'js/docs',
+      buildDir: 'lib',
       empty: false,
       serviceWorker: {
         globPatterns: [

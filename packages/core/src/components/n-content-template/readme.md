@@ -46,10 +46,10 @@ You can provide the data to use for this component directly in-line using a inne
 
 ```html
 <n-content-template>
-  <script type='text/json'>
+  <script type="text/json">
   {
-    'name': 'Stella',
-    'age': 35
+    "name": "Stella",
+    "age": 35
   }
   </script>
   <template>
@@ -65,7 +65,7 @@ You can provide the data to use for this component directly in-line using a inne
 | Property    | Attribute    | Description                                                                                                  | Type                  | Default     |
 | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------ | --------------------- | ----------- |
 | `deferLoad` | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute. | `boolean`             | `false`     |
-| `text`      | `text`       | The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}    | `string`, `undefined` | `undefined` |
+| `text`      | `text`       | The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}    | `string \| undefined` | `undefined` |
 
 
 ----------------------------------------------

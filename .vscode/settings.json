@@ -53,10 +53,13 @@
     "plusplus",
     "ponicode",
     "popperjs",
+    "postbuild",
     "postpublish",
+    "prebuild",
     "precache",
     "precaching",
     "preconnect",
+    "precore",
     "predeploy",
     "prepages",
     "purgecss",
@@ -96,23 +99,9 @@
   ],
   "vsicons.associations.files": [
     {
-      "icon": "markdownlint",
-      "extensions": [
-        ".markdownlintignore"
-      ],
-      "format": "svg"
-    },
-    {
       "icon": "node",
       "extensions": [
         ".rc"
-      ],
-      "format": "svg"
-    },
-    {
-      "icon": "stencil",
-      "extensions": [
-        ".config.ts"
       ],
       "format": "svg"
     },
@@ -123,9 +112,6 @@
       ],
       "format": "svg"
     }
-  ],
-  "html.customData": [
-    "./packages/core/dist/custom-elements/custom-elements.json"
   ],
   "exportall.config.folderListener": [],
   "editor.formatOnSaveMode": "file",
@@ -236,7 +222,7 @@
           "description": "Documentation only changes"
         },
         {
-          "label": "feature(✨)",
+          "label": "feat(✨)",
           "description": "A new feature"
         },
         {

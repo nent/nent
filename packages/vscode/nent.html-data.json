@@ -16,6 +16,16 @@
           "name": "topic",
           "description": "This is the topic this action-command is targeting."
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-action"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-action"
+        }
       ]
     },
     {
@@ -69,6 +79,16 @@
           "name": "time",
           "description": "The time, in seconds at which the contained actions should be submitted.\n\nFor use with activate=\"at-time\" Only!"
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-action-activator"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-action-activator"
+        }
       ]
     },
     {
@@ -86,6 +106,16 @@
           "name": "disable-actions",
           "description": "Turn off declarative actions for the entire\napp."
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-app"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-app"
+        }
       ]
     },
     {
@@ -94,7 +124,17 @@
         "kind": "markdown",
         "value": "This component serves as a proxy to delegate event-based\nfunctions to be consumed by various analytics snippets."
       },
-      "attributes": []
+      "attributes": [],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-app-analytics"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-app-analytics"
+        }
+      ]
     },
     {
       "name": "n-app-share",
@@ -115,6 +155,16 @@
           "name": "url",
           "description": "The URL we are sharing"
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-app-share"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-app-share"
+        }
       ]
     },
     {
@@ -132,6 +182,16 @@
           "name": "skip-class",
           "description": "Skip adding the class to the body tag, just\nupdate the ui state."
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-app-theme"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-app-theme"
+        }
       ]
     },
     {
@@ -148,6 +208,16 @@
         {
           "name": "input-id",
           "description": "The inner input ID"
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-app-theme-switch"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-app-theme-switch"
         }
       ]
     },
@@ -173,6 +243,16 @@
         {
           "name": "howler-version",
           "description": "The Howler.js Script Reference"
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-audio"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-audio"
         }
       ]
     },
@@ -223,6 +303,16 @@
         {
           "name": "value",
           "description": "The value payload for the command."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-audio-action-music"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-audio-action-music"
         }
       ]
     },
@@ -279,6 +369,16 @@
           "name": "track-id",
           "description": "The identifier for this music track"
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-audio-action-music-load"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-audio-action-music-load"
+        }
       ]
     },
     {
@@ -328,6 +428,16 @@
         {
           "name": "value",
           "description": "The value payload for the command."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-audio-action-sound"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-audio-action-sound"
         }
       ]
     },
@@ -380,6 +490,16 @@
           "name": "track-id",
           "description": "The identifier for this music track"
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-audio-action-sound-load"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-audio-action-sound-load"
+        }
       ]
     },
     {
@@ -412,6 +532,16 @@
               "name": "muted"
             }
           ]
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-audio-switch"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-audio-switch"
         }
       ]
     },
@@ -455,6 +585,16 @@
         {
           "name": "when",
           "description": "A data-token predicate to advise this component when\nto render (useful if used in a dynamic route or if\ntokens are used in the 'src' attribute)"
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-content-include"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-content-include"
         }
       ]
     },
@@ -503,6 +643,16 @@
           "name": "when",
           "description": "A data-token predicate to advise this component when\nto render (useful if used in a dynamic route or if\ntokens are used in the 'src' attribute)"
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-content-markdown"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-content-markdown"
+        }
       ]
     },
     {
@@ -540,6 +690,16 @@
           "name": "timeout",
           "description": "Timeout (in milliseconds) to wait for the references\nto load."
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-content-reference"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-content-reference"
+        }
       ]
     },
     {
@@ -576,6 +736,16 @@
         {
           "name": "when",
           "description": "A data-token predicate to advise this component when\nto render (useful if used in a dynamic route or if\ntokens are used in the 'src' attribute)"
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-content-repeat"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-content-repeat"
         }
       ]
     },
@@ -620,6 +790,16 @@
           "name": "trigger-distance",
           "description": "How much of the element must be visible before it animates (% of element height)"
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-content-reveal"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-content-reveal"
+        }
       ]
     },
     {
@@ -632,6 +812,16 @@
         {
           "name": "when",
           "description": "The data expression to obtain a predicate for conditionally rendering\nthe inner-contents of this element."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-content-show"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-content-show"
         }
       ]
     },
@@ -650,6 +840,16 @@
           "name": "text",
           "description": "The data expression to obtain a value for rendering as inner-text for this element.\n{{session:user.name}}"
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-content-template"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-content-template"
+        }
       ]
     },
     {
@@ -662,6 +862,16 @@
         {
           "name": "provider-timeout",
           "description": "The wait-time, in milliseconds to wait for\nun-registered data providers found in an expression.\nThis is to accommodate a possible lag between\nevaluation before the first view-do 'when' predicate\nan the registration process."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-data"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-data"
         }
       ]
     },
@@ -680,6 +890,16 @@
           "name": "skip-consent",
           "description": "When skipConsent is true, the accept-cookies banner will not\nbe displayed before accessing cookie-data."
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-data-cookie"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-data-cookie"
+        }
       ]
     },
     {
@@ -696,6 +916,16 @@
         {
           "name": "name",
           "description": "Provider name to use in nent expressions."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-data-session"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-data-session"
         }
       ]
     },
@@ -714,6 +944,16 @@
           "name": "name",
           "description": "Provider name to use in nent expressions."
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-data-storage"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-data-storage"
+        }
       ]
     },
     {
@@ -726,6 +966,16 @@
         {
           "name": "debug",
           "description": "Turn on debug statements for load, update and render events."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-elements"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-elements"
         }
       ]
     },
@@ -751,6 +1001,16 @@
         {
           "name": "timer-element",
           "description": "The element selector for the timer-element to\nbind for interval events. If left blank, it looks\nfirst an n-timer, then for the first n-video.\n\nIf none are found, it creates on manually and starts\nit immediately"
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-presentation"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-presentation"
         }
       ]
     },
@@ -778,6 +1038,16 @@
           "name": "topic",
           "description": "This is the topic this action-command is targeting."
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-presentation-action"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-presentation-action"
+        }
       ]
     },
     {
@@ -798,6 +1068,16 @@
         {
           "name": "start",
           "description": "Timer start time."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-presentation-timer"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-presentation-timer"
         }
       ]
     },
@@ -832,6 +1112,16 @@
           "name": "time-property",
           "description": "Provide the element property name that\nholds the current time in seconds.\nDefault is currentTime"
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-video"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-video"
+        }
       ]
     },
     {
@@ -852,6 +1142,16 @@
         {
           "name": "input-id",
           "description": "The id field to add to the input-element directly."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-video-switch"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-video-switch"
         }
       ]
     },
@@ -916,6 +1216,16 @@
           "name": "transition",
           "description": "Navigation transition between routes.\nThis is a CSS animation class."
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-view"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-view"
+        }
       ]
     },
     {
@@ -945,6 +1255,16 @@
           "name": "strict",
           "description": "Only active on the exact href match\nusing every aspect of the URL including\nparameters."
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-view-link"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-view-link"
+        }
       ]
     },
     {
@@ -953,7 +1273,17 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": []
+      "attributes": [],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-view-link-back"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-view-link-back"
+        }
+      ]
     },
     {
       "name": "n-view-link-list",
@@ -993,6 +1323,16 @@
             }
           ]
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-view-link-list"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-view-link-list"
+        }
       ]
     },
     {
@@ -1001,7 +1341,17 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": []
+      "attributes": [],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-view-link-next"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-view-link-next"
+        }
+      ]
     },
     {
       "name": "n-view-not-found",
@@ -1021,6 +1371,16 @@
         {
           "name": "transition",
           "description": "Navigation transition between routes.\nThis is a CSS animation class."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-view-not-found"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-view-not-found"
         }
       ]
     },
@@ -1100,6 +1460,16 @@
           "name": "when",
           "description": "If present, the expression must\nevaluate to true for this route\nto be sequenced by the parent view.\nThe existence of this value overrides\nthe visit strategy"
         }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-view-prompt"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-view-prompt"
+        }
       ]
     },
     {
@@ -1128,6 +1498,16 @@
         {
           "name": "transition",
           "description": "Navigation transition between routes.\nThis is a CSS animation class."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-views"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-views"
         }
       ]
     }

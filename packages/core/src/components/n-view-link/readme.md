@@ -39,19 +39,6 @@ To create a link to a route, simply use the route in the href attribute.
 | `strict`            | `strict`       | Only active on the exact href match using every aspect of the URL including parameters. | `boolean` | `true`      |
 
 
-## Dependencies
-
-### Used by
-
- - [n-view-link-list](../n-view-link-list)
-
-### Graph
-```mermaid
-graph TD;
-  n-view-link-list --> n-view-link
-  style n-view-link fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 NENT 2021 - all rights reserved

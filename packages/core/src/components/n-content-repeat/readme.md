@@ -43,7 +43,7 @@ The **items** attribute can be any array-string or an [expression](/data/express
 ### Items from Attribute (Simple Array)
 
 ```html
-<n-content-repeat items='['one','two','three']'>
+<n-content-repeat items="['one','two','three']">
   <template>
     <div>{{data:item}}</div>
   </template>
@@ -100,11 +100,11 @@ The **items** attribute can be any array-string or an [expression](/data/express
 | ----------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | ----------- |
 | `debug`     | `debug`      | Turn on debug statements for load, update and render events.                                                                                    | `boolean`             | `false`     |
 | `deferLoad` | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.                                    | `boolean`             | `false`     |
-| `filter`    | `filter`     | The JSONata query to filter the json items see <https://try.jsonata.org> for more info.                                                         | `string`, `undefined` | `undefined` |
-| `items`     | `items`      | The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}                                   | `string`, `undefined` | `undefined` |
-| `itemsSrc`  | `items-src`  | The URL to remote JSON collection to use for the items.                                                                                         | `string`, `undefined` | `undefined` |
+| `filter`    | `filter`     | The JSONata query to filter the json items see <https://try.jsonata.org> for more info.                                                         | `string \| undefined` | `undefined` |
+| `items`     | `items`      | The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}                                   | `string \| undefined` | `undefined` |
+| `itemsSrc`  | `items-src`  | The URL to remote JSON collection to use for the items.                                                                                         | `string \| undefined` | `undefined` |
 | `noCache`   | `no-cache`   | Force render with data & route changes.                                                                                                         | `boolean`             | `false`     |
-| `when`      | `when`       | A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute) | `string`, `undefined` | `undefined` |
+| `when`      | `when`       | A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute) | `string \| undefined` | `undefined` |
 
 
 ----------------------------------------------

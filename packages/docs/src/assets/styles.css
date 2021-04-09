@@ -368,6 +368,7 @@ n-view-link a:hover {
   text-decoration: none;
 }
 
+n-view-link-next a:any-link,
 n-view-link.text-white a:any-link {
   color: white;
 }

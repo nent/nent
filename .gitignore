@@ -5,7 +5,7 @@ www
 dist
 loader
 .eslintcache
-
+.env
 /examples
 /docs
 coverage

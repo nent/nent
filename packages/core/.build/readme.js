@@ -21,7 +21,7 @@ function recFindByExt( base, ext, files, result ) {
   return result
 }
 const readmeFiles = recFindByExt(
-  path.join( process.cwd(), 'packages/core/src/components' ),
+  path.join( process.cwd(), './src/components' ),
   'md' )
 
 const badSeparatorRegEx = /\s*\\\|\s*/g

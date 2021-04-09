@@ -1,31 +1,49 @@
 {
-  "name": "@nent/vscode-extensions",
-  "version": "0.4.1",
-  "description": "Add nent-component hinting for HTML files.",
+  "name": "nent",
+  "version": "0.4.3",
+  "displayName": "NENT",
+  "description": "Add nent html-element hinting, snippets and autocomplete for HTML files. Learn more about building web application directly with HTML here: https://nent.dev",
+  "author": "support <support@nent.dev> (https://nent.dev)",
+  "homepage": "https://nent.dev",
+  "license": "MIT",
+  "publisher": "NENT",
+  "icon": "logo.png",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nent/nent.git",
+    "directory": "packages/vscode"
+  },
+  "private": false,
+  "sideEffects": false,
   "keywords": [
     "nent",
     "vscode",
     "web-components",
-    "framework",
-    "agnostic"
+    "framework-agnostic"
   ],
-  "author": "Jason <jason@nent.dev>",
-  "homepage": "https://github.com/nent/nent/tree/main/packages/vscode#readme",
-  "license": "MIT",
-  "publisher": "NENT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nent/nent.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "bugs": {
-    "url": "https://github.com/nent/nent/issues"
+    "url": "https://github.com/nent/nent/issues",
+    "email": "tech@nent.dev"
+  },
+  "extensionKind": [
+    "workspace",
+    "ui",
+    "web"
+  ],
+  "badges": [
+    {
+      "description": "MIT",
+      "url": "https://badgen.net/github/license/nent/nent?icon=github"
+    }
+  ],
+  "scripts": {
+    "prebuild": "cp ../core/dist/custom-elements.json ./nent.html-data.json",
+    "build": "vsce package"
   },
   "engines": {
     "vscode": "^1.55.0"
   },
+  "preview": true,
   "categories": [
     "Snippets",
     "Other"
@@ -33,7 +51,7 @@
   "contributes": {
     "html": {
       "customData": [
-        "./html.html-data.json"
+        "./nent.html-data.json"
       ]
     },
     "snippets": [
@@ -42,5 +60,8 @@
         "path": "./snippets/snippets.code-snippets"
       }
     ]
+  },
+  "devDependencies": {
+    "vsce": "^1.87.1"
   }
 }

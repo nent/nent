@@ -11,13 +11,13 @@
     "--- development ---": "---------------",
     "start": "run-p watch serve",
     "serve": "stencil build --dev --watch --serve",
-    "copy": "run-p copy:examples copy:pages",
-    "copy:examples": "copyfiles -u ./src/examples**/*.* ../../docs/examples",
-    "copy:pages": "copyfiles -u ./src/pages**/*.html ../../docs/pages && copyfiles -u ./src/pages**/*.md ../../docs/pages",
     "new": "stencil generate",
     "watch": "npm-watch",
     "--- production ---": "---------------",
-    "build": "stencil build --www"
+    "prebuild": "rm -fR ../../docs",
+    "build": "stencil build --www",
+    "postbuild": "cp -rip ../core/dist/* ../../docs/lib && cp -rip ../core/docs/* ../../docs/pages",
+    "copy": "copyfiles -e *.ts* -u ./src/**/*.* ../../docs"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "4.0.3",
@@ -30,12 +30,12 @@
     "postcss-scss": "3.0.5",
     "remixicon": "2.5.0",
     "tailwindcss": "2.1.1",
-    "workbox-build": "6.1.2"
+    "workbox-build": "6.1.2",
+    "workbox-window": "6.1.2"
   },
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "5.0.0-beta3",
-    "workbox-window": "6.1.2"
+    "bootstrap": "5.0.0-beta3"
   },
   "watch": {
     "copy": {

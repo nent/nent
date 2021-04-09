@@ -1,10 +1,13 @@
 import { Config } from '@stencil/core'
+import { JsonDocs } from '@stencil/core/internal'
 import analyzer from 'rollup-plugin-analyzer'
 import visualizer from 'rollup-plugin-visualizer'
-import { JsonDocs } from './stencil.config.utils'
+import { version } from './package.json'
+
 const config: Config = {
   namespace: 'nent',
   hashFileNames: false,
+
   rollupPlugins: {
     after: [
       analyzer({
@@ -19,6 +22,13 @@ const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: 'loader',
+      copy: [
+        {
+          src: '**/*.{md,html}',
+          dest: '../../docs',
+          keepDirStructure: true,
+        },
+      ],
     },
     {
       type: 'dist-custom-elements-bundle',
@@ -26,23 +36,23 @@ const config: Config = {
     {
       type: 'docs-readme',
       footer: `NENT 2021 - all rights reserved`,
-      dependencies: true,
+      dependencies: false,
       strict: true,
     },
     {
       type: 'docs-vscode',
       file: 'dist/custom-elements.json',
-      sourceCodeBaseUrl:
-        'https://github.com/nent/nent/tree/main/packages/core/src/components/',
     },
     {
-      type: 'docs-vscode',
-      file: '../vscode/html.html-data.json',
+      type: 'docs-custom',
+      strict: true,
+      generator: (docs: JsonDocs) => {
+        Object.assign(docs, { version })
+      },
     },
-    JsonDocs,
     {
       type: 'docs-json',
-      file: 'dist/collection/components.json',
+      file: 'dist/components.json',
     },
   ],
 }

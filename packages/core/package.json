@@ -1,9 +1,13 @@
 {
   "name": "@nent/core",
   "version": "0.4.1",
-  "description": "nent core components",
+  "displayName": "NENT",
+  "description": "Functional elements to add routing, data-binding, dynamic HTML, declarative actions, audio, video, and so much more. Supercharge static HTML files into web apps without script or builds.",
   "author": "support <support@nent.dev> (https://nent.dev)",
   "homepage": "https://nent.dev",
+  "license": "MIT",
+  "publisher": "NENT",
+  "icon": "https://storage.googleapis.com/nent-static/docs/logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/nent/nent",
@@ -11,7 +15,11 @@
   },
   "private": false,
   "sideEffects": false,
-  "license": "MIT",
+  "keywords": [
+    "nent",
+    "web-components",
+    "framework-agnostic"
+  ],
   "bugs": {
     "url": "https://github.com/nent/nent/issues",
     "email": "tech@nent.dev"
@@ -31,15 +39,17 @@
   ],
   "scripts": {
     "--- development ---": "---------------",
-    "start": "run-p watch:ts watch",
-    "watch:ts": "stencil build -c stencil.config.docs.ts --watch",
+    "start": "run-p build:watch watch",
+    "build:watch": "stencil build --watch",
     "new": "stencil generate",
     "copy": "copyfiles -u ./src/components/**/*.md ../../docs/pages/components",
     "watch": "npm-watch",
     "--- production ---": "---------------",
+    "prebuild": "rm -fR ./dist",
     "build": "stencil build --docs-readme",
-    "build:docs": "stencil build -c stencil.config.docs.ts",
+    "postbuild": "node .build",
     "--- test ---": "---------------",
+    "pretest": "rm -fR ./coverage",
     "test": "stencil test --spec --coverage",
     "test:watch": "stencil test --dev --spec --watch"
   },

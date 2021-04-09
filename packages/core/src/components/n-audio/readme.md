@@ -79,25 +79,12 @@ This player can be configured to display or remain hidden. When displayed, it sh
 
 | Property        | Attribute        | Description                                                                                              | Type                               | Default     |
 | --------------- | ---------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------- |
-| `actions`       | --               | A reference to the action listener for testing.                                                          | `AudioActionListener`, `undefined` | `undefined` |
+| `actions`       | --               | A reference to the action listener for testing.                                                          | `AudioActionListener \| undefined` | `undefined` |
 | `dataProvider`  | `data-provider`  | Experimental support for providing audio-data in the data-provider system.                               | `boolean`                          | `false`     |
 | `debug`         | `debug`          | Use debug for verbose logging. Useful for figuring thing out.                                            | `boolean`                          | `false`     |
 | `display`       | `display`        | The display mode enabled shows player state and stats. No track information or duration is be displayed. | `boolean`                          | `false`     |
 | `howlerVersion` | `howler-version` | The Howler.js Script Reference                                                                           | `string`                           | `'2.2.1'`   |
 
-
-## Dependencies
-
-### Depends on
-
-- [n-content-reference](../n-content-reference)
-
-### Graph
-```mermaid
-graph TD;
-  n-audio --> n-content-reference
-  style n-audio fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 
