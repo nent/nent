@@ -254,7 +254,7 @@ h3 {
 
 h3 i {
   padding: 0 .1rem 0 0;
-  color: white;
+  color: var(--text-color);
 }
 
 h4 {
@@ -402,7 +402,7 @@ n-view-link-list#breadcrumb {
     width: 1em;
   }
   body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   }
   body::-webkit-scrollbar-thumb {
     background-color: var(--nav-bg);
@@ -435,7 +435,7 @@ n-content-markdown img {
 }
 
 /* For some reason, the component styles are not loading */
-x-doc-log {
+n-doc-log {
   display: block;
   margin-top: 1rem;
 }
@@ -564,7 +564,7 @@ n-audio {
 }
 
 .btn i,
-a.stretched-link i{
+a.stretched-link i {
   line-height: 1rem;
   vertical-align: middle;
   padding-right: .2em;

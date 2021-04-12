@@ -1,15 +1,13 @@
 import { Component, Element, h, writeTask } from '@stencil/core'
 
 @Component({
-  tag: 'x-doc-log',
-  styleUrl: 'x-doc-log.css',
+  tag: 'n-doc-log',
+  styleUrl: 'n-doc-log.css',
   shadow: true,
 })
 export class DocLog {
-  @Element() el!: HTMLXDocLogElement
-  // private log!: HTMLDivElement
-  // private logContainer!: HTMLDivElement
-  //
+  @Element() el!: HTMLNDocLogElement
+
   private proxyConsole(name: string, autoScroll: boolean) {
     this[`old${name}`] = console[name]
     const log = this.el.shadowRoot.querySelector('#log')!
@@ -69,11 +67,11 @@ export class DocLog {
     }
 
     const headerStyles = `
-    background-color: #555;
-    border: solid 2px #555;
-    color: #fff;
-    padding: 2px;
-    text-align: left;`
+      background-color: #555;
+      border: solid 2px #555;
+      color: #fff;
+      padding: 2px;
+      text-align: left;`
       .split('\n')
       .join('')
       .split(' ')

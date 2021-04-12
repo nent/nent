@@ -4,7 +4,7 @@
 ![initial size](https://badgen.net/badgesize/normal/file-url/unpkg.com/@nent/core@0.3.0/dist/nent/nent.esm.js?icon=sourcegraph&color=blue)
 ![tree-shaking](https://badgen.net/badge/tree-shaking/enabled?icon=packagephobia)
 ![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label)
-
+[![webnamespaces.org](https://img.shields.io/static/v1?label=webnamespaces.org&color=blue&message=n-*)](https://webnamespaces.org)
 [![NPM](https://badgen.net/npm/v/@nent/core?icon&color=blue)](https://www.npmjs.com/package/@nent/core)
 [![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=blue)](https://coveralls.io/github/nent/nent)
 [![gitter](https://badgen.net/badge/chat/on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
