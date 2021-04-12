@@ -30,8 +30,8 @@
     "postcss-scss": "3.0.5",
     "remixicon": "2.5.0",
     "tailwindcss": "2.1.1",
-    "workbox-build": "6.1.2",
-    "workbox-window": "6.1.2"
+    "workbox-build": "6.1.5",
+    "workbox-window": "6.1.5"
   },
   "license": "MIT",
   "dependencies": {
