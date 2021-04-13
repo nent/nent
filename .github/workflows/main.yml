@@ -79,7 +79,7 @@ jobs:
         with:
           node-version: 14.5.0
       - run: yarn
-      - run: yarn build:docs
+      - run: yarn build
       - run: VERSION=$(npm version patch) >> $GITHUB_ENV
         working-directory: packages/core
       #- run: npm publish

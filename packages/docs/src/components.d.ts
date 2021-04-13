@@ -6,32 +6,32 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface XDocLog {
+    interface NDocLog {
     }
 }
 declare global {
-    interface HTMLXDocLogElement extends Components.XDocLog, HTMLStencilElement {
+    interface HTMLNDocLogElement extends Components.NDocLog, HTMLStencilElement {
     }
-    var HTMLXDocLogElement: {
-        prototype: HTMLXDocLogElement;
-        new (): HTMLXDocLogElement;
+    var HTMLNDocLogElement: {
+        prototype: HTMLNDocLogElement;
+        new (): HTMLNDocLogElement;
     };
     interface HTMLElementTagNameMap {
-        "x-doc-log": HTMLXDocLogElement;
+        "n-doc-log": HTMLNDocLogElement;
     }
 }
 declare namespace LocalJSX {
-    interface XDocLog {
+    interface NDocLog {
     }
     interface IntrinsicElements {
-        "x-doc-log": XDocLog;
+        "n-doc-log": NDocLog;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "x-doc-log": LocalJSX.XDocLog & JSXBase.HTMLAttributes<HTMLXDocLogElement>;
+            "n-doc-log": LocalJSX.NDocLog & JSXBase.HTMLAttributes<HTMLNDocLogElement>;
         }
     }
 }
