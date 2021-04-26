@@ -7,7 +7,6 @@
 [![webnamespaces.org](https://img.shields.io/static/v1?label=webnamespaces.org&color=blue&message=n-*)](https://webnamespaces.org)
 [![NPM](https://badgen.net/npm/v/@nent/core?icon&color=blue)](https://www.npmjs.com/package/@nent/core)
 [![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=blue)](https://coveralls.io/github/nent/nent)
-[![gitter](https://badgen.net/badge/chat/on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
 [![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=blue)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
 [![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
 
@@ -151,11 +150,7 @@ If you like the idea, join us! Or give it a star.
 
 [![github](https://badgen.net/badge/github/★?icon=github&color=blue)](https://github.com/nent/nent)
 
-If you have requests, ideas or feedback, join the discussion on Gitter:
-
-[![gitter](https://badgen.net/badge/chat/with%20me%20on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
-
-Reach out to me personally:
+If you have requests, ideas or feedback, reach out to me personally:
 
 [![Twitter](https://badgen.net/badge/tweet/me?icon=twitter&color=blue)](https://twitter.com/logrythmik)
 
