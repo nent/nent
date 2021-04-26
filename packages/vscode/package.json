@@ -38,7 +38,7 @@
   ],
   "scripts": {
     "prebuild": "cp ../core/dist/custom-elements.json ./nent.html-data.json",
-    "build": "vsce package"
+    "build": "vsce package -o ./dist"
   },
   "engines": {
     "vscode": "^1.55.0"

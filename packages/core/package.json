@@ -42,12 +42,12 @@
     "start": "run-p build:watch watch",
     "build:watch": "stencil build --watch",
     "new": "stencil generate",
-    "copy": "copyfiles -u ./src/components/**/*.md ../../docs/pages/components",
+    "copy": "copyfiles -u ./src/components/**/*.md ../../docs/pages/components && copyfiles -u ./dist/* ../../docs",
     "watch": "npm-watch",
     "--- production ---": "---------------",
-    "prebuild": "rm -fR ./dist",
+    "prebuild": "rm -fR ./dist & rm -fR ./docs & rm -fR ./coverage",
     "build": "stencil build --docs-readme",
-    "postbuild": "node .build",
+    "postbuild": "node .build && npm run copy",
     "--- test ---": "---------------",
     "pretest": "rm -fR ./coverage",
     "test": "stencil test --spec --coverage",
@@ -70,8 +70,17 @@
     ]
   },
   "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "ts,tsx"
+    },
     "copy": {
-      "test": "src/**/*.md"
+      "patterns": [
+        "dist",
+        "*.md"
+      ]
     }
   },
   "gitHead": "229559fdf5d8b2539a6288c0e96092f59d5e3a25"
