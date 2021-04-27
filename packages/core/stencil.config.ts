@@ -24,7 +24,7 @@ const config: Config = {
       esmLoaderPath: 'loader',
       copy: [
         {
-          src: '**/*.{md,html}',
+          src: 'components/**/*.md',
           dest: '../../docs',
           keepDirStructure: true,
         },

@@ -39,14 +39,15 @@
   ],
   "scripts": {
     "--- development ---": "---------------",
-    "start": "run-p build:watch watch",
-    "build:watch": "stencil build --watch",
+    "start": "run-s build watch",
     "new": "stencil generate",
-    "copy": "copyfiles -u ./src/components/**/*.md ../../docs/pages/components && copyfiles -u ./dist/* ../../docs",
+    "copy": "run-s copy:dist copy:docs",
+    "copy:dist": "copyfiles dist/* dist/**/*.* ../../docs",
+    "copy:docs": "cd docs && copyfiles components/* ../../../docs/pages",
     "watch": "npm-watch",
     "--- production ---": "---------------",
-    "prebuild": "rm -fR ./dist & rm -fR ./docs & rm -fR ./coverage",
-    "build": "stencil build --docs-readme",
+    "prebuild": "rm -fR ./dist",
+    "build": "stencil build --docs-readme --dist",
     "postbuild": "node .build && npm run copy",
     "--- test ---": "---------------",
     "pretest": "rm -fR ./coverage",
@@ -74,13 +75,19 @@
       "patterns": [
         "src"
       ],
-      "extensions": "ts,tsx"
+      "extensions": "ts,tsx",
+      "ignore": "*.spec.ts"
     },
-    "copy": {
+    "copy:docs": {
       "patterns": [
-        "dist",
-        "*.md"
+        "docs"
       ]
+    },
+    "copy:dist": {
+      "patterns": [
+        "dist"
+      ],
+      "delay": 5000
     }
   },
   "gitHead": "229559fdf5d8b2539a6288c0e96092f59d5e3a25"

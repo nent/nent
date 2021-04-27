@@ -21,6 +21,7 @@
     "editorconfig",
     "errored",
     "eval",
+    "fakehtml",
     "frontmatter",
     "gitter",
     "gsutil",
