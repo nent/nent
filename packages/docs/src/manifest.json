@@ -7,7 +7,7 @@
     "minimal-ui"
   ],
   "display": "standalone",
-  "description": "PWA made to document and demonstrate apps made with only HTML and nent functional elements.",
+  "description": "PWA made to document and demonstrate apps made with only HTML and NENT functional elements.",
   "scope": "/",
   "icons": [
     {

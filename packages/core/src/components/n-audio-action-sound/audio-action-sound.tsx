@@ -27,6 +27,7 @@ import {
  * needed for audio-based actions, for music.
  *
  * @system audio
+ * @system actions
  */
 @Component({
   tag: 'n-audio-action-sound',

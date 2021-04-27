@@ -32,6 +32,7 @@ import { playedTrack } from '../n-audio/services/tracks'
  * The player manages them according to their settings.
  *
  * @system audio
+ * @system actions
  */
 @Component({
   tag: 'n-audio-action-sound-load',

@@ -1,29 +1,48 @@
+<n-content-reveal direction="left"
+  delay="500"
+  duration="1000"
+  animation-distance="60%"
+  trigger-distance="50%">
+  <ul
+    class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
+    <li class="list-group-item fw-bold"> Presentation Elements</li>
+    <n-content-repeat items-src="/dist/components.json"
+      filter="components[docsTags[name='system' and text='elements']]">
+      <template>
+        <li class="list-group-item">
+          <a href="/components/{{data:tag}}/elements"> &lt;{{data:tag}}&gt; </a>
+        </li>
+      </template>
+    </n-content-repeat>
+  </ul>
+</n-content-reveal>
+
 <div class="content">
-  <h1>Elements System</h1>
-  <h2>Manipulating HTML</h2>
-  <h3>Supporting Components</h3>
+  <h1>Elements</h1>
+  <p class="lead">Declaratively manipulating HTML with Actions or Attributes.
+  </p>
+  <n-content-markdown src="/pages/elements/default.md">
+  </n-content-markdown>
+
+  <h3>Extended Element Functionality</h3>
   <p>Learn more about how data can be used in supporting elements.</p>
   <ul>
     <n-content-repeat items-src="/dist/components.json"
-      filter="components[docsTags[name='system' and name='elements']]">
+      filter="components[docsTags[name='extension' and text='elements']]">
       <template>
         <li>
-          <a href="/components/{{data:tag}}"> {{data:tag}} with Elements
+          <a href="/components/{{data:tag}}">Extending {{data:tag}} with Elements
           </a>
         </li>
       </template>
     </n-content-repeat>
   </ul>
   <footer>
-    <a slot="start"
-      href="/">
-      <button slot="end"
-        class="btn btn-light btn-lg">&lt; </button>
-    </a>
-    <a slot="end"
-      href="/">
-      <button slot="end"
-        class="btn btn-primary btn-lg"> &gt;</button>
-    </a>
+    <n-view-link-back slot="start"
+      class="btn btn-primary btn-lg">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      class="btn btn-primary btn-lg">
+    </n-view-link-next>
   </footer>
 </div>

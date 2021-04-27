@@ -30,6 +30,7 @@ import { filterData } from './filter/jsonata.worker'
  *
  * @system content
  * @extension data
+ * @extension elements
  */
 @Component({
   tag: 'n-content-repeat',

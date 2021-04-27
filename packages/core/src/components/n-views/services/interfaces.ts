@@ -1,6 +1,5 @@
 /* istanbul ignore file */
 
-import { ActionActivationStrategy } from '../../../services/actions'
 import { LocationSegments } from '../../../services/common'
 import { Path } from './utils'
 
@@ -54,25 +53,6 @@ export interface MatchResults {
   params: Record<string, string>
 }
 
-export interface IRoute {
-  path: string
-  activateActions(
-    AtTime: ActionActivationStrategy,
-    filter: (activator: any) => boolean,
-  ): Promise<void>
-  goBack(): void
-  goNext(): void
-  goToRoute(path: string): void
-  goToParentRoute(): void
-}
-
-export type RouteInfo = {
-  match: MatchResults | null
-  path: string
-  routeElement: HTMLElement
-  pageTitle: string
-}
-
 export enum NAVIGATION_COMMANDS {
   goNext = 'go-next',
   goTo = 'go-to',
@@ -86,17 +66,3 @@ export type NavigateTo = {
 export const NAVIGATION_TOPIC = 'navigation'
 
 export type NavigateNext = Record<string, unknown>
-
-export enum VisitStrategy {
-  once = 'once',
-  always = 'always',
-  optional = 'optional',
-}
-
-export interface IViewPrompt {
-  visit?: VisitStrategy | string
-  when?: string
-  visited?: boolean
-  path: string
-  [key: string]: any
-}

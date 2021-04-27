@@ -27,6 +27,7 @@ import { navigationState } from '../n-views/services/state'
  *
  * @system content
  * @extension data
+ * @extension elements
  */
 @Component({
   tag: 'n-content-include',

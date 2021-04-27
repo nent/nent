@@ -7,25 +7,21 @@ import {
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
+import { slugify } from '../../services/common'
+import { debugIf, warn } from '../../services/common/logging'
 import {
   commonState,
-  debugIf,
   onCommonStateChange,
-  slugify,
-} from '../../services/common'
-import { warn } from '../../services/common/logging'
+} from '../../services/common/state'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveRemoteContent } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
-import { IView } from '../n-view/services/interfaces'
-import {
-  MatchResults,
-  VisitStrategy,
-} from '../n-views/services/interfaces'
-import { Route } from '../n-views/services/route'
+import { IView, VisitStrategy } from '../n-view/services/interfaces'
+import { Route } from '../n-view/services/route'
+import { recordVisit } from '../n-view/services/visits'
+import { MatchResults } from '../n-views/services/interfaces'
 import { navigationState } from '../n-views/services/state'
-import { recordVisit } from '../n-views/services/visits'
 
 /**
  * This element represents a specialized child-route for a parent \<n-view\> component.
@@ -36,6 +32,7 @@ import { recordVisit } from '../n-views/services/visits'
  *
  * @system routing
  * @extension data
+ * @extension elements
  */
 @Component({
   tag: 'n-view-prompt',

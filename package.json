@@ -13,7 +13,7 @@
   "repository": "https://github.com/nent/nent.git",
   "scripts": {
     ":build ---": "---------------",
-    "build": "run-s build:core build:docs",
+    "build": "run-s build:docs build:core",
     ":dev ---": "---------------",
     "start": "run-p start:core start:docs",
     "serve": "npx serve docs",

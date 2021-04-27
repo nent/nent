@@ -8,9 +8,9 @@ import {
   dataState,
   dataStateDispose,
 } from '../../../services/data/state'
-import { MatchResults } from './interfaces'
+import { MatchResults } from '../../n-views/services/interfaces'
+import { RouterService } from '../../n-views/services/router'
 import { Route } from './route'
-import { RouterService } from './router'
 
 describe('route', () => {
   let actionBus: EventEmitter

@@ -29,7 +29,7 @@ export class FrameTimer extends EventEmitter implements ITimer {
       this.debug,
       `presentation-timer: starting timer w/ ${duration} duration`,
     )
-    this.currentTime = getTimeDetails(this.start, 0, duration)
+    this.currentTime = getTimeDetails(0, 0, duration)
 
     if (this.interval > 0)
       this.debouncedInterval = throttle(
@@ -57,6 +57,7 @@ export class FrameTimer extends EventEmitter implements ITimer {
   public begin() {
     if (this.timer) this.stop()
     this.start = this.getStart()
+    this.currentTime = getTimeDetails(this.start, 0, this.duration)
     this.provider.requestAnimationFrame(current => {
       this.doInterval(current)
     })
@@ -67,12 +68,8 @@ export class FrameTimer extends EventEmitter implements ITimer {
   }
 
   private async doInterval(time: number) {
-    this.currentTime = getTimeDetails(this.start, time, this.duration)
-
-    if (
-      this.duration > 0 &&
-      this.currentTime.elapsed > this.duration
-    ) {
+    let currentTime = getTimeDetails(this.start, time, this.duration)
+    if (this.duration > 0 && currentTime.elapsed > this.duration) {
       this.stop()
       this.currentTime = getTimeDetails(
         this.start,
@@ -81,11 +78,7 @@ export class FrameTimer extends EventEmitter implements ITimer {
       )
       this.emit(TIMER_EVENTS.OnEnd, this.currentTime)
     } else {
-      this.currentTime = getTimeDetails(
-        this.start,
-        time,
-        this.duration,
-      )
+      this.currentTime = currentTime
       this.emit(TIMER_EVENTS.OnInterval, this.currentTime)
       await this.debouncedInterval()
     }

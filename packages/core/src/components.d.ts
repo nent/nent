@@ -15,7 +15,7 @@ import { CookieConsent } from "./components/n-data-cookie/cookie/interfaces";
 import { SetData } from "./components/n-data/services/interfaces";
 import { EventAction as EventAction1 } from "./services/actions/interfaces";
 import { ITimer } from "./components/n-presentation/services/interfaces";
-import { Route } from "./components/n-views/services/route";
+import { Route } from "./components/n-view/services/route";
 export namespace Components {
     interface NAction {
         /**
@@ -517,7 +517,7 @@ export namespace Components {
          */
         "debug": boolean;
         /**
-          * Go to the next view after a given time if a number is present, otherwise when the end-event occurs.
+          * Go to the next view after when the timer ends
          */
         "nextAfter": boolean;
         /**
@@ -526,10 +526,6 @@ export namespace Components {
         "timerElement": string | null;
     }
     interface NPresentationAction {
-        /**
-          * The time this should execute
-         */
-        "atTime"?: number | 'end';
         /**
           * The command to execute.
          */
@@ -542,6 +538,10 @@ export namespace Components {
           * Send this action to the the action messaging system.
          */
         "sendAction": (data?: Record<string, any> | undefined) => Promise<void>;
+        /**
+          * The time this should execute
+         */
+        "time"?: number | 'end';
         /**
           * This is the topic this action-command is targeting.
          */
@@ -1556,7 +1556,7 @@ declare namespace LocalJSX {
          */
         "debug"?: boolean;
         /**
-          * Go to the next view after a given time if a number is present, otherwise when the end-event occurs.
+          * Go to the next view after when the timer ends
          */
         "nextAfter"?: boolean;
         /**
@@ -1566,13 +1566,13 @@ declare namespace LocalJSX {
     }
     interface NPresentationAction {
         /**
-          * The time this should execute
-         */
-        "atTime"?: number | 'end';
-        /**
           * The command to execute.
          */
         "command": string;
+        /**
+          * The time this should execute
+         */
+        "time"?: number | 'end';
         /**
           * This is the topic this action-command is targeting.
          */

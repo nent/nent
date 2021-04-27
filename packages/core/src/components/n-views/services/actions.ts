@@ -2,6 +2,7 @@ import { EventAction } from '../../../services/actions/interfaces'
 import { IEventEmitter } from '../../../services/common/interfaces'
 import { debugIf } from '../../../services/common/logging'
 import { commonState } from '../../../services/common/state'
+import { Route } from '../../n-view/services/route'
 import {
   LocationSegments,
   MatchResults,
@@ -11,7 +12,6 @@ import {
   NAVIGATION_TOPIC,
   ROUTE_EVENTS,
 } from './interfaces'
-import { Route } from './route'
 import { RouterService } from './router'
 
 export class NavigationActionListener {

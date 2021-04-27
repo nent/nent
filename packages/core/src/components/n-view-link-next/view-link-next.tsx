@@ -8,7 +8,7 @@ import {
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
-import { Route } from '../n-views/services/route'
+import { Route } from '../n-view/services/route'
 import {
   navigationState,
   onNavigationChange,

@@ -19,7 +19,7 @@ import { warn } from '../../services/common/logging'
  * element (no n-action-activator needed)
  *
  * @system presentation
- *
+ * @system actions
  */
 @Component({
   tag: 'n-presentation-action',
@@ -42,7 +42,7 @@ export class NPresentationAction implements IActionElement {
   /**
    * The time this should execute
    */
-  @Prop() atTime?: number | 'end'
+  @Prop() time?: number | 'end'
 
   /**
    * Get the underlying actionEvent instance. Used by the n-action-activator element.

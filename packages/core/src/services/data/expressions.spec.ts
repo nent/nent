@@ -5,7 +5,7 @@ import {
   clearVisits,
   hasVisited,
   markVisit,
-} from '../../components/n-views/services/visits'
+} from '../../components/n-view/services/visits'
 import {
   convertFromJson,
   evaluateExpression,

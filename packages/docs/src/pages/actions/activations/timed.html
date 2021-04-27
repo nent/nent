@@ -1,20 +1,27 @@
 <n-presentation class="content">
+
   <h1>Time Activation</h1>
   <p> Timed actions work using the <a href="/components/n-view-prompt">
       <b>&lt;n-view-prompt/&gt;</b></a> element time system. This system allows
     developers to fire off actions at a given time, in seconds from route entry.
   </p>
-  <h2>Time: <span n-time-to></span></h2>
+  <h2>Time: <n-presentation-timer duration="10"
+      display></n-presentation-timer>
+  </h2>
+
   <blockquote>You should see a console log message after 3 seconds.</blockquote>
+  <n-doc-log>
+  </n-doc-log>
+
   <h3>Source</h3>
   <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <n-action-activator activate="at-time" time="3">
-        <n-action topic="app"
-          command="log"
-          data-message="3-seconds has passed."></n-action>
-      </n-action-activator>
+      <n-presentation-action
+        time="3" topic="app"
+        command="log"
+        data-message="3-seconds has passed.">
+      </n-presentation-action>
       ```
     </script>
   </n-content-markdown>
@@ -26,11 +33,9 @@
       href="/actions/activation/elements"
       class="btn btn-info">Element Activation &gt;</a>
   </footer>
-  <n-action-activator activate="at-time"
-    time="3">
-    <n-action topic="app"
-      command="log"
-      data-message="3-seconds!">
-    </n-action>
-  </n-action-activator>
+  <n-presentation-action time="3"
+    topic="app"
+    command="log"
+    data-message="3-seconds has passed.">
+  </n-presentation-action>
 </n-presentation>

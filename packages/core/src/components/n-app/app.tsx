@@ -30,6 +30,7 @@ import { AppActionListener } from './services/actions'
  * @system app
  * @extension actions
  * @extension custom
+ * @extension elements
  */
 @Component({
   tag: 'n-app',

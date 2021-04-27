@@ -17,7 +17,7 @@
   </ul>
 </n-content-reveal>
 <div class="content">
-  <h1>Action System</h1>
+  <h1>Actions</h1>
   <p class="lead"> Actions provide a declarative mechanism for expressing
     reactive functionality directly in HTML, reducing the need to write and test
     JavaScript. </p>
@@ -101,13 +101,11 @@
       href="/components/n-app/custom">Custom Actions</a>
   </div>
   <footer>
-    <a slot="start"
-      href="/start">
-      <button class="btn btn-primary  btn-lg">&lt; Install</button>
-    </a>
-    <a slot="end"
-      href="/routing">
-      <button class="btn btn-primary  btn-lg">Routing &gt;</button>
-    </a>
+    <n-view-link-back slot="start"
+      class="btn btn-primary btn-lg">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      class="btn btn-primary btn-lg">
+    </n-view-link-next>
   </footer>
 </div>

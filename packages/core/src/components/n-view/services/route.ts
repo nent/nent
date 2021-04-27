@@ -8,15 +8,17 @@ import {
 } from '../../../services/data/tokens'
 import { getChildInputValidity } from '../../n-view-prompt/services/elements'
 import {
-  IRoute,
   MatchResults,
   RouteViewOptions,
   ROUTE_EVENTS,
-} from './interfaces'
-import { RouterService } from './router'
-import { isAbsolute } from './utils/location'
-import { getPossibleParentPaths } from './utils/path'
-import { matchesAreEqual } from './utils/path-match'
+} from '../../n-views/services/interfaces'
+import { RouterService } from '../../n-views/services/router'
+import {
+  getPossibleParentPaths,
+  isAbsolute,
+  matchesAreEqual,
+} from '../../n-views/services/utils'
+import { IRoute } from './interfaces'
 
 export class Route implements IRoute {
   private readonly subscription: () => void

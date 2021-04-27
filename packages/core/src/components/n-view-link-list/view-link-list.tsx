@@ -7,11 +7,11 @@ import {
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
+import { Route } from '../n-view/services/route'
 import {
   MatchResults,
   ROUTE_EVENTS,
 } from '../n-views/services/interfaces'
-import { Route } from '../n-views/services/route'
 import {
   navigationState,
   onNavigationChange,

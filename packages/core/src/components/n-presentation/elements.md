@@ -16,7 +16,7 @@ The [\<n-presentation\>](/components/n-presentation) element is always keeping t
 
 ## [n-in-time] & [n-in-class]
 
-This attribute removes the 'hidden' attribute if present at the specified time in seconds.
+This attribute removes the 'hidden' attribute, if present, at the specified time in seconds.
 
 ```html
 <any hidden n-in-time='1' />
@@ -24,7 +24,7 @@ This attribute removes the 'hidden' attribute if present at the specified time i
 
 > To initially hide the element, be sure to include the ‘hidden’ attribute.
 
-When used with n-in-class, this attribute adds the specified class and removes the 'hidden' attribute if present at the specified time in seconds.
+When used with n-in-class, this attribute adds the specified class and removes the 'hidden' attribute, if present, at the specified time in seconds.
 
 ```html
 <any hidden n-in-time='1' n-in-class='fade-in' />
@@ -40,7 +40,7 @@ This attribute adds the 'hidden' attribute if no n-out-class attribute is presen
 
 > ℹ️) To initially hide the element, be sure to include the ‘hidden’ attribute.
 
-When used with n-out-class, this attribute adds the specified class and removes the 'hidden' attribute if present at the specified time out seconds.
+When used with n-out-class, this attribute adds the specified class and removes the 'hidden' attribute, if present, at the specified time-out seconds.
 
 ```html
 <any n-out-time='1' n-out-class='fade-out' />
@@ -48,7 +48,7 @@ When used with n-out-class, this attribute adds the specified class and removes 
 
 ## Time To: [n-time-to]
 
-This attribute instructs [\<n-presentation\>](/components/n-presentation) to inject the current time to the named attributes. In this example's case 'value' will be updated.
+This attribute instructs [\<n-presentation\>](/components/n-presentation) to inject the current time to the named attributes. In this example's case, 'value' will be updated.
 
 ```html
 <any value='' n-time-to='value' />
@@ -58,7 +58,7 @@ This attribute instructs [\<n-presentation\>](/components/n-presentation) to inj
 
 ## Time Percentage To: [n-percentage-to]
 
-This attribute instructs [\<n-presentation\>](/components/n-presentation) to inject the current time percentage (based on the **next-after** attribute or the video-duration) to the named attributes. In this example's case 'value' will be updated.
+This attribute instructs [\<n-presentation\>](/components/n-presentation) to inject the current time percentage (based on the **next-after** attribute or the video-duration) to the named attributes. In this example's case, 'value' will be updated.
 
 ```html
 <any value='' n-percentage-to='value' />

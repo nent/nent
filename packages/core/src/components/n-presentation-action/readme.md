@@ -9,8 +9,8 @@
 
 | Property               | Attribute | Description                                         | Type                           | Default     |
 | ---------------------- | --------- | --------------------------------------------------- | ------------------------------ | ----------- |
-| `atTime`               | `at-time` | The time this should execute                        | `"end"`, `number`, `undefined` | `undefined` |
 | `command` _(required)_ | `command` | The command to execute.                             | `string`                       | `undefined` |
+| `time`                 | `time`    | The time this should execute                        | `"end"`, `number`, `undefined` | `undefined` |
 | `topic` _(required)_   | `topic`   | This is the topic this action-command is targeting. | `string`                       | `undefined` |
 
 

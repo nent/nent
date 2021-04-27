@@ -1,5 +1,5 @@
 // @ts-nocheck
-self.importScripts('/workbox-v6.1.2/workbox-sw.js')
+self.importScripts('/workbox-v6.1.5/workbox-sw.js')
 const { skipWaiting, clientsClaim } = workbox.core
 const {
   registerRoute,

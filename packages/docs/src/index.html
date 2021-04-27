@@ -207,6 +207,12 @@
               <span>Data</span>
             </n-view-link>
             <n-view-link class="nav-link flex-fill tip"
+              title="Elements"
+              path="/elements">
+              <i class="ri-plug-line"></i>
+              <span>Elements</span>
+            </n-view-link>
+            <n-view-link class="nav-link flex-fill tip"
               title="Audio"
               path="/audio">
               <i class="ri-music-line"></i>
@@ -324,31 +330,6 @@
                 </ul>
               </div>
               <div>
-                <h3 id="audio">
-                  <i class="ri-music-line"></i> Audio Elements
-                </h3>
-                <p>Optional elements to display a global player for declared
-                  audio commands. The player orchestrates audio playback in a
-                  declared, reactive and unobtrusive way.</p>
-                <ul>
-                  <li>Voice-over Audio</li>
-                  <li>Event-based Sounds</li>
-                  <li>Route-driven Background Music</li>
-                </ul>
-              </div>
-              <div>
-                <h3 id="presentation">
-                  <i class="ri-movie-line"></i>Presentation Elements
-                </h3>
-                <p>Optional elements to normalize timing events between various
-                  video players or time on route</p>
-                <ul>
-                  <li>Time-based Action Activation</li>
-                  <li>Automatic Navigation by Time or Media Events</li>
-                  <li>Video-based Content Updates</li>
-                </ul>
-              </div>
-              <div>
                 <h3 id="elements">
                   <i class="ri-plug-line"></i> Element Extension
                 </h3>
@@ -360,6 +341,32 @@
                 </ul>
               </div>
             </div>
+            <div>
+              <h3 id="audio">
+                <i class="ri-music-line"></i> Audio Elements
+              </h3>
+              <p>Optional elements to display a global player for declared
+                audio commands. The player orchestrates audio playback in a
+                declared, reactive and unobtrusive way.</p>
+              <ul>
+                <li>Voice-over Audio</li>
+                <li>Event-based Sounds</li>
+                <li>Route-driven Background Music</li>
+              </ul>
+            </div>
+            <div>
+              <h3 id="presentation">
+                <i class="ri-movie-line"></i>Presentation Elements
+              </h3>
+              <p>Optional elements to normalize timing events between various
+                video players or time on route</p>
+              <ul>
+                <li>Time-based Action Activation</li>
+                <li>Automatic Navigation by Time or Media Events</li>
+                <li>Video-based Content Updates</li>
+              </ul>
+            </div>
+
             <h2>Built with Love</h2>
             <ul>
               <li>
@@ -392,7 +399,6 @@
         </n-app-theme>
         <n-view path="/home"
           page-title="Home"
-          resolve-tokens
           src="/pages/home/routes.html"
           content-src="/pages/home/default.html">
           <n-view-prompt path="/home/name"
@@ -418,43 +424,43 @@
           content-src="/pages/app/default.html">
         </n-view>
         <n-view path="/actions"
-          page-title="Action System"
+          page-title="Actions"
           src="/pages/actions/routes.html"
           content-src="/pages/actions/default.html">
         </n-view>
         <n-view path="/routing"
-          page-title="View Routing"
+          page-title="Routing"
           src="/pages/routing/routes.html"
           content-src="/pages/routing/default.html"
           transition="animate__animated animate__fadeIn">
         </n-view>
         <n-view path="/content"
-          page-title="Content Elements"
+          page-title="Content"
           src="/pages/content/routes.html"
           content-src="/pages/content/default.html">
         </n-view>
         <n-view path="/data"
-          page-title="Data Extension"
+          page-title="Data"
           src="/pages/data/routes.html"
           content-src="/pages/data/default.html">
         </n-view>
         <n-view path="/elements"
-          page-title="Element Extension"
+          page-title="Elements"
           src="/pages/elements/routes.html"
           content-src="/pages/elements/default.html">
         </n-view>
         <n-view path="/audio"
-          page-title="Audio Elements"
+          page-title="Audio"
           src="/pages/audio/routes.html"
           content-src="/pages/audio/default.html">
         </n-view>
         <n-view path="/presentations"
-          page-title="Presentation Elements"
+          page-title="Presentation"
           src="/pages/presentations/routes.html"
           content-src="/pages/presentations/default.html">
         </n-view>
         <n-view path="/components"
-          page-title="Components"
+          page-title="All Components"
           src="/pages/components/routes.html"
           content-src="/pages/components/default.html"
           transition="animate__animated animate__fadeIn">

@@ -21,11 +21,11 @@ import { resolveRemoteContent } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { MatchResults } from '../n-views/services/interfaces'
-import { resolveNext } from '../n-views/services/next'
-import { Route } from '../n-views/services/route'
 import { navigationState } from '../n-views/services/state'
-import { markVisit } from '../n-views/services/visits'
 import { IView } from './services/interfaces'
+import { resolveNext } from './services/next'
+import { Route } from './services/route'
+import { markVisit } from './services/visits'
 
 /**
  * The View component holds a segment of content visible only when
@@ -43,6 +43,7 @@ import { IView } from './services/interfaces'
  * @system routing
  *
  * @extension data
+ * @extension elements
  */
 @Component({
   tag: 'n-view',

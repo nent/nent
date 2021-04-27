@@ -42,7 +42,7 @@ export class PresentationService {
     private timeEmitter: ITimer,
     private elements: boolean = false,
     private analyticsEvent: string | null = null,
-    private onEnd: (() => Promise<void>) | null = null,
+    private onEnd: (() => void) | null = null,
     private debug: boolean = false,
   ) {
     if (this.elements) {
@@ -59,17 +59,13 @@ export class PresentationService {
     this.timeEmitter.on(
       TIMER_EVENTS.OnInterval,
       async (time: TimeDetails) => {
-        this.handleElementsInterval(time)
-        this.handleAnalyticsInterval(time)
-        await this.handleActionInterval(time)
+        await this.handleInterval(time)
       },
     )
 
     this.timeEmitter.on(TIMER_EVENTS.OnEnd, async () => {
       debugIf(this.debug, `presentation: ended`)
-      this.handleElementsEnded()
-      await this.handleActionEnded()
-      await this.onEnd?.call(this)
+      await this.handleEnded()
     })
 
     debugIf(this.debug, `presentation: service created`)
@@ -83,7 +79,7 @@ export class PresentationService {
     this.timeEmitter.stop()
   }
 
-  private handleElementsInterval(time: TimeDetails) {
+  private async handleInterval(time: TimeDetails) {
     if (this.elements) {
       resolveElementChildTimedNodesByTime(
         this.el,
@@ -92,9 +88,7 @@ export class PresentationService {
         time.percentage,
       )
     }
-  }
 
-  private handleAnalyticsInterval(time: TimeDetails) {
     if (this.analyticsEvent) {
       const data: ViewTime = {
         event: this.analyticsEvent!,
@@ -107,15 +101,7 @@ export class PresentationService {
         data,
       })
     }
-  }
 
-  private handleElementsEnded() {
-    if (this.elements) {
-      restoreElementChildTimedNodes(this.el, this.timedNodes)
-    }
-  }
-
-  private async handleActionInterval(time: TimeDetails) {
     await activateActionActivators(
       this.actionActivators,
       ActionActivationStrategy.AtTime,
@@ -133,7 +119,7 @@ export class PresentationService {
     })
   }
 
-  private async handleActionEnded() {
+  private async handleEnded() {
     await activateActionActivators(
       this.actionActivators,
       ActionActivationStrategy.AtTimeEnd,
@@ -141,9 +127,13 @@ export class PresentationService {
     await sendActions(this.actions, action => {
       return action.time == 'end'
     })
+    this.onEnd?.call(this)
   }
 
   public cleanup() {
+    if (this.elements) {
+      restoreElementChildTimedNodes(this.el, this.timedNodes)
+    }
     this.timeEmitter.destroy()
   }
 }

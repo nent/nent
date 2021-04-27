@@ -1,7 +1,7 @@
 ```html
 <n-presentation analytics>
   
-  <h2>Element Timer: <n-presentation-timer debug display
+  <h2>Element Timer: <n-presentation-timer display
     duration="30"></n-presentation-timer></h2>
 
   <div n-in-time="0"

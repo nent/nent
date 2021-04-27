@@ -18,7 +18,10 @@
 </n-content-reveal>
 <div class="">
   <h1>Presentations</h1>
-  <p class="lead">.</p>
+  <p class="lead">
+    Synchronize elements modifications, animations and content
+    using time.
+  </p>
   <h2>Enable Presentation</h2>
   <p> To present a timed sequence, you must wrap content in the<a
       href="/components/n-presentation"><b>&lt;n-presentation&gt;</b> </a>
@@ -31,24 +34,33 @@
       ```
     </script>
   </n-content-markdown>
+
+  <h3 class="mt-3"
+    hidden>Time-based Functionality</h3>
+  <div class="button-nav"
+    hidden>
+    <a href="/presentations/elements"
+      class="btn btn-secondary">
+      <i class="ri-code-line"></i> Update Elements w/Attributes </a>
+    <a href="/presentations/actions"
+      class="btn btn-secondary">
+      <i class="ri-flashlight-line"></i> Update Elements w/Actions </a>
+  </div>
   <h3 class="mt-3">Timer Options</h3>
   <div class="button-nav">
-    <a href="/presentations/video"
-      class="btn btn-secondary">
-      <i class="ri-music-2-line"></i> Video Timer </a>
-    <a href="/presentations/timer"
+    <a href="/presentations/element"
       class="btn btn-secondary">
       <i class="ri-timer-flash-line"></i> Element Timer </a>
-    <a href="/presentations/custom"
+    <a href="/presentations/video"
       class="btn btn-secondary">
-      <i class="ri-timer-flash-line"></i> Custom Timer </a>
+      <i class="ri-movie-line"></i> Video Timer </a>
   </div>
   <footer>
-    <a slot="start"
-      href="/elements"
-      class="btn btn-primary btn-lg"> &lt; Elements </a>
-    <a slot="end"
-      href="/components"
-      class="btn btn-primary btn-lg"> All Components &gt; </a>
+    <n-view-link-back slot="start"
+      class="btn btn-primary btn-lg">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      class="btn btn-primary btn-lg">
+    </n-view-link-next>
   </footer>
 </div>

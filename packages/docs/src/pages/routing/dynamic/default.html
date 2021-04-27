@@ -39,8 +39,10 @@
   <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <n-view path="/data" page-title="Data List">
-        <n-view path="/item/:foodKey" page-title="{{route:foodKey}} Details">
+      <n-view path="/data"
+        page-title="Data List">
+        <n-view path="/item/:foodKey"
+          page-title="{{route:foodKey}} Details">
           ... content that uses foodKey to render ...
         </n-view>
 
@@ -51,11 +53,11 @@
     </script>
   </n-content-markdown>
   <footer>
-    <a slot="start"
-      href="/routing/child"
-      class="btn btn-secondary"> &lt; Child Routes </a>
-    <a slot="end"
-      href="/routing/navigation"
-      class="btn btn-secondary"> Navigation &gt;</a>
+    <n-view-link-back slot="start"
+      class="btn btn-secondary">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      class="btn btn-secondary">
+    </n-view-link-next>
   </footer>
 </div>

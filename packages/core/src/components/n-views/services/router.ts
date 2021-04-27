@@ -8,6 +8,12 @@ import {
 } from '../../../services/common/state'
 import { addDataProvider } from '../../../services/data/factory'
 import { DATA_EVENTS } from '../../../services/data/interfaces'
+import { Route } from '../../n-view/services/route'
+import {
+  getSessionVisits,
+  getStoredVisits,
+  getVisits,
+} from '../../n-view/services/visits'
 import { NavigationActionListener } from './actions'
 import { captureElementsEventOnce } from './elements'
 import { HistoryService } from './history'
@@ -19,7 +25,6 @@ import {
   ROUTE_EVENTS,
 } from './interfaces'
 import { RoutingDataProvider } from './provider'
-import { Route } from './route'
 import { isAbsolute, resolvePathname } from './utils/location'
 import {
   addLeadingSlash,
@@ -29,11 +34,6 @@ import {
   stripBasename,
 } from './utils/path'
 import { matchPath } from './utils/path-match'
-import {
-  getSessionVisits,
-  getStoredVisits,
-  getVisits,
-} from './visits'
 
 export class RouterService {
   public location!: LocationSegments
@@ -82,9 +82,12 @@ export class RouterService {
   }
 
   public async enableDataProviders() {
-    this.routeData = new RoutingDataProvider(
-      (key: string) => this.location!.params[key],
-    )
+    this.routeData = new RoutingDataProvider((key: string) => {
+      let route: any = { data: this.location!.params }
+      if (this.hasExactRoute())
+        route = Object.assign(route, this.exactRoute)
+      return route.data[key] || route[key]
+    })
     addDataProvider('route', this.routeData)
 
     this.queryData = new RoutingDataProvider(

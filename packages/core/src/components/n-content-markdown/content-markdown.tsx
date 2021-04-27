@@ -29,6 +29,7 @@ import { renderMarkdown } from './markdown/remarkable.worker'
  *
  * @system content
  * @extension data
+ * @extension elements
  */
 @Component({
   tag: 'n-content-markdown',

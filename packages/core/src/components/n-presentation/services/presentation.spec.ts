@@ -209,6 +209,8 @@ describe('presentation-service', () => {
 
     animationFrameProvider.triggerNextAnimationFrame(10500)
 
+    subject.cleanup()
+
     expect(page.root).toEqualHtml(`<div
         n-in-time="1"
         n-in-class="fade-in"

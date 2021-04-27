@@ -1,6 +1,6 @@
-# N-VIEWS: Element Extension
+# N-APP: Element Extension
 
-## Install `\<n-elements\>`
+## Install `<n-elements>`
 
 ```html
 <n-elements></n-elements>

@@ -10,6 +10,7 @@ import { eventBus } from '../../services/actions'
 import { commonState } from '../../services/common'
 import { debugIf, warn } from '../../services/common/logging'
 import { IView } from '../n-view/services/interfaces'
+import { Route } from '../n-view/services/route'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { navigationState } from '../n-views/services/state'
 import { IElementTimer, ITimer } from './services/interfaces'
@@ -56,8 +57,7 @@ export class Presentation {
   @Prop() debug: boolean = false
 
   /**
-   * Go to the next view after a given time if a number
-   * is present, otherwise when the end-event occurs.
+   * Go to the next view after when the timer ends
    */
   @Prop() nextAfter: boolean = false
 
@@ -67,11 +67,11 @@ export class Presentation {
    */
   @Prop() analyticsEvent?: string
 
-  private get parentRoute(): IView | null {
+  private get currentRoute(): Route | null {
     const parent =
       this.el.closest('n-view-prompt') || this.el.closest('n-view')
-    if (parent) return parent as IView
-    return null
+    if (parent) return (parent as IView).route
+    return navigationState.router?.exactRoute || null
   }
 
   componentWillLoad() {
@@ -94,19 +94,19 @@ export class Presentation {
       return
     }
 
-    if (this.parentRoute) {
+    if (this.currentRoute) {
       debugIf(
         this.debug,
-        `n-presentation: syncing to route ${this.parentRoute.route.path}`,
+        `n-presentation: syncing to route ${this.currentRoute.path}`,
       )
-      if (this.parentRoute!.route?.match?.isExact) {
+      if (this.currentRoute?.match?.isExact) {
         this.subscribeElementTimer(element)
       }
       this.navigationSubscription = eventBus.on(
         ROUTE_EVENTS.RouteChanged,
         () => {
           this.presentation?.endTimer()
-          if (this.parentRoute!.route?.match?.isExact) {
+          if (this.currentRoute?.match?.isExact) {
             if (this.presentation) this.presentation!.beginTimer()
             else this.subscribeElementTimer(element)
           }
@@ -125,13 +125,10 @@ export class Presentation {
       this.timer,
       commonState.elementsEnabled,
       this.analyticsEvent,
-      async () => {
-        let route =
-          this.parentRoute?.route ||
-          navigationState.router?.exactRoute ||
-          null
-        if (route && this.nextAfter) {
-          await route.goNext()
+      () => {
+        if (this.currentRoute && this.nextAfter) {
+          this.presentation?.cleanup()
+          this.currentRoute.goNext()
         }
       },
       this.debug,

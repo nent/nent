@@ -29,6 +29,7 @@ import {
  * The player manages them according to their settings.
  *
  * @system audio
+ * @system actions
  */
 @Component({
   tag: 'n-audio-action-music-load',
