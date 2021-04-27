@@ -3,6 +3,10 @@ jest.mock('../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
+import {
+  commonState,
+  commonStateDispose,
+} from '../../services/common/state'
 import { contentStateDispose } from '../../services/content'
 import { addDataProvider } from '../../services/data/factory'
 import { DATA_EVENTS } from '../../services/data/interfaces'
@@ -20,6 +24,9 @@ describe('n-content-repeat', () => {
   beforeEach(() => {
     dataState.enabled = true
     provider = new InMemoryProvider()
+    commonState.dataEnabled = true
+    commonState.routingEnabled = true
+    commonState.elementsEnabled = true
   })
 
   afterEach(() => {
@@ -28,6 +35,7 @@ describe('n-content-repeat', () => {
     eventBus.removeAllListeners()
     jest.resetAllMocks()
     contentStateDispose()
+    commonStateDispose()
   })
 
   it('renders', async () => {
@@ -41,8 +49,33 @@ describe('n-content-repeat', () => {
       </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-repeat')
-    subject?.remove()
+    eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
+    eventBus.emit(DATA_EVENTS.DataChanged, {})
+
+    page.root?.remove()
+  })
+
+  it('renders, delayed enable', async () => {
+    commonState.dataEnabled = false
+    commonState.routingEnabled = false
+
+    const page = await newSpecPage({
+      components: [ContentDataRepeat],
+      html: `<n-content-repeat defer-load><div></div></n-content-repeat>`,
+    })
+    expect(page.root).toEqualHtml(`
+      <n-content-repeat defer-load="">
+        <div></div>
+      </n-content-repeat>
+    `)
+
+    commonState.dataEnabled = true
+    commonState.routingEnabled = true
+
+    eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
+    eventBus.emit(DATA_EVENTS.DataChanged, {})
+
+    page.root?.remove()
   })
 
   it('render inline array', async () => {
@@ -64,8 +97,7 @@ describe('n-content-repeat', () => {
         </div>
       </n-content-repeat>
     `)
-    const subject = page.body.querySelector('n-content-repeat')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('render inline array from tokens', async () => {
@@ -91,8 +123,7 @@ describe('n-content-repeat', () => {
         </div>
       </n-content-repeat>
     `)
-    const subject = page.body.querySelector('n-content-repeat')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('render scripted array', async () => {
@@ -122,8 +153,7 @@ describe('n-content-repeat', () => {
       </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-repeat')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('render remote json', async () => {
@@ -155,8 +185,7 @@ describe('n-content-repeat', () => {
       </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-repeat')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('renders and responds to changing data', async () => {
@@ -213,8 +242,7 @@ describe('n-content-repeat', () => {
       </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-repeat')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('handles erroring remote data', async () => {
@@ -259,8 +287,7 @@ describe('n-content-repeat', () => {
       </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-repeat')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('filter remote json', async () => {
@@ -293,7 +320,6 @@ describe('n-content-repeat', () => {
       </n-content-repeat>
     `)
 
-    const subject = page.body.querySelector('n-content-repeat')
-    subject?.remove()
+    page.root?.remove()
   })
 })

@@ -4,6 +4,10 @@ jest.mock('./markdown/remarkable.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
+import {
+  commonState,
+  commonStateDispose,
+} from '../../services/common/state'
 import { contentStateDispose } from '../../services/content'
 import {
   addDataProvider,
@@ -12,6 +16,7 @@ import {
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { InMemoryProvider } from '../../services/data/providers/memory'
 import { dataState } from '../../services/data/state'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentMarkdown } from './content-markdown'
 
 describe('n-content-markdown', () => {
@@ -21,6 +26,9 @@ describe('n-content-markdown', () => {
   beforeEach(() => {
     session = new InMemoryProvider()
     addDataProvider('session', session)
+    commonState.dataEnabled = true
+    commonState.routingEnabled = true
+    commonState.elementsEnabled = true
   })
 
   afterEach(() => {
@@ -29,6 +37,7 @@ describe('n-content-markdown', () => {
     jest.resetAllMocks()
     clearDataProviders()
     contentStateDispose()
+    commonStateDispose()
   })
 
   it('renders', async () => {
@@ -42,8 +51,33 @@ describe('n-content-markdown', () => {
       </n-content-markdown>
     `)
 
-    const subject = page.body.querySelector('n-content-markdown')
-    subject?.remove()
+    eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
+    eventBus.emit(DATA_EVENTS.DataChanged, {})
+
+    page.root?.remove()
+  })
+
+  it('renders, delayed enable', async () => {
+    commonState.dataEnabled = false
+    commonState.routingEnabled = false
+
+    const page = await newSpecPage({
+      components: [ContentMarkdown],
+      html: `<n-content-markdown></n-content-markdown>`,
+      supportsShadowDom: false,
+    })
+    expect(page.root).toEqualHtml(`
+      <n-content-markdown hidden="">
+      </n-content-markdown>
+    `)
+
+    commonState.dataEnabled = true
+    commonState.routingEnabled = true
+
+    eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
+    eventBus.emit(DATA_EVENTS.DataChanged, {})
+
+    page.root?.remove()
   })
 
   it('renders markup from inline md', async () => {
@@ -74,8 +108,7 @@ describe('n-content-markdown', () => {
       </n-content-markdown>
     `)
 
-    const subject = page.body.querySelector('n-content-markdown')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('renders empty markup from inline md', async () => {
@@ -97,8 +130,7 @@ describe('n-content-markdown', () => {
       </n-content-markdown>
     `)
 
-    const subject = page.body.querySelector('n-content-markdown')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('renders markup from remote', async () => {
@@ -129,8 +161,7 @@ describe('n-content-markdown', () => {
       </n-content-markdown>
     `)
 
-    const subject = page.body.querySelector('n-content-markdown')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('handles erroring markup from remote', async () => {
@@ -156,8 +187,7 @@ describe('n-content-markdown', () => {
        </n-content-markdown>
     `)
 
-    const subject = page.body.querySelector('n-content-markdown')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('handles http error in markup from remote', async () => {
@@ -183,8 +213,7 @@ describe('n-content-markdown', () => {
        </n-content-markdown>
     `)
 
-    const subject = page.body.querySelector('n-content-markdown')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('renders markup from remote, delayed', async () => {
@@ -230,7 +259,7 @@ describe('n-content-markdown', () => {
       </n-content-markdown>
     `)
 
-    md?.remove()
+    page.root?.remove()
   })
 
   it('renders markup conditionally', async () => {
@@ -271,7 +300,7 @@ describe('n-content-markdown', () => {
       </n-content-markdown>
     `)
 
-    md?.remove()
+    page.root?.remove()
   })
 
   it('renders markup conditionally, from data expression', async () => {
@@ -312,8 +341,7 @@ describe('n-content-markdown', () => {
       </n-content-markdown>
     `)
 
-    const subject = page.body.querySelector('n-content-markdown')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('renders tokens from data expression', async () => {
@@ -366,8 +394,7 @@ describe('n-content-markdown', () => {
       </n-content-markdown>
     `)
 
-    const subject = page.body.querySelector('n-content-markdown')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('renders tokens from data expressions in remote markdown', async () => {
@@ -417,7 +444,6 @@ describe('n-content-markdown', () => {
       </n-content-markdown>
     `)
 
-    const subject = page.body.querySelector('n-content-markdown')
-    subject?.remove()
+    page.root?.remove()
   })
 })

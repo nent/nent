@@ -32,7 +32,7 @@ import { navigationState } from '../n-views/services/state'
   styleUrl: 'content-template.css',
   shadow: false,
 })
-export class ContentData {
+export class ContentTemplate {
   private dataSubscription!: () => void
   private routeSubscription!: () => void
   private contentClass = 'dynamic'

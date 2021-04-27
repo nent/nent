@@ -4,9 +4,10 @@ jest.mock('../../services/common/logging')
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
 import {
-  contentStateDispose,
-  contentStateReset,
-} from '../../services/content'
+  commonState,
+  commonStateDispose,
+} from '../../services/common'
+import { contentStateDispose } from '../../services/content'
 import {
   addDataProvider,
   clearDataProviders,
@@ -16,8 +17,8 @@ import { InMemoryProvider } from '../../services/data/providers/memory'
 import {
   dataState,
   dataStateDispose,
-  dataStateReset,
 } from '../../services/data/state'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentInclude } from './content-include'
 
 describe('n-content', () => {
@@ -27,9 +28,10 @@ describe('n-content', () => {
     jest.resetAllMocks()
     session = new InMemoryProvider()
     addDataProvider('session', session)
-    contentStateReset()
-    dataStateReset()
     dataState.enabled = true
+    commonState.dataEnabled = true
+    commonState.routingEnabled = true
+    commonState.elementsEnabled = true
   })
 
   afterEach(() => {
@@ -38,6 +40,7 @@ describe('n-content', () => {
     clearDataProviders()
     contentStateDispose()
     dataStateDispose()
+    commonStateDispose()
   })
 
   it('renders', async () => {
@@ -49,6 +52,33 @@ describe('n-content', () => {
       <n-content-include hidden="">
       </n-content-include>
     `)
+
+    eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
+    eventBus.emit(DATA_EVENTS.DataChanged, {})
+
+    page.root?.remove()
+  })
+
+  it('renders without data, then subscribes', async () => {
+    commonState.dataEnabled = false
+    commonState.routingEnabled = false
+    const page = await newSpecPage({
+      components: [ContentInclude],
+      html: `<n-content-include></n-content-include>`,
+    })
+    expect(page.root).toEqualHtml(`
+      <n-content-include hidden="">
+      </n-content-include>
+    `)
+
+    commonState.routingEnabled = true
+    commonState.dataEnabled = true
+
+    eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
+
+    eventBus.emit(DATA_EVENTS.DataChanged, {})
+
+    page.root?.remove()
   })
 
   it('renders html from remote', async () => {
@@ -79,8 +109,7 @@ describe('n-content', () => {
       </n-content-include>
     `)
 
-    const subject = page.body.querySelector('n-content')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('handles erroring html from remote', async () => {
@@ -106,8 +135,7 @@ describe('n-content', () => {
        </n-content-include>
     `)
 
-    const subject = page.body.querySelector('n-content')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('handles http error in html from remote', async () => {
@@ -133,8 +161,7 @@ describe('n-content', () => {
        </n-content-include>
     `)
 
-    const subject = page.body.querySelector('n-content')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('renders html from remote, delayed', async () => {
@@ -262,8 +289,7 @@ describe('n-content', () => {
       </n-content-include>
     `)
 
-    const subject = page.body.querySelector('n-content')
-    subject?.remove()
+    page.root?.remove()
   })
 
   it('renders tokens in remote data', async () => {
@@ -310,7 +336,6 @@ describe('n-content', () => {
       </n-content-include>
     `)
 
-    const subject = page.body.querySelector('n-content')
-    subject?.remove()
+    page.root?.remove()
   })
 })
