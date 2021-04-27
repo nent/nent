@@ -33,7 +33,8 @@
   "badges": [
     {
       "description": "MIT",
-      "url": "https://badgen.net/github/license/nent/nent?icon=github"
+      "url": "https://badgen.net/github/license/nent/nent?icon=github",
+      "href": ""
     }
   ],
   "scripts": {
@@ -41,7 +42,7 @@
     "build": "vsce package -o ./dist"
   },
   "engines": {
-    "vscode": "^1.55.0"
+    "vscode": "^1.10.0"
   },
   "preview": true,
   "categories": [

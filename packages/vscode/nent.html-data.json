@@ -95,16 +95,32 @@
       "name": "n-app",
       "description": {
         "kind": "markdown",
-        "value": "This component enables app services. These are console logging\ntheming and event-delegation as well as a plugin system to\nmanage a UI kit to add components like Modals, Drawers,\nmenus, etc. The basic provider is used to toggle dark-mode."
+        "value": "This component enables app services. These are console logging\ntheming and event-delegation as well as a plugin system to\nmanage a UI kit to add components like Modals, Drawers,\nmenus, etc. The basic provider is used to toggle dark-mode.\n\nThis component also adds meta tags necessary for best PWA\npractices."
       },
       "attributes": [
+        {
+          "name": "background-color",
+          "description": "The application theme background-color (used )"
+        },
         {
           "name": "debug",
           "description": "Turn on debugging to get helpful messages from the\napp, routing, data and action systems."
         },
         {
-          "name": "disable-actions",
-          "description": "Turn off declarative actions for the entire\napp."
+          "name": "description",
+          "description": "The application description used in the\nPWA application manifest.\n\nCreates tags:\n* description (if missing)\n* meta[name=\"og:description\"]"
+        },
+        {
+          "name": "name",
+          "description": "The application name\n\nCreates tags:\n* title (if missing)\n* meta[name=\"og:title\"]"
+        },
+        {
+          "name": "short-name",
+          "description": "The application short-name used in the\nPWA application manifest."
+        },
+        {
+          "name": "theme-color",
+          "description": "The application theme color (used )"
         }
       ],
       "references": [
@@ -124,7 +140,12 @@
         "kind": "markdown",
         "value": "This component serves as a proxy to delegate event-based\nfunctions to be consumed by various analytics snippets."
       },
-      "attributes": [],
+      "attributes": [
+        {
+          "name": "debug",
+          "description": "Turn on debugging to get helpful messages from the\napp, routing, data and action systems."
+        }
+      ],
       "references": [
         {
           "name": "Documentation",
@@ -987,7 +1008,7 @@
       },
       "attributes": [
         {
-          "name": "analytics",
+          "name": "analytics-event",
           "description": "Send analytics view-time percentages for this presentation\nusing the event name"
         },
         {
@@ -996,7 +1017,7 @@
         },
         {
           "name": "next-after",
-          "description": "Go to the next view after a given time if a number\nis present, otherwise when the end-event occurs."
+          "description": "Go to the next view after when the timer ends"
         },
         {
           "name": "timer-element",
@@ -1022,17 +1043,17 @@
       },
       "attributes": [
         {
-          "name": "at-time",
+          "name": "command",
+          "description": "The command to execute."
+        },
+        {
+          "name": "time",
           "description": "The time this should execute",
           "values": [
             {
               "name": "end"
             }
           ]
-        },
-        {
-          "name": "command",
-          "description": "The command to execute."
         },
         {
           "name": "topic",
@@ -1054,7 +1075,7 @@
       "name": "n-presentation-timer",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "This element creates a timer for the presentation\nelement to use in place of a video, to time actions\nor manipulate HTML by time."
       },
       "attributes": [
         {
@@ -1062,12 +1083,16 @@
           "description": "To debug timed elements, set this value to true."
         },
         {
+          "name": "display",
+          "description": "Display elapsed seconds"
+        },
+        {
           "name": "duration",
           "description": "Duration before the timer stops and raises\nthe ended event. 0 = never"
         },
         {
-          "name": "start",
-          "description": "Timer start time."
+          "name": "interval",
+          "description": "Interval in milliseconds to request\nbetween the getAnimationFrame. This\naffects the precision."
         }
       ],
       "references": [
@@ -1099,6 +1124,10 @@
         {
           "name": "end-event",
           "description": "Provider the end event name.\nDefault is ended"
+        },
+        {
+          "name": "ready-event",
+          "description": "Provide the ready event name.\nDefault is ready"
         },
         {
           "name": "target-element",
@@ -1273,7 +1302,12 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": [],
+      "attributes": [
+        {
+          "name": "text",
+          "description": "The link text"
+        }
+      ],
       "references": [
         {
           "name": "Documentation",
@@ -1339,9 +1373,14 @@
       "name": "n-view-link-next",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "This element will automatically go to the next\nview in the view."
       },
-      "attributes": [],
+      "attributes": [
+        {
+          "name": "text",
+          "description": "The link text"
+        }
+      ],
       "references": [
         {
           "name": "Documentation",

@@ -29,7 +29,7 @@
     "start:docs:ws": "yarn workspace @nent/docs run start:ws",
     ":vscode  ---": "---------------",
     "prebuild:vscode": "cp README.md ./packages/vscode/README.md",
-    "build:vscode": "yarn workspace @nent/vscode run build",
+    "build:vscode": "yarn workspace nent run build",
     "publish:vscode": "yarn workspace nent run publish",
     ":test ---": "---------------",
     "test": "yarn workspace @nent/core run test",

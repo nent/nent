@@ -4,10 +4,9 @@
 ![initial size](https://badgen.net/badgesize/normal/file-url/unpkg.com/@nent/core@0.3.0/dist/nent/nent.esm.js?icon=sourcegraph&color=blue)
 ![tree-shaking](https://badgen.net/badge/tree-shaking/enabled?icon=packagephobia)
 ![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label)
-
+[![webnamespaces.org](https://img.shields.io/static/v1?label=webnamespaces.org&color=blue&message=n-*)](https://webnamespaces.org)
 [![NPM](https://badgen.net/npm/v/@nent/core?icon&color=blue)](https://www.npmjs.com/package/@nent/core)
 [![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=blue)](https://coveralls.io/github/nent/nent)
-[![gitter](https://badgen.net/badge/chat/on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
 [![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=blue)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
 [![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
 
@@ -41,7 +40,7 @@ The elements are named and grouped by their sub-system. In some cases, shared se
 Sub-systems add functionality to other systems. For instance, view routes can use data expressions in their content when the data system is included.
 
 ### Views: `<n-views-*>`
-Independent routing and navigation system.
+In-page routing and navigation elements with no dependencies.
 
 - Single Page Application Routing
 - Fast navigation between views
@@ -54,7 +53,7 @@ Independent routing and navigation system.
 - Guided Navigation
   
 ### Content: `<n-content-*>`
-Independent elements for features around content HTML.
+Independent content elements for managing the HTML on the page.
 - Content Templates
 - Deferred Content
 - Content Data Injection
@@ -62,7 +61,7 @@ Independent elements for features around content HTML.
 - Remote HTML / Partials
 
 ### App: `<n-app-*>`
-Independent elements related to the file as an application.
+Option elements to add robust application features to the HTML file with no dependencies.
 - App Console Logging
 - App Theme Detection & Control
 - UI Component Kit Integrations (Ionic, shoelace, Material, etc)
@@ -82,16 +81,16 @@ Optional enhancements elements to add data-functionality and data-providers.
 - Conditional Rule Evaluation
 
 ### Elements: `<n-elements>`
-An optional element that creates an action listener to handle requests for light DOM updates
+Optional enhancement to add DOM manipulation features to other NENT elements. It also enables declarative actions for DOM updates.
 
 ### Audio: `<n-audio-*>`
-Optional audio elements to display a player and create an action listener for audio commands. The player orchestrates audio playback in an opinionated format, with best practices. 
+Optional audio element to orchestrate declarative audio playback. 
 - Voice-over Audio
 - Event Sounds
 - Background Music
 
 ### Analytics: `<n-analytics>`
-An optional element that creates an action listener that delegates analytics-specific events and route-changes to a script-configurable element for integration.
+Optional action listener to delegate events and route changes to any analytics provider (minor scripting required).
 - Page Views
 - View Times 
 - Custom Events
@@ -103,7 +102,13 @@ Optional wrapper element to normalize video events between various video players
 
 > This is a pre-release project and is subject to breaking changes and incomplete features. Thank you for trying it out!
 
-Add a script-reference to the page head:
+Add a single script reference to the page head and the library is ready to go. 
+
+**The initial download is under 1K!**
+
+Each component you use is lazy-loaded when you first use one. Most are tiny, with the largest around 60k.
+
+> [Component Sizes](https://nent.dev/stats.html)
 
 ### CDN:
 ```html
@@ -145,15 +150,11 @@ If you like the idea, join us! Or give it a star.
 
 [![github](https://badgen.net/badge/github/★?icon=github&color=blue)](https://github.com/nent/nent)
 
-If you have requests, ideas or feedback, join the discussion on Gitter:
-
-[![gitter](https://badgen.net/badge/chat/with%20me%20on%20gitter?icon=gitter)](https://gitter.im/nent/nent)
-
-Reach out to me personally:
+If you have requests, ideas or feedback, reach out to me personally:
 
 [![Twitter](https://badgen.net/badge/tweet/me?icon=twitter&color=blue)](https://twitter.com/logrythmik)
 
-## Contributions
+## Attribution
 
 ### Built on the shoulders of giants!
 
