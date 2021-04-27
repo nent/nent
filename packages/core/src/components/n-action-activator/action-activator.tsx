@@ -88,18 +88,22 @@ export class ActionActivator {
 
     const values: Record<string, any> = {}
 
+    let isValid = true
     this.childInputs.forEach((el: any, index: number) => {
-      values[el.id || el.name || index] = el.value || el.checked
+      if (el.checkValidity?.call(el) === false) {
+        el.reportValidity?.call(el)
+        isValid = false
+      } else {
+        values[el.id || el.name || index] =
+          el.value || (el.type == 'checkbox' ? el.checked : null)
+      }
     })
+
+    if (!isValid) return
 
     // Activate children
     await Promise.all(
       this.actions.map(async action => {
-        //const data = action.data
-
-        //Object.assign(data, values)
-
-        //const dataString = JSON.stringify(data)
         debugIf(
           this.debug,
           `n-action-activator: activating [${this.activate}~{topic: ${action?.topic}, command:${action?.command}]`,

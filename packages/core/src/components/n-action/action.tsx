@@ -5,6 +5,7 @@ import {
   Host,
   Method,
   Prop,
+  State,
 } from '@stencil/core'
 import {
   actionBus,
@@ -25,6 +26,8 @@ import { warn } from '../../services/common/logging'
 })
 export class Action implements IActionElement {
   @Element() el!: HTMLNActionElement
+  @State() valid: boolean = true
+
   /**
    * This is the topic this action-command is targeting.
    *
@@ -60,8 +63,15 @@ export class Action implements IActionElement {
       )
     }
 
+    this.valid = true
     this.childInputs.forEach((el: any, index: number) => {
-      data![el.id || el.name || index] = el.value || el.checked
+      if (el.checkValidity?.call(el) === false) {
+        el.reportValidity?.call(el)
+        this.valid = false
+      } else {
+        data[el.id || el.name || index] =
+          el.value || (el.type == 'checkbox' ? el.checked : null)
+      }
     })
 
     return {
@@ -77,7 +87,7 @@ export class Action implements IActionElement {
   @Method()
   async sendAction(data?: Record<string, any>) {
     const action = await this.getAction()
-    if (action) {
+    if (action && this.valid) {
       if (data) Object.assign(action.data, data)
       actionBus.emit(action.topic, action)
     }
