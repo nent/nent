@@ -462,6 +462,10 @@ export namespace Components {
     }
     interface NData {
         /**
+          * Turn on debugging to get helpful messages from the data action systems.
+         */
+        "debug": boolean;
+        /**
           * The wait-time, in milliseconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first view-do 'when' predicate an the registration process.
           * @system data
          */
@@ -1500,6 +1504,10 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface NData {
+        /**
+          * Turn on debugging to get helpful messages from the data action systems.
+         */
+        "debug"?: boolean;
         /**
           * The wait-time, in milliseconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first view-do 'when' predicate an the registration process.
           * @system data

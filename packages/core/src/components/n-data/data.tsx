@@ -1,4 +1,5 @@
 import { Component, h, Host, Prop } from '@stencil/core'
+import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import { clearDataProviders } from '../../services/data/factory'
@@ -22,6 +23,12 @@ export class Data {
   private listener!: DataListener
 
   /**
+   * Turn on debugging to get helpful messages from the
+   * data action systems.
+   */
+  @Prop() debug = false
+
+  /**
    * The wait-time, in milliseconds to wait for
    * un-registered data providers found in an expression.
    * This is to accommodate a possible lag between
@@ -33,15 +40,14 @@ export class Data {
   @Prop() providerTimeout: number = 500
 
   componentWillLoad() {
-    debugIf(
-      commonState.debug,
-      `n-data: Data services enabled. Data listener registered`,
-    )
+    debugIf(this.debug, `n-data: registering data listener`)
 
     this.listener = new DataListener()
     commonState.dataEnabled = true
     dataState.enabled = true
     dataState.providerTimeout = this.providerTimeout
+
+    this.listener.initialize(window, actionBus, eventBus)
   }
 
   render() {

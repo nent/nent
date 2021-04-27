@@ -44,9 +44,10 @@ Enable the data provider system to enable token replacement.
 
 ## Properties
 
-| Property          | Attribute          | Description                                                                                                                                                                                                                     | Type     | Default |
-| ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
-| `providerTimeout` | `provider-timeout` | The wait-time, in milliseconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first view-do 'when' predicate an the registration process. | `number` | `500`   |
+| Property          | Attribute          | Description                                                                                                                                                                                                                     | Type      | Default |
+| ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------- |
+| `debug`           | `debug`            | Turn on debugging to get helpful messages from the data action systems.                                                                                                                                                         | `boolean` | `false` |
+| `providerTimeout` | `provider-timeout` | The wait-time, in milliseconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first view-do 'when' predicate an the registration process. | `number`  | `500`   |
 
 
 ----------------------------------------------
