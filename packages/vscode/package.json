@@ -1,6 +1,6 @@
 {
   "name": "nent",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "displayName": "NENT",
   "description": "Add nent html-element hinting, snippets and autocomplete for HTML files. Learn more about building web application directly with HTML here: https://nent.dev",
   "author": "support <support@nent.dev> (https://nent.dev)",
