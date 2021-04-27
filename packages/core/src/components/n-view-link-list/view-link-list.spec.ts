@@ -19,7 +19,6 @@ import { ViewLinkList } from './view-link-list'
 
 describe('n-view-link-list', () => {
   beforeEach(() => {
-    commonState.actionsEnabled = true
     dataState.enabled = true
     commonState.dataEnabled = true
   })

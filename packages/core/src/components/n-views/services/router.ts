@@ -63,18 +63,7 @@ export class RouterService {
       },
     )
 
-    if (commonState.actionsEnabled) this.enableActionListener()
-    else {
-      const actionSubscription = onCommonStateChange(
-        'actionsEnabled',
-        enabled => {
-          if (enabled) {
-            this.enableActionListener()
-            actionSubscription()
-          }
-        },
-      )
-    }
+    this.enableActionListener()
 
     if (commonState.dataEnabled) this.enableDataProviders()
     else {

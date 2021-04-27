@@ -81,12 +81,6 @@ export class App {
   @Prop() debug = false
 
   /**
-   * Turn off declarative actions for the entire
-   * app.
-   */
-  @Prop() disableActions = false
-
-  /**
    * Listen for events that occurred within the nent event system.
    */
   @Event({
@@ -129,11 +123,6 @@ export class App {
       log('n-app: initializing <debug>')
     } else {
       log(`n-app: initializing`)
-    }
-
-    if (this.disableActions) {
-      commonState.actionsEnabled = false
-      return
     }
 
     this.listener = new AppActionListener()

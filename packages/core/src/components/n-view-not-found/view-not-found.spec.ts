@@ -143,7 +143,7 @@ describe('n-view-not-found', () => {
       </n-views>
     `)
 
-    const app = page.root as HTMLRouterElement
+    const app = page.root as HTMLNViewsElement
     expect(app).not.toBeUndefined()
     const router = navigationState.router!
 

@@ -18,7 +18,6 @@ import { ViewLink } from './view-link'
 
 describe('n-view-link', () => {
   beforeEach(() => {
-    commonState.actionsEnabled = true
     commonState.dataEnabled = true
   })
   afterEach(() => {

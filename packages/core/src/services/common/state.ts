@@ -7,7 +7,6 @@ class StateModel {
   analyticsEnabled!: boolean
   dataEnabled!: boolean
   elementsEnabled!: boolean
-  actionsEnabled!: boolean
   routingEnabled!: boolean
   audioEnabled!: boolean
 }
@@ -17,7 +16,6 @@ const store = createStore<StateModel>({
   analyticsEnabled: false,
   dataEnabled: false,
   elementsEnabled: false,
-  actionsEnabled: true,
   routingEnabled: false,
   audioEnabled: false,
 })

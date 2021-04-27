@@ -16,7 +16,6 @@ import { View } from './view'
 
 describe('n-view', () => {
   beforeEach(() => {
-    commonState.actionsEnabled = true
     commonState.dataEnabled = true
   })
   afterEach(() => {

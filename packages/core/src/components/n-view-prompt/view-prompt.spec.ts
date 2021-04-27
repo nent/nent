@@ -26,7 +26,6 @@ describe('n-view-prompt', () => {
   beforeEach(async () => {
     dataState.enabled = true
     commonState.dataEnabled = true
-    commonState.actionsEnabled = true
     commonState.elementsEnabled = true
     storage = new InMemoryProvider()
     addDataProvider('storage', storage)

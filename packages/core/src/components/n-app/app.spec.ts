@@ -45,22 +45,6 @@ describe('n-app', () => {
     page.root?.remove()
   })
 
-  it('renders without actions', async () => {
-    const page = await newSpecPage({
-      components: [App],
-      html: `<n-app disable-actions></n-app>`,
-    })
-    expect(page.root).toEqualHtml(`
-      <n-app disable-actions="">
-      </n-app>
-    `)
-
-    expect(actionBus.events['*'].length).toBe(0)
-    expect(eventBus.events['*'].length).toBe(0)
-
-    page.root?.remove()
-  })
-
   it('actions and events are delegated to DOM', async () => {
     const page = await newSpecPage({
       components: [App],
