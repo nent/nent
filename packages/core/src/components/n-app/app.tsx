@@ -1,5 +1,6 @@
 import {
   Component,
+  Element,
   Event,
   EventEmitter,
   h,
@@ -12,6 +13,7 @@ import {
   EventAction,
   eventBus,
 } from '../../services/actions'
+import { performLoadElementManipulation } from '../../services/common/elements'
 import { debugIf, log } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import { AppActionListener } from './services/actions'
@@ -38,6 +40,8 @@ export class App {
   private eventSubscription!: () => void
   private actionsSubscription!: () => void
   private listener!: AppActionListener
+
+  @Element() el!: HTMLNAppElement
 
   /**
    * The application name
@@ -160,6 +164,9 @@ export class App {
      <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
     */
     log('n-app: initialized')
+    if (commonState.elementsEnabled) {
+      performLoadElementManipulation(this.el.ownerDocument.body)
+    }
   }
 
   // private getManifestString() {

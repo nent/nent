@@ -1,68 +1,96 @@
-import { Component, Element, h, Host, State } from '@stencil/core'
-import { eventBus } from '../../services/actions'
 import {
-  MatchResults,
-  ROUTE_EVENTS,
-} from '../n-views/services/interfaces'
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core'
+import { eventBus } from '../../services/actions'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { Route } from '../n-views/services/route'
 import {
   navigationState,
   onNavigationChange,
 } from '../n-views/services/state'
 
+/**
+ *
+ * @system routing
+ */
 @Component({
   tag: 'n-view-link-back',
   styles: 'n-view-link-back { display: inline-block; }',
   shadow: false,
 })
-export class NViewLinkBack {
+export class ViewLinkBack {
+  private matchSubscription?: () => void
   @Element() el!: HTMLNViewLinkBackElement
   @State() route: Route | null = null
-  @State() back: Route | null = null
-  @State() match: MatchResults | null = null
-  private matchSubscription?: () => void
-  private finalizeSubscription?: () => void
+  @State() title?: string
 
-  async componentWillLoad() {
-    if (navigationState.router) {
+  /**
+   * The link text
+   */
+  @Prop() text?: string
+
+  private get parentView() {
+    return this.el.closest('n-view')
+  }
+  private get parentViewPrompt() {
+    return this.el.closest('n-view-prompt')
+  }
+
+  componentWillLoad() {
+    const dispose = eventBus.on(
+      ROUTE_EVENTS.Initialized,
+      async () => {
+        await this.setupRoute()
+        dispose()
+      },
+    )
+  }
+
+  private async setupRoute() {
+    if (this.parentViewPrompt) {
+      this.route = this.parentViewPrompt!.route.previousRoute
+    } else if (this.parentView) {
+      this.route = this.parentView!.route.previousRoute
+    } else if (navigationState.router) {
       this.subscribe()
     } else {
       const routerSubscription = onNavigationChange(
         'router',
-        router => {
+        async router => {
           if (router) {
-            this.subscribe()
+            await this.subscribe()
             routerSubscription()
-          } else {
-            this.matchSubscription?.call(this)
           }
         },
       )
     }
   }
 
-  private subscribe() {
+  private async subscribe() {
     this.matchSubscription = eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
-      ({ route, match }: { route: Route; match: MatchResults }) => {
-        this.route = route
-        this.match = match
+      async ({ route }: { route: Route }) => {
+        this.route = route.previousRoute
+        this.title = await route.resolvedTitle()
       },
     )
-    this.route = navigationState.router?.exactRoute || null
-    this.match = navigationState.router?.exactRoute?.match || null
+    this.route =
+      navigationState.router?.exactRoute?.previousRoute || null
   }
 
-  async componentWillRender() {
-    //this.back = this.route ? await this.route?.previousRoute() : null
-  }
+  async componentWillRender() {}
 
   render() {
     return (
       <Host>
-        {this.back ? (
-          <a href={this.back.path}>
-            <slot></slot>
+        {this.route ? (
+          <a href={this.route.path} title={this.route.title}>
+            {this.text || this.route.title}
           </a>
         ) : null}
       </Host>
@@ -71,6 +99,5 @@ export class NViewLinkBack {
 
   disconnectedCallback() {
     this.matchSubscription?.call(this)
-    this.finalizeSubscription?.call(this)
   }
 }

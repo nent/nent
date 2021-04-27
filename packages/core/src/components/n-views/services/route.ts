@@ -6,6 +6,7 @@ import {
   hasToken,
   resolveTokens,
 } from '../../../services/data/tokens'
+import { getChildInputValidity } from '../../n-view-prompt/services/elements'
 import {
   IRoute,
   MatchResults,
@@ -15,7 +16,6 @@ import {
 import { RouterService } from './router'
 import { isAbsolute } from './utils/location'
 import {
-  getChildRoutes,
   getPossibleParentPaths,
   getSiblingRoutes,
 } from './utils/path'
@@ -26,18 +26,21 @@ export class Route implements IRoute {
   public match: MatchResults | null = null
   public scrollOnNextRender = false
   public previousMatch: MatchResults | null = null
-
+  public childRoutes: Route[] = []
   constructor(
     public router: RouterService,
     public routeElement: HTMLElement,
     public path: string,
-    private exact: boolean = true,
+    public parentRoute: Route | null = null,
+    public exact: boolean = true,
     public pageTitle: string = '',
     public transition: string | null = null,
     public scrollTopOffset: number = 0,
     matchSetter: (m: MatchResults | null) => void = () => {},
     private routeDestroy?: (self: Route) => void,
   ) {
+    this.router.routes.push(this)
+    this.parentRoute?.addChildRoute(this)
     this.subscription = router.eventBus.on(
       ROUTE_EVENTS.RouteChanged,
       () => {
@@ -62,6 +65,15 @@ export class Route implements IRoute {
       this,
     )
     matchSetter(this.match)
+  }
+
+  public addChildRoute(route: Route) {
+    this.childRoutes = [...this.childRoutes, route].sort((a, b) =>
+      a.routeElement.compareDocumentPosition(b.routeElement) &
+      Node.DOCUMENT_POSITION_FOLLOWING
+        ? -1
+        : 1,
+    )
   }
 
   public normalizeChildUrl(childUrl: string) {
@@ -157,7 +169,7 @@ export class Route implements IRoute {
     if (!this.pageTitle) return ''
     if (commonState.dataEnabled) {
       if (hasToken(this.pageTitle)) {
-        return await resolveTokens(this.pageTitle)
+        return (this._title = await resolveTokens(this.pageTitle))
       }
     }
     return this.pageTitle
@@ -173,28 +185,37 @@ export class Route implements IRoute {
     this.router.adjustTitle(pageTitle)
   }
 
-  public goBack() {
-    this.router.history.goBack()
+  public async goBack() {
+    const back = this.previousRoute
+    if (back) this.router.goToRoute(back.path)
+    else this.router.history.goBack()
   }
 
   public async goNext() {
-    const next = await this.nextRoute()
-    if (next) this.router.goToRoute(next.path)
+    const valid = getChildInputValidity(this.routeElement)
+    if (valid) {
+      const next = this.nextRoute
+      if (next) this.router.goToRoute(next.path)
+      else this.goToParentRoute()
+    }
   }
 
-  public async nextRoute(): Promise<Route | null> {
+  public get previousRoute(): Route | null {
     const siblings = this.getSiblingRoutes()
-    let next = siblings
-      .slice(this.siblingIndex() + 1)
-      .find(
-        r =>
-          r.routeElement.tagName == 'n-view' ||
-          (r.routeElement as HTMLNViewPromptElement).visit !=
-            'optional',
-      )
-    if (next) return next
-    const parents = await (await this.getParentRoutes()).reverse()
-    return parents[1] || parents[2]
+    let back =
+      this.siblingIndex > 0
+        ? siblings.slice(this.siblingIndex - 1)
+        : []
+    return back[0] || this.parentRoute
+  }
+
+  public get nextRoute(): Route | null {
+    if (this.routeElement.tagName == 'N-VIEW-PROMPT') {
+      return this.parentRoute
+    }
+    const siblings = this.getSiblingRoutes()
+    let next = siblings.slice(this.siblingIndex + 1)
+    return next[0] || this.parentRoute
   }
 
   public async getParentRoutes() {
@@ -217,22 +238,25 @@ export class Route implements IRoute {
   }
 
   public goToParentRoute() {
-    this.router.goToParentRoute()
+    if (this.parentRoute) {
+      this.goToRoute(this.parentRoute.path)
+    } else {
+      this.router.goToParentRoute()
+    }
   }
 
   public getSiblingRoutes() {
-    return getSiblingRoutes(this.path, this.router.routes)
+    const siblings = this.parentRoute?.childRoutes
+    return (
+      siblings ||
+      // TODO: remove once tested
+      getSiblingRoutes(this.path, this.router.routes)
+    )
   }
 
-  private siblingIndex() {
+  public get siblingIndex() {
     const siblings = this.getSiblingRoutes()
     return siblings.findIndex(p => p.path == this.path)
-  }
-
-  public async getChildRoutes() {
-    return getChildRoutes(this.path, this.router.routes).filter(
-      r => r.routeElement.tagName.toLocaleLowerCase() == 'n-view',
-    )
   }
 
   public goToRoute(path: string) {

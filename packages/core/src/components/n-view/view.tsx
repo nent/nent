@@ -25,6 +25,7 @@ import { resolveNext } from '../n-views/services/next'
 import { Route } from '../n-views/services/route'
 import { navigationState } from '../n-views/services/state'
 import { markVisit } from '../n-views/services/visits'
+import { IView } from './services/interfaces'
 
 /**
  * The View component holds a segment of content visible only when
@@ -48,7 +49,7 @@ import { markVisit } from '../n-views/services/visits'
   styleUrl: 'view.css',
   shadow: true,
 })
-export class View {
+export class View implements IView {
   private dataSubscription!: () => void
 
   @Element() el!: HTMLNViewElement
@@ -58,7 +59,9 @@ export class View {
   @State() contentElement: HTMLElement | null = null
   private contentKey?: string | null
   private routeKey?: string | null
-  private route!: Route
+
+  /** Route information */
+  @Prop({ mutable: true }) route!: Route
 
   /**
    * The title for this view. This is prefixed
@@ -252,7 +255,7 @@ export class View {
         this.route.replaceWithRoute(nextDo.path)
         return
       } else {
-        markVisit(this.match.url)
+        markVisit(this.match?.url)
         this.contentElement = await this.resolveContentElement()
       }
     }
@@ -342,7 +345,7 @@ export class View {
   async componentDidRender() {
     debugIf(this.debug, `n-view: ${this.path} did render`)
     await this.route?.loadCompleted()
-    if (!this.route.match?.isExact) {
+    if (!this.route?.match?.isExact) {
       this.contentElement?.remove()
       this.contentElement = null
     }

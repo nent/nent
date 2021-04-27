@@ -1,70 +1,110 @@
-import { Component, Element, h, Host, State } from '@stencil/core'
-import { eventBus } from '../../services/actions'
 import {
-  MatchResults,
-  ROUTE_EVENTS,
-} from '../n-views/services/interfaces'
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core'
+import { eventBus } from '../../services/actions'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { Route } from '../n-views/services/route'
 import {
   navigationState,
   onNavigationChange,
 } from '../n-views/services/state'
 
+/**
+ * This element will automatically go to the next
+ * view in the view.
+ * @system routing
+ */
 @Component({
   tag: 'n-view-link-next',
   styles: 'n-view-link-next { display: inline-block; }',
   shadow: false,
 })
-export class NViewLinkNext {
+export class ViewLinkNext {
+  private matchSubscription?: () => void
   @Element() el!: HTMLNViewLinkNextElement
   @State() route: Route | null = null
-  @State() next: Route | null = null
-  @State() match: MatchResults | null = null
-  private matchSubscription?: () => void
-  private finalizeSubscription?: () => void
+  @State() title?: string
 
-  async componentWillLoad() {
-    if (navigationState.router) {
+  /**
+   * The link text
+   */
+  @Prop() text?: string
+
+  private get parentView() {
+    return this.el.closest('n-view')
+  }
+
+  private get parentViewPrompt() {
+    return this.el.closest('n-view-prompt')
+  }
+
+  componentWillLoad() {
+    const dispose = eventBus.on(
+      ROUTE_EVENTS.Initialized,
+      async () => {
+        await this.setupRoute()
+        dispose()
+      },
+    )
+  }
+
+  private async setupRoute() {
+    if (this.parentViewPrompt) {
+      this.route = this.parentViewPrompt!.route.nextRoute
+    } else if (this.parentView) {
+      this.route = this.parentView!.route.nextRoute
+    } else if (navigationState.router) {
       this.subscribe()
     } else {
       const routerSubscription = onNavigationChange(
         'router',
-        router => {
+        async router => {
           if (router) {
-            this.subscribe()
+            await this.subscribe()
             routerSubscription()
-          } else {
-            this.matchSubscription?.call(this)
           }
         },
       )
     }
   }
 
-  private subscribe() {
+  private async subscribe() {
     this.matchSubscription = eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
-      ({ route, match }: { route: Route; match: MatchResults }) => {
-        this.route = route
-        this.match = match
+      async ({ route }: { route: Route }) => {
+        this.route = route.nextRoute
+        this.title = await route.resolvedTitle()
       },
     )
-    this.route = navigationState.router?.exactRoute || null
-    this.match = navigationState.router?.exactRoute?.match || null
+    this.route = navigationState.router?.exactRoute?.nextRoute || null
   }
 
-  async componentWillRender() {
-    if (this.route) {
-      this.next = (await this.route!.nextRoute()) || null
-    }
-  }
+  async componentWillRender() {}
 
   render() {
     return (
       <Host>
-        {this.next ? (
-          <a href={this.next.path}>
-            <slot>{this.next.title}</slot>
+        {this.route ? (
+          <a
+            onClick={e => {
+              e.preventDefault()
+              this.route?.goNext()
+            }}
+            onKeyPress={e => {
+              e.preventDefault()
+              this.route?.goNext()
+            }}
+            href={this.route.path}
+            title={this.route.title}
+            n-attached-click
+            n-attached-key-press
+          >
+            {this.text || this.route.title}
           </a>
         ) : null}
       </Host>
@@ -73,6 +113,5 @@ export class NViewLinkNext {
 
   disconnectedCallback() {
     this.matchSubscription?.call(this)
-    this.finalizeSubscription?.call(this)
   }
 }

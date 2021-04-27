@@ -3,7 +3,6 @@ import {
   Element,
   h,
   Host,
-  Method,
   Prop,
   State,
 } from '@stencil/core'
@@ -19,6 +18,7 @@ import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveRemoteContent } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
+import { IView } from '../n-view/services/interfaces'
 import {
   MatchResults,
   VisitStrategy,
@@ -26,7 +26,6 @@ import {
 import { Route } from '../n-views/services/route'
 import { navigationState } from '../n-views/services/state'
 import { recordVisit } from '../n-views/services/visits'
-import { getChildInputValidity } from './services'
 
 /**
  * This element represents a specialized child-route for a parent \<n-view\> component.
@@ -43,13 +42,16 @@ import { getChildInputValidity } from './services'
   styleUrl: 'view-prompt.css',
   shadow: true,
 })
-export class ViewPrompt {
+export class ViewPrompt implements IView {
   private dataSubscription!: () => void
-  private route!: Route
+
   @Element() el!: HTMLNViewPromptElement
   @State() match: MatchResults | null = null
   @State() contentElement: HTMLElement | null = null
   private contentKey?: string | null
+
+  /** Route information */
+  @Prop({ mutable: true }) route!: Route
 
   /**
    * The title for this view. This is prefixed
@@ -186,39 +188,6 @@ export class ViewPrompt {
     )
   }
 
-  /**
-   */
-  @Method()
-  public async back(element: string, eventName: string) {
-    debugIf(
-      this.debug,
-      `n-view-prompt: ${this.route.path} back fired from ${element}:${eventName}`,
-    )
-    this.route.goBack()
-  }
-
-  /**
-   */
-  @Method()
-  public async next(
-    element: string,
-    eventName: string,
-    path?: string | null,
-  ) {
-    debugIf(
-      this.debug,
-      `n-view-prompt: ${this.route.path} next fired from ${element}:${eventName}`,
-    )
-    const valid = getChildInputValidity(this.el)
-    if (valid) {
-      if (path) {
-        this.route.goToRoute(path)
-      } else {
-        this.route.goToParentRoute()
-      }
-    }
-  }
-
   async componentWillRender() {
     debugIf(this.debug, `n-view-prompt: ${this.path} will render`)
 
@@ -278,7 +247,7 @@ export class ViewPrompt {
 
   async componentDidRender() {
     await this.route?.loadCompleted()
-    if (!this.route.match?.isExact) {
+    if (!this.route?.match?.isExact) {
       this.contentElement?.remove()
       this.contentElement = null
     }
@@ -286,6 +255,6 @@ export class ViewPrompt {
 
   disconnectedCallback() {
     this.dataSubscription?.call(this)
-    this.route.destroy()
+    this.route?.destroy()
   }
 }

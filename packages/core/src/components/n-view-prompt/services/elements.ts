@@ -1,12 +1,16 @@
 export function getChildInputValidity(rootElement: HTMLElement) {
-  let valid = true
-  const inputElements = rootElement.querySelectorAll('*:enabled')
-  inputElements.forEach(i => {
-    const input = i as HTMLInputElement
-    input.blur?.call(i)
-    if (input.reportValidity?.call(input) === false) {
-      valid = false
+  let invalid = false
+  const inputElements = [
+    ...Array.from(rootElement.querySelectorAll('input')),
+    ...Array.from(rootElement.querySelectorAll('textarea')),
+    ...Array.from(rootElement.querySelectorAll('select')),
+    ...Array.from(rootElement.querySelectorAll('*[n-validate]')),
+  ]
+  inputElements.forEach((i: any) => {
+    if (i.checkValidity?.call(i) === false) {
+      i.reportValidity?.call(i)
+      invalid = true
     }
   })
-  return valid
+  return invalid == false
 }

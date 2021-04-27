@@ -14,7 +14,7 @@
   <ul
     class="component-list list-group btn-group-xl float-end ms-1 d-none d-sm-block">
     <li class="list-group-item fw-bold text-capitalize"> Routing Elements </li>
-    <n-content-repeat items-src="/lib/components.json"
+    <n-content-repeat items-src="/dist/components.json"
       filter="components[docsTags[name='system' and text='routing']]">
       <template>
         <li class="list-group-item">
@@ -44,12 +44,13 @@
   <n-view-prompt path="/routing/dynamic/custom"
     page-title="Custom Selection"
     content-src="/pages/routing/dynamic/custom.html"
-    visit="optional">
+    when="!{{storage:favorite}}">
   </n-view-prompt>
   <n-view path="/routing/dynamic/item/:item"
     page-title="Data Route: {{route:item}}"
     resolve-tokens
     content-src="/pages/routing/dynamic/child.html">
+
   </n-view>
 </n-view>
 <n-view path="/routing/navigation"

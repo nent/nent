@@ -60,8 +60,8 @@ export interface IRoute {
     AtTime: ActionActivationStrategy,
     filter: (activator: any) => boolean,
   ): Promise<void>
-  goBack(): void
-  goNext(): void
+  goBack(): Promise<void>
+  goNext(): Promise<void>
   goToRoute(path: string): void
   goToParentRoute(): void
 }
@@ -86,11 +86,6 @@ export type NavigateTo = {
 export const NAVIGATION_TOPIC = 'navigation'
 
 export type NavigateNext = Record<string, unknown>
-
-export interface NextState {
-  action: string
-  location: LocationSegments
-}
 
 export enum VisitStrategy {
   once = 'once',

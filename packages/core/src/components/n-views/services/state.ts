@@ -7,7 +7,7 @@ class StateModel {
   storageProvider!: string
   storedVisits!: string[]
   sessionVisits!: string[]
-  router?: RouterService | null
+  router!: RouterService | null
 }
 
 const store = createStore<StateModel>({

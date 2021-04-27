@@ -319,6 +319,7 @@ export class RouterService {
     this.removeHandler()
     this.listener.destroy()
     this.history.destroy()
+    this.routes.forEach(r => r.destroy())
   }
 
   public createRoute(
@@ -334,9 +335,7 @@ export class RouterService {
       scrollTopOffset,
     } = routeElement
 
-    const parent = parentElement?.path
-      ? this.routes.find(r => r.path == parentElement?.path) || null
-      : null
+    const parent = parentElement?.route || null
     if (parent) {
       path = this.normalizeChildUrl(routeElement.path, parent.path)
       transition = transition || parent?.transition || transition
@@ -354,6 +353,7 @@ export class RouterService {
       this,
       routeElement,
       routeElement.path,
+      parent,
       exact,
       pageTitle || parent?.pageTitle,
       routeElement.transition,
@@ -363,7 +363,6 @@ export class RouterService {
         this.routes = this.routes.filter(r => r == route)
       },
     )
-    this.routes.push(route)
     return route
   }
 }

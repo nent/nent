@@ -125,7 +125,6 @@ describe('n-views', () => {
     </h1>
   </n-views>`)
 
-    const app = page.body.querySelector('n-views')
     const router = navigationState?.router
 
     expect(router!.history.location.pathname).toBe('/home')

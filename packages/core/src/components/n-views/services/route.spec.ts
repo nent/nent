@@ -57,6 +57,7 @@ describe('route', () => {
       router,
       page.body,
       '/route',
+      null,
       true,
       'Page',
       null,
@@ -118,6 +119,7 @@ describe('route', () => {
       router,
       routeElement,
       '/route',
+      null,
       true,
       'Page',
       null,
@@ -147,6 +149,7 @@ describe('route', () => {
       router,
       routeElement,
       '/route/:product',
+      null,
       true,
       '{{route:product}}',
       null,
@@ -220,6 +223,7 @@ describe('route', () => {
       router,
       routeElement,
       '/route',
+      null,
       true,
       'Page',
       null,
@@ -264,5 +268,82 @@ describe('route', () => {
     anchor?.click()
 
     subject.destroy()
+  })
+
+  it('parent, next and back routes', async () => {
+    page = await newSpecPage({
+      components: [],
+      html: `<div id="parent">
+        <div id="a"></div>
+        <div id="b"></div>
+        <div id="c"></div>
+        <div id="d"></div>
+      </div>`,
+    })
+    router = new RouterService(
+      page.win,
+      writeTask,
+      eventBus,
+      actionBus,
+    )
+    const routeElement = page.body.querySelector(
+      'div#parent',
+    ) as HTMLElement
+
+    let parent = new Route(router, routeElement, '/route')
+
+    let a = new Route(
+      router,
+      routeElement.querySelector('#a') as HTMLElement,
+      '/a',
+      parent,
+    )
+
+    let b = new Route(
+      router,
+      routeElement.querySelector('#b') as HTMLElement,
+      '/b',
+      parent,
+    )
+
+    let c = new Route(
+      router,
+      routeElement.querySelector('#c') as HTMLElement,
+      '/c',
+      parent,
+    )
+
+    let d = new Route(
+      router,
+      routeElement.querySelector('#d') as HTMLElement,
+      '/d',
+      parent,
+    )
+
+    expect(a.parentRoute).toBe(parent)
+    expect(a.siblingIndex).toBe(0)
+
+    expect(b.parentRoute).toBe(parent)
+    expect(b.siblingIndex).toBe(1)
+
+    expect(c.parentRoute).toBe(parent)
+    expect(c.siblingIndex).toBe(2)
+
+    expect(d.parentRoute).toBe(parent)
+    expect(d.siblingIndex).toBe(3)
+
+    expect(a.previousRoute?.path).toBe(parent.path)
+    expect(a.nextRoute?.path).toBe(b.path)
+
+    expect(b.previousRoute?.path).toBe(a.path)
+    expect(b.nextRoute?.path).toBe(c.path)
+
+    expect(c.previousRoute?.path).toBe(b.path)
+    expect(c.nextRoute?.path).toBe(d.path)
+
+    expect(d.previousRoute?.path).toBe(c.path)
+    expect(d.nextRoute?.path).toBe(parent.path)
+
+    router.destroy()
   })
 })

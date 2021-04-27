@@ -109,7 +109,7 @@ export class ViewLinkList {
       case 'siblings':
         return this.route?.getSiblingRoutes() || null
       case 'children':
-        return this.route?.getChildRoutes() || null
+        return this.route?.childRoutes || null
     }
   }
 

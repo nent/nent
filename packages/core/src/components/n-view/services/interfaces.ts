@@ -1,4 +1,5 @@
+import { Route } from '../../n-views/services/route'
+
 export interface IView {
-  next(): Promise<void>
-  back(): Promise<void>
+  route: Route
 }

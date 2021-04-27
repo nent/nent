@@ -3,11 +3,11 @@ import { dataState } from '../../../services/data/state'
 import { IViewPrompt, VisitStrategy } from './interfaces'
 import { hasVisited } from './visits'
 
-export async function applyViewPredicate(
+export async function getViewPromptStateProperties(
   viewPrompt: IViewPrompt,
 ): Promise<IViewPrompt> {
-  let { when, path: url, visit = VisitStrategy.once } = viewPrompt
-  let visited = await hasVisited(url)
+  let { when, path, visit = VisitStrategy.once } = viewPrompt
+  let visited = await hasVisited(path)
   if (dataState.enabled && when) {
     const shouldGo = await evaluatePredicate(when)
     if (shouldGo) {
@@ -17,7 +17,7 @@ export async function applyViewPredicate(
       visit = VisitStrategy.optional
     }
   }
-  return { when, visit, visited, path: url }
+  return { when, visit, visited, path }
 }
 
 async function findFirstUnvisited(
@@ -33,7 +33,7 @@ export async function resolveNext(
   childViewDos: Array<IViewPrompt>,
 ): Promise<IViewPrompt | null> {
   const converted = await Promise.all(
-    childViewDos.map(e => applyViewPredicate(e)),
+    childViewDos.map(e => getViewPromptStateProperties(e)),
   )
 
   const result = findFirstUnvisited(converted)
