@@ -2,7 +2,7 @@
   "name": "nent",
   "version": "0.5.0",
   "displayName": "NENT",
-  "description": "Add nent html-element hinting, snippets and autocomplete for HTML files. Learn more about building web application directly with HTML here: https://nent.dev",
+  "description": "Add NENT HTML-element hinting, snippets and autocomplete for HTML files. Learn more about building web application directly with HTML here: https://nent.dev",
   "author": "support <support@nent.dev> (https://nent.dev)",
   "homepage": "https://nent.dev",
   "license": "MIT",
@@ -10,7 +10,7 @@
   "icon": "logo.png",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nent/nent.git",
+    "url": "https://github.com/nent/nent.git",
     "directory": "packages/vscode"
   },
   "private": false,
@@ -39,7 +39,8 @@
   ],
   "scripts": {
     "prebuild": "cp ../core/dist/custom-elements.json ./nent.html-data.json",
-    "build": "vsce package -o ./dist"
+    "build": "vsce package -o ./dist",
+    "publish": "vsce publish"
   },
   "engines": {
     "vscode": "^1.10.0"

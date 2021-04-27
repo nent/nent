@@ -44,7 +44,7 @@
     ":workspace ---": "---------------",
     "ws:core": "yarn workspace @nent/core",
     "ws:docs": "yarn workspace @nent/docs",
-    "ws:vscode": "yarn workspace @nent/vscode",
+    "ws:vscode": "yarn workspace nent",
     ":auto ---": "------------",
     "clean": "lerna clean && run-p clean:core clean:docs",
     "clean:core": "yarn ws:core run prebuild",
