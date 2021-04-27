@@ -59,13 +59,20 @@ Using the [\<n-app-analytics\>](/components/n-app-analytics) is simple, but does
 
 
 
+## Properties
+
+| Property | Attribute | Description                                                                               | Type      | Default |
+| -------- | --------- | ----------------------------------------------------------------------------------------- | --------- | ------- |
+| `debug`  | `debug`   | Turn on debugging to get helpful messages from the app, routing, data and action systems. | `boolean` | `false` |
+
+
 ## Events
 
-| Event          | Description              | Type               |
-| -------------- | ------------------------ | ------------------ |
-| `custom-event` | Raised analytics events. | `CustomEvent<any>` |
-| `page-view`    | Page views.              | `CustomEvent<any>` |
-| `view-time`    | View percentage views.   | `CustomEvent<any>` |
+| Event          | Description              | Type                            |
+| -------------- | ------------------------ | ------------------------------- |
+| `custom-event` | Raised analytics events. | `CustomEvent<any>`              |
+| `page-view`    | Page views.              | `CustomEvent<LocationSegments>` |
+| `view-time`    | View percentage views.   | `CustomEvent<ViewTime>`         |
 
 
 ----------------------------------------------

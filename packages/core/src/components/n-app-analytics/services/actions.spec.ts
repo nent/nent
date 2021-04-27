@@ -31,6 +31,30 @@ describe('analytics-listener', () => {
     expect(result).toBe(subject)
   })
 
+  it('empty handlers', async () => {
+    subject = new AnalyticsActionListener(actionBus, eventBus)
+
+    actionBus.emit(ANALYTICS_TOPIC, {
+      topic: ANALYTICS_TOPIC,
+      command: ANALYTICS_COMMANDS.SendViewTime,
+      data: {},
+    })
+
+    actionBus.emit(ANALYTICS_TOPIC, {
+      topic: ANALYTICS_TOPIC,
+      command: ANALYTICS_COMMANDS.SendPageView,
+      data: {},
+    })
+
+    actionBus.emit(ANALYTICS_TOPIC, {
+      topic: ANALYTICS_TOPIC,
+      command: ANALYTICS_COMMANDS.SendEvent,
+      data: {},
+    })
+
+    subject.destroy()
+  })
+
   it('handleViewTime: registers listeners event: view-time', async () => {
     subject = new AnalyticsActionListener(actionBus, eventBus)
 
