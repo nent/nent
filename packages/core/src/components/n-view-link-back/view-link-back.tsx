@@ -42,16 +42,17 @@ export class ViewLinkBack {
   }
 
   componentWillLoad() {
-    const dispose = eventBus.on(
-      ROUTE_EVENTS.Initialized,
-      async () => {
-        await this.setupRoute()
+    if (navigationState.router) {
+      this.setupRoute()
+    } else {
+      const dispose = eventBus.on(ROUTE_EVENTS.RouteFinalized, () => {
+        this.setupRoute()
         dispose()
-      },
-    )
+      })
+    }
   }
 
-  private async setupRoute() {
+  private setupRoute() {
     if (this.parentViewPrompt) {
       this.route = this.parentViewPrompt!.route.previousRoute
     } else if (this.parentView) {
@@ -61,9 +62,9 @@ export class ViewLinkBack {
     } else {
       const routerSubscription = onNavigationChange(
         'router',
-        async router => {
+        router => {
           if (router) {
-            await this.subscribe()
+            this.subscribe()
             routerSubscription()
           }
         },
@@ -71,7 +72,7 @@ export class ViewLinkBack {
     }
   }
 
-  private async subscribe() {
+  private subscribe() {
     this.matchSubscription = eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
       async ({ route }: { route: Route }) => {
@@ -82,8 +83,6 @@ export class ViewLinkBack {
     this.route =
       navigationState.router?.exactRoute?.previousRoute || null
   }
-
-  async componentWillRender() {}
 
   render() {
     return (

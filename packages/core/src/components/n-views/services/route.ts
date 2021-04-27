@@ -15,10 +15,7 @@ import {
 } from './interfaces'
 import { RouterService } from './router'
 import { isAbsolute } from './utils/location'
-import {
-  getPossibleParentPaths,
-  getSiblingRoutes,
-} from './utils/path'
+import { getPossibleParentPaths } from './utils/path'
 import { matchesAreEqual } from './utils/path-match'
 
 export class Route implements IRoute {
@@ -185,13 +182,13 @@ export class Route implements IRoute {
     this.router.adjustTitle(pageTitle)
   }
 
-  public async goBack() {
+  public goBack() {
     const back = this.previousRoute
     if (back) this.router.goToRoute(back.path)
     else this.router.history.goBack()
   }
 
-  public async goNext() {
+  public goNext() {
     const valid = getChildInputValidity(this.routeElement)
     if (valid) {
       const next = this.nextRoute
@@ -246,17 +243,22 @@ export class Route implements IRoute {
   }
 
   public getSiblingRoutes() {
-    const siblings = this.parentRoute?.childRoutes
-    return (
-      siblings ||
-      // TODO: remove once tested
-      getSiblingRoutes(this.path, this.router.routes)
-    )
+    const siblings =
+      this.parentRoute?.childRoutes ||
+      this.router.routes
+        .filter(r => r.parentRoute == null)
+        .sort((a, b) =>
+          a.routeElement.compareDocumentPosition(b.routeElement) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+            ? -1
+            : 1,
+        )
+    return siblings
   }
 
   public get siblingIndex() {
     const siblings = this.getSiblingRoutes()
-    return siblings.findIndex(p => p.path == this.path)
+    return siblings?.findIndex(p => p.path == this.path) || 0
   }
 
   public goToRoute(path: string) {

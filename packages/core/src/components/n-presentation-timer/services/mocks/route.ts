@@ -13,8 +13,8 @@ export class MockRoute implements IRoute {
   public path: string = 'fake'
   public match: MatchResults | null = null
   public scrollOnNextRender = false
-  async goNext(): Promise<void> {}
-  async goBack(): Promise<void> {}
+  goNext(): void {}
+  goBack(): void {}
   goToParentRoute(): void {}
   public previousMatch: MatchResults | null = null
 

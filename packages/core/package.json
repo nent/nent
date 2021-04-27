@@ -43,7 +43,7 @@
     "new": "stencil generate",
     "copy": "run-s copy:dist copy:docs",
     "copy:dist": "copyfiles dist/* dist/**/*.* ../../docs",
-    "copy:docs": "cd docs && copyfiles components/* ../../../docs/pages",
+    "copy:docs": "cd docs && copyfiles components/*  components/**/*.* ../../../docs/pages",
     "watch": "npm-watch",
     "--- production ---": "---------------",
     "prebuild": "rm -fR ./dist",

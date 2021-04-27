@@ -2,7 +2,6 @@
 
 import { isValue } from '../../../../services/common'
 import { LocationSegments } from '../interfaces'
-import { Route } from '../route'
 
 /**
  * Ensures basename
@@ -168,47 +167,4 @@ export function getParentPath(path: string) {
   const parents = getPossibleParentPaths(path)
   if (parents.length >= 2) return parents.reverse()[1]
   return null
-}
-
-// export function getParentRoutes(route: Route, routes: Route[]) {}
-
-/**
- * Get all sibling paths from a path
- */
-export function getSiblingRoutes(path: string, routes: Route[]) {
-  if (!isValue(path)) return []
-  const segments = (url: string) => {
-    return url.split('/').length
-  }
-  const parent = getParentPath(path)
-  if (!isValue(parent)) return []
-  const level = segments(path)
-  const siblings = routes.filter(
-    r => r.path.startsWith(parent!) && segments(r.path) == level,
-  )
-
-  return siblings.sort((a, b) =>
-    a.routeElement.compareDocumentPosition(b.routeElement) &
-    Node.DOCUMENT_POSITION_FOLLOWING
-      ? -1
-      : 1,
-  )
-}
-
-export function getChildRoutes(path: string, routes: Route[]) {
-  if (!isValue(path)) return []
-  const segments = (url: string) => {
-    return url.split('/').length
-  }
-  const level = segments(path)
-  const siblings = routes.filter(
-    r => r.path.startsWith(path!) && segments(r.path) == level + 1,
-  )
-
-  return siblings.sort((a, b) =>
-    a.routeElement.compareDocumentPosition(b.routeElement) &
-    Node.DOCUMENT_POSITION_FOLLOWING
-      ? -1
-      : 1,
-  )
 }

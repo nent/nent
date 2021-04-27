@@ -13,31 +13,16 @@
   </n-content-markdown>
   <h3>Then: Add Script References</h3>
   <p>Add the following script tags to the head:</p>
-  <n-content-markdown>
-    <script type="text/markdown">
-    ```html
-    <head>
-    <scrip+
-      type="module"
-      src="/node_modules/@nent/core/dist/nent.esm.js">
-    </scrip+>
-    <scrip+>
-      nomodule
-      src = "/node_modules/@nent/core/dist/nent.js">
-    </scrip+>
-    </head>
-    ```
-    </script>
+  <n-content-markdown src="/pages/start/install-npm.md">
   </n-content-markdown>
   <p class="note">Only one of these scripts are imported. Which depends on the
     browser's support for ESM modules.</p>
   <footer>
-    <a slot="start"
-      href="/start/select"
-      class="btn btn-secondary">&lt; Back</a>
+    <n-view-link-back slot="start"
+      class="btn btn-secondary"></n-view-link-back>
     <n-view-link-next slot="end"
-      class="btn btn-secondary">Developing &gt;
-    </n-view-link-next>
+      class="btn btn-secondary"
+      text="Next &gt;"></n-view-link-next>
   </footer>
   <n-action-activator activate="on-enter">
     <n-action topic="storage"

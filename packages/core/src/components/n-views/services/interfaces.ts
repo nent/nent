@@ -60,8 +60,8 @@ export interface IRoute {
     AtTime: ActionActivationStrategy,
     filter: (activator: any) => boolean,
   ): Promise<void>
-  goBack(): Promise<void>
-  goNext(): Promise<void>
+  goBack(): void
+  goNext(): void
   goToRoute(path: string): void
   goToParentRoute(): void
 }

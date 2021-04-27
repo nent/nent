@@ -12,22 +12,24 @@ import { getTimeDetails } from '../../n-presentation/services/time'
 
 export class FrameTimer extends EventEmitter implements ITimer {
   private timer: number = 0
+  private start: number = 0
   debouncedInterval: Function
   constructor(
     private provider: AnimationFrameProvider,
     private interval: number,
     public duration: number,
-    public start = performance.now(),
+    public getStart: () => number = performance.now,
     private onInterval: null | (() => void) = null,
     private debug: boolean = false,
   ) {
     super()
+    this.start = this.getStart()
 
     debugIf(
       this.debug,
       `presentation-timer: starting timer w/ ${duration} duration`,
     )
-    this.currentTime = getTimeDetails(start, 0, duration)
+    this.currentTime = getTimeDetails(this.start, 0, duration)
 
     if (this.interval > 0)
       this.debouncedInterval = throttle(
@@ -54,7 +56,7 @@ export class FrameTimer extends EventEmitter implements ITimer {
 
   public begin() {
     if (this.timer) this.stop()
-    this.start = performance.now()
+    this.start = this.getStart()
     this.provider.requestAnimationFrame(current => {
       this.doInterval(current)
     })
@@ -69,11 +71,21 @@ export class FrameTimer extends EventEmitter implements ITimer {
 
     if (
       this.duration > 0 &&
-      this.currentTime.elapsed >= this.duration
+      this.currentTime.elapsed > this.duration
     ) {
       this.stop()
+      this.currentTime = getTimeDetails(
+        this.start,
+        this.duration * 1000,
+        this.duration,
+      )
       this.emit(TIMER_EVENTS.OnEnd, this.currentTime)
     } else {
+      this.currentTime = getTimeDetails(
+        this.start,
+        time,
+        this.duration,
+      )
       this.emit(TIMER_EVENTS.OnInterval, this.currentTime)
       await this.debouncedInterval()
     }

@@ -6,16 +6,14 @@ import { FrameTimer } from './timer'
 
 describe('frame-timer', () => {
   let subject: FrameTimer
-  const animationFrameProvider = new MockRequestAnimationFrameProvider()
 
-  beforeEach(() => {
-    animationFrameProvider.reset()
-  })
+  beforeEach(() => {})
 
   it('emits time, calculates currentTime, and ends on time.', async () => {
     const intervals: Array<number> = []
     let ended = false
-    subject = new FrameTimer(animationFrameProvider, 0, 60, 0)
+    const animationFrameProvider = new MockRequestAnimationFrameProvider()
+    subject = new FrameTimer(animationFrameProvider, 0, 60, () => 0)
     subject.on(TIMER_EVENTS.OnInterval, (time: number) => {
       intervals.push(time)
     })
@@ -34,13 +32,15 @@ describe('frame-timer', () => {
     expect(intervals.length).toBe(2)
 
     animationFrameProvider.triggerNextAnimationFrame(60001)
-    expect(subject.currentTime!.minutes).toBe(1)
     expect(subject.currentTime!.elapsed).toBe(60)
+    expect(subject.currentTime!.minutes).toBe(1)
 
     animationFrameProvider.triggerNextAnimationFrame(65000)
-    expect(subject.currentTime!.minutes).toBe(1)
     expect(subject.currentTime!.elapsed).toBe(60)
+    expect(subject.currentTime!.minutes).toBe(1)
 
     expect(ended).toBeTruthy()
+    animationFrameProvider.reset()
+    subject.destroy()
   })
 })

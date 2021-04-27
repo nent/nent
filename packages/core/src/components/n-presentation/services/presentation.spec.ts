@@ -35,7 +35,12 @@ describe('presentation-service', () => {
       `,
     })
     const animationFrameProvider = new MockRequestAnimationFrameProvider()
-    const timer = new FrameTimer(animationFrameProvider, 0, 60, 0)
+    const timer = new FrameTimer(
+      animationFrameProvider,
+      0,
+      60,
+      () => 0,
+    )
 
     subject = new PresentationService(page.body, timer, true)
 
@@ -97,7 +102,12 @@ describe('presentation-service', () => {
       `,
     })
     const animationFrameProvider = new MockRequestAnimationFrameProvider()
-    const timer = new FrameTimer(animationFrameProvider, 0, 60)
+    const timer = new FrameTimer(
+      animationFrameProvider,
+      0,
+      60,
+      () => 0,
+    )
 
     subject = new PresentationService(page.body, timer, true)
     subject.beginTimer()
@@ -119,7 +129,7 @@ describe('presentation-service', () => {
       `,
     })
     const animationFrameProvider = new MockRequestAnimationFrameProvider()
-    const timer = new FrameTimer(animationFrameProvider, 0, 0, 0)
+    const timer = new FrameTimer(animationFrameProvider, 0, 0)
 
     const route = new MockRoute()
 
@@ -160,7 +170,12 @@ describe('presentation-service', () => {
     })
 
     const animationFrameProvider = new MockRequestAnimationFrameProvider()
-    const timer = new FrameTimer(animationFrameProvider, 0, 10)
+    const timer = new FrameTimer(
+      animationFrameProvider,
+      0,
+      10,
+      () => 0,
+    )
 
     subject = new PresentationService(page.body, timer, true)
     subject.beginTimer()
@@ -221,7 +236,12 @@ describe('presentation-service', () => {
     })
 
     const animationFrameProvider = new MockRequestAnimationFrameProvider()
-    const timer = new FrameTimer(animationFrameProvider, 0, 10, 0)
+    const timer = new FrameTimer(
+      animationFrameProvider,
+      0,
+      10,
+      () => 0,
+    )
 
     listener.initialize(page.win, actionBus, eventBus)
 
