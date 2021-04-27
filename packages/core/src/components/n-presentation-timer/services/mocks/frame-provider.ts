@@ -5,11 +5,12 @@ export class MockRequestAnimationFrameProvider
   handleCounter = 0
   queue = new Map()
 
-  requestAnimationFrame(callback: { (): void; (): void }) {
+  requestAnimationFrame(callback: FrameRequestCallback) {
     const handle = this.handleCounter++
     this.queue.set(handle, callback)
     return handle
   }
+
   cancelAnimationFrame(handle: number) {
     this.queue.delete(handle)
   }

@@ -1,5 +1,5 @@
 import { EventEmitter } from '../../../services/common/emitter'
-import { warn } from '../../../services/common/logging'
+import { debugIf, warn } from '../../../services/common/logging'
 import {
   ITimer,
   TimeDetails,
@@ -8,29 +8,35 @@ import {
 import { getTimeDetails } from '../../n-presentation/services/time'
 
 export class VideoTimer extends EventEmitter implements ITimer {
+  public duration: number = 0
   constructor(
     private video: HTMLMediaElement | any,
     private timeEvent: string = 'timeupdate',
     private timeProperty: string = 'currentTime',
     private durationProperty: string = 'duration',
     private endEvent: string = 'ended',
+    private debug: boolean = false,
   ) {
     super()
 
     if (video == null) {
-      warn(`n-video|timer: a media element is required`)
+      warn(`n-video-timer: a media element is required`)
       return
     }
-
-    const duration = Number(video[this.durationProperty] || 0)
+    this.duration = Number(video[this.durationProperty] || 0)
     const start = 0
 
+    debugIf(
+      this.debug,
+      `n-video-timer: creating video timer with duration ${this.duration}`,
+    )
+
     video.addEventListener(this.timeEvent, () => {
-      const currentTime = Number(this.video[this.timeProperty] || 0)
+      const currentTime = Number(video[this.timeProperty] || 0)
       this.currentTime = getTimeDetails(
         start,
         currentTime * 1000,
-        duration,
+        this.duration,
       )
       this.emit(TIMER_EVENTS.OnInterval, this.currentTime)
     })
@@ -39,17 +45,23 @@ export class VideoTimer extends EventEmitter implements ITimer {
       this.emit(TIMER_EVENTS.OnEnd)
     })
 
-    this.currentTime = getTimeDetails(0, 0, video.duration)
+    this.currentTime = getTimeDetails(0, 0, this.duration)
   }
 
   currentTime!: TimeDetails
 
   begin(): void {
-    this.video.play?.call(this.video)
+    try {
+      this.video.play?.call(this.video)
+    } catch (error) {}
+  }
+
+  stop(): void {
+    this.video.pause?.call(this.video)
   }
 
   destroy() {
-    this.video.pause?.call(this.video)
+    this.stop()
     this.removeAllListeners()
   }
 }

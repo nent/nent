@@ -7,12 +7,34 @@
 
 ## Properties
 
-| Property             | Attribute  | Description                                                           | Type      | Default     |
-| -------------------- | ---------- | --------------------------------------------------------------------- | --------- | ----------- |
-| `debug`              | `debug`    | To debug timed elements, set this value to true.                      | `boolean` | `false`     |
-| `duration`           | `duration` | Duration before the timer stops and raises the ended event. 0 = never | `number`  | `0`         |
-| `start`              | `start`    | Timer start time.                                                     | `number`  | `0`         |
-| `timer` _(required)_ | --         | Normalized timer.                                                     | `ITimer`  | `undefined` |
+| Property             | Attribute  | Description                                                                                    | Type      | Default     |
+| -------------------- | ---------- | ---------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `debug`              | `debug`    | To debug timed elements, set this value to true.                                               | `boolean` | `false`     |
+| `display`            | `display`  | Display elapsed seconds                                                                        | `boolean` | `false`     |
+| `duration`           | `duration` | Duration before the timer stops and raises the ended event. 0 = never                          | `number`  | `0`         |
+| `interval`           | `interval` | Interval in milliseconds to request between the getAnimationFrame. This affects the precision. | `number`  | `200`       |
+| `timer` _(required)_ | --         | Normalized timer.                                                                              | `ITimer`  | `undefined` |
+
+
+## Events
+
+| Event   | Description                                                   | Type               |
+| ------- | ------------------------------------------------------------- | ------------------ |
+| `ready` | Ready event letting the presentation layer know it can begin. | `CustomEvent<any>` |
+
+
+## Methods
+
+### `begin() => Promise<void>`
+
+Begin the timer. This is called automatically
+by the presentation element.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ----------------------------------------------

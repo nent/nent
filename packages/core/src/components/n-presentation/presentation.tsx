@@ -1,8 +1,18 @@
-import { Component, Element, h, Host, Prop } from '@stencil/core'
-import { warn } from '../../services/common/logging'
-import { FrameTimer } from '../n-presentation-timer/services/timer'
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core'
+import { eventBus } from '../../services/actions'
+import { commonState } from '../../services/common'
+import { debugIf, warn } from '../../services/common/logging'
+import { IView } from '../n-view/services/interfaces'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { navigationState } from '../n-views/services/state'
-import { ITimer } from './services/interfaces'
+import { IElementTimer, ITimer } from './services/interfaces'
 import { PresentationService } from './services/presentation'
 
 /**
@@ -22,14 +32,13 @@ import { PresentationService } from './services/presentation'
   tag: 'n-presentation',
   shadow: false,
 })
-export class NPresentation {
+export class Presentation {
   private presentation?: PresentationService
+  private navigationSubscription?: () => void
   @Element() el!: HTMLNPresentationElement
+  @State() elementWithTimer: IElementTimer | null = null
 
-  /**
-   * The timer instance for a manual timer.
-   */
-  @Prop({ mutable: true }) timer: ITimer | null = null
+  @State() timer: ITimer | null = null
 
   /**
    * The element selector for the timer-element to
@@ -39,64 +48,117 @@ export class NPresentation {
    * If none are found, it creates on manually and starts
    * it immediately
    */
-  @Prop() timerElement?: string
+  @Prop() timerElement: string | null = null
 
   /**
    * To debug timed elements, set this value to true.
    */
-  @Prop() debug = false
+  @Prop() debug: boolean = false
 
   /**
    * Go to the next view after a given time if a number
    * is present, otherwise when the end-event occurs.
    */
-  @Prop() nextAfter: number | boolean = false
+  @Prop() nextAfter: boolean = false
 
   /**
    * Send analytics view-time percentages for this presentation
    * using the event name
    */
-  @Prop() analytics?: string
+  @Prop() analyticsEvent?: string
+
+  private get parentRoute(): IView | null {
+    const parent =
+      this.el.closest('n-view-prompt') || this.el.closest('n-view')
+    if (parent) return parent as IView
+    return null
+  }
 
   componentWillLoad() {
-    let timerElement: any = this.timerElement
+    debugIf(this.debug, `n-presentation: loading`)
+    let element: HTMLElement | null = this.timerElement
       ? this.el.querySelector(this.timerElement) ||
         this.el.ownerDocument.querySelector(this.timerElement) ||
         null
       : this.el.querySelector('n-presentation-timer') ||
         this.el.ownerDocument.querySelector('n-presentation-timer') ||
+        this.el.querySelector('n-video') ||
         this.el.ownerDocument.querySelector('n-video') ||
         null
 
-    if (this.timerElement && !timerElement.timer) {
-      warn(
-        `n-presentation: the element at ${this.timerElement} does not have a valid timer.`,
-      )
+    this.elementWithTimer =
+      ((element as unknown) as IElementTimer) || null
+
+    if (this.elementWithTimer == null) {
+      warn(`n-presentation: no timer element found`)
       return
     }
 
-    this.timer =
-      (timerElement?.timer as ITimer) ||
-      new FrameTimer(window, 0, 0, this.debug)
+    if (this.parentRoute) {
+      debugIf(
+        this.debug,
+        `n-presentation: syncing to route ${this.parentRoute.route.path}`,
+      )
+      if (this.parentRoute!.route?.match?.isExact) {
+        this.subscribeElementTimer(element)
+      }
+      this.navigationSubscription = eventBus.on(
+        ROUTE_EVENTS.RouteChanged,
+        () => {
+          this.presentation?.endTimer()
+          if (this.parentRoute!.route?.match?.isExact) {
+            if (this.presentation) this.presentation!.beginTimer()
+            else this.subscribeElementTimer(element)
+          }
+        },
+      )
+    } else {
+      this.subscribeElementTimer(element)
+    }
+  }
+
+  private setPresentation() {
+    this.timer = this.elementWithTimer!.timer
+
+    this.presentation = new PresentationService(
+      this.el,
+      this.timer,
+      commonState.elementsEnabled,
+      this.analyticsEvent,
+      async () => {
+        let route =
+          this.parentRoute?.route ||
+          navigationState.router?.exactRoute ||
+          null
+        if (route && this.nextAfter) {
+          await route.goNext()
+        }
+      },
+      this.debug,
+    )
+  }
+
+  private subscribeElementTimer(element: any) {
+    if (element) {
+      debugIf(this.debug, `n-presentation: found element`)
+      element.addEventListener('ready', () => {
+        debugIf(this.debug, `n-presentation: element ready`)
+        this.setPresentation()
+
+        debugIf(this.debug, `n-presentation: begin timer`)
+        this.presentation!.beginTimer()
+      })
+    } else {
+      debugIf(this.debug, `n-presentation: creating internal timer`)
+      this.setPresentation()
+
+      debugIf(this.debug, `n-presentation: begin timer`)
+      this.presentation!.beginTimer()
+    }
   }
 
   render() {
     return <Host></Host>
-  }
-
-  componentDidRender() {
-    if (this.timer) {
-      this.presentation = new PresentationService(
-        this.el,
-        this.timer,
-        navigationState.router?.exactRoute || null,
-        this.debug,
-        this.nextAfter,
-        this.analytics,
-      )
-
-      this.presentation?.beginTimer()
-    }
   }
 
   disconnectedCallback() {
@@ -104,5 +166,6 @@ export class NPresentation {
     this.timer = null
     this.presentation?.cleanup()
     delete this.presentation
+    this.navigationSubscription?.call(this)
   }
 }

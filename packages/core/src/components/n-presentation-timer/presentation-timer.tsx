@@ -1,16 +1,34 @@
-import { Component, Element, h, Host, Prop } from '@stencil/core'
-import { debugIf } from '../../services/common/logging'
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+} from '@stencil/core'
 import {
   IElementTimer,
   ITimer,
 } from '../n-presentation/services/interfaces'
 import { FrameTimer } from './services/timer'
+
+/**
+ * This element creates a timer for the presentation
+ * element to use in place of a video, to time actions
+ * or manipulate HTML by time.
+ *
+ * @system presentation
+ */
 @Component({
   tag: 'n-presentation-timer',
   shadow: false,
 })
-export class NPresentationTimer implements IElementTimer {
+export class PresentationTimer implements IElementTimer {
   @Element() el!: HTMLNPresentationTimerElement
+  @State() elapsed: number = 0
   /**
    * To debug timed elements, set this value to true.
    */
@@ -28,26 +46,51 @@ export class NPresentationTimer implements IElementTimer {
   @Prop() duration: number = 0
 
   /**
-   * Timer start time.
+   * Interval in milliseconds to request
+   * between the getAnimationFrame. This
+   * affects the precision.
    */
-  @Prop() start: number = 0
+  @Prop() interval: number = 200
+
+  /**
+   * Display elapsed seconds
+   */
+  @Prop() display: boolean = false
+
+  /**
+   * Ready event letting the presentation layer know it can
+   * begin.
+   */
+  @Event({
+    eventName: 'ready',
+  })
+  ready!: EventEmitter
+
+  /**
+   * Begin the timer. This is called automatically
+   * by the presentation element.
+   */
+  @Method()
+  async begin() {
+    this.timer?.begin()
+  }
 
   componentWillLoad() {
-    debugIf(this.debug, `n-presentation-timer: loading`)
     this.timer = new FrameTimer(
       window,
+      this.interval,
       this.duration,
-      this.start,
+      performance.now(),
+      () => {
+        this.elapsed = this.timer.currentTime.elapsed
+      },
       this.debug,
     )
+    this.ready.emit(true)
   }
 
   render() {
-    return <Host></Host>
-  }
-
-  componentDidRender() {
-    this.timer.begin()
+    return <Host>{this.display ? this.elapsed : null}</Host>
   }
 
   disconnectedCallback() {

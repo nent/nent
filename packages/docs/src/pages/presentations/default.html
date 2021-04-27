@@ -1,0 +1,54 @@
+<n-content-reveal direction="left"
+  delay="500"
+  duration="1000"
+  animation-distance="60%"
+  trigger-distance="50%">
+  <ul
+    class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
+    <li class="list-group-item fw-bold"> Presentation Elements</li>
+    <n-content-repeat items-src="/dist/components.json"
+      filter="components[docsTags[name='system' and text='presentation']]">
+      <template>
+        <li class="list-group-item">
+          <a href="/components/{{data:tag}}"> &lt;{{data:tag}}&gt; </a>
+        </li>
+      </template>
+    </n-content-repeat>
+  </ul>
+</n-content-reveal>
+<div class="">
+  <h1>Presentations</h1>
+  <p class="lead">.</p>
+  <h2>Enable Presentation</h2>
+  <p> To present a timed sequence, you must wrap content in the<a
+      href="/components/n-presentation"><b>&lt;n-presentation&gt;</b> </a>
+    element </p>
+  <n-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <n-presentation>
+      </n-presentation>
+      ```
+    </script>
+  </n-content-markdown>
+  <h3 class="mt-3">Timer Options</h3>
+  <div class="button-nav">
+    <a href="/presentations/video"
+      class="btn btn-secondary">
+      <i class="ri-music-2-line"></i> Video Timer </a>
+    <a href="/presentations/timer"
+      class="btn btn-secondary">
+      <i class="ri-timer-flash-line"></i> Element Timer </a>
+    <a href="/presentations/custom"
+      class="btn btn-secondary">
+      <i class="ri-timer-flash-line"></i> Custom Timer </a>
+  </div>
+  <footer>
+    <a slot="start"
+      href="/elements"
+      class="btn btn-primary btn-lg"> &lt; Elements </a>
+    <a slot="end"
+      href="/components"
+      class="btn btn-primary btn-lg"> All Components &gt; </a>
+  </footer>
+</div>

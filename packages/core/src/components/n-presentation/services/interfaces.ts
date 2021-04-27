@@ -34,7 +34,9 @@ export interface TimeDetails {
 
 export interface ITimer extends IEventEmitter {
   currentTime: TimeDetails
+  duration: number
   begin(): void
+  stop(): void
   destroy(): void
 }
 

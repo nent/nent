@@ -4,7 +4,7 @@ import { TIMER_EVENTS } from '../../n-presentation/services/interfaces'
 import { MockRequestAnimationFrameProvider } from './mocks/frame-provider'
 import { FrameTimer } from './timer'
 
-describe('frame-timer:', () => {
+describe('frame-timer', () => {
   let subject: FrameTimer
   const animationFrameProvider = new MockRequestAnimationFrameProvider()
 
@@ -15,7 +15,7 @@ describe('frame-timer:', () => {
   it('emits time, calculates currentTime, and ends on time.', async () => {
     const intervals: Array<number> = []
     let ended = false
-    subject = new FrameTimer(animationFrameProvider, 60, 0)
+    subject = new FrameTimer(animationFrameProvider, 0, 60, 0)
     subject.on(TIMER_EVENTS.OnInterval, (time: number) => {
       intervals.push(time)
     })

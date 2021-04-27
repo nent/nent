@@ -15,7 +15,6 @@ import {
  * This component exposes a checkbox to enable or disable global audio for background sounds and video.
  *
  * @system audio
- * @system presentation
  */
 @Component({
   tag: 'n-audio-switch',

@@ -1,4 +1,8 @@
-import { debugIf, EventEmitter } from '../../../services/common'
+import {
+  debugIf,
+  EventEmitter,
+  throttle,
+} from '../../../services/common'
 import {
   ITimer,
   TimeDetails,
@@ -8,10 +12,13 @@ import { getTimeDetails } from '../../n-presentation/services/time'
 
 export class FrameTimer extends EventEmitter implements ITimer {
   private timer: number = 0
+  debouncedInterval: Function
   constructor(
     private provider: AnimationFrameProvider,
-    public duration: number = 0,
+    private interval: number,
+    public duration: number,
     public start = performance.now(),
+    private onInterval: null | (() => void) = null,
     private debug: boolean = false,
   ) {
     super()
@@ -21,43 +28,60 @@ export class FrameTimer extends EventEmitter implements ITimer {
       `presentation-timer: starting timer w/ ${duration} duration`,
     )
     this.currentTime = getTimeDetails(start, 0, duration)
-  }
-  currentTime: TimeDetails
 
-  begin(): ITimer {
-    this.timer = this.provider.requestAnimationFrame(current => {
-      this.interval(current)
-    })
-    return this
-  }
-
-  private interval(time: number) {
-    const updatedTime = getTimeDetails(
-      this.start,
-      time,
-      this.duration,
-    )
-
-    if (this.duration && updatedTime.elapsed > this.duration) {
-      debugIf(
-        this.debug,
-        `presentation-timer: timer ended at ${time}`,
+    if (this.interval > 0)
+      this.debouncedInterval = throttle(
+        this.interval,
+        () => {
+          this.timer = this.provider.requestAnimationFrame(
+            current => {
+              this.doInterval(current)
+            },
+          )
+        },
+        true,
+        true,
       )
-      this.provider.cancelAnimationFrame(this.timer)
-      this.emit(TIMER_EVENTS.OnEnd)
+    else
+      this.debouncedInterval = () => {
+        this.timer = this.provider.requestAnimationFrame(current => {
+          this.doInterval(current)
+        })
+      }
+  }
+
+  public currentTime: TimeDetails
+
+  public begin() {
+    if (this.timer) this.stop()
+    this.start = performance.now()
+    this.provider.requestAnimationFrame(current => {
+      this.doInterval(current)
+    })
+  }
+
+  public stop(): void {
+    this.provider.cancelAnimationFrame(this.timer)
+  }
+
+  private async doInterval(time: number) {
+    this.currentTime = getTimeDetails(this.start, time, this.duration)
+
+    if (
+      this.duration > 0 &&
+      this.currentTime.elapsed >= this.duration
+    ) {
+      this.stop()
+      this.emit(TIMER_EVENTS.OnEnd, this.currentTime)
     } else {
-      this.currentTime = updatedTime
       this.emit(TIMER_EVENTS.OnInterval, this.currentTime)
-      this.timer = this.provider.requestAnimationFrame(current => {
-        this.interval(current)
-      })
+      await this.debouncedInterval()
     }
+    this.onInterval?.call(this)
   }
 
   destroy() {
+    this.stop()
     this.removeAllListeners()
-    try {
-      this.provider.cancelAnimationFrame(this.timer)
-    } catch {}
   }
 }

@@ -63,10 +63,11 @@ export class NPresentationAction implements IActionElement {
       return null
     }
 
+    let data = Object.assign({}, this.el.dataset)
     return {
       topic: this.topic,
       command: this.command,
-      data: this.el.dataset,
+      data,
     }
   }
 

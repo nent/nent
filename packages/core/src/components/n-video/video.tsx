@@ -1,13 +1,19 @@
-import { Component, Element, h, Host, Prop } from '@stencil/core'
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf, warn } from '../../services/common/logging'
-import { commonState } from '../../services/common/state'
 import {
   IElementTimer,
   ITimer,
 } from '../n-presentation/services/interfaces'
 import { VideoActionListener } from './services/actions'
-import { videoState } from './services/state'
 import { VideoTimer } from './services/timer'
 /**
  * This component enables th UI services. These are typically
@@ -21,7 +27,7 @@ import { VideoTimer } from './services/timer'
   tag: 'n-video',
   shadow: false,
 })
-export class Video implements IElementTimer {
+export class NVideo implements IElementTimer {
   private listener!: VideoActionListener
   @Element() el!: HTMLNVideoElement
 
@@ -36,6 +42,12 @@ export class Video implements IElementTimer {
    * Default is timeupdate
    */
   @Prop() timeEvent: string = 'timeupdate'
+
+  /**
+   * Provide the ready event name.
+   * Default is ready
+   */
+  @Prop() readyEvent: string = 'ready'
 
   /**
    * Provide the element property name that
@@ -60,54 +72,59 @@ export class Video implements IElementTimer {
   /**
    * To debug timed elements, set this value to true.
    */
-  @Prop() debug = false
+  @Prop() debug: boolean = false
 
   /**
    * Normalized timer.
    */
   @Prop({ mutable: true }) timer!: ITimer
 
+  /**
+   * Ready event letting the presentation layer know it can
+   * begin.
+   */
+  @Event({
+    eventName: 'ready',
+  })
+  ready!: EventEmitter
+
   private get childVideo(): HTMLMediaElement | null {
     return this.el.querySelector(this.targetElement)
   }
 
   async componentWillLoad() {
-    debugIf(commonState.debug, `n-video: loading`)
+    debugIf(this.debug, `n-video: loading`)
 
     const video = this.childVideo
     if (video == null) {
       warn(`n-video: no child video element was found`)
-      return
+    } else {
+      debugIf(
+        this.debug,
+        `n-video: listening to ${this.targetElement} for ${this.readyEvent}`,
+      )
+      video.addEventListener(this.readyEvent, async () => {
+        debugIf(this.debug, `n-video: creating timer`)
+        this.timer = new VideoTimer(
+          video,
+          this.timeEvent,
+          this.timeProperty,
+          this.durationProperty,
+          this.endEvent,
+          this.debug,
+        )
+        this.ready.emit(true)
+      })
+
+      debugIf(this.debug, `n-video: creating listener`)
+      this.listener = new VideoActionListener(
+        video,
+        eventBus,
+        actionBus,
+        this.debug,
+      )
     }
-
-    this.timer = new VideoTimer(
-      video,
-      this.timeEvent,
-      this.timeProperty,
-      this.durationProperty,
-      this.endEvent,
-    )
-    this.listener = new VideoActionListener(
-      video,
-      eventBus,
-      actionBus,
-      this.debug,
-    )
-
-    const self = this
-    this.timer.destroy = () => {
-      self.childVideo?.pause?.call(self)
-      self.timer?.removeAllListeners?.call(self.timer)
-    }
-  }
-
-  async componentDidRender() {
-    const video = this.childVideo
-    if (video == null || !this.timer) return
-
-    if (videoState.autoplay) {
-      await video.play?.call(this)
-    }
+    debugIf(this.debug, `n-video: loaded`)
   }
 
   render() {

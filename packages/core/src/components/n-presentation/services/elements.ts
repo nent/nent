@@ -1,6 +1,5 @@
 /* istanbul ignore file */
 
-import { debugIf } from '../../../services/common/logging'
 import { TimedNode } from './interfaces'
 
 export function captureElementChildTimedNodes(
@@ -35,7 +34,6 @@ export function resolveElementChildTimedNodesByTime(
   timedNodes: TimedNode[],
   time: number,
   percentage: number,
-  debug: boolean,
 ) {
   timedNodes?.forEach(node => {
     if (
@@ -43,27 +41,15 @@ export function resolveElementChildTimedNodesByTime(
       time >= node.start &&
       (node.end > -1 ? time < node.end : true)
     ) {
-      debugIf(
-        debug,
-        `n-elements-timer: node ${node.element.id} is after start: ${node.start} before end: ${node.end}`,
-      )
       // Time is after start and before end, if it exists
       if (
         node.classIn &&
         !node.element.classList.contains(node.classIn)
       ) {
-        debugIf(
-          debug,
-          `n-elements-timer: node ${node.element.id} is after start: ${node.start} before end: ${node.end} [adding classIn: ${node.classIn}]`,
-        )
         node.element.classList.add(node.classIn)
       }
 
       if (node.element.hasAttribute('hidden')) {
-        debugIf(
-          debug,
-          `n-elements-timer: node ${node.element.id} is after start: ${node.start} before end: ${node.end} [removing hidden attribute]`,
-        )
         // Otherwise, if there's a hidden attribute, remove it
         node.element.removeAttribute('hidden')
       }
@@ -71,18 +57,11 @@ export function resolveElementChildTimedNodesByTime(
 
     if (node.end > -1 && time > node.end) {
       // Time is after end, if it exists
-      debugIf(
-        debug,
-        `n-elements-timer: node ${node.element.id} is after end: ${node.end}`,
-      )
+
       if (
         node.classIn &&
         node.element.classList.contains(node.classIn)
       ) {
-        debugIf(
-          debug,
-          `n-elements-timer: node ${node.element.id} is after end: ${node.end}  [removing classIn: ${node.classIn}]`,
-        )
         // Remove the in class, if it exists
         node.element.classList.remove(node.classIn)
       }
@@ -90,18 +69,11 @@ export function resolveElementChildTimedNodesByTime(
       if (node.classOut) {
         // If a class-out was specified and isn't on the element, add it
         if (!node.element.classList.contains(node.classOut)) {
-          debugIf(
-            debug,
-            `n-elements-timer: node ${node.element.id} is after end: ${node.end} [adding classOut: ${node.classOut}]`,
-          )
           node.element.classList.add(node.classOut)
         }
       } else if (!node.element.hasAttribute('hidden')) {
         // Otherwise, if there's no hidden attribute, add it
-        debugIf(
-          debug,
-          `n-elements-timer: node ${node.element.id} is after end: ${node.end} [adding hidden attribute]`,
-        )
+
         node.element.setAttribute('hidden', '')
       }
     }
@@ -157,10 +129,6 @@ export function restoreElementChildTimedNodes(
     ) {
       node.element.classList.remove(node.classOut)
     }
-
-    if (!node.element.hasAttribute('hidden')) {
-      node.element.setAttribute('hidden', '')
-    }
   })
 
   // Resolve n-time-to
@@ -187,7 +155,7 @@ export function restoreElementChildTimedNodes(
       el.setAttribute(attributeName, '0')
     } else {
       el.childNodes.forEach(cn => cn.remove())
-      el.append(document.createTextNode('0%'))
+      el.append(document.createTextNode('100%'))
     }
   })
 }

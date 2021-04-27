@@ -2,7 +2,7 @@ jest.mock('../../services/common/logging')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { videoStateDispose } from './services/state'
-import { Video } from './video'
+import { NVideo } from './video'
 
 describe('n-video', () => {
   afterEach(() => {
@@ -10,7 +10,7 @@ describe('n-video', () => {
   })
   it('enables video', async () => {
     const page = await newSpecPage({
-      components: [Video],
+      components: [NVideo],
       html: `<n-video><video></video></n-video>`,
     })
     expect(page.root).toEqualHtml(`

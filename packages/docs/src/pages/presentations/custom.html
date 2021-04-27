@@ -1,0 +1,63 @@
+<n-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
+  style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
+</n-content-reference>
+<n-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
+</n-content-reference>
+<div class="content">
+  <div style="min-height: 100px">
+    <img id="step1"
+      hidden
+      n-in-time="1"
+      n-out-time="9"
+      src="https://via.placeholder.com/728x390.png?text=Step+1" />
+    <img id="step2"
+      hidden
+      n-in-time="10"
+      n-out-time="19"
+      src="https://via.placeholder.com/728x390.png?text=Step+2" />
+    <img id="step3"
+      hidden
+      n-in-time="20"
+      n-out-time="29"
+      src="https://via.placeholder.com/728x390.png?text=Step+3" />
+  </div>
+  <progress max="1"
+    n-percentage-to="value"></progress>
+  <p>Progress: <span n-percentage-to></span></p>
+  <div hidden
+    n-int-time="0"
+    n-in-class="fade-in"
+    n-out-time="9"
+    n-out-class="fade-out">
+    <h1>Step 1 Stuff</h1>
+    <p>Fake Step 1 copy.</p>
+  </div>
+  <div hidden
+    n-in-time="10"
+    n-in-class="fade-in"
+    n-out-time="19"
+    n-out-class="fade-out">
+    <h1>Step 2 Stuff</h1>
+    <p>Fake Step 2 copy.</p>
+  </div>
+  <div hidden
+    n-in-time="20"
+    n-in-class="fade-in"
+    n-out-time="30"
+    n-out-class="fade-out">
+    <h1>Step 3 Stuff</h1>
+    <p>Fake Step 3 copy.</p>
+  </div>
+  <n-content-markdown src="/pages/presentations/demo/timed.md">
+  </n-content-markdown>
+  <footer>
+    <a slot="start"
+      n-back
+      class="btn btn-secondary"> &lt; Back </a>
+    <a slot="end"
+      href=".."
+      class="btn btn-secondary"> Next &gt; </a>
+  </footer>
+</div>
