@@ -42,54 +42,54 @@
       href="/manifest.json" />
     <!-- nent -->
     <script type="module"
-      src="/lib/nent/nent.esm.js"></script>
+      src="/dist/nent/nent.esm.js"></script>
     <script type="module"
       src="/lib/docs.esm.js"></script>
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-views.entry.js" />
+      href="/dist/nent/n-views.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-view-link.entry.js" />
+      href="/dist/nent/n-view-link.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-view.entry.js" />
+      href="/dist/nent/n-view.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-view-link-list.entry.js" />
+      href="/dist/nent/n-view-link-list.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-app-analytics.entry.js" />
+      href="/dist/nent/n-app-analytics.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-view-prompt.entry.js" />
+      href="/dist/nent/n-view-prompt.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-view-not-found.entry.js" />
+      href="/dist/nent/n-view-not-found.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-content-reference.entry.js" />
+      href="/dist/nent/n-content-reference.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-app-share.entry.js" />
+      href="/dist/nent/n-app-share.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-data.entry.js" />
+      href="/dist/nent/n-data.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-data-session.entry.js" />
+      href="/dist/nent/n-data-session.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-data-storage.entry.js" />
+      href="/dist/nent/n-data-storage.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-elements.entry.js" />
+      href="/dist/nent/n-elements.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-app.entry.js" />
+      href="/dist/nent/n-app.entry.js" />
     <link rel="modulepreload"
       as="script"
-      href="/lib/nent/n-app-theme.entry.js" />
+      href="/dist/nent/n-app-theme.entry.js" />
     <style>
       [n-cloak],
       [hidden],
@@ -125,6 +125,8 @@
 
   <body>
     <n-app>
+      <n-app-analytics id="analytics">
+      </n-app-analytics>
       <n-data>
       </n-data>
       <n-views start-path="/"
@@ -241,6 +243,10 @@
             item-class="breadcrumb-item"
             exclude-root>
           </n-view-link-list>
+          <div hidden>
+            <n-view-link-back></n-view-link-back>
+            <n-view-link-next></n-view-link-next>
+          </div>
         </nav>
         <n-view path="/"
           transition="none"
@@ -451,10 +457,10 @@
           src="/pages/audio/routes.html"
           content-src="/pages/audio/default.html">
         </n-view>
-        <n-view path="/presentation"
+        <n-view path="/presentations"
           page-title="Presentation Elements"
-          src="/pages/presentation/routes.html"
-          content-src="/pages/presentation/default.html">
+          src="/pages/presentations/routes.html"
+          content-src="/pages/presentations/default.html">
         </n-view>
         <n-view path="/components"
           page-title="Components"
@@ -467,21 +473,7 @@
             <h1>Page Not Found</h1>
           </div>
         </n-view-not-found>
-        <n-app-analytics id="analytics">
-          <script>
-            analytics.addEventListener( 'custom-event', ( e ) => {
-              gtag( e.detail.key, e.detail.value )
-            } )
-            analytics.addEventListener( 'page-view', ( e ) => {
-              gtag( 'page_view', e.detail.pathname )
 
-            } )
-            analytics.addEventListener( 'view-time', ( e ) => {
-              gtag( e.detail.event, e.detail.percentage )
-              console.dir(e.detail.elapsed)
-            } )
-          </script>
-        </n-app-analytics>
       </n-views>
       <!-- enable data expressions-->
       <n-data-session></n-data-session>
@@ -490,6 +482,20 @@
         <!-- enable element manipulation-->
       </n-elements>
     </n-app>
+    <script>
+      analytics.addEventListener( 'custom-event', ( e ) => {
+        gtag( e.detail.key, e.detail.value )
+        // console.debug(`gtag('${e.detail.key}', '${e.detail.value})'`)
+      } )
+      analytics.addEventListener( 'page-view', ( e ) => {
+        gtag( 'page_view', e.detail.pathname )
+        // console.debug(`gtag('page_view', '${e.detail.pathname})'`)
+      } )
+      analytics.addEventListener( 'view-time', ( e ) => {
+        gtag( e.detail.event, e.detail.time.elapsed )
+        // console.debug(`gtag('${e.detail.event}','${e.detail.time.elapsed}'')`)
+      } )
+    </script>
   </body>
 
 </html>

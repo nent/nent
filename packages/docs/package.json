@@ -16,7 +16,7 @@
     "--- production ---": "---------------",
     "prebuild": "rm -fR ../../docs",
     "build": "stencil build --www",
-    "copy": "copyfiles -u -e *.ts ./src/* ../../docs"
+    "copy": "cd src && copyfiles ./pages/**/*.*  ./examples/**/*.* ./assets/**/*.* ../../../docs/"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "4.0.3",
