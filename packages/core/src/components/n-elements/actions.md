@@ -14,7 +14,7 @@ The Elements Action Listener is configured to handle commands raised through the
 
 ## Commands
 
-### `element-toggle-class`
+### `toggle-class`
 
 Toggles a given class on or off.
 
@@ -26,13 +26,13 @@ Arguments:
 ```html
 <n-action-activator activate="...">
   <n-action topic="elements" 
-    command="element-toggle-class" 
+    command="toggle-class" 
     data-selector="#el" 
     data-class-name="hidden"></n-action>
 </n-action-activator>
 ```
 
-### `element-add-classes`
+### `add-classes`
 
 Add a class or classes to a specified element.
 
@@ -44,13 +44,13 @@ Arguments:
 ```html
 <n-action-activator activate="...">
   <n-action topic="elements" 
-    command="element-add-class" 
+    command="add-class" 
     data-selector="#el" 
     data-classes="hidden red"></n-action>
 </n-action-activator>
 ```
 
-### `element-remove-classes`
+### `remove-classes`
 
 Remove a class or classes to a specified element.
 
@@ -62,13 +62,13 @@ Arguments:
 ```html
 <n-action-activator activate="...">
   <n-action topic="elements" 
-    command="element-remove-class" 
+    command="remove-class" 
     data-selector="#el" 
     data-classes="hidden red"></n-action>
 </n-action-activator>
 ```
 
-### `element-set-attribute`
+### `set-attribute`
 
 Add an attribute to a specified element.
 
@@ -81,14 +81,14 @@ Arguments:
 ```html
 <n-action-activator activate="...">
   <n-action topic="elements" 
-    command="element-set-attribute" 
+    command="set-attribute" 
     data-selector="#el" 
     data-attribute="hidden" 
     data-value="true"></n-action>
 </n-action-activator>
 ```
 
-### `element-remove-attribute`
+### `remove-attribute`
 
 Remove an attribute from the specified element.
 
@@ -100,13 +100,13 @@ Arguments:
 ```html
 <n-action-activator activate="...">
   <n-action topic="elements" 
-    command="element-remove-attribute" 
+    command="remove-attribute" 
     data-selector="#el" 
     data-attribute="hidden"></n-action>
 </n-action-activator>
 ```
 
-### `element-call-method`
+### `call-method`
 
 Call a method on an element with optional arguments.
 
@@ -121,7 +121,7 @@ Arguments:
 <n-action-activator activate="...">
   <n-action
     topic="elements"
-    command="element-call-method"
+    command="call-method"
     data-selector="n-action"
     data-method="sendAction"
     data-(args)=""

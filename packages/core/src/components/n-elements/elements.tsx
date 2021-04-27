@@ -32,10 +32,7 @@ export class Elements {
   @Prop() debug = false
 
   componentWillLoad() {
-    debugIf(
-      commonState.debug,
-      `n-elements: Elements services enabled. Element ACtions Listener registered`,
-    )
+    debugIf(this.debug, `n-elements: initialized`)
 
     this.listener = new ElementsActionListener()
     commonState.elementsEnabled = true
@@ -68,11 +65,7 @@ export class Elements {
   }
 
   render() {
-    return (
-      <Host>
-        <slot />
-      </Host>
-    )
+    return <Host></Host>
   }
 
   disconnectedCallback() {

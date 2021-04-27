@@ -6,13 +6,16 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { EventAction } from "./services/actions";
+import { LocationSegments } from "./services/common";
+import { ViewTime } from "./components/n-app-analytics/services";
 import { AudioActionListener } from "./components/n-audio/services/actions";
 import { AudioInfo, AudioRequest } from "./components/n-audio/services/interfaces";
 import { ReferenceCompleteResults } from "./services/content";
 import { CookieConsent } from "./components/n-data-cookie/cookie/interfaces";
 import { SetData } from "./components/n-data/services/interfaces";
-import { ITimer } from "./components/n-presentation/services/interfaces";
 import { EventAction as EventAction1 } from "./services/actions/interfaces";
+import { ITimer } from "./components/n-presentation/services/interfaces";
+import { Route } from "./components/n-views/services/route";
 export namespace Components {
     interface NAction {
         /**
@@ -69,15 +72,35 @@ export namespace Components {
     }
     interface NApp {
         /**
+          * The application theme background-color (used )
+         */
+        "backgroundColor"?: string;
+        /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
          */
         "debug": boolean;
         /**
-          * Turn off declarative actions for the entire app.
+          * The application description used in the PWA application manifest.  Creates tags: * description (if missing) * meta[name="og:description"]
          */
-        "disableActions": boolean;
+        "description"?: string;
+        /**
+          * The application name  Creates tags: * title (if missing) * meta[name="og:title"]
+         */
+        "name"?: string;
+        /**
+          * The application short-name used in the PWA application manifest.
+         */
+        "shortName"?: string;
+        /**
+          * The application theme color (used )
+         */
+        "themeColor"?: string;
     }
     interface NAppAnalytics {
+        /**
+          * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+         */
+        "debug": boolean;
     }
     interface NAppShare {
         /**
@@ -488,7 +511,7 @@ export namespace Components {
         /**
           * Send analytics view-time percentages for this presentation using the event name
          */
-        "analytics"?: string;
+        "analyticsEvent"?: string;
         /**
           * To debug timed elements, set this value to true.
          */
@@ -496,15 +519,11 @@ export namespace Components {
         /**
           * Go to the next view after a given time if a number is present, otherwise when the end-event occurs.
          */
-        "nextAfter": number | boolean;
-        /**
-          * The timer instance for a manual timer.
-         */
-        "timer": ITimer | null;
+        "nextAfter": boolean;
         /**
           * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates on manually and starts it immediately
          */
-        "timerElement"?: string;
+        "timerElement": string | null;
     }
     interface NPresentationAction {
         /**
@@ -530,17 +549,25 @@ export namespace Components {
     }
     interface NPresentationTimer {
         /**
+          * Begin the timer. This is called automatically by the presentation element.
+         */
+        "begin": () => Promise<void>;
+        /**
           * To debug timed elements, set this value to true.
          */
         "debug": boolean;
+        /**
+          * Display elapsed seconds
+         */
+        "display": boolean;
         /**
           * Duration before the timer stops and raises the ended event. 0 = never
          */
         "duration": number;
         /**
-          * Timer start time.
+          * Interval in milliseconds to request between the getAnimationFrame. This affects the precision.
          */
-        "start": number;
+        "interval": number;
         /**
           * Normalized timer.
          */
@@ -559,6 +586,10 @@ export namespace Components {
           * Provider the end event name. Default is ended
          */
         "endEvent": string;
+        /**
+          * Provide the ready event name. Default is ready
+         */
+        "readyEvent": string;
         /**
           * Provide the element selector for the media object that can provide time-updates and media-end events.
          */
@@ -624,6 +655,10 @@ export namespace Components {
          */
         "resolveTokens": boolean;
         /**
+          * Route information
+         */
+        "route": Route;
+        /**
           * Header height or offset for scroll-top on this view.
          */
         "scrollTopOffset": number;
@@ -659,6 +694,10 @@ export namespace Components {
         "strict": boolean;
     }
     interface NViewLinkBack {
+        /**
+          * The link text
+         */
+        "text"?: string;
     }
     interface NViewLinkList {
         /**
@@ -683,6 +722,10 @@ export namespace Components {
         "mode": 'children' | 'parents' | 'siblings';
     }
     interface NViewLinkNext {
+        /**
+          * The link text
+         */
+        "text"?: string;
     }
     interface NViewNotFound {
         /**
@@ -699,7 +742,6 @@ export namespace Components {
         "transition"?: string;
     }
     interface NViewPrompt {
-        "back": (element: string, eventName: string) => Promise<void>;
         /**
           * Remote URL for HTML content. Content from this URL will be assigned the 'content' slot.
          */
@@ -716,7 +758,6 @@ export namespace Components {
           * Cross Origin Mode if the content is pulled from a remote location
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
-        "next": (element: string, eventName: string, path?: string | null | undefined) => Promise<void>;
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
@@ -729,6 +770,10 @@ export namespace Components {
           * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
          */
         "resolveTokens": boolean;
+        /**
+          * Route information
+         */
+        "route": Route;
         /**
           * Header height or offset for scroll-top on this view.
          */
@@ -1083,23 +1128,43 @@ declare namespace LocalJSX {
     }
     interface NApp {
         /**
+          * The application theme background-color (used )
+         */
+        "backgroundColor"?: string;
+        /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
          */
         "debug"?: boolean;
         /**
-          * Turn off declarative actions for the entire app.
+          * The application description used in the PWA application manifest.  Creates tags: * description (if missing) * meta[name="og:description"]
          */
-        "disableActions"?: boolean;
+        "description"?: string;
         /**
-          * These events are **`<n-views>`** command-requests for action handlers to perform tasks. Any handles should cancel the event.
+          * The application name  Creates tags: * title (if missing) * meta[name="og:title"]
+         */
+        "name"?: string;
+        /**
+          * These events are command-requests for action handlers to perform tasks. Any outside handlers should cancel the event.
          */
         "onNent:actions"?: (event: CustomEvent<any>) => void;
         /**
-          * Listen for events that occurred within the **`<n-views>`** system.
+          * Listen for events that occurred within the nent event system.
          */
         "onNent:events"?: (event: CustomEvent<any>) => void;
+        /**
+          * The application short-name used in the PWA application manifest.
+         */
+        "shortName"?: string;
+        /**
+          * The application theme color (used )
+         */
+        "themeColor"?: string;
     }
     interface NAppAnalytics {
+        /**
+          * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+         */
+        "debug"?: boolean;
         /**
           * Raised analytics events.
          */
@@ -1107,11 +1172,11 @@ declare namespace LocalJSX {
         /**
           * Page views.
          */
-        "onPage-view"?: (event: CustomEvent<any>) => void;
+        "onPage-view"?: (event: CustomEvent<LocationSegments>) => void;
         /**
           * View percentage views.
          */
-        "onView-time"?: (event: CustomEvent<any>) => void;
+        "onView-time"?: (event: CustomEvent<ViewTime>) => void;
     }
     interface NAppShare {
         /**
@@ -1485,7 +1550,7 @@ declare namespace LocalJSX {
         /**
           * Send analytics view-time percentages for this presentation using the event name
          */
-        "analytics"?: string;
+        "analyticsEvent"?: string;
         /**
           * To debug timed elements, set this value to true.
          */
@@ -1493,15 +1558,11 @@ declare namespace LocalJSX {
         /**
           * Go to the next view after a given time if a number is present, otherwise when the end-event occurs.
          */
-        "nextAfter"?: number | boolean;
-        /**
-          * The timer instance for a manual timer.
-         */
-        "timer"?: ITimer | null;
+        "nextAfter"?: boolean;
         /**
           * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates on manually and starts it immediately
          */
-        "timerElement"?: string;
+        "timerElement"?: string | null;
     }
     interface NPresentationAction {
         /**
@@ -1523,13 +1584,21 @@ declare namespace LocalJSX {
          */
         "debug"?: boolean;
         /**
+          * Display elapsed seconds
+         */
+        "display"?: boolean;
+        /**
           * Duration before the timer stops and raises the ended event. 0 = never
          */
         "duration"?: number;
         /**
-          * Timer start time.
+          * Interval in milliseconds to request between the getAnimationFrame. This affects the precision.
          */
-        "start"?: number;
+        "interval"?: number;
+        /**
+          * Ready event letting the presentation layer know it can begin.
+         */
+        "onReady"?: (event: CustomEvent<any>) => void;
         /**
           * Normalized timer.
          */
@@ -1548,6 +1617,14 @@ declare namespace LocalJSX {
           * Provider the end event name. Default is ended
          */
         "endEvent"?: string;
+        /**
+          * Ready event letting the presentation layer know it can begin.
+         */
+        "onReady"?: (event: CustomEvent<any>) => void;
+        /**
+          * Provide the ready event name. Default is ready
+         */
+        "readyEvent"?: string;
         /**
           * Provide the element selector for the media object that can provide time-updates and media-end events.
          */
@@ -1609,6 +1686,10 @@ declare namespace LocalJSX {
          */
         "resolveTokens"?: boolean;
         /**
+          * Route information
+         */
+        "route": Route;
+        /**
           * Header height or offset for scroll-top on this view.
          */
         "scrollTopOffset"?: number;
@@ -1644,6 +1725,10 @@ declare namespace LocalJSX {
         "strict"?: boolean;
     }
     interface NViewLinkBack {
+        /**
+          * The link text
+         */
+        "text"?: string;
     }
     interface NViewLinkList {
         /**
@@ -1668,6 +1753,10 @@ declare namespace LocalJSX {
         "mode"?: 'children' | 'parents' | 'siblings';
     }
     interface NViewLinkNext {
+        /**
+          * The link text
+         */
+        "text"?: string;
     }
     interface NViewNotFound {
         /**
@@ -1712,6 +1801,10 @@ declare namespace LocalJSX {
           * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
          */
         "resolveTokens"?: boolean;
+        /**
+          * Route information
+         */
+        "route": Route;
         /**
           * Header height or offset for scroll-top on this view.
          */

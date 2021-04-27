@@ -83,7 +83,6 @@ export class Analytics {
     this.listener.handlePageView = (e: LocationSegments) => {
       this.pageView.emit(e)
     }
-
     this.listener.handleViewTime = (e: ViewTime) => {
       this.viewTime.emit(e)
     }
