@@ -37,7 +37,10 @@ registerRoute(
   ({ url }) =>
     (url.origin === 'https://cdn.jsdelivr.net') |
     (url.origin === 'https://storage.googleapis.com') |
-    (url.origin === 'https://fonts.gstatic.com'),
+    (url.origin === 'https://fonts.gstatic.com') |
+    (url.origin === 'https://via.placeholder.com') |
+    (url.origin === 'https://www.google-analytics.com') |
+    (url.origin === 'https://www.googletagmanager.com'),
   new CacheFirst({
     plugins: [
       new CacheableResponsePlugin({
@@ -70,7 +73,7 @@ registerRoute(
   }),
 )
 registerRoute(
-  new RegExp('/.*.js$'),
+  new RegExp('/dist/.+'),
   new StaleWhileRevalidate({
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
@@ -80,10 +83,17 @@ registerRoute(
     ],
   }),
 )
-
-const handler = createHandlerBoundToURL('/index.html')
-const navigationRoute = new NavigationRoute(handler)
-registerRoute(navigationRoute)
+registerRoute(
+  new RegExp('/lib/.+'),
+  new StaleWhileRevalidate({
+    plugins: [
+      // Ensure that only requests that result in a 200 status are cached
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+    ],
+  }),
+)
 
 self.addEventListener('install', event => {
   event.waitUntil(
@@ -127,3 +137,7 @@ self.addEventListener('fetch', event => {
     )
   }
 })
+
+const handler = createHandlerBoundToURL('/index.html')
+const navigationRoute = new NavigationRoute(handler)
+registerRoute(navigationRoute)
