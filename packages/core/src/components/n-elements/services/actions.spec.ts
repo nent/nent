@@ -38,10 +38,9 @@ describe('elements-actions:', () => {
       },
     })
 
-    // TODO: I can't get this to consistently work with with the Mocks
-    // let element = page.body.querySelector('div')
-    // let hasClass = element?.classList.contains('test')
-    // expect(hasClass).toBe(true)
+    let element = page.body.querySelector('div')
+    let hasClass = element?.classList.contains('test')
+    expect(hasClass).toBe(true)
 
     subject.destroy()
   })

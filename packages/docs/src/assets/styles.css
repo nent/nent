@@ -105,6 +105,10 @@ nav.bg-dark i {
   color: white;
 }
 
+.card {
+  color: #000;
+}
+
 nav.bg-dark .active i {
   font-size: 1.5rem;
   color: var(--accent);
@@ -293,6 +297,7 @@ code {
   font-family: 'Courier New', Courier, monospace;
 }
 
+div[slot='content'],
 .content {
   padding-bottom: 4rem;
 }

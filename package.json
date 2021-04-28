@@ -100,7 +100,8 @@
     ]
   },
   "workspaces": [
-    "packages/*"
+    "packages/core",
+    "packages/docs"
   ],
   "dependencies": {}
 }
