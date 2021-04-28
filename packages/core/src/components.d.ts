@@ -523,7 +523,7 @@ export namespace Components {
         /**
           * Go to the next view after when the timer ends
          */
-        "nextAfter": boolean;
+        "nextAfter": boolean | string;
         /**
           * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates on manually and starts it immediately
          */
@@ -561,6 +561,10 @@ export namespace Components {
          */
         "debug": boolean;
         /**
+          * If set, disables auto-starting the timer on render. This will be removed if in a view when the view is activated or when the start method is called.
+         */
+        "deferLoad": boolean;
+        /**
           * Display elapsed seconds
          */
         "display": boolean;
@@ -572,6 +576,10 @@ export namespace Components {
           * Interval in milliseconds to request between the getAnimationFrame. This affects the precision.
          */
         "interval": number;
+        /**
+          * Stop the timer.
+         */
+        "stop": () => Promise<void>;
         /**
           * Normalized timer.
          */
@@ -1566,7 +1574,7 @@ declare namespace LocalJSX {
         /**
           * Go to the next view after when the timer ends
          */
-        "nextAfter"?: boolean;
+        "nextAfter"?: boolean | string;
         /**
           * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates on manually and starts it immediately
          */
@@ -1591,6 +1599,10 @@ declare namespace LocalJSX {
           * To debug timed elements, set this value to true.
          */
         "debug"?: boolean;
+        /**
+          * If set, disables auto-starting the timer on render. This will be removed if in a view when the view is activated or when the start method is called.
+         */
+        "deferLoad"?: boolean;
         /**
           * Display elapsed seconds
          */

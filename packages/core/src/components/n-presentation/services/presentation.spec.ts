@@ -21,7 +21,7 @@ describe('presentation-service', () => {
   afterEach(() => {
     eventBus.removeAllListeners()
     actionBus.removeAllListeners()
-    subject?.cleanup()
+    subject?.unsubscribe()
     contentStateDispose()
   })
 
@@ -43,8 +43,8 @@ describe('presentation-service', () => {
     )
 
     subject = new PresentationService(page.body, timer, true)
-
-    subject.beginTimer()
+    timer.begin()
+    subject.subscribe()
 
     animationFrameProvider.triggerNextAnimationFrame(20000)
 
@@ -80,7 +80,7 @@ describe('presentation-service', () => {
     expect(nVideo?.timer).not.toBeUndefined()
 
     subject = new PresentationService(page.body, nVideo!.timer!, true)
-    subject.beginTimer()
+    subject.subscribe()
 
     nVideo.timer?.emit(TIMER_EVENTS.OnInterval, {
       elapsed: 1,
@@ -110,7 +110,8 @@ describe('presentation-service', () => {
     )
 
     subject = new PresentationService(page.body, timer, true)
-    subject.beginTimer()
+    timer.begin()
+    subject.subscribe()
     animationFrameProvider.triggerNextAnimationFrame(10000)
     animationFrameProvider.triggerNextAnimationFrame(59000)
 
@@ -147,7 +148,7 @@ describe('presentation-service', () => {
       },
     )
 
-    subject.beginTimer()
+    subject.subscribe()
 
     timer.emit(TIMER_EVENTS.OnEnd)
 
@@ -178,7 +179,8 @@ describe('presentation-service', () => {
     )
 
     subject = new PresentationService(page.body, timer, true)
-    subject.beginTimer()
+    timer.begin()
+    subject.subscribe()
 
     animationFrameProvider.triggerNextAnimationFrame(1500)
     await page.waitForChanges()
@@ -209,7 +211,7 @@ describe('presentation-service', () => {
 
     animationFrameProvider.triggerNextAnimationFrame(10500)
 
-    subject.cleanup()
+    subject.unsubscribe()
 
     expect(page.root).toEqualHtml(`<div
         n-in-time="1"
@@ -248,7 +250,8 @@ describe('presentation-service', () => {
     listener.initialize(page.win, actionBus, eventBus)
 
     subject = new PresentationService(page.body, timer)
-    subject.beginTimer()
+    timer.begin()
+    subject.subscribe()
 
     animationFrameProvider.triggerNextAnimationFrame(1500)
 

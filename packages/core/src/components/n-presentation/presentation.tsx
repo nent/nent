@@ -7,8 +7,8 @@ import {
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
-import { commonState } from '../../services/common'
 import { debugIf, warn } from '../../services/common/logging'
+import { commonState } from '../../services/common/state'
 import { IView } from '../n-view/services/interfaces'
 import { Route } from '../n-view/services/route'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
@@ -59,7 +59,7 @@ export class Presentation {
   /**
    * Go to the next view after when the timer ends
    */
-  @Prop() nextAfter: boolean = false
+  @Prop() nextAfter: boolean | string = false
 
   /**
    * Send analytics view-time percentages for this presentation
@@ -92,65 +92,49 @@ export class Presentation {
     if (this.elementWithTimer == null) {
       warn(`n-presentation: no timer element found`)
       return
-    }
-
-    if (this.currentRoute) {
-      debugIf(
-        this.debug,
-        `n-presentation: syncing to route ${this.currentRoute.path}`,
-      )
-      if (this.currentRoute?.match?.isExact) {
-        this.subscribeElementTimer(element)
-      }
-      this.navigationSubscription = eventBus.on(
-        ROUTE_EVENTS.RouteChanged,
-        () => {
-          this.presentation?.endTimer()
-          if (this.currentRoute?.match?.isExact) {
-            if (this.presentation) this.presentation!.beginTimer()
-            else this.subscribeElementTimer(element)
-          }
-        },
-      )
     } else {
-      this.subscribeElementTimer(element)
-    }
-  }
-
-  private setPresentation() {
-    this.timer = this.elementWithTimer!.timer
-
-    this.presentation = new PresentationService(
-      this.el,
-      this.timer,
-      commonState.elementsEnabled,
-      this.analyticsEvent,
-      () => {
-        if (this.currentRoute && this.nextAfter) {
-          this.presentation?.cleanup()
-          this.currentRoute.goNext()
-        }
-      },
-      this.debug,
-    )
-  }
-
-  private subscribeElementTimer(element: any) {
-    if (element) {
-      debugIf(this.debug, `n-presentation: found element`)
-      element.addEventListener('ready', () => {
+      this.elementWithTimer.addEventListener('ready', () => {
         debugIf(this.debug, `n-presentation: element ready`)
-        this.setPresentation()
-
-        debugIf(this.debug, `n-presentation: begin timer`)
-        this.presentation!.beginTimer()
+        this.timer = this.elementWithTimer!.timer
+        this.presentation = new PresentationService(
+          this.el,
+          this.timer,
+          commonState.elementsEnabled,
+          this.analyticsEvent,
+          () => {
+            if (this.currentRoute && this.nextAfter) {
+              this.presentation?.unsubscribe()
+              if (typeof this.nextAfter == 'string') {
+                this.currentRoute.goToRoute(this.nextAfter)
+              } else {
+                this.currentRoute.goNext()
+              }
+            }
+          },
+          this.debug,
+        )
+        if (this.currentRoute) {
+          debugIf(
+            this.debug,
+            `n-presentation: syncing to route ${this.currentRoute.path}`,
+          )
+          if (this.currentRoute?.match?.isExact) {
+            this.presentation?.subscribe()
+          }
+          this.navigationSubscription = eventBus.on(
+            ROUTE_EVENTS.RouteChanged,
+            () => {
+              if (this.currentRoute?.match?.isExact) {
+                this.presentation?.subscribe()
+              } else {
+                this.presentation?.unsubscribe()
+              }
+            },
+          )
+        } else {
+          this.presentation?.subscribe()
+        }
       })
-    } else {
-      debugIf(this.debug, `n-presentation: creating internal timer`)
-      this.setPresentation()
-
-      debugIf(this.debug, `n-presentation: begin timer`)
-      this.presentation!.beginTimer()
     }
   }
 
@@ -159,10 +143,7 @@ export class Presentation {
   }
 
   disconnectedCallback() {
-    this.timer?.destroy()
-    this.timer = null
-    this.presentation?.cleanup()
-    delete this.presentation
+    this.presentation?.unsubscribe()
     this.navigationSubscription?.call(this)
   }
 }

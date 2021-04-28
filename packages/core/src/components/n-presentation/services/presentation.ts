@@ -24,6 +24,8 @@ import {
 
 export class PresentationService {
   public timedNodes: TimedNode[] = []
+  private intervalSubscription?: () => void
+  private endSubscription?: () => void
 
   private get actionActivators(): HTMLNActionActivatorElement[] {
     return Array.from(this.el.querySelectorAll('n-action-activator'))
@@ -56,27 +58,7 @@ export class PresentationService {
       )
     }
 
-    this.timeEmitter.on(
-      TIMER_EVENTS.OnInterval,
-      async (time: TimeDetails) => {
-        await this.handleInterval(time)
-      },
-    )
-
-    this.timeEmitter.on(TIMER_EVENTS.OnEnd, async () => {
-      debugIf(this.debug, `presentation: ended`)
-      await this.handleEnded()
-    })
-
     debugIf(this.debug, `presentation: service created`)
-  }
-
-  public beginTimer() {
-    this.timeEmitter.begin()
-  }
-
-  public endTimer() {
-    this.timeEmitter.stop()
   }
 
   private async handleInterval(time: TimeDetails) {
@@ -130,10 +112,28 @@ export class PresentationService {
     this.onEnd?.call(this)
   }
 
-  public cleanup() {
+  public subscribe() {
+    this.intervalSubscription = this.timeEmitter.on(
+      TIMER_EVENTS.OnInterval,
+      async (time: TimeDetails) => {
+        await this.handleInterval(time)
+      },
+    )
+
+    this.endSubscription = this.timeEmitter.on(
+      TIMER_EVENTS.OnEnd,
+      async () => {
+        debugIf(this.debug, `presentation: ended`)
+        await this.handleEnded()
+      },
+    )
+  }
+
+  public unsubscribe() {
     if (this.elements) {
       restoreElementChildTimedNodes(this.el, this.timedNodes)
     }
-    this.timeEmitter.destroy()
+    this.intervalSubscription?.call(this)
+    this.endSubscription?.call(this)
   }
 }

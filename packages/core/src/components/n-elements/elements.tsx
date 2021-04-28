@@ -1,5 +1,5 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core'
-import { eventBus } from '../../services/actions'
+import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
 import {
   commonState,
@@ -35,6 +35,8 @@ export class Elements {
     debugIf(this.debug, `n-elements: initialized`)
 
     this.listener = new ElementsActionListener()
+
+    this.listener.initialize(window, actionBus, eventBus)
     commonState.elementsEnabled = true
 
     if (commonState.dataEnabled) {

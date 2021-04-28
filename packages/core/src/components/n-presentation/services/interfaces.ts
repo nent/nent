@@ -41,5 +41,6 @@ export interface ITimer extends IEventEmitter {
 }
 
 export interface IElementTimer {
+  [key: string]: any
   timer: ITimer
 }

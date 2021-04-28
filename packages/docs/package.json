@@ -12,11 +12,12 @@
     "start": "run-p watch serve",
     "serve": "stencil build --dev --watch --serve",
     "new": "stencil generate",
-    "watch": "npm-watch copy",
+    "watch": "npm-watch",
+    "copy": "cd src && copyfiles ./pages/**/*.*  ./examples/**/*.* ./assets/**/*.* ../../../docs/",
     "--- production ---": "---------------",
     "clean": "rm -fR ../../docs",
     "build": "stencil build --www",
-    "copy": "cd src && copyfiles ./pages/**/*.*  ./examples/**/*.* ./assets/**/*.* ../../../docs/"
+    "postbuild": "npm run copy"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "4.0.3",
@@ -37,7 +38,7 @@
     "bootstrap": "5.0.0-beta3"
   },
   "watch": {
-    "copy": {
+    "build": {
       "patterns": [
         "src"
       ]

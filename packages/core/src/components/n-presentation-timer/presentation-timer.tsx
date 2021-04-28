@@ -9,10 +9,16 @@ import {
   Prop,
   State,
 } from '@stencil/core'
+import { eventBus } from '../../services/actions'
+import { debugIf } from '../../services/common'
 import {
   IElementTimer,
   ITimer,
 } from '../n-presentation/services/interfaces'
+import { IView } from '../n-view/services/interfaces'
+import { Route } from '../n-view/services/route'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
+import { navigationState } from '../n-views/services/state'
 import { FrameTimer } from './services/timer'
 
 /**
@@ -58,6 +64,14 @@ export class PresentationTimer implements IElementTimer {
   @Prop() display: boolean = false
 
   /**
+   * If set, disables auto-starting the timer
+   * on render. This will be removed if in a view
+   * when the view is activated or when the start
+   * method is called.
+   */
+  @Prop({ mutable: true }) deferLoad = false
+
+  /**
    * Ready event letting the presentation layer know it can
    * begin.
    */
@@ -65,6 +79,14 @@ export class PresentationTimer implements IElementTimer {
     eventName: 'ready',
   })
   ready!: EventEmitter
+  private navigationSubscription?: () => void
+
+  private get currentRoute(): Route | null {
+    const parent =
+      this.el.closest('n-view-prompt') || this.el.closest('n-view')
+    if (parent) return (parent as IView).route
+    return navigationState.router?.exactRoute || null
+  }
 
   /**
    * Begin the timer. This is called automatically
@@ -73,6 +95,14 @@ export class PresentationTimer implements IElementTimer {
   @Method()
   async begin() {
     this.timer?.begin()
+  }
+
+  /**
+   * Stop the timer.
+   */
+  @Method()
+  async stop() {
+    this.timer?.stop()
   }
 
   componentWillLoad() {
@@ -86,14 +116,39 @@ export class PresentationTimer implements IElementTimer {
       },
       this.debug,
     )
-    this.ready.emit(true)
   }
 
   render() {
     return <Host>{this.display ? this.elapsed : null}</Host>
   }
 
+  componentDidLoad() {
+    this.ready.emit(true)
+    if (this.currentRoute) {
+      debugIf(
+        this.debug,
+        `n-presentation-timer: syncing to route ${this.currentRoute.path}`,
+      )
+      if (this.currentRoute?.match?.isExact) {
+        this.timer.begin()
+      }
+      this.navigationSubscription = eventBus.on(
+        ROUTE_EVENTS.RouteChanged,
+        () => {
+          if (this.currentRoute?.match?.isExact) {
+            this.timer.begin()
+          } else {
+            this.timer.stop()
+          }
+        },
+      )
+    } else {
+      this.timer.begin()
+    }
+  }
+
   disconnectedCallback() {
     this.timer.destroy()
+    this.navigationSubscription?.call(this)
   }
 }
