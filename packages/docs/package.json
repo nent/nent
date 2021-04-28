@@ -14,7 +14,7 @@
     "new": "stencil generate",
     "watch": "npm-watch copy",
     "--- production ---": "---------------",
-    "prebuild": "rm -fR ../../docs",
+    "clean": "rm -fR ../../docs",
     "build": "stencil build --www",
     "copy": "cd src && copyfiles ./pages/**/*.*  ./examples/**/*.* ./assets/**/*.* ../../../docs/"
   },
