@@ -1,7 +1,6 @@
 # NENT: Web Application Elements
 
 ![MIT](https://badgen.net/github/license/nent/nent?icon=github)
-![initial size](https://badgen.net/badgesize/normal/file-url/unpkg.com/@nent/core@0.3.0/dist/nent/nent.esm.js?icon=sourcegraph&color=blue)
 ![tree-shaking](https://badgen.net/badge/tree-shaking/enabled?icon=packagephobia)
 ![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![webnamespaces.org](https://img.shields.io/static/v1?label=webnamespaces.org&color=blue&message=n-*)](https://webnamespaces.org)
