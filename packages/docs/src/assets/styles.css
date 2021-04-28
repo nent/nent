@@ -297,25 +297,26 @@ code {
   font-family: 'Courier New', Courier, monospace;
 }
 
-div[slot='content'],
-.content {
-  padding-bottom: 4rem;
-}
-
 footer {
   background-image: linear-gradient(
     to bottom,
     transparent,
+    var(--background-color),
     var(--background-color)
   );
   background-size: fill;
   position: fixed;
   z-index: 1;
   bottom: 0;
-  width: calc(100% - 1.5rem);
-  padding-top: 2rem;
-  padding-bottom: 1rem;
+  width: 100%;
   overflow: auto;
+  max-width: var(--content-max-width);
+  padding-left:0;
+  padding-right: 1.6rem;
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 footer::after {
   content: '';
@@ -342,7 +343,7 @@ n-app {
 n-views n-view {
   margin-top: .5rem;
 }
-n-view [slot=content] {
+n-view.exact {
   padding-bottom: 5rem;
 }
 
@@ -499,7 +500,7 @@ n-audio {
   padding-left: 3px;
 }
 
-.component-item {
+.component-list {
   border-radius: 10px;
   border: 1px solid var(--primary);
   background-color: var(--primary);
@@ -513,7 +514,6 @@ n-audio {
 
 .component-item h4 {
   color: white;
-  text-shadow: none;
   font-size: large;
   padding-left: 1rem;
   font-weight: 700;
@@ -525,7 +525,7 @@ n-audio {
   color: #eee;
 }
 .component-item:hover p,
-.component-item:hover h4 {
+.component-item:hover {
   color: white;
 }
 
@@ -554,8 +554,8 @@ n-audio {
   font-weight: 400;
 }
 
-.list-group-item:hover {
-  background-color: var(--nav-bg);
+.list-group-item a:hover  {
+  font-weight: 800;
 }
 
 /* Bootstrap ------------------*/
