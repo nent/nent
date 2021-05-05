@@ -24,7 +24,7 @@
     "@stencil/core": "2.5.2",
     "@stencil/postcss": "2.0.0",
     "autoprefixer": "10.2.5",
-    "bootstrap": "5.0.0-beta3",
+    "bootstrap": "5.0.0",
     "postcss": "8.2.13",
     "postcss-import": "14.0.1",
     "postcss-scss": "3.0.5",
@@ -35,7 +35,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "5.0.0-beta3"
+    "bootstrap": "5.0.0"
   },
   "watch": {
     "build": {
