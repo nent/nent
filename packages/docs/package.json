@@ -25,7 +25,7 @@
     "@stencil/postcss": "2.0.0",
     "autoprefixer": "10.2.5",
     "bootstrap": "5.0.0",
-    "postcss": "8.2.14",
+    "postcss": "8.2.15",
     "postcss-import": "14.0.2",
     "postcss-scss": "3.0.5",
     "remixicon": "2.5.0",
