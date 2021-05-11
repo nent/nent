@@ -18,7 +18,6 @@
     - [Commit message guidelines](#commit-message-guidelines)
       - [Atomic commits](#atomic-commits)
       - [Commit message format](#commit-message-format)
-      - [Revert](#revert)
       - [Type](#type)
       - [Subject](#subject)
       - [Body](#body)
@@ -51,21 +50,21 @@ We also recommend that you read [How to Contribute to Open Source](https://opens
 
 ## Code of Conduct
 
-Help us keep **nent** open and inclusive. Please read and follow our [Code of conduct](CODE_OF_CONDUCT.md).
+Help us keep **NENT** open and inclusive. Please read and follow our [Code of conduct](CODE_OF_CONDUCT.md).
 
 ## How can I contribute?
 
 ### Improve documentation
 
-As a **nent** user, you are the perfect candidate to help us improve our documentation: typo corrections, clarifications, more examples, new [recipes](docs/recipes/README.md), etc. Take a look at the [documentation issues that need help](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3Anent+repo%3Anent+archived%3Afalse+label%3A%22help+wanted%22+label%3Adocs+).
+As a **NENT** user, you are the perfect candidate to help us improve our documentation: typo corrections, clarifications, more examples, new [recipes](docs/recipes/README.md), etc. Take a look at the [documentation issues that need help](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3Anent+repo%3Anent+archived%3Afalse+label%3A%22help+wanted%22+label%3Adocs+).
 
 Please follow the [Documentation guidelines](#documentation).
 
 ### Give feedback on issues
 
-Some issues are created without information requested in the [Bug report guideline](#bug-report). Help make them easier to resolve by adding any relevant information.
+Some issues are created without the information requested in the [Bug report guideline](#bug-report). Help make them easier to resolve by adding any relevant information.
 
-Issues with the [design label](https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3Anent+repo%3Anent+archived%3Afalse+label%3Adesign) are meant to discuss the implementation of new features. Participating in the discussion is a good opportunity to get involved and influence the future direction of **nent**.
+Issues with the [design label](https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3Anent+repo%3Anent+archived%3Afalse+label%3Adesign) are meant to discuss the implementation of new features. Participating in the discussion is a good opportunity to get involved and influence the future direction of **NENT**.
 
 ### Fix bugs and implement features
 
@@ -79,7 +78,7 @@ Before opening an issue or a Pull Request, please use the [GitHub issue search](
 
 ### Bug report
 
-A good bug report shouldn't leave others needing to chase you for more information. Please try to be as detailed as possible in your report and fill the information requested in the [Bug report template](https://github.com/nent/nent/issues/new?template=bug-report.md).
+A good bug report shouldn't leave others needing to chase you for more information. Please try to be as detailed as possible in your report and fill in the information requested in the [Bug report template](https://github.com/nent/nent/issues/new?template=bug-report.md).
 
 ### Feature request
 
@@ -87,7 +86,7 @@ Feature requests are welcome, but take a moment to find out whether your idea fi
 
 ### New plugin request
 
-[Plugins](docs/usage/plugins.md) are a great way to extend **nent** capabilities, integrate with other systems and support new project type. Please provide as much detail and context as possible and fill the information requested in the [New plugin request template](https://github.com/nent/nent/issues/new?template=plugin-request.md).
+[Plugins](docs/usage/plugins.md) are a great way to extend **NENT** capabilities, integrate with other systems, and support new project types. Please provide as much detail and context as possible and fill the information requested in the [New plugin request template](https://github.com/nent/nent/issues/new?template=plugin-request.md).
 
 ## Submitting a Pull Request
 
@@ -172,7 +171,7 @@ A complex feature can be broken down into multiple commits as long as each one m
 Each commit message consists of a **header**, a **body** and a **footer**. The header has a special format that includes a **type**, a **scope** and a **subject**:
 
 ```commit
-<type>(<scope>): <subject>
+<type>(<scope or emoji>): <subject>
 <BLANK LINE>
 <body>
 <BLANK LINE>
@@ -181,13 +180,7 @@ Each commit message consists of a **header**, a **body** and a **footer**. The h
 
 The **header** is mandatory and the **scope** of the header is optional.
 
-The **footer** can contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages).
-
-#### Revert
-
-If the commit reverts a previous commit, it should begin with `revert:`, followed by the header of the reverted commit. In the body it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
-
-#### Type
+#### Type 
 
 The type must be one of the following:
 
@@ -205,7 +198,7 @@ The type must be one of the following:
 
 #### Subject
 
-The subject contains succinct description of the change:
+The subject contains a succinct description of the change:
 
 - use the imperative, present tense: "change" not "changed" nor "changes"
 - don't capitalize first letter
@@ -220,7 +213,7 @@ The body should include the motivation for the change and contrast this with pre
 
 The footer should contain any information about **Breaking Changes** and is also the place to reference GitHub issues that this commit **Closes**.
 
-**Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
+**Breaking Changes** should start with the word `BREAKING CHANGE:` with space or two newlines. The rest of the commit message is then used for this.
 
 #### Examples
 
@@ -261,18 +254,17 @@ $ yarn
 
 ### Lint
 
-**nent** uses ESLint for linting and [Prettier](https://prettier.io) for formatting. Prettier formatting will be automatically verified and fixed at testing.
+**NENT** uses ESLint for linting and [Prettier](https://prettier.io) for formatting. Prettier formatting will be automatically verified and fixed at testing.
 
-Before pushing your code changes make sure there are no linting errors with `yarn run lint`.
 
 **Tips**:
 
-- Most linting errors can be automatically fixed with `yarn run lint -* --fix`.
+- Most linting errors can be automatically fixed with `yarn run format`.
 
 
 ### Tests
 
-**nent** uses StencilJS (Jest) for writing and running tests.
+**NENT** uses StencilJS (Jest) for writing and running tests.
 
 ```bash
 yarn run test
@@ -280,6 +272,6 @@ yarn run test
 
 ### Commits
 
-**nent** uses [commitlint](https://github.com/conventional-changelog/commitlint) to help you create clean commit messages. Also, we use [husky](https://github.com/typicode/husky) to automatically validate your commit message, run lint and run tests before you can push.
+**NENT** uses [commitlint](https://github.com/conventional-changelog/commitlint) to help you create clean commit messages. Also, we use [husky](https://github.com/typicode/husky) to automatically validate your commit message, run lint and run tests before you can push.
 
 
