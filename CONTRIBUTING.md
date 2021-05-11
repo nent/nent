@@ -16,6 +16,14 @@
     - [Source code](#source-code)
     - [Documentation](#documentation)
     - [Commit message guidelines](#commit-message-guidelines)
+      - [Atomic commits](#atomic-commits)
+      - [Commit message format](#commit-message-format)
+      - [Revert](#revert)
+      - [Type](#type)
+      - [Subject](#subject)
+      - [Body](#body)
+      - [Footer](#footer)
+      - [Examples](#examples)
   - [Working with the code](#working-with-the-code)
     - [Set up the workspace](#set-up-the-workspace)
     - [Lint](#lint)
@@ -98,7 +106,7 @@ Here is a summary of the steps to follow:
 git checkout master
 git pull upstream master
 rm -rf node_modules
-npm install
+yarn
 ```
 
 3. Create a new topic branch (off the main project development branch) to contain your feature, change, or fix:
@@ -185,7 +193,7 @@ The type must be one of the following:
 
 | Type         | Description                                                                                                 |
 | ------------ | ----------------------------------------------------------------------------------------------------------- |
-| **build**    | Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)         |
+| **build**    | Changes that affect the build system or external dependencies (example scopes: yarn, lerna, jest)         |
 | **ci**       | Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs) |
 | **docs**     | Documentation only changes                                                                                  |
 | **feat**     | A new feature                                                                                               |
@@ -248,32 +256,30 @@ $ cd <repo-name>
 # Assign the original repo to a remote called "upstream"
 $ git remote add upstream https://github.com/nent/nent
 # Install the dependencies
-$ npm install
+$ yarn
 ```
 
 ### Lint
 
 **nent** uses ESLint for linting and [Prettier](https://prettier.io) for formatting. Prettier formatting will be automatically verified and fixed at testing.
 
-Before pushing your code changes make sure there are no linting errors with `npm run lint`.
+Before pushing your code changes make sure there are no linting errors with `yarn run lint`.
 
 **Tips**:
 
-- Most linting errors can be automatically fixed with `npm run lint -* --fix`.
-- Install the [XO plugin](https://github.com/sindresorhus/xo#editor-plugins) for your editor to see linting errors directly in your editor and automatically fix them on save.
+- Most linting errors can be automatically fixed with `yarn run lint -* --fix`.
+
 
 ### Tests
 
 **nent** uses StencilJS (Jest) for writing and running tests.
 
-Before pushing your code changes make sure all **tests pass** and the **coverage is 100%**:
-
 ```bash
-npm run test
+yarn run test
 ```
 
 ### Commits
 
-**nent** uses [Commitizen](https://github.com/commitizen/cz-cli) to help you create [valid commit messages](#commit-message-guidelines).
+**nent** uses [commitlint](https://github.com/conventional-changelog/commitlint) to help you create clean commit messages. Also, we use [husky](https://github.com/typicode/husky) to automatically validate your commit message, run lint and run tests before you can push.
 
-After staging your changes with `git add`, run `npm run cm` to start the interactive commit message CLI.
+
