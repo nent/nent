@@ -64,6 +64,6 @@
     ]
   },
   "devDependencies": {
-    "vsce": "1.87.1"
+    "vsce": "1.88.0"
   }
 }

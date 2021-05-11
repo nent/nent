@@ -267,7 +267,7 @@ Before pushing your code changes make sure there are no linting errors with `yar
 
 **Tips**:
 
-- Most linting errors can be automatically fixed with `yarn run lint -* --fix`.
+- Most linting errors can be automatically fixed with `yarn run format`.
 
 
 ### Tests
