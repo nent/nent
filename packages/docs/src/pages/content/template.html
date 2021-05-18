@@ -3,18 +3,18 @@
   <h2>Injecting Data into Templates</h2>
   <n-content-markdown src="/pages/content/template">
   </n-content-markdown>
-  <footer>
-    <h3>Result</h3>
-    <n-content-template>
-      <script type="application/json">
+  <h3>Result</h3>
+  <n-content-template>
+    <script type="application/json">
       {
         "name":"Sally"
       }
       </script>
-      <template>
+    <template>
       <p>{{data:name}}</p>
       </template>
-    </n-content-template>
+  </n-content-template>
+  <footer>
     <n-view-link-back slot="start"
       class="btn btn-secondary">
     </n-view-link-back>
