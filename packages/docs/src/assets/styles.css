@@ -125,6 +125,7 @@ nav.bg-dark .active i {
   opacity: 0;
   pointer-events: none;
 }
+
 .tip span {
   border: 2px solid var(--accent);
   border-radius: 2px;
@@ -135,10 +136,12 @@ nav.bg-dark .active i {
   left: -50%;
   top: 3rem;
 }
+
 .tip span.right {
   right: 0;
   left: auto;
 }
+
 .tip span.left {
   left: 0;
   right: auto;

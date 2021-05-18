@@ -11,6 +11,10 @@
   "scripts": {
     ":build ---": "---------------",
     "build": "run-s build:core build:docs",
+    "prepublish": "yarn build",
+    "publish": "lerna publish --yes",
+    "prepublish:test": "yarn build",
+    "publish:test": "lerna publish --canary --preid beta --yes",
     ":dev ---": "---------------",
     "start": "run-p start:core start:docs",
     "serve": "serve docs",
@@ -49,7 +53,7 @@
     "prepare": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
-    "postinstall": "lerna bootstrap"
+    "_postinstall": "lerna bootstrap"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "12.1.4",
