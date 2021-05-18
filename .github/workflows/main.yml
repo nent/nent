@@ -82,14 +82,6 @@ jobs:
           node-version: 14.5.0
       - run: yarn
       - run: yarn publish
-      - run: |>
-        PACKAGE_VERSION=$(cat packages/core/package.json \
-        | grep version \
-        | head -1 \
-        | awk -F: '{ print $2 }' \
-        | sed 's/[",]//g'
-        | tr -d '[[:space:]]')
-      - run: echo $PACKAGE_VERSION
       #- name: Create Release
       #  id: create_release
       #  uses: actions/create-release@v1
