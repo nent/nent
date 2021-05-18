@@ -26,15 +26,6 @@
     ```
   </script>
 </n-content-markdown>
-
-<footer>
-  <a slot="start"
-    href="/actions/activation"
-    class="btn btn-primary">&lt; Activations</a>
-  <a slot="end"
-    href="/actions/activation/timed"
-    class="btn btn-info">Timed Activation &gt;</a>
-</footer>
 <n-action-activator activate="on-enter">
   <n-action topic="app"
     command="log"
@@ -47,3 +38,11 @@
     data-message="Testing on-exit action">
   </n-action>
 </n-action-activator>
+<footer>
+  <n-view-link-back slot="start"
+    class="btn btn-primary">
+  </n-view-link-back>
+  <n-view-link-next slot="end"
+    class="btn btn-secondary">
+  </n-view-link-next>
+</footer>
