@@ -3,11 +3,11 @@
     n-show-when="{{storage:animal}} == 'dog'">I only show up when your
     spirit-animal is 'dog'</h2>
   <footer>
-    <a slot="start"
-      href="/data"
-      class="btn btn-primary"> ⯇ Data </a>
-    <a slot="end"
-      href="/data/expressions"
-      class="btn btn-secondary"> Expressions ⯈ </a>
+    <n-view-link-back slot="start"
+      class="btn btn-secondary">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      class="btn btn-secondary">
+    </n-view-link-next>
   </footer>
 </div>

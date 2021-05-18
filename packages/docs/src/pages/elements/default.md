@@ -4,11 +4,6 @@ The [\<n-elements\>](/components/n-elements) component extends the functionality
 
 It also adds an HTML Element modifying Action Listener to enable time-based or event-based changes to HTML.
 
-### Element Actions
-
-### Element Attributes
-
-
 ## Install Extension
 
 ```html

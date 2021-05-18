@@ -2,45 +2,11 @@
 
 The View component is a child component for the `<n-view>` component for adding a page route. It is a container element that displays its inner HTML for a given route or sub-route. This provides a declarative mechanism for in-page content/component routing by URL.
 
-
-
-## Responsibilities
-
-The View Component and its attributes provide the page context & functionality:
-
-- Page title updates
-- Scroll top on navigation
-- Smooth transitions between routes
-- Parameterized data for data-driven routing
-- Page visit tracking
-- Attribute-based conditional show/hide of child elements
-
 ## Extensions
 
 * [Elements](/components/n-view/elements)
 * [Data](/components/n-view/data)
 
-### Elements
-
- Read more here:
-
-
-## Usage
-
-```html
-<n-views>
-  <n-view path='/'
-    page-title='Home'
-    transition='fade-in'>
-    ...
-  </n-view>
-  <n-view path='/about'
-    page-title='About Us'
-    scroll-top-offset='20'>
-    ...
-  </n-view>
-</n-views>
-```
 
 > The view element uses the display property in CSS to hide and show based on the route. It is important that any class added does not override this
 
@@ -61,7 +27,7 @@ Views can hold any HTML, including View components. This implicitly creates chil
 </n-views>
 ```
 
-### Child View-Dos
+### View Prompts
 
 The contained HTML is parsed before rendering and special handling is given if any child elements are [\<n-view-prompt\>](/components/n-view-prompt) elements. Before rendering its HTML, this component iterates the collection and evaluates their conditions (_when_ attribute) looking for the first [\<n-view-prompt\>](/components/n-view-prompt) that should be displayed, using the order they are declared. If and when a non-visited [\<n-view-prompt\>](/components/n-view-prompt) is found, its route is activated and subsequently marked as visited.
 
