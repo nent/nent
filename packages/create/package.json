@@ -16,7 +16,7 @@
     "templates"
   ],
   "dependencies": {
-    "create-initializer": "^1.0.0"
+    "create-initializer": "1.1.1"
   },
   "license": "MIT"
 }

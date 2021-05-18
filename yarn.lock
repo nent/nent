@@ -3942,7 +3942,7 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-create-initializer@^1.0.0:
+create-initializer@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/create-initializer/-/create-initializer-1.1.1.tgz#d939ea3f8d32dff10f9e86f1df812067fe416c6d"
   integrity sha512-a4tfsgn102qt54yZLhlcAKQbj4+/cDY4y7RKatmQ7VQstXmfYQ3a9HS+2toslpZLxMbuNZeXLvVls/ButBr8rQ==
