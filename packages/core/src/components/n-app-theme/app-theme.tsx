@@ -42,7 +42,7 @@ export class AppTheme {
   @Prop() display: boolean = false
 
   componentWillLoad() {
-    const prefersDark = window?.matchMedia(
+    const prefersDark = window.matchMedia(
       '(prefers-color-scheme: dark)',
     )
     if (prefersDark?.addEventListener) {
@@ -52,24 +52,33 @@ export class AppTheme {
       })
     }
 
-    if (appState.theme != null) {
-      this.toggleDarkTheme(appState.theme === 'dark')
-    }
     this.uiSubscription = onAppChange('theme', theme => {
       this.toggleDarkTheme(theme === 'dark')
     })
+
+    if (appState.theme != null) {
+      this.toggleDarkTheme(appState.theme === 'dark')
+    }
   }
 
-  private toggleDarkTheme(dark: boolean) {
-    this.el.ownerDocument
-      .querySelector(this.targetElement)
-      ?.classList.toggle(this.darkClass, dark)
+  private toggleDarkTheme(isDark: boolean) {
+    if (this.targetElement == 'body') {
+      this.el.ownerDocument.body.classList.toggle(
+        this.darkClass,
+        isDark,
+      )
+    } else {
+      this.el.ownerDocument
+        .querySelector(this.targetElement)
+        ?.classList.toggle(this.darkClass, isDark)
+    }
   }
 
   render() {
     if (this.display) {
       return <Host>{this.systemDark ? this.darkClass : 'light'}</Host>
     }
+    return null
   }
 
   disconnectedCallback() {
