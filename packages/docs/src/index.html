@@ -25,10 +25,11 @@
       content="NENT" />
     <meta name="apple-mobile-web-app-status-bar-style"
       content="black" />
-    <link rel="apple-touch-icon"
-      href="/assets/icon/apple-touch-icon.png">
     <meta name="theme-color"
       content="#ae9ae4" />
+
+    <link rel="apple-touch-icon"
+      href="/assets/icon/apple-touch-icon.png">
     <link rel="dns-prefetch"
       href="cdn.jsdelivr.net" />
     <link rel="preconnect"
@@ -38,13 +39,17 @@
     <link rel="icon"
       type="image/ico"
       href="/assets/favicon.ico" />
+
     <link rel="manifest"
       href="/manifest.json" />
+
     <!-- nent -->
     <script type="module"
-      src="/dist/nent/nent.esm.js"></script>
+      src="/dist/nent/nent.esm.js">
+    </script>
     <script type="module"
-      src="/lib/docs.esm.js"></script>
+      src="/lib/docs.esm.js">
+    </script>
     <link rel="modulepreload"
       as="script"
       href="/dist/nent/n-views.entry.js" />
@@ -128,6 +133,9 @@
       <n-app-analytics id="analytics">
       </n-app-analytics>
       <n-data>
+        <!-- enable data expressions-->
+        <n-data-session></n-data-session>
+        <n-data-storage></n-data-storage>
       </n-data>
       <n-views start-path="/"
         app-title="NENT"
@@ -201,18 +209,6 @@
               <span>Content</span>
             </n-view-link>
             <n-view-link class="nav-link flex-fill tip"
-              title="Data "
-              path="/data">
-              <i class="ri-database-2-line"></i>
-              <span>Data</span>
-            </n-view-link>
-            <n-view-link class="nav-link flex-fill tip"
-              title="Elements"
-              path="/elements">
-              <i class="ri-plug-line"></i>
-              <span>Elements</span>
-            </n-view-link>
-            <n-view-link class="nav-link flex-fill tip"
               title="Audio"
               path="/audio">
               <i class="ri-music-line"></i>
@@ -222,7 +218,19 @@
               title="Presentations"
               path="/presentations">
               <i class="ri-movie-line"></i>
-              <span class="right">Presentations</span>
+              <span>Presentations</span>
+            </n-view-link>
+            <n-view-link class="nav-link flex-fill tip"
+              title="Data "
+              path="/data">
+              <i class="ri-database-2-line"></i>
+              <span>Data</span>
+            </n-view-link>
+            <n-view-link class="nav-link flex-fill tip"
+              title="Elements"
+              path="/elements">
+              <i class="ri-plug-line"></i>
+              <span class="right">Elements</span>
             </n-view-link>
             <n-view-link class="nav-link flex-shrink-0 tip"
               title="Components"
@@ -235,7 +243,7 @@
         <nav aria-label="breadcrumb"
           class="bread-nav contained text-end">
           <n-view-link-list class=""
-            list-class="breadcrumb justify-content-end"
+            list-class="breadcrumb justify-content-start"
             active-class="active"
             item-class="breadcrumb-item"
             exclude-root>
@@ -401,17 +409,6 @@
           page-title="Home"
           src="/pages/home/routes.html"
           content-src="/pages/home/default.html">
-          <n-view-prompt path="/home/name"
-            page-title="Introductions"
-            when="!{{storage:name}}"
-            content-src="/pages/home/intro.html">
-          </n-view-prompt>
-          <n-view-prompt path="/home/welcome"
-            page-title="Welcome"
-            visit="always"
-            content-src="/pages/home/welcome.html"
-            transition="animate__animated animate__pulse">
-          </n-view-prompt>
         </n-view>
         <n-view path="/start"
           page-title="Get Started"
@@ -439,16 +436,6 @@
           src="/pages/content/routes.html"
           content-src="/pages/content/default.html">
         </n-view>
-        <n-view path="/data"
-          page-title="Data"
-          src="/pages/data/routes.html"
-          content-src="/pages/data/default.html">
-        </n-view>
-        <n-view path="/elements"
-          page-title="Elements"
-          src="/pages/elements/routes.html"
-          content-src="/pages/elements/default.html">
-        </n-view>
         <n-view path="/audio"
           page-title="Audio"
           src="/pages/audio/routes.html"
@@ -458,6 +445,16 @@
           page-title="Presentations"
           src="/pages/presentations/routes.html"
           content-src="/pages/presentations/default.html">
+        </n-view>
+        <n-view path="/data"
+          page-title="Data Extension"
+          src="/pages/data/routes.html"
+          content-src="/pages/data/default.html">
+        </n-view>
+        <n-view path="/elements"
+          page-title="Elements Extension"
+          src="/pages/elements/routes.html"
+          content-src="/pages/elements/default.html">
         </n-view>
         <n-view path="/components"
           page-title="All Components"
@@ -472,17 +469,17 @@
         </n-view-not-found>
 
       </n-views>
-      <!-- enable data expressions-->
-      <n-data-session></n-data-session>
-      <n-data-storage></n-data-storage>
+
       <n-elements>
         <!-- enable element manipulation-->
       </n-elements>
     </n-app>
     <script>
       analytics.addEventListener( 'custom-event', ( e ) => {
-        gtag( e.detail.key, e.detail.value )
-        // console.debug(`gtag('${e.detail.key}', '${e.detail.value})'`)
+        Object.getOwnPropertyNames(e.detail).forEach(n => {
+          gtag( n, e.detail[n] )
+          console.debug(`gtag('${n}', '${e.detail[n]})'`)
+        })
       } )
       analytics.addEventListener( 'page-view', ( e ) => {
         gtag( 'page_view', e.detail.pathname )

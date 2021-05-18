@@ -50,26 +50,6 @@
       <i class="ri-code-box-line"></i> Content Elements</a>
   </li>
   <li class="list-group-item">
-    <a href="/data"
-      class="stretched-link">
-      <i n-hide-when="'/data' in {{visits:all}}"
-        class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="'/data' in {{visits:all}}"
-        class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
-        hidden></i>
-      <i class="ri-database-2-line"></i> Data Extension</a>
-  </li>
-  <li class="list-group-item">
-    <a href="/elements"
-      class="stretched-link">
-      <i n-hide-when="'/elements' in {{visits:all}}"
-        class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="'/elements' in {{visits:all}}"
-        class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
-        hidden></i>
-      <i class="ri-plug-line"></i> Elements Extension</a>
-  </li>
-  <li class="list-group-item">
     <a href="/audio"
       class="stretched-link">
       <i n-hide-when="'/audio' in {{visits:all}}"
@@ -89,15 +69,24 @@
         hidden></i>
       <i class="ri-movie-line"></i> Presentations</a>
   </li>
-  <li hidden
-    class="list-group-item">
-    <a href="/developers"
+  <li class="list-group-item">
+    <a href="/data"
       class="stretched-link">
-      <i n-hide-when="'/developers' in {{visits:all}}"
+      <i n-hide-when="'/data' in {{visits:all}}"
         class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
-      <i n-show-when="'/developers' in {{visits:all}}"
+      <i n-show-when="'/data' in {{visits:all}}"
         class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
         hidden></i>
-      <i class="ri-git-pull-request-line"></i> Contributing </a>
+      <i class="ri-database-2-line"></i> Data Extension</a>
+  </li>
+  <li class="list-group-item">
+    <a href="/elements"
+      class="stretched-link">
+      <i n-hide-when="'/elements' in {{visits:all}}"
+        class="ri-checkbox-blank-line float-end fs-5 text-white ms-2 mt-1"></i>
+      <i n-show-when="'/elements' in {{visits:all}}"
+        class="ri-checkbox-fill float-end text-white fs-5 ms-2 mt-1"
+        hidden></i>
+      <i class="ri-plug-line"></i> Elements Extension</a>
   </li>
 </ul>

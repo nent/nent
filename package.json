@@ -1,9 +1,6 @@
 {
-  "name": "@nent/core",
   "private": true,
-  "version": "0.1.0",
   "license": "MIT",
-  "main": "index.js",
   "author": "Jason Wicker <jason@nent.dev>",
   "homepage": "https://github.com/nent/nent#readme",
   "bugs": {
@@ -16,7 +13,7 @@
     "build": "run-s build:core build:docs",
     ":dev ---": "---------------",
     "start": "run-p start:core start:docs",
-    "serve": "npx serve docs",
+    "serve": "serve docs",
     ":core  ---": "---------------",
     "prebuild:core": "cp README.md ./packages/core/README.md",
     "build:core": "yarn workspace @nent/core run build",
@@ -100,6 +97,7 @@
     ]
   },
   "workspaces": [
+    "packages/create",
     "packages/core",
     "packages/docs"
   ]

@@ -1,11 +1,25 @@
 <div class="content">
   <h1>App Themes</h1>
-  <p class="lead"> OS-level sharing through the browser. </p>
+  <p class="lead"> System theme detection and selection.</p>
   <h2>Native Dark Mode</h2>
-  <p> </p>
-  <p>See it live:</p>
-  <h3>Sample Usage</h3>
-  <p></p>
+
+  <h3>Theme Detection</h3>
+  <p>Your default theme is: <n-app-theme id="theme"
+      display
+      skip-class=""></n-app-theme>
+  </p>
+  <n-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <p>Your default theme is: <n-app-theme id="theme"
+        display
+        skip-class=""></n-app-theme>
+    </p>
+      ```
+    </script>
+  </n-content-markdown>
+  <h3>Theme Selection</h3>
+  <p>There's also a switch change it:</p>
   <div class="form-check form-switch">
     <n-app-theme-switch classes="form-check-input"
       input-id="themeSwitch"> </n-app-theme-switch>

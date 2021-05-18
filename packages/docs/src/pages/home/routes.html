@@ -1,3 +1,13 @@
+<n-view-prompt path="/home/name"
+  page-title="Introductions"
+  when="!{{storage:name}}"
+  content-src="/pages/home/intro.html">
+</n-view-prompt>
+<n-view-prompt path="/home/welcome"
+  page-title="Welcome"
+  visit="always"
+  content-src="/pages/home/welcome.html">
+</n-view-prompt>
 <n-view path="/home/profile"
   page-title="Profile"
   content-src="/pages/home/profile.html">

@@ -21,7 +21,7 @@ import { IView, VisitStrategy } from '../n-view/services/interfaces'
 import { Route } from '../n-view/services/route'
 import { recordVisit } from '../n-view/services/visits'
 import { MatchResults } from '../n-views/services/interfaces'
-import { navigationState } from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 
 /**
  * This element represents a specialized child-route for a parent \<n-view\> component.
@@ -133,7 +133,7 @@ export class ViewPrompt implements IView {
   componentWillLoad() {
     debugIf(this.debug, `n-view-prompt: ${this.path} loading`)
 
-    if (!navigationState.router) {
+    if (!routingState.router) {
       warn(
         `n-view-prompt: ${this.path} cannot load outside of an n-views element`,
       )
@@ -147,7 +147,7 @@ export class ViewPrompt implements IView {
       return
     }
 
-    this.route = navigationState.router.createRoute(
+    this.route = routingState.router.createRoute(
       this.el,
       this.parentView,
       (match: MatchResults | null) => {

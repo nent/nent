@@ -5,16 +5,13 @@ import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonStateDispose } from '../../services/common'
 import { Elements } from '../n-elements/elements'
-import {
-  navigationState,
-  navigationStateDispose,
-} from './services/state'
+import { routingState, routingStateDispose } from './services/state'
 import { ViewRouter } from './views'
 
 describe('n-views', () => {
   afterEach(() => {
     commonStateDispose()
-    navigationStateDispose()
+    routingStateDispose()
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
     jest.resetAllMocks()
@@ -40,7 +37,7 @@ describe('n-views', () => {
 
     const app = page.body.querySelector('n-views')
     expect(app).not.toBeUndefined()
-    const router = navigationState?.router
+    const router = routingState?.router
 
     expect(router).not.toBeUndefined()
 
@@ -69,7 +66,7 @@ describe('n-views', () => {
     </h1>
   </n-views>`)
 
-    const router = navigationState?.router
+    const router = routingState?.router
 
     expect(router!.history.location.pathname).toBe('/home')
 
@@ -95,7 +92,7 @@ describe('n-views', () => {
     </h1>
   </n-views>`)
 
-    const router = navigationState?.router
+    const router = routingState?.router
 
     expect(router!.history.location.pathname).toBe('/home')
 
@@ -123,7 +120,7 @@ describe('n-views', () => {
     </h1>
   </n-views>`)
 
-    const router = navigationState?.router
+    const router = routingState?.router
 
     expect(router!.history.location.pathname).toBe('/home')
 

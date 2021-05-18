@@ -14,8 +14,8 @@ import { InMemoryProvider } from '../../services/data/providers/memory'
 import { dataState } from '../../services/data/state'
 import { View } from '../n-view/view'
 import {
-  navigationState,
-  navigationStateDispose,
+  routingState,
+  routingStateDispose,
 } from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { ViewPrompt } from './view-prompt'
@@ -35,7 +35,7 @@ describe('n-view-prompt', () => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
     storage.changed.removeAllListeners()
-    navigationStateDispose()
+    routingStateDispose()
     contentStateDispose()
     commonStateDispose()
   })
@@ -115,7 +115,7 @@ describe('n-view-prompt', () => {
     </n-views>
     `)
 
-    const router = navigationState!.router!
+    const router = routingState!.router!
     expect(router.location.pathname).toBe('/go')
 
     router.goToParentRoute()
@@ -145,7 +145,7 @@ describe('n-view-prompt', () => {
       </n-views>`,
     })
 
-    const router = navigationState!.router!
+    const router = routingState!.router!
 
     await page.waitForChanges()
 
@@ -188,7 +188,7 @@ describe('n-view-prompt', () => {
       </n-views>`,
     })
 
-    const router = navigationState!.router!
+    const router = routingState!.router!
 
     await page.waitForChanges()
 

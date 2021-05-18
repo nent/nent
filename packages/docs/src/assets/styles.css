@@ -202,7 +202,7 @@ a.active * {
 h1 {
   font-size: 2rem;
   line-height: 1;
-  margin: 0;
+  margin: 1rem 0;
   vertical-align: middle;
 }
 
@@ -341,12 +341,11 @@ n-app {
   width: 100%;
 }
 
-n-views n-view,
-n-views n-view-prompt {
+n-view {
   margin-top: .5rem;
 }
-n-view.exact,
-n-view-prompt.exact {
+
+n-view.active {
   padding-bottom: 5rem;
 }
 
@@ -359,8 +358,6 @@ n-view-link a:hover {
   color: var(--accent);
   text-decoration: none;
 }
-
-
 
 n-view-link-back.btn a:any-link,
 n-view-link-next.btn a:any-link,
@@ -378,9 +375,8 @@ n-view.active + n-view-not-found {
 }
 
 .contained,
-n-views n-view,
-n-views n-view-prompt,
-n-views n-view-not-found {
+n-view,
+n-view-not-found {
   max-width: var(--content-max-width);
   padding: 0 var(--bs-gutter-x, 0.75rem);
   margin-right: auto !important;
@@ -510,6 +506,10 @@ n-audio {
     var(--primary)
   );
   margin-bottom: 1rem;
+  margin-top: 1rem;
+  position: static;
+  z-index: 11;
+  color: white;
 }
 
 .component-item h4 {
@@ -529,13 +529,7 @@ n-audio {
   color: white;
 }
 
-.component-list {
-  position: static;
-  z-index: 11;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  color: white;
-}
+
 
 .list-group {
   clear: right;

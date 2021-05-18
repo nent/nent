@@ -2,7 +2,7 @@ import { Component, h, Host, Prop, writeTask } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonState, debugIf } from '../../services/common'
 import { RouterService } from './services/router'
-import { navigationState } from './services/state'
+import { routingState } from './services/state'
 
 /**
  * The root component is the base container for the view-engine and its
@@ -55,7 +55,7 @@ export class ViewRouter {
 
   componentWillLoad() {
     commonState.routingEnabled = true
-    navigationState.router = new RouterService(
+    routingState.router = new RouterService(
       window,
       writeTask,
       eventBus,
@@ -69,12 +69,12 @@ export class ViewRouter {
 
   async componentDidLoad() {
     debugIf(commonState.debug, 'n-views: initialized')
-    navigationState.router!.finalize(this.startPath)
+    routingState.router!.finalize(this.startPath)
   }
 
   disconnectedCallback() {
     commonState.routingEnabled = false
-    navigationState.router?.destroy()
+    routingState.router?.destroy()
   }
 
   render() {

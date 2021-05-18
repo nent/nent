@@ -7,8 +7,8 @@ import { commonStateDispose } from '../../services/common'
 import { ViewPrompt } from '../n-view-prompt/view-prompt'
 import { View } from '../n-view/view'
 import {
-  navigationState,
-  navigationStateDispose,
+  routingState,
+  routingStateDispose,
 } from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { Analytics } from './app-analytics'
@@ -22,7 +22,7 @@ describe('n-app-analytics', () => {
     commonStateDispose()
     eventBus.removeAllListeners()
     actionBus.removeAllListeners()
-    navigationStateDispose()
+    routingStateDispose()
   })
   it('renders and subscribes to page views', async () => {
     const page = await newSpecPage({
@@ -57,7 +57,7 @@ describe('n-app-analytics', () => {
       },
     )
 
-    const router = navigationState?.router
+    const router = routingState?.router
 
     router?.goToRoute('/start')
 

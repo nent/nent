@@ -13,7 +13,7 @@ import {
 } from '../../services/data/state'
 import { ViewLink } from '../n-view-link/view-link'
 import { View } from '../n-view/view'
-import { navigationStateDispose } from '../n-views/services/state'
+import { routingStateDispose } from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { ViewLinkList } from './view-link-list'
 
@@ -25,7 +25,7 @@ describe('n-view-link-list', () => {
   afterEach(() => {
     dataStateDispose()
     commonStateDispose()
-    navigationStateDispose()
+    routingStateDispose()
     eventBus.removeAllListeners()
   })
   it('renders single home route', async () => {
@@ -108,6 +108,120 @@ describe('n-view-link-list', () => {
           <slot name="content"></slot>
         </mock:shadow-root>
       </n-view>
+    </n-views>
+    `)
+
+    page.root?.remove()
+  })
+
+  it('renders sibling routes', async () => {
+    const page = await newSpecPage({
+      components: [ViewRouter, View, ViewLinkList, ViewLink],
+      html: `
+      <n-views>
+        <n-view-link-list mode="siblings"></n-view-link-list>
+        <n-view path="/home" page-title="Home">
+        </n-view>
+        <n-view path="/page1" page-title="Page 1">
+        </n-view>
+      </n-views>`,
+      url: 'http://local.com/home',
+    })
+
+    expect(page.root).toEqualHtml(`
+    <n-views>
+      <n-view-link-list  mode="siblings">
+        <ol>
+          <li>
+            <n-view-link>
+              <a class="active" href="/home" n-attached-click="">
+                Home
+              </a>
+            </n-view-link>
+          </li>
+          <li>
+            <n-view-link>
+              <a href="/page1" n-attached-click="">
+                Page 1
+              </a>
+            </n-view-link>
+          </li>
+        </ol>
+      </n-view-link-list>
+      <n-view class="active exact" page-title="Home" path="/home">
+        <mock:shadow-root>
+          <slot></slot>
+          <slot name="content"></slot>
+        </mock:shadow-root>
+      </n-view>
+      <n-view page-title="Page 1" path="/page1">
+        <mock:shadow-root>
+          <slot></slot>
+          <slot name="content"></slot>
+        </mock:shadow-root>
+      </n-view>
+    </n-views>
+    `)
+
+    page.root?.remove()
+  })
+
+  it('renders children routes', async () => {
+    const page = await newSpecPage({
+      components: [ViewRouter, View, ViewLinkList, ViewLink],
+      html: `
+      <n-views>
+        <n-view-link-list mode="children"></n-view-link-list>
+        <n-view path="/" page-title="Home">
+
+          <n-view path="/page1" page-title="Page 1">
+          </n-view>
+          <n-view path="/page2" page-title="Page 2">
+          </n-view>
+        </n-view>
+
+      </n-views>`,
+    })
+
+    expect(page.root).toEqualHtml(`
+    <n-views>
+      <n-view-link-list mode="children">
+        <ol>
+          <li>
+            <n-view-link>
+              <a href="/page1" n-attached-click="">
+                Page 1
+              </a>
+            </n-view-link>
+          </li>
+          <li>
+            <n-view-link>
+              <a href="/page2" n-attached-click="">
+                Page 2
+              </a>
+            </n-view-link>
+          </li>
+        </ol>
+      </n-view-link-list>
+      <n-view class="active exact" page-title="Home" path="/">
+        <mock:shadow-root>
+          <slot></slot>
+          <slot name="content"></slot>
+        </mock:shadow-root>
+        <n-view page-title="Page 1" path="/page1">
+          <mock:shadow-root>
+            <slot></slot>
+            <slot name="content"></slot>
+          </mock:shadow-root>
+        </n-view>
+        <n-view page-title="Page 2" path="/page2">
+          <mock:shadow-root>
+            <slot></slot>
+            <slot name="content"></slot>
+          </mock:shadow-root>
+        </n-view>
+      </n-view>
+
     </n-views>
     `)
 

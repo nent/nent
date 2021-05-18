@@ -21,7 +21,7 @@ import { resolveRemoteContent } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { MatchResults } from '../n-views/services/interfaces'
-import { navigationState } from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 import { IView } from './services/interfaces'
 import { resolveNext } from './services/next'
 import { Route } from './services/route'
@@ -171,14 +171,14 @@ export class View implements IView {
   componentWillLoad() {
     debugIf(this.debug, `n-view: ${this.path} loading`)
 
-    if (!navigationState.router) {
+    if (!routingState.router) {
       warn(
         `n-view: ${this.path} cannot load outside of an n-views element`,
       )
       return
     }
 
-    this.route = navigationState.router.createRoute(
+    this.route = routingState.router.createRoute(
       this.el,
       this.parent,
       (match: MatchResults | null) => {

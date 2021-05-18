@@ -10,8 +10,8 @@ import { eventBus } from '../../services/actions'
 import { Route } from '../n-view/services/route'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import {
-  navigationState,
-  onNavigationChange,
+  onRoutingChange,
+  routingState,
 } from '../n-views/services/state'
 
 /**
@@ -42,10 +42,10 @@ export class ViewLinkBack {
   }
 
   componentWillLoad() {
-    if (navigationState.router) {
+    if (routingState.router) {
       this.setupRoute()
     } else {
-      const dispose = eventBus.on(ROUTE_EVENTS.RouteFinalized, () => {
+      const dispose = onRoutingChange('router', () => {
         this.setupRoute()
         dispose()
       })
@@ -57,18 +57,8 @@ export class ViewLinkBack {
       this.route = this.parentViewPrompt!.route.previousRoute
     } else if (this.parentView) {
       this.route = this.parentView!.route.previousRoute
-    } else if (navigationState.router) {
-      this.subscribe()
     } else {
-      const routerSubscription = onNavigationChange(
-        'router',
-        router => {
-          if (router) {
-            this.subscribe()
-            routerSubscription()
-          }
-        },
-      )
+      this.subscribe()
     }
   }
 
@@ -81,14 +71,27 @@ export class ViewLinkBack {
       },
     )
     this.route =
-      navigationState.router?.exactRoute?.previousRoute || null
+      routingState.router?.exactRoute?.previousRoute || null
   }
 
   render() {
     return (
       <Host>
         {this.route ? (
-          <a href={this.route.path} title={this.route.title}>
+          <a
+            onClick={e => {
+              e.preventDefault()
+              this.route?.goToRoute(this.route.path)
+            }}
+            onKeyPress={e => {
+              e.preventDefault()
+              this.route?.goToRoute(this.route.path)
+            }}
+            href={this.route.path}
+            title={this.route.title}
+            n-attached-click
+            n-attached-key-press
+          >
             {this.text || this.route.title}
           </a>
         ) : null}

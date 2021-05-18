@@ -20,7 +20,7 @@ import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { hasToken, resolveTokens } from '../../services/data/tokens'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
-import { navigationState } from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 import { filterData } from './filter/jsonata.worker'
 
 /**
@@ -142,7 +142,7 @@ export class ContentDataRepeat {
               },
             )
             routingEnabledSubscription()
-            navigationState.router?.captureInnerLinks(this.el)
+            routingState.router?.captureInnerLinks(this.el)
           }
         },
       )
@@ -182,10 +182,8 @@ export class ContentDataRepeat {
         await resolveChildElementXAttributes(this.dynamicContent!)
       }
       this.dynamicContent!.innerHTML = innerContent
-      if (navigationState?.router) {
-        navigationState.router?.captureInnerLinks(
-          this.dynamicContent!,
-        )
+      if (routingState?.router) {
+        routingState.router?.captureInnerLinks(this.dynamicContent!)
       }
       this.el.append(this.dynamicContent)
     }

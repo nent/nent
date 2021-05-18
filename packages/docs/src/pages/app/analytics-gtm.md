@@ -21,7 +21,6 @@
   <n-app-analytics id='analytics'>
     <script>
       analytics.addEventListener( 'custom-event', ( e ) => {
-        console.log(`event: ${JSON.stringify(e.detail)}`)
         Object.getOwnPropertyNames(e.detail).forEach(n => {
           gtag( n, e.detail[n] )
           console.debug(`gtag('${n}', '${e.detail[n]})'`)
