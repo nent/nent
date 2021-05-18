@@ -7,11 +7,11 @@ import {
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
-import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { Route } from '../n-view/services/route'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import {
-  navigationState,
-  onNavigationChange,
+  onRoutingChange,
+  routingState,
 } from '../n-views/services/state'
 
 /**
@@ -44,10 +44,10 @@ export class ViewLinkNext {
   }
 
   componentWillLoad() {
-    if (navigationState.router) {
+    if (routingState.router) {
       this.setupRoute()
     } else {
-      const dispose = eventBus.on(ROUTE_EVENTS.RouteFinalized, () => {
+      const dispose = onRoutingChange('router', () => {
         this.setupRoute()
         dispose()
       })
@@ -59,18 +59,8 @@ export class ViewLinkNext {
       this.route = this.parentViewPrompt!.route.nextRoute
     } else if (this.parentView) {
       this.route = this.parentView!.route.nextRoute
-    } else if (navigationState.router) {
-      this.subscribe()
     } else {
-      const routerSubscription = onNavigationChange(
-        'router',
-        async router => {
-          if (router) {
-            await this.subscribe()
-            routerSubscription()
-          }
-        },
-      )
+      this.subscribe()
     }
   }
 
@@ -82,7 +72,7 @@ export class ViewLinkNext {
         this.title = await route.resolvedTitle()
       },
     )
-    this.route = navigationState.router?.exactRoute?.nextRoute || null
+    this.route = routingState.router?.exactRoute?.nextRoute || null
   }
 
   render() {

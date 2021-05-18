@@ -7,7 +7,7 @@ import { actionBus, eventBus } from '../../services/actions'
 import { commonStateDispose } from '../../services/common'
 import { PresentationTimer } from '../n-presentation-timer/presentation-timer'
 import { View } from '../n-view/view'
-import { navigationState } from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { Presentation } from './presentation'
 
@@ -88,7 +88,7 @@ describe('n-presentation', () => {
     </n-views>
     `)
 
-    navigationState.router?.goToRoute('/home')
+    routingState.router?.goToRoute('/home')
 
     await page.waitForChanges()
 

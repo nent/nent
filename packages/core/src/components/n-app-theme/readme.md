@@ -41,10 +41,11 @@ To set a custom class name:
 
 ## Properties
 
-| Property    | Attribute    | Description                                                                                  | Type      | Default  |
-| ----------- | ------------ | -------------------------------------------------------------------------------------------- | --------- | -------- |
-| `darkClass` | `dark-class` | Change the class name that is added to the body tag when the theme is determined to be dark. | `string`  | `'dark'` |
-| `skipClass` | `skip-class` | Skip adding the class to the body tag, just update the ui state.                             | `boolean` | `false`  |
+| Property        | Attribute        | Description                                                                                        | Type      | Default  |
+| --------------- | ---------------- | -------------------------------------------------------------------------------------------------- | --------- | -------- |
+| `darkClass`     | `dark-class`     | Change the class name that is added to the target element when the theme is determined to be dark. | `string`  | `'dark'` |
+| `display`       | `display`        | Display the user's system preference.                                                              | `boolean` | `false`  |
+| `targetElement` | `target-element` | Change the element that is decorated with the dark-mode class                                      | `string`  | `'body'` |
 
 
 ----------------------------------------------

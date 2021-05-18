@@ -33,24 +33,23 @@
     </style>
     <!-- Experience UI -->
     <script type="module"
-      src="https://unpkg.com/@nent/core@0.2.1/dist/nent/nent.esm.js"></script>
+      src="https://unpkg.com/@nent/core/dist/nent/nent.esm.js"></script>
   </head>
 
   <body>
     <n-views app-title="App"
       start-path="/home"
-      root="/examples/simple.html#/">
-      <nav class="nav d-flex flen-row">
+      root="/examples/simple.html#">
+      <nav class="nav d-flex flex-row">
         <n-view-link class="nav-link"
-          href="/home"
-          exact
+          path="/home"
           active-class="active"> Home </n-view-link>
         <n-view-link class="nav-link"
-          href="/about"
+          path="/about"
           active-class="active"> About </n-view-link>
       </nav>
       <div class="container">
-        <n-view path="/home"
+        <n-view path="home"
           page-title="Home">
           <h1>Home</h1>
           <hr />
@@ -59,9 +58,8 @@
             <p>Now you have a basic content router.</p>
           </div>
         </n-view>
-        <n-view path="/about"
-          page-title="About"
-          n-cloak>
+        <n-view path="about"
+          page-title="About">
           <h1>About</h1>
           <hr />
           <div class="content">
@@ -70,8 +68,6 @@
           </div>
         </n-view>
       </div>
-      <n-data-session></n-data-session>
-      <n-data-storage></n-data-storage>
     </n-views>
   </body>
 

@@ -18,7 +18,7 @@ import {
 import { IView } from '../n-view/services/interfaces'
 import { Route } from '../n-view/services/route'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
-import { navigationState } from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 import { FrameTimer } from './services/timer'
 
 /**
@@ -85,7 +85,7 @@ export class PresentationTimer implements IElementTimer {
     const parent =
       this.el.closest('n-view-prompt') || this.el.closest('n-view')
     if (parent) return (parent as IView).route
-    return navigationState.router?.exactRoute || null
+    return routingState.router?.exactRoute || null
   }
 
   /**

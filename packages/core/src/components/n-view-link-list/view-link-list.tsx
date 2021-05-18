@@ -13,8 +13,8 @@ import {
   ROUTE_EVENTS,
 } from '../n-views/services/interfaces'
 import {
-  navigationState,
-  onNavigationChange,
+  onRoutingChange,
+  routingState,
 } from '../n-views/services/state'
 
 /**
@@ -65,21 +65,21 @@ export class ViewLinkList {
    */
   @Prop() excludeRoot: boolean = false
 
-  async componentWillLoad() {
-    if (navigationState.router) {
-      this.subscribe()
+  componentWillLoad() {
+    if (routingState.router) {
+      const dispose = eventBus.on(ROUTE_EVENTS.Initialized, () => {
+        this.subscribe()
+        dispose()
+      })
     } else {
-      const routerSubscription = onNavigationChange(
-        'router',
-        router => {
-          if (router) {
-            this.subscribe()
-            routerSubscription()
-          } else {
-            this.matchSubscription?.call(this)
-          }
-        },
-      )
+      const routerSubscription = onRoutingChange('router', router => {
+        if (router) {
+          this.subscribe()
+          routerSubscription()
+        } else {
+          this.matchSubscription?.call(this)
+        }
+      })
     }
   }
 
@@ -91,8 +91,9 @@ export class ViewLinkList {
         this.match = match
       },
     )
-    this.route = navigationState.router?.exactRoute || null
-    this.match = navigationState.router?.exactRoute?.match || null
+
+    this.route = routingState.router?.exactRoute || null
+    this.match = routingState.router?.exactRoute?.match || null
   }
 
   async componentWillRender() {
@@ -102,10 +103,10 @@ export class ViewLinkList {
     this.routes = routes
   }
 
-  private getRoutes() {
+  private async getRoutes() {
     switch (this.mode) {
       case 'parents':
-        return this.route?.getParentRoutes() || null
+        return (await this.route?.getParentRoutes()) || null
       case 'siblings':
         return this.route?.getSiblingRoutes() || null
       case 'children':

@@ -1,0 +1,22 @@
+{
+  "name": "@nent/create",
+  "description": "A boilerplate project for web-apps built with NENT.",
+  "version": "0.5.6",
+  "author": "Support <user@nent.dev>",
+  "type": "commonjs",
+  "engines": {
+    "node": "^14.14.0"
+  },
+  "bin": {
+    "nent": "src/cli.js"
+  },
+  "private": false,
+  "files": [
+    "src",
+    "templates"
+  ],
+  "dependencies": {
+    "create-initializer": "^1.0.0"
+  },
+  "license": "MIT"
+}

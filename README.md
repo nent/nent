@@ -97,6 +97,15 @@ Optional action listener to delegate events and route changes to any analytics p
 ### Video: `<n-video-*>`
 Optional wrapper element to normalize video events between various video players to enable media-timed events for synchronized actions. Useful for automatically navigating when a video ends or updating the content based on the video time.
 
+## Get Started
+
+You can spike out a new NENT project with the script reference in place, or follow the installation instructions below for an existing HTML file.
+
+````bash
+npm create @nent my-nent-app
+
+````
+
 ## Installation
 
 > This is a pre-release project and is subject to breaking changes and incomplete features. Thank you for trying it out!

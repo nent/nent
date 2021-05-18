@@ -10,8 +10,8 @@ import {
 import { dataStateDispose } from '../../services/data/state'
 import { View } from '../n-view/view'
 import {
-  navigationState,
-  navigationStateDispose,
+  routingState,
+  routingStateDispose,
 } from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { ViewLink } from './view-link'
@@ -25,7 +25,7 @@ describe('n-view-link', () => {
     eventBus.removeAllListeners()
     commonStateDispose()
     dataStateDispose()
-    navigationStateDispose()
+    routingStateDispose()
   })
   it('renders', async () => {
     const page = await newSpecPage({
@@ -61,7 +61,7 @@ describe('n-view-link', () => {
     anchor!.click()
     await page.waitForChanges()
 
-    expect(navigationState.router!.location.pathname).toBe('/foo')
+    expect(routingState?.router!.location.pathname).toBe('/foo')
 
     expect(anchor?.classList.contains('active')).toBe(true)
     linkEl?.remove()

@@ -13,8 +13,8 @@ import {
   ROUTE_EVENTS,
 } from '../n-views/services/interfaces'
 import {
-  navigationState,
-  onNavigationChange,
+  onRoutingChange,
+  routingState,
 } from '../n-views/services/state'
 
 /**
@@ -73,23 +73,20 @@ export class ViewLink {
   }
 
   componentWillLoad() {
-    if (navigationState.router) {
+    if (routingState.router) {
       this.subscribe()
     } else {
-      const routerSubscription = onNavigationChange(
-        'router',
-        router => {
-          if (router) {
-            this.subscribe()
-          }
-          routerSubscription()
-        },
-      )
+      const routerSubscription = onRoutingChange('router', router => {
+        if (router) {
+          this.subscribe()
+        }
+        routerSubscription()
+      })
     }
   }
 
   private subscribe() {
-    this.path = navigationState.router!.resolvePathname(
+    this.path = routingState.router!.resolvePathname(
       this.path,
       this.parentUrl || '/',
     )
@@ -97,7 +94,7 @@ export class ViewLink {
     this.routeSubscription = eventBus.on(
       ROUTE_EVENTS.RouteFinalized,
       () => {
-        const match = navigationState.router!.matchPath({
+        const match = routingState.router!.matchPath({
           path: this.path,
           exact: this.exact,
           strict: this.strict,
@@ -106,7 +103,7 @@ export class ViewLink {
         this.match = match ? ({ ...match } as MatchResults) : null
       },
     )
-    this.match = navigationState.router?.matchPath({
+    this.match = routingState.router?.matchPath({
       path: this.path,
       exact: this.exact,
       strict: this.strict,
@@ -115,7 +112,7 @@ export class ViewLink {
 
   private handleClick(e: MouseEvent) {
     if (this.match?.isExact) return
-    const router = navigationState.router
+    const router = routingState.router
     if (
       !router ||
       router?.isModifiedEvent(e) ||

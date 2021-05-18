@@ -19,7 +19,7 @@ import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
-import { navigationState } from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 
 /**
  * This component fetches remote HTML and renders it safely and directly
@@ -119,7 +119,7 @@ export class ContentInclude {
                 },
               )
               routingEnabledSubscription()
-              navigationState.router?.captureInnerLinks(this.el)
+              routingState.router?.captureInnerLinks(this.el)
             }
           },
         )
@@ -153,7 +153,7 @@ export class ContentInclude {
       div.className = this.contentClass
       if (commonState.elementsEnabled)
         await resolveChildElementXAttributes(div)
-      navigationState.router?.captureInnerLinks(div)
+      routingState.router?.captureInnerLinks(div)
       return div
     } catch {
       warn(`n-content: unable to retrieve from ${this.src}`)

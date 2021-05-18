@@ -46,7 +46,7 @@ describe('n-app-theme', () => {
       const results = inner(query)
       return {
         ...results,
-        matches: true,
+        matches: false,
         addEventListener: mediaChanged,
       }
     }
@@ -57,17 +57,17 @@ describe('n-app-theme', () => {
 
     await page.waitForChanges()
 
-    expect(page.body.classList.contains('dark')).toBe(true)
+    expect(page.body.classList.contains('dark')).toBe(false)
 
     if (componentListener) {
       componentListener({
-        matches: false,
+        matches: true,
       })
     }
 
     await page.waitForChanges()
 
-    expect(page.body.classList.contains('dark')).toBe(false)
+    expect(page.body.classList.contains('dark')).toBe(true)
     const subject = page.body.querySelector('n-app-theme')
     subject?.remove()
   })

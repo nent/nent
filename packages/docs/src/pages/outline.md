@@ -23,10 +23,10 @@
 
 -  📱 App Elements    
     - [ ] Overview
-    - [ ] Components
-      - [ ] Theme Detection & Controls
+    - [X] Components
+      - [X] Theme Detection & Controls
       - [ ] Custom Component Integrations
-      - [ ] Native Share
+      - [X] Native Share
       - [ ] Analytics 
          - [ ] Overview
          - [X] Installation
@@ -38,7 +38,7 @@
              - [ ] View-Time Reporting 
       - [ ] PWA 
         - [ ] Checks in dev-mode
-        - [ ] Add / Warn about Required Tags         
+        - [ ] Add / Warn about Required Tags
           - [ ] Service Worker
           - [ ] Handles manifest.json
           - [ ] Sets Up Offline  

@@ -5,8 +5,8 @@ import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
 import { View } from '../n-view/view'
 import {
-  navigationState,
-  navigationStateDispose,
+  routingState,
+  routingStateDispose,
 } from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { ViewNotFound } from './view-not-found'
@@ -16,7 +16,7 @@ describe('n-view-not-found', () => {
   afterEach(async () => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
-    navigationStateDispose()
+    routingStateDispose()
     jest.useRealTimers()
   })
 
@@ -145,7 +145,7 @@ describe('n-view-not-found', () => {
 
     const app = page.root as HTMLNViewsElement
     expect(app).not.toBeUndefined()
-    const router = navigationState.router!
+    const router = routingState?.router!
 
     expect(router).not.toBeUndefined()
 

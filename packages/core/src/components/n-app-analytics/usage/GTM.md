@@ -20,10 +20,13 @@
   ...
   <n-app-analytics id='analytics'>
     <script>
-      analytics.addEventListener('custom-event', e => {
+      analytics.addEventListener( 'custom-event', ( e ) => {
         console.log(`event: ${JSON.stringify(e.detail)}`)
-        gtag(e.detail.key, e.detail.value)
-      })
+        Object.getOwnPropertyNames(e.detail).forEach(n => {
+          gtag( n, e.detail[n] )
+          console.debug(`gtag('${n}', '${e.detail[n]})'`)
+        })
+      } )
       analytics.addEventListener('page-view', e => {
         console.log(`event: ${JSON.stringify(e.detail)}`)
         gtag('page_view', e.detail.pathname)

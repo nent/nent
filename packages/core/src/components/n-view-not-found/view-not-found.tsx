@@ -8,7 +8,7 @@ import {
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
-import { navigationState } from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 
 /**
  * This component should be placed at the end of the content,
@@ -49,13 +49,13 @@ export class ViewNotFound {
   @Prop({ mutable: true }) transition?: string
 
   private async setupView() {
-    if (!navigationState.router?.hasRoutes) {
+    if (!routingState.router?.hasRoutes) {
       this.show = true
       this.transition =
-        this.transition || navigationState.router?.transition
+        this.transition || routingState.router?.transition
       return
     }
-    this.show = !navigationState.router.hasExactRoute()
+    this.show = !routingState.router.hasExactRoute()
   }
 
   async componentWillLoad() {
@@ -83,10 +83,10 @@ export class ViewNotFound {
 
   async componentDidRender() {
     if (this.show) {
-      navigationState.router?.viewsUpdated({
+      routingState.router?.viewsUpdated({
         scrollTopOffset: this.scrollTopOffset,
       })
-      await navigationState.router?.adjustTitle(this.pageTitle)
+      await routingState.router?.adjustTitle(this.pageTitle)
     }
   }
 

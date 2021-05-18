@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "rvest.vs-code-prettier-eslint",
+    "sissel.markdown-script-tag",
+    "znck.grammarly",
+    "yzhang.markdown-all-in-one",
+    "nent.nent"
+  ]
+}

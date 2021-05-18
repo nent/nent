@@ -1,4 +1,11 @@
-import { Component, Element, Prop } from '@stencil/core'
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core'
 import { appState, onAppChange } from '../n-app/services/state'
 
 /**
@@ -12,48 +19,66 @@ import { appState, onAppChange } from '../n-app/services/state'
   shadow: true,
 })
 export class AppTheme {
+  private uiSubscription!: () => void
   @Element() el!: HTMLNAppThemeElement
+  @State() systemDark: boolean = false
 
   /**
-   * Skip adding the class to the body tag, just
-   * update the ui state.
+   * Change the element that is decorated with
+   * the dark-mode class
    */
-  @Prop() skipClass: boolean = false
-  private uiSubscription!: () => void
+  @Prop() targetElement: string = 'body'
 
   /**
    * Change the class name that is added to the
-   * body tag when the theme is determined to
+   * target element when the theme is determined to
    * be dark.
    */
   @Prop() darkClass: string = 'dark'
 
+  /**
+   * Display the user's system preference.
+   */
+  @Prop() display: boolean = false
+
   componentWillLoad() {
+    const prefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    )
+    if (prefersDark?.addEventListener) {
+      prefersDark.addEventListener('change', ev => {
+        this.systemDark = ev.matches
+        appState.theme = ev.matches ? 'dark' : 'light'
+      })
+    }
+
     this.uiSubscription = onAppChange('theme', theme => {
       this.toggleDarkTheme(theme === 'dark')
     })
 
     if (appState.theme != null) {
       this.toggleDarkTheme(appState.theme === 'dark')
-    } else {
-      const prefersDark = window?.matchMedia(
-        '(prefers-color-scheme: dark)',
-      )
-      if (prefersDark?.addEventListener) {
-        prefersDark.addEventListener('change', ev => {
-          appState.theme = ev.matches ? 'dark' : 'light'
-        })
-        appState.theme = 'dark'
-      }
     }
   }
 
-  private toggleDarkTheme(dark: boolean) {
-    if (!this.skipClass)
+  private toggleDarkTheme(isDark: boolean) {
+    if (this.targetElement == 'body') {
       this.el.ownerDocument.body.classList.toggle(
         this.darkClass,
-        dark,
+        isDark,
       )
+    } else {
+      this.el.ownerDocument
+        .querySelector(this.targetElement)
+        ?.classList.toggle(this.darkClass, isDark)
+    }
+  }
+
+  render() {
+    if (this.display) {
+      return <Host>{this.systemDark ? this.darkClass : 'light'}</Host>
+    }
+    return null
   }
 
   disconnectedCallback() {

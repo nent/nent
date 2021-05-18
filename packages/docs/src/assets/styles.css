@@ -202,7 +202,7 @@ a.active * {
 h1 {
   font-size: 2rem;
   line-height: 1;
-  margin: 0;
+  margin: 1rem 0;
   vertical-align: middle;
 }
 
@@ -308,11 +308,12 @@ footer {
   position: fixed;
   z-index: 1;
   bottom: 0;
-  width: 100%;
+  right: 0;
+  left: 0;
   overflow: auto;
   max-width: var(--content-max-width);
-  padding-left:0;
-  padding-right: 1.6rem;
+  padding-left: .7rem;
+  padding-right: .7rem;
   padding-bottom: 2rem;
   padding-top: 1rem;
   margin-right: auto !important;
@@ -340,10 +341,11 @@ n-app {
   width: 100%;
 }
 
-n-views n-view {
+n-view {
   margin-top: .5rem;
 }
-n-view.exact {
+
+n-view.active {
   padding-bottom: 5rem;
 }
 
@@ -356,14 +358,6 @@ n-view-link a:hover {
   color: var(--accent);
   text-decoration: none;
 }
-n-view-link-next a::after {
-  content: ' ⯈';
-  display: inline;
-}
-n-view-link-back a::before {
-  content: '⯇ ';
-  display: inline;
-}
 
 n-view-link-back.btn a:any-link,
 n-view-link-next.btn a:any-link,
@@ -373,14 +367,16 @@ n-view-link.text-white a:any-link {
   color: white;
 }
 
+n-view-prompt.active + n-view,
+n-view-prompt.active + n-view-not-found,
 n-view.active + n-view,
 n-view.active + n-view-not-found {
   display: none;
 }
 
 .contained,
-n-views n-view,
-n-views > n-view-not-found {
+n-view,
+n-view-not-found {
   max-width: var(--content-max-width);
   padding: 0 var(--bs-gutter-x, 0.75rem);
   margin-right: auto !important;
@@ -510,6 +506,10 @@ n-audio {
     var(--primary)
   );
   margin-bottom: 1rem;
+  margin-top: 1rem;
+  position: static;
+  z-index: 11;
+  color: white;
 }
 
 .component-item h4 {
@@ -529,13 +529,7 @@ n-audio {
   color: white;
 }
 
-.component-list {
-  position: static;
-  z-index: 11;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  color: white;
-}
+
 
 .list-group {
   clear: right;

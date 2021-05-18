@@ -10,7 +10,7 @@ import {
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { ActionActivator } from '../n-action-activator/action-activator'
 import { Action } from '../n-action/action'
-import { navigationState } from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 import { ViewRouter } from '../n-views/views'
 import { View } from './view'
 
@@ -178,7 +178,7 @@ describe('n-view', () => {
     </n-views>
       `)
 
-    const router = navigationState!.router
+    const router = routingState!.router
 
     router!.goToRoute('/bye')
 

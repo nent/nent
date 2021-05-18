@@ -20,7 +20,7 @@ import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { resolveTokens } from '../../services/data/tokens'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
-import { navigationState } from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 import { renderMarkdown } from './markdown/remarkable.worker'
 
 /**
@@ -145,7 +145,7 @@ export class ContentMarkdown {
     div.className = this.contentClass
     if (commonState.elementsEnabled)
       await resolveChildElementXAttributes(div)
-    navigationState.router?.captureInnerLinks(div)
+    routingState.router?.captureInnerLinks(div)
     this.highlight(div)
     if (key && this.canCache) this.renderCache[key] = div
     return div

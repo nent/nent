@@ -123,13 +123,17 @@ export namespace Components {
     }
     interface NAppTheme {
         /**
-          * Change the class name that is added to the body tag when the theme is determined to be dark.
+          * Change the class name that is added to the target element when the theme is determined to be dark.
          */
         "darkClass": string;
         /**
-          * Skip adding the class to the body tag, just update the ui state.
+          * Display the user's system preference.
          */
-        "skipClass": boolean;
+        "display": boolean;
+        /**
+          * Change the element that is decorated with the dark-mode class
+         */
+        "targetElement": string;
     }
     interface NAppThemeSwitch {
         /**
@@ -1206,13 +1210,17 @@ declare namespace LocalJSX {
     }
     interface NAppTheme {
         /**
-          * Change the class name that is added to the body tag when the theme is determined to be dark.
+          * Change the class name that is added to the target element when the theme is determined to be dark.
          */
         "darkClass"?: string;
         /**
-          * Skip adding the class to the body tag, just update the ui state.
+          * Display the user's system preference.
          */
-        "skipClass"?: boolean;
+        "display"?: boolean;
+        /**
+          * Change the element that is decorated with the dark-mode class
+         */
+        "targetElement"?: string;
     }
     interface NAppThemeSwitch {
         /**

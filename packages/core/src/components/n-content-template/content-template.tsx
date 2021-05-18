@@ -18,7 +18,7 @@ import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { resolveTokens } from '../../services/data/tokens'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
-import { navigationState } from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 /**
  * Render data directly into HTML using declarative expressions.
  * This element renders the expression with all data-tokens
@@ -108,7 +108,7 @@ export class ContentTemplate {
               },
             )
             routingEnabledSubscription()
-            navigationState.router?.captureInnerLinks(this.el)
+            routingState.router?.captureInnerLinks(this.el)
           }
         },
       )
@@ -167,8 +167,8 @@ export class ContentTemplate {
     if (commonState.elementsEnabled) {
       await resolveChildElementXAttributes(container)
     }
-    if (navigationState.router) {
-      navigationState.router?.captureInnerLinks(container)
+    if (routingState.router) {
+      routingState.router?.captureInnerLinks(container)
     }
     return container
   }
