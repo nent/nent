@@ -308,11 +308,12 @@ footer {
   position: fixed;
   z-index: 1;
   bottom: 0;
-  width: 100%;
+  right: 0;
+  left: 0;
   overflow: auto;
   max-width: var(--content-max-width);
-  padding-left:0;
-  padding-right: 1.6rem;
+  padding-left: .7rem;
+  padding-right: .7rem;
   padding-bottom: 2rem;
   padding-top: 1rem;
   margin-right: auto !important;
@@ -358,14 +359,8 @@ n-view-link a:hover {
   color: var(--accent);
   text-decoration: none;
 }
-n-view-link-next a::after {
-  content: ' ⯈';
-  display: inline;
-}
-n-view-link-back a::before {
-  content: '⯇ ';
-  display: inline;
-}
+
+
 
 n-view-link-back.btn a:any-link,
 n-view-link-next.btn a:any-link,
@@ -385,7 +380,7 @@ n-view.active + n-view-not-found {
 .contained,
 n-views n-view,
 n-views n-view-prompt,
-n-views > n-view-not-found {
+n-views n-view-not-found {
   max-width: var(--content-max-width);
   padding: 0 var(--bs-gutter-x, 0.75rem);
   margin-right: auto !important;
