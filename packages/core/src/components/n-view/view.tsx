@@ -59,7 +59,7 @@ export class View implements IView {
   @State() routeElement: HTMLElement | null = null
   @State() contentElement: HTMLElement | null = null
   private contentKey?: string | null
-  private routeKey?: string | null
+  private sourceKey?: string | null
 
   /** Route information */
   @Prop({ mutable: true }) route!: Route
@@ -205,7 +205,7 @@ export class View implements IView {
       this.contentSrc || 'none',
     )}`
 
-    this.routeKey = `rem-route-${slugify(this.src || 'none')}`
+    this.sourceKey = `rem-source-${slugify(this.src || 'none')}`
   }
 
   private subscribeToDataEvents() {
@@ -280,7 +280,7 @@ export class View implements IView {
       if (content == null) return null
       const div = window.document.createElement('div')
       div.innerHTML = content
-      div.id = this.routeKey!
+      div.id = this.sourceKey!
       if (commonState.elementsEnabled) {
         await resolveChildElementXAttributes(div)
       }
@@ -349,10 +349,6 @@ export class View implements IView {
     if (!this.route?.match?.isExact) {
       this.contentElement?.remove()
       this.contentElement = null
-    }
-    if (!this.route?.match) {
-      this.routeElement?.remove()
-      this.routeElement = null
     }
   }
 

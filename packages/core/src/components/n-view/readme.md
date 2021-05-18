@@ -2,6 +2,8 @@
 
 The View component is a child component for the `<n-view>` component for adding a page route. It is a container element that displays its inner HTML for a given route or sub-route. This provides a declarative mechanism for in-page content/component routing by URL.
 
+
+
 ## Responsibilities
 
 The View Component and its attributes provide the page context & functionality:
@@ -40,7 +42,7 @@ The View Component and its attributes provide the page context & functionality:
 </n-views>
 ```
 
-
+> The view element uses the display property in CSS to hide and show based on the route. It is important that any class added does not override this
 
 ### Child Views & Routing
 
