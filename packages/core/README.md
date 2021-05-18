@@ -107,7 +107,7 @@ Add a single script reference to the page head and the library is ready to go.
 
 Each component you use is lazy-loaded when you first use one. Most are tiny, with the largest around 60k.
 
-> [Component Sizes](https://nent.dev/stats.html)
+> [Component Sizes](https://nent.dev/dist/stats.html)
 
 ### CDN:
 ```html
@@ -126,7 +126,7 @@ Each component you use is lazy-loaded when you first use one. Most are tiny, wit
   ...
   <script
     type="module"
-    src="~/node_modules/@nent/core/dist/esm/nent.esm.js"
+    src="~/node_modules/@nent/core/dist/nent/nent.esm.js"
   ></script>
   ....
 </head>
