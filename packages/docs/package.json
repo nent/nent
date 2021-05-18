@@ -17,6 +17,7 @@
     "--- production ---": "---------------",
     "clean": "rm -fR ../../docs",
     "build": "stencil build --www",
+    "build:dev": "stencil build --dev --www",
     "postbuild": "npm run copy"
   },
   "devDependencies": {
@@ -38,7 +39,7 @@
     "bootstrap": "5.0.0"
   },
   "watch": {
-    "build": {
+    "build:dev": {
       "patterns": [
         "src"
       ]

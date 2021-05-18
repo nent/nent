@@ -350,6 +350,10 @@ export class View implements IView {
       this.contentElement?.remove()
       this.contentElement = null
     }
+    if (!this.route?.match) {
+      this.routeElement?.remove()
+      this.routeElement = null
+    }
   }
 
   disconnectedCallback() {

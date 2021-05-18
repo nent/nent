@@ -340,10 +340,12 @@ n-app {
   width: 100%;
 }
 
-n-views n-view {
+n-views n-view,
+n-views n-view-prompt {
   margin-top: .5rem;
 }
-n-view.exact {
+n-view.exact,
+n-view-prompt.exact {
   padding-bottom: 5rem;
 }
 
@@ -373,6 +375,8 @@ n-view-link.text-white a:any-link {
   color: white;
 }
 
+n-view-prompt.active + n-view,
+n-view-prompt.active + n-view-not-found,
 n-view.active + n-view,
 n-view.active + n-view-not-found {
   display: none;
@@ -380,6 +384,7 @@ n-view.active + n-view-not-found {
 
 .contained,
 n-views n-view,
+n-views n-view-prompt,
 n-views > n-view-not-found {
   max-width: var(--content-max-width);
   padding: 0 var(--bs-gutter-x, 0.75rem);
