@@ -12,7 +12,7 @@
     ":build ---": "---------------",
     "build": "run-s build:core build:docs",
     "prepublish": "yarn build",
-    "publish": "lerna publish --yes",
+    "publish": "lerna publish patch --yes",
     "prepublish:test": "yarn build",
     "publish:test": "lerna publish --canary --preid beta --yes",
     ":dev ---": "---------------",
