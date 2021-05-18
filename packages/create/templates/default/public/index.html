@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1" />
+    <title>{{name}}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <meta http-equiv="x-ua-compatible"
+      content="IE=Edge" />
+    <meta name="description"
+      content="{{description}}" />
+    <meta name="og:title"
+      content="{{name}}" />
+    <meta name="og:description"
+      content="{{description}}" />
+    <meta name="og:image"
+      content="" />
+    <meta name="msapplication-tap-highlight"
+      content="no" />
+    <meta name="apple-mobile-web-app-capable"
+      content="yes" />
+    <meta name="apple-mobile-web-app-title"
+      content="{{name}}" />
+    <meta name="apple-mobile-web-app-status-bar-style"
+      content="black" />
+    <meta name="theme-color"
+      content="#0000" />
+
+    <link rel="dns-prefetch"
+      href="cdn.jsdelivr.net" />
+    <link rel="preconnect"
+      href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect"
+      href="https://unpkg.com">
+    <link rel="preconnect"
+      href="https://unpkg.com" />
+    <link rel="icon"
+      type="image/ico"
+      href="/favicon.ico" />
+
+    <link rel="manifest"
+      href="/manifest.json" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+      media="print"
+      onload="this.media = 'all'" />
+
+    <style>
+      [n-cloak] {
+        display: none;
+      }
+
+      nav {
+        border-bottom: 1px solid black;
+      }
+
+      nav h1 {
+        display: inline-block;
+      }
+
+      a.active:any-link {
+        text-decoration: none;
+        color: #000;
+      }
+    </style>
+    <!-- NENT -->
+    <script type="module"
+      src="https://unpkg.com/@nent/core/dist/nent/nent.esm.js"></script>
+  </head>
+
+  <body>
+    <n-app>
+
+      <n-views app-title="{{name}}"
+        start-path="home">
+
+        <nav class="nav d-flex flex-row">
+          <n-view-link class="nav-link"
+            path="/home"
+            active-class="active"> Home </n-view-link>
+          <n-view-link class="nav-link"
+            path="/about"
+            active-class="active"> About </n-view-link>
+        </nav>
+
+        <div class="container">
+          <n-view path="/home"
+            page-title="Home"
+            content-src="/pages/home.html">
+          </n-view>
+          <n-view path="/about"
+            page-title="About"
+            content-src="/pages/about.html">
+          </n-view>
+        </div>
+      </n-views>
+    </n-app>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+      </script>
+  </body>
+
+</html>

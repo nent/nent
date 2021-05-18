@@ -1,0 +1,14 @@
+{
+  "name": "{{name}}",
+  "description": "{{description}}",
+  "version": "0.0.0",
+  "author": "{{contact}}",
+  "scripts": {
+    "build": "workbox injectManifest",
+    "start": "serve public -l 3005"
+  },
+  "devDependencies": {
+    "serve": "11.3.2"
+  },
+  "license": "{{license}}"
+}
