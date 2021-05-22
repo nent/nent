@@ -67,7 +67,7 @@
     "chalk": "4.1.1",
     "commitlint": "12.1.4",
     "copyfiles": "2.4.1",
-    "dotenv": "9.0.2",
+    "dotenv": "10.0.0",
     "eslint": "7.27.0",
     "eslint-cli": "1.1.1",
     "eslint-config-airbnb-typescript": "12.3.1",
