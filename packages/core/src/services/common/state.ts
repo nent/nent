@@ -2,7 +2,7 @@
 
 import { createStore } from '@stencil/store'
 
-class StateModel {
+export class CommonStateModel {
   debug!: boolean
   analyticsEnabled!: boolean
   dataEnabled!: boolean
@@ -11,7 +11,7 @@ class StateModel {
   audioEnabled!: boolean
 }
 
-const store = createStore<StateModel>({
+const store = createStore<CommonStateModel>({
   debug: false,
   analyticsEnabled: false,
   dataEnabled: false,

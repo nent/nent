@@ -1,13 +1,13 @@
 import {
   Component,
   Element,
-  forceUpdate,
   h,
   Host,
   Prop,
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
+import { ComponentRefresher } from '../../services/common'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
@@ -27,8 +27,8 @@ import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 })
 export class ContentShow {
   @Element() el!: HTMLNContentShowElement
-  private dataSubscription!: () => void
-  private routeSubscription!: () => void
+  private dataSubscription!: ComponentRefresher
+  private routeSubscription!: ComponentRefresher
   @State() show = true
 
   /**
@@ -38,18 +38,18 @@ export class ContentShow {
   @Prop() when!: string
 
   componentWillLoad() {
-    this.dataSubscription = eventBus.on(
+    this.dataSubscription = new ComponentRefresher(
+      this,
+      eventBus,
+      'dataEnabled',
       DATA_EVENTS.DataChanged,
-      () => {
-        forceUpdate(this)
-      },
     )
 
-    this.routeSubscription = eventBus.on(
+    this.routeSubscription = new ComponentRefresher(
+      this,
+      eventBus,
+      'routingEnabled',
       ROUTE_EVENTS.RouteChanged,
-      () => {
-        forceUpdate(this)
-      },
     )
   }
 
@@ -58,8 +58,8 @@ export class ContentShow {
   }
 
   disconnectedCallback() {
-    this.dataSubscription?.call(this)
-    this.routeSubscription?.call(this)
+    this.dataSubscription.destroy()
+    this.routeSubscription.destroy()
   }
 
   render() {

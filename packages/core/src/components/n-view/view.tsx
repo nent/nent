@@ -1,7 +1,6 @@
 import {
   Component,
   Element,
-  forceUpdate,
   h,
   Host,
   Method,
@@ -11,8 +10,8 @@ import {
 import { eventBus } from '../../services/actions'
 import {
   commonState,
+  ComponentRefresher,
   debugIf,
-  onCommonStateChange,
   slugify,
 } from '../../services/common'
 import { warn } from '../../services/common/logging'
@@ -51,7 +50,7 @@ import { markVisit } from './services/visits'
   shadow: true,
 })
 export class View implements IView {
-  private dataSubscription!: () => void
+  private dataSubscription!: ComponentRefresher
 
   @Element() el!: HTMLNViewElement
   @State() match: MatchResults | null = null
@@ -187,17 +186,12 @@ export class View implements IView {
       },
     )
 
-    if (commonState.dataEnabled) {
-      this.subscribeToDataEvents()
-    } else {
-      const dataSubscription = onCommonStateChange(
+    if (this.resolveTokens) {
+      this.dataSubscription = new ComponentRefresher(
+        this,
+        eventBus,
         'dataEnabled',
-        enabled => {
-          if (enabled) {
-            this.subscribeToDataEvents()
-            dataSubscription()
-          }
-        },
+        DATA_EVENTS.DataChanged,
       )
     }
 
@@ -206,16 +200,6 @@ export class View implements IView {
     )}`
 
     this.sourceKey = `rem-source-${slugify(this.src || 'none')}`
-  }
-
-  private subscribeToDataEvents() {
-    this.dataSubscription = eventBus.on(
-      DATA_EVENTS.DataChanged,
-      async () => {
-        debugIf(this.debug, `n-view: ${this.path} data changed `)
-        forceUpdate(this)
-      },
-    )
   }
 
   async componentWillRender() {
@@ -353,7 +337,7 @@ export class View implements IView {
   }
 
   disconnectedCallback() {
-    this.dataSubscription?.call(this)
+    this.dataSubscription?.destroy()
     this.route?.destroy()
   }
 }

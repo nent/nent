@@ -8,7 +8,10 @@ import {
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
-import { commonState } from '../../services/common'
+import {
+  commonState,
+  onCommonStateChange,
+} from '../../services/common'
 import { warn } from '../../services/common/logging'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import {
@@ -100,22 +103,50 @@ export class ContentMarkdown {
   async componentWillLoad() {
     if (this.resolveTokens || this.when != undefined) {
       if (commonState.dataEnabled) {
-        this.dataSubscription = eventBus.on(
-          DATA_EVENTS.DataChanged,
-          () => {
-            forceUpdate(this)
+        this.subscribeToDataEvents()
+      } else {
+        const dataSubscription = onCommonStateChange(
+          'dataEnabled',
+          enabled => {
+            if (enabled) {
+              this.subscribeToDataEvents()
+              dataSubscription()
+            }
           },
         )
       }
-      if (commonState.dataEnabled) {
-        this.routeSubscription = eventBus.on(
-          ROUTE_EVENTS.RouteChanged,
-          () => {
-            forceUpdate(this)
+      if (commonState.routingEnabled) {
+        this.subscribeToRouteEvents()
+      } else {
+        const routeSubscription = onCommonStateChange(
+          'routingEnabled',
+          enabled => {
+            if (enabled) {
+              this.subscribeToRouteEvents()
+              routeSubscription()
+            }
           },
         )
       }
     }
+  }
+
+  private subscribeToDataEvents() {
+    this.dataSubscription = eventBus.on(
+      DATA_EVENTS.DataChanged,
+      () => {
+        forceUpdate(this)
+      },
+    )
+  }
+
+  private subscribeToRouteEvents() {
+    this.routeSubscription = eventBus.on(
+      ROUTE_EVENTS.RouteChanged,
+      () => {
+        forceUpdate(this)
+      },
+    )
   }
 
   async componentWillRender() {

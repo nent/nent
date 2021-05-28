@@ -7,12 +7,9 @@ import {
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
-import { slugify } from '../../services/common'
+import { ComponentRefresher, slugify } from '../../services/common'
 import { debugIf, warn } from '../../services/common/logging'
-import {
-  commonState,
-  onCommonStateChange,
-} from '../../services/common/state'
+import { commonState } from '../../services/common/state'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveRemoteContent } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
@@ -40,7 +37,7 @@ import { routingState } from '../n-views/services/state'
   shadow: true,
 })
 export class ViewPrompt implements IView {
-  private dataSubscription!: () => void
+  private dataSubscription!: ComponentRefresher
 
   @Element() el!: HTMLNViewPromptElement
   @State() match: MatchResults | null = null
@@ -155,34 +152,18 @@ export class ViewPrompt implements IView {
       },
     )
 
-    if (commonState.dataEnabled) {
-      this.subscribeToDataEvents()
-    } else {
-      const dataSubscription = onCommonStateChange(
+    if (this.resolveTokens) {
+      this.dataSubscription = new ComponentRefresher(
+        this,
+        eventBus,
         'dataEnabled',
-        enabled => {
-          if (enabled) {
-            this.subscribeToDataEvents()
-            dataSubscription()
-          }
-        },
+        DATA_EVENTS.DataChanged,
       )
     }
 
     this.contentKey = `rem-content-${slugify(
       this.contentSrc || 'none',
     )}`
-  }
-
-  private subscribeToDataEvents() {
-    this.dataSubscription = eventBus.on(
-      DATA_EVENTS.DataChanged,
-      async () => {
-        debugIf(this.debug, 'n-view-prompt: data changed ')
-        if (this.match?.isExact)
-          await resolveChildElementXAttributes(this.el)
-      },
-    )
   }
 
   async componentWillRender() {
@@ -251,7 +232,7 @@ export class ViewPrompt implements IView {
   }
 
   disconnectedCallback() {
-    this.dataSubscription?.call(this)
+    this.dataSubscription?.destroy()
     this.route?.destroy()
   }
 }

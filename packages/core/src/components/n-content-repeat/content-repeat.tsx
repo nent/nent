@@ -1,7 +1,6 @@
 import {
   Component,
   Element,
-  forceUpdate,
   h,
   Host,
   Prop,
@@ -10,8 +9,8 @@ import {
 import { eventBus } from '../../services/actions'
 import {
   commonState,
+  ComponentRefresher,
   debugIf,
-  onCommonStateChange,
   valueToArray,
   warnIf,
 } from '../../services/common'
@@ -38,8 +37,8 @@ import { filterData } from './filter/jsonata.worker'
   shadow: false,
 })
 export class ContentDataRepeat {
-  private dataSubscription!: () => void
-  private routeSubscription!: () => void
+  private dataSubscription!: ComponentRefresher
+  private routeSubscription!: ComponentRefresher
   @Element() el!: HTMLNContentRepeatElement
   @State() innerTemplate!: string
   @State() resolvedTemplate!: string
@@ -99,54 +98,19 @@ export class ContentDataRepeat {
   async componentWillLoad() {
     debugIf(this.debug, 'n-content-repeat: loading')
 
-    if (commonState.dataEnabled) {
-      this.dataSubscription = eventBus.on(
-        DATA_EVENTS.DataChanged,
-        () => {
-          forceUpdate(this)
-        },
-      )
-    } else {
-      const dataEnabledSubscription = onCommonStateChange(
-        'dataEnabled',
-        enabled => {
-          if (enabled) {
-            this.dataSubscription = eventBus.on(
-              DATA_EVENTS.DataChanged,
-              () => {
-                forceUpdate(this)
-              },
-            )
-            dataEnabledSubscription()
-          }
-        },
-      )
-    }
+    this.dataSubscription = new ComponentRefresher(
+      this,
+      eventBus,
+      'dataEnabled',
+      DATA_EVENTS.DataChanged,
+    )
 
-    if (commonState.routingEnabled) {
-      this.routeSubscription = eventBus.on(
-        ROUTE_EVENTS.RouteChanged,
-        () => {
-          forceUpdate(this)
-        },
-      )
-    } else {
-      const routingEnabledSubscription = onCommonStateChange(
-        'routingEnabled',
-        enabled => {
-          if (enabled) {
-            this.routeSubscription = eventBus.on(
-              ROUTE_EVENTS.RouteChanged,
-              () => {
-                forceUpdate(this)
-              },
-            )
-            routingEnabledSubscription()
-            routingState.router?.captureInnerLinks(this.el)
-          }
-        },
-      )
-    }
+    this.routeSubscription = new ComponentRefresher(
+      this,
+      eventBus,
+      'routingEnabled',
+      ROUTE_EVENTS.RouteChanged,
+    )
 
     if (this.childTemplate === null) {
       warnIf(
@@ -313,8 +277,8 @@ export class ContentDataRepeat {
   componentDidRender() {}
 
   disconnectedCallback() {
-    this.dataSubscription?.call(this)
-    this.routeSubscription?.call(this)
+    this.dataSubscription.destroy()
+    this.routeSubscription.destroy()
   }
 
   render() {

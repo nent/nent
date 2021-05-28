@@ -1,18 +1,15 @@
 import {
   Component,
   Element,
-  forceUpdate,
   h,
   Host,
   Prop,
   State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
+import { ComponentRefresher } from '../../services/common'
 import { warn } from '../../services/common/logging'
-import {
-  commonState,
-  onCommonStateChange,
-} from '../../services/common/state'
+import { commonState } from '../../services/common/state'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
@@ -34,8 +31,8 @@ import { routingState } from '../n-views/services/state'
   shadow: false,
 })
 export class ContentTemplate {
-  private dataSubscription!: () => void
-  private routeSubscription!: () => void
+  private dataSubscription!: ComponentRefresher
+  private routeSubscription!: ComponentRefresher
   private contentClass = 'dynamic'
   @Element() el!: HTMLNContentTemplateElement
   @State() innerTemplate!: string
@@ -65,54 +62,19 @@ export class ContentTemplate {
   }
 
   componentWillLoad() {
-    if (commonState.dataEnabled) {
-      this.dataSubscription = eventBus.on(
-        DATA_EVENTS.DataChanged,
-        () => {
-          forceUpdate(this)
-        },
-      )
-    } else {
-      const dataEnabledSubscription = onCommonStateChange(
-        'dataEnabled',
-        enabled => {
-          if (enabled) {
-            this.dataSubscription = eventBus.on(
-              DATA_EVENTS.DataChanged,
-              () => {
-                forceUpdate(this)
-              },
-            )
-            dataEnabledSubscription()
-          }
-        },
-      )
-    }
+    this.dataSubscription = new ComponentRefresher(
+      this,
+      eventBus,
+      'dataEnabled',
+      DATA_EVENTS.DataChanged,
+    )
 
-    if (commonState.routingEnabled) {
-      this.routeSubscription = eventBus.on(
-        ROUTE_EVENTS.RouteChanged,
-        () => {
-          forceUpdate(this)
-        },
-      )
-    } else {
-      const routingEnabledSubscription = onCommonStateChange(
-        'routingEnabled',
-        enabled => {
-          if (enabled) {
-            this.routeSubscription = eventBus.on(
-              ROUTE_EVENTS.RouteChanged,
-              () => {
-                forceUpdate(this)
-              },
-            )
-            routingEnabledSubscription()
-            routingState.router?.captureInnerLinks(this.el)
-          }
-        },
-      )
-    }
+    this.routeSubscription = new ComponentRefresher(
+      this,
+      eventBus,
+      'routingEnabled',
+      ROUTE_EVENTS.RouteChanged,
+    )
 
     if (this.childTemplate !== null) {
       this.innerTemplate = this.childTemplate.innerHTML
@@ -174,8 +136,8 @@ export class ContentTemplate {
   }
 
   disconnectedCallback() {
-    this.dataSubscription?.call(this)
-    this.routeSubscription?.call(this)
+    this.dataSubscription.destroy()
+    this.routeSubscription.destroy()
   }
 
   render() {

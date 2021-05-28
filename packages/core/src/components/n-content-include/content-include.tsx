@@ -1,7 +1,6 @@
 import {
   Component,
   Element,
-  forceUpdate,
   h,
   Host,
   Prop,
@@ -10,7 +9,7 @@ import {
 import { eventBus } from '../../services/actions'
 import {
   commonState,
-  onCommonStateChange,
+  ComponentRefresher,
   warn,
 } from '../../services/common'
 import { replaceHtmlInElement } from '../../services/content/elements'
@@ -35,8 +34,8 @@ import { routingState } from '../n-views/services/state'
 })
 export class ContentInclude {
   private readonly contentClass = 'remote-content'
-  private dataSubscription!: () => void
-  private routeSubscription!: () => void
+  private dataSubscription!: ComponentRefresher
+  private routeSubscription!: ComponentRefresher
 
   @Element() el!: HTMLNContentIncludeElement
 
@@ -77,53 +76,19 @@ export class ContentInclude {
 
   async componentWillLoad() {
     if (this.resolveTokens || this.when != undefined) {
-      if (commonState.dataEnabled) {
-        this.dataSubscription = eventBus.on(
-          DATA_EVENTS.DataChanged,
-          () => {
-            forceUpdate(this)
-          },
-        )
-      } else {
-        const dataEnabledSubscription = onCommonStateChange(
-          'dataEnabled',
-          enabled => {
-            if (enabled) {
-              this.dataSubscription = eventBus.on(
-                DATA_EVENTS.DataChanged,
-                () => {
-                  forceUpdate(this)
-                },
-              )
-              dataEnabledSubscription()
-            }
-          },
-        )
-      }
-      if (commonState.routingEnabled) {
-        this.routeSubscription = eventBus.on(
-          ROUTE_EVENTS.RouteChanged,
-          () => {
-            forceUpdate(this)
-          },
-        )
-      } else {
-        const routingEnabledSubscription = onCommonStateChange(
-          'routingEnabled',
-          enabled => {
-            if (enabled) {
-              this.routeSubscription = eventBus.on(
-                ROUTE_EVENTS.RouteChanged,
-                () => {
-                  forceUpdate(this)
-                },
-              )
-              routingEnabledSubscription()
-              routingState.router?.captureInnerLinks(this.el)
-            }
-          },
-        )
-      }
+      this.dataSubscription = new ComponentRefresher(
+        this,
+        eventBus,
+        'dataEnabled',
+        DATA_EVENTS.DataChanged,
+      )
+
+      this.routeSubscription = new ComponentRefresher(
+        this,
+        eventBus,
+        'routingEnabled',
+        ROUTE_EVENTS.RouteChanged,
+      )
     }
   }
 
@@ -162,8 +127,8 @@ export class ContentInclude {
   }
 
   disconnectedCallback() {
-    this.dataSubscription?.call(this)
-    this.routeSubscription?.call(this)
+    this.dataSubscription?.destroy()
+    this.routeSubscription?.destroy()
   }
 
   render() {
