@@ -1,4 +1,5 @@
 {
+  "name": "nent",
   "private": true,
   "license": "MIT",
   "author": "Jason Wicker <jason@nent.dev>",
