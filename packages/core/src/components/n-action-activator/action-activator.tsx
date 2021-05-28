@@ -120,21 +120,11 @@ export class ActionActivator {
   }
 
   private get childActions(): IActionElement[] {
-    const actions = Array.from(this.el.querySelectorAll('n-action'))
+    const actions = Array.from(this.el.childNodes)
+      .filter(n => n.nodeName.toLocaleLowerCase().includes('action'))
+      .map(n => n as unknown)
 
-    const audioMusicActions = Array.from(
-      this.el.querySelectorAll('n-audio-action-music'),
-    )
-
-    const audioSoundActions = Array.from(
-      this.el.querySelectorAll('n-audio-action-sound'),
-    )
-
-    return [
-      ...actions,
-      ...audioMusicActions,
-      ...audioSoundActions,
-    ] as IActionElement[]
+    return actions as IActionElement[]
   }
 
   async componentDidLoad() {
