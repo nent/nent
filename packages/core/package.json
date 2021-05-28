@@ -52,7 +52,8 @@
     "--- test ---": "---------------",
     "pretest": "rm -fR ./coverage",
     "test": "stencil test --spec --coverage",
-    "test:watch": "stencil test --dev --spec --watch"
+    "test:watch": "stencil test --dev --spec --watch",
+    "prepublish": "yarn run build"
   },
   "devDependencies": {
     "@stencil/core": "2.5.2",
