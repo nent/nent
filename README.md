@@ -146,11 +146,31 @@ npm i @nent/core
 # or
 yarn add @nent/core
 ```
+
+### Show your Love!
+
+If you use NENT and want to help spread the word, put a NENT badge on your readme or your website. 
+
+NENT badge:
+
+[![NENT](https://badgen.net/badge/Powered%20by/NENT/purple)](https://nent.dev)
+
+#### Markdown
+```markdown
+[![NENT](https://badgen.net/badge/Powered%20by/NENT/purple)](https://nent.dev)
+```
+
+#### HTML
+
+```html
+<a href="https://nent.dev" target="_blank"><img alt="Powered by NENT" src="https://badgen.net/badge/Powered%20by/NENT/purple"/></a>
+```
+
 ## Learn More
 
 The best way to see what these elements in action, is to take a look at the documentation demo. The installable app is built using these elements in a single HTML file (with child-routes and partials lazy-loaded, as-needed).
 
-[![Take the Tour](https://badgen.net/badge/@nent/core:%20demo?color=blue)](https://nent.dev)
+[![Take the Tour](https://badgen.net/badge/Demo/NENT?color=purple)](https://nent.dev)
 
 ## Contact
 
