@@ -1,4 +1,12 @@
-import { Component, h, Host, Prop, writeTask } from '@stencil/core'
+import {
+  Component,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  writeTask,
+} from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonState, debugIf } from '../../services/common'
 import { RouterService } from './services/router'
@@ -21,6 +29,7 @@ import { routingState } from './services/state'
   shadow: false,
 })
 export class ViewRouter {
+  @State() didStart: boolean = false
   /**
    * This is the root path that the actual page is,
    * if it isn't '/', then the router needs to know
@@ -48,10 +57,28 @@ export class ViewRouter {
   @Prop() startPath?: string
 
   /**
+   * This is the seconds to wait before
+   * redirecting to the start path.
+   */
+  @Prop() startDelay: number = 0
+
+  /**
    * Header height or offset for scroll-top on this
    * and all views.
    */
   @Prop() scrollTopOffset?: number
+
+  /**
+   * Kick of the start-page immediately.
+   */
+  @Method()
+  public async start() {
+    if (!this.didStart) {
+      debugIf(commonState.debug, 'n-views: start-path')
+      routingState.router!.finalize(this.startPath)
+      this.didStart = true
+    }
+  }
 
   componentWillLoad() {
     commonState.routingEnabled = true
@@ -67,9 +94,11 @@ export class ViewRouter {
     )
   }
 
-  async componentDidLoad() {
+  componentDidLoad() {
     debugIf(commonState.debug, 'n-views: initialized')
-    routingState.router!.finalize(this.startPath)
+    setTimeout(() => {
+      this.start()
+    }, this.startDelay * 1000)
   }
 
   disconnectedCallback() {

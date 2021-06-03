@@ -821,6 +821,14 @@ export namespace Components {
          */
         "scrollTopOffset"?: number;
         /**
+          * Kick of the start-page immediately.
+         */
+        "start": () => Promise<void>;
+        /**
+          * This is the seconds to wait before redirecting to the start path.
+         */
+        "startDelay": number;
+        /**
           * This is the start path a user should land on when they first land on this app.
          */
         "startPath"?: string;
@@ -1863,6 +1871,10 @@ declare namespace LocalJSX {
           * Header height or offset for scroll-top on this and all views.
          */
         "scrollTopOffset"?: number;
+        /**
+          * This is the seconds to wait before redirecting to the start path.
+         */
+        "startDelay"?: number;
         /**
           * This is the start path a user should land on when they first land on this app.
          */
