@@ -16,7 +16,6 @@
     "copy": "cd src && copyfiles ./pages/**/*.*  ./examples/**/*.* ./assets/**/*.* ../../../docs/",
     "--- production ---": "---------------",
     "clean": "rm -fR ../../docs",
-    "prebuild": "rm -fR ../../docs",
     "build": "stencil build --www",
     "build:dev": "stencil build --dev --www",
     "postbuild": "npm run copy"
