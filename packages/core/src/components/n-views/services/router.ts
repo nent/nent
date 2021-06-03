@@ -1,6 +1,5 @@
 import { RafCallback } from '@stencil/core'
 import { warn } from '../../../services/common'
-import { performLoadElementManipulation } from '../../../services/common/elements'
 import { IEventEmitter } from '../../../services/common/interfaces'
 import {
   commonState,
@@ -155,21 +154,23 @@ export class RouterService {
     this.scrollTo(options.scrollTopOffset || this.scrollTopOffset)
   }
 
-  finalize(startUrl: string) {
+  atRoot() {
+    return (
+      this.location?.pathname == this.root ||
+      this.location.pathname == '/'
+    )
+  }
+
+  finalize(startUrl?: string) {
     this.captureInnerLinks(this.win.document.body)
-    if (commonState.elementsEnabled) {
-      performLoadElementManipulation(this.win.document.body)
+
+    if (startUrl && this.atRoot()) {
+      const search = this.location.search
+      this.replaceWithRoute(stripBasename(startUrl!, this.root))
+      this.location.search = search
     }
 
-    if (
-      startUrl &&
-      startUrl.length > 1 &&
-      this.location?.pathname === '/'
-    ) {
-      this.replaceWithRoute(stripBasename(startUrl, this.root))
-    } else {
-      this.eventBus.emit(ROUTE_EVENTS.Initialized, {})
-    }
+    this.eventBus.emit(ROUTE_EVENTS.Initialized, {})
   }
 
   goBack() {
@@ -216,9 +217,9 @@ export class RouterService {
   }
 
   public replaceWithRoute(path: string) {
-    const newPath = resolvePathname(path, this.location.pathname)
-    this.location.pathname = newPath
-    this.history.replace(newPath)
+    //const newPath = resolvePathname(path, this.location.pathname)
+    //this.location.pathname = newPath
+    this.history.replace(path)
   }
 
   public matchPath(
@@ -330,13 +331,8 @@ export class RouterService {
     parentElement: HTMLNViewElement | null,
     matchSetter: (m: MatchResults | null) => void,
   ) {
-    let {
-      path,
-      exact,
-      pageTitle,
-      transition,
-      scrollTopOffset,
-    } = routeElement
+    let { path, exact, pageTitle, transition, scrollTopOffset } =
+      routeElement
 
     const parent = parentElement?.route || null
     if (parent) {

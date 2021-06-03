@@ -1,6 +1,8 @@
 jest.mock('../../services/common/logging')
+jest.mock('../../services/data/evaluate.worker')
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
+import { Elements } from '../n-elements/elements'
 import { App } from './app'
 
 describe('n-app', () => {
@@ -110,5 +112,53 @@ describe('n-app', () => {
     expect(actionsDetected.length).toBe(1)
 
     page.root?.remove()
+  })
+
+  it('renders and displays cloaked content', async () => {
+    const page = await newSpecPage({
+      components: [App, Elements],
+      html: `<n-app>
+              <n-elements><div></div></n-elements>
+              <div n-cloak></div>
+            </n-app>`,
+    })
+
+    await page.waitForChanges()
+    expect(page.root).toEqualHtml(`
+      <n-app>
+        <n-elements>
+        <div></div>
+        </n-elements>
+        <div></div>
+      </n-app>
+    `)
+
+    const subject = page.body.querySelector('n-views')
+    subject?.remove()
+  })
+
+  it('adds hidden to n-hide children', async () => {
+    const page = await newSpecPage({
+      components: [App, Elements],
+      html: `<n-app>
+              <n-elements>
+              <div></div>
+              </n-elements>
+              <div n-hide></div>
+            </n-app>`,
+    })
+
+    await page.waitForChanges()
+    expect(page.root).toEqualHtml(`
+    <n-app>
+      <n-elements>
+      <div></div>
+      </n-elements>
+      <div hidden></div>
+    </n-app>
+  `)
+
+    const subject = page.body.querySelector('n-views')
+    subject?.remove()
   })
 })

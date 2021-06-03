@@ -45,7 +45,7 @@ export class ViewRouter {
    * This is the start path a user should
    * land on when they first land on this app.
    */
-  @Prop() startPath: string = '/'
+  @Prop() startPath?: string
 
   /**
    * Header height or offset for scroll-top on this

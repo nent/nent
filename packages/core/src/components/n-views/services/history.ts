@@ -29,12 +29,11 @@ export class HistoryService {
 
   constructor(public win: Window, private basename: string) {
     this.events = new EventEmitter()
+
     this.location = this.getDOMLocation(this.getHistoryState())
     this.previousLocation = this.location
     this.allKeys.push(this.location.key)
     this.scrollHistory = new ScrollHistory(win)
-
-    this.push(this.location.pathname)
 
     this.win.addEventListener('popstate', e => {
       this.handlePop(this.getDOMLocation(e.state))
@@ -46,7 +45,7 @@ export class HistoryService {
   }
 
   public getDOMLocation(historyState: any) {
-    const { key, state } = historyState || {}
+    const { key, state = {} } = historyState || {}
     const { pathname, search, hash } = this.win.location
 
     let path = pathname + search + hash
