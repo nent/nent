@@ -96,9 +96,11 @@ export class ViewRouter {
 
   componentDidLoad() {
     debugIf(commonState.debug, 'n-views: initialized')
-    setTimeout(() => {
-      this.start()
-    }, this.startDelay * 1000)
+    if (this.startDelay > 0)
+      setTimeout(() => {
+        this.start()
+      }, this.startDelay * 1000)
+    else this.start()
   }
 
   disconnectedCallback() {
