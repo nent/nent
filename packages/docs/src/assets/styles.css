@@ -387,6 +387,8 @@ n-view-not-found {
   position: relative;
 }
 
+
+
 n-view-link-list#breadcrumb {
   display: block;
   height: 1rem;
@@ -513,24 +515,27 @@ n-audio {
   position: static;
   z-index: 11;
   color: white;
+
+}
+
+
+.component-item {
+  margin-bottom: 1em;
+  border-radius: 5px;
 }
 
 .component-item h4 {
-  color: white;
   font-size: large;
   padding-left: 1rem;
   font-weight: 700;
+  color: #fff;
 }
 
 .component-item p {
   padding: 1rem;
   margin-bottom: 0;
-  color: #eee;
 }
-.component-item:hover p,
-.component-item:hover {
-  color: white;
-}
+
 
 
 

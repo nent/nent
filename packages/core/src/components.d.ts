@@ -823,7 +823,7 @@ export namespace Components {
         /**
           * This is the start path a user should land on when they first land on this app.
          */
-        "startPath": string;
+        "startPath"?: string;
         /**
           * Navigation transition between routes. This is a CSS animation class.
          */
