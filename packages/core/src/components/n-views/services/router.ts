@@ -217,9 +217,9 @@ export class RouterService {
   }
 
   public replaceWithRoute(path: string) {
-    //const newPath = resolvePathname(path, this.location.pathname)
-    //this.location.pathname = newPath
-    this.history.replace(path)
+    const pathName = resolvePathname(path, this.location.pathname)
+    this.location.pathname = pathName
+    this.history.replace(pathName)
   }
 
   public matchPath(

@@ -81,6 +81,7 @@
     "unproxy",
     "vime",
     "webm",
+    "webnamespaces",
     "youtube"
   ],
   "editor.codeActionsOnSave": {
