@@ -1,10 +1,10 @@
+import { getTimeDetails } from '../../components/n-presentation/services/time'
 import { eventBus } from '../actions'
 import {
   commonState,
   debounce,
   debugIf,
   requireValue,
-  sleep,
 } from '../common'
 import { DATA_EVENTS, IDataProvider } from './interfaces'
 import { dataState } from './state'
@@ -46,16 +46,27 @@ export async function getDataProvider(
   name: string,
 ): Promise<IDataProvider | null> {
   const key = name.toLowerCase()
+
   requireValue(name, 'provider name')
   if (Object.keys(dataState.providers).includes(key))
     return dataState.providers[key]
 
-  await sleep(dataState.providerTimeout)
+  return new Promise(resolve => {
+    const start = performance.now()
+    const duration = dataState.providerTimeout / 1000
+    let currentTime = getTimeDetails(start, performance.now(), 0)
 
-  if (Object.keys(dataState.providers).includes(key))
-    return dataState.providers[key]
-
-  return null
+    const timer = setInterval(() => {
+      currentTime = getTimeDetails(start, performance.now(), 0)
+      if (Object.keys(dataState.providers).includes(key)) {
+        clearInterval(timer)
+        resolve(dataState.providers[key])
+      } else if (currentTime.elapsed > duration) {
+        clearInterval(timer)
+        resolve(null)
+      }
+    }, 200)
+  })
 }
 
 export function getDataProviders() {

@@ -16,7 +16,8 @@ import {
 import { DataItemProvider } from './providers/item'
 import { dataState } from './state'
 
-const tokenRegEx = /\{\{([\w-]*):(\w*)((?:\[\d+\]|\.)[\w.\-\]]+)?(?:\?([\w.-]*))?\}\}/g
+const tokenRegEx =
+  /\{\{([\w-]*):(\w*)((?:\[\d+\]|\.)[\w.\-\]]+)?(?:\?([\w.-]*))?\}\}/g
 
 const escapeStringsRegex = /['"]?([a-z/][\w-/?.]+)['"]?/gi
 

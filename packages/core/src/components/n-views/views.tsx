@@ -4,7 +4,6 @@ import {
   Host,
   Method,
   Prop,
-  State,
   writeTask,
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
@@ -29,7 +28,8 @@ import { routingState } from './services/state'
   shadow: false,
 })
 export class ViewRouter {
-  @State() didStart: boolean = false
+  private didStart: boolean = false
+
   /**
    * This is the root path that the actual page is,
    * if it isn't '/', then the router needs to know
@@ -76,6 +76,7 @@ export class ViewRouter {
     if (!this.didStart) {
       debugIf(commonState.debug, 'n-views: start-path')
       routingState.router!.finalize(this.startPath)
+      debugIf(commonState.debug, 'n-views: initialized')
       this.didStart = true
     }
   }
@@ -95,7 +96,6 @@ export class ViewRouter {
   }
 
   componentDidLoad() {
-    debugIf(commonState.debug, 'n-views: initialized')
     if (this.startDelay > 0)
       setTimeout(() => {
         this.start()

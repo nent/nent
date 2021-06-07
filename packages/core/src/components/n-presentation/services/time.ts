@@ -6,7 +6,7 @@ export function getTimeDetails(
   duration: number,
 ): TimeDetails {
   const elapsed = (time - start) / 1000
-  const percentage = duration >= elapsed ? elapsed / duration : 0
+  const percentage = duration > 0 ? elapsed / duration : 0
   if (elapsed > 0) {
     return {
       hours: Math.floor((elapsed / 3600) % 24),
