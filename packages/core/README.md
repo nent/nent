@@ -1,19 +1,19 @@
 # NENT: Web Application Elements
 
-![MIT](https://badgen.net/github/license/nent/nent?icon=github)
-![tree-shaking](https://badgen.net/badge/tree-shaking/enabled?icon=packagephobia)
-![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label)
-[![webnamespaces.org](https://img.shields.io/static/v1?label=webnamespaces.org&color=blue&message=n-*)](https://webnamespaces.org)
-[![NPM](https://badgen.net/npm/v/@nent/core?icon&color=blue)](https://www.npmjs.com/package/@nent/core)
-[![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=blue)](https://coveralls.io/github/nent/nent)
-[![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=blue)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
-[![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
+![MIT](https://badgen.net/github/license/nent/nent?icon=github&color=purple)
+![tree-shaking](https://badgen.net/badge/tree-shaking/enabled?icon=packagephobia&color=purple)
+![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label&color=purple)
+[![webnamespaces.org](https://badgen.net/badge/webnamespaces.org/n-*?color=purple)](https://webnamespaces.org)
+[![NPM](https://badgen.net/npm/v/@nent/core?icon&color=purple)](https://www.npmjs.com/package/@nent/core)
+[![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=purple)](https://coveralls.io/github/nent/nent)
+[![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=purple)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
+[![unpkgd](https://badgen.net/badge/unpkg/CDN?color=purple)](https://unpkg.com/browse/@nent/core)
 
 ## What is NENT?
 
 NENT is a library of functional elements (web components) that extend HTML with web application-specific features.
 
-> 'Nent' comes from the word compo**nent** and is my tech-brain's uncreative attempt at branding.  
+> 'NENT' comes from the word compo**NENT**. Yeah, that's it.
 
 ## Motivation
 
@@ -146,21 +146,44 @@ npm i @nent/core
 # or
 yarn add @nent/core
 ```
+
+### Show your Love!
+
+If you use NENT and want to help spread the word, put a NENT badge on your readme or your website. 
+
+NENT badge:
+
+[![NENT](https://badgen.net/badge/Powered%20by/NENT/purple)](https://nent.dev)
+
+#### Markdown
+```markdown
+[![NENT](https://badgen.net/badge/Powered%20by/NENT/purple)](https://nent.dev)
+```
+
+#### HTML
+
+```html
+<a href="https://nent.dev" target="_blank">
+  <img alt="Powered by NENT" 
+    src="https://badgen.net/badge/Powered%20by/NENT/purple"/>
+</a>
+```
+
 ## Learn More
 
 The best way to see what these elements in action, is to take a look at the documentation demo. The installable app is built using these elements in a single HTML file (with child-routes and partials lazy-loaded, as-needed).
 
-[![Take the Tour](https://badgen.net/badge/@nent/core:%20demo?color=blue)](https://nent.dev)
+[![Take the Tour](https://badgen.net/badge/Demo/NENT?color=purple)](https://nent.dev)
 
 ## Contact
 
 If you like the idea, join us! Or give it a star.
 
-[![github](https://badgen.net/badge/github/★?icon=github&color=blue)](https://github.com/nent/nent)
+[![github](https://badgen.net/badge/github/★?icon=github&color=purple)](https://github.com/nent/nent)
 
-If you have requests, ideas or feedback, reach out to me personally:
+If you have requests, ideas, or feedback, reach out to me personally:
 
-[![Twitter](https://badgen.net/badge/tweet/me?icon=twitter&color=blue)](https://twitter.com/logrythmik)
+[![Twitter](https://badgen.net/badge/tweet/me?icon=twitter&color=purple)](https://twitter.com/logrythmik)
 
 ## Attribution
 
