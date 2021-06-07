@@ -264,16 +264,17 @@ export class Route implements IRoute {
   }
 
   public goToRoute(path: string) {
-    const route = !isAbsolute(path)
-      ? this.router.resolvePathname(path, this.path)
-      : path
+    const route = isAbsolute(path)
+      ? path
+      : this.router.resolvePathname(path, this.path)
     this.router.goToRoute(route)
   }
 
   public replaceWithRoute(path: string) {
-    const route = !isAbsolute(path)
-      ? this.router.resolvePathname(path, this.path)
-      : path
+    const route = isAbsolute(path)
+      ? path
+      : this.router.resolvePathname(path, this.path)
+
     this.router.replaceWithRoute(route)
   }
 

@@ -56,10 +56,9 @@ export async function setStoredVisits(visits: string[]) {
 }
 
 export async function hasVisited(url: string) {
-  const visits = [
-    ...(await getSessionVisits()),
-    ...(await getStoredVisits()),
-  ]
+  const sessionVisits = await getSessionVisits()
+  const storageVisits = await getStoredVisits()
+  const visits = [...sessionVisits, ...storageVisits]
   return visits.includes(url)
 }
 

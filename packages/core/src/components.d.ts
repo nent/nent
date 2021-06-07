@@ -821,11 +821,7 @@ export namespace Components {
          */
         "scrollTopOffset"?: number;
         /**
-          * Kick of the start-page immediately.
-         */
-        "start": () => Promise<void>;
-        /**
-          * This is the seconds to wait before redirecting to the start path.
+          * Delay redirecting to the start path by this value in milliseconds.
          */
         "startDelay": number;
         /**
@@ -1872,7 +1868,7 @@ declare namespace LocalJSX {
          */
         "scrollTopOffset"?: number;
         /**
-          * This is the seconds to wait before redirecting to the start path.
+          * Delay redirecting to the start path by this value in milliseconds.
          */
         "startDelay"?: number;
         /**

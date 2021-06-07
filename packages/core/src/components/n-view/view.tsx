@@ -147,7 +147,7 @@ export class View implements IView {
     return {
       activators: this.route.actionActivators,
       views: this.childViews,
-      dos: this.childViewDos,
+      dos: this.childPrompts,
     }
   }
 
@@ -155,7 +155,7 @@ export class View implements IView {
     return this.el.parentElement?.closest('n-view') || null
   }
 
-  private get childViewDos(): HTMLNViewPromptElement[] {
+  private get childPrompts(): HTMLNViewPromptElement[] {
     return Array.from(
       this.el.querySelectorAll('n-view-prompt') || [],
     ).filter(e => this.route.isChild(e))
@@ -221,7 +221,7 @@ export class View implements IView {
 
       debugIf(
         this.debug,
-        `n-view: ${this.path} found ${this.childViewDos.length} child view-dos`,
+        `n-view: ${this.path} found ${this.childPrompts.length} child view-dos`,
       )
     }
 
@@ -231,9 +231,13 @@ export class View implements IView {
         this.debug,
         `n-view: ${this.path} route is exactly matched `,
       )
-      const viewDos = this.childViewDos.map(el => {
+      const viewDos = this.childPrompts.map(el => {
         const { path, when, visit } = el
-        return { path, when, visit }
+        return {
+          path: this.route.normalizeChildUrl(path),
+          when,
+          visit,
+        }
       })
       const nextDo = await resolveNext(viewDos)
       if (nextDo) {

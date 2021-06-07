@@ -234,8 +234,8 @@ export class RouterService {
     return match
   }
 
-  public resolvePathname(url: string, parentUrl?: string) {
-    return resolvePathname(url, parentUrl || this.location.pathname)
+  public resolvePathname(path: string, parentPath?: string) {
+    return resolvePathname(path, parentPath || this.location.pathname)
   }
 
   public normalizeChildUrl(childUrl: string, parentUrl: string) {
