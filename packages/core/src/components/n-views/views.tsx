@@ -59,11 +59,6 @@ export class ViewRouter {
    */
   @Prop() scrollTopOffset?: number
 
-  private start() {
-    routingState.router!.finalize(this.startPath)
-    debugIf(commonState.debug, 'n-views: initialized')
-  }
-
   componentWillLoad() {
     commonState.routingEnabled = true
     routingState.router = new RouterService(
@@ -78,12 +73,18 @@ export class ViewRouter {
     )
   }
 
-  async componentDidLoad() {
+  componentDidLoad() {
+    function start() {
+      if (routingState.router) {
+        routingState.router!.finalize(this.startPath)
+        debugIf(commonState.debug, 'n-views: initialized')
+      }
+    }
     if (this.startDelay > 0)
       setTimeout(() => {
-        this.start()
+        start()
       }, this.startDelay)
-    else this.start()
+    else start()
   }
 
   disconnectedCallback() {

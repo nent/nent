@@ -252,8 +252,10 @@ export class RouterService {
         this.win.document.title = `${pageTitle} | ${
           this.appTitle || this.win.document.title
         }`
-      } else if (this.appTitle) {
-        this.win.document.title = `${this.appTitle}`
+      } else {
+        this.win.document.title = `${
+          this.appTitle || this.win.document.title
+        }`
       }
     }
   }
