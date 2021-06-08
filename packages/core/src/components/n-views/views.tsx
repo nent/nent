@@ -74,10 +74,10 @@ export class ViewRouter {
   }
 
   componentDidLoad() {
+    const startPath = this.startPath
     function start() {
       if (routingState.router) {
-        routingState.router!.finalize(this.startPath)
-        debugIf(commonState.debug, 'n-views: initialized')
+        routingState.router?.finalize(startPath)
       }
     }
     if (this.startDelay > 0)
@@ -85,6 +85,7 @@ export class ViewRouter {
         start()
       }, this.startDelay)
     else start()
+    debugIf(commonState.debug, 'n-views: initialized')
   }
 
   disconnectedCallback() {
