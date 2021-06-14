@@ -6,7 +6,7 @@ import {
   Prop,
   State,
 } from '@stencil/core'
-import { appState, onAppChange } from '../n-app/services/state'
+import { appState } from '../n-app/services/state'
 
 /**
  * This component checks for the preferred light/dark theme preference of the
@@ -19,9 +19,11 @@ import { appState, onAppChange } from '../n-app/services/state'
   shadow: true,
 })
 export class AppTheme {
-  private uiSubscription!: () => void
   @Element() el!: HTMLNAppThemeElement
-  @State() systemDark: boolean = false
+
+  private stateSubscription!: () => void
+
+  @State() systemDarkMode: boolean = false
 
   /**
    * Change the element that is decorated with
@@ -41,51 +43,60 @@ export class AppTheme {
    */
   @Prop() display: boolean = false
 
+  private get darkMode() {
+    return appState.darkMode == null
+      ? this.systemDarkMode
+      : appState.darkMode
+  }
+
   componentWillLoad() {
+    this.subscribeToSystem()
+  }
+
+  private subscribeToSystem() {
     const prefersDark = window.matchMedia(
       '(prefers-color-scheme: dark)',
     )
     if (prefersDark?.addEventListener) {
       prefersDark.addEventListener('change', ev => {
-        this.systemDark = ev.matches
+        this.systemDarkMode = ev.matches
       })
-      this.systemDark = prefersDark.matches
-    }
-
-    this.uiSubscription = onAppChange('theme', theme => {
-      this.systemDark = theme == 'dark'
-    })
-
-    if (appState.theme != null) {
-      this.systemDark = appState.theme === 'dark'
+      this.systemDarkMode = prefersDark.matches
     }
   }
 
   componentWillRender() {
-    this.toggleDarkTheme(this.systemDark)
+    this.toggleDarkTheme()
   }
 
-  private toggleDarkTheme(isDark: boolean) {
-    if (this.targetElement == 'body') {
-      this.el.ownerDocument.body.classList.toggle(
-        this.darkClass,
-        isDark,
-      )
-    } else {
-      this.el.ownerDocument
-        .querySelector(this.targetElement)
-        ?.classList.toggle(this.darkClass, isDark)
-    }
+  private toggleDarkTheme() {
+    const element =
+      this.targetElement == 'body'
+        ? this.el.ownerDocument.body
+        : this.el.ownerDocument.querySelector(this.targetElement)
+
+    if (
+      !element?.classList.contains(this.darkClass) &&
+      this.darkMode == false
+    )
+      return
+
+    element?.classList.toggle(this.darkClass, this.darkMode!)
   }
 
   render() {
     if (this.display) {
-      return <Host>{this.systemDark ? this.darkClass : 'light'}</Host>
+      return (
+        <Host>
+          {this.darkMode ? 'dark' : 'light'}
+          {appState.darkMode == null ? ' (system) ' : ' (overridden)'}
+        </Host>
+      )
     }
     return null
   }
 
   disconnectedCallback() {
-    this.uiSubscription?.call(this)
+    this.stateSubscription?.call(this)
   }
 }

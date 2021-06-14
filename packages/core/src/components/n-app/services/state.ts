@@ -3,11 +3,11 @@
 import { createStore } from '@stencil/store'
 
 class StateModel {
-  theme!: 'light' | 'dark' | string | null
+  darkMode!: boolean | null
 }
 
 const store = createStore<StateModel>({
-  theme: null,
+  darkMode: null,
 })
 
 const { state, onChange, reset, dispose } = store

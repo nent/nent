@@ -1,5 +1,5 @@
-import { Component, h, Host, Prop, State } from '@stencil/core'
-import { appState, onAppChange } from '../n-app/services/state'
+import { Component, h, Host, Prop } from '@stencil/core'
+import { appState } from '../n-app/services/state'
 
 /**
  * This component displays a checkbox to control the
@@ -14,9 +14,7 @@ import { appState, onAppChange } from '../n-app/services/state'
   shadow: false,
 })
 export class AppThemeSwitch {
-  private uiSubscription!: () => void
-
-  @State() dark: boolean = false
+  private checkbox!: HTMLInputElement
 
   /**
    * The class to add to the inner input.
@@ -26,34 +24,34 @@ export class AppThemeSwitch {
   /**
    * The inner input ID
    */
-  @Prop() inputId?: string
-
-  componentWillLoad() {
-    this.dark = appState.theme == 'dark'
-    this.uiSubscription = onAppChange('theme', (theme: any) => {
-      this.toggleDarkTheme(theme === 'dark')
-    })
-  }
-
-  private toggleDarkTheme(dark: boolean) {
-    this.dark = dark
-    appState.theme = this.dark ? 'dark' : 'light'
-  }
-
-  disconnectedCallback() {
-    this.uiSubscription()
-  }
+  @Prop() inputId?: string = 'dark-mode'
 
   render() {
     return (
       <Host>
-        <input
-          type="checkbox"
-          class={this.classes}
-          id={this.inputId}
-          onChange={() => this.toggleDarkTheme(!this.dark)}
-          checked={this.dark}
-        />
+        {appState.darkMode != null ? (
+          <input
+            type="checkbox"
+            ref={el => (this.checkbox = el!)}
+            class={this.classes}
+            id={this.inputId}
+            onChange={() => {
+              appState.darkMode = this.checkbox.checked
+            }}
+            checked={appState.darkMode}
+          />
+        ) : (
+          <input
+            type="checkbox"
+            ref={el => (this.checkbox = el!)}
+            class={this.classes}
+            id={this.inputId}
+            onChange={() => {
+              appState.darkMode = this.checkbox.checked
+            }}
+            indeterminate
+          />
+        )}
       </Host>
     )
   }

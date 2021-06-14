@@ -6,21 +6,34 @@ import { appState, onAppChange } from '../state'
 export class DefaultAppProvider {
   private disposeThemeSubscription!: () => void
 
-  constructor(win: Window = window, eventBus?: IEventEmitter) {
-    appState.theme = win?.localStorage.getItem('theme') || null
-
-    this.disposeThemeSubscription = onAppChange('theme', t => {
-      win?.localStorage.setItem('theme', t || 'light')
+  constructor(
+    private win: Window = window,
+    eventBus?: IEventEmitter,
+  ) {
+    this.disposeThemeSubscription = onAppChange('darkMode', t => {
+      if (t == null) win?.localStorage.removeItem('darkMode')
+      else win?.localStorage.setItem('darkMode', t!.toString())
       eventBus?.emit(APP_EVENTS.ThemeChanged, t)
     })
 
     win.addEventListener('storage', () => {
-      appState.theme = win?.localStorage.getItem('theme') || null
+      this.getTheme()
     })
+    this.getTheme()
   }
 
-  setTheme(theme: 'dark' | 'light') {
-    appState.theme = theme
+  private getTheme() {
+    const mode = this.win?.localStorage.getItem('darkMode')
+    if (mode != null) {
+      appState.darkMode = mode == 'true'
+    } else {
+      appState.darkMode = null
+    }
+  }
+
+  setDarkMode(data: any) {
+    const { value } = data
+    appState.darkMode = value != undefined ? Boolean(value) : null
   }
 
   log(args: any) {

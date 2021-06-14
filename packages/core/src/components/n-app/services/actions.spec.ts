@@ -76,9 +76,9 @@ describe('interface-actions:', () => {
     const subject = new AppActionListener()
     subject.initialize(page.win, actionBus, eventBus)
 
-    subject.defaultProvider.setTheme('dark')
+    subject.defaultProvider.setDarkMode({ value: 'true' })
 
-    expect(page.win.localStorage.getItem('theme')).toBe('dark')
+    expect(page.win.localStorage.getItem('darkMode')).toBe('true')
 
     subject.destroy()
   })
@@ -93,11 +93,13 @@ describe('interface-actions:', () => {
 
     actionBus.emit(APP_TOPIC, {
       topic: APP_TOPIC,
-      command: APP_COMMANDS.SetTheme,
-      data: 'dark',
+      command: APP_COMMANDS.SetDarkMode,
+      data: {
+        value: 'true',
+      },
     })
 
-    expect(page.win.localStorage.getItem('theme')).toBe('dark')
+    expect(page.win.localStorage.getItem('darkMode')).toBe('true')
 
     subject.destroy()
   })

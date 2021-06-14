@@ -5,7 +5,7 @@ export const APP_TOPIC = 'app'
 export enum APP_COMMANDS {
   RegisterProvider = 'register-provider',
   Log = 'log',
-  SetTheme = 'set-theme',
+  SetDarkMode = 'set-dark-mode',
 }
 
 export enum APP_EVENTS {

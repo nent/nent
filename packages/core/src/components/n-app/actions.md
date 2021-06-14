@@ -14,20 +14,21 @@ The App Action Listener is configured to handle commands meant to manage the pag
 
 ## Commands
 
-### `set-theme`
+### `set-dark-mode`
 
-Sets the main page theme to dark or light.
+Sets the main page theme to dark if the value is true. (Set to null, for system preference)
 
 Arguments:
 
-* **theme** (required)\
-  Set's the theme to 'dark' or 'light'.
+* **value** (required)\
+  Set's the theme to 'dark' if true, 'light' if false, and 'system' if null.
 
 ```html
 <n-action-activator activate="...">
   <n-action topic="app" 
-    command="set-theme" 
-    data-theme="dark"> </n-action>
+    command="set-dark-mode" 
+    data-value="true|false"> 
+  </n-action>
 </n-action-activator>
 ```
 

@@ -132,6 +132,8 @@
     <n-app>
       <n-app-analytics id="analytics">
       </n-app-analytics>
+      <n-app-theme>
+      </n-app-theme>
       <n-data>
         <!-- enable data expressions-->
         <n-data-session></n-data-session>
@@ -263,7 +265,6 @@
             style-src="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
           </n-content-reference>
           <div slot="content">
-            <h1>NENT</h1>
             <h2>Functional Elements</h2>
             <p class="lead"> Application functionality without leaving the
               comfort of HTML </p>
@@ -402,9 +403,7 @@
             </footer>
           </div>
         </n-view>
-        <!-- enabled app themes -->
-        <n-app-theme>
-        </n-app-theme>
+
         <n-view path="/home"
           page-title="Home"
           src="/pages/home/routes.html"

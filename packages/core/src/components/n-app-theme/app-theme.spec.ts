@@ -3,35 +3,75 @@ import { appState, appStateDispose } from '../n-app/services/state'
 import { AppTheme } from './app-theme'
 
 describe('n-app-theme', () => {
-  beforeEach(() => {
+  afterEach(() => {
     appStateDispose()
   })
 
   it('renders with light preset', async () => {
     const page = await newSpecPage({
       components: [AppTheme],
+      html: `<n-app-theme></n-app-theme>`,
     })
-    page.setContent(`<n-app-theme></n-app-theme>`)
     await page.waitForChanges()
 
     expect(page.body.classList.contains('dark')).toBe(false)
-    const subject = page.body.querySelector('n-app-theme')
-    subject?.remove()
+    page.root!.remove()
   })
 
-  it('renders with dark preset', async () => {
+  it('renders with dark state preset', async () => {
     const page = await newSpecPage({
       components: [AppTheme],
     })
-    appState.theme = 'dark'
+    appState.darkMode = true
     page.setContent(`<n-app-theme></n-app-theme>`)
     await page.waitForChanges()
     expect(page.body.classList.contains('dark')).toBe(true)
-    const subject = page.body.querySelector('n-app-theme')
-    subject?.remove()
+    page.root!.remove()
+  })
+
+  it('renders with light state preset', async () => {
+    const page = await newSpecPage({
+      components: [AppTheme],
+    })
+    appState.darkMode = false
+    page.setContent(`<n-app-theme></n-app-theme>`)
+    await page.waitForChanges()
+    expect(page.body.classList.contains('dark')).toBe(false)
+    page.root!.remove()
   })
 
   it('renders with dark media', async () => {
+    const page = await newSpecPage({
+      components: [AppTheme],
+    })
+
+    let componentListener: any
+    const mediaChanged = (_type: any, listener: any) => {
+      componentListener = listener
+    }
+
+    const inner = page.win.matchMedia
+    const replaced = (query: string) => {
+      const results = inner(query)
+      return {
+        ...results,
+        matches: true,
+        addEventListener: mediaChanged,
+      }
+    }
+
+    page.win.matchMedia = replaced
+
+    page.setContent(`<n-app-theme></n-app-theme>`)
+
+    await page.waitForChanges()
+
+    expect(page.body.classList.contains('dark')).toBe(true)
+
+    page.root!.remove()
+  })
+
+  it('renders with a switch to dark media', async () => {
     const page = await newSpecPage({
       components: [AppTheme],
     })
@@ -68,7 +108,6 @@ describe('n-app-theme', () => {
     await page.waitForChanges()
 
     expect(page.body.classList.contains('dark')).toBe(true)
-    const subject = page.body.querySelector('n-app-theme')
-    subject?.remove()
+    page.root!.remove()
   })
 })

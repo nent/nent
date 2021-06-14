@@ -17,10 +17,10 @@ Add the `<n-app-theme-switch>` component to any page to allow the user to adjust
 
 ## Properties
 
-| Property  | Attribute  | Description                          | Type                  | Default     |
-| --------- | ---------- | ------------------------------------ | --------------------- | ----------- |
-| `classes` | `classes`  | The class to add to the inner input. | `string`, `undefined` | `undefined` |
-| `inputId` | `input-id` | The inner input ID                   | `string`, `undefined` | `undefined` |
+| Property  | Attribute  | Description                          | Type                  | Default       |
+| --------- | ---------- | ------------------------------------ | --------------------- | ------------- |
+| `classes` | `classes`  | The class to add to the inner input. | `string`, `undefined` | `undefined`   |
+| `inputId` | `input-id` | The inner input ID                   | `string`, `undefined` | `'dark-mode'` |
 
 
 ----------------------------------------------
