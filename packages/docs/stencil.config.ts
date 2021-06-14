@@ -18,10 +18,7 @@ const config: Config = {
     }),
   ],
   devServer: {
-    openBrowser: false,
-    reloadStrategy: 'pageReload',
     port: 3002,
-    gzip: true,
     root: '../../docs',
   },
   outputTargets: [
