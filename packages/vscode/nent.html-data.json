@@ -197,11 +197,15 @@
       "attributes": [
         {
           "name": "dark-class",
-          "description": "Change the class name that is added to the\nbody tag when the theme is determined to\nbe dark."
+          "description": "Change the class name that is added to the\ntarget element when the theme is determined to\nbe dark."
         },
         {
-          "name": "skip-class",
-          "description": "Skip adding the class to the body tag, just\nupdate the ui state."
+          "name": "display",
+          "description": "Display the user's system preference."
+        },
+        {
+          "name": "target-element",
+          "description": "Change the element that is decorated with\nthe dark-mode class"
         }
       ],
       "references": [
@@ -881,6 +885,10 @@
       },
       "attributes": [
         {
+          "name": "debug",
+          "description": "Turn on debugging to get helpful messages from the\ndata action systems."
+        },
+        {
           "name": "provider-timeout",
           "description": "The wait-time, in milliseconds to wait for\nun-registered data providers found in an expression.\nThis is to accommodate a possible lag between\nevaluation before the first view-do 'when' predicate\nan the registration process."
         }
@@ -1081,6 +1089,10 @@
         {
           "name": "debug",
           "description": "To debug timed elements, set this value to true."
+        },
+        {
+          "name": "defer-load",
+          "description": "If set, disables auto-starting the timer\non render. This will be removed if in a view\nwhen the view is activated or when the start\nmethod is called."
         },
         {
           "name": "display",
@@ -1529,6 +1541,10 @@
         {
           "name": "scroll-top-offset",
           "description": "Header height or offset for scroll-top on this\nand all views."
+        },
+        {
+          "name": "start-delay",
+          "description": "Delay redirecting to the start path by\nthis value in milliseconds."
         },
         {
           "name": "start-path",
