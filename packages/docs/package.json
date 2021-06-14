@@ -28,7 +28,7 @@
     "bootstrap": "5.0.1",
     "postcss": "8.3.4",
     "postcss-import": "14.0.2",
-    "postcss-scss": "3.0.5",
+    "postcss-scss": "4.0.0",
     "remixicon": "2.5.0",
     "tailwindcss": "2.1.4",
     "workbox-build": "6.1.5",
