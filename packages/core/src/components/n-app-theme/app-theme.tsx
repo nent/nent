@@ -48,17 +48,21 @@ export class AppTheme {
     if (prefersDark?.addEventListener) {
       prefersDark.addEventListener('change', ev => {
         this.systemDark = ev.matches
-        appState.theme = ev.matches ? 'dark' : 'light'
       })
+      this.systemDark = prefersDark.matches
     }
 
     this.uiSubscription = onAppChange('theme', theme => {
-      this.toggleDarkTheme(theme === 'dark')
+      this.systemDark = theme == 'dark'
     })
 
     if (appState.theme != null) {
-      this.toggleDarkTheme(appState.theme === 'dark')
+      this.systemDark = appState.theme === 'dark'
     }
+  }
+
+  componentWillRender() {
+    this.toggleDarkTheme(this.systemDark)
   }
 
   private toggleDarkTheme(isDark: boolean) {

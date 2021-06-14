@@ -13,6 +13,10 @@ export class DefaultAppProvider {
       win?.localStorage.setItem('theme', t || 'light')
       eventBus?.emit(APP_EVENTS.ThemeChanged, t)
     })
+
+    win.addEventListener('storage', () => {
+      appState.theme = win?.localStorage.getItem('theme') || null
+    })
   }
 
   setTheme(theme: 'dark' | 'light') {
