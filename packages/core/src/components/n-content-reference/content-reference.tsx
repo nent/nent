@@ -142,9 +142,8 @@ export class ContentReference {
           resolve()
           return
         }
-        this.scriptElement = this.el.ownerDocument.createElement(
-          'script',
-        )
+        this.scriptElement =
+          this.el.ownerDocument.createElement('script')
         this.scriptElement.src = url
         let loaded = false
 

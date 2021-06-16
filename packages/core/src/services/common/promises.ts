@@ -49,7 +49,7 @@ export async function findAsyncSequential<T>(
  *
  * @returns {Function}  A new, throttled, function.
  */
- export function throttle(
+export function throttle(
   delay: number,
   callback: (...args: any[]) => any,
   noTrailing: boolean = true,

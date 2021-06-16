@@ -46,7 +46,7 @@ describe('n-view-not-found', () => {
   it('renders page title', async () => {
     const page = await newSpecPage({
       components: [ViewRouter, ViewNotFound],
-      html: `<n-views app-title="Much?">
+      html: `<n-views>
         <n-view-not-found page-title="Lost">
           <h1>Not Found</h1>
         </n-view-not-found>
@@ -54,7 +54,7 @@ describe('n-view-not-found', () => {
     })
     await page.waitForChanges()
 
-    expect(page.win.document.title).toBe('Lost | Much?')
+    expect(page.win.document.title).toBe('Lost |')
 
     page.body.querySelector('n-view-not-found')!.remove()
     page.root!.remove()

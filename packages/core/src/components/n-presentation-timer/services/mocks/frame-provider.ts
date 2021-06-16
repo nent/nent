@@ -1,7 +1,8 @@
 /* istanbul ignore file */
 
 export class MockRequestAnimationFrameProvider
-  implements AnimationFrameProvider {
+  implements AnimationFrameProvider
+{
   handleCounter = 0
   queue = new Map()
 

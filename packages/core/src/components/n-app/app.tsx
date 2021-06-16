@@ -6,12 +6,12 @@ import {
   h,
   Host,
   Listen,
-  Prop
+  Prop,
 } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  eventBus
+  eventBus,
 } from '../../services/actions'
 import { debugIf, log } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
@@ -45,7 +45,7 @@ export class App {
    * If the views or dos have titles,
    * this is added as a suffix.
    */
-   @Prop() appTitle?: string
+  @Prop() appTitle?: string
 
   /**
    * Turn on debugging to get helpful messages from the

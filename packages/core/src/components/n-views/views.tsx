@@ -1,4 +1,11 @@
-import { Component, Element, h, Host, Prop, writeTask } from '@stencil/core'
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  writeTask,
+} from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonState, debugIf } from '../../services/common'
 import { RouterService } from './services/router'
@@ -21,7 +28,7 @@ import { routingState } from './services/state'
   shadow: false,
 })
 export class ViewRouter {
-  @Element() el!: HTMLElement
+  @Element() el!: HTMLNViewsElement
   /**
    * This is the root path that the actual page is,
    * if it isn't '/', then the router needs to know
@@ -54,7 +61,7 @@ export class ViewRouter {
   @Prop() scrollTopOffset?: number
 
   private get parentApp() {
-    return this.el.closest('n-app');
+    return this.el.closest('n-app')
   }
 
   componentWillLoad() {

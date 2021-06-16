@@ -2,7 +2,7 @@
 
 export function captureElementsEventOnce<
   TElement extends HTMLElement,
-  TEvent extends Event
+  TEvent extends Event,
 >(
   rootElement: HTMLElement,
   query: string,

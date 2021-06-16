@@ -338,11 +338,12 @@ export const tokensToRegExp = (
     options.delimiter || DEFAULT_DELIMITER,
   )
   const delimiters = options.delimiters || DEFAULT_DELIMITERS
-  const endsWith = (options.endsWith?.length
-    ? [...options.endsWith]
-    : options.endsWith
-    ? [options.endsWith]
-    : []
+  const endsWith = (
+    options.endsWith?.length
+      ? [...options.endsWith]
+      : options.endsWith
+      ? [options.endsWith]
+      : []
   )
     .map(i => escapeString(i as string))
     .concat('$')

@@ -54,10 +54,8 @@ export class DataListener implements IEventActionListener {
       `data-listener: action received {command:${actionEvent.command}}`,
     )
     if (actionEvent.command === DATA_COMMANDS.RegisterDataProvider) {
-      const {
-        name,
-        provider,
-      } = actionEvent.data as DataProviderRegistration
+      const { name, provider } =
+        actionEvent.data as DataProviderRegistration
       if (name && provider) {
         this.registerProvider(name, provider)
       }

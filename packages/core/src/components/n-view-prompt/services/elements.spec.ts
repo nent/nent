@@ -39,9 +39,8 @@ describe('elements', () => {
     input!.checkValidity = () => true
     input!.reportValidity = () => true
 
-    const textarea = fakeWindow.document.body.querySelector(
-      'textarea',
-    )
+    const textarea =
+      fakeWindow.document.body.querySelector('textarea')
     textarea!.checkValidity = () => false
     textarea!.reportValidity = () => false
 

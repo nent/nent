@@ -30,10 +30,10 @@ describe('audio-listener:', () => {
     actionBus = new EventEmitter()
     eventBus = new EventEmitter()
 
-    page.win['Howler'] = ({
+    page.win['Howler'] = {
       unload: jest.fn(),
       volume: () => 0,
-    } as unknown) as Howler
+    } as unknown as Howler
 
     listener = new AudioActionListener(page.win, eventBus, actionBus)
 

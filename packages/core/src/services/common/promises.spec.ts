@@ -46,7 +46,6 @@ describe('findAsyncSequential', () => {
   })
 })
 
-
 describe('misc_utils.debounce', () => {
   beforeEach(() => {
     jest.useFakeTimers()

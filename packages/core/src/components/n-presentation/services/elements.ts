@@ -80,9 +80,8 @@ export function resolveElementChildTimedNodesByTime(
   })
 
   // Resolve n-time-to
-  const timeValueElements = rootElement.querySelectorAll(
-    '[n-time-to]',
-  )
+  const timeValueElements =
+    rootElement.querySelectorAll('[n-time-to]')
   timeValueElements?.forEach(el => {
     const seconds = time
     const attributeName = el.getAttribute('n-time-to')
@@ -132,9 +131,8 @@ export function restoreElementChildTimedNodes(
   })
 
   // Resolve n-time-to
-  const timeValueElements = rootElement.querySelectorAll(
-    '[n-time-to]',
-  )
+  const timeValueElements =
+    rootElement.querySelectorAll('[n-time-to]')
   timeValueElements?.forEach(el => {
     const attributeName = el.getAttribute('n-time-to')
     if (attributeName) {

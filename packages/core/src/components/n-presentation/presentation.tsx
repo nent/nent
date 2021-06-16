@@ -87,7 +87,7 @@ export class Presentation {
         null
 
     this.elementWithTimer =
-      ((element as unknown) as IElementTimer) || null
+      (element as unknown as IElementTimer) || null
 
     if (this.elementWithTimer == null) {
       warn(`n-presentation: no timer element found`)

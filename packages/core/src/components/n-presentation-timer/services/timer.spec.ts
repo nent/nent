@@ -12,7 +12,8 @@ describe('frame-timer', () => {
   it('emits time, calculates currentTime, and ends on time.', async () => {
     const intervals: Array<number> = []
     let ended = false
-    const animationFrameProvider = new MockRequestAnimationFrameProvider()
+    const animationFrameProvider =
+      new MockRequestAnimationFrameProvider()
     subject = new FrameTimer(animationFrameProvider, 0, 60, () => 0)
     subject.on(TIMER_EVENTS.OnInterval, (time: number) => {
       intervals.push(time)
