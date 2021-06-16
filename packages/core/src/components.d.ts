@@ -72,29 +72,13 @@ export namespace Components {
     }
     interface NApp {
         /**
-          * The application theme background-color (used )
+          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
          */
-        "backgroundColor"?: string;
+        "appTitle"?: string;
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
          */
         "debug": boolean;
-        /**
-          * The application description used in the PWA application manifest.  Creates tags: * description (if missing) * meta[name="og:description"]
-         */
-        "description"?: string;
-        /**
-          * The application name  Creates tags: * title (if missing) * meta[name="og:title"]
-         */
-        "name"?: string;
-        /**
-          * The application short-name used in the PWA application manifest.
-         */
-        "shortName"?: string;
-        /**
-          * The application theme color (used )
-         */
-        "themeColor"?: string;
     }
     interface NAppAnalytics {
         /**
@@ -809,10 +793,6 @@ export namespace Components {
     }
     interface NViews {
         /**
-          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
-         */
-        "appTitle"?: string;
-        /**
           * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
          */
         "root": string;
@@ -1148,21 +1128,13 @@ declare namespace LocalJSX {
     }
     interface NApp {
         /**
-          * The application theme background-color (used )
+          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
          */
-        "backgroundColor"?: string;
+        "appTitle"?: string;
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
          */
         "debug"?: boolean;
-        /**
-          * The application description used in the PWA application manifest.  Creates tags: * description (if missing) * meta[name="og:description"]
-         */
-        "description"?: string;
-        /**
-          * The application name  Creates tags: * title (if missing) * meta[name="og:title"]
-         */
-        "name"?: string;
         /**
           * These events are command-requests for action handlers to perform tasks. Any outside handlers should cancel the event.
          */
@@ -1171,14 +1143,6 @@ declare namespace LocalJSX {
           * Listen for events that occurred within the nent event system.
          */
         "onNent:events"?: (event: CustomEvent<any>) => void;
-        /**
-          * The application short-name used in the PWA application manifest.
-         */
-        "shortName"?: string;
-        /**
-          * The application theme color (used )
-         */
-        "themeColor"?: string;
     }
     interface NAppAnalytics {
         /**
@@ -1855,10 +1819,6 @@ declare namespace LocalJSX {
         "when"?: string;
     }
     interface NViews {
-        /**
-          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
-         */
-        "appTitle"?: string;
         /**
           * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
          */

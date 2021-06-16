@@ -38,14 +38,10 @@ Additionally, this element is required to add external components that need to b
 
 ## Properties
 
-| Property          | Attribute          | Description                                                                                                                               | Type                  | Default     |
-| ----------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | ----------- |
-| `backgroundColor` | `background-color` | The application theme background-color (used )                                                                                            | `string`, `undefined` | `undefined` |
-| `debug`           | `debug`            | Turn on debugging to get helpful messages from the app, routing, data and action systems.                                                 | `boolean`             | `false`     |
-| `description`     | `description`      | The application description used in the PWA application manifest.  Creates tags: * description (if missing) * meta[name="og:description"] | `string`, `undefined` | `undefined` |
-| `name`            | `name`             | The application name  Creates tags: * title (if missing) * meta[name="og:title"]                                                          | `string`, `undefined` | `undefined` |
-| `shortName`       | `short-name`       | The application short-name used in the PWA application manifest.                                                                          | `string`, `undefined` | `undefined` |
-| `themeColor`      | `theme-color`      | The application theme color (used )                                                                                                       | `string`, `undefined` | `undefined` |
+| Property   | Attribute   | Description                                                                                       | Type                  | Default     |
+| ---------- | ----------- | ------------------------------------------------------------------------------------------------- | --------------------- | ----------- |
+| `appTitle` | `app-title` | This is the application / site title. If the views or dos have titles, this is added as a suffix. | `string`, `undefined` | `undefined` |
+| `debug`    | `debug`     | Turn on debugging to get helpful messages from the app, routing, data and action systems.         | `boolean`             | `false`     |
 
 
 ## Events

@@ -58,8 +58,9 @@
   },
   "devDependencies": {
     "@stencil/core": "2.6.0",
-    "@stencil/sass": "1.4.1",
     "@stencil/store": "1.4.1",
+    "@stencil/react-output-target": "^0.0.9",
+    "@stencil/angular-output-target": "^0.0.6",
     "@types/howler": "2.2.2",
     "eslint-plugin-clean-regex": "0.5.1",
     "expr-eval": "2.0.2",
@@ -92,5 +93,6 @@
       "delay": 5000
     }
   },
-  "gitHead": "91accdb68de6ba72b4ca3a70c935e17e1eb4b6d2"
+  "gitHead": "91accdb68de6ba72b4ca3a70c935e17e1eb4b6d2",
+  "dependencies": {}
 }

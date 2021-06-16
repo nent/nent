@@ -47,7 +47,6 @@ The example sets an offset for scrolling, a global page transition and has a non
 
 | Property          | Attribute           | Description                                                                                                                  | Type                  | Default     |
 | ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------- | ----------- |
-| `appTitle`        | `app-title`         | This is the application / site title. If the views or dos have titles, this is added as a suffix.                            | `string`, `undefined` | `undefined` |
 | `root`            | `root`              | This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths. | `string`              | `'/'`       |
 | `scrollTopOffset` | `scroll-top-offset` | Header height or offset for scroll-top on this and all views.                                                                | `number`, `undefined` | `undefined` |
 | `startDelay`      | `start-delay`       | Delay redirecting to the start path by this value in milliseconds.                                                           | `number`              | `0`         |

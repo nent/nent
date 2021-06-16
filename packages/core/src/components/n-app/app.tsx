@@ -6,14 +6,13 @@ import {
   h,
   Host,
   Listen,
-  Prop,
+  Prop
 } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  eventBus,
+  eventBus
 } from '../../services/actions'
-import { performLoadElementManipulation } from '../../services/common/elements'
 import { debugIf, log } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import { AppActionListener } from './services/actions'
@@ -22,10 +21,7 @@ import { AppActionListener } from './services/actions'
  * This component enables app services. These are console logging
  * theming and event-delegation as well as a plugin system to
  * manage a UI kit to add components like Modals, Drawers,
- * menus, etc. The basic provider is used to toggle dark-mode.
- *
- * This component also adds meta tags necessary for best PWA
- * practices.
+ * menus, etc.
  *
  * @system app
  * @extension actions
@@ -34,7 +30,7 @@ import { AppActionListener } from './services/actions'
  */
 @Component({
   tag: 'n-app',
-  styles: 'n-app { display: contents; }',
+  styleUrl: 'app.css',
   shadow: false,
 })
 export class App {
@@ -45,39 +41,11 @@ export class App {
   @Element() el!: HTMLNAppElement
 
   /**
-   * The application name
-   *
-   * Creates tags:
-   * * title (if missing)
-   * * meta[name="og:title"]
+   * This is the application / site title.
+   * If the views or dos have titles,
+   * this is added as a suffix.
    */
-  @Prop() name?: string
-
-  /**
-   * The application short-name used in the
-   * PWA application manifest.
-   */
-  @Prop() shortName?: string
-
-  /**
-   * The application description used in the
-   * PWA application manifest.
-   *
-   * Creates tags:
-   * * description (if missing)
-   * * meta[name="og:description"]
-   */
-  @Prop() description?: string
-
-  /**
-   * The application theme color (used )
-   */
-  @Prop() themeColor?: string
-
-  /**
-   * The application theme background-color (used )
-   */
-  @Prop() backgroundColor?: string
+   @Prop() appTitle?: string
 
   /**
    * Turn on debugging to get helpful messages from the
@@ -152,27 +120,8 @@ export class App {
   }
 
   componentDidLoad() {
-    /* ICON
-    Add the icon link tag to the header:
-     <link rel="icon" type="image/png" href="icon-128.png" sizes="128x128" />
-    */
-
-    /* PWA
-    Add this tag, with an inline manifest:
-     <link rel="manifest" href='' />
-    Then add the PWACompat lib for iOS:
-     <!-- include PWACompat _after_ manifest -->
-     <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
-    */
     log('n-app: initialized')
-    if (commonState.elementsEnabled) {
-      performLoadElementManipulation(this.el.ownerDocument.body)
-    }
   }
-
-  // private getManifestString() {
-  //   return `data:application/manifest+json,{ "name": "${this.name}", "short_name": "${this.shortName}", "description": "${this.description}"}`
-  // }
 
   disconnectedCallback() {
     this.listener.destroy()

@@ -1,0 +1,13 @@
+*[hidden],
+*[n-hide],
+.hide {
+  display: none;
+}
+
+n-app {
+  display: block;
+}
+
+n-cloak {
+  display: inherit;
+}

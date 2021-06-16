@@ -4,7 +4,6 @@ jest.mock('../../services/data/evaluate.worker')
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonStateDispose } from '../../services/common'
-import { Elements } from '../n-elements/elements'
 import { routingState, routingStateDispose } from './services/state'
 import { ViewRouter } from './views'
 

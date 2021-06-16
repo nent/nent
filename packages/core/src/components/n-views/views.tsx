@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop, writeTask } from '@stencil/core'
+import { Component, Element, h, Host, Prop, writeTask } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonState, debugIf } from '../../services/common'
 import { RouterService } from './services/router'
@@ -21,6 +21,7 @@ import { routingState } from './services/state'
   shadow: false,
 })
 export class ViewRouter {
+  @Element() el!: HTMLElement
   /**
    * This is the root path that the actual page is,
    * if it isn't '/', then the router needs to know
@@ -33,13 +34,6 @@ export class ViewRouter {
    * This is a CSS animation class.
    */
   @Prop() transition?: string
-
-  /**
-   * This is the application / site title.
-   * If the views or dos have titles,
-   * this is added as a suffix.
-   */
-  @Prop() appTitle?: string
 
   /**
    * This is the start path a user should
@@ -59,6 +53,10 @@ export class ViewRouter {
    */
   @Prop() scrollTopOffset?: number
 
+  private get parentApp() {
+    return this.el.closest('n-app');
+  }
+
   componentWillLoad() {
     commonState.routingEnabled = true
     routingState.router = new RouterService(
@@ -67,7 +65,7 @@ export class ViewRouter {
       eventBus,
       actionBus,
       this.root,
-      this.appTitle,
+      this.parentApp?.appTitle,
       this.transition,
       this.scrollTopOffset,
     )
