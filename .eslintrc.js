@@ -1,8 +1,9 @@
 module.exports = {
   parserOptions: {
     project: "./tsconfig.json",
-    ecmaVersion: 2017
+    ecmaVersion: 2017,    
   },
+  sourceType: 'module',
   extends: [
     "plugin:@stencil/recommended",
     "plugin:clean-regex/recommended"

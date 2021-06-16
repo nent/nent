@@ -45,7 +45,10 @@
     "docker:push": "docker push nent/nent-docs",
     ":workspace ---": "---------------",
     "core": "yarn workspace @nent/core",
+    "angular": "yarn workspace @nent/angular",
+    "react": "yarn workspace @nent/react",
     "docs": "yarn workspace @nent/docs",
+    "example": "yarn workspace @nent/example",
     "vscode": "yarn workspace nent",
     ":auto ---": "------------",
     "clean": "lerna clean && run-p clean:core clean:docs",
@@ -105,8 +108,6 @@
     ]
   },
   "workspaces": [
-    "packages/create",
-    "packages/core",
-    "packages/docs"
+    "packages/*"
   ]
 }

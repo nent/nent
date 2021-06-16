@@ -60,8 +60,7 @@
   <body>
 
     <n-app>
-      <n-data></n-data>
-      <n-elements></n-elements>
+
       <header class="text-gray-600 body-font">
         <div
           class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -84,11 +83,11 @@
           <nav
             class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
             <n-view-link class="mr-5 hover:text-gray-900"
-              path="home"
+              path="/home"
               active-class="text-gray-900 font-extrabold">Home
             </n-view-link>
             <n-view-link class="block mr-5 hover:text-gray-900"
-              path="about"
+              path="/about"
               active-class="text-gray-900 font-extrabold">About
             </n-view-link>
 
@@ -122,6 +121,9 @@
           </n-view>
         </div>
       </n-views>
+      <n-data></n-data>
+      <n-elements></n-elements>
+      <n-app-theme></n-app-theme>
     </n-app>
     <script type="module" src="/src/main.ts"></script>
   </body>

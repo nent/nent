@@ -11,7 +11,7 @@
       "ignored-file",
       "*.md"
     ],
-    "message": "chore(release): publish",
+    "message": "chore(👏): publish",
     "registry": "https://registry.npmjs.org"
   }
 }
