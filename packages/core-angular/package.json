@@ -39,7 +39,7 @@
     "@angular/platform-browser": "^7.2.1",
     "@angular/platform-browser-dynamic": "^7.2.1",
     "rxjs": ">=6.2.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26 || ^0.11.0"
   },
   "devDependencies": {
     "@angular-devkit/core": "7.3.10",
@@ -59,6 +59,6 @@
     "rollup-plugin-node-resolve": "4.2.4",
     "rxjs": "6.6.7",
     "tsickle": "0.34.3",
-    "zone.js": "0.8.29"
+    "zone.js": "0.11.4"
   }
 }
