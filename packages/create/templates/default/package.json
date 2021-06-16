@@ -16,12 +16,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^2.1.2",
-    "cross-env": "^7.0.2",
-    "npm-run-all": "^4.1.5",
-    "postcss-cli": "^7.1.0",
-    "servor": "^3.2.0",
-    "snowpack": "^1.7.0"
+    "@fullhuman/postcss-purgecss": "2.3.0",
+    "cross-env": "7.0.3",
+    "npm-run-all": "4.1.5",
+    "postcss-cli": "7.1.2",
+    "servor": "3.3.1",
+    "snowpack": "1.7.1"
   },
   "license": "{{license}}"
 }

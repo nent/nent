@@ -9,17 +9,17 @@
   "dependencies": {},
   "devDependencies": {
     "@nent/core": "^0.6.4",
-    "@iconify/iconify": "^1.0.7",
-    "@tailwindcss/typography": "^0.4.1",
-    "tailwindcss": "^2.1.4",
-    "vite-plugin-pwa": "^0.8.1",
-    "@types/workbox-build": "^5.0.0",
-    "postcss": "^8.3.4",
-    "typescript": "^4.3.2",
-    "vite": "^2.3.7",
-    "vite-plugin-cdn-import": "^0.3.2",
-    "vite-plugin-purge-icons": "^0.7.0",
-    "workbox-build": "^6.1.5",
-    "workbox-window": "^6.1.5"
+    "@iconify/iconify": "1.0.7",
+    "@tailwindcss/typography": "0.4.1",
+    "tailwindcss": "2.1.4",
+    "vite-plugin-pwa": "0.8.1",
+    "@types/workbox-build": "5.0.0",
+    "postcss": "8.3.4",
+    "typescript": "4.3.2",
+    "vite": "2.3.7",
+    "vite-plugin-cdn-import": "0.3.2",
+    "vite-plugin-purge-icons": "0.7.0",
+    "workbox-build": "6.1.5",
+    "workbox-window": "6.1.5"
   }
 }
