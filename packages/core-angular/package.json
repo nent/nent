@@ -58,7 +58,7 @@
     "rollup": "1.32.1",
     "rollup-plugin-node-resolve": "4.2.4",
     "rxjs": "6.6.7",
-    "tsickle": "0.34.3",
+    "tsickle": "0.43.0",
     "zone.js": "0.11.4"
   }
 }
