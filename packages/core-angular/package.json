@@ -56,7 +56,7 @@
     "fs-extra": "7.0.1",
     "glob": "7.1.7",
     "rollup": "1.32.1",
-    "rollup-plugin-node-resolve": "4.2.4",
+    "rollup-plugin-node-resolve": "5.2.0",
     "rxjs": "6.6.7",
     "tsickle": "0.43.0",
     "zone.js": "0.11.4"
