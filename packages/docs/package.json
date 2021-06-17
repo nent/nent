@@ -27,7 +27,7 @@
     "@stencil/sass": "1.4.1",
     "autoprefixer": "10.2.6",
     "bootstrap": "5.0.1",
-    "postcss": "8.3.4",
+    "postcss": "8.3.5",
     "postcss-import": "14.0.2",
     "postcss-scss": "4.0.0",
     "remixicon": "2.5.0",
