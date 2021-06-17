@@ -13,7 +13,7 @@ github:
 # Commands to start on workspace startup
 tasks:
   - init: yarn install
-    #command: yarn build
+    command: yarn start
 # Ports to expose on workspace startup
 ports:
   - port: 3002
