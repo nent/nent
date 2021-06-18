@@ -11,7 +11,7 @@
     "@nent/core": "^0.6.4",
     "@iconify/iconify": "1.0.7",
     "@tailwindcss/typography": "0.4.1",
-    "tailwindcss": "2.2.0",
+    "tailwindcss": "2.2.2",
     "vite-plugin-pwa": "0.8.1",
     "@types/workbox-build": "5.0.0",
     "postcss": "8.3.5",
