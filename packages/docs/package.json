@@ -31,7 +31,7 @@
     "postcss-import": "14.0.2",
     "postcss-scss": "4.0.0",
     "remixicon": "2.5.0",
-    "tailwindcss": "2.2.2",
+    "tailwindcss": "2.2.4",
     "workbox-build": "6.1.5",
     "workbox-window": "6.1.5"
   },
