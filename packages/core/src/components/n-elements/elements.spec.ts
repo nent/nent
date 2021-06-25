@@ -24,8 +24,6 @@ describe('elements', () => {
       </n-elements>
     `)
 
-    commonState.dataEnabled = true
-
     expect(commonState.elementsEnabled).toBeTruthy()
 
     page.root?.remove()

@@ -11,8 +11,7 @@ import { ComponentRefresher, slugify } from '../../services/common'
 import { debugIf, warn } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import { replaceHtmlInElement } from '../../services/content/elements'
-import { resolveRemoteContent } from '../../services/content/remote'
-import { resolveChildElementXAttributes } from '../../services/data/elements'
+import { resolveRemoteContentElement } from '../../services/content/remote'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { IView, VisitStrategy } from '../n-view/services/interfaces'
 import { Route } from '../n-view/services/route'
@@ -42,7 +41,7 @@ export class ViewPrompt implements IView {
   @Element() el!: HTMLNViewPromptElement
   @State() match: MatchResults | null = null
   @State() contentElement: HTMLElement | null = null
-  private contentKey?: string | null
+  private contentKey!: string
 
   /** Route information */
   @Prop({ mutable: true }) route!: Route
@@ -129,6 +128,9 @@ export class ViewPrompt implements IView {
 
   componentWillLoad() {
     debugIf(this.debug, `n-view-prompt: ${this.path} loading`)
+    this.contentKey = `rem-content-${slugify(
+      this.contentSrc || 'none',
+    )}`
 
     if (!routingState.router) {
       warn(
@@ -152,7 +154,7 @@ export class ViewPrompt implements IView {
       },
     )
 
-    if (this.resolveTokens) {
+    if (commonState.dataEnabled && this.resolveTokens) {
       this.dataSubscription = new ComponentRefresher(
         this,
         eventBus,
@@ -160,10 +162,6 @@ export class ViewPrompt implements IView {
         DATA_EVENTS.DataChanged,
       )
     }
-
-    this.contentKey = `rem-content-${slugify(
-      this.contentSrc || 'none',
-    )}`
   }
 
   async componentWillRender() {
@@ -171,40 +169,16 @@ export class ViewPrompt implements IView {
 
     if (this.match?.isExact) {
       debugIf(this.debug, `n-view-prompt: ${this.path} on-enter`)
-      this.contentElement = await this.resolveContentElement()
+      if (this.contentSrc && this.contentElement == null)
+        this.contentElement = await resolveRemoteContentElement(
+          window,
+          this.contentSrc!,
+          this.mode,
+          this.contentKey,
+          this.resolveTokens,
+          'content',
+        )
       await recordVisit(this.visit as VisitStrategy, this.path)
-    } else {
-      this.contentElement?.remove()
-    }
-  }
-
-  private async resolveContentElement() {
-    if (!this.contentSrc) {
-      return null
-    }
-
-    try {
-      const content = await resolveRemoteContent(
-        window,
-        this.contentSrc!,
-        this.mode,
-        this.resolveTokens,
-      )
-      if (content == null) return null
-
-      const div = window.document.createElement('div')
-      div.slot = 'content'
-      div.innerHTML = content
-      div.id = this.contentKey!
-      if (commonState.elementsEnabled)
-        await resolveChildElementXAttributes(div)
-      this.route.captureInnerLinks(div)
-      return div
-    } catch {
-      warn(
-        `n-view-prompt: ${this.path} Unable to retrieve from ${this.contentSrc}`,
-      )
-      return null
     }
   }
 

@@ -80,8 +80,10 @@ describe('n-view', () => {
           <slot></slot>
           <slot name="content"></slot>
         </mock:shadow-root>
-        <h1>HI WORLD!</h1>
-        <div slot="content">Content</div>
+        <div id="rem-source-fakehtml">
+          <h1>HI WORLD!</h1>
+          <div slot="content">Content</div>
+        </div>
       </n-view>
     </n-views>
       `)
@@ -186,7 +188,7 @@ describe('n-view', () => {
 
     expect(page.root).toEqualHtml(`
     <n-views>
-      <n-view  content-src="fake.html" path="/test">
+      <n-view content-src="fake.html" path="/test">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>

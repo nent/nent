@@ -49,7 +49,7 @@ The example sets an offset for scrolling, a global page transition and has a non
 | ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------- | ----------- |
 | `root`            | `root`              | This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths. | `string`              | `'/'`       |
 | `scrollTopOffset` | `scroll-top-offset` | Header height or offset for scroll-top on this and all views.                                                                | `number`, `undefined` | `undefined` |
-| `startDelay`      | `start-delay`       | Delay redirecting to the start path by this value in milliseconds.                                                           | `number`              | `0`         |
+| `startDelay`      | `start-delay`       | Delay redirecting to the start path by this value in seconds.                                                                | `number`              | `0`         |
 | `startPath`       | `start-path`        | This is the start path a user should land on when they first land on this app.                                               | `string`, `undefined` | `undefined` |
 | `transition`      | `transition`        | Navigation transition between routes. This is a CSS animation class.                                                         | `string`, `undefined` | `undefined` |
 

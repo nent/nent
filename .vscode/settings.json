@@ -286,5 +286,6 @@
     "{breaking_change}"
   ],
   "commit-message-editor.view.saveAndClose": true,
-  "html.format.wrapLineLength": 80
+  "html.format.wrapLineLength": 80,
+  "peacock.color": "#ae9ae4"
 }

@@ -16,8 +16,7 @@ import {
 } from '../../services/common'
 import { warn } from '../../services/common/logging'
 import { replaceHtmlInElement } from '../../services/content/elements'
-import { resolveRemoteContent } from '../../services/content/remote'
-import { resolveChildElementXAttributes } from '../../services/data/elements'
+import { resolveRemoteContentElement } from '../../services/content/remote'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { MatchResults } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
@@ -55,10 +54,10 @@ export class View implements IView {
   @Element() el!: HTMLNViewElement
   @State() match: MatchResults | null = null
   @State() exactMatch = false
-  @State() routeElement: HTMLElement | null = null
-  @State() contentElement: HTMLElement | null = null
-  private contentKey?: string | null
-  private sourceKey?: string | null
+  private srcElement: HTMLElement | null = null
+  private contentElement: HTMLElement | null = null
+  private contentKey!: string
+  private srcKey!: string
 
   /** Route information */
   @Prop({ mutable: true }) route!: Route
@@ -167,8 +166,14 @@ export class View implements IView {
     ).filter(e => this.route.isChild(e))
   }
 
-  componentWillLoad() {
+  async componentWillLoad() {
     debugIf(this.debug, `n-view: ${this.path} loading`)
+
+    this.contentKey = `rem-content-${slugify(
+      this.contentSrc || 'none',
+    )}`
+
+    this.srcKey = `rem-source-${slugify(this.src || 'none')}`
 
     if (!routingState.router) {
       warn(
@@ -186,7 +191,7 @@ export class View implements IView {
       },
     )
 
-    if (this.resolveTokens) {
+    if (commonState.dataEnabled && this.resolveTokens) {
       this.dataSubscription = new ComponentRefresher(
         this,
         eventBus,
@@ -194,12 +199,6 @@ export class View implements IView {
         DATA_EVENTS.DataChanged,
       )
     }
-
-    this.contentKey = `rem-content-${slugify(
-      this.contentSrc || 'none',
-    )}`
-
-    this.sourceKey = `rem-source-${slugify(this.src || 'none')}`
   }
 
   async componentWillRender() {
@@ -207,111 +206,57 @@ export class View implements IView {
 
     if (this.match) {
       debugIf(this.debug, `n-view: ${this.path} route is matched `)
-      if (this.routeElement == null) {
-        this.routeElement = await this.resolveRouteElement()
-        this.routeElement?.childNodes.forEach(n => {
-          this.el.append(n)
+      if (this.src && this.srcElement == null) {
+        this.srcElement = await resolveRemoteContentElement(
+          window,
+          this.src,
+          this.mode,
+          this.srcKey,
+          this.resolveTokens,
+        )
+        replaceHtmlInElement(
+          this.el,
+          `#${this.srcKey}`,
+          this.srcElement,
+        )
+      }
+      debugIf(
+        this.debug,
+        `n-view: ${this.path} found ${this.childViews.length} child views and` +
+          ` ${this.childPrompts.length} child view-prompts`,
+      )
+
+      // exact-match
+      if (this.match.isExact) {
+        debugIf(
+          this.debug,
+          `n-view: ${this.path} route exactly matched `,
+        )
+        const viewDos = this.childPrompts.map(el => {
+          const { path, when, visit } = el
+          return {
+            path: this.route.normalizeChildUrl(path),
+            when,
+            visit,
+          }
         })
-      }
-
-      debugIf(
-        this.debug,
-        `n-view: ${this.path} found ${this.childViews.length} child views`,
-      )
-
-      debugIf(
-        this.debug,
-        `n-view: ${this.path} found ${this.childPrompts.length} child view-dos`,
-      )
-    }
-
-    // exact-match
-    if (this.match?.isExact) {
-      debugIf(
-        this.debug,
-        `n-view: ${this.path} route is exactly matched `,
-      )
-      const viewDos = this.childPrompts.map(el => {
-        const { path, when, visit } = el
-        return {
-          path: this.route.normalizeChildUrl(path),
-          when,
-          visit,
+        const nextDo = await resolveNext(viewDos)
+        if (nextDo) {
+          this.route.replaceWithRoute(nextDo.path)
+          return
+        } else {
+          if (this.contentSrc)
+            this.contentElement = await resolveRemoteContentElement(
+              window,
+              this.contentSrc!,
+              this.mode,
+              this.contentKey,
+              this.resolveTokens,
+              'content',
+            )
+          markVisit(this.match?.url)
         }
-      })
-      const nextDo = await resolveNext(viewDos)
-      if (nextDo) {
-        this.route.replaceWithRoute(nextDo.path)
-        return
-      } else {
-        markVisit(this.match?.url)
-        this.contentElement = await this.resolveContentElement()
       }
-    }
-  }
-
-  private async resolveRouteElement() {
-    debugIf(
-      this.debug,
-      `n-view: ${this.path} fetching content from ${this.src}`,
-    )
-    if (!this.src) {
-      return null
-    }
-    try {
-      const content = await resolveRemoteContent(
-        window,
-        this.src!,
-        this.mode,
-        this.resolveTokens,
-      )
-      if (content == null) return null
-      const div = window.document.createElement('div')
-      div.innerHTML = content
-      div.id = this.sourceKey!
-      if (commonState.elementsEnabled) {
-        await resolveChildElementXAttributes(div)
-      }
-      this.route.captureInnerLinks(div)
-      return div
-    } catch {
-      warn(
-        `n-view: ${this.path} Unable to retrieve from ${this.contentSrc}`,
-      )
-      return null
-    }
-  }
-
-  private async resolveContentElement() {
-    debugIf(
-      this.debug,
-      `n-view: ${this.path} fetching content from ${this.contentSrc}`,
-    )
-    if (!this.contentSrc) {
-      return null
-    }
-    try {
-      const content = await resolveRemoteContent(
-        window,
-        this.contentSrc!,
-        this.mode,
-        this.resolveTokens,
-      )
-      if (content == null) return null
-      const div = document.createElement('div')
-      div.slot = 'content'
-      div.innerHTML = content
-      div.id = this.contentKey!
-      if (commonState.elementsEnabled) {
-        await resolveChildElementXAttributes(div)
-      }
-      this.route.captureInnerLinks(div)
-      return div
-    } catch {
-      warn(
-        `n-view: ${this.path} Unable to retrieve from ${this.contentSrc}`,
-      )
-      return null
     }
   }
 
@@ -322,7 +267,6 @@ export class View implements IView {
       `#${this.contentKey}`,
       this.contentElement,
     )
-
     return (
       <Host>
         <slot />
@@ -333,11 +277,12 @@ export class View implements IView {
 
   async componentDidRender() {
     debugIf(this.debug, `n-view: ${this.path} did render`)
-    await this.route?.loadCompleted()
+
     if (!this.route?.match?.isExact) {
       this.contentElement?.remove()
       this.contentElement = null
     }
+    await this.route?.loadCompleted()
   }
 
   disconnectedCallback() {

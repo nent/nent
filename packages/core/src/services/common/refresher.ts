@@ -14,6 +14,9 @@ export class ComponentRefresher {
     private eventBus: IEventEmitter,
     commonSetting: keyof CommonStateModel,
     private eventName: string,
+    private action = () => {
+      forceUpdate(this.component)
+    },
   ) {
     if (commonState[commonSetting]) {
       this.subscribeToEvents()
@@ -32,7 +35,7 @@ export class ComponentRefresher {
 
   private subscribeToEvents() {
     this.subscription = this.eventBus.on(this.eventName, () => {
-      forceUpdate(this.component)
+      this.action()
     })
   }
 

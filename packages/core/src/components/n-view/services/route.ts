@@ -107,18 +107,8 @@ export class Route implements IRoute {
 
     let routeViewOptions: RouteViewOptions = {}
 
-    if (this.router.history && this.router.history.location.hash) {
-      routeViewOptions = {
-        scrollToId: this.router.history.location.hash.slice(1),
-      }
-    } else if (this.scrollTopOffset) {
-      routeViewOptions = {
-        scrollTopOffset: this.scrollTopOffset,
-      }
-    }
-
     // If this is an independent route and it matches then routes have updated.
-    // If the only change to location is a hash change then do not scroll.
+
     if (this.match?.isExact) {
       await this.adjustTitle()
       await this.activateActions(ActionActivationStrategy.OnEnter)
@@ -130,6 +120,20 @@ export class Route implements IRoute {
           .forEach((el: any) => {
             el.removeAttribute('defer-load')
           })
+
+        // If the only change to location is a hash change then do not scroll.
+        if (
+          this.router.history &&
+          this.router.history.location.hash
+        ) {
+          routeViewOptions = {
+            scrollToId: this.router.history.location.hash.slice(1),
+          }
+        } else if (this.scrollTopOffset) {
+          routeViewOptions = {
+            scrollTopOffset: this.scrollTopOffset,
+          }
+        }
         this.router.viewsUpdated(routeViewOptions)
       }
     } else if (this.didExit()) {

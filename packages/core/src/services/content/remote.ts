@@ -1,3 +1,4 @@
+import { warn } from '../common/logging'
 import { dataState } from '../data/state'
 import { hasToken, resolveTokens } from '../data/tokens'
 
@@ -31,6 +32,29 @@ export async function resolveRemoteContent(
   return data && tokens && dataState.enabled
     ? await resolveTokens(data)
     : data
+}
+
+export async function resolveRemoteContentElement(
+  win: Window,
+  src: string,
+  mode: RequestMode,
+  key: string,
+  tokens: boolean,
+  slot?: string,
+) {
+  try {
+    const content = await resolveRemoteContent(win, src, mode, tokens)
+    if (content == null) return null
+
+    const div = window.document.createElement('div')
+    if (slot) div.slot = 'content'
+    div.innerHTML = content
+    div.id = key
+    return div
+  } catch {
+    warn(`remote: Unable to retrieve from ${src}`)
+    return null
+  }
 }
 
 export async function resolveSrc(src: string) {
