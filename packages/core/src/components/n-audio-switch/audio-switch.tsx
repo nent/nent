@@ -1,14 +1,18 @@
-import { Component, h, Host, Prop, State } from '@stencil/core'
+import { Component, h, Host, Prop } from '@stencil/core'
 import { eventBus } from '../../services/actions'
+import {
+  commonState,
+  onCommonStateChange
+} from '../../services/common'
 import { getDataProvider } from '../../services/data/factory'
 import { IServiceProvider } from '../../services/data/interfaces'
 import {
   AUDIO_EVENTS,
-  AUDIO_TOPIC,
+  AUDIO_TOPIC
 } from '../n-audio/services/interfaces'
 import {
   audioState,
-  onAudioStateChange,
+  onAudioStateChange
 } from '../n-audio/services/state'
 
 /**
@@ -22,14 +26,36 @@ import {
 })
 export class AudioSwitch {
   private checkbox?: HTMLInputElement
-  private muteSubscription!: () => void
+  private subscription!: () => void
   private storage: IServiceProvider | null = null
 
   private get stateKey() {
     return `audio-${this.setting}`
   }
 
-  @State() value!: boolean
+  private set value(value: boolean) {
+    switch (this.setting) {
+      case 'enabled': {
+        commonState.audioEnabled = value
+        break
+      }
+      case 'muted': {
+        audioState.muted = value
+        break
+      }
+    }
+  }
+
+  private get value(): boolean {
+    switch (this.setting) {
+      case 'enabled': {
+        return commonState.audioEnabled
+      }
+      case 'muted': {
+        return audioState.muted
+      }
+    }
+  }
 
   /**
    * Which state property this switch controls.
@@ -52,8 +78,6 @@ export class AudioSwitch {
   @Prop() dataProvider: string = 'storage'
 
   async componentWillLoad() {
-    this.value = audioState[this.setting]
-
     this.storage = (await getDataProvider(
       this.dataProvider,
     )) as IServiceProvider
@@ -61,26 +85,30 @@ export class AudioSwitch {
     if (this.storage) {
       const value = await this.storage?.get(this.stateKey)
       if (value != null) {
-        audioState[this.setting] = value == 'true'
+        this.value = value == 'true'
       }
     }
 
-    this.muteSubscription = onAudioStateChange(
-      this.setting,
-      async m => {
-        this.value = m
-        await this.storage?.set(this.stateKey, m.toString())
-        eventBus.emit(AUDIO_TOPIC, AUDIO_EVENTS.SoundChanged, m)
-      },
-    )
+    this.subscription =
+      this.setting == 'muted'
+        ? onAudioStateChange(this.setting, async m => {
+            this.value = m
+            await this.storage?.set(this.stateKey, m.toString())
+            eventBus.emit(AUDIO_TOPIC, AUDIO_EVENTS.SoundChanged, m)
+          })
+        : onCommonStateChange('audioEnabled', async m => {
+            this.value = m
+            await this.storage?.set(this.stateKey, m.toString())
+            eventBus.emit(AUDIO_TOPIC, AUDIO_EVENTS.SoundChanged, m)
+          })
   }
 
   private toggle() {
-    audioState[this.setting] = this.checkbox?.checked || false
+    this.value = this.checkbox?.checked || false
   }
 
   disconnectedCallback() {
-    this.muteSubscription?.call(this)
+    this.subscription?.call(this)
   }
 
   render() {

@@ -105,12 +105,12 @@ export class ContentMarkdown {
       if (commonState.dataEnabled) {
         this.subscribeToDataEvents()
       } else {
-        const dataSubscription = onCommonStateChange(
+        this.dataSubscription = onCommonStateChange(
           'dataEnabled',
           enabled => {
             if (enabled) {
               this.subscribeToDataEvents()
-              dataSubscription()
+              this.dataSubscription()
             }
           },
         )
@@ -223,11 +223,6 @@ export class ContentMarkdown {
     }
   }
 
-  disconnectedCallback() {
-    this.dataSubscription?.call(this)
-    this.routeSubscription?.call(this)
-  }
-
   render() {
     replaceHtmlInElement(
       this.el,
@@ -235,5 +230,10 @@ export class ContentMarkdown {
       this.contentElement,
     )
     return <Host hidden={this.contentElement == null}></Host>
+  }
+
+  disconnectedCallback() {
+    this.dataSubscription?.call(this)
+    this.routeSubscription?.call(this)
   }
 }

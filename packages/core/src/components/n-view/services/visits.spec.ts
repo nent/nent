@@ -2,7 +2,10 @@ jest.mock('../../../services/common/logging')
 jest.mock('../../../services/data/evaluate.worker')
 
 import { commonStateDispose } from '../../../services/common/state'
-import { dataState } from '../../../services/data/state'
+import {
+  dataState,
+  dataStateDispose,
+} from '../../../services/data/state'
 import { VisitStrategy } from './interfaces'
 import { navigationStateDispose } from './state'
 import {
@@ -16,11 +19,17 @@ import {
 } from './visits'
 
 describe('visits', () => {
-  dataState.providerTimeout = 0
+  beforeAll(() => {
+    dataState.providerTimeout = 0
+  })
 
   afterEach(() => {
     commonStateDispose()
     navigationStateDispose()
+  })
+
+  afterAll(() => {
+    dataStateDispose()
   })
 
   it('markVisit', async () => {

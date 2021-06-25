@@ -2,6 +2,7 @@ jest.mock('../../../services/data/evaluate.worker')
 jest.mock('../../../services/common/logging')
 
 import { MockWindow } from '@stencil/core/mock-doc'
+import { commonState } from '../../../services/common'
 import { EventEmitter } from '../../../services/common/emitter'
 import { addDataProvider } from '../../../services/data/factory'
 import { IDataProvider } from '../../../services/data/interfaces'
@@ -17,7 +18,7 @@ describe('audio-provider', () => {
   let win: Window | any
   let subject: IDataProvider
   beforeEach(() => {
-    dataState.enabled = true
+    commonState.dataEnabled = true
     actionBus = new EventEmitter()
     eventBus = new EventEmitter()
     win = new MockWindow(false)

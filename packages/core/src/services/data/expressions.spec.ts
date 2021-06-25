@@ -6,6 +6,7 @@ import {
   hasVisited,
   markVisit,
 } from '../../components/n-view/services/visits'
+import { commonState, commonStateDispose } from '../common/state'
 import {
   convertFromJson,
   evaluateExpression,
@@ -13,18 +14,23 @@ import {
 } from './expressions'
 import { addDataProvider } from './factory'
 import { InMemoryProvider } from './providers/memory'
-import { dataState } from './state'
+import { dataStateDispose } from './state'
 
 describe('evaluateExpression', () => {
   let session: InMemoryProvider
   let storage: InMemoryProvider
-  dataState.enabled = true
+  commonState.dataEnabled = true
   beforeEach(() => {
     session = new InMemoryProvider()
     storage = new InMemoryProvider()
-
+    commonState.dataEnabled = true
     addDataProvider('session', session)
     addDataProvider('storage', storage)
+  })
+
+  afterEach(() => {
+    dataStateDispose()
+    commonStateDispose()
   })
 
   it('evaluates simple math', async () => {
@@ -77,7 +83,13 @@ describe('evaluatePredicate', () => {
 
   beforeEach(() => {
     session = new InMemoryProvider()
+    commonState.dataEnabled = true
     addDataProvider('session', session)
+  })
+
+  afterEach(() => {
+    dataStateDispose()
+    commonStateDispose()
   })
 
   it('evaluates simple predicate', async () => {

@@ -2,6 +2,10 @@ jest.mock('../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import {
+  commonState,
+  commonStateDispose,
+} from '../../services/common/state'
+import {
   addDataProvider,
   clearDataProviders,
 } from '../../services/data/factory'
@@ -23,6 +27,7 @@ describe('n-audio-switch', () => {
   afterEach(async () => {
     clearDataProviders()
     audioStateDispose()
+    commonStateDispose()
   })
 
   it('audio:enabled', async () => {
@@ -36,7 +41,7 @@ describe('n-audio-switch', () => {
       </n-audio-switch>
     `)
 
-    audioState.enabled = false
+    commonState.audioEnabled = false
 
     await page.waitForChanges()
 
@@ -56,13 +61,13 @@ describe('n-audio-switch', () => {
       </n-audio-switch>
     `)
 
-    audioState.enabled = false
+    commonState.audioEnabled = false
 
     let value = await storage.get('audio-enabled')
 
     expect(value).toBe('false')
 
-    audioState.enabled = true
+    commonState.audioEnabled = true
 
     value = await storage.get('audio-enabled')
 

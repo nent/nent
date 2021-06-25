@@ -14,10 +14,7 @@ import {
 } from '../../services/data/factory'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { InMemoryProvider } from '../../services/data/providers/memory'
-import {
-  dataState,
-  dataStateDispose,
-} from '../../services/data/state'
+import { dataStateDispose } from '../../services/data/state'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentInclude } from './content-include'
 
@@ -28,7 +25,7 @@ describe('n-content', () => {
     jest.resetAllMocks()
     session = new InMemoryProvider()
     addDataProvider('session', session)
-    dataState.enabled = true
+    commonState.dataEnabled = true
     commonState.dataEnabled = true
     commonState.routingEnabled = true
     commonState.elementsEnabled = true

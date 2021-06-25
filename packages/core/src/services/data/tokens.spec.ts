@@ -1,21 +1,27 @@
 jest.mock('../common/logging')
 jest.mock('./evaluate.worker')
 
+import { commonState, commonStateDispose } from '../common/state'
 import { addDataProvider } from './factory'
 import { InMemoryProvider } from './providers/memory'
-import { dataState } from './state'
+import { dataStateDispose } from './state'
 import { resolveTokens } from './tokens'
 
 describe('resolveTokens', () => {
   let session: InMemoryProvider
   let storage: InMemoryProvider
-  dataState.enabled = true
+
   beforeEach(() => {
     session = new InMemoryProvider()
     storage = new InMemoryProvider()
-
+    commonState.dataEnabled = true
     addDataProvider('session', session)
     addDataProvider('storage', storage)
+  })
+
+  afterEach(() => {
+    dataStateDispose()
+    commonStateDispose()
   })
 
   it('returns null for non-existent value', async () => {

@@ -22,7 +22,6 @@ describe('n-view', () => {
     commonStateDispose()
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
-    jest.resetAllMocks()
   })
 
   it('renders', async () => {

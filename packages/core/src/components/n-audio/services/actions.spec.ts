@@ -2,7 +2,11 @@ jest.mock('../../../services/data/evaluate.worker')
 jest.mock('./track')
 
 import { newSpecPage, SpecPage } from '@stencil/core/testing'
-import { EventEmitter } from '../../../services/common'
+import {
+  commonState,
+  commonStateDispose,
+  EventEmitter,
+} from '../../../services/common'
 import { sleep } from '../../../services/common/promises'
 import { ROUTE_EVENTS } from '../../n-views/services/interfaces'
 import { AudioActionListener } from './actions'
@@ -45,6 +49,8 @@ describe('audio-listener:', () => {
   afterEach(() => {
     listener.destroy()
     audioStateDispose()
+    commonStateDispose()
+    jest.resetAllMocks()
   })
 
   it('music: queued, played, pause, resume and end', async () => {
@@ -65,16 +71,16 @@ describe('audio-listener:', () => {
     expect(playing).not.toBeNull()
 
     await sleep(10)
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
 
     actionBus.emit(AUDIO_TOPIC, {
       command: AUDIO_COMMANDS.pause,
       data: {},
     })
 
-    expect(listener.isPlaying).toBe(false)
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBe(false)
+    expect(listener.hasAudio()).toBeTruthy()
 
     // calling pause again, should cause no harm
     actionBus.emit(AUDIO_TOPIC, {
@@ -82,16 +88,16 @@ describe('audio-listener:', () => {
       data: {},
     })
 
-    expect(listener.isPlaying).toBe(false)
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBe(false)
+    expect(listener.hasAudio()).toBeTruthy()
 
     actionBus.emit(AUDIO_TOPIC, {
       command: AUDIO_COMMANDS.resume,
       data: {},
     })
 
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
 
     // Calling resume again, should have no harm
     actionBus.emit(AUDIO_TOPIC, {
@@ -99,15 +105,15 @@ describe('audio-listener:', () => {
       data: {},
     })
 
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
 
     eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
 
     playing = listener.music.active
     expect(playing).toBeNull()
-    expect(listener.isPlaying).toBe(false)
-    expect(listener.hasAudio).toBe(false)
+    expect(listener.isPlaying()).toBe(false)
+    expect(listener.hasAudio()).toBe(false)
   })
 
   it('music: play immediately', () => {
@@ -126,8 +132,8 @@ describe('audio-listener:', () => {
     // when queued, and nothing is playing, the audio
     let playing = listener.music.active
     expect(playing).not.toBeNull()
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
 
     actionBus.emit(AUDIO_TOPIC, {
       topic: AUDIO_TOPIC,
@@ -143,8 +149,8 @@ describe('audio-listener:', () => {
 
     playing = listener.music.active
     expect(playing).not.toBeNull()
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
 
     expect(playing?.src).toBe('/fake/path2.mp3')
   })
@@ -174,31 +180,31 @@ describe('audio-listener:', () => {
       },
     })
 
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
 
     actionBus.emit(AUDIO_TOPIC, {
       command: AUDIO_COMMANDS.pause,
       data: {},
     })
 
-    expect(listener.isPlaying).toBe(false)
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBe(false)
+    expect(listener.hasAudio()).toBeTruthy()
 
     actionBus.emit(AUDIO_TOPIC, {
       command: AUDIO_COMMANDS.resume,
       data: {},
     })
 
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
 
     eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
 
     playing = listener.music.active
     expect(playing).toBeNull()
-    expect(listener.isPlaying).toBe(false)
-    expect(listener.hasAudio).toBe(false)
+    expect(listener.isPlaying()).toBe(false)
+    expect(listener.hasAudio()).toBe(false)
   })
 
   it('music: play, seek, mute and set volume', () => {
@@ -216,8 +222,8 @@ describe('audio-listener:', () => {
 
     let playing = listener.music.active
     expect(playing).not.toBeNull()
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
     expect(playing?.src).toBe('/fake/path2.mp3')
 
     actionBus.emit(AUDIO_TOPIC, {
@@ -290,8 +296,8 @@ describe('audio-listener:', () => {
 
     let playing = listener.sound.active
     expect(playing).not.toBeNull()
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
     expect(playing?.src).toBe('/fake/path2.mp3')
 
     actionBus.emit(AUDIO_TOPIC, {
@@ -303,7 +309,7 @@ describe('audio-listener:', () => {
       },
     })
 
-    expect(listener.isPlaying).toBeFalsy()
+    expect(listener.isPlaying()).toBeFalsy()
   })
 
   it('music: load, start', () => {
@@ -329,15 +335,15 @@ describe('audio-listener:', () => {
 
     let playing = listener.music.active
     expect(playing).not.toBeNull()
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
     expect(playing?.src).toBe('/fake/path2.mp3')
 
     listener.stop()
-    expect(listener.isPlaying).toBeFalsy()
+    expect(listener.isPlaying()).toBeFalsy()
 
     listener.play()
-    expect(listener.isPlaying).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
   })
 
   it('sound: play', () => {
@@ -354,8 +360,8 @@ describe('audio-listener:', () => {
 
     let playing = listener.sound.active
     expect(playing).not.toBeNull()
-    expect(listener.isPlaying).toBeTruthy()
-    expect(listener.hasAudio).toBeTruthy()
+    expect(listener.isPlaying()).toBeTruthy()
+    expect(listener.hasAudio()).toBeTruthy()
     expect(playing?.src).toBe('/fake/path2.mp3')
   })
 
@@ -365,7 +371,7 @@ describe('audio-listener:', () => {
       command: AUDIO_COMMANDS.disable,
     })
 
-    expect(listener.enabled).toBeFalsy()
+    expect(commonState.audioEnabled).toBeFalsy()
 
     expect(page.win.Howler.unload).toBeCalled()
 
@@ -374,6 +380,6 @@ describe('audio-listener:', () => {
       command: AUDIO_COMMANDS.enable,
     })
 
-    expect(listener.enabled).toBeTruthy()
+    expect(commonState.audioEnabled).toBeTruthy()
   })
 })

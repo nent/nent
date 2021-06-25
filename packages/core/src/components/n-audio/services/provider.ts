@@ -28,9 +28,9 @@ export class AudioDataProvider implements IDataProvider {
     switch (key) {
       // Global
       case 'hasAudio':
-        return this.audioListener.hasAudio.toString()
+        return this.audioListener.hasAudio().toString()
       case 'isPlaying':
-        return this.audioListener.isPlaying.toString()
+        return this.audioListener.isPlaying().toString()
 
       // Music files
       case 'loadedMusic':

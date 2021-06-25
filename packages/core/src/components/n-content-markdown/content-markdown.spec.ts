@@ -15,14 +15,13 @@ import {
 } from '../../services/data/factory'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { InMemoryProvider } from '../../services/data/providers/memory'
-import { dataState } from '../../services/data/state'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentMarkdown } from './content-markdown'
 
 describe('n-content-markdown', () => {
   let session: InMemoryProvider
 
-  dataState.enabled = true
+  commonState.dataEnabled = true
   beforeEach(() => {
     session = new InMemoryProvider()
     addDataProvider('session', session)

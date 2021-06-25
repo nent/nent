@@ -1,10 +1,11 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing'
+import {
+  commonState,
+  commonStateDispose,
+} from '../../../services/common/state'
 import { addDataProvider } from '../../../services/data/factory'
 import { InMemoryProvider } from '../../../services/data/providers/memory'
-import {
-  dataState,
-  dataStateDispose,
-} from '../../../services/data/state'
+import { dataStateDispose } from '../../../services/data/state'
 import { ScrollHistory } from './scroll'
 
 describe('scroll', () => {
@@ -12,7 +13,7 @@ describe('scroll', () => {
   let win: Window
   let session: InMemoryProvider
   beforeEach(async () => {
-    dataState.enabled = true
+    commonState.dataEnabled = true
     session = new InMemoryProvider()
     addDataProvider('session', session)
     page = await newSpecPage({
@@ -23,6 +24,7 @@ describe('scroll', () => {
 
   afterEach(() => {
     dataStateDispose()
+    commonStateDispose()
     session.changed?.removeAllListeners()
   })
   it('set, has & get', async () => {

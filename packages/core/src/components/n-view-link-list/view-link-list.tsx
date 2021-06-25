@@ -28,6 +28,7 @@ export class ViewLinkList {
   @Element() el!: HTMLNViewLinkListElement
   @State() route: Route | null = null
   @State() match: MatchResults | null = null
+  private routeStartSubscription?: () => void
   private matchSubscription?: () => void
   private finalizeSubscription?: () => void
   @State() routes: Route[] | any[] = []
@@ -82,6 +83,12 @@ export class ViewLinkList {
   }
 
   private subscribe() {
+    this.routeStartSubscription = eventBus.on(
+      ROUTE_EVENTS.RouteChanged,
+      () => {
+        this.routes = []
+      },
+    )
     this.matchSubscription = eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
       ({ route, match }: { route: Route; match: MatchResults }) => {
@@ -149,5 +156,6 @@ export class ViewLinkList {
   disconnectedCallback() {
     this.matchSubscription?.call(this)
     this.finalizeSubscription?.call(this)
+    this.routeStartSubscription?.call(this)
   }
 }

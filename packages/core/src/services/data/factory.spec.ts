@@ -2,6 +2,7 @@ jest.mock('../common/logging')
 jest.mock('../data/evaluate.worker')
 
 import { actionBus, eventBus } from '../actions'
+import { commonStateDispose } from '../common'
 import {
   addDataProvider,
   clearDataProviders,
@@ -23,6 +24,7 @@ describe('provider-factory', () => {
 
   afterEach(() => {
     dataStateDispose()
+    commonStateDispose()
   })
 
   it('getProvider: incorrect name should return null', async () => {

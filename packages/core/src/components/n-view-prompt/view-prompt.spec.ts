@@ -11,7 +11,6 @@ import {
 import { contentStateDispose } from '../../services/content'
 import { addDataProvider } from '../../services/data/factory'
 import { InMemoryProvider } from '../../services/data/providers/memory'
-import { dataState } from '../../services/data/state'
 import { View } from '../n-view/view'
 import {
   routingState,
@@ -24,7 +23,7 @@ describe('n-view-prompt', () => {
   let storage: InMemoryProvider
 
   beforeEach(async () => {
-    dataState.enabled = true
+    commonState.dataEnabled = true
     commonState.dataEnabled = true
     commonState.elementsEnabled = true
     storage = new InMemoryProvider()

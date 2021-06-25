@@ -7,10 +7,7 @@ import {
   commonState,
   commonStateDispose,
 } from '../../services/common'
-import {
-  dataState,
-  dataStateDispose,
-} from '../../services/data/state'
+import { dataStateDispose } from '../../services/data/state'
 import { ViewLink } from '../n-view-link/view-link'
 import { View } from '../n-view/view'
 import { routingStateDispose } from '../n-views/services/state'
@@ -19,7 +16,7 @@ import { ViewLinkList } from './view-link-list'
 
 describe('n-view-link-list', () => {
   beforeEach(() => {
-    dataState.enabled = true
+    commonState.dataEnabled = true
     commonState.dataEnabled = true
   })
   afterEach(() => {

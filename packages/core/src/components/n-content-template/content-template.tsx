@@ -1,11 +1,4 @@
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  State,
-} from '@stencil/core'
+import { Component, Element, Prop, State } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { ComponentRefresher } from '../../services/common'
 import { warn } from '../../services/common/logging'
@@ -99,6 +92,12 @@ export class ContentTemplate {
     if (shouldRender)
       this.contentElement = await this.resolveContentElement()
     else this.contentElement = null
+
+    replaceHtmlInElement(
+      this.el,
+      `.${this.contentClass}`,
+      this.contentElement,
+    )
   }
 
   private async getContent() {
@@ -138,18 +137,5 @@ export class ContentTemplate {
   disconnectedCallback() {
     this.dataSubscription.destroy()
     this.routeSubscription.destroy()
-  }
-
-  render() {
-    replaceHtmlInElement(
-      this.el,
-      `.${this.contentClass}`,
-      this.contentElement,
-    )
-    return (
-      <Host>
-        <slot />
-      </Host>
-    )
   }
 }

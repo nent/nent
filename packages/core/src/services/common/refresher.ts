@@ -8,25 +8,22 @@ import {
 
 export class ComponentRefresher {
   private subscription!: () => void
-
+  private stateSubscription!: () => void
   constructor(
     private component: any,
     private eventBus: IEventEmitter,
     commonSetting: keyof CommonStateModel,
     private eventName: string,
-    private action = () => {
-      forceUpdate(this.component)
-    },
   ) {
     if (commonState[commonSetting]) {
       this.subscribeToEvents()
     } else {
-      const subscription = onCommonStateChange(
+      this.stateSubscription = onCommonStateChange(
         commonSetting,
         enabled => {
           if (enabled) {
             this.subscribeToEvents()
-            subscription()
+            this.stateSubscription()
           }
         },
       )
@@ -35,7 +32,7 @@ export class ComponentRefresher {
 
   private subscribeToEvents() {
     this.subscription = this.eventBus.on(this.eventName, () => {
-      this.action()
+      forceUpdate(this.component)
     })
   }
 

@@ -1,5 +1,10 @@
 import { EventAction } from '../../../services/actions/interfaces'
-import { EventEmitter, IEventEmitter } from '../../../services/common'
+import {
+  commonState,
+  EventEmitter,
+  IEventEmitter,
+  onCommonStateChange,
+} from '../../../services/common'
 import { debugIf } from '../../../services/common/logging'
 import { ROUTE_EVENTS } from '../../n-views/services/interfaces'
 import {
@@ -13,17 +18,16 @@ import {
 } from './interfaces'
 import { MusicPlayer } from './player-music'
 import { SoundPlayer } from './player-sound'
-import { audioState, onAudioStateChange } from './state'
+import { audioState } from './state'
 
 export class AudioActionListener {
   changed: IEventEmitter
-  private readonly audioStateSubscription: () => void
+  private readonly stateSubscription: () => void
   private readonly actionSubscription: () => void
   private readonly eventSubscription: () => void
 
   public music!: MusicPlayer
   public sound!: SoundPlayer
-  public enabled!: boolean
 
   constructor(
     private readonly window: Window,
@@ -41,17 +45,13 @@ export class AudioActionListener {
       this.changed.emit('changed')
     })
 
-    this.enabled = audioState.enabled
-
     this.volume = 1
 
-    this.audioStateSubscription = onAudioStateChange(
-      'enabled',
+    this.stateSubscription = onCommonStateChange(
+      'audioEnabled',
       enabled => {
-        this.enabled = enabled
-        if (!enabled) {
-          this.window.Howler?.unload?.call(this)
-        }
+        if (enabled) this.enable()
+        else this.disable()
         this.changed.emit('changed')
       },
     )
@@ -64,7 +64,6 @@ export class AudioActionListener {
           `audio-listener: action received ${ev.topic}:${ev.command}`,
         )
         await this.commandReceived(ev.command, ev.data)
-        audioState.hasAudio = this.hasAudio
       },
     )
 
@@ -87,24 +86,25 @@ export class AudioActionListener {
   // Public Members
 
   public enable() {
-    audioState.enabled = true
+    commonState.audioEnabled = true
     this.changed.emit('changed')
   }
 
   public disable() {
-    audioState.enabled = false
+    commonState.audioEnabled = false
+    this.window.Howler?.unload?.call(this)
     this.changed.emit('changed')
   }
 
-  public get isPlaying(): boolean {
-    return (
+  public isPlaying(): boolean {
+    return Boolean(
       this.music.active?.playing ||
-      this.sound.active?.playing ||
-      false
+        this.sound.active?.playing ||
+        false,
     )
   }
 
-  public get hasAudio(): boolean {
+  public hasAudio(): boolean {
     return this.music.hasAudio() || this.sound.hasAudio()
   }
 
@@ -276,6 +276,6 @@ export class AudioActionListener {
     this.sound.destroy()
     this.eventSubscription()
     this.actionSubscription()
-    this.audioStateSubscription()
+    this.stateSubscription()
   }
 }

@@ -42,12 +42,12 @@ export class Elements {
     if (commonState.dataEnabled) {
       this.subscribeToDataEvents()
     } else {
-      const dataSubscription = onCommonStateChange(
+      this.dataSubscription = onCommonStateChange(
         'dataEnabled',
         enabled => {
           if (enabled) {
             this.subscribeToDataEvents()
-            dataSubscription()
+            this.dataSubscription()
           }
         },
       )

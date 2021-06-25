@@ -3,22 +3,25 @@ jest.mock('./services/track')
 jest.mock('./services/actions')
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
+import {
+  commonState,
+  commonStateDispose,
+} from '../../services/common'
 import { contentStateDispose } from '../../services/content/state'
+import { dataStateDispose } from '../../services/data/state'
 import { ContentReference } from '../n-content-reference/content-reference'
 import { Audio } from './audio'
 import { AudioActionListener } from './services/actions'
-import { audioState, audioStateDispose } from './services/state'
+import { audioStateDispose } from './services/state'
 
 describe('n-audio', () => {
-  beforeEach(() => {
-    audioState.enabled = true
-  })
-
-  afterEach(async () => {
+  afterEach(() => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
-    contentStateDispose()
     audioStateDispose()
+    contentStateDispose()
+    dataStateDispose()
+    commonStateDispose()
   })
 
   it('no display, no error', async () => {
@@ -39,7 +42,7 @@ describe('n-audio', () => {
     </n-audio>
     `)
 
-    page.root?.remove()
+    page.root!.remove()
   })
 
   it('display, no error', async () => {
@@ -69,7 +72,7 @@ describe('n-audio', () => {
   })
 
   it('display, audio disabled', async () => {
-    audioState.enabled = false
+    commonState.audioEnabled = false
     const page = await newSpecPage({
       components: [Audio, ContentReference],
       html: `<n-audio display></n-audio>`,
@@ -187,7 +190,7 @@ describe('n-audio', () => {
     </n-audio>
     `)
 
-    audioState.enabled = false
+    commonState.audioEnabled = false
 
     await page.waitForChanges()
 
@@ -237,7 +240,6 @@ describe('n-audio', () => {
 
     const actions = page.body.querySelector('n-audio')!
       .actions! as AudioActionListener
-
     actions.play()
 
     await page.waitForChanges()

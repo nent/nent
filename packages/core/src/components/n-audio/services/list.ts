@@ -8,6 +8,10 @@ export class AudioList {
     return this.items.length == 0
   }
 
+  public get hasItems() {
+    return this.items.length > 0
+  }
+
   public findTrack(trackId: string) {
     return this.items.find(a => a.trackId == trackId) || null
   }

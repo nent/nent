@@ -2,9 +2,13 @@ jest.mock('../../../services/common/logging')
 jest.mock('../../../services/data/evaluate.worker')
 
 import { actionBus, eventBus } from '../../../services/actions'
+import {
+  commonState,
+  commonStateDispose,
+} from '../../../services/common/state'
 import { addDataProvider } from '../../../services/data/factory'
 import { InMemoryProvider } from '../../../services/data/providers/memory'
-import { dataState } from '../../../services/data/state'
+import { dataStateDispose } from '../../../services/data/state'
 import { IViewPrompt, VisitStrategy } from './interfaces'
 import { resolveNext } from './next'
 import { clearVisits, markVisit } from './visits'
@@ -14,13 +18,18 @@ describe('next-resolver: find next', () => {
   let session: InMemoryProvider
 
   beforeEach(async () => {
-    dataState.enabled = true
+    commonState.dataEnabled = true
     session = new InMemoryProvider()
     addDataProvider('session', session)
     toDos = []
+  })
+
+  afterEach(async () => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
     await clearVisits()
+    commonStateDispose()
+    dataStateDispose()
   })
 
   const setupBasicPath = () => {

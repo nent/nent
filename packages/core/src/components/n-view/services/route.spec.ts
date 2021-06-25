@@ -2,12 +2,12 @@ jest.mock('../../../services/data/evaluate.worker')
 
 import { RafCallback } from '@stencil/core'
 import { newSpecPage, SpecPage } from '@stencil/core/testing'
-import { commonStateDispose } from '../../../services/common'
-import { EventEmitter } from '../../../services/common/emitter'
 import {
-  dataState,
-  dataStateDispose,
-} from '../../../services/data/state'
+  commonState,
+  commonStateDispose,
+} from '../../../services/common'
+import { EventEmitter } from '../../../services/common/emitter'
+import { dataStateDispose } from '../../../services/data/state'
 import { MatchResults } from '../../n-views/services/interfaces'
 import { RouterService } from '../../n-views/services/router'
 import { Route } from './route'
@@ -28,7 +28,7 @@ describe('route', () => {
   }
 
   beforeEach(async () => {
-    dataState.enabled = true
+    commonState.dataEnabled = true
     actionBus = new EventEmitter()
     eventBus = new EventEmitter()
   })

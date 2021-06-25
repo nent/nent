@@ -1,6 +1,7 @@
 import { Component, h, Host, Prop } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
+import { commonState } from '../../services/common/state'
 import { clearDataProviders } from '../../services/data/factory'
 import { dataState } from '../../services/data/state'
 import { DataListener } from './services/actions'
@@ -40,7 +41,7 @@ export class Data {
     debugIf(this.debug, `n-data: registering data listener`)
 
     this.listener = new DataListener()
-    dataState.enabled = true
+    commonState.dataEnabled = true
 
     if (this.providerTimeout)
       dataState.providerTimeout = this.providerTimeout

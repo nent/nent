@@ -1,4 +1,5 @@
 import {
+  commonState,
   getPropertyValue,
   isJson,
   isNotValue,
@@ -14,7 +15,6 @@ import {
   removeDataProvider,
 } from './factory'
 import { DataItemProvider } from './providers/item'
-import { dataState } from './state'
 
 const tokenRegEx =
   /\{\{([\w-]*):(\w*)((?:\[\d+\]|\.)[\w.\-\]]+)?(?:\?([\w.-]*))?\}\}/g
@@ -40,7 +40,7 @@ export async function resolveTokens(
   data?: any,
 ): Promise<string> {
   requireValue(textWithTokens, 'valueExpression')
-  if (!dataState.enabled) {
+  if (!commonState.dataEnabled) {
     warn(`Data-services are not enabled. Tokens are not resolved.`)
     return textWithTokens
   }

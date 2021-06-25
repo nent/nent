@@ -1,5 +1,4 @@
 import { Listener } from '../../../services/common/interfaces'
-import { isValue } from '../../../services/common/values'
 import { AudioInfo, DiscardStrategy } from './interfaces'
 import { AudioLoader } from './list-loader'
 import { PlayerBase } from './player-base'
@@ -43,7 +42,7 @@ export class SoundPlayer extends PlayerBase {
   }
 
   public hasAudio() {
-    return isValue(this.active) || !this.loader.isEmpty
+    return this.active != null || this.loader.hasItems
   }
 
   public destroy() {

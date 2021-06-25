@@ -11,10 +11,7 @@ import { contentStateDispose } from '../../services/content'
 import { addDataProvider } from '../../services/data/factory'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { InMemoryProvider } from '../../services/data/providers/memory'
-import {
-  dataState,
-  dataStateDispose,
-} from '../../services/data/state'
+import { dataStateDispose } from '../../services/data/state'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentDataRepeat } from './content-repeat'
 import remoteData from './test/data.json'
@@ -22,7 +19,7 @@ import remoteData from './test/data.json'
 describe('n-content-repeat', () => {
   let provider: InMemoryProvider
   beforeEach(() => {
-    dataState.enabled = true
+    commonState.dataEnabled = true
     provider = new InMemoryProvider()
     commonState.dataEnabled = true
     commonState.routingEnabled = true

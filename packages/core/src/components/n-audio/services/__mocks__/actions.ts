@@ -1,14 +1,17 @@
 /* istanbul ignore file */
 
-import { EventEmitter } from '../../../../services/common'
+import {
+  commonState,
+  EventEmitter,
+} from '../../../../services/common'
 import { AudioType } from '../interfaces'
 import { MusicPlayer } from '../player-music'
 import { SoundPlayer } from '../player-sound'
-import { audioState } from '../state'
 
 export class AudioActionListener {
   public changed: EventEmitter
-  private _isPlaying: boolean = false
+  public _isPlaying: boolean = false
+  public _hasAudio: boolean = false
   constructor(
     public eventBus: EventEmitter,
     public actionBus: EventEmitter,
@@ -23,7 +26,7 @@ export class AudioActionListener {
       this.changed.emit('changed')
     })
 
-    this.enabled = audioState.enabled
+    this.enabled = commonState.audioEnabled
   }
 
   public music!: MusicPlayer
@@ -36,16 +39,18 @@ export class AudioActionListener {
   }
 
   public hasAudio(): boolean {
-    return true
+    return this._hasAudio
   }
 
   public pause() {
     this._isPlaying = false
+    this._hasAudio = false
     this.changed.emit('changed')
   }
 
   public play() {
     this._isPlaying = true
+    this._hasAudio = true
     this.changed.emit('changed')
   }
 

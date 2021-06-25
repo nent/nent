@@ -19,7 +19,7 @@ describe('requireValue', () => {
 
     expect(error).not.toBeNull()
     expect(error!.message).toBe(
-      'X-UI : A value for test was not provided.',
+      'nent : A value for test was not provided.',
     )
   })
 

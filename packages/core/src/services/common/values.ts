@@ -12,7 +12,7 @@ export function requireValue(
 ): void {
   if (isNotValue(value)) {
     throw new Error(
-      `${origin || 'X-UI'} : A value for ${name} was not provided.`,
+      `${origin || 'nent'} : A value for ${name} was not provided.`,
     )
   }
 }

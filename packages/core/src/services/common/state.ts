@@ -17,7 +17,7 @@ const store = createStore<CommonStateModel>({
   dataEnabled: false,
   elementsEnabled: false,
   routingEnabled: false,
-  audioEnabled: false,
+  audioEnabled: true,
 })
 
 const { state, onChange, reset, dispose } = store

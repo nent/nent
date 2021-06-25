@@ -3,14 +3,14 @@ jest.mock('../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { eventBus } from '../../services/actions'
-import { commonState } from '../../services/common'
+import {
+  commonState,
+  commonStateDispose,
+} from '../../services/common'
 import { addDataProvider } from '../../services/data/factory'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { InMemoryProvider } from '../../services/data/providers/memory'
-import {
-  dataState,
-  dataStateDispose,
-} from '../../services/data/state'
+import { dataStateDispose } from '../../services/data/state'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentTemplate } from './content-template'
 
@@ -18,16 +18,16 @@ describe('n-content-template', () => {
   let session: InMemoryProvider
 
   beforeEach(() => {
-    dataState.enabled = true
-    session = new InMemoryProvider()
-    addDataProvider('session', session)
     commonState.dataEnabled = true
     commonState.routingEnabled = true
+    session = new InMemoryProvider()
+    addDataProvider('session', session)
   })
 
   afterEach(() => {
-    dataStateDispose()
     eventBus.removeAllListeners()
+    commonStateDispose()
+    dataStateDispose()
     jest.resetAllMocks()
   })
 
@@ -38,13 +38,13 @@ describe('n-content-template', () => {
     const page = await newSpecPage({
       components: [ContentTemplate],
       html: `<n-content-template text="{{session:foo}}"></n-content-template>`,
-      supportsShadowDom: false,
     })
     expect(page.root).toEqualHtml(`
     <n-content-template text="{{session:foo}}">
-    <span class="dynamic">
-    </span>
-  </n-content-template>
+      <span class="dynamic">
+        {{session:foo}}
+      </span>
+    </n-content-template>
     `)
 
     await session.set('foo', 'bar')

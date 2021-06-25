@@ -1,5 +1,5 @@
 import { warn } from '../common/logging'
-import { dataState } from '../data/state'
+import { commonState } from '../common/state'
 import { hasToken, resolveTokens } from '../data/tokens'
 
 export async function fetchContent(
@@ -29,7 +29,7 @@ export async function resolveRemoteContent(
   const resolvedSrc = await resolveSrc(src)
   const data = await fetchContent(win, resolvedSrc, mode)
   // Only detokenize if data services are enabled
-  return data && tokens && dataState.enabled
+  return data && tokens && commonState.dataEnabled
     ? await resolveTokens(data)
     : data
 }
@@ -59,7 +59,7 @@ export async function resolveRemoteContentElement(
 
 export async function resolveSrc(src: string) {
   // Only detokenize if data services are enabled
-  return dataState.enabled && hasToken(src)
+  return commonState.dataEnabled && hasToken(src)
     ? await resolveTokens(src)
     : src
 }

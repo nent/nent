@@ -95,32 +95,16 @@
       "name": "n-app",
       "description": {
         "kind": "markdown",
-        "value": "This component enables app services. These are console logging\ntheming and event-delegation as well as a plugin system to\nmanage a UI kit to add components like Modals, Drawers,\nmenus, etc. The basic provider is used to toggle dark-mode.\n\nThis component also adds meta tags necessary for best PWA\npractices."
+        "value": "This component enables app services. These are console logging\ntheming and event-delegation as well as a plugin system to\nmanage a UI kit to add components like Modals, Drawers,\nmenus, etc."
       },
       "attributes": [
         {
-          "name": "background-color",
-          "description": "The application theme background-color (used )"
+          "name": "app-title",
+          "description": "This is the application / site title.\nIf the views or dos have titles,\nthis is added as a suffix."
         },
         {
           "name": "debug",
           "description": "Turn on debugging to get helpful messages from the\napp, routing, data and action systems."
-        },
-        {
-          "name": "description",
-          "description": "The application description used in the\nPWA application manifest.\n\nCreates tags:\n* description (if missing)\n* meta[name=\"og:description\"]"
-        },
-        {
-          "name": "name",
-          "description": "The application name\n\nCreates tags:\n* title (if missing)\n* meta[name=\"og:title\"]"
-        },
-        {
-          "name": "short-name",
-          "description": "The application short-name used in the\nPWA application manifest."
-        },
-        {
-          "name": "theme-color",
-          "description": "The application theme color (used )"
         }
       ],
       "references": [
@@ -227,7 +211,7 @@
       },
       "attributes": [
         {
-          "name": "classes",
+          "name": "input-class",
           "description": "The class to add to the inner input."
         },
         {
@@ -535,12 +519,12 @@
       },
       "attributes": [
         {
-          "name": "classes",
-          "description": "Any classes to add to the input-element directly."
-        },
-        {
           "name": "data-provider",
           "description": "The data provider to store the audio state in."
+        },
+        {
+          "name": "input-class",
+          "description": "Any classes to add to the input-element directly."
         },
         {
           "name": "input-id",
@@ -890,7 +874,7 @@
         },
         {
           "name": "provider-timeout",
-          "description": "The wait-time, in milliseconds to wait for\nun-registered data providers found in an expression.\nThis is to accommodate a possible lag between\nevaluation before the first view-do 'when' predicate\nan the registration process."
+          "description": "The wait-time, in seconds to wait for\nun-registered data providers found in an expression.\nThis is to accommodate a possible lag between\nevaluation before the first predicate\nand the registration process."
         }
       ],
       "references": [
@@ -1173,12 +1157,12 @@
       },
       "attributes": [
         {
-          "name": "classes",
-          "description": "Any classes to add to the input-element directly."
-        },
-        {
           "name": "data-provider",
           "description": "The data provider to store the audio-enabled state in."
+        },
+        {
+          "name": "input-class",
+          "description": "Any classes to add to the input-element directly."
         },
         {
           "name": "input-id",
@@ -1289,6 +1273,10 @@
           "description": "Only active on the exact href match,\nand not on child routes"
         },
         {
+          "name": "link-class",
+          "description": "The class to add to the anchor tag."
+        },
+        {
           "name": "path",
           "description": "The destination route for this link"
         },
@@ -1315,6 +1303,10 @@
         "value": ""
       },
       "attributes": [
+        {
+          "name": "link-class",
+          "description": "The class to add to the anchor tag."
+        },
         {
           "name": "text",
           "description": "The link text"
@@ -1349,6 +1341,10 @@
         {
           "name": "item-class",
           "description": "The list-item-class to use with the li tag"
+        },
+        {
+          "name": "link-class",
+          "description": "The class to add to the anchor tag."
         },
         {
           "name": "list-class",
@@ -1388,6 +1384,10 @@
         "value": "This element will automatically go to the next\nview in the view."
       },
       "attributes": [
+        {
+          "name": "link-class",
+          "description": "The class to add to the anchor tag."
+        },
         {
           "name": "text",
           "description": "The link text"
@@ -1531,10 +1531,6 @@
       },
       "attributes": [
         {
-          "name": "app-title",
-          "description": "This is the application / site title.\nIf the views or dos have titles,\nthis is added as a suffix."
-        },
-        {
           "name": "root",
           "description": "This is the root path that the actual page is,\nif it isn't '/', then the router needs to know\nwhere to begin creating paths."
         },
@@ -1544,7 +1540,7 @@
         },
         {
           "name": "start-delay",
-          "description": "Delay redirecting to the start path by\nthis value in milliseconds."
+          "description": "Delay redirecting to the start path by\nthis value in seconds."
         },
         {
           "name": "start-path",

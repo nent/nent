@@ -3,10 +3,7 @@ import {
   commonState,
   commonStateDispose,
 } from '../../services/common/state'
-import {
-  dataState,
-  dataStateDispose,
-} from '../../services/data/state'
+import { dataStateDispose } from '../../services/data/state'
 import { Data } from './data'
 
 describe('n-data', () => {
@@ -29,6 +26,5 @@ describe('n-data', () => {
     `)
 
     expect(commonState.dataEnabled).toBeTruthy()
-    expect(dataState.enabled).toBeTruthy()
   })
 })

@@ -3,13 +3,13 @@ jest.mock('../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { eventBus } from '../../services/actions'
+import {
+  commonState,
+  commonStateDispose,
+} from '../../services/common/state'
 import { addDataProvider } from '../../services/data/factory'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { InMemoryProvider } from '../../services/data/providers/memory'
-import {
-  dataState,
-  dataStateDispose,
-} from '../../services/data/state'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentShow } from './content-show'
 
@@ -17,13 +17,13 @@ describe('n-content-show', () => {
   let session: InMemoryProvider
 
   beforeEach(() => {
-    dataState.enabled = true
+    commonState.dataEnabled = true
     session = new InMemoryProvider()
     addDataProvider('session', session)
   })
 
   afterEach(() => {
-    dataStateDispose
+    commonStateDispose()
     eventBus.removeAllListeners()
     jest.resetAllMocks()
   })
