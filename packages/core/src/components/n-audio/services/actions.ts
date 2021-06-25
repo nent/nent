@@ -92,7 +92,10 @@ export class AudioActionListener {
 
   public disable() {
     commonState.audioEnabled = false
-    this.window.Howler?.unload?.call(this)
+    this.pause()
+    try {
+      this.window.Howler?.unload?.call(this)
+    } catch {}
     this.changed.emit('changed')
   }
 
