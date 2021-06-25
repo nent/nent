@@ -115,6 +115,10 @@ export namespace Components {
          */
         "display": boolean;
         /**
+          * This component displays the current theme, unless in switch-mode, it will show the opposite.
+         */
+        "switch": boolean;
+        /**
           * Change the element that is decorated with the dark-mode class
          */
         "targetElement": string;
@@ -139,7 +143,7 @@ export namespace Components {
          */
         "dataProvider": boolean;
         /**
-          * Use debug for verbose logging. Useful for figuring thing out.
+          * Use debug for verbose logging. Useful for figuring things out.
          */
         "debug": boolean;
         /**
@@ -1201,6 +1205,10 @@ declare namespace LocalJSX {
          */
         "display"?: boolean;
         /**
+          * This component displays the current theme, unless in switch-mode, it will show the opposite.
+         */
+        "switch"?: boolean;
+        /**
           * Change the element that is decorated with the dark-mode class
          */
         "targetElement"?: string;
@@ -1225,7 +1233,7 @@ declare namespace LocalJSX {
          */
         "dataProvider"?: boolean;
         /**
-          * Use debug for verbose logging. Useful for figuring thing out.
+          * Use debug for verbose logging. Useful for figuring things out.
          */
         "debug"?: boolean;
         /**

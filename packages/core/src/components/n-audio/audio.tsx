@@ -65,7 +65,7 @@ export class Audio {
 
   /**
    * Use debug for verbose logging. Useful for figuring
-   * thing out.
+   * things out.
    */
   @Prop() debug: boolean = false
 

@@ -132,8 +132,7 @@
     <n-app app-title="NENT">
       <n-app-analytics id="analytics">
       </n-app-analytics>
-      <n-app-theme>
-      </n-app-theme>
+
       <n-data>
         <!-- enable data expressions-->
         <n-data-session></n-data-session>
@@ -149,6 +148,7 @@
             </h1>
             <div class="flex-row d-flex">
               <n-app-share headline="nent: function elements"
+                title="Share"
                 class="nav-link text-white fs-2 ps-0"
                 text="Functional elements to make web-applications without leaving the comfort of HTML.">
                 <i class="ri-share-line"></i>
@@ -172,6 +172,13 @@
                 class="nav-link text-white fs-2">
                 <i class="ri-user-5-line"></i>
               </a>
+              <n-app-theme-switch class="nav-link text-white fs-2"
+                title="Dark Mode"
+                input-id="themeSwitch">
+                <n-app-theme display
+                  switch>
+                </n-app-theme>
+              </n-app-theme-switch>
             </div>
           </div>
         </header>

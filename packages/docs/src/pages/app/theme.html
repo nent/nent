@@ -1,19 +1,23 @@
-<div class="content">
+<div>
   <h1>App Themes</h1>
   <p class="lead"> System theme detection and selection.</p>
   <h2>Native Dark Mode</h2>
 
   <h3>Theme Detection</h3>
-  <p>Your default theme is: <n-app-theme id="theme"
-      display
-      skip-class=""></n-app-theme>
+  <n-app-theme id="theme"
+    display
+    class="float-end"
+    skip-class=""></n-app-theme>
+  <p class="float-left">Your default theme is: <span
+      class="show-light">Light</span> <span class="show-dark">Dark</span>
   </p>
   <n-content-markdown>
     <script type="text/markdown">
       ```html
-      <p>Your default theme is: <n-app-theme id="theme"
-        display
+      <p><n-app-theme id="theme"
+        display class="left"
         skip-class=""></n-app-theme>
+        Your default theme is
     </p>
       ```
     </script>

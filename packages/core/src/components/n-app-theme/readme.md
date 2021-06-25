@@ -45,6 +45,7 @@ To set a custom class name:
 | --------------- | ---------------- | -------------------------------------------------------------------------------------------------- | --------- | -------- |
 | `darkClass`     | `dark-class`     | Change the class name that is added to the target element when the theme is determined to be dark. | `string`  | `'dark'` |
 | `display`       | `display`        | Display the user's system preference.                                                              | `boolean` | `false`  |
+| `switch`        | `switch`         | This component displays the current theme, unless in switch-mode, it will show the opposite.       | `boolean` | `false`  |
 | `targetElement` | `target-element` | Change the element that is decorated with the dark-mode class                                      | `string`  | `'body'` |
 
 

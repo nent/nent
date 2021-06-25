@@ -118,6 +118,7 @@ export class AudioActionListener {
   }
 
   public play() {
+    if (!commonState.audioEnabled) return
     this.music.play()
     this.sound.play()
     this.changed.emit('changed')
@@ -130,6 +131,7 @@ export class AudioActionListener {
   }
 
   public resume() {
+    if (!commonState.audioEnabled) return
     this.music.resume()
     this.sound.resume()
     this.changed.emit('changed')

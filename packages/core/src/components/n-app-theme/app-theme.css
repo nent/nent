@@ -1,0 +1,14 @@
+n-app-theme {
+  --fill: var(--text-color, #000);
+  --size: 24px;
+  display: block;
+  height: var(--size);
+  width: var(--size);
+}
+
+n-app-theme svg {
+  fill: var(--foreground);
+  height: 100%;
+  z-index: 0;
+  vertical-align: middle;
+}

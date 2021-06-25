@@ -81,7 +81,7 @@ This player can be configured to display or remain hidden. When displayed, it sh
 | --------------- | ---------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------- |
 | `actions`       | --               | A reference to the action listener for testing.                                                          | `AudioActionListener`, `undefined` | `undefined` |
 | `dataProvider`  | `data-provider`  | Experimental support for providing audio-data in the data-provider system.                               | `boolean`                          | `false`     |
-| `debug`         | `debug`          | Use debug for verbose logging. Useful for figuring thing out.                                            | `boolean`                          | `false`     |
+| `debug`         | `debug`          | Use debug for verbose logging. Useful for figuring things out.                                           | `boolean`                          | `false`     |
 | `display`       | `display`        | The display mode enabled shows player state and stats. No track information or duration is be displayed. | `boolean`                          | `false`     |
 | `howlerVersion` | `howler-version` | The Howler.js Script Reference                                                                           | `string`                           | `'2.2.1'`   |
 
