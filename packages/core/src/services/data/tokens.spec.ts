@@ -5,7 +5,7 @@ import { commonState, commonStateDispose } from '../common/state'
 import { addDataProvider } from './factory'
 import { InMemoryProvider } from './providers/memory'
 import { dataStateDispose } from './state'
-import { resolveTokens } from './tokens'
+import { hasToken, resolveTokens } from './tokens'
 
 describe('resolveTokens', () => {
   let session: InMemoryProvider
@@ -97,5 +97,17 @@ describe('resolveTokens', () => {
   it('unknown providers leave tokens in tact', async () => {
     const value = await resolveTokens('{{bad:value}}')
     expect(value).toBe(`{{bad:value}}`)
+  })
+})
+
+describe('hasTokens', () => {
+  it('recognizes regular tokens', () => {
+    const results = hasToken('{{audio:isPlaying}}')
+    expect(results).toBe(true)
+  })
+
+  it('recognizes dot notated tokens', () => {
+    const results = hasToken('{{session:some.word}}')
+    expect(results).toBe(true)
   })
 })

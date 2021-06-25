@@ -22,7 +22,7 @@ const tokenRegEx =
 const escapeStringsRegex = /['"]?([a-z/][\w-/?.]+)['"]?/gi
 
 export function hasToken(value: string) {
-  return value.match(tokenRegEx)
+  return tokenRegEx.test(value)
 }
 
 /**
