@@ -191,7 +191,9 @@ export class Route implements IRoute {
   public goBack() {
     const back = this.previousRoute
     if (back) this.router.goToRoute(back.path)
-    else this.router.history.goBack()
+    else if (this.router.history.previousLocation)
+      this.router.history.goBack()
+    else this.goToParentRoute()
   }
 
   public goNext() {

@@ -15,11 +15,11 @@
       href="/routing/navigation/guided/tutorial"> tutorial </a> on
     convention-based navigation. </p>
   <footer>
-    <a slot="start"
-      n-back
-      class="btn btn-primary btn-lg"> ⯇ Back </a>
-    <a slot="end"
-      href=".."
-      class="btn btn-primary btn-lg"> Next ⯈ </a>
+    <n-view-link-back slot="start"
+      link-class="btn btn-primary btn-lg">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      link-class="btn btn-primary btn-lg">
+    </n-view-link-next>
   </footer>
 </div>

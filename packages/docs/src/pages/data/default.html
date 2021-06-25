@@ -1,3 +1,22 @@
+<n-content-reveal direction="left"
+  delay="500"
+  duration="1000"
+  animation-distance="60%"
+  trigger-distance="50%">
+  <ul
+    class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
+    <li class="list-group-item fw-bold">Data Elements</li>
+    <n-content-repeat items-src="/dist/components.json"
+      filter="components[docsTags[name='system' and text='data']]">
+      <template>
+        <li class="list-group-item">
+          <a href="/components/{{data:tag}}?group=data"> &lt;{{data:tag}}&gt;
+          </a>
+        </li>
+      </template>
+    </n-content-repeat>
+  </ul>
+</n-content-reveal>
 <div class="content">
   <h1>Data</h1>
   <p class="lead">Provide multiple ways to use data within your HTML.</p>

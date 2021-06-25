@@ -179,6 +179,9 @@ export class ViewPrompt implements IView {
           'content',
         )
       await recordVisit(this.visit as VisitStrategy, this.path)
+    } else {
+      // this.contentElement?.remove()
+      this.contentElement = null
     }
   }
 
@@ -199,10 +202,6 @@ export class ViewPrompt implements IView {
 
   async componentDidRender() {
     await this.route?.loadCompleted()
-    if (!this.route?.match?.isExact) {
-      this.contentElement?.remove()
-      this.contentElement = null
-    }
   }
 
   disconnectedCallback() {

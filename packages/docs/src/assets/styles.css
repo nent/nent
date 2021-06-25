@@ -16,6 +16,7 @@ body {
   --text-color: hsl(0, 0%, 0%);
 
   --background-color: hsl(0, 0%, 100%);
+  --background-color-fade: hsl(0, 0%, 100%, 40%);
   --background-color-dark: hsl(0, 0%, 20%);
 
   --light: hsl(180, 3%, 83%);
@@ -45,6 +46,7 @@ body.dark {
   --accent: #fdd757;
   --text-color: white;
   --background-color: #2f3030;
+  --background-color-fade: hsl(0, 0%, 7W%, 40%);
   --background-color-dark: hsl(0, 0%, 7%);
   --light: #6f7070;
   --dark: #3f4f6e;
@@ -67,6 +69,14 @@ body {
 
 .dark .show-light { display: none; }
 .dark .show-dark { display: inline; }
+
+[hidden] {
+  visibility: hidden;
+  .opacity(0);
+  .transition-duration(200ms, 0);
+  .transition-property(opacity, visibility);
+  .transition-delay(0, 200ms);
+}
 
 header {
   background-color: var(--nav-bg);
@@ -173,6 +183,10 @@ nav.bg-dark .active i {
 
 b.brand {
   color: var(--primary);
+}
+
+.bread-nav {
+  margin-top: .5rem;
 }
 
 a.active:link,
@@ -309,8 +323,7 @@ code {
 }
 
 footer {
-  background-color: var(--background-color);
-  background-size: fill;
+
   position: fixed;
   z-index: 1;
   bottom: 0;
@@ -320,15 +333,21 @@ footer {
   max-width: var(--content-max-width);
   padding-left: .7rem;
   padding-right: .7rem;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding-bottom: .5rem;
+  padding-top: .5rem;
   margin-right: auto !important;
   margin-left: auto !important;
 }
 footer::after {
   content: '';
-  clear: both;
-  display: table;
+	width: 100%;
+	height: 100%;
+  background-color: var(--background-color);
+	opacity: 0.7;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
 }
 footer [slot='end'] {
   float: right;
@@ -358,7 +377,7 @@ n-app-theme.left  {
 
 n-app-theme-switch.nav-link svg {
   fill: white;
-  height: 45px;
+  height: 40px;
 }
 n-app-theme-switch.nav-link input {
   display: none;
@@ -399,8 +418,7 @@ n-view.active + n-view-not-found {
 }
 
 .contained,
-n-view,
-n-view-not-found {
+n-views > n-view {
   max-width: var(--content-max-width);
   padding: 0 var(--bs-gutter-x, 0.75rem);
   margin-right: auto !important;

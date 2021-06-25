@@ -5,26 +5,7 @@
 <n-content-reference
   script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
 </n-content-reference>
-<n-content-reveal direction="left"
-  delay="500"
-  duration="1000"
-  animation-distance="60%"
-  trigger-distance="50%">
-  <ul
-    class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
-    <li class="list-group-item fw-bold"> Content Elements</li>
-    <n-content-repeat items-src="/dist/components.json"
-      filter="components[docsTags[name='system' and text='content']]">
-      <template>
-        <li class="list-group-item">
 
-          <a href="/components/{{data:tag}}?group=content"> &lt;{{data:tag}}&gt;
-          </a>
-        </li>
-      </template>
-    </n-content-repeat>
-  </ul>
-</n-content-reveal>
 <n-view path="/content/include"
   page-title="Partials"
   content-src="/pages/content/include.html"> </n-view>
