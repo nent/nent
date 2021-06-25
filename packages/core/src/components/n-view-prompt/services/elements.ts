@@ -12,6 +12,5 @@ export function getChildInputValidity(rootElement: HTMLElement) {
     }
     return true
   })
-  const hasInvalid = results.some(v => v == false)
-  return hasInvalid
+  return !results.some(v => v == false)
 }

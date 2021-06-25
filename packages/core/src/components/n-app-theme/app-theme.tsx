@@ -1,11 +1,4 @@
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  State,
-} from '@stencil/core'
+import { Component, Element, h, Host, Prop } from '@stencil/core'
 import { appState, onAppChange } from '../n-app/services/state'
 
 /**
@@ -22,8 +15,6 @@ export class AppTheme {
   @Element() el!: HTMLNAppThemeElement
 
   private stateSubscription!: () => void
-
-  @State() systemDarkMode: boolean = false
 
   /**
    * Change the element that is decorated with
@@ -59,9 +50,9 @@ export class AppTheme {
     )
     if (prefersDark?.addEventListener) {
       prefersDark.addEventListener('change', ev => {
-        this.systemDarkMode = ev.matches
+        appState.darkMode = ev.matches
       })
-      this.systemDarkMode = prefersDark.matches
+      appState.darkMode = prefersDark.matches
     }
     this.stateSubscription = onAppChange('darkMode', () => {
       this.toggleDarkTheme()
