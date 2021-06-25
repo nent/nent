@@ -1,5 +1,4 @@
 import {
-  commonState,
   removeLineFeeds,
   requireValue,
   toBoolean,

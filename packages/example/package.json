@@ -6,9 +6,10 @@
     "build": "tsc && vite build",
     "serve": "vite preview"
   },
+  "private": true,
   "dependencies": {},
   "devDependencies": {
-    "@iconify/iconify": "1.0.7",
+    "@iconify/iconify": "2.0.2",
     "@nent/core": "^0.6.4",
     "@tailwindcss/typography": "0.4.1",
     "@types/workbox-build": "5.0.0",

@@ -8,6 +8,9 @@
   "license": "MIT",
   "publisher": "NENT",
   "icon": "logo.png",
+  "publishConfig": {
+    "access": "restricted"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/nent/nent.git",
@@ -64,6 +67,6 @@
     ]
   },
   "devDependencies": {
-    "vsce": "1.94.0"
+    "vsce": "1.95.0"
   }
 }
