@@ -39,6 +39,7 @@ export class Data {
 
   componentWillLoad() {
     debugIf(this.debug, `n-data: registering data listener`)
+    if (this.debug) dataState.debug = true
 
     this.listener = new DataListener()
     commonState.dataEnabled = true

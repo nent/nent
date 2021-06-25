@@ -271,6 +271,21 @@ describe('evaluatePredicate', () => {
     expect(value).toBe(true)
   })
 
+  it('evaluates empty', async () => {
+    const value = await evaluatePredicate(`'' is empty`)
+    expect(value).toBe(true)
+  })
+
+  it('evaluates missing factor, is', async () => {
+    const value = await evaluatePredicate(` is null`)
+    expect(value).toBe(true)
+  })
+
+  it('evaluates missing factor, ==', async () => {
+    const value = await evaluatePredicate(` == false`)
+    expect(value).toBe(false)
+  })
+
   it('evaluates object in arrays', async () => {
     const value = await evaluatePredicate(`{
       "text": "routing",

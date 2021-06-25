@@ -1,11 +1,13 @@
 import {
+  commonState,
   removeLineFeeds,
   requireValue,
   toBoolean,
-  warn,
+  warnIf,
 } from '../common'
 import { evalExpression } from './evaluate.worker'
 import { ExpressionContext } from './interfaces'
+import { dataState } from './state'
 import { hasToken, resolveTokens } from './tokens'
 const operatorRegex = /(in |for |[><+\-=])/gi
 
@@ -55,10 +57,11 @@ async function evaluate(
 
     return await evalExpression(resolved.expression, context)
   } catch (error) {
-    warn(
+    warnIf(
+      dataState.debug,
       `An exception was raised evaluating expression '${expression}': ${error}`,
     )
-    return `${expression} (error: ${error})`
+    return false
   }
 }
 
@@ -114,9 +117,7 @@ export async function evaluatePredicate(
 
   let result: any = toBoolean(workingExpression)
   if (hasExpression(workingExpression)) {
-    try {
-      result = await evaluate(workingExpression, context)
-    } catch {}
+    result = await evaluate(workingExpression, context)
   }
   return negation ? !result : result
 }

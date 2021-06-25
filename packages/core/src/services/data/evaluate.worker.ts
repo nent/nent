@@ -6,16 +6,18 @@
 
 import type { ExpressionContext } from './interfaces'
 
+/**
+ * Documentation: https://github.com/silentmatt/expr-eval
+ */
 const expressionEvaluator = new (self as any).exprEval.Parser({
   operators: {
     in: true,
-    assignment: true,
+    assignment: false,
   },
 })
 
 /**
  * This base expression parsing is performed by the library: expr-eval
- * Documentation: https://github.com/silentmatt/expr-eval
  *
  * @export evaluate
  * @param {string} expression A js-based expression for value comparisons or calculations

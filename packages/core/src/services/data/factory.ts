@@ -1,6 +1,5 @@
 import { eventBus } from '../actions'
 import {
-  commonState,
   debounce,
   debugIf,
   EventEmitter,
@@ -45,7 +44,7 @@ export function addDataProvider(
   emitter.emit(NEW_PROVIDER_ADDED, name.toLocaleLowerCase())
 
   debugIf(
-    commonState.debug && name !== 'data',
+    dataState.debug && name !== 'data',
     `data-provider: ${name} registered`,
   )
 }
