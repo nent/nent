@@ -1,6 +1,8 @@
 
 // const colors = require( 'tailwindcss/colors' )
 
+const { white } = require( 'chalk' )
+
 module.exports = {
   mode: 'jit',
   purge: [
@@ -9,7 +11,7 @@ module.exports = {
   ],
   darkMode: 'class',
   variants: {
-    extend: {},
+    dark: {}
   },
   plugins: [
     // require('@tailwindcss/typography'),

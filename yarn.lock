@@ -2464,6 +2464,13 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
+"@types/fs-extra@^9.0.7":
+  version "9.0.11"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.11.tgz#8cc99e103499eab9f347dbc6ca4e99fb8d2c2b87"
+  integrity sha512-mZsifGG4QeQ7hlkhO56u7zt/ycBgGxSVsFI/6lGTU34VtwkiqrrSDgw0+ygs8kFGWcXnFQWMrzF2h7TtDFNixA==
+  dependencies:
+    "@types/node" "*"
+
 "@types/graceful-fs@^4.1.2":
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/@types/graceful-fs/-/graceful-fs-4.1.5.tgz#21ffba0d98da4350db64891f92a9e5db3cdb4e15"
@@ -9312,6 +9319,16 @@ puppeteer@10.0.0:
     tar-fs "2.0.0"
     unbzip2-stream "1.3.3"
     ws "7.4.6"
+
+purge-icons@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/purge-icons/-/purge-icons-0.7.0.tgz#678ceaae290bed6a2c64c24c9f871345fa6ecc78"
+  integrity sha512-pi+SVb0WBgbU1cxEOGwje3M+lHbwUTIYok1hGnKEQHf0moWWVv7mMXU53tMv9/ewYEHPLETC4ECOWjLR2v3eaA==
+  dependencies:
+    "@purge-icons/core" "^0.7.0"
+    "@types/fs-extra" "^9.0.7"
+    fs-extra "^9.1.0"
+    yargs "^16.2.0"
 
 purgecss@^4.0.3:
   version "4.0.3"

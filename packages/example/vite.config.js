@@ -3,12 +3,9 @@ import PurgeIcons from 'vite-plugin-purge-icons'
 import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   server: {
-    port: 3005,
-
+    port: 3005
   },
   build: {
-    assetsDir: 'public/assets',
-    outDir: 'public/dist',
     emptyOutDir: true
   },
   plugins: [
@@ -46,9 +43,9 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globDirectory: '/**',
+        // globDirectory: 'dist',
         globPatterns: ['**/*.{png,ico,html,json,txt,js,css,svg}'],
-        swDest: 'public/sw.js',
+        swDest: 'sw.js',
         skipWaiting: true,
         navigationPreload: true,
         offlineGoogleAnalytics: true,

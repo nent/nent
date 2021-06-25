@@ -9,5 +9,3 @@ export const updateSW = registerSW({
     console.debug('Offline Ready')
   },
 })
-
-

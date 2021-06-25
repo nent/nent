@@ -41,11 +41,6 @@
       type="image/svg"
       href="/favicon.svg" />
 
-    <link rel="stylesheet"
-      type="text/css"
-      href="/src/global.css"
-      media="print"
-      onload="this.media = 'all'" />
     <!-- NENT -->
     <script type="module"
       src="https://unpkg.com/@nent/core/dist/nent/nent.esm.js"></script>
@@ -57,13 +52,12 @@
     </style>
   </head>
 
-  <body>
+  <body class=" text-black dark:text-white bg-dark">
 
     <n-app>
 
-      <header class="text-gray-600 body-font">
-        <div
-          class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <header class="text-gray-600 dark:text-white body-font ">
+        <div class="container">
           <a
             class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
             <svg xmlns="http://www.w3.org/2000/svg"
@@ -92,18 +86,11 @@
             </n-view-link>
 
           </nav>
-          <button
-            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-            <svg fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              class="w-4 h-4 ml-1"
-              viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
+
+          <n-app-theme-switch
+            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+            input-class=""></n-app-theme-switch>
+
         </div>
       </header>
 
