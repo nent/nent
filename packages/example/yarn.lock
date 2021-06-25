@@ -2084,7 +2084,7 @@ punycode@^2.1.0:
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.1.1.tgz"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-purge-icons@^0.7.0:
+purge-icons@0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/purge-icons/-/purge-icons-0.7.0.tgz#678ceaae290bed6a2c64c24c9f871345fa6ecc78"
   integrity sha512-pi+SVb0WBgbU1cxEOGwje3M+lHbwUTIYok1hGnKEQHf0moWWVv7mMXU53tMv9/ewYEHPLETC4ECOWjLR2v3eaA==
