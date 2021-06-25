@@ -6,7 +6,7 @@ import {
   Prop,
   State,
 } from '@stencil/core'
-import { appState } from '../n-app/services/state'
+import { appState, onAppChange } from '../n-app/services/state'
 
 /**
  * This component checks for the preferred light/dark theme preference of the
@@ -63,6 +63,9 @@ export class AppTheme {
       })
       this.systemDarkMode = prefersDark.matches
     }
+    this.stateSubscription = onAppChange('darkMode', () => {
+      this.toggleDarkTheme()
+    })
   }
 
   componentWillRender() {
@@ -75,13 +78,8 @@ export class AppTheme {
         ? this.el.ownerDocument.body
         : this.el.ownerDocument.querySelector(this.targetElement)
 
-    if (
-      !element?.classList.contains(this.darkClass) &&
-      this.darkMode == false
-    )
-      return
-
-    element?.classList.toggle(this.darkClass, this.darkMode!)
+    if (this.darkMode) element?.classList.toggle(this.darkClass, true)
+    else element?.classList.remove(this.darkClass)
   }
 
   render() {

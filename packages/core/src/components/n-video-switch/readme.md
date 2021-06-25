@@ -24,8 +24,8 @@ Add the `<n-video-switch>` component to any page to allow the user to adjust the
 
 | Property       | Attribute       | Description                                            | Type                  | Default     |
 | -------------- | --------------- | ------------------------------------------------------ | --------------------- | ----------- |
-| `classes`      | `classes`       | Any classes to add to the input-element directly.      | `string`, `undefined` | `undefined` |
 | `dataProvider` | `data-provider` | The data provider to store the audio-enabled state in. | `string`              | `'storage'` |
+| `inputClass`   | `input-class`   | Any classes to add to the input-element directly.      | `string`, `undefined` | `undefined` |
 | `inputId`      | `input-id`      | The id field to add to the input-element directly.     | `string`, `undefined` | `undefined` |
 
 

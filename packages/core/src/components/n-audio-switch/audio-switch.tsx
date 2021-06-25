@@ -39,7 +39,7 @@ export class AudioSwitch {
   /**
    * Any classes to add to the input-element directly.
    */
-  @Prop() classes?: string
+  @Prop() inputClass?: string
 
   /**
    * The id field to add to the input-element directly.
@@ -88,7 +88,7 @@ export class AudioSwitch {
       <Host>
         <input
           type="checkbox"
-          class={this.classes}
+          class={this.inputClass}
           id={this.inputId}
           ref={e => {
             this.checkbox = e

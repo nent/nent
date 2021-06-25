@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop } from '@stencil/core'
+import { Component, h, Prop } from '@stencil/core'
 import { appState } from '../n-app/services/state'
 
 /**
@@ -19,7 +19,7 @@ export class AppThemeSwitch {
   /**
    * The class to add to the inner input.
    */
-  @Prop() classes?: string
+  @Prop() inputClass?: string
 
   /**
    * The inner input ID
@@ -28,31 +28,16 @@ export class AppThemeSwitch {
 
   render() {
     return (
-      <Host>
-        {appState.darkMode != null ? (
-          <input
-            type="checkbox"
-            ref={el => (this.checkbox = el!)}
-            class={this.classes}
-            id={this.inputId}
-            onChange={() => {
-              appState.darkMode = this.checkbox.checked
-            }}
-            checked={appState.darkMode}
-          />
-        ) : (
-          <input
-            type="checkbox"
-            ref={el => (this.checkbox = el!)}
-            class={this.classes}
-            id={this.inputId}
-            onChange={() => {
-              appState.darkMode = this.checkbox.checked
-            }}
-            indeterminate
-          />
-        )}
-      </Host>
+      <input
+        type="checkbox"
+        ref={el => (this.checkbox = el!)}
+        class={this.inputClass}
+        id={this.inputId}
+        onChange={() => {
+          appState.darkMode = this.checkbox.checked
+        }}
+        checked={appState.darkMode || false}
+      />
     )
   }
 }

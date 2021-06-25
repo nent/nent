@@ -123,7 +123,7 @@ export namespace Components {
         /**
           * The class to add to the inner input.
          */
-        "classes"?: string;
+        "inputClass"?: string;
         /**
           * The inner input ID
          */
@@ -280,13 +280,13 @@ export namespace Components {
     }
     interface NAudioSwitch {
         /**
-          * Any classes to add to the input-element directly.
-         */
-        "classes"?: string;
-        /**
           * The data provider to store the audio state in.
          */
         "dataProvider": string;
+        /**
+          * Any classes to add to the input-element directly.
+         */
+        "inputClass"?: string;
         /**
           * The id field to add to the input-element directly.
          */
@@ -608,13 +608,13 @@ export namespace Components {
     }
     interface NVideoSwitch {
         /**
-          * Any classes to add to the input-element directly.
-         */
-        "classes"?: string;
-        /**
           * The data provider to store the audio-enabled state in.
          */
         "dataProvider": string;
+        /**
+          * Any classes to add to the input-element directly.
+         */
+        "inputClass"?: string;
         /**
           * The id field to add to the input-element directly.
          */
@@ -1209,7 +1209,7 @@ declare namespace LocalJSX {
         /**
           * The class to add to the inner input.
          */
-        "classes"?: string;
+        "inputClass"?: string;
         /**
           * The inner input ID
          */
@@ -1334,13 +1334,13 @@ declare namespace LocalJSX {
     }
     interface NAudioSwitch {
         /**
-          * Any classes to add to the input-element directly.
-         */
-        "classes"?: string;
-        /**
           * The data provider to store the audio state in.
          */
         "dataProvider"?: string;
+        /**
+          * Any classes to add to the input-element directly.
+         */
+        "inputClass"?: string;
         /**
           * The id field to add to the input-element directly.
          */
@@ -1654,13 +1654,13 @@ declare namespace LocalJSX {
     }
     interface NVideoSwitch {
         /**
-          * Any classes to add to the input-element directly.
-         */
-        "classes"?: string;
-        /**
           * The data provider to store the audio-enabled state in.
          */
         "dataProvider"?: string;
+        /**
+          * Any classes to add to the input-element directly.
+         */
+        "inputClass"?: string;
         /**
           * The id field to add to the input-element directly.
          */

@@ -124,10 +124,9 @@ export class ViewLinkList {
   }
 
   render() {
-    const linkClasses: any = {
-      [this.activeClass || '']: true,
-      [this.route?.transition || '']: true,
-    }
+    const linkClasses: string = `${this.activeClass || ''} ${
+      this.route?.transition || ''
+    }`
 
     return this.routes ? (
       <ol class={this.listClass}>

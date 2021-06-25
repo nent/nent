@@ -7,23 +7,6 @@ describe('n-app-theme-switch', () => {
     appStateDispose()
   })
 
-  it('checkbox shows accurate state: null', async () => {
-    appState.darkMode = null
-    const page = await newSpecPage({
-      components: [AppThemeSwitch],
-      autoApplyChanges: true,
-      html: `<n-app-theme-switch></n-app-theme-switch>`,
-    })
-
-    expect(page.root).toEqualHtml(`
-      <n-app-theme-switch>
-        <input id="dark-mode" type="checkbox" indeterminate=""/>
-      </n-app-theme-switch>
-    `)
-
-    page.root!.remove()
-  })
-
   it('checkbox shows accurate state: dark', async () => {
     appState.darkMode = true
     const page = await newSpecPage({
