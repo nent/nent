@@ -1,15 +1,18 @@
-import { getTimeDetails } from '../../components/n-presentation/services/time'
 import { eventBus } from '../actions'
 import {
   commonState,
   debounce,
   debugIf,
+  EventEmitter,
   requireValue,
 } from '../common'
 import { DATA_EVENTS, IDataProvider } from './interfaces'
 import { dataState } from './state'
 
 const disposers: Record<string, () => void> = {}
+
+const NEW_PROVIDER_ADDED = 'new-provider-added'
+const emitter = new EventEmitter()
 
 export function addDataProvider(
   name: string,
@@ -22,12 +25,16 @@ export function addDataProvider(
     )
   }
 
-  const debouncedChanges = debounce(1000, (...args: any[]) => {
-    eventBus.emit(DATA_EVENTS.DataChanged, {
-      provider: name,
-      data: args,
-    })
-  })
+  const debouncedChanges = debounce(
+    1000,
+    (...args: any[]) => {
+      eventBus.emit(DATA_EVENTS.DataChanged, {
+        provider: name,
+        data: args,
+      })
+    },
+    false,
+  )
 
   const dispose = provider.changed?.on('*', (...args: any[]) => {
     debouncedChanges(args)
@@ -35,6 +42,7 @@ export function addDataProvider(
   disposers[name] = dispose!
 
   dataState.providers[name.toLowerCase()] = provider
+  emitter.emit(NEW_PROVIDER_ADDED, name.toLocaleLowerCase())
 
   debugIf(
     commonState.debug && name !== 'data',
@@ -52,20 +60,20 @@ export async function getDataProvider(
     return dataState.providers[key]
 
   return new Promise(resolve => {
-    const start = performance.now()
-    const duration = dataState.providerTimeout / 1000
-    let currentTime = getTimeDetails(start, performance.now(), 0)
+    const timeout = setTimeout(() => {
+      resolve(null)
+    }, dataState.providerTimeout * 1000)
 
-    const timer = setInterval(() => {
-      currentTime = getTimeDetails(start, performance.now(), 0)
-      if (Object.keys(dataState.providers).includes(key)) {
-        clearInterval(timer)
-        resolve(dataState.providers[key])
-      } else if (currentTime.elapsed > duration) {
-        clearInterval(timer)
-        resolve(null)
-      }
-    }, 200)
+    const dispose = emitter.on(
+      NEW_PROVIDER_ADDED,
+      (registered: string) => {
+        if (name == registered) {
+          clearTimeout(timeout)
+          dispose()
+          resolve(dataState.providers[key])
+        }
+      },
+    )
   })
 }
 

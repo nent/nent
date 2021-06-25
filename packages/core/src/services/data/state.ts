@@ -13,7 +13,7 @@ class StateModel {
 const store = createStore<StateModel>({
   enabled: false,
   providers: {},
-  providerTimeout: 500,
+  providerTimeout: 1,
 })
 
 const { state, onChange, reset, dispose } = store

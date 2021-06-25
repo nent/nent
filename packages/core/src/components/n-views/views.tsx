@@ -50,7 +50,7 @@ export class ViewRouter {
 
   /**
    * Delay redirecting to the start path by
-   * this value in milliseconds.
+   * this value in seconds.
    */
   @Prop() startDelay: number = 0
 
@@ -88,7 +88,7 @@ export class ViewRouter {
     if (this.startDelay > 0)
       setTimeout(() => {
         start()
-      }, this.startDelay)
+      }, this.startDelay * 1000)
     else start()
     debugIf(commonState.debug, 'n-views: initialized')
   }

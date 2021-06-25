@@ -1,7 +1,6 @@
 import { Component, h, Host, Prop } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
-import { commonState } from '../../services/common/state'
 import { clearDataProviders } from '../../services/data/factory'
 import { dataState } from '../../services/data/state'
 import { DataListener } from './services/actions'
@@ -29,23 +28,22 @@ export class Data {
   @Prop() debug = false
 
   /**
-   * The wait-time, in milliseconds to wait for
+   * The wait-time, in seconds to wait for
    * un-registered data providers found in an expression.
    * This is to accommodate a possible lag between
-   * evaluation before the first view-do 'when' predicate
-   * an the registration process.
-   *
-   * @system data
+   * evaluation before the first predicate
+   * and the registration process.
    */
-  @Prop() providerTimeout: number = 500
+  @Prop() providerTimeout?: number
 
   componentWillLoad() {
     debugIf(this.debug, `n-data: registering data listener`)
 
     this.listener = new DataListener()
-    commonState.dataEnabled = true
     dataState.enabled = true
-    dataState.providerTimeout = this.providerTimeout
+
+    if (this.providerTimeout)
+      dataState.providerTimeout = this.providerTimeout
 
     this.listener.initialize(window, actionBus, eventBus)
   }
