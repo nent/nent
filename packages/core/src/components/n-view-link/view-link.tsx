@@ -1,11 +1,4 @@
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  State,
-} from '@stencil/core'
+import { Component, Element, h, Prop, State } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common'
 import {
@@ -42,28 +35,33 @@ export class ViewLink {
   @Prop({ mutable: true }) path!: string
 
   /**
+   * The class to add to the anchor tag.
+   */
+  @Prop() linkClass?: string
+
+  /**
    * The class to add when the matching route is active
    * in the browser
    */
-  @Prop() activeClass = 'active'
+  @Prop() activeClass: string = 'active'
 
   /**
    * Only active on the exact href match,
    * and not on child routes
    */
-  @Prop() exact = false
+  @Prop() exact: boolean = false
 
   /**
    * Only active on the exact href match
    * using every aspect of the URL including
    * parameters.
    */
-  @Prop() strict = true
+  @Prop() strict: boolean = true
 
   /**
    * Provide log messages for path matching.
    */
-  @Prop() debug = false
+  @Prop() debug: boolean = false
 
   get parentUrl() {
     return (
@@ -138,6 +136,7 @@ export class ViewLink {
 
     const classes = {
       [this.activeClass]: this.match !== null,
+      [this.linkClass || '']: true,
     }
 
     let anchorAttributes: Record<string, any> = {
@@ -147,18 +146,16 @@ export class ViewLink {
     }
 
     return (
-      <Host onClick={(e: MouseEvent) => this.handleClick(e)}>
-        <a
-          href={this.path}
-          title={this.el.title}
-          {...anchorAttributes}
-          n-attached-click
-          class={classes}
-          onClick={(e: MouseEvent) => e.preventDefault()}
-        >
-          <slot />
-        </a>
-      </Host>
+      <a
+        href={this.path}
+        title={this.el.title}
+        {...anchorAttributes}
+        n-attached-click
+        class={classes}
+        onClick={(e: MouseEvent) => this.handleClick(e)}
+      >
+        <slot />
+      </a>
     )
   }
 }

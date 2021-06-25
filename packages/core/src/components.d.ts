@@ -454,10 +454,9 @@ export namespace Components {
          */
         "debug": boolean;
         /**
-          * The wait-time, in milliseconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first view-do 'when' predicate an the registration process.
-          * @system data
+          * The wait-time, in seconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first predicate and the registration process.
          */
-        "providerTimeout": number;
+        "providerTimeout"?: number;
     }
     interface NDataCookie {
         /**
@@ -685,6 +684,10 @@ export namespace Components {
          */
         "exact": boolean;
         /**
+          * The class to add to the anchor tag.
+         */
+        "linkClass"?: string;
+        /**
           * The destination route for this link
          */
         "path": string;
@@ -694,6 +697,10 @@ export namespace Components {
         "strict": boolean;
     }
     interface NViewLinkBack {
+        /**
+          * The class to add to the anchor tag.
+         */
+        "linkClass"?: string;
         /**
           * The link text
          */
@@ -713,6 +720,10 @@ export namespace Components {
          */
         "itemClass"?: string;
         /**
+          * The class to add to the anchor tag.
+         */
+        "linkClass"?: string;
+        /**
           * The list-class to use with the UL tag
          */
         "listClass"?: string;
@@ -722,6 +733,10 @@ export namespace Components {
         "mode": 'children' | 'parents' | 'siblings';
     }
     interface NViewLinkNext {
+        /**
+          * The class to add to the anchor tag.
+         */
+        "linkClass"?: string;
         /**
           * The link text
          */
@@ -801,7 +816,7 @@ export namespace Components {
          */
         "scrollTopOffset"?: number;
         /**
-          * Delay redirecting to the start path by this value in milliseconds.
+          * Delay redirecting to the start path by this value in seconds.
          */
         "startDelay": number;
         /**
@@ -1493,8 +1508,7 @@ declare namespace LocalJSX {
          */
         "debug"?: boolean;
         /**
-          * The wait-time, in milliseconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first view-do 'when' predicate an the registration process.
-          * @system data
+          * The wait-time, in seconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first predicate and the registration process.
          */
         "providerTimeout"?: number;
     }
@@ -1712,6 +1726,10 @@ declare namespace LocalJSX {
          */
         "exact"?: boolean;
         /**
+          * The class to add to the anchor tag.
+         */
+        "linkClass"?: string;
+        /**
           * The destination route for this link
          */
         "path": string;
@@ -1721,6 +1739,10 @@ declare namespace LocalJSX {
         "strict"?: boolean;
     }
     interface NViewLinkBack {
+        /**
+          * The class to add to the anchor tag.
+         */
+        "linkClass"?: string;
         /**
           * The link text
          */
@@ -1740,6 +1762,10 @@ declare namespace LocalJSX {
          */
         "itemClass"?: string;
         /**
+          * The class to add to the anchor tag.
+         */
+        "linkClass"?: string;
+        /**
           * The list-class to use with the UL tag
          */
         "listClass"?: string;
@@ -1749,6 +1775,10 @@ declare namespace LocalJSX {
         "mode"?: 'children' | 'parents' | 'siblings';
     }
     interface NViewLinkNext {
+        /**
+          * The class to add to the anchor tag.
+         */
+        "linkClass"?: string;
         /**
           * The link text
          */
@@ -1828,7 +1858,7 @@ declare namespace LocalJSX {
          */
         "scrollTopOffset"?: number;
         /**
-          * Delay redirecting to the start path by this value in milliseconds.
+          * Delay redirecting to the start path by this value in seconds.
          */
         "startDelay"?: number;
         /**
