@@ -2,17 +2,17 @@ import { Component, h, Host, Prop } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
-  onCommonStateChange
+  onCommonStateChange,
 } from '../../services/common'
 import { getDataProvider } from '../../services/data/factory'
 import { IServiceProvider } from '../../services/data/interfaces'
 import {
   AUDIO_EVENTS,
-  AUDIO_TOPIC
+  AUDIO_TOPIC,
 } from '../n-audio/services/interfaces'
 import {
   audioState,
-  onAudioStateChange
+  onAudioStateChange,
 } from '../n-audio/services/state'
 
 /**
