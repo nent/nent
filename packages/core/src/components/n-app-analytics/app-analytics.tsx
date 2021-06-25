@@ -1,11 +1,4 @@
-import {
-  Component,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-} from '@stencil/core'
+import { Component, Event, EventEmitter, Prop } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import {
   commonState,
@@ -87,10 +80,6 @@ export class Analytics {
       this.viewTime.emit(e)
     }
     debugIf(this.debug, `n-app-analytics: loaded`)
-  }
-
-  render() {
-    return <Host></Host>
   }
 
   disconnectedCallback() {
