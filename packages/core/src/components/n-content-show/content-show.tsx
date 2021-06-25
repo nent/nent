@@ -23,7 +23,7 @@ import { ROUTE_EVENTS } from '../n-views/services/interfaces'
  */
 @Component({
   tag: 'n-content-show',
-  shadow: true,
+  shadow: false,
 })
 export class ContentShow {
   @Element() el!: HTMLNContentShowElement
