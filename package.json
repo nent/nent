@@ -57,7 +57,7 @@
     "prepare": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
-    "postinstall": "lerna bootstrap"
+    "_postinstall": "lerna bootstrap"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "12.1.4",

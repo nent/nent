@@ -27,6 +27,7 @@
     "@nent/core": "^0.6.5",
     "tslib": "^2.0.0"
   },
+  "private": true,
   "peerDependencies": {
     "@angular-devkit/core": "^7.2.1",
     "@angular-devkit/schematics": "^7.2.1",
@@ -60,5 +61,6 @@
     "rxjs": "7.1.0",
     "tsickle": "0.43.0",
     "zone.js": "0.11.4"
-  }
+  },
+  "gitHead": "c40332056cc61de47a4e9694b862a54c5e846313"
 }
