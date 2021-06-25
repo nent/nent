@@ -4,24 +4,26 @@
   "version": "0.0.0",
   "author": "{{contact}}",
   "scripts": {
-    "start": "serve public -l 3005",
-    "dev": "cross-env NODE_ENV=development run-s dev:*",
-    "dev:server": "npx servor --reload",
-    "dev:css": "tailwindcss build src/style.css -o src/output.css",
-    "build": "cross-env NODE_ENV=production run-p build:*",
-    "build:styles": "npx postcss src/style.css -o src/output.css",
-    "build:module": "npx snowpack --optimize --clean",
-    "build:manifest": "npx workbox injectManifest",
-    "postinstall": "snowpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
   },
+  "dependencies": {},
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "2.3.0",
-    "cross-env": "7.0.3",
-    "npm-run-all": "4.1.5",
-    "postcss-cli": "7.1.2",
-    "servor": "3.3.1",
-    "snowpack": "1.7.1"
+    "@iconify/iconify": "2.0.2",
+    "@nent/core": "^0.6.4",
+    "@tailwindcss/typography": "0.4.1",
+    "@types/workbox-build": "5.0.0",
+    "postcss": "8.3.5",
+    "purge-icons": "^0.7.0",
+    "tailwindcss": "2.2.4",
+    "typescript": "4.3.4",
+    "vite": "2.3.8",
+    "vite-plugin-cdn-import": "0.3.2",
+    "vite-plugin-purge-icons": "0.7.0",
+    "vite-plugin-pwa": "0.8.1",
+    "workbox-build": "6.1.5",
+    "workbox-window": "6.1.5"
   },
   "license": "{{license}}"
 }

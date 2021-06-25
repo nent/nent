@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+  class="text-gray-900 leading-tight">
 
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1" />
     <title>{{name}}</title>
     <meta charset="utf-8" />
     <meta name="viewport"
@@ -19,13 +17,13 @@
     <meta name="og:description"
       content="{{description}}" />
     <meta name="og:image"
-      content="" />
+      content="/assets/logo512.png" />
     <meta name="msapplication-tap-highlight"
       content="no" />
     <meta name="apple-mobile-web-app-capable"
       content="yes" />
     <meta name="apple-mobile-web-app-title"
-      content="{{name}}" />
+      content="nent-app" />
     <meta name="apple-mobile-web-app-status-bar-style"
       content="black" />
     <meta name="theme-color"
@@ -35,63 +33,69 @@
       href="cdn.jsdelivr.net" />
     <link rel="preconnect"
       href="https://cdn.jsdelivr.net" />
-    <link rel="preconnect"
+    <link rel="dns-prefetch"
       href="https://unpkg.com">
     <link rel="preconnect"
       href="https://unpkg.com" />
     <link rel="icon"
-      type="image/ico"
-      href="/favicon.ico" />
+      type="image/svg"
+      href="/favicon.svg" />
 
-    <link rel="manifest"
-      href="/manifest.json" />
-
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      crossorigin="anonymous"
-      media="print"
-      onload="this.media = 'all'" />
-
-    <style>
-      [n-cloak] {
-        display: none;
-      }
-
-      nav {
-        border-bottom: 1px solid black;
-      }
-
-      nav h1 {
-        display: inline-block;
-      }
-
-      a.active:any-link {
-        text-decoration: none;
-        color: #000;
-      }
-    </style>
     <!-- NENT -->
     <script type="module"
       src="https://unpkg.com/@nent/core/dist/nent/nent.esm.js"></script>
+    <style>
+      [n-cloak],
+      [hidden] {
+        display: none;
+      }
+    </style>
   </head>
 
-  <body>
+  <body class=" text-black dark:text-white bg-dark">
+
     <n-app>
+
+      <header class="text-gray-600 dark:text-white body-font ">
+        <div class="container">
+          <a
+            class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg"
+              n-cloak
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+              viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5">
+              </path>
+            </svg>
+            <span class="ml-3 text-xl">NENT</span>
+          </a>
+          <nav
+            class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+            <n-view-link class="mr-5 hover:text-gray-900"
+              path="/home"
+              active-class="text-gray-900 font-extrabold">Home
+            </n-view-link>
+            <n-view-link class="block mr-5 hover:text-gray-900"
+              path="/about"
+              active-class="text-gray-900 font-extrabold">About
+            </n-view-link>
+
+          </nav>
+
+          <n-app-theme-switch
+            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+            input-class=""></n-app-theme-switch>
+
+        </div>
+      </header>
 
       <n-views app-title="{{name}}"
         start-path="home">
-
-        <nav class="nav d-flex flex-row">
-          <n-view-link class="nav-link"
-            path="/home"
-            active-class="active"> Home </n-view-link>
-          <n-view-link class="nav-link"
-            path="/about"
-            active-class="active"> About </n-view-link>
-        </nav>
 
         <div class="container">
           <n-view path="/home"
@@ -104,14 +108,11 @@
           </n-view>
         </div>
       </n-views>
+      <n-data></n-data>
+      <n-elements></n-elements>
+      <n-app-theme></n-app-theme>
     </n-app>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js');
-        });
-      }
-      </script>
+    <script type="module" src="/src/main.ts"></script>
   </body>
 
 </html>

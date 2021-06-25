@@ -108,6 +108,9 @@
     ]
   },
   "workspaces": [
-    "packages/*"
+    "packages/core",
+    "packages/core-angular",
+    "packages/docs",
+    "packages/create"
   ]
 }
