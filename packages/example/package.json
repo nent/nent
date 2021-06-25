@@ -10,7 +10,7 @@
   "dependencies": {},
   "devDependencies": {
     "@iconify/iconify": "2.0.2",
-    "@nent/core": "0.6.7",
+    "@nent/core": "0.6.5",
     "@tailwindcss/typography": "0.4.1",
     "@types/workbox-build": "5.0.0",
     "postcss": "8.3.5",
