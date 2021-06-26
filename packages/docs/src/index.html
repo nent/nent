@@ -481,7 +481,7 @@
       analytics.addEventListener( 'custom-event', ( e ) => {
         Object.getOwnPropertyNames(e.detail).forEach(n => {
           //gtag( n, e.detail[n] )
-          // console.debug(`gtag('${n}', '${e.detail[n]})'`)
+          console.debug(`gtag('${n}', '${e.detail[n]})'`)
         })
       } )
       analytics.addEventListener( 'page-view', ( e ) => {
@@ -490,7 +490,7 @@
       } )
       analytics.addEventListener( 'view-time', ( e ) => {
         //gtag( e.detail.event, e.detail.time.elapsed )
-        // console.debug(`gtag('${e.detail.event}','${e.detail.time.elapsed}'')`)
+        console.debug(`gtag('${e.detail.event}','${e.detail.time.elapsed}'')`)
       } )
     </script>
   </body>

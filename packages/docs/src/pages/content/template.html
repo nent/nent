@@ -1,19 +1,15 @@
 <div class="content">
   <h1>Content Template</h1>
   <h2>Injecting Data into Templates</h2>
-  <n-content-markdown src="/pages/content/template">
+  <n-content-markdown src="/pages/content/template.md">
   </n-content-markdown>
-  <h3>Result</h3>
-  <n-content-template>
-    <script type="application/json">
-      {
-        "name":"Sally"
-      }
-      </script>
+
+  <n-content-template data-greet="Hello there!">
     <template>
-      <p>{{data:name}}</p>
-      </template>
+      <blockquote>{{data:greet}} {{storage:name}}</blockquote>
+    </template>
   </n-content-template>
+
   <footer>
     <n-view-link-back slot="start"
       class="btn btn-secondary">

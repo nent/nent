@@ -1,3 +1,8 @@
+ You can inject data into HTML templates using the [\<n-content-template\>](/components/n-content-template).
+ 
+ ### Using Inline json
+
+
  ```html
   <n-content-template>
     <script type="application/json">
@@ -6,7 +11,26 @@
       }
     </script>
     <template>
-      <p>{{data:name}}</p>
+      <blockquote>
+        {{data:name}}
+      </blockquote>
     </template>
   </n-content-template> 
 ```
+#### Results
+
+> Sally
+
+### Attributes & Tokens
+
+```html
+<n-content-template data-greet="Hello there!">
+  <template>
+    <blockquote>
+      {{data:greet}} {{storage:name}}
+    </blockquote>
+  </template>
+</n-content-template>
+```
+
+#### Results

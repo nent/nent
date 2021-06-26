@@ -25,6 +25,21 @@ const googleAnalytics = workbox.googleAnalytics
 googleAnalytics.initialize()
 precacheAndRoute(self.__WB_MANIFEST)
 
+precacheAndRoute([
+  {
+    url: 'https://cdn.jsdelivr.net/npm/expr-eval@2.0.2/dist/bundle.min.js',
+    revision: null,
+  },
+  {
+    url: 'https://cdn.jsdelivr.net/npm/jsonata@1.8.4/jsonata.min.js',
+    revision: null,
+  },
+  {
+    url: 'https://cdn.jsdelivr.net/npm/remarkable@2.0.1/dist/remarkable.min.js',
+    revision: null,
+  },
+])
+
 registerRoute(
   ({ url }) =>
     (url.origin === 'https://cdn.jsdelivr.net') |
@@ -33,7 +48,7 @@ registerRoute(
     (url.origin === 'https://via.placeholder.com') |
     (url.origin === 'https://www.google-analytics.com') |
     (url.origin === 'https://www.googletagmanager.com'),
-  new CacheFirst({
+  new NetworkFirst({
     plugins: [
       new CacheableResponsePlugin({
         statuses: [0, 200],
