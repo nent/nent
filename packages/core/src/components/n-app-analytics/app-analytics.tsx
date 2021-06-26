@@ -82,6 +82,10 @@ export class Analytics {
     debugIf(this.debug, `n-app-analytics: loaded`)
   }
 
+  render() {
+    return null
+  }
+
   disconnectedCallback() {
     commonState.analyticsEnabled = false
     this.listener.destroy()
