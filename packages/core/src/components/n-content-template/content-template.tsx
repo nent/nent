@@ -1,12 +1,15 @@
 import { Component, Element, Prop, State } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { ComponentRefresher } from '../../services/common'
-import { warn } from '../../services/common/logging'
+import { debugIf, warn } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
+import { fetchJson } from '../../services/content'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
+import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
-import { resolveTokens } from '../../services/data/tokens'
+import { hasToken, resolveTokens } from '../../services/data/tokens'
+import { filterData } from '../n-content-repeat/filter/jsonata.worker'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
 /**
@@ -29,12 +32,11 @@ export class ContentTemplate {
   private contentClass = 'dynamic'
   @Element() el!: HTMLNContentTemplateElement
   @State() innerTemplate!: string
-  @State() innerData: any
   @State() contentElement: HTMLElement | null = null
 
   /**
    * The data expression to obtain a value for rendering as inner-text for this element.
-   * {{session:user.name}}
+   *
    * @default null
    */
   @Prop() text?: string
@@ -45,6 +47,41 @@ export class ContentTemplate {
    * attribute.
    */
   @Prop({ mutable: true }) deferLoad = false
+
+  /**
+   * The URL to remote JSON data to bind to this template
+   * @example /data.json
+   */
+  @Prop() src?: string
+
+  /**
+   * The JSONata query to filter the json items
+   * see <https://try.jsonata.org> for more info.
+   */
+  @Prop() filter?: string
+
+  /**
+   * Turn on debug statements for load, update and render events.
+   */
+  @Prop() debug: boolean = false
+
+  /**
+   * Force render with data & route changes.
+   */
+  @Prop() noCache: boolean = false
+
+  /**
+   * A data-token predicate to advise this component when
+   * to render (useful if used in a dynamic route or if
+   * tokens are used in the 'src' attribute)
+   */
+  @Prop() when?: string
+
+  /**
+   * Cross Origin Mode
+   */
+  @Prop() mode: 'cors' | 'navigate' | 'no-cors' | 'same-origin' =
+    'cors'
 
   private get childTemplate(): HTMLTemplateElement | null {
     return this.el.querySelector('template')
@@ -72,48 +109,16 @@ export class ContentTemplate {
     if (this.childTemplate !== null) {
       this.innerTemplate = this.childTemplate.innerHTML
     }
-
-    if (this.childScript !== null) {
-      try {
-        this.innerData = JSON.parse(
-          this.childScript.textContent || '',
-        )
-      } catch (error) {
-        warn(
-          `n-content-template: unable to deserialize JSON: ${error}`,
-        )
-      }
-    }
   }
 
   async componentWillRender() {
     let shouldRender = !this.deferLoad
+    if (shouldRender && this.when)
+      shouldRender = await evaluatePredicate(this.when)
 
     if (shouldRender)
       this.contentElement = await this.resolveContentElement()
     else this.contentElement = null
-
-    replaceHtmlInElement(
-      this.el,
-      `.${this.contentClass}`,
-      this.contentElement,
-    )
-  }
-
-  private async getContent() {
-    let content: string | null = null
-    if (this.text) {
-      content = await resolveTokens(this.text, false, this.innerData)
-    }
-
-    if (this.innerTemplate) {
-      content = await resolveTokens(
-        this.innerTemplate,
-        false,
-        this.innerData,
-      )
-    }
-    return content
   }
 
   private async resolveContentElement() {
@@ -132,6 +137,76 @@ export class ContentTemplate {
       routingState.router?.captureInnerLinks(container)
     }
     return container
+  }
+
+  private async getContent() {
+    let content: string | null = null
+    const data = await this.resolveData()
+    if (this.innerTemplate) {
+      content = await resolveTokens(this.innerTemplate, false, data)
+    } else if (this.text) {
+      content = await resolveTokens(this.text, false, data)
+    }
+    return content
+  }
+
+  private async resolveData() {
+    let data: any = {}
+
+    if (this.el.dataset) {
+      Object.assign(data, this.el.dataset)
+    }
+    if (this.childScript !== null) {
+      try {
+        const json = JSON.parse(this.childScript.textContent || '')
+        data = Object.assign(data, json)
+      } catch (error) {
+        warn(
+          `n-content-template: unable to deserialize JSON: ${error}`,
+        )
+      }
+    }
+
+    let remote: any = {}
+    if (this.src) {
+      try {
+        remote = await fetchJson(window, this.src, this.mode)
+        if (this.filter) {
+          let filterString = this.filter.slice()
+          debugIf(
+            this.debug,
+            `n-content-template: filtering: ${filterString}`,
+          )
+          remote = await filterData(filterString, data)
+        }
+      } catch (error) {
+        warn(
+          `n-content-template: unable to fetch and filter data data ${error}`,
+        )
+      }
+
+      data = Object.assign(data, remote)
+    }
+
+    if (commonState.dataEnabled) {
+      for await (const _ of Object.keys(data).map(async name => {
+        data[name] = hasToken(data[name])
+          ? await resolveTokens(data[name])
+          : data[name]
+      })) {
+      }
+    }
+
+    return data
+  }
+
+  render() {
+    replaceHtmlInElement(
+      this.el,
+      `.${this.contentClass}`,
+      this.contentElement,
+    )
+    return null
   }
 
   disconnectedCallback() {

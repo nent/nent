@@ -20,6 +20,23 @@ export async function fetchContent(
   )
 }
 
+export async function fetchJson(
+  win: Window,
+  src: string,
+  mode: RequestMode,
+) {
+  const response = await win.fetch(src, {
+    mode,
+  })
+  if (response.status == 200 || response.ok) {
+    const data = await response.json()
+    return data
+  }
+  throw new Error(
+    `Request to ${src} was not successful: ${response.statusText}`,
+  )
+}
+
 export async function resolveRemoteContent(
   win: Window,
   src: string,

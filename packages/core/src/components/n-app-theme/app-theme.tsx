@@ -48,10 +48,11 @@ export class AppTheme {
     const prefersDark = window.matchMedia(
       '(prefers-color-scheme: dark)',
     )
-    if (prefersDark?.addEventListener) {
+    if (prefersDark?.addEventListener && appState.darkMode == null) {
       prefersDark.addEventListener('change', ev => {
         appState.darkMode = ev.matches
       })
+
       appState.darkMode = prefersDark.matches
     }
     this.stateSubscription = onAppChange('darkMode', () => {

@@ -62,10 +62,16 @@ You can provide the data to use for this component directly in-line using a inne
 
 ## Properties
 
-| Property    | Attribute    | Description                                                                                                  | Type                  | Default     |
-| ----------- | ------------ | ------------------------------------------------------------------------------------------------------------ | --------------------- | ----------- |
-| `deferLoad` | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute. | `boolean`             | `false`     |
-| `text`      | `text`       | The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}    | `string`, `undefined` | `undefined` |
+| Property    | Attribute    | Description                                                                                                                                     | Type                                                 | Default     |
+| ----------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------- |
+| `debug`     | `debug`      | Turn on debug statements for load, update and render events.                                                                                    | `boolean`                                            | `false`     |
+| `deferLoad` | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.                                    | `boolean`                                            | `false`     |
+| `filter`    | `filter`     | The JSONata query to filter the json items see <https://try.jsonata.org> for more info.                                                         | `string`, `undefined`                                | `undefined` |
+| `mode`      | `mode`       | Cross Origin Mode                                                                                                                               | `"cors"`, `"navigate"`, `"no-cors"`, `"same-origin"` | `'cors'`    |
+| `noCache`   | `no-cache`   | Force render with data & route changes.                                                                                                         | `boolean`                                            | `false`     |
+| `src`       | `src`        | The URL to remote JSON data to bind to this template                                                                                            | `string`, `undefined`                                | `undefined` |
+| `text`      | `text`       | The data expression to obtain a value for rendering as inner-text for this element.                                                             | `string`, `undefined`                                | `undefined` |
+| `when`      | `when`       | A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute) | `string`, `undefined`                                | `undefined` |
 
 
 ----------------------------------------------

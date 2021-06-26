@@ -443,14 +443,39 @@ export namespace Components {
     }
     interface NContentTemplate {
         /**
+          * Turn on debug statements for load, update and render events.
+         */
+        "debug": boolean;
+        /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
         "deferLoad": boolean;
         /**
-          * The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}
+          * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
+         */
+        "filter"?: string;
+        /**
+          * Cross Origin Mode
+         */
+        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * Force render with data & route changes.
+         */
+        "noCache": boolean;
+        /**
+          * The URL to remote JSON data to bind to this template
+          * @example /data.json
+         */
+        "src"?: string;
+        /**
+          * The data expression to obtain a value for rendering as inner-text for this element.
           * @default null
          */
         "text"?: string;
+        /**
+          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+         */
+        "when"?: string;
     }
     interface NData {
         /**
@@ -1501,14 +1526,39 @@ declare namespace LocalJSX {
     }
     interface NContentTemplate {
         /**
+          * Turn on debug statements for load, update and render events.
+         */
+        "debug"?: boolean;
+        /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
         "deferLoad"?: boolean;
         /**
-          * The data expression to obtain a value for rendering as inner-text for this element. {{session:user.name}}
+          * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
+         */
+        "filter"?: string;
+        /**
+          * Cross Origin Mode
+         */
+        "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * Force render with data & route changes.
+         */
+        "noCache"?: boolean;
+        /**
+          * The URL to remote JSON data to bind to this template
+          * @example /data.json
+         */
+        "src"?: string;
+        /**
+          * The data expression to obtain a value for rendering as inner-text for this element.
           * @default null
          */
         "text"?: string;
+        /**
+          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+         */
+        "when"?: string;
     }
     interface NData {
         /**

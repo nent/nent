@@ -15,21 +15,21 @@ The router system adds a few providers when you use the component **[\<n-views\>
 
 Provider Key: **route**
 
-    {{route:param}}
+```{{route:param}}```
 
 ## Query Data
 
 
 Provider Key: **query**
 
-    {{query:param}}
+```{{query:param}}```
 
 ## Visits Data
 
 Provider Key: **visits**
 
-    {{visits:session}}
+```{{visits:session}}```
 
-    {{visits:stored}}
+```{{visits:stored}}```
 
-    {{visits:all}}
+```{{visits:all}}```

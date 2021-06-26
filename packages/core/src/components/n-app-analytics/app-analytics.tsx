@@ -26,7 +26,7 @@ export class Analytics {
    * Turn on debugging to get helpful messages from the
    * app, routing, data and action systems.
    */
-  @Prop() debug = false
+  @Prop() debug: boolean = false
 
   /**
    * Raised analytics events.
