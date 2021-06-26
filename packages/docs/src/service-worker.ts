@@ -30,13 +30,16 @@ registerRoute(
     (url.origin === 'https://cdn.jsdelivr.net') |
     (url.origin === 'https://storage.googleapis.com') |
     (url.origin === 'https://fonts.gstatic.com') |
-    new StaleWhileRevalidate({
-      plugins: [
-        new CacheableResponsePlugin({
-          statuses: [0, 200],
-        }),
-      ],
-    }),
+    (url.origin === 'https://via.placeholder.com') |
+    (url.origin === 'https://www.google-analytics.com') |
+    (url.origin === 'https://www.googletagmanager.com'),
+  new CacheFirst({
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+    ],
+  }),
 )
 
 registerRoute(
