@@ -27,10 +27,10 @@ precacheAndRoute(self.__WB_MANIFEST)
 
 registerRoute(
   ({ url }) =>
-    url.origin === 'https://cdn.jsdelivr.net' ||
-    url.origin === 'https://storage.googleapis.com' ||
-    url.origin === 'https://fonts.gstatic.com' ||
-    new CacheFirst({
+    (url.origin === 'https://cdn.jsdelivr.net') |
+    (url.origin === 'https://storage.googleapis.com') |
+    (url.origin === 'https://fonts.gstatic.com') |
+    new StaleWhileRevalidate({
       plugins: [
         new CacheableResponsePlugin({
           statuses: [0, 200],
