@@ -1,6 +1,6 @@
-jest.mock('../../services/common/logging')
 jest.mock('../../services/data/evaluate.worker')
-
+jest.mock('../../services/common/logging')
+jest.mock('../n-content-repeat/filter/jsonata.worker')
 import { newSpecPage } from '@stencil/core/testing'
 import { eventBus } from '../../services/actions'
 import {
@@ -13,7 +13,6 @@ import { InMemoryProvider } from '../../services/data/providers/memory'
 import { dataStateDispose } from '../../services/data/state'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentTemplate } from './content-template'
-
 describe('n-content-template', () => {
   let session: InMemoryProvider
 
@@ -206,4 +205,160 @@ describe('n-content-template', () => {
     const subject = page.body.querySelector('n-content-template')
     subject?.remove()
   })
+
+  //  it('render remote json', async () => {
+  //    const page = await newSpecPage({
+  //      components: [ContentTemplate],
+  //    })
+  //
+  //    page.win.fetch = jest.fn().mockImplementation(() =>
+  //      Promise.resolve({
+  //        status: 200,
+  //        json: () => Promise.resolve([1, 2, 3]),
+  //      }),
+  //    )
+  //
+  //    await page.setContent(`<n-content-template src="items.json">
+  //        <template><b>{{data:item}}</b></template>
+  //      </n-content-template>`)
+  //
+  //    await page.waitForChanges()
+  //
+  //    expect(page.root).toEqualHtml(`
+  //      <n-content-template src="items.json">
+  //        <template><b>{{data:item}}</b></template>
+  //        <div class="data-content">
+  //          <b>1</b>
+  //        </div>
+  //      </n-content-template>
+  //    `)
+  //
+  //    page.root?.remove()
+  //  })
+  //
+  //  it('renders and responds to changing data', async () => {
+  //    const page = await newSpecPage({
+  //      components: [ContentTemplate],
+  //    })
+  //
+  //    page.win.fetch = jest
+  //      .fn()
+  //      .mockImplementationOnce(() =>
+  //        Promise.resolve({
+  //          status: 200,
+  //          json: () => Promise.resolve([1, 2, 3]),
+  //        }),
+  //      )
+  //      .mockImplementationOnce(() =>
+  //        Promise.resolve({
+  //          status: 200,
+  //          json: () => Promise.resolve([1, 2, 3, 4, 5]),
+  //        }),
+  //      )
+  //
+  //    await page.setContent(`<n-content-template src="items.json" no-cache>
+  //        <template><b>{{data:item}}</b></template>
+  //      </n-content-template>`)
+  //
+  //    await page.waitForChanges()
+  //
+  //    expect(page.root).toEqualHtml(`
+  //      <n-content-template src="items.json" no-cache>
+  //        <template><b>{{data:item}}</b></template>
+  //        <div class="data-content">
+  //          <b>1</b>
+  //        </div>
+  //      </n-content-template>
+  //    `)
+  //
+  //    eventBus.emit(DATA_EVENTS.DataChanged, {})
+  //
+  //    await page.waitForChanges()
+  //
+  //    expect(page.root).toEqualHtml(`
+  //      <n-content-template src="items.json" no-cache>
+  //        <template><b>{{data:item}}</b></template>
+  //        <div class="data-content">
+  //          <b>1</b>
+  //        </div>
+  //      </n-content-template>
+  //    `)
+  //
+  //    page.root?.remove()
+  //  })
+  //
+  // it('handles erroring remote data', async () => {
+  //   const page = await newSpecPage({
+  //     components: [ContentTemplate],
+  //   })
+  //
+  //   page.win.fetch = jest
+  //     .fn()
+  //     .mockImplementationOnce(() =>
+  //       Promise.resolve({
+  //         status: 404,
+  //         json: () => Promise.resolve(null),
+  //       }),
+  //     )
+  //     .mockImplementationOnce(() =>
+  //       Promise.resolve({
+  //         status: 200,
+  //         json: () => Promise.reject('error'),
+  //       }),
+  //     )
+  //
+  //   await page.setContent(`<n-content-template src="items.json">
+  //       <template><b>{{data:item}}</b></template>
+  //     </n-content-template>`)
+  //
+  //   await page.waitForChanges()
+  //
+  //   expect(page.root).toEqualHtml(`
+  //     <n-content-template src="items.json">
+  //       <template><b>{{data:item}}</b></template>
+  //     </n-content-template>
+  //   `)
+  //
+  //   eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
+  //
+  //   await page.waitForChanges()
+  //
+  //   expect(page.root).toEqualHtml(`
+  //     <n-content-template src="items.json">
+  //       <template><b>{{data:item}}</b></template>
+  //     </n-content-template>
+  //   `)
+  //
+  //   page.root?.remove()
+  // })
+  //
+  // it('filter remote json', async () => {
+  //   const page = await newSpecPage({
+  //     components: [ContentTemplate],
+  //   })
+  //
+  //   page.win.fetch = jest.fn().mockImplementation(() =>
+  //     Promise.resolve({
+  //       status: 200,
+  //       json: () => Promise.resolve(remoteData),
+  //     }),
+  //   )
+  //
+  //   await page.setContent(`<n-content-template src="data.json" filter="[Account.Order.Product.SKU]">
+  //       <template><b>{{data:item}}</b></template>
+  //     </n-content-template>`)
+  //
+  //   await page.waitForChanges()
+  //
+  //   expect(page.root).toEqualHtml(`
+  //     <n-content-template src="data.json" filter="[Account.Order.Product.SKU][0]">
+  //       <template><b>{{data:item}}</b></template>
+  //       <div class="data-content">
+  //         <b>0406654608</b>
+  //       </div>
+  //     </n-content-template>
+  //   `)
+  //
+  //   page.root?.remove()
+  // })
 })
