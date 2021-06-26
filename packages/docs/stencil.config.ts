@@ -20,6 +20,7 @@ const config: Config = {
   devServer: {
     port: 3002,
     root: '../../docs',
+    openBrowser: false,
   },
   outputTargets: [
     {

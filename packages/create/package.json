@@ -4,9 +4,6 @@
   "version": "0.6.6",
   "author": "Support <user@nent.dev>",
   "type": "commonjs",
-  "engines": {
-    "node": "^14.14.0"
-  },
   "bin": {
     "nent": "src/cli.js"
   },

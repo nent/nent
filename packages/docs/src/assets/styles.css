@@ -102,7 +102,7 @@ nav button:focus {
 header .navbar-brand a,
 header .navbar-brand a:any-link {
   color: white;
-  font-size: 6rem;
+  font-size: 3rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   margin: 0;
@@ -225,15 +225,15 @@ a.active * {
 /* ELEMENTS ------ */
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1;
-  margin: 1rem 0;
+  margin: .5rem 0;
   vertical-align: middle;
 }
 
 h2 {
-  font-size: 1.5rem;
-  margin-bottom: 2em;
+  font-size: 1.2rem;
+  margin-bottom: 1em;
 }
 h3 {
   font-size: 1.2rem;

@@ -1,12 +1,10 @@
 # NENT: Web Application Elements
 
 ![MIT](https://badgen.net/github/license/nent/nent?icon=github&color=purple)
-![tree-shaking](https://badgen.net/badge/tree-shaking/enabled?icon=packagephobia&color=purple)
 ![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label&color=purple)
 [![webnamespaces.org](https://badgen.net/badge/webnamespaces.org/n-*?color=purple)](https://webnamespaces.org)
 [![NPM](https://badgen.net/npm/v/@nent/core?icon&color=purple)](https://www.npmjs.com/package/@nent/core)
 [![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=purple)](https://coveralls.io/github/nent/nent)
-[![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=purple)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
 [![unpkgd](https://badgen.net/badge/unpkg/CDN?color=purple)](https://unpkg.com/browse/@nent/core)
 
 ## What is NENT?

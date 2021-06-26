@@ -1,24 +1,16 @@
 // @ts-nocheck
 self.importScripts('/workbox-v6.1.5/workbox-sw.js')
 const { skipWaiting, clientsClaim } = workbox.core
-const {
-  registerRoute,
-  setDefaultHandler,
-  NavigationRoute,
-} = workbox.routing
+const { registerRoute, setDefaultHandler, NavigationRoute } =
+  workbox.routing
 const { CacheableResponsePlugin } = workbox.cacheableResponse
 // Used to limit entries in cache, remove entries after a certain period of time
 const { ExpirationPlugin } = workbox.expiration
-const {
-  precacheAndRoute,
-  createHandlerBoundToURL,
-} = workbox.precaching
+const { precacheAndRoute, createHandlerBoundToURL } =
+  workbox.precaching
 
-const {
-  CacheFirst,
-  NetworkFirst,
-  StaleWhileRevalidate,
-} = workbox.strategies
+const { CacheFirst, NetworkFirst, StaleWhileRevalidate } =
+  workbox.strategies
 
 self.skipWaiting()
 clientsClaim()
@@ -35,19 +27,16 @@ precacheAndRoute(self.__WB_MANIFEST)
 
 registerRoute(
   ({ url }) =>
-    (url.origin === 'https://cdn.jsdelivr.net') |
-    (url.origin === 'https://storage.googleapis.com') |
-    (url.origin === 'https://fonts.gstatic.com') |
-    (url.origin === 'https://via.placeholder.com') |
-    (url.origin === 'https://www.google-analytics.com') |
-    (url.origin === 'https://www.googletagmanager.com'),
-  new CacheFirst({
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-    ],
-  }),
+    url.origin === 'https://cdn.jsdelivr.net' ||
+    url.origin === 'https://storage.googleapis.com' ||
+    url.origin === 'https://fonts.gstatic.com' ||
+    new CacheFirst({
+      plugins: [
+        new CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    }),
 )
 
 registerRoute(
