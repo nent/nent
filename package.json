@@ -92,7 +92,7 @@
     "onchange": "7.1.0",
     "pinst": "2.1.6",
     "prettier": "2.3.2",
-    "puppeteer": "10.0.0",
+    "puppeteer": "10.1.0",
     "rimraf": "3.0.2",
     "rollup-plugin-analyzer": "4.0.0",
     "rollup-plugin-visualizer": "5.5.0",
