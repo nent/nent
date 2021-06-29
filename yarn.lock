@@ -6959,7 +6959,7 @@ latest-version@^5.0.0:
   dependencies:
     package-json "^6.3.0"
 
-lerna@4.0.1:
+lerna@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/lerna/-/lerna-4.0.0.tgz#b139d685d50ea0ca1be87713a7c2f44a5b678e9e"
   integrity sha512-DD/i1znurfOmNJb0OBw66NmNqiM8kF6uIrzrJ0wGE3VNdzeOhz9ziWLYiRaZDGGwgbcjOo6eIfcx9O5Qynz+kg==
@@ -9393,10 +9393,10 @@ rollup-plugin-terser@^7.0.0:
     serialize-javascript "^4.0.0"
     terser "^5.0.0"
 
-rollup-plugin-visualizer@5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-5.5.0.tgz#dbe9daa3a46576fb697eb62b19ed251112b85d1e"
-  integrity sha512-QUd0ZHGYn6rgogS+yzG08AvMk9J4kR1lO1cpLJCIAQhbyIGSBdqCddKWtxDsdmsxhkY/GCGw8CvoSB3MwMQOIQ==
+rollup-plugin-visualizer@5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-5.5.1.tgz#cba4eac48a2e3237cd172413d33976be64e54abe"
+  integrity sha512-8fqN6nYNhj8CtP+4Ca0VmaPaPSu/7DYKFMA2kOvNceMiKrwX+wStwTvW0ZEKR6SLbiT6oDbi86pDTUeREwJU6g==
   dependencies:
     nanoid "^3.1.22"
     open "^7.4.2"
