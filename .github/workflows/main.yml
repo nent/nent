@@ -138,7 +138,7 @@ jobs:
       - name: Publish
 #         if: steps.tag_check.outputs.exists_tag == 'false'
         run: |
-          yarn lerna publish --canary --preid beta --yes
+          yarn lerna publish --canary --preid beta --yes --no-verify-access
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
 #       - uses: actions/github-script@0.8.0
