@@ -81,8 +81,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14.14.0
-          registry-url: 'https://registry.npmjs.org'
-          scope: '@nent'
       - name: Git Identity
         run: |
           git config --global user.name 'github-actions[bot]'
