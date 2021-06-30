@@ -81,6 +81,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14.14.0
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@nent'
       - name: Git Identity
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -125,7 +127,6 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
         with:
           tag_name: v${{ env.CURRENT_VERSION }}
           # Copy Pull Request's tile and body to Release Note
@@ -137,8 +138,9 @@ jobs:
       - name: Publish
 #         if: steps.tag_check.outputs.exists_tag == 'false'
         run: |
-          npm whoami
           yarn lerna publish --canary --preid beta --yes
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
 #       - uses: actions/github-script@0.8.0
 #         with:
 #           github-token: ${{secrets.GITHUB_TOKEN}}
