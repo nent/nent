@@ -16,7 +16,7 @@
     "postcss": "8.3.5",
     "purge-icons": "0.7.0",
     "tailwindcss": "2.2.4",
-    "typescript": "4.3.4",
+    "typescript": "4.3.5",
     "vite": "2.3.8",
     "vite-plugin-cdn-import": "0.3.2",
     "vite-plugin-purge-icons": "0.7.0",
