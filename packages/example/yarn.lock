@@ -920,10 +920,10 @@
   dependencies:
     cross-fetch "^3.0.6"
 
-"@iconify/iconify@2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@iconify/iconify/-/iconify-2.0.2.tgz#8e8be6c8f20042ab69324bc6db6fc884be98b418"
-  integrity sha512-m3MDKXYRRsrVLZFFUkSaTv9/jTk0sLOlIhlmupj2/VhHnZt0i3ACyUD7rx/Vd5bLvtotrHaT5e/ZOLP7uiFmKQ==
+"@iconify/iconify@2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@iconify/iconify/-/iconify-2.0.3.tgz#1ae5bc81c2615b4d24ae495e6bdd6b5109f6e1dc"
+  integrity sha512-Ctjre38vIf0PjjU2joj+DheSDFajdLiZ7gNdttjsXPqB9yYrmqOIDe1ce8L8v0qO86kM05hF9lUMriQTlgiSPA==
   dependencies:
     cross-fetch "^3.0.6"
 

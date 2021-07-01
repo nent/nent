@@ -9,7 +9,7 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
-    "@iconify/iconify": "2.0.2",
+    "@iconify/iconify": "2.0.3",
     "@nent/core": "0.6.8",
     "@tailwindcss/typography": "0.4.1",
     "@types/workbox-build": "5.0.0",
