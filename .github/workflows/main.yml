@@ -136,7 +136,7 @@ jobs:
       - name: Publish
 #         if: steps.tag_check.outputs.exists_tag == 'false'
         run: |
-            npm login jasonwicker $NPM_PUBLISH lerna publish
+            npm login sheppardtri $NPM_PUBLISH lerna publish
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
 #       - uses: actions/github-script@0.8.0
