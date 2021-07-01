@@ -80,7 +80,7 @@ jobs:
       - name: Configure CI Git User
         run: |
           git remote rm origin
-          git remote set-url origin https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/SheppardTri/nent.git
+          git remote add origin "https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/SheppardTri/nent.git"
           git fetch
           git config --global user.name '@sheppardtri'
           git config --global user.email 'sheppardtri@users.noreply.github.com'
