@@ -8,7 +8,7 @@
     "url": "https://github.com/nent/nent/issues",
     "email": "tech@nent.dev"
   },
-  "repository": "https://github.com/nent/nent.git",
+  "repository": "https://github.com/SheppardTri/nent.git",
   "scripts": {
     ":build ---": "---------------",
     "build": "run-s build:core build:docs",
