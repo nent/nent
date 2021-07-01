@@ -79,9 +79,11 @@ jobs:
 
       - name: Configure CI Git User
         run: |
+          git remote rm origin
+          git remote set-url origin https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/SheppardTri/nent.git
+          git fetch
           git config --global user.name '@sheppardtri'
           git config --global user.email 'sheppardtri@users.noreply.github.com'
-          git remote set-url origin https://$GITHUB_ACTOR:$GITHUB_PAT
         env:
           GITHUB_PAT: ${{ secrets.GH_PAT }}
 
@@ -101,7 +103,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish package
-        run: lerna publish --yes
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          lerna publish --yes
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
