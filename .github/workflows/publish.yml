@@ -11,19 +11,19 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     steps:
-      - name: configure
+      - name: checkout
         run: |
           git remote rm origin
           git remote add origin "https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/nent/nent.git"
           git fetch
           git config --global user.name '@logrythmik'
           git config --global user.email 'logrythmik@users.noreply.github.com'
+          git checkout "${GITHUB_REF:11}" && git pull
         env:
           GITHUB_PAT: ${{ secrets.GH_PAT }}
 
-      - name: checkout
+      - name: setup-pnm
         uses: actions/setup-node@v2
-        run: git checkout "${GITHUB_REF:11}" && git pull
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
