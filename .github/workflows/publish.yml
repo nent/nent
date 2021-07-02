@@ -17,14 +17,14 @@ jobs:
           git config --global user.name '@logrythmik'
           git config --global user.email 'logrythmik@users.noreply.github.com'
 
-      - name: setup-pnm
+      - name: setup-npm
         uses: actions/setup-node@v2
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
-          
+      - run: npm whoami
       - name: build
         run: yarn install && yarn build
        
