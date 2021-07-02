@@ -4,6 +4,7 @@
 name: main
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
 
@@ -68,28 +69,42 @@ jobs:
         env:
           CI: true
       - run: yarn build
-
   publish:
     name: Publish
     needs: build
     runs-on: ubuntu-latest
-    env:
-      NPM_TOKEN: ${{secrets.NPM_PUBLISH}}
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout
+        uses: actions/checkout@v1
+
+      - name: Configure CI Git User
+        run: |
+          git remote rm origin
+          git remote add origin "https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/SheppardTri/nent.git"
+          git fetch
+          git config --global user.name '@sheppardtri'
+          git config --global user.email 'sheppardtri@users.noreply.github.com'
+        env:
+          GITHUB_PAT: ${{ secrets.GH_PAT }}
+
+      - name: Checkout and pull branch
+        run: git checkout "${GITHUB_REF:11}" && git pull
+
+      - name: Install Packages
+        run: yarn install
       - uses: actions/setup-node@v2
         with:
-          node-version: 14.14.0
-      - run: yarn
-      # run: yarn run publish
-      #- name: Create Release
-      #  id: create_release
-      #  uses: actions/create-release@v1
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  with:
-      #    tag_name: ${{ steps.tag_version.outputs.new_tag }}
-      #    release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-      #    body: ${{ steps.tag_version.outputs.changelog }}
-      #    prerelease: true
-      #    draft: true
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish package
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          lerna publish --yes
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
