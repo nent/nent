@@ -1070,10 +1070,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/workbox-build@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@types/workbox-build/-/workbox-build-5.0.0.tgz#62a819f8ad0314dc75213dfc567f9e447ea0fcae"
-  integrity sha512-6hn6W63+U1zaTRCaHIwJTVx1FaZbXZDA9dOE/txsQk8D0nRDZLxtnTwhfyvhtxnWb+zY7nH7psuJXv4oUDZyMA==
+"@types/workbox-build@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/workbox-build/-/workbox-build-5.0.1.tgz#5a0d5f97e838e34c8a8022d4da64a7fe4a9e0920"
+  integrity sha512-lJrGzEHX/QT3E4F5ABBNvCb8ObOr2LfHNAqAGfRuBPncWlU/d3iIUorECKNXmnZnLbLsgpgvhJWPMgByzR+L+A==
   dependencies:
     "@types/workbox-routing" "*"
 
