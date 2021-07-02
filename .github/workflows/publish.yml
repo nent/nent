@@ -11,10 +11,7 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v1
-
-      - name: Configure CI Git User
+      - name: configure
         run: |
           git remote rm origin
           git remote add origin "https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/nent/nent.git"
@@ -24,21 +21,20 @@ jobs:
         env:
           GITHUB_PAT: ${{ secrets.GH_PAT }}
 
-      - name: Checkout and pull branch
+      - name: checkout
+        uses: actions/setup-node@v2
         run: git checkout "${GITHUB_REF:11}" && git pull
-
-      - uses: actions/setup-node@v2
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: yarn install
+
+      - name: build
+        run: yarn install && yarn build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
 
-      - name: Publish package
-        run: |
-          yarn build
-          lerna publish --yes
+      - name: publish
+        run: lerna publish patch --yes
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
