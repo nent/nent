@@ -1,0 +1,45 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+
+      - name: Configure CI Git User
+        run: |
+          git remote rm origin
+          git remote add origin "https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/nent/nent.git"
+          git fetch
+          git config --global user.name '@logrythmik'
+          git config --global user.email 'logrythmik@users.noreply.github.com'
+        env:
+          GITHUB_PAT: ${{ secrets.GH_PAT }}
+
+      - name: Checkout and pull branch
+        run: git checkout "${GITHUB_REF:11}" && git pull
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
+
+      - name: Publish package
+        run: |
+          yarn build
+          lerna publish --yes
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
