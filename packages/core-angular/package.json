@@ -1,6 +1,6 @@
 {
   "name": "@nent/angular",
-  "version": "0.6.9",
+  "version": "0.6.10",
   "description": "",
   "license": "MIT",
   "repository": {
@@ -24,7 +24,7 @@
     "dist/"
   ],
   "dependencies": {
-    "@nent/core": "^0.6.9",
+    "@nent/core": "^0.6.10",
     "tslib": "2.3.0"
   },
   "private": true,
