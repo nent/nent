@@ -13,7 +13,7 @@
     "@iconify/iconify": "2.0.3",
     "@nent/core": "0.6.8",
     "@tailwindcss/typography": "0.4.1",
-    "@types/workbox-build": "5.0.0",
+    "@types/workbox-build": "5.0.1",
     "normalize-url": "6.1.0",
     "postcss": "8.3.5",
     "purge-icons": "0.7.0",
