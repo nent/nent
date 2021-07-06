@@ -61,7 +61,7 @@
     "@stencil/core": "2.6.0",
     "@stencil/react-output-target": "0.0.9",
     "@stencil/store": "1.4.1",
-    "@types/howler": "2.2.2",
+    "@types/howler": "2.2.3",
     "eslint-plugin-clean-regex": "0.5.1",
     "expr-eval": "2.0.2",
     "jsonata": "1.8.4",
