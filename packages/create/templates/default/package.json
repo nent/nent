@@ -11,7 +11,7 @@
   "dependencies": {},
   "devDependencies": {
     "@iconify/iconify": "2.0.3",
-    "@nent/core": "0.6.12",
+    "@nent/core": "0.6.14",
     "@tailwindcss/typography": "0.4.1",
     "@types/workbox-build": "5.0.1",
     "normalize-url": "6.1.0",

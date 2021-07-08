@@ -934,10 +934,10 @@
   dependencies:
     cross-fetch "^3.0.6"
 
-"@nent/core@0.6.12":
-  version "0.6.12"
-  resolved "https://registry.yarnpkg.com/@nent/core/-/core-0.6.12.tgz#740995351a70f4798b78085a3b24452ee790b57b"
-  integrity sha512-WjJbVs6XHSEDnKGy14iQ85+P9jAC2dpzPZTREv/5UsJ0AiTP5d1YFCwAg06PrZ6orXlNmlhr1jss4h8L/kU03g==
+"@nent/core@0.6.14":
+  version "0.6.14"
+  resolved "https://registry.yarnpkg.com/@nent/core/-/core-0.6.14.tgz#428f3155dc52af02ac812701ae59f931930d7f29"
+  integrity sha512-88lD/4WiB+IyP+kUERuoIhKoFiArHaKyfJ4Oh+aGjrKrykFPvb4beIxZX8erBALMubuL/0SZ27rtMul+zjtA3Q==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
