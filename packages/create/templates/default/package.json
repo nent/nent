@@ -14,7 +14,7 @@
     "@nent/core": "0.6.14",
     "@tailwindcss/typography": "0.4.1",
     "@types/workbox-build": "5.0.1",
-    "normalize-url": "6.1.0",
+    "normalize-url": "7.0.0",
     "postcss": "8.3.6",
     "purge-icons": "0.7.0",
     "tailwindcss": "2.2.5",
