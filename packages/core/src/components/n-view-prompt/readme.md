@@ -67,9 +67,9 @@ This route will be activated if a value for 'consent' was not found in local-sto
 
 > **Important**: If a value for `{{storage:consent}}` is not set in this route's somehow, the user cannot get to the parent page.
 
-This data can be set manually or using our specialized declarative components to update data. See [actions](/actions) for more info.
+This data can be set manually or using our specialized declarative elements to update data. See [actions](/actions) for more info.
 
-[^1]: Check out the [data system](/data) for to use external data.
+[^1]: Check out the [data system](/data) for info to use external data.
 
 ### Optional
 
@@ -87,7 +87,7 @@ This route will be activated only through navigation. This is helpful for opt-in
 
 ### Routing & Guided Navigation
 
-This evaluation has to take place before the route is activated as the underlying data can change in the previous Do components. If the component is deemed unnecessary (the predicate returns false), the component marks itself ‘complete’ and returns control to the parent view, without revealing its contents.
+This evaluation has to take place before the route is activated as the underlying data can change in the previous Do elements. If the element is deemed unnecessary (the predicate returns false), the element marks itself ‘complete’ and returns control to the parent view, without revealing its contents.
 
 
 
@@ -132,7 +132,7 @@ Much like its parent, [\<n-view\>](/components/n-view), basic routing informatio
 | `mode`               | `mode`              | Cross Origin Mode if the content is pulled from a remote location                                                                                                                                                               | `"cors"`, `"navigate"`, `"no-cors"`, `"same-origin"` | `'cors'`    |
 | `pageTitle`          | `page-title`        | The title for this view. This is prefixed before the app title configured in n-views                                                                                                                                            | `string`                                             | `''`        |
 | `path` _(required)_  | `path`              | The path for this prompt route, including the parent's routes, excluding the router's root.                                                                                                                                     | `string`                                             | `undefined` |
-| `resolveTokens`      | `resolve-tokens`    | Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML | `boolean`                                            | `false`     |
+| `resolveTokens`      | `resolve-tokens`    | Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML | `boolean`                                            | `false`     |
 | `route` _(required)_ | --                  | Route information                                                                                                                                                                                                               | `Route`                                              | `undefined` |
 | `scrollTopOffset`    | `scroll-top-offset` | Header height or offset for scroll-top on this view.                                                                                                                                                                            | `number`, `undefined`                                | `undefined` |
 | `transition`         | `transition`        | Navigation transition between routes. This is a CSS animation class.                                                                                                                                                            | `string`, `undefined`                                | `undefined` |

@@ -6,11 +6,11 @@ import {
   h,
   Host,
   Method,
-  Prop,
+  Prop
 } from '@stencil/core'
 
 /**
- * This component leverages the browser's web-share
+ * This element leverages the browser's web-share
  * API to give the application a native-app feel.
  * @system app
  */

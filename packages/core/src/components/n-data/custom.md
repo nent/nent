@@ -116,7 +116,7 @@ document.body.dispatchEvent(event, { bubbles: true, composed: true})
 
 ```
 
-#### Stencil Component
+#### Stencil Element
 
 ```javascript
 import { Component, Event, EventEmitter, Prop, State, h } from '@stencil/core'

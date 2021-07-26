@@ -2,7 +2,7 @@ import { Component, h, Host, Prop } from '@stencil/core'
 import { appState } from '../n-app/services/state'
 
 /**
- * This component displays a checkbox to control the
+ * This element displays a checkbox to control the
  * dark-theme setting applied to the ui.
  *
  * Default: user-preference

@@ -1,5 +1,5 @@
 
-You can provide the data to use for this component directly in-line using a inner script tag.
+You can provide the data to use for this element directly in-line using a inner script tag.
 
 ```html
 <n-content-template>

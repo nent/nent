@@ -4,7 +4,7 @@ import {
   h,
   Host,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
@@ -12,7 +12,7 @@ import {
   ComponentRefresher,
   debugIf,
   valueToArray,
-  warnIf,
+  warnIf
 } from '../../services/common'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
@@ -81,7 +81,7 @@ export class ContentDataRepeat {
   @Prop() noCache: boolean = false
 
   /**
-   * A data-token predicate to advise this component when
+   * A data-token predicate to advise this element when
    * to render (useful if used in a dynamic route or if
    * tokens are used in the 'src' attribute)
    */

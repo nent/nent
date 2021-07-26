@@ -5,11 +5,11 @@ import { IServiceProvider } from '../../services/data/interfaces'
 import {
   onVideoChange,
   videoState,
-  VIDEO_EVENTS,
+  VIDEO_EVENTS
 } from '../n-video/services/index'
 
 /**
- * This component displays a checkbox to control the autoplay setting,
+ * This element displays a checkbox to control the autoplay setting,
  * used for video playback - as well as automatic navigation to the
  * next page, when a video ends. Default: enabled
  *

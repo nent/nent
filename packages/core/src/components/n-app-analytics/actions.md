@@ -1,7 +1,7 @@
-# N-ANALYTICS: Actions
+# N-APP-ANALYTICS: Actions
 
 The Analytics Action Listener is configured to handle commands raised through the [actions system](/actions)
-to send to all analytics components which can execute functions for any analytics system configured.
+to send to all analytics elements which can execute functions for any analytics system configured.
 
 ## Topic: `analytics`
 
@@ -15,7 +15,7 @@ to send to all analytics components which can execute functions for any analytic
 
 ### `send-event`
 
-Sends the payload to the onEvent handler in n-app-analytics component.
+Sends the payload to the onEvent handler in n-app-analytics element.
 
 - **(key:value)[]**\
   All key-values pairs are sent to the handler.
@@ -33,7 +33,7 @@ Sends the payload to the onEvent handler in n-app-analytics component.
 
 ### `send-view-time`
 
-Sends the payload to the onEvent handler in n-app-analytics component.
+Sends the payload to the onEvent handler in n-app-analytics element.
 
 - **(key-values)[]**\
   All key-values pairs are sent to the handler.
@@ -51,7 +51,7 @@ Sends the payload to the onEvent handler in n-app-analytics component.
 
 ### `send-page-view`
 
-Sends the payload to the onEvent handler in n-app-analytics component.
+Sends the payload to the onEvent handler in n-app-analytics element.
 
 - **(key:value)[]**\
   All key-values pairs are sent to the handler.

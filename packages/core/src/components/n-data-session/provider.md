@@ -6,7 +6,7 @@ This provider uses the built-in key-value store in the browser to persist data a
 
 ## Installation
 
-The session provider is registered using a component **[\<n-data-session\>](/components/n-data-session)**.
+The session provider is registered using the **[\<n-data-session\>](/components/n-data-session)** element.
 
 ```html
 <n-data-session prefix="x" name="session">

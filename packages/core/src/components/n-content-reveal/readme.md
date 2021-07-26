@@ -1,6 +1,6 @@
 # N-CONTENT-REVEAL
 
-Use this component to add a little flair to any HTML. It creates an entrance animation using the configured attributes to add pop to any page.
+Use this element to add a little flair to any HTML. It creates an entrance animation using the configured attributes to add pop to any page.
 
 ## Element
 

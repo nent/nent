@@ -22,7 +22,7 @@ This element holds the data that **is** the Action submitted through [Actions](/
 
 ### Basic
 
-For most action-argument data, it is easies to specify them as key-value pairs using the `data-*` attributes within the `n-action` tag. The name of the argument should be prefixed with `data-`. A
+For most action-argument data, it is easiest to specify them as key-value pairs using the `data-*` attributes within the `n-action` tag. The name of the argument should be prefixed with `data-`. A
 
 ```html
 <n-action topic='<topic>'
@@ -96,7 +96,7 @@ Type: `Promise<EventAction<any> | null>`
 
 ### `sendAction(data?: Record<string, any> | undefined) => Promise<void>`
 
-Send this action to the the action messaging system.
+Send this action to the action messaging system.
 
 #### Returns
 

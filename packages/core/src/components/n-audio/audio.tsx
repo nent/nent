@@ -4,14 +4,14 @@ import {
   h,
   Host,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import {
   addDataProvider,
-  removeDataProvider,
+  removeDataProvider
 } from '../../services/data/factory'
 import { AudioActionListener } from './services/actions'
 import { AudioDataProvider } from './services/provider'
@@ -59,7 +59,7 @@ export class Audio {
 
   /**
    * The display mode enabled shows player state and stats.
-   * No track information or duration is be displayed.
+   * No track information or duration is to be displayed.
    */
   @Prop() display: boolean = false
 

@@ -1,6 +1,6 @@
 # N-DATA-SESSION
 
-This component enables the **Session Data Provider**.
+This element enables the **Session Data Provider**.
 
 ## Cookie Data Provider
 

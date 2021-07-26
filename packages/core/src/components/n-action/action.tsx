@@ -5,18 +5,18 @@ import {
   Host,
   Method,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  IActionElement,
+  IActionElement
 } from '../../services/actions'
 import { warn } from '../../services/common/logging'
 
 /**
  * This element just holds data to express the actionEvent to fire. This element
- * should always be the child of a n-action-activator.
+ * should always be the child of an n-action-activator.
  *
  * @system actions
  */
@@ -82,7 +82,7 @@ export class Action implements IActionElement {
   }
 
   /**
-   * Send this action to the the action messaging system.
+   * Send this action to the action messaging system.
    */
   @Method()
   async sendAction(data?: Record<string, any>) {

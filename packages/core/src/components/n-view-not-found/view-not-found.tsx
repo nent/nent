@@ -4,15 +4,15 @@ import {
   h,
   Host,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
 
 /**
- * This component should be placed at the end of the content,
- * inside the n-views component. It shows up when no views
+ * This element should be placed at the end of the content,
+ * inside the n-views element. It shows up when no views
  * above it resolve.
  *
  * @system routing

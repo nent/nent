@@ -1,6 +1,6 @@
 # N-VIDEO-SWITCH
 
-The `<n-video-switch>` component displays a checkbox to control the autoplay setting used for video playback - as well as automatic navigation to the next page when a video ends.
+The `<n-video-switch>` element displays a checkbox to control the autoplay setting used for video playback - as well as automatic navigation to the next page when a video ends.
 
 Default: enabled
 
@@ -11,7 +11,7 @@ Default: enabled
 
 ### Basic
 
-Add the `<n-video-switch>` component to any page to allow the user to adjust the autoplay setting. You can style it using standard CSS and if necessary, add CSS styles directly to the input element using the **classes** attribute.
+Add the `<n-video-switch>` element to any page to allow the user to adjust the autoplay setting. You can style it using standard CSS and if necessary, add CSS styles directly to the input element using the **classes** attribute.
 
 ```html
 <n-video-switch ...>

@@ -1,5 +1,5 @@
 
-For most action-argument data, it is easies to specify them as key-value pairs using the `data-*` attributes within the `n-action` tag. The name of the argument should be prefixed with `data-`. A
+For most action-argument data, it is easiest to specify them as key-value pairs using the `data-*` attributes within the `n-action` tag. The name of the argument should be prefixed with `data-`. A
 
 ```html
 <n-action topic='<topic>'

@@ -27,7 +27,7 @@ The expression can be any string or an expression with tokens from a registered 
 
 ### Template Interpolation
 
-This component supports HTML string interpolation within a child template tag. The values get resolved, just like the expression. The values in the attributes replace the tokens in the content.
+This element supports HTML string interpolation within a child template tag. The values get resolved, just like the expression. The values in the attributes replace the tokens in the content.
 
 ```html
 <n-content-template>
@@ -37,12 +37,12 @@ This component supports HTML string interpolation within a child template tag. T
 </n-content-template>
 ```
 
-> This component only supports template interpolation within the **\<template\>** tag.
+> This element only supports template interpolation within the **\<template\>** tag.
 
 
 ### Json
 
-You can provide the data to use for this component directly in-line using a inner script tag.
+You can provide the data to use for this element directly in-line using a inner script tag.
 
 ```html
 <n-content-template>
@@ -71,7 +71,7 @@ You can provide the data to use for this component directly in-line using a inne
 | `noCache`   | `no-cache`   | Force render with data & route changes.                                                                                                         | `boolean`                                            | `false`     |
 | `src`       | `src`        | The URL to remote JSON data to bind to this template                                                                                            | `string`, `undefined`                                | `undefined` |
 | `text`      | `text`       | The data expression to obtain a value for rendering as inner-text for this element.                                                             | `string`, `undefined`                                | `undefined` |
-| `when`      | `when`       | A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute) | `string`, `undefined`                                | `undefined` |
+| `when`      | `when`       | A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute) | `string`, `undefined`                                | `undefined` |
 
 
 ----------------------------------------------

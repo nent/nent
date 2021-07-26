@@ -2,18 +2,18 @@ import { Component, Element, Prop } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  eventBus,
+  eventBus
 } from '../../services/actions'
 import {
   addDataProvider,
-  removeDataProvider,
+  removeDataProvider
 } from '../../services/data/factory'
 import { DATA_COMMANDS, SetData } from '../n-data/services/interfaces'
 import { StorageService } from './storage/service'
 
 /**
- * This component enables the **Storage Data Provider**, that
- * leverages the browser 'long-term' data storage.
+ * This element enables the **Storage Data Provider**, that
+ * leverages the browsers 'long-term' data storage.
  *
  * @system data
  * @extension actions

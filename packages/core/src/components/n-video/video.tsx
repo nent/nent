@@ -5,19 +5,19 @@ import {
   EventEmitter,
   h,
   Host,
-  Prop,
+  Prop
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf, warn } from '../../services/common/logging'
 import {
   IElementTimer,
-  ITimer,
+  ITimer
 } from '../n-presentation/services/interfaces'
 import { VideoActionListener } from './services/actions'
 import { VideoTimer } from './services/timer'
 /**
- * This component enables th UI services. These are typically
- * web component plug-ins to manage things like Modals, Drawers,
+ * This element enables the UI services. These are typically
+ * web element plug-ins to manage things like Modals, Drawers,
  * menus, etc. The basic provider is used to toggle dark-mode.
  *
  * @system video

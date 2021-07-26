@@ -1,12 +1,12 @@
 # N-VIEW-NOT-FOUND
 
-The `<n-view-not-found>` should be placed at the end of the content,
-inside the n-views component. It shows up when no views
+The `<n-view-not-found>` element should be placed at the end of the content,
+inside the n-views element. It shows up when no views
 above it resolve.
 
 ## Usage
 
-Using the `<n-view-not-found>` component .
+Using the `<n-view-not-found>` element.
 
 ```html
 <n-views>

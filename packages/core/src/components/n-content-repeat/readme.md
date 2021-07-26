@@ -1,4 +1,4 @@
-# N-DATA-REPEAT
+# N-CONTENT-REPEAT
 
 This tag renders a template for each item in the configured array. The item template uses value expressions to insert data from any [data provider](/data/providers) as well as the item in the array.
 
@@ -29,7 +29,7 @@ This component supports HTML string interpolation within a child template tag. E
 
 ## Items Source
 
-This component supports three ways to express the collection or where it comes from.
+This element supports three ways to express the collection or where it comes from.
 
 <!-- Auto Generated Below -->
 
@@ -104,7 +104,7 @@ The **items** attribute can be any array-string or an [expression](/data/express
 | `items`     | `items`      | The array-string or data expression to obtain a collection for rendering the template. {{session:cart.items}}                                   | `string`, `undefined` | `undefined` |
 | `itemsSrc`  | `items-src`  | The URL to remote JSON collection to use for the items.                                                                                         | `string`, `undefined` | `undefined` |
 | `noCache`   | `no-cache`   | Force render with data & route changes.                                                                                                         | `boolean`             | `false`     |
-| `when`      | `when`       | A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute) | `string`, `undefined` | `undefined` |
+| `when`      | `when`       | A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute) | `string`, `undefined` | `undefined` |
 
 
 ----------------------------------------------

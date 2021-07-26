@@ -41,7 +41,7 @@ Writes data to the console using console.log()
 Arguments:
 
 * **message** (required)\
-  Any data that is sent to console.log
+  Any data that is sent to console.log()
 
 ```html
 <n-action-activator activate="on-render">
@@ -61,7 +61,7 @@ Writes data to the console using console.log()
 Arguments:
 
 * **message** (required)\
-  Any data that is sent to console.warn
+  Any data that is sent to console.warn()
 
 ```html
 <n-action-activator activate="on-render">
@@ -80,8 +80,8 @@ Writes data to the console using console.dir()
 
 Arguments:
 
-* **<any>** (required)\
-  Any data that is sent to console.dir
+* **any** (required)\
+  Any data that is sent to console.dir()
 
 ```html
 <n-action-activator activate="on-render">

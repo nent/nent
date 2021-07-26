@@ -1,6 +1,6 @@
 # N-DATA
 
-The `<n-data>` component enables the data system. Once enabled, [data expressions](/data/expressions) can be used to inject data into the [content](/content) or used for [ navigation](/routing/navigation).
+The `<n-data>` element enables the data system. Once enabled, [data expressions](/data/expressions) can be used to inject data into the [content](/content) or used for [ navigation](/routing/navigation).
 
 > See [data](/data) for full documentation
 

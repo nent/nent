@@ -3,14 +3,14 @@ import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
 import {
   commonState,
-  onCommonStateChange,
+  onCommonStateChange
 } from '../../services/common/state'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { ElementsActionListener } from './services/actions'
 
 /**
- * This element enables element manipulation through n-actions.
+ * This element enables element manipulation through the n-actions element.
  * Add it to the page to perform actions like 'add-css', toggle
  * attributes or to execute functions on the DOM without code.
  *

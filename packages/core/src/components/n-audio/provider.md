@@ -6,7 +6,7 @@ Provider Key: **audio**
 
 ## Installation
 
-The audio provider is registered using the audio component **[\<n-audio\>](/components/n-audio)**. Add the `data-provider attribute to turn it on.
+The audio provider is registered using the audio element **[\<n-audio\>](/components/n-audio)**. Add the `data-provider` attribute to turn it on.
 
 ```html
 <n-audio data-provider>

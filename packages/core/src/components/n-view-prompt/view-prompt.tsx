@@ -4,7 +4,7 @@ import {
   h,
   Host,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { ComponentRefresher, slugify } from '../../services/common'
@@ -20,7 +20,7 @@ import { MatchResults } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
 
 /**
- * This element represents a specialized child-route for a parent \<n-view\> component.
+ * This element represents a specialized child-route for a parent \<n-view\> element.
  * It represents a sub-route that has required and workflow behaviors.
  *
  * They are used to create, wizards, input workflows, or step by step instructions or

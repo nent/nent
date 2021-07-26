@@ -1,6 +1,6 @@
 # N-DATA-STORAGE
 
-This component enables the **Storage Data Provider**.
+This element enables the **Storage Data Provider**.
 
 ## Cookie Data Provider
 

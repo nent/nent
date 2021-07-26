@@ -44,7 +44,7 @@ This command disables audio for all music, sound and video.
 
 ## Special Commands
 
-Audio components have special action tags, to help shape the resulting action message.
+Audio elements have special action tags, to help shape the resulting action message.
 
 ### `load`
 

@@ -8,7 +8,7 @@ This store is long-lived from the same browser, but for very small data items.
 
 ## Installation
 
-The cookie provider is registered using a component **[\<n-data-cookie\>](/components/n-data-cookie)**.
+The cookie provider is registered using the **[\<n-data-cookie\>](/components/n-data-cookie)** element.
 
 ```html
 <n-data-cookie name="cookie"> </n-data-cookie>

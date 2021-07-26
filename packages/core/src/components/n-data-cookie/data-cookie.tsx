@@ -7,23 +7,23 @@ import {
   Host,
   Method,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  eventBus,
+  eventBus
 } from '../../services/actions'
 import {
   addDataProvider,
-  removeDataProvider,
+  removeDataProvider
 } from '../../services/data/factory'
 import { DATA_COMMANDS, SetData } from '../n-data/services/interfaces'
 import { CookieConsent } from './cookie/interfaces'
 import { CookieService } from './cookie/service'
 
 /**
- * This component enables the *Cookie Data Provider*,
+ * This element enables the *Cookie Data Provider*,
  * after requesting consent from the user. The consent
  * message and the accept/reject button are customizable.
  *
@@ -56,7 +56,7 @@ export class DataCookie {
   @Prop() name: string = 'cookie'
 
   /**
-   * This event is raised when the consents to cookies.
+   * This event is raised when the user consents to cookies.
    */
   @Event({
     eventName: 'didConsent',

@@ -7,7 +7,7 @@ The expression can be any string or an expression with tokens from a registered 
 
 ### Template Interpolation
 
-This component supports HTML string interpolation within a child template tag. The values get resolved, just like the expression. The values in the attributes replace the tokens in the content.
+This element supports HTML string interpolation within a child template tag. The values get resolved, just like the expression. The values in the attributes replace the tokens in the content.
 
 ```html
 <n-content-template>
@@ -17,5 +17,5 @@ This component supports HTML string interpolation within a child template tag. T
 </n-content-template>
 ```
 
-> This component only supports template interpolation within the **\<template\>** tag.
+> This element only supports template interpolation within the **\<template\>** tag.
 

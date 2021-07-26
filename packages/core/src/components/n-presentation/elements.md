@@ -1,6 +1,6 @@
 # N-PRESENTATION: Element Extension
 
-When elements are enabled, this component can use special attributes for real-time updates.
+When elements are enabled, this element can use special attributes for real-time updates.
 
 ## Install `\<n-elements\>`
 
@@ -10,7 +10,7 @@ When elements are enabled, this component can use special attributes for real-ti
 
 ## Time-Presentation Child Attribute Resolution
 
-The [\<n-presentation\>](/components/n-presentation) element is always keeping track of time once is active. As such, you can create timed-based actions using special attributes placed on any child element.
+The [\<n-presentation\>](/components/n-presentation) element is always keeping track of time once it is active. As such, you can create timed-based actions using special attributes placed on any child element.
 
 > ℹ️) If a video element is detected, its time is used, allowing pause & play.
 

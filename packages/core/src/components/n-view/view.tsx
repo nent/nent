@@ -5,14 +5,14 @@ import {
   Host,
   Method,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
   ComponentRefresher,
   debugIf,
-  slugify,
+  slugify
 } from '../../services/common'
 import { warn } from '../../services/common/logging'
 import { replaceHtmlInElement } from '../../services/content/elements'
@@ -26,7 +26,7 @@ import { Route } from './services/route'
 import { markVisit } from './services/visits'
 
 /**
- * The View component holds a segment of content visible only when
+ * The View element holds a segment of content visible only when
  * a URL path matches. It defines a route and its content.
  * This provides the declarative mechanism
  * for in-page content/component routing by URL.
@@ -117,7 +117,7 @@ export class View implements IView {
 
   /**
    * Before rendering remote HTML, replace any data-tokens with their
-   * resolved values. This also commands this component to
+   * resolved values. This also commands this element to
    * re-render it's HTML for data-changes. This can affect
    * performance.
    *

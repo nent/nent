@@ -18,7 +18,7 @@
   * At a given time
   * At a given user interaction
   * Before route exit
-- Built-in timer & and optional duration:
+- Built-in timer & optional duration:
   * Synced to video (respecting scrub, pause, etc)
   * Based on time elapsed since the entrance
   * Hide and show elements at certain times
@@ -41,7 +41,7 @@
 | `analyticsEvent` | `analytics-event` | Send analytics view-time percentages for this presentation using the event name                                                                                                                                    | `string`, `undefined` | `undefined` |
 | `debug`          | `debug`           | To debug timed elements, set this value to true.                                                                                                                                                                   | `boolean`             | `false`     |
 | `nextAfter`      | `next-after`      | Go to the next view after when the timer ends                                                                                                                                                                      | `boolean`, `string`   | `false`     |
-| `timerElement`   | `timer-element`   | The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates on manually and starts it immediately | `null`, `string`      | `null`      |
+| `timerElement`   | `timer-element`   | The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates one manually and starts it immediately | `null`, `string`      | `null`      |
 
 
 ----------------------------------------------

@@ -71,7 +71,7 @@ export class ContentTemplate {
   @Prop() noCache: boolean = false
 
   /**
-   * A data-token predicate to advise this component when
+   * A data-token predicate to advise this element when
    * to render (useful if used in a dynamic route or if
    * tokens are used in the 'src' attribute)
    */

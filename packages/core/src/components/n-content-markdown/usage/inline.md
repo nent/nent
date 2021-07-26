@@ -1,7 +1,7 @@
 
 ### Inline Markdown
 
-A <script> tag can be inserted inside of the element to provide the markdown source. It overrides the markdown and src attributes. Support for changing this markdown source dynamically is not yet implemented.
+A `<script>` tag can be inserted inside of the element to provide the markdown source. It overrides the markdown and src attributes. Support for changing this markdown source dynamically is not yet implemented.
 
 ```html
 <!-- Do not set the `src` attribute -->
