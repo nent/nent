@@ -95,7 +95,7 @@ Activation occurs when the parent route has been activated for the given time wi
 
 ### Basic
 
-This element should only ever contain child [\<n-action\>](/components/n-action) tags. The attributes defines how and when the child-actions are submitted through the [actions system](/actions).
+This element should only ever contain child [\<n-action\>](/components/n-action) tags. The attributes define how and when the child-actions are submitted through the [actions system](/actions).
 
 ```html
 <n-action-activator

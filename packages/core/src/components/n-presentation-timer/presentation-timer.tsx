@@ -7,13 +7,13 @@ import {
   Host,
   Method,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common'
 import {
   IElementTimer,
-  ITimer,
+  ITimer
 } from '../n-presentation/services/interfaces'
 import { IView } from '../n-view/services/interfaces'
 import { Route } from '../n-view/services/route'
@@ -65,7 +65,7 @@ export class PresentationTimer implements IElementTimer {
 
   /**
    * If set, disables auto-starting the timer
-   * on render. This will be removed if in a view
+   * on render. This will be removed if in a view,
    * when the view is activated or when the start
    * method is called.
    */

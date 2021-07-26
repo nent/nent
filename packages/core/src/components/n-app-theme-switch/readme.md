@@ -1,6 +1,6 @@
 # N-APP-THEME-SWITCH
 
-The `<n-app-theme-switch>` component displays a checkbox to control the dark-theme setting applied to the interface.
+The `<n-app-theme-switch>` element displays a checkbox to control the dark-theme setting applied to the interface.
 
 Default: user-preference
 
@@ -11,7 +11,7 @@ Default: user-preference
 
 ### Basic
 
-Add the `<n-app-theme-switch>` component to any page to allow the user to adjust the setting. You can style it using standard CSS and if necessary, add CSS styles directly to the input element using the **classes** attribute.
+Add the `<n-app-theme-switch>` element to any page to allow the user to adjust the setting. You can style it using standard CSS and if necessary, add CSS styles directly to the input element using the **classes** attribute.
 
 
 

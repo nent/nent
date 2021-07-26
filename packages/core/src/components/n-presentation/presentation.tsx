@@ -4,7 +4,7 @@ import {
   h,
   Host,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { debugIf, warn } from '../../services/common/logging'
@@ -17,12 +17,12 @@ import { IElementTimer, ITimer } from './services/interfaces'
 import { PresentationService } from './services/presentation'
 
 /**
- * This component encapsulates a timed presentation. This component uses
+ * This element encapsulates a timed presentation. This element uses
  * a child n-presentation-timer or n-video element to create time-events
  * then it delegates those events to time-based action-activators.
  *
  * If enabled, the n-attributes for time will also get processed. This
- * component also has the ability to go to the next route using the active
+ * element also has the ability to go to the next route using the active
  * route's 'goNext' function.
  *
  * @system presentation
@@ -46,7 +46,7 @@ export class Presentation {
    * bind for interval events. If left blank, it looks
    * first an n-timer, then for the first n-video.
    *
-   * If none are found, it creates on manually and starts
+   * If none are found, it creates one manually and starts
    * it immediately
    */
   @Prop() timerElement: string | null = null
@@ -57,7 +57,7 @@ export class Presentation {
   @Prop() debug: boolean = false
 
   /**
-   * Go to the next view after when the timer ends
+   * Go to the next view after the timer ends
    */
   @Prop() nextAfter: boolean | string = false
 

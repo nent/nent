@@ -1,10 +1,10 @@
 # N-APP
 
-This component enables application installation features for progressive web applications.
+This element enables application installation features for progressive web applications.
 
 It also handles event/action delegation between the HTML DOM and NENT bus.
 
-Additionally, this element is required to add external components that need to be activated using actions.
+Additionally, this element is required to add external elements that need to be activated using actions.
 
 ## Element Description
 

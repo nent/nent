@@ -2,7 +2,7 @@ import { Component, Element, h, Host, Prop } from '@stencil/core'
 import { appState, onAppChange } from '../n-app/services/state'
 
 /**
- * This component checks for the preferred light/dark theme preference of the
+ * This element checks for the preferred light/dark theme preference of the
  * user and sets the ui state: theme, accordingly.
  *
  * @system app
@@ -35,7 +35,7 @@ export class AppTheme {
   @Prop() display: boolean = false
 
   /**
-   * This component displays the current theme,
+   * This element displays the current theme,
    * unless in switch-mode, it will show the opposite.
    */
   @Prop() switch: boolean = false

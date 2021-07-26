@@ -1,11 +1,11 @@
-# N-ANALYTICS
+# N-APP-ANALYTICS
 
-The [\<n-app-analytics\>](/components/n-app-analytics) component delegates internal analytics commands to DOM events
+The [\<n-app-analytics\>](/components/n-app-analytics) element delegates internal analytics commands to DOM events
 allowing developers to connect events to any analytics provider.
 
 ## Actions
 
-This component can respond to actions. See the  [actions](/components/n-app-analytics/actions) documentation for more information.
+This element can respond to actions. See the  [actions](/components/n-app-analytics/actions) documentation for more information.
 
 
 <!-- Auto Generated Below -->
@@ -58,7 +58,7 @@ This component can respond to actions. See the  [actions](/components/n-app-anal
 
 ### Basic
 
-Using the [\<n-app-analytics\>](/components/n-app-analytics) is simple, but does require some scripting.
+Using the [\<n-app-analytics\>](/components/n-app-analytics) element is simple, but does require some scripting.
 
 
 

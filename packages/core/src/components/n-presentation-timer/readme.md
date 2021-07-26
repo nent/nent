@@ -1,4 +1,4 @@
-# n-presentation-timer
+# N-PRESENTATION-TIMER
 
 
 
@@ -10,7 +10,7 @@
 | Property             | Attribute    | Description                                                                                                                                          | Type      | Default     |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
 | `debug`              | `debug`      | To debug timed elements, set this value to true.                                                                                                     | `boolean` | `false`     |
-| `deferLoad`          | `defer-load` | If set, disables auto-starting the timer on render. This will be removed if in a view when the view is activated or when the start method is called. | `boolean` | `false`     |
+| `deferLoad`          | `defer-load` | If set, disables auto-starting the timer on render. This will be removed if in a view, when the view is activated or when the start method is called. | `boolean` | `false`     |
 | `display`            | `display`    | Display elapsed seconds                                                                                                                              | `boolean` | `false`     |
 | `duration`           | `duration`   | Duration before the timer stops and raises the ended event. 0 = never                                                                                | `number`  | `0`         |
 | `interval`           | `interval`   | Interval in milliseconds to request between the getAnimationFrame. This affects the precision.                                                       | `number`  | `200`       |

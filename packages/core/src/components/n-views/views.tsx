@@ -4,7 +4,7 @@ import {
   h,
   Host,
   Prop,
-  writeTask,
+  writeTask
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonState, debugIf } from '../../services/common'
@@ -12,10 +12,10 @@ import { RouterService } from './services/router'
 import { routingState } from './services/state'
 
 /**
- * The root component is the base container for the view-engine and its
- * child components. This element should contain root-level HTML that
+ * The root element is the base container for the view-engine and its
+ * child elements. This element should contain root-level HTML that
  * is global to every view along with \<n-view\>
- * components placed within any global-html.
+ * elements placed within any global-html.
  *
  * @system routing
  * @extension actions

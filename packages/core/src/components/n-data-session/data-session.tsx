@@ -2,17 +2,17 @@ import { Component, Element, Prop } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  eventBus,
+  eventBus
 } from '../../services/actions'
 import {
   addDataProvider,
-  removeDataProvider,
+  removeDataProvider
 } from '../../services/data/factory'
 import { DATA_COMMANDS, SetData } from '../n-data/services/interfaces'
 import { SessionService } from './session/service'
 
 /**
- * This component enables the **Session Data Provider**.
+ * This element enables the **Session Data Provider**.
  * It leverages the short-lived browser storage.
  *
  * @system data

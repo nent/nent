@@ -3,13 +3,13 @@ import { actionBus, eventBus } from '../../services/actions'
 import {
   commonState,
   debugIf,
-  LocationSegments,
+  LocationSegments
 } from '../../services/common'
 import { ViewTime } from './services'
 import { AnalyticsActionListener } from './services/actions'
 
 /**
- * This component serves as a proxy to delegate event-based
+ * This element serves as a proxy to delegate event-based
  * functions to be consumed by various analytics snippets.
  *
  * @system app

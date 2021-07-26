@@ -1,1 +1,1 @@
-Add the `<n-app-theme-switch>` component to any page to allow the user to adjust the setting. You can style it using standard CSS and if necessary, add CSS styles directly to the input element using the **classes** attribute.
+Add the `<n-app-theme-switch>` element to any page to allow the user to adjust the setting. You can style it using standard CSS and if necessary, add CSS styles directly to the input element using the **classes** attribute.

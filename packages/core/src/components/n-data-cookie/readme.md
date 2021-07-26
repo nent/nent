@@ -1,6 +1,6 @@
 # N-DATA-COOKIE
 
-This component enables the **Cookie Data Provider**, after requesting consent from the user. The consent message and the accept/reject button are customizable.
+This element enables the **Cookie Data Provider**, after requesting consent from the user. The consent message and the accept/reject button are customizable.
 
 ## Cookie Data Provider
 
@@ -10,9 +10,9 @@ Provider Key: '**cookie**'
 
 `{{cookie:(key)}}`
 
-When included on the page, this component automatically shows a banner to collect consent from the user. You MUST supply clickable elements and decorate them with **n-accept** and **n-reject** attributes, respecting the user's decision.
+When included on the page, this element automatically shows a banner to collect consent from the user. You MUST supply clickable elements and decorate them with **n-accept** and **n-reject** attributes, respecting the user's decision.
 
-The component listens for their click events and acts accordingly.
+The element listens for their click events and acts accordingly.
 
 ```html
 <n-data-cookie>
@@ -53,7 +53,7 @@ Alternatively, you can skip this by including the 'skip-consent' attribute.
 
 | Event        | Description                                        | Type                                   |
 | ------------ | -------------------------------------------------- | -------------------------------------- |
-| `didConsent` | This event is raised when the consents to cookies. | `CustomEvent<{ consented: boolean; }>` |
+| `didConsent` | This event is raised when the user consents to cookies. | `CustomEvent<{ consented: boolean; }>` |
 
 
 ## Methods

@@ -1,6 +1,6 @@
 # N-CONTENT-TEMPLATE: Element Extension
 
-When elements are enabled, this component can use special attributes for real-time updates.
+When elements are enabled, this element can use special attributes for real-time updates.
 
 ## Install `<n-elements\>`
 

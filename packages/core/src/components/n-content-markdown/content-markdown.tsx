@@ -5,18 +5,18 @@ import {
   h,
   Host,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
-  onCommonStateChange,
+  onCommonStateChange
 } from '../../services/common'
 import { warn } from '../../services/common/logging'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import {
   resolveRemoteContent,
-  resolveSrc,
+  resolveSrc
 } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
@@ -27,7 +27,7 @@ import { routingState } from '../n-views/services/state'
 import { renderMarkdown } from './markdown/remarkable.worker'
 
 /**
- * This component converts markdown text to HTML. It can render
+ * This element converts markdown text to HTML. It can render
  * from an inline-template or from a remote source.
  *
  * @system content
@@ -59,7 +59,7 @@ export class ContentMarkdown {
 
   /**
    * Before rendering HTML, replace any data-tokens with their
-   * resolved values. This also commands this component to
+   * resolved values. This also commands this element to
    * re-render it's HTML for data-changes. This can affect
    * performance.
    */
@@ -73,7 +73,7 @@ export class ContentMarkdown {
   @Prop({ mutable: true }) deferLoad: boolean = false
 
   /**
-   * A data-token predicate to advise this component when
+   * A data-token predicate to advise this element when
    * to render (useful if used in a dynamic route or if
    * tokens are used in the 'src' attribute)
    */

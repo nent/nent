@@ -1,4 +1,4 @@
-The **items** attribute can be any array-string or an [expression](/data/expressions) to pull data from a registered provider.
+The `items` attribute can be any array-string or an [expression](/data/expressions) to pull data from a registered provider.
 
 ### Items from Attribute (Simple Array)
 

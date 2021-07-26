@@ -1,6 +1,6 @@
 # N-APP-SHARE
 
-The `<n-app-share>` component description
+The `<n-app-share>` element description
 
 
 <!-- Auto Generated Below -->
@@ -10,7 +10,7 @@ The `<n-app-share>` component description
 
 ### Basic
 
-Using the `<n-app-share>` component.
+Using the `<n-app-share>` element.
 
 ```html
 <n-app-share 

@@ -1,6 +1,6 @@
 # N-CONTENT-REFERENCE
 
-This component makes a single reference to script and CSS sources. It can be used by HTML fragments to ensure a reference is made, without worry that it will create duplicate references.
+This element makes a single reference to script and CSS sources. It can be used by HTML fragments to ensure a reference is made, without worrying that it will create duplicate references.
 
 If inline is present, the source would be nested inside this element, otherwise, it is appended to the head.
 
@@ -119,7 +119,7 @@ If inline is present, the source would be nested inside this element, otherwise,
 
 | Property    | Attribute    | Description                                                                                                  | Type                  | Default     |
 | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------ | --------------------- | ----------- |
-| `deferLoad` | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute. | `boolean`             | `false`     |
+| `deferLoad` | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents, change to false or remove attribute. | `boolean`             | `false`     |
 | `inline`    | `inline`     | When inline the link/script tags are rendered in-place rather than added to the head.                        | `boolean`             | `false`     |
 | `module`    | `module`     | Import the script file as a module.                                                                          | `boolean`             | `false`     |
 | `noModule`  | `no-module`  | Declare the script only for use when modules aren't supported                                                | `boolean`             | `false`     |

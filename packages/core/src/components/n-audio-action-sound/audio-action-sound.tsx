@@ -4,27 +4,27 @@ import {
   h,
   Host,
   Method,
-  Prop,
+  Prop
 } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  IActionElement,
+  IActionElement
 } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
 import {
   AudioType,
-  AUDIO_TOPIC,
+  AUDIO_TOPIC
 } from '../n-audio/services/interfaces'
 import {
   audioState,
-  onAudioStateChange,
+  onAudioStateChange
 } from '../n-audio/services/state'
 
 /**
  * This element represents an action to be fired. This
  * specialized action encapsulates required parameters
- * needed for audio-based actions, for music.
+ * needed for audio-based actions, for sound.
  *
  * @system audio
  * @system actions

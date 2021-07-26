@@ -4,19 +4,19 @@ import {
   Event,
   EventEmitter,
   Method,
-  Prop,
+  Prop
 } from '@stencil/core'
 import { warn } from '../../services/common/logging'
 import {
   hasReference,
   markReference,
   ReferenceCompleteResults,
-  ReferenceType,
+  ReferenceType
 } from '../../services/content'
 
 /**
- * This component makes a single reference to script and css sources. It can
- * be used by HTML fragment to ensure a reference is made, without worry
+ * This element makes a single reference to script and css sources. It can
+ * be used by HTML fragment to ensure a reference is made, without worrying
  * that it will create duplicate references.
  *
  * @system content

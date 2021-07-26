@@ -1,6 +1,6 @@
 # N-APP-THEME
 
-The `<n-app-theme>` component checks for the preferred light/dark theme preference of the
+The `<n-app-theme>` element checks for the preferred light/dark theme preference of the
 user and sets the interface state: theme, accordingly.
 
 
@@ -14,7 +14,7 @@ user and sets the interface state: theme, accordingly.
 Add this tag somewhere close to the top of the application to auto-adjust the theme class
 based on the user's preferences.
 
-Use it in conjunction with the [\<n-app-theme-switch\>](/components/n-app-theme-switch) component,
+Use it in conjunction with the [\<n-app-theme-switch\>](/components/n-app-theme-switch) element,
 to give users control of which theme should be applied.
 
 ```html

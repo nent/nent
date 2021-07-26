@@ -4,13 +4,13 @@ import {
   h,
   Host,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
   ComponentRefresher,
-  warn,
+  warn
 } from '../../services/common'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveRemoteContent } from '../../services/content/remote'
@@ -21,8 +21,8 @@ import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
 
 /**
- * This component fetches remote HTML and renders it safely and directly
- * into the page when when and where you tell it too, as soon as it renders.
+ * This element fetches remote HTML and renders it safely and directly
+ * into the page when and where you tell it too, as soon as it renders.
  *
  * @system content
  * @extension data
@@ -54,7 +54,7 @@ export class ContentInclude {
 
   /**
    * Before rendering HTML, replace any data-tokens with their
-   * resolved values. This also commands this component to
+   * resolved values. This also commands this element to
    * re-render it's HTML for data-changes. This can affect
    * performance.
    */
@@ -68,7 +68,7 @@ export class ContentInclude {
   @Prop({ mutable: true }) deferLoad = false
 
   /**
-   * A data-token predicate to advise this component when
+   * A data-token predicate to advise this element when
    * to render (useful if used in a dynamic route or if
    * tokens are used in the 'src' attribute)
    */

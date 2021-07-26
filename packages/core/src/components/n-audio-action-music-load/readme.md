@@ -1,6 +1,6 @@
-# N-AUDIO-ACTION-LOAD-MUSIC
+# N-AUDIO-ACTION-MUSIC-LOAD
 
-This component declares audio playback. The [\<n-audio-action-music-load\>](/components/n-audio-action-music-load) represents audio files and play behaviors. They are sent to the audio player to pre-load or play when the route is active. The player manages them according to their settings.
+This component declares audio playback. The [\<n-audio-action-music-load\>](/components/n-audio-action-music-load) element represents audio files and play behaviors. They are sent to the audio player to pre-load or play when the route is active. The player manages them according to their settings.
 
 > See the [audio](/audio) systems documentation for more information.
 
@@ -50,10 +50,10 @@ This component declares audio playback. The [\<n-audio-action-music-load\>](/com
 
 #### Discard
 
-- video: when any video plays (default for sound)
-- state: state changes
-- event: wait for a stop event (or any other activation)
-- none: loop until stopped or updated by new state (default for music)
+- **video**: when any video plays (default for sound)
+- **state**: state changes
+- **event**: wait for a stop event (or any other activation)
+- **none**: loop until stopped or updated by new state (default for music)
 
 #### Track
 
@@ -77,7 +77,7 @@ If audio has replay set to true, re-entry to the originating state will re-activ
 | `deferLoad`            | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute. | `boolean`                     | `false`     |
 | `discard`              | `discard`    | The discard strategy the player should use for this file.                                                    | `"next"`, `"none"`, `"route"` | `'route'`   |
 | `loop`                 | `loop`       | Set this to true to have the audio file loop.                                                                | `boolean`                     | `false`     |
-| `mode`                 | `mode`       | This is loading strategy that determines what is should do after the file is retrieved.                      | `"load"`, `"play"`, `"queue"` | `'queue'`   |
+| `mode`                 | `mode`       | This is the loading strategy that determines what it should do after the file is retrieved.                      | `"load"`, `"play"`, `"queue"` | `'queue'`   |
 | `src` _(required)_     | `src`        | The path to the audio-file.                                                                                  | `string`                      | `undefined` |
 | `trackId` _(required)_ | `track-id`   | The identifier for this music track                                                                          | `string`                      | `undefined` |
 

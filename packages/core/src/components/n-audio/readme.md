@@ -1,18 +1,18 @@
 # N-AUDIO
 
-This component is responsible for playing audio requested via the [action](/actions) bus. Internally it holds two players, one for music and another for sounds.
+This element is responsible for playing audio requested via the [action](/actions) bus. Internally it holds two players, one for music and another for sounds.
 
 The audio-tracks are declaratively defined in HTML to respond to user interactions. Unlike a typical playlist, the audio items are configured with behavior rules that help orchestrate overlapping sound and music sound.
 
 While it can be placed anywhere, only ONE player is allowed within an HTML document. Loading a second element will have no effect.
 
-Once in-place, the [\<n-audio\>](/components/n-audio) listens on the **audio** topic for commands.
+Once in-place, the [\<n-audio\>](/components/n-audio) element listens on the **audio** topic for commands.
 
-> Note: This component subscribes to route-change notifications - as some audio clips are meant to end when the route changes.
+> Note: This element subscribes to route-change notifications - as some audio clips are meant to end when the route changes.
 
 ## Audio Actions
 
-To operate the player, it is easiest to just use the `<n-audio-load-*>` components to pre-load the audio. Then declare the actions using the [\<n-action-activator\>](/components/n-action-activator) component.
+To operate the player, it is easiest to just use the `<n-audio-load-*>` elements to pre-load the audio. Then declare the actions using the [\<n-action-activator\>](/components/n-action-activator) element.
 
 ```html
 <n-view-prompt>
@@ -43,7 +43,7 @@ This player can be configured to display or remain hidden. When displayed, it sh
 
 Only the music player will support looping. Default is true. Looping audio loops until its discard event occurs.
 
-If audio is set to loop with no deactivation, any new configuration will end it. For instance, if new audio is configured to activate in a queued fashion, the looping audio should stop and allowing the queued audio to play when it ends.
+If audio is set to loop with no deactivation, any new configuration will end it. For instance, if new audio is configured to activate in a queued fashion, the looping audio should stop, allowing the queued audio to play when it ends.
 
 ### Discard Strategy
 

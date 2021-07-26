@@ -6,7 +6,7 @@
 
 ### Delayed Rendering
 
-When using this component, you may want to delay the fetch until the content is needed. The **defer-load** attribute will prevent the HTML from being fetched until that attribute is removed.
+When using this element, you may want to delay the fetch until the content is needed. The **defer-load** attribute will prevent the HTML from being fetched until that attribute is removed.
 
 ```html
 <n-content-include id='include' 
@@ -21,4 +21,4 @@ const include = document.querySelector('#include);
 include.removeAttribute('defer-load');
 ```
 
-Or, just include it in one of the components [\<n-view\>](/components/n-view) or [\<n-view-prompt\>](/components/n-view-prompt). These components remove any **defer-load** attributes on child elements once their route is activated, giving us lazy-loaded routes with this component.
+Or, just include it in one of the [\<n-view\>](/components/n-view) or [\<n-view-prompt\>](/components/n-view-prompt) elements. These elements remove any **defer-load** attributes on child elements once their route is activated, giving us lazy-loaded routes with this element.

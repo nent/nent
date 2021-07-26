@@ -1,6 +1,6 @@
 # N-VIEW
 
-The View component is a child component for the `<n-view>` component for adding a page route. It is a container element that displays its inner HTML for a given route or sub-route. This provides a declarative mechanism for in-page content/component routing by URL.
+The View element is a child element for the `<n-view>` element for adding a page route. It is a container element that displays its inner HTML for a given route or sub-route. This provides a declarative mechanism for in-page content/component routing by URL.
 
 ## Extensions
 
@@ -12,7 +12,7 @@ The View component is a child component for the `<n-view>` component for adding 
 
 ### Child Views & Routing
 
-Views can hold any HTML, including View components. This implicitly creates child routes below the path configured for this View. This View will enforce the routing rule, by inserting its path in the child-views path property (This should be done in a way that accounts for the parent path being included in the child path attribute)
+Views can hold any HTML, including View elements. This implicitly creates child routes below the path configured for this View. This View will enforce the routing rule, by inserting its path in the child-views path property (This should be done in a way that accounts for the parent path being included in the child path attribute)
 
 ```html
 <n-views>
@@ -29,9 +29,9 @@ Views can hold any HTML, including View components. This implicitly creates chil
 
 ### View Prompts
 
-The contained HTML is parsed before rendering and special handling is given if any child elements are [\<n-view-prompt\>](/components/n-view-prompt) elements. Before rendering its HTML, this component iterates the collection and evaluates their conditions (_when_ attribute) looking for the first [\<n-view-prompt\>](/components/n-view-prompt) that should be displayed, using the order they are declared. If and when a non-visited [\<n-view-prompt\>](/components/n-view-prompt) is found, its route is activated and subsequently marked as visited.
+The contained HTML is parsed before rendering and special handling is given if any child elements are [\<n-view-prompt\>](/components/n-view-prompt) elements. Before rendering its HTML, this element iterates the collection and evaluates their conditions (_when_ attribute) looking for the first [\<n-view-prompt\>](/components/n-view-prompt) that should be displayed, using the order they are declared. If and when a non-visited [\<n-view-prompt\>](/components/n-view-prompt) is found, its route is activated and subsequently marked as visited.
 
-[\<n-view-prompt\>](/components/n-view-prompt) components each have their own **visit** strategies, but each of them need only return to their parent URL when completed. The parent performs the above evaluation until each child [\<n-view-prompt\>](/components/n-view-prompt) element has been visited or is excluded by its rule (_when_ attribute).
+[\<n-view-prompt\>](/components/n-view-prompt) elements each have their own **visit** strategies, but each of them need only return to their parent URL when completed. The parent performs the above evaluation until each child [\<n-view-prompt\>](/components/n-view-prompt) element has been visited or is excluded by its rule (_when_ attribute).
 
 At that point, the inner HTML content is finally revealed. Using this convention, you can declaratively create a workflow of pages that must be visited to reach a destination.
 
@@ -70,7 +70,7 @@ At that point, the inner HTML content is finally revealed. Using this convention
 | `mode`               | `mode`              | Cross Origin Mode if the content is pulled from a remote location                                                                                                                                                               | `"cors"`, `"navigate"`, `"no-cors"`, `"same-origin"` | `'cors'`    |
 | `pageTitle`          | `page-title`        | The title for this view. This is prefixed before the app title configured in n-views                                                                                                                                            | `string`                                             | `''`        |
 | `path` _(required)_  | `path`              | The path for this route, including the parent's routes, excluding the router's root.                                                                                                                                            | `string`                                             | `undefined` |
-| `resolveTokens`      | `resolve-tokens`    | Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML | `boolean`                                            | `false`     |
+| `resolveTokens`      | `resolve-tokens`    | Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML | `boolean`                                            | `false`     |
 | `route` _(required)_ | --                  | Route information                                                                                                                                                                                                               | `Route`                                              | `undefined` |
 | `scrollTopOffset`    | `scroll-top-offset` | Header height or offset for scroll-top on this view.                                                                                                                                                                            | `number`                                             | `0`         |
 | `src`                | `src`               | Remote URL for this route's HTML. HTML from this URL will be not be assigned to any slot.  You can add slot='content' to any containers within this HTML if you have a mix of HTML for this exact-route and its children.       | `string`, `undefined`                                | `undefined` |

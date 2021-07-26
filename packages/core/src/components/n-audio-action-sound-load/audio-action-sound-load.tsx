@@ -5,7 +5,7 @@ import {
   Host,
   Method,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { actionBus, EventAction } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
@@ -15,16 +15,16 @@ import {
   AudioType,
   AUDIO_TOPIC,
   DiscardStrategy,
-  LoadStrategy,
+  LoadStrategy
 } from '../n-audio/services/interfaces'
 import {
   audioState,
-  onAudioStateChange,
+  onAudioStateChange
 } from '../n-audio/services/state'
 import { playedTrack } from '../n-audio/services/tracks'
 
 /**
- * This component declares audio used within this \<n-view-prompt\> route.
+ * This element declares audio used within this \<n-view-prompt\> route.
  * The \<n-audio-action-sound-load\> instructs the player to load audio files
  * while defining play behaviors.
  *
@@ -53,8 +53,8 @@ export class AudioSoundLoad {
   @Prop() trackId!: string
 
   /**
-   * This is loading strategy that determines
-   * what is should do after the file is retrieved.
+   * This is the loading strategy that determines
+   * what it should do after the file is retrieved.
    */
   @Prop() mode: 'queue' | 'play' | 'load' = 'load'
 
