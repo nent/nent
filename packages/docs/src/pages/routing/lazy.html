@@ -3,8 +3,8 @@
   <p class="lead">HTML when you need it, not when you don't.</p>
   <p> A route's content could be inline or fetched from a remote file as needed.
     This is called "lazy-loaded".</p>
-  <p> You get the benefit of shared layouts and components without the need for
-    a application-server, client-side framework or static-site generation
+  <p> You get the benefit of shared layouts and elements without the need for
+    an application-server, client-side framework or static-site generation
     process. </p>
   <h2>How it Works</h2>
   <p> Instead of wrapping content, you can specify a remote file to fetch with
@@ -20,7 +20,7 @@
       <b>&lt;n-view&gt;</b>
     </a> or <a href="/components/n-view-prompt">
       <b>&lt;n-view-prompt&gt;</b>
-    </a> components to "lazy-load" the inner-html when the route is activated.
+    </a> elements to "lazy-load" the inner-html when the route is activated.
   </p>
   <n-content-markdown>
     <script type="text/markdown">
@@ -42,10 +42,10 @@
   <p> There are other ways to lazy-load content. You can use the <a
       href="/components/n-content"><b>&lt;n-content&gt;</b></a> or <a
       href="/components/n-content-markdown"><b>&lt;n-content-markdown&gt;</b></a>
-    components along with their <b>defer-load</b> attribute to essentially do
+    elements along with their <b>defer-load</b> attribute to essentially do
     the same thing. </p>
   <p> When routes are activated they remove the <b>defer-load</b> attribute from
-    child components, which in-turn performs a fetch on route-activate. </p>
+    child elements, which in-turn performs a fetch on route-activate. </p>
   <footer>
     <n-view-link-back slot="start"
       link-class="btn btn-primary">

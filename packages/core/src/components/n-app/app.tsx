@@ -6,12 +6,12 @@ import {
   h,
   Host,
   Listen,
-  Prop
+  Prop,
 } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  eventBus
+  eventBus,
 } from '../../services/actions'
 import { debugIf, log } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'

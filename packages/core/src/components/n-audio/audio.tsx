@@ -4,14 +4,14 @@ import {
   h,
   Host,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import {
   addDataProvider,
-  removeDataProvider
+  removeDataProvider,
 } from '../../services/data/factory'
 import { AudioActionListener } from './services/actions'
 import { AudioDataProvider } from './services/provider'

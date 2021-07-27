@@ -6,7 +6,7 @@ import {
   h,
   Host,
   Method,
-  Prop
+  Prop,
 } from '@stencil/core'
 
 /**

@@ -7,13 +7,13 @@ import {
   Host,
   Method,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common'
 import {
   IElementTimer,
-  ITimer
+  ITimer,
 } from '../n-presentation/services/interfaces'
 import { IView } from '../n-view/services/interfaces'
 import { Route } from '../n-view/services/route'

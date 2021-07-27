@@ -4,13 +4,13 @@ import {
   h,
   Host,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
   ComponentRefresher,
-  warn
+  warn,
 } from '../../services/common'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveRemoteContent } from '../../services/content/remote'

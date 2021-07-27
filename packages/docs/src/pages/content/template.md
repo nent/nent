@@ -1,4 +1,4 @@
- You can inject data into HTML templates using the [\<n-content-template\>](/components/n-content-template).
+ You can inject data into HTML templates using the [\<n-content-template\>](/components/n-content-template) element.
  
  ### Using Inline json
 

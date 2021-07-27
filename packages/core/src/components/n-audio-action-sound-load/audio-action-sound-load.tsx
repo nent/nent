@@ -5,7 +5,7 @@ import {
   Host,
   Method,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { actionBus, EventAction } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
@@ -15,11 +15,11 @@ import {
   AudioType,
   AUDIO_TOPIC,
   DiscardStrategy,
-  LoadStrategy
+  LoadStrategy,
 } from '../n-audio/services/interfaces'
 import {
   audioState,
-  onAudioStateChange
+  onAudioStateChange,
 } from '../n-audio/services/state'
 import { playedTrack } from '../n-audio/services/tracks'
 
