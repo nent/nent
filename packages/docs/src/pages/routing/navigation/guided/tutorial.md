@@ -153,7 +153,7 @@ When: (answer != null && age > 21) || verified = false
 
 Building on these assumptions, conventions, and two properties the view engine can construct a robust data-driven rule-based system for guided navigation without a complex rule-engine. The expression evaluation is the most complex aspect of this engine, but this is established at the sub-route – and all other routes have no context of navigating anywhere based on rules.
 
-Now let’s move out of theory any into our new HTML Elements.
+Now let’s move out of theory and into our new HTML Elements.
 
 ## Views and Dos
 
