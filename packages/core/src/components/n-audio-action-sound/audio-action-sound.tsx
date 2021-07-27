@@ -4,21 +4,21 @@ import {
   h,
   Host,
   Method,
-  Prop
+  Prop,
 } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  IActionElement
+  IActionElement,
 } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
 import {
   AudioType,
-  AUDIO_TOPIC
+  AUDIO_TOPIC,
 } from '../n-audio/services/interfaces'
 import {
   audioState,
-  onAudioStateChange
+  onAudioStateChange,
 } from '../n-audio/services/state'
 
 /**

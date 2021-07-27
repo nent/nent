@@ -51,8 +51,8 @@ Alternatively, you can skip this by including the 'skip-consent' attribute.
 
 ## Events
 
-| Event        | Description                                        | Type                                   |
-| ------------ | -------------------------------------------------- | -------------------------------------- |
+| Event        | Description                                             | Type                                   |
+| ------------ | ------------------------------------------------------- | -------------------------------------- |
 | `didConsent` | This event is raised when the user consents to cookies. | `CustomEvent<{ consented: boolean; }>` |
 
 

@@ -5,12 +5,12 @@ import {
   Host,
   Method,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  IActionElement
+  IActionElement,
 } from '../../services/actions'
 import { warn } from '../../services/common/logging'
 

@@ -3,7 +3,7 @@ import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
 import {
   commonState,
-  onCommonStateChange
+  onCommonStateChange,
 } from '../../services/common/state'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'

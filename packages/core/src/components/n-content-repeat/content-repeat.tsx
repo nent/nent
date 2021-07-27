@@ -4,7 +4,7 @@ import {
   h,
   Host,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
@@ -12,7 +12,7 @@ import {
   ComponentRefresher,
   debugIf,
   valueToArray,
-  warnIf
+  warnIf,
 } from '../../services/common'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'

@@ -5,14 +5,14 @@ import {
   Host,
   Method,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
   ComponentRefresher,
   debugIf,
-  slugify
+  slugify,
 } from '../../services/common'
 import { warn } from '../../services/common/logging'
 import { replaceHtmlInElement } from '../../services/content/elements'

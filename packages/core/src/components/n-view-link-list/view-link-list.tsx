@@ -3,11 +3,11 @@ import { eventBus } from '../../services/actions'
 import { Route } from '../n-view/services/route'
 import {
   MatchResults,
-  ROUTE_EVENTS
+  ROUTE_EVENTS,
 } from '../n-views/services/interfaces'
 import {
   onRoutingChange,
-  routingState
+  routingState,
 } from '../n-views/services/state'
 
 /**
