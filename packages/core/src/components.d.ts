@@ -27,7 +27,7 @@ export namespace Components {
          */
         "getAction": () => Promise<EventAction<any> | null>;
         /**
-          * Send this action to the the action messaging system.
+          * Send this action to the action messaging system.
          */
         "sendAction": (data?: Record<string, any> | undefined) => Promise<void>;
         /**
@@ -115,7 +115,7 @@ export namespace Components {
          */
         "display": boolean;
         /**
-          * This component displays the current theme, unless in switch-mode, it will show the opposite.
+          * This element displays the current theme, unless in switch-mode, it will show the opposite.
          */
         "switch": boolean;
         /**
@@ -147,7 +147,7 @@ export namespace Components {
          */
         "debug": boolean;
         /**
-          * The display mode enabled shows player state and stats. No track information or duration is be displayed.
+          * The display mode enabled shows player state and stats. No track information or duration is to be displayed.
          */
         "display": boolean;
         /**
@@ -204,7 +204,7 @@ export namespace Components {
          */
         "loop": boolean;
         /**
-          * This is loading strategy that determines what is should do after the file is retrieved.
+          * This is the loading strategy that determines what it should do after the file is retrieved.
          */
         "mode": 'queue' | 'play' | 'load';
         /**
@@ -266,7 +266,7 @@ export namespace Components {
          */
         "getAction": () => Promise<EventAction<AudioInfo | AudioRequest | any>>;
         /**
-          * This is loading strategy that determines what is should do after the file is retrieved.
+          * This is the loading strategy that determines what it should do after the file is retrieved.
          */
         "mode": 'queue' | 'play' | 'load';
         /**
@@ -310,7 +310,7 @@ export namespace Components {
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
-          * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.
+          * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.
          */
         "resolveTokens": boolean;
         /**
@@ -318,7 +318,7 @@ export namespace Components {
          */
         "src": string;
         /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+          * A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
          */
         "when"?: string;
     }
@@ -336,7 +336,7 @@ export namespace Components {
          */
         "noCache": boolean;
         /**
-          * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.
+          * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.
          */
         "resolveTokens": boolean;
         /**
@@ -344,7 +344,7 @@ export namespace Components {
          */
         "src"?: string;
         /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+          * A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
          */
         "when"?: string;
     }
@@ -409,7 +409,7 @@ export namespace Components {
          */
         "noCache": boolean;
         /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+          * A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
          */
         "when"?: string;
     }
@@ -473,7 +473,7 @@ export namespace Components {
          */
         "text"?: string;
         /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+          * A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
          */
         "when"?: string;
     }
@@ -537,11 +537,11 @@ export namespace Components {
          */
         "debug": boolean;
         /**
-          * Go to the next view after when the timer ends
+          * Go to the next view after the timer ends
          */
         "nextAfter": boolean | string;
         /**
-          * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates on manually and starts it immediately
+          * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates one manually and starts it immediately
          */
         "timerElement": string | null;
     }
@@ -577,7 +577,7 @@ export namespace Components {
          */
         "debug": boolean;
         /**
-          * If set, disables auto-starting the timer on render. This will be removed if in a view when the view is activated or when the start method is called.
+          * If set, disables auto-starting the timer on render. This will be removed if in a view, when the view is activated or when the start method is called.
          */
         "deferLoad": boolean;
         /**
@@ -679,7 +679,7 @@ export namespace Components {
          */
         "path": string;
         /**
-          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
+          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
          */
         "resolveTokens": boolean;
         /**
@@ -737,7 +737,7 @@ export namespace Components {
     }
     interface NViewLinkList {
         /**
-          * The active-class to use with the n-view-link components.
+          * The active-class to use with the n-view-link elements.
          */
         "activeClass"?: string;
         /**
@@ -1230,7 +1230,7 @@ declare namespace LocalJSX {
          */
         "display"?: boolean;
         /**
-          * This component displays the current theme, unless in switch-mode, it will show the opposite.
+          * This element displays the current theme, unless in switch-mode, it will show the opposite.
          */
         "switch"?: boolean;
         /**
@@ -1262,7 +1262,7 @@ declare namespace LocalJSX {
          */
         "debug"?: boolean;
         /**
-          * The display mode enabled shows player state and stats. No track information or duration is be displayed.
+          * The display mode enabled shows player state and stats. No track information or duration is to be displayed.
          */
         "display"?: boolean;
         /**
@@ -1307,7 +1307,7 @@ declare namespace LocalJSX {
          */
         "loop"?: boolean;
         /**
-          * This is loading strategy that determines what is should do after the file is retrieved.
+          * This is the loading strategy that determines what it should do after the file is retrieved.
          */
         "mode"?: 'queue' | 'play' | 'load';
         /**
@@ -1353,7 +1353,7 @@ declare namespace LocalJSX {
          */
         "discard"?: 'route' | 'next' | 'none';
         /**
-          * This is loading strategy that determines what is should do after the file is retrieved.
+          * This is the loading strategy that determines what it should do after the file is retrieved.
          */
         "mode"?: 'queue' | 'play' | 'load';
         /**
@@ -1393,7 +1393,7 @@ declare namespace LocalJSX {
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
-          * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.
+          * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.
          */
         "resolveTokens"?: boolean;
         /**
@@ -1401,7 +1401,7 @@ declare namespace LocalJSX {
          */
         "src": string;
         /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+          * A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
          */
         "when"?: string;
     }
@@ -1419,7 +1419,7 @@ declare namespace LocalJSX {
          */
         "noCache"?: boolean;
         /**
-          * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.
+          * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.
          */
         "resolveTokens"?: boolean;
         /**
@@ -1427,7 +1427,7 @@ declare namespace LocalJSX {
          */
         "src"?: string;
         /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+          * A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
          */
         "when"?: string;
     }
@@ -1492,7 +1492,7 @@ declare namespace LocalJSX {
          */
         "noCache"?: boolean;
         /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+          * A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
          */
         "when"?: string;
     }
@@ -1556,7 +1556,7 @@ declare namespace LocalJSX {
          */
         "text"?: string;
         /**
-          * A data-token predicate to advise this component when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
+          * A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)
          */
         "when"?: string;
     }
@@ -1576,7 +1576,7 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
-          * This event is raised when the consents to cookies.
+          * This event is raised when the user consents to cookies.
          */
         "onDidConsent"?: (event: CustomEvent<CookieConsent>) => void;
         /**
@@ -1620,11 +1620,11 @@ declare namespace LocalJSX {
          */
         "debug"?: boolean;
         /**
-          * Go to the next view after when the timer ends
+          * Go to the next view after the timer ends
          */
         "nextAfter"?: boolean | string;
         /**
-          * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates on manually and starts it immediately
+          * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates one manually and starts it immediately
          */
         "timerElement"?: string | null;
     }
@@ -1648,7 +1648,7 @@ declare namespace LocalJSX {
          */
         "debug"?: boolean;
         /**
-          * If set, disables auto-starting the timer on render. This will be removed if in a view when the view is activated or when the start method is called.
+          * If set, disables auto-starting the timer on render. This will be removed if in a view, when the view is activated or when the start method is called.
          */
         "deferLoad"?: boolean;
         /**
@@ -1750,7 +1750,7 @@ declare namespace LocalJSX {
          */
         "path": string;
         /**
-          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
+          * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
          */
         "resolveTokens"?: boolean;
         /**
@@ -1808,7 +1808,7 @@ declare namespace LocalJSX {
     }
     interface NViewLinkList {
         /**
-          * The active-class to use with the n-view-link components.
+          * The active-class to use with the n-view-link elements.
          */
         "activeClass"?: string;
         /**

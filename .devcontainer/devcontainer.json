@@ -33,7 +33,8 @@
     "kavod-io.vscode-jest-test-adapter",
     "sissel.json-script-tag",
     "yzhang.markdown-all-in-one",
-    "nent.nent"
+    "nent.nent",
+    "github.vscode-pull-request-github"
   ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [
@@ -41,12 +42,13 @@
     5000
   ],
   "mounts": [
-    "source=dind-var-lib-docker,target=/var/lib/docker,type=volume",
+    // "source=dind-var-lib-docker,target=/var/lib/docker,type=volume",
+    "source=${env:HOME}${env:USERPROFILE}/.git,target=/home/vscode/.git,type=bind",
     "source=${env:HOME}${env:USERPROFILE}/.docker,target=/home/vscode/.docker,type=bind",
     "source=${env:HOME}${env:USERPROFILE}/.config,target=/home/vscode/.config,type=bind"
   ],
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "yarn install",
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "node"
+  //"remoteUser": "vscode"
 }

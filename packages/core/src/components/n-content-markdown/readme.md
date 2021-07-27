@@ -60,7 +60,7 @@ The `src` attribute can be used to load a markdown file through AJAX. It overrid
 
 #### Delayed Rendering
 
-When using this element, you may want to delay the fetch until the content is needed. The `defer-load` attribute will prevent the HTML from being fetched until that attribute is removed.
+When using this element, you may want to delay the fetch until the content is needed. The **defer-load** attribute will prevent the HTML from being fetched until that attribute is removed.
 
 ```html
 <n-content-markdown 
@@ -83,13 +83,13 @@ Or, just include it in one of the [\<n-view\>](/components/n-view) or [\<n-view-
 
 ## Properties
 
-| Property        | Attribute        | Description                                                                                                                                                                        | Type                                                 | Default     |
-| --------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------- |
-| `deferLoad`     | `defer-load`     | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.                                                                       | `boolean`                                            | `false`     |
-| `mode`          | `mode`           | Cross Origin Mode                                                                                                                                                                  | `"cors"`, `"navigate"`, `"no-cors"`, `"same-origin"` | `'cors'`    |
-| `noCache`       | `no-cache`       | Force render with data & route changes.                                                                                                                                            | `boolean`                                            | `false`     |
+| Property        | Attribute        | Description                                                                                                                                                                      | Type                                                 | Default     |
+| --------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------- |
+| `deferLoad`     | `defer-load`     | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.                                                                     | `boolean`                                            | `false`     |
+| `mode`          | `mode`           | Cross Origin Mode                                                                                                                                                                | `"cors"`, `"navigate"`, `"no-cors"`, `"same-origin"` | `'cors'`    |
+| `noCache`       | `no-cache`       | Force render with data & route changes.                                                                                                                                          | `boolean`                                            | `false`     |
 | `resolveTokens` | `resolve-tokens` | Before rendering HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance. | `boolean`                                            | `false`     |
-| `src`           | `src`            | Remote Template URL                                                                                                                                                                | `string`, `undefined`                                | `undefined` |
+| `src`           | `src`            | Remote Template URL                                                                                                                                                              | `string`, `undefined`                                | `undefined` |
 | `when`          | `when`           | A data-token predicate to advise this element when to render (useful if used in a dynamic route or if tokens are used in the 'src' attribute)                                    | `string`, `undefined`                                | `undefined` |
 
 
