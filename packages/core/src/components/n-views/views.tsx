@@ -4,7 +4,7 @@ import {
   h,
   Host,
   Prop,
-  writeTask
+  writeTask,
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonState, debugIf } from '../../services/common'

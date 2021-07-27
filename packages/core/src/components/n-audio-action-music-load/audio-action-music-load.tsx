@@ -5,7 +5,7 @@ import {
   Host,
   Method,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { actionBus, EventAction } from '../../services/actions'
 import { debugIf } from '../../services/common'
@@ -13,11 +13,11 @@ import {
   AudioInfo,
   AudioRequest,
   AudioType,
-  AUDIO_TOPIC
+  AUDIO_TOPIC,
 } from '../n-audio/services/interfaces'
 import {
   audioState,
-  onAudioStateChange
+  onAudioStateChange,
 } from '../n-audio/services/state'
 
 /**

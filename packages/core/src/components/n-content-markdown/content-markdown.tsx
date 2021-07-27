@@ -5,18 +5,18 @@ import {
   h,
   Host,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
-  onCommonStateChange
+  onCommonStateChange,
 } from '../../services/common'
 import { warn } from '../../services/common/logging'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import {
   resolveRemoteContent,
-  resolveSrc
+  resolveSrc,
 } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'

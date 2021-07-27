@@ -4,14 +4,14 @@ import {
   Event,
   EventEmitter,
   Method,
-  Prop
+  Prop,
 } from '@stencil/core'
 import { warn } from '../../services/common/logging'
 import {
   hasReference,
   markReference,
   ReferenceCompleteResults,
-  ReferenceType
+  ReferenceType,
 } from '../../services/content'
 
 /**

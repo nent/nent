@@ -20,7 +20,7 @@ When used in a menu or navigation system, you can leverage the active-class that
 
 ### View
 
-To create a link to a route, simply use the route in the href attribute.
+To create a link to a route, simply use the route in the `href` attribute.
 
 ```html
 <n-view-link path='/route'> ... </n-view-link>
