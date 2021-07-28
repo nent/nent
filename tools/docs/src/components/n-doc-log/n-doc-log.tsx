@@ -11,9 +11,8 @@ export class DocLog {
   private proxyConsole(name: string, autoScroll: boolean) {
     this[`old${name}`] = console[name]
     const log = this.el.shadowRoot.querySelector('#log')!
-    const logContainer = this.el.shadowRoot.querySelector(
-      '#container',
-    )!
+    const logContainer =
+      this.el.shadowRoot.querySelector('#container')!
     console[name] = (...args: any[]) => {
       this[`old${name}`].call(undefined, ...args)
       const output = this.produceOutput(name, args)

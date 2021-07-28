@@ -8,6 +8,28 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface NDocLog {
     }
+    interface NDocSource {
+        /**
+          * The source file line-number to start with
+         */
+        "from": number;
+        /**
+          * The markdown language to use
+         */
+        "language": 'html' | 'jsx';
+        /**
+          * Cross Origin Mode
+         */
+        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * Remote Template URL
+         */
+        "src": string;
+        /**
+          * The source file line number to end with
+         */
+        "to"?: number;
+    }
 }
 declare global {
     interface HTMLNDocLogElement extends Components.NDocLog, HTMLStencilElement {
@@ -16,15 +38,45 @@ declare global {
         prototype: HTMLNDocLogElement;
         new (): HTMLNDocLogElement;
     };
+    interface HTMLNDocSourceElement extends Components.NDocSource, HTMLStencilElement {
+    }
+    var HTMLNDocSourceElement: {
+        prototype: HTMLNDocSourceElement;
+        new (): HTMLNDocSourceElement;
+    };
     interface HTMLElementTagNameMap {
         "n-doc-log": HTMLNDocLogElement;
+        "n-doc-source": HTMLNDocSourceElement;
     }
 }
 declare namespace LocalJSX {
     interface NDocLog {
     }
+    interface NDocSource {
+        /**
+          * The source file line-number to start with
+         */
+        "from"?: number;
+        /**
+          * The markdown language to use
+         */
+        "language"?: 'html' | 'jsx';
+        /**
+          * Cross Origin Mode
+         */
+        "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * Remote Template URL
+         */
+        "src": string;
+        /**
+          * The source file line number to end with
+         */
+        "to"?: number;
+    }
     interface IntrinsicElements {
         "n-doc-log": NDocLog;
+        "n-doc-source": NDocSource;
     }
 }
 export { LocalJSX as JSX };
@@ -32,6 +84,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "n-doc-log": LocalJSX.NDocLog & JSXBase.HTMLAttributes<HTMLNDocLogElement>;
+            "n-doc-source": LocalJSX.NDocSource & JSXBase.HTMLAttributes<HTMLNDocSourceElement>;
         }
     }
 }
