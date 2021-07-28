@@ -6,6 +6,7 @@ name: publish
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - 'package/core/**/*.tsx'
       - 'package/core/**/*.ts'
