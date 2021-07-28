@@ -3,7 +3,10 @@ import {
   activateActionActivators,
   sendActions,
 } from '../../../services/actions/elements'
-import { ActionActivationStrategy } from '../../../services/actions/interfaces'
+import {
+  ActionActivationStrategy,
+  IActionElement,
+} from '../../../services/actions/interfaces'
 import { debugIf } from '../../../services/common/logging'
 import {
   ANALYTICS_COMMANDS,
@@ -31,10 +34,10 @@ export class PresentationService {
     return Array.from(this.el.querySelectorAll('n-action-activator'))
   }
 
-  private get actions(): HTMLNPresentationActionElement[] {
+  private get actions(): IActionElement[] {
     return Array.from(
       this.el.querySelectorAll('n-presentation-action'),
-    )
+    ).map(a => a as unknown as IActionElement)
   }
 
   private activatedActions: any = []

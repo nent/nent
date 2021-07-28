@@ -66,10 +66,6 @@ export class NPresentationAction implements IActionElement {
   /**
    * Send this action to the action messaging system.
    */
-
-  /**
-   * Send this action to the action messaging system.
-   */
   @Method()
   async sendAction(data?: Record<string, any>) {
     return this.actionService.sendAction(data)
