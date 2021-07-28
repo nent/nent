@@ -1,5 +1,3 @@
-//import { angularOutputTarget } from '@stencil/angular-output-target'
-//import { reactOutputTarget } from '@stencil/react-output-target'
 import { Config } from '@stencil/core'
 import { JsonDocs } from '@stencil/core/internal'
 import analyzer from 'rollup-plugin-analyzer'
@@ -20,17 +18,6 @@ const config: Config = {
     ],
   },
   outputTargets: [
-    // angularOutputTarget({
-    //   componentCorePackage: '@nent/core',
-    //   directivesProxyFile: '../core-angular/src/directives/proxies.ts',
-    //   excludeComponents: [ 'n-app', 'n-app-analytics'],
-    // }),
-    // reactOutputTarget({
-    //   componentCorePackage: '@nent/core',
-    //   proxiesFile: '../core-react/src/components.ts',
-    //   excludeComponents: [ 'n-app', 'n-app-analytics'],
-    //   loaderDir: 'dist/loader'
-    // }),
     {
       type: 'dist',
       esmLoaderPath: 'loader',
