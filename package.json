@@ -1,5 +1,5 @@
 {
-  "name": "nent",
+  "name": "nent-repo",
   "private": true,
   "license": "MIT",
   "author": "Jason Wicker <jason@nent.dev>",
@@ -51,8 +51,8 @@
     "vscode": "yarn workspace nent",
     ":tools ---": "------------",
     "clean": "lerna clean && run-p clean:core clean:docs",
-    "clean:core": "yarn core run prebuild",
-    "clean:docs": "yarn docs run prebuild",
+    "clean:core": "yarn core run clean",
+    "clean:docs": "yarn docs run clean",
     ":auto ---": "------------",
     "prepare": "husky install",
     "prepublishOnly": "pinst --disable",
@@ -102,10 +102,7 @@
     "yargs": "17.0.1"
   },
   "jest": {
-    "preset": "@stencil/core/testing",
-    "testPathIgnorePatterns": [
-      "<rootDir>/.scratch/"
-    ]
+    "preset": "@stencil/core/testing"
   },
   "workspaces": [
     "packages/core",
