@@ -102,10 +102,7 @@
     "yargs": "17.0.1"
   },
   "jest": {
-    "preset": "@stencil/core/testing",
-    "testPathIgnorePatterns": [
-      "<rootDir>/.scratch/"
-    ]
+    "preset": "@stencil/core/testing"
   },
   "workspaces": [
     "packages/core",

@@ -7,12 +7,8 @@ import {
   Prop,
   State,
 } from '@stencil/core'
-import {
-  actionBus,
-  EventAction,
-  IActionElement,
-} from '../../services/actions'
-import { warn } from '../../services/common/logging'
+import { EventAction, IActionElement } from '../../services/actions'
+import { ActionService } from '../../services/actions/service'
 
 /**
  * This element just holds data to express the actionEvent to fire. This element
@@ -27,6 +23,11 @@ import { warn } from '../../services/common/logging'
 export class Action implements IActionElement {
   @Element() el!: HTMLNActionElement
   @State() valid: boolean = true
+  private actionService!: ActionService
+
+  constructor() {
+    this.actionService = new ActionService(this)
+  }
 
   /**
    * This is the topic this action-command is targeting.
@@ -40,64 +41,31 @@ export class Action implements IActionElement {
   @Prop() command!: string
 
   /**
+   * A predicate to evaluate prior to sending the action.
+   */
+  @Prop() when?: string
+
+  /**
    * Get the underlying actionEvent instance. Used by the n-action-activator element.
    */
   @Method()
-  async getAction(): Promise<EventAction<any> | null> {
-    if (!this.topic) {
-      warn(`n-action: unable to fire action, missing topic`)
-      return null
-    }
-
-    if (!this.command) {
-      warn(`n-action: unable to fire action, missing command`)
-      return null
-    }
-
-    let data: Record<string, any> = { ...this.el.dataset }
-
-    if (this.childScript) {
-      Object.assign(
-        data,
-        JSON.parse(this.childScript!.textContent || '{}'),
-      )
-    }
-
-    this.valid = true
-    this.childInputs.forEach((el: any, index: number) => {
-      if (el.checkValidity?.call(el) === false) {
-        el.reportValidity?.call(el)
-        this.valid = false
-      } else {
-        data[el.id || el.name || index] =
-          el.value || (el.type == 'checkbox' ? el.checked : null)
-      }
-    })
-
-    return {
-      topic: this.topic,
-      command: this.command,
-      data,
-    }
+  getAction(): Promise<EventAction<any> | null> {
+    return this.actionService.getAction()
   }
 
   /**
    * Send this action to the action messaging system.
    */
   @Method()
-  async sendAction(data?: Record<string, any>) {
-    const action = await this.getAction()
-    if (action && this.valid) {
-      if (data) Object.assign(action.data, data)
-      actionBus.emit(action.topic, action)
-    }
+  sendAction(data?: Record<string, any>) {
+    return this.actionService.sendAction(data)
   }
 
-  private get childScript(): HTMLScriptElement | null {
+  get childScript(): HTMLScriptElement | null {
     return this.el.querySelector('script')
   }
 
-  private get childInputs() {
+  get childInputs() {
     return this.el.querySelectorAll('input,select,textarea')
   }
 

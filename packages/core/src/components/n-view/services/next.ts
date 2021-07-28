@@ -36,7 +36,7 @@ export async function resolveNext(
     childViewDos.map(e => getViewPromptStateProperties(e)),
   )
 
-  const result = findFirstUnvisited(converted)
+  const result = await findFirstUnvisited(converted)
 
   return result
 }

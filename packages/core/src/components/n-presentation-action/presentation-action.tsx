@@ -5,13 +5,13 @@ import {
   Host,
   Method,
   Prop,
+  State,
 } from '@stencil/core'
-import { actionBus } from '../../services/actions'
 import {
   EventAction,
   IActionElement,
 } from '../../services/actions/interfaces'
-import { warn } from '../../services/common/logging'
+import { ActionService } from '../../services/actions/service'
 
 /**
  * This specialized action contains the time attribute,
@@ -26,8 +26,14 @@ import { warn } from '../../services/common/logging'
   shadow: false,
 })
 export class NPresentationAction implements IActionElement {
-  private sent: boolean = false
+  @State() valid: boolean = true
   @Element() el!: HTMLNPresentationActionElement
+
+  private actionService!: ActionService
+  constructor() {
+    this.actionService = new ActionService(this)
+  }
+
   /**
    * This is the topic this action-command is targeting.
    *
@@ -45,43 +51,36 @@ export class NPresentationAction implements IActionElement {
   @Prop() time?: number | 'end'
 
   /**
+   * A predicate to evaluate prior to sending the action.
+   */
+  @Prop() when?: string
+
+  /**
    * Get the underlying actionEvent instance. Used by the n-action-activator element.
    */
   @Method()
-  async getAction(): Promise<EventAction<any> | null> {
-    if (!this.topic) {
-      warn(
-        `n-presentation-action: unable to fire action, missing topic`,
-      )
-      return null
-    }
-
-    if (!this.command) {
-      warn(
-        `n-presentation-action: unable to fire action, missing command`,
-      )
-      return null
-    }
-
-    let data = Object.assign({}, this.el.dataset)
-    return {
-      topic: this.topic,
-      command: this.command,
-      data,
-    }
+  getAction(): Promise<EventAction<any> | null> {
+    return this.actionService.getAction()
   }
 
   /**
-   * Send this action to the the action messaging system.
+   * Send this action to the action messaging system.
+   */
+
+  /**
+   * Send this action to the action messaging system.
    */
   @Method()
   async sendAction(data?: Record<string, any>) {
-    const action = await this.getAction()
-    if (action && !this.sent) {
-      if (data) Object.assign(action.data, data)
-      actionBus.emit(action.topic, action)
-      this.sent = true
-    }
+    return this.actionService.sendAction(data)
+  }
+
+  get childScript(): HTMLScriptElement | null {
+    return this.el.querySelector('script')
+  }
+
+  get childInputs() {
+    return this.el.querySelectorAll('input,select,textarea')
   }
 
   render() {

@@ -1,12 +1,18 @@
 jest.mock('../../services/common/logging')
+jest.mock('../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, EventAction } from '../../services/actions'
+import {
+  commonState,
+  commonStateDispose,
+} from '../../services/common'
 import { Action } from './action'
 
 describe('n-action', () => {
   afterAll(() => {
     actionBus.removeAllListeners()
+    commonStateDispose()
   })
 
   it('renders', async () => {
@@ -110,6 +116,64 @@ describe('n-action', () => {
     await page.waitForChanges()
 
     expect(msg).not.toBeUndefined()
+  })
+
+  it('n-action: sendAction when condition: true', async () => {
+    let msg: EventAction<any> | null = null
+    commonState.dataEnabled = true
+    actionBus.on('navigation', (a: any) => {
+      msg = a
+    })
+    const page = await newSpecPage({
+      components: [Action],
+      html: `<n-action topic="navigation" when="true" command="go-to"></n-action>`,
+      supportsShadowDom: false,
+    })
+
+    const action = page.body.querySelector('n-action')
+
+    expect(action).not.toBeNull()
+
+    const event = await action?.getAction()
+
+    expect(event).not.toBeNull()
+
+    action?.sendAction({
+      path: '/test',
+    })
+
+    await page.waitForChanges()
+
+    expect(msg).not.toBeUndefined()
+  })
+
+  it('n-action: sendAction when condition: false', async () => {
+    let msg: EventAction<any> | null = null
+    commonState.dataEnabled = true
+    actionBus.on('navigation', (a: any) => {
+      msg = a
+    })
+    const page = await newSpecPage({
+      components: [Action],
+      html: `<n-action topic="navigation" when="false" command="go-to"></n-action>`,
+      supportsShadowDom: false,
+    })
+
+    const action = page.body.querySelector('n-action')
+
+    expect(action).not.toBeNull()
+
+    const event = await action?.getAction()
+
+    expect(event).not.toBeNull()
+
+    action?.sendAction({
+      path: '/test',
+    })
+
+    await page.waitForChanges()
+
+    expect(msg).toBeNull()
   })
 
   it('n-action: getAction param data', async () => {
