@@ -6,7 +6,6 @@ dist
 loader
 .eslintcache
 .env
-/examples
 /docs
 coverage
 stats
