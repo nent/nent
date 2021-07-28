@@ -16,6 +16,9 @@ updates:
   - package-ecosystem: "npm"
     directory: "/packages/core"
     versioning-strategy: auto
+    ignore:
+    - jest
+    - jest-cli
     schedule:
       interval: "daily"
 
