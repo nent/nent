@@ -34,6 +34,10 @@ export namespace Components {
           * This is the topic this action-command is targeting.
          */
         "topic": string;
+        /**
+          * A predicate to evaluate prior to sending the action.
+         */
+        "when"?: string;
     }
     interface NActionActivator {
         /**
@@ -168,7 +172,7 @@ export namespace Components {
         /**
           * Get the underlying actionEvent instance. Used by the n-action-activator element.
          */
-        "getAction": () => Promise<EventAction<any>>;
+        "getAction": () => Promise<EventAction<any> | null>;
         /**
           * Send this action to the the action messaging system.
          */
@@ -185,6 +189,10 @@ export namespace Components {
           * The value payload for the command.
          */
         "value"?: string | boolean | number;
+        /**
+          * A predicate to evaluate prior to sending the action.
+         */
+        "when"?: string;
     }
     interface NAudioActionMusicLoad {
         /**
@@ -234,7 +242,7 @@ export namespace Components {
         /**
           * Get the underlying actionEvent instance. Used by the n-action-activator element.
          */
-        "getAction": () => Promise<EventAction<any>>;
+        "getAction": () => Promise<EventAction<any> | null>;
         /**
           * Send this action to the the action messaging system.
          */
@@ -555,7 +563,7 @@ export namespace Components {
          */
         "getAction": () => Promise<EventAction<any> | null>;
         /**
-          * Send this action to the the action messaging system.
+          * Send this action to the action messaging system.
          */
         "sendAction": (data?: Record<string, any> | undefined) => Promise<void>;
         /**
@@ -566,6 +574,10 @@ export namespace Components {
           * This is the topic this action-command is targeting.
          */
         "topic": string;
+        /**
+          * A predicate to evaluate prior to sending the action.
+         */
+        "when"?: string;
     }
     interface NPresentationTimer {
         /**
@@ -1138,6 +1150,10 @@ declare namespace LocalJSX {
           * This is the topic this action-command is targeting.
          */
         "topic": string;
+        /**
+          * A predicate to evaluate prior to sending the action.
+         */
+        "when"?: string;
     }
     interface NActionActivator {
         /**
@@ -1292,6 +1308,10 @@ declare namespace LocalJSX {
           * The value payload for the command.
          */
         "value"?: string | boolean | number;
+        /**
+          * A predicate to evaluate prior to sending the action.
+         */
+        "when"?: string;
     }
     interface NAudioActionMusicLoad {
         /**
@@ -1641,6 +1661,10 @@ declare namespace LocalJSX {
           * This is the topic this action-command is targeting.
          */
         "topic": string;
+        /**
+          * A predicate to evaluate prior to sending the action.
+         */
+        "when"?: string;
     }
     interface NPresentationTimer {
         /**

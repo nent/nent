@@ -44,6 +44,34 @@ For most action-argument data, it is easiest to specify them as key-value pairs 
 ```
 
 
+### Conditional
+
+To add a condition to your actions, add a when attribute to the action element with your predicate expression.
+
+```html
+<n-action topic='<topic>'
+  command='<command>'
+  when='<expression>'
+  data-(key)='value'>
+</n-action>
+...
+<n-data></n-data>
+```
+
+> NOTE: You must enable data services, by adding an `n-data` element to the page.
+
+
+#### Real example
+
+```html
+<n-action topic='navigation'
+  command='go-to'
+  when='{{storage:auto-navigate}}'
+  data-path='/some/path'>
+</n-action>
+```
+
+
 ### Input data
 
 For most data, it is easy to specify key-value pairs using the `data-*` attributes within the `n-action` tag.
@@ -76,10 +104,11 @@ For more complex data shapes, you can define the data parameters as JSON in a ch
 
 ## Properties
 
-| Property               | Attribute | Description                                         | Type     | Default     |
-| ---------------------- | --------- | --------------------------------------------------- | -------- | ----------- |
-| `command` _(required)_ | `command` | The command to execute.                             | `string` | `undefined` |
-| `topic` _(required)_   | `topic`   | This is the topic this action-command is targeting. | `string` | `undefined` |
+| Property               | Attribute | Description                                          | Type                  | Default     |
+| ---------------------- | --------- | ---------------------------------------------------- | --------------------- | ----------- |
+| `command` _(required)_ | `command` | The command to execute.                              | `string`              | `undefined` |
+| `topic` _(required)_   | `topic`   | This is the topic this action-command is targeting.  | `string`              | `undefined` |
+| `when`                 | `when`    | A predicate to evaluate prior to sending the action. | `string`, `undefined` | `undefined` |
 
 
 ## Methods

@@ -27,13 +27,13 @@ This element represents an action to be fired. This specialized action encapsula
 
 ## Methods
 
-### `getAction() => Promise<EventAction<any>>`
+### `getAction() => Promise<EventAction<any> | null>`
 
 Get the underlying actionEvent instance. Used by the n-action-activator element.
 
 #### Returns
 
-Type: `Promise<EventAction<any>>`
+Type: `Promise<EventAction<any> | null>`
 
 
 

@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property               | Attribute | Description                                         | Type                           | Default     |
-| ---------------------- | --------- | --------------------------------------------------- | ------------------------------ | ----------- |
-| `command` _(required)_ | `command` | The command to execute.                             | `string`                       | `undefined` |
-| `time`                 | `time`    | The time this should execute                        | `"end"`, `number`, `undefined` | `undefined` |
-| `topic` _(required)_   | `topic`   | This is the topic this action-command is targeting. | `string`                       | `undefined` |
+| Property               | Attribute | Description                                          | Type                           | Default     |
+| ---------------------- | --------- | ---------------------------------------------------- | ------------------------------ | ----------- |
+| `command` _(required)_ | `command` | The command to execute.                              | `string`                       | `undefined` |
+| `time`                 | `time`    | The time this should execute                         | `"end"`, `number`, `undefined` | `undefined` |
+| `topic` _(required)_   | `topic`   | This is the topic this action-command is targeting.  | `string`                       | `undefined` |
+| `when`                 | `when`    | A predicate to evaluate prior to sending the action. | `string`, `undefined`          | `undefined` |
 
 
 ## Methods
@@ -28,7 +29,7 @@ Type: `Promise<EventAction<any> | null>`
 
 ### `sendAction(data?: Record<string, any> | undefined) => Promise<void>`
 
-Send this action to the the action messaging system.
+Send this action to the action messaging system.
 
 #### Returns
 
