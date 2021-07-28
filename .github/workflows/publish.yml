@@ -5,6 +5,10 @@ name: publish
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'package/core/**/*.tsx'
+      - 'package/core/**/*.ts'
 
 jobs:
   publish:
@@ -27,7 +31,7 @@ jobs:
       - run: npm whoami
       - name: build
         run: yarn install && yarn build
-       
+
       - name: publish
         run: lerna publish patch --yes --no-verify-access
         env:
