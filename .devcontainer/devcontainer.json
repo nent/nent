@@ -41,14 +41,9 @@
     3002,
     5000
   ],
-  "mounts": [
-    // "source=dind-var-lib-docker,target=/var/lib/docker,type=volume",
-    "source=${env:HOME}${env:USERPROFILE}/.git,target=/home/vscode/.git,type=bind",
-    "source=${env:HOME}${env:USERPROFILE}/.docker,target=/home/vscode/.docker,type=bind",
-    "source=${env:HOME}${env:USERPROFILE}/.config,target=/home/vscode/.config,type=bind"
-  ],
+  "mounts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "yarn install",
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  //"remoteUser": "vscode"
+  "remoteUser": "node"
 }
