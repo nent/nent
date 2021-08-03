@@ -1,4 +1,4 @@
-import { kebabToCamelCase, toBoolean } from './strings'
+import { capitalize, kebabToCamelCase, toBoolean } from './strings'
 
 describe('toBoolean', () => {
   test('empty string', () => {
@@ -60,6 +60,14 @@ describe('kebabToCamelCase', () => {
 
   it('should translate bad casing', async () => {
     expect(camel).toBe('thisIsAWord')
+  })
+})
+
+describe('capitalize', () => {
+  let caps = capitalize('first letter capital')
+
+  it('should capitalize first letter of each word', async () => {
+    expect(caps).toBe('First Letter Capital')
   })
 })
 
