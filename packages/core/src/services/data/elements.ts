@@ -3,9 +3,7 @@
 import { evaluatePredicate } from './expressions'
 import { hasToken, resolveTokens } from './tokens'
 
-export async function resolveChildElementXAttributes(
-  element: HTMLElement,
-) {
+export function resolveChildElementXAttributes(element: HTMLElement) {
   resolveChildXHideWhenAttributes(element)
   resolveChildXShowWhenAttributes(element)
   resolveChildXClassWhenAttributes(element)

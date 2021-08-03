@@ -23,7 +23,7 @@ import { ElementsActionListener } from './services/actions'
 })
 export class Elements {
   @Element() el!: HTMLNElementsElement
-  private dataSubscription!: () => void
+  private dataSubscription?: () => void
   private listener!: ElementsActionListener
 
   /**
@@ -42,26 +42,21 @@ export class Elements {
     if (commonState.dataEnabled) {
       this.subscribeToDataEvents()
     } else {
-      this.dataSubscription = onCommonStateChange(
-        'dataEnabled',
-        enabled => {
-          if (enabled) {
-            this.subscribeToDataEvents()
-            this.dataSubscription()
-          }
-        },
-      )
+      const dispose = onCommonStateChange('dataEnabled', enabled => {
+        if (enabled) {
+          this.subscribeToDataEvents()
+        }
+        dispose()
+      })
     }
   }
 
   private subscribeToDataEvents() {
     this.dataSubscription = eventBus.on(
       DATA_EVENTS.DataChanged,
-      async () => {
+      () => {
         debugIf(this.debug, `n-elements: data changed `)
-        await resolveChildElementXAttributes(
-          this.el.ownerDocument.body,
-        )
+        resolveChildElementXAttributes(this.el.ownerDocument.body)
       },
     )
   }

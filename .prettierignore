@@ -7,6 +7,5 @@ dist
 *.js
 *.d.ts
 *.e2e.ts?x
-*.spec.ts?x
 test
 __mock__
