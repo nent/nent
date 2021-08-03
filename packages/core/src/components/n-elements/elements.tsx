@@ -3,7 +3,7 @@ import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
 import {
   commonState,
-  onCommonStateChange
+  onCommonStateChange,
 } from '../../services/common/state'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
@@ -23,7 +23,7 @@ import { ElementsActionListener } from './services/actions'
 })
 export class Elements {
   @Element() el!: HTMLNElementsElement
-  private dataSubscription!: () => void
+  private dataSubscription?: () => void
   private listener!: ElementsActionListener
 
   /**
@@ -45,8 +45,8 @@ export class Elements {
       const dispose = onCommonStateChange('dataEnabled', enabled => {
         if (enabled) {
           this.subscribeToDataEvents()
-          dispose()
         }
+        dispose()
       })
     }
   }
