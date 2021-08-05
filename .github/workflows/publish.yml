@@ -23,7 +23,7 @@ jobs:
           git config --global user.email 'logrythmik@users.noreply.github.com'
 
       - name: setup-npm
-        uses: actions/setup-node@v2.3.2
+        uses: actions/setup-node@v2.4.0
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
