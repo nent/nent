@@ -20,8 +20,8 @@
     "vite": "2.4.4",
     "vite-plugin-cdn-import": "0.3.2",
     "vite-plugin-purge-icons": "0.7.0",
-    "vite-plugin-pwa": "0.9.3",
-    "workbox-build": "6.2.0",
+    "vite-plugin-pwa": "0.10.0",
+    "workbox-build": "6.2.2",
     "workbox-window": "6.2.2"
   }
 }
