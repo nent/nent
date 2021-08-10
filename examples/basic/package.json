@@ -22,6 +22,6 @@
     "vite-plugin-purge-icons": "0.7.0",
     "vite-plugin-pwa": "0.10.0",
     "workbox-build": "6.2.2",
-    "workbox-window": "6.2.2"
+    "workbox-window": "6.2.3"
   }
 }
