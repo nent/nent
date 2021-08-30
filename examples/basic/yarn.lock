@@ -2518,10 +2518,10 @@ util-deprecate@^1.0.2:
   resolved "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-vite-plugin-cdn-import@0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/vite-plugin-cdn-import/-/vite-plugin-cdn-import-0.3.4.tgz#81230dc22ba222e97b127c10ac48f6f5dec34e5c"
-  integrity sha512-jz/seymeI5YUHgPELtBHRBs+fM06giD2k3pC08Rc5kMB3iQOZ78k3/kG6h5qzPn8JPyVns8DnUwZSbwzR2UMIA==
+vite-plugin-cdn-import@0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/vite-plugin-cdn-import/-/vite-plugin-cdn-import-0.3.5.tgz#b9cfbb076fd2bc1e8ae666e65450a864972dee81"
+  integrity sha512-e1raoalfBiIhv+hnMeSp1UNjloDDBhHpeFxkwRRdPBmTdDRqdEEn8owUmT5u8UBSVCs4xN3n/od4a91vXEhXPQ==
   dependencies:
     rollup-plugin-external-globals "^0.6.1"
 
