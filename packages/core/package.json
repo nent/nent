@@ -57,12 +57,12 @@
     "prepublish": "yarn run build"
   },
   "devDependencies": {
-    "@stencil/core": "2.6.0",
+    "@stencil/core": "2.8.0",
     "@stencil/store": "1.4.1",
-    "@types/howler": "2.2.3",
+    "@types/howler": "2.2.4",
     "eslint-plugin-clean-regex": "0.5.1",
     "expr-eval": "2.0.2",
-    "jsonata": "1.8.4",
+    "jsonata": "1.8.5",
     "remarkable": "2.0.1"
   },
   "jest": {
