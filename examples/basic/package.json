@@ -21,7 +21,7 @@
     "vite-plugin-cdn-import": "0.3.5",
     "vite-plugin-purge-icons": "0.7.0",
     "vite-plugin-pwa": "0.11.2",
-    "workbox-build": "6.2.4",
+    "workbox-build": "6.3.0",
     "workbox-window": "6.3.0"
   }
 }
