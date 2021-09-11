@@ -1,3 +1,4 @@
+// @ts-nocheck
 self.importScripts('/workbox-v6.3.0/workbox-sw.js')
 
 const { skipWaiting, clientsClaim } = workbox.core
