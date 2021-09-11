@@ -1,4 +1,3 @@
-// @ts-nocheck
 self.importScripts('/workbox-v6.3.0/workbox-sw.js')
 
 const { skipWaiting, clientsClaim } = workbox.core
@@ -103,7 +102,7 @@ registerRoute(
   }),
 )
 
-self.addEventListener('install', event => {
+self.addEventListener('install', async () => {
   const cache = await caches.open(CACHE_NAME)
   // Setting {cache: 'reload'} in the new request will ensure that the response
   // isn't fulfilled from the HTTP cache; i.e., it will be from the network.
