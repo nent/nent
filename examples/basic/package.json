@@ -24,5 +24,8 @@
   "devDependencies": {
     "live-server": "^1.2.1",
     "npm-watch": "^0.11.0"
+  },
+  "resolutions": {
+    "glob-parent": ">=5.1.2"
   }
 }
