@@ -1,5 +1,4 @@
 <n-audio-action-music-load track-id="music"
-  debug
   src="https://storage.googleapis.com/nent-static/docs/audio/music-2.mp3"
   discard="route"
   mode="load">
@@ -15,8 +14,7 @@
       <b>&lt;n-audio-action-music&gt;</b>
     </a> elements. </p>
   <h3>Play</h3>
-  <n-action-activator activate="on-element-event"
-    debug>
+  <n-action-activator activate="on-element-event">
     <n-audio-action-music command="play"
       track-id="music">
     </n-audio-action-music>

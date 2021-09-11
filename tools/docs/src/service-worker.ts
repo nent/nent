@@ -60,7 +60,7 @@ registerRoute(
 
 registerRoute(
   new RegExp('/pages/.+'),
-  new StaleWhileRevalidate({
+  new CacheFirst({
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
@@ -71,7 +71,7 @@ registerRoute(
 )
 registerRoute(
   new RegExp('/assets/.+'),
-  new StaleWhileRevalidate({
+  new CacheFirst({
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
@@ -82,7 +82,7 @@ registerRoute(
 )
 registerRoute(
   new RegExp('/dist/.+'),
-  new StaleWhileRevalidate({
+  new NetworkFirst({
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
@@ -93,7 +93,7 @@ registerRoute(
 )
 registerRoute(
   new RegExp('/lib/.+'),
-  new StaleWhileRevalidate({
+  new CacheFirst({
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
@@ -104,14 +104,10 @@ registerRoute(
 )
 
 self.addEventListener('install', event => {
-  event.waitUntil(
-    (async () => {
-      const cache = await caches.open(CACHE_NAME)
-      // Setting {cache: 'reload'} in the new request will ensure that the response
-      // isn't fulfilled from the HTTP cache; i.e., it will be from the network.
-      await cache.add(new Request(SHELL_URL, { cache: 'reload' }))
-    })(),
-  )
+  const cache = await caches.open(CACHE_NAME)
+  // Setting {cache: 'reload'} in the new request will ensure that the response
+  // isn't fulfilled from the HTTP cache; i.e., it will be from the network.
+  await cache.add(new Request(SHELL_URL, { cache: 'reload' }))
 })
 
 self.addEventListener('fetch', event => {
