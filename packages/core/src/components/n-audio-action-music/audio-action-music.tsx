@@ -38,7 +38,11 @@ export class AudioMusicAction implements IActionElement {
   private dispose?: () => void
 
   constructor() {
-    this.actionService = new ActionService(this)
+    this.actionService = new ActionService(
+      this,
+      'n-audio-action-music',
+      false,
+    )
   }
 
   get childScript(): HTMLScriptElement | null {
@@ -81,6 +85,14 @@ export class AudioMusicAction implements IActionElement {
    */
   @Prop() when?: string
 
+  private getData() {
+    return {
+      type: AudioType.music,
+      trackId: this.trackId,
+      value: this.value,
+    }
+  }
+
   /**
    * Get the underlying actionEvent instance. Used by the n-action-activator element.
    */
@@ -88,11 +100,7 @@ export class AudioMusicAction implements IActionElement {
   async getAction(): Promise<EventAction<any> | null> {
     const action = await this.actionService.getAction()
     if (action == null) return null
-    action.data.type = {
-      type: AudioType.music,
-      trackId: this.trackId,
-      value: this.value,
-    }
+    Object.assign(action.data, this.getData())
     return action
   }
   /**
@@ -101,6 +109,7 @@ export class AudioMusicAction implements IActionElement {
   @Method()
   async sendAction(data?: Record<string, any>) {
     if (audioState.hasAudioComponent) {
+      Object.assign(data, this.getData())
       this.actionService.sendAction(data)
     } else {
       this.dispose = onAudioStateChange(

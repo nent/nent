@@ -115,7 +115,6 @@ export class AudioSoundLoad {
             )
             this.sent = true
           }
-          this.dispose?.call(this)
         },
       )
     }

@@ -31,7 +31,10 @@ export class NPresentationAction implements IActionElement {
 
   private actionService!: ActionService
   constructor() {
-    this.actionService = new ActionService(this)
+    this.actionService = new ActionService(
+      this,
+      'n-presentation-action',
+    )
   }
 
   /**

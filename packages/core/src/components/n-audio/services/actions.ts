@@ -61,7 +61,9 @@ export class AudioActionListener {
       async (ev: EventAction<any>) => {
         debugIf(
           this.debug,
-          `audio-listener: action received ${ev.topic}:${ev.command}`,
+          `audio-listener: action received ${ev.command}${
+            ev.data.type || ''
+          }:${ev.data.trackId || ''}`,
         )
         await this.commandReceived(ev.command, ev.data)
       },

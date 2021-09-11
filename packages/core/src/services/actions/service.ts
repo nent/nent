@@ -5,9 +5,11 @@ import { EventAction, IActionElement } from './interfaces'
 
 export class ActionService {
   private sent: boolean = false
+
   constructor(
     private element: IActionElement,
-    private elementName: string = '${this.elementName}',
+    private elementName: string,
+    private once = true,
   ) {}
 
   async getAction(): Promise<EventAction<any> | null> {
@@ -53,7 +55,7 @@ export class ActionService {
   }
 
   async sendAction(data?: Record<string, void>): Promise<void> {
-    if (this.sent) return
+    if (this.once && this.sent) return
     const action = await this.element.getAction()
 
     if (this.element.when && commonState.dataEnabled) {
