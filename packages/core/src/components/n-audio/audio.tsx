@@ -8,14 +8,14 @@ import {
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
-import { commonState } from '../../services/common/state'
 import {
-  addDataProvider,
-  removeDataProvider,
-} from '../../services/data/factory'
+  commonState,
+  onCommonStateChange,
+} from '../../services/common/state'
+import { getDataProvider } from '../../services/data/factory'
+import { IServiceProvider } from '../../services/data/interfaces'
 import { AudioActionListener } from './services/actions'
-import { AudioDataProvider } from './services/provider'
-import { audioState } from './services/state'
+import { audioState, onAudioStateChange } from './services/state'
 
 /**
  * Use this element only once per page to enable audio features.
@@ -35,8 +35,9 @@ import { audioState } from './services/state'
 export class Audio {
   private actionSubscription!: () => void
   private stateSubscription!: () => void
+  private audioStateSubscription?: () => void
+  private commonStateSubscription?: () => void
   @Element() el!: HTMLNAudioElement
-  private provider?: AudioDataProvider
 
   @State() error: string | null = null
   @State() stats = {
@@ -79,22 +80,50 @@ export class Audio {
     commonState.audioEnabled = true
   }
 
-  componentWillLoad() {
+  async componentWillLoad() {
     debugIf(this.debug, 'n-audio: loading')
+
     audioState.debug = this.debug
 
     if (audioState.hasAudioComponent) {
       this.error = `Duplicate Audio Player`
       return
     }
+
+    if (commonState.dataEnabled) {
+      const storage = (await getDataProvider(
+        'storage',
+      )) as IServiceProvider
+
+      commonState.audioEnabled =
+        (await storage?.get('audio-enabled')) == 'true'
+
+      audioState.muted = (await storage?.get('audio-muted')) == 'true'
+
+      this.audioStateSubscription = onAudioStateChange(
+        'muted',
+        async m => {
+          await storage?.set('audio-muted', m.toString())
+        },
+      )
+
+      this.commonStateSubscription = onCommonStateChange(
+        'audioEnabled',
+        async m => {
+          await storage?.set('audio-enabled', m.toString())
+        },
+      )
+    }
   }
 
   private registerServices() {
     debugIf(this.debug, `n-audio: loading listener`)
+
     this.actions = new AudioActionListener(
       window,
       eventBus,
       actionBus,
+      this.dataProvider,
       this.debug,
     )
 
@@ -106,12 +135,6 @@ export class Audio {
     )
 
     audioState.hasAudioComponent = true
-
-    if (commonState.dataEnabled && this.dataProvider) {
-      debugIf(this.debug, `n-audio: loading provider`)
-      this.provider = new AudioDataProvider(this.actions)
-      addDataProvider('audio', this.provider)
-    }
   }
 
   private updateState() {
@@ -197,10 +220,8 @@ export class Audio {
     audioState.hasAudioComponent = false
     this.stateSubscription?.call(this)
     this.actionSubscription?.call(this)
-    if (this.provider) {
-      removeDataProvider('audio')
-      this.provider.destroy()
-    }
+    this.audioStateSubscription?.call(this)
+    this.commonStateSubscription?.call(this)
     this.actions?.destroy()
   }
 }

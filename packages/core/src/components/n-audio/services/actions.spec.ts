@@ -38,8 +38,13 @@ describe('audio-listener:', () => {
       unload: jest.fn(),
       volume: () => 0,
     } as unknown as Howler
-
-    listener = new AudioActionListener(page.win, eventBus, actionBus)
+    commonState.audioEnabled = true
+    listener = new AudioActionListener(
+      page.win,
+      eventBus,
+      actionBus,
+      false,
+    )
 
     eventBus.on('*', (...args: any[]) => {
       events.push(...args)
@@ -363,23 +368,5 @@ describe('audio-listener:', () => {
     expect(listener.isPlaying()).toBeTruthy()
     expect(listener.hasAudio()).toBeTruthy()
     expect(playing?.src).toBe('/fake/path2.mp3')
-  })
-
-  it('audio: enable/disable', () => {
-    actionBus.emit(AUDIO_TOPIC, {
-      topic: AUDIO_TOPIC,
-      command: AUDIO_COMMANDS.disable,
-    })
-
-    expect(commonState.audioEnabled).toBeFalsy()
-
-    expect(page.win.Howler.unload).toBeCalled()
-
-    actionBus.emit(AUDIO_TOPIC, {
-      topic: AUDIO_TOPIC,
-      command: AUDIO_COMMANDS.enable,
-    })
-
-    expect(commonState.audioEnabled).toBeTruthy()
   })
 })

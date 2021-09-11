@@ -16,8 +16,6 @@ export interface AudioInfo {
 }
 
 export enum AUDIO_COMMANDS {
-  enable = 'enable',
-  disable = 'disable',
   play = 'play',
   queue = 'queue',
   load = 'load',
