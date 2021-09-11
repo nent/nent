@@ -38,6 +38,7 @@ import {
 export class AudioMusicLoad {
   @Element() el!: HTMLNAudioActionMusicLoadElement
   @State() sent: boolean = false
+  private dispose?: () => void
 
   /**
    * The path to the audio-file.
@@ -104,11 +105,10 @@ export class AudioMusicLoad {
     if (audioState.hasAudioComponent) {
       actionBus.emit(action.topic, action)
     } else {
-      const dispose = onAudioStateChange(
+      this.dispose = onAudioStateChange(
         'hasAudioComponent',
         async loaded => {
           if (loaded) {
-            dispose()
             actionBus.emit(action.topic, action)
             debugIf(
               audioState.debug,
@@ -116,6 +116,7 @@ export class AudioMusicLoad {
             )
             this.sent = true
           }
+          this.dispose?.call(this)
         },
       )
     }
@@ -128,5 +129,9 @@ export class AudioMusicLoad {
 
   render() {
     return <Host></Host>
+  }
+
+  disconnectedCallback() {
+    this.dispose?.call(this)
   }
 }

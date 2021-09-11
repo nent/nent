@@ -90,7 +90,7 @@ export class ViewLink {
     )
 
     this.routeSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteFinalized,
+      ROUTE_EVENTS.RouteChangeFinish,
       () => {
         const match = routingState.router!.matchPath({
           path: this.path,

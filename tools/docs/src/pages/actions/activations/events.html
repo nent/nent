@@ -6,38 +6,24 @@
   exit of this page.</blockquote>
 <n-doc-log>
 </n-doc-log>
-
-<n-content-markdown>
-  <script type="text/markdown">
-    ```html
-
-    <n-action-activator activate="on-enter">
-      <n-action topic="app"
-        command="log"
-        data-message="Testing on-enter action">
-      </n-action>
-    </n-action-activator>
-    <n-action-activator activate="on-exit">
-      <n-action topic="app"
-        command="log"
-        data-message="Testing on-exit action">
-      </n-action>
-    </n-action-activator>
-    ```
-  </script>
-</n-content-markdown>
-<n-action-activator activate="on-enter">
+<n-action-activator activate="on-enter"
+  debug>
   <n-action topic="app"
     command="log"
     data-message="Testing on-enter action">
   </n-action>
 </n-action-activator>
-<n-action-activator activate="on-exit">
+<n-action-activator activate="on-exit"
+  debug>
   <n-action topic="app"
     command="log"
     data-message="Testing on-exit action">
   </n-action>
 </n-action-activator>
+<n-doc-source src="/pages/actions/activations/events.html"
+  from="9"
+  to="22">
+</n-doc-source>
 <footer>
   <n-view-link-back slot="start"
     link-class="btn btn-primary">

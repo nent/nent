@@ -27,12 +27,16 @@ export class NavigationActionListener {
     })
   }
 
+  notifyRouteChangeStart() {
+    this.events.emit(ROUTE_EVENTS.RouteChangeStart)
+  }
+
   notifyRouteChanged(location: LocationSegments) {
     this.events.emit(ROUTE_EVENTS.RouteChanged, location)
   }
 
   notifyRouteFinalized(location: LocationSegments) {
-    this.events.emit(ROUTE_EVENTS.RouteFinalized, location)
+    this.events.emit(ROUTE_EVENTS.RouteChangeFinish, location)
   }
 
   notifyMatch(route: Route, match: MatchResults) {

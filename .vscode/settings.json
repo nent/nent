@@ -105,6 +105,9 @@
     "javascriptreact",
     "typescript"
   ],
+  "html.customData": [
+     "./tools/vscode/nent.html-data.json"
+  ],
   "vsicons.associations.files": [
     {
       "icon": "node",

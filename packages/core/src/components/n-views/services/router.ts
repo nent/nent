@@ -58,7 +58,7 @@ export class RouterService {
     this.removeHandler = this.history.listen(
       (location: LocationSegments) => {
         this.location = location
-        this.sendLocationNotifications(location)
+        this.notifyRouteChangeFinished(location)
       },
     )
 
@@ -77,7 +77,7 @@ export class RouterService {
       )
     }
 
-    this.sendLocationNotifications(this.history.location)
+    this.notifyRouteChangeFinished(this.history.location)
   }
 
   public async enableDataProviders() {
@@ -122,7 +122,11 @@ export class RouterService {
     )
   }
 
-  private sendLocationNotifications(location: LocationSegments) {
+  private notifyRouteChangeStarted() {
+    this.listener?.notifyRouteChangeStart()
+  }
+
+  private notifyRouteChangeFinished(location: LocationSegments) {
     this.routeData?.changed.emit(DATA_EVENTS.DataChanged, {
       changed: ['route'],
     })
@@ -174,11 +178,13 @@ export class RouterService {
   }
 
   goBack() {
+    this.notifyRouteChangeStarted()
     this.location.pathname = this.history.previousLocation.pathname
     this.history.goBack()
   }
 
   goToParentRoute() {
+    this.notifyRouteChangeStarted()
     const parentSegments = this.history.location.pathParts?.slice(
       0,
       -1,
@@ -211,12 +217,14 @@ export class RouterService {
   }
 
   public goToRoute(path: string) {
+    this.notifyRouteChangeStarted()
     const pathName = resolvePathname(path, this.location.pathname)
     this.location.pathname = pathName
     this.history.push(pathName)
   }
 
   public replaceWithRoute(path: string) {
+    this.notifyRouteChangeStarted()
     const pathName = resolvePathname(path, this.location.pathname)
     this.location.pathname = pathName
     this.history.replace(pathName)

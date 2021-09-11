@@ -6,10 +6,11 @@ import { Path } from './utils'
 export { LocationSegments }
 
 export enum ROUTE_EVENTS {
+  RouteChangeStart = 'route-change-start',
   RouteChanged = 'route-changed',
   RouteMatched = 'route-matched',
   RouteMatchedExact = 'route-matched-exact',
-  RouteFinalized = 'route-finalized',
+  RouteChangeFinish = 'route-change-finish',
   Initialized = 'initialized',
 }
 

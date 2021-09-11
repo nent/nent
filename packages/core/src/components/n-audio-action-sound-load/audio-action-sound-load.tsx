@@ -41,6 +41,7 @@ import { playedTrack } from '../n-audio/services/tracks'
 export class AudioSoundLoad {
   @Element() el!: HTMLNAudioActionSoundLoadElement
   @State() sent: boolean = false
+  private dispose?: () => void
 
   /**
    * The path to the audio-file.
@@ -103,11 +104,10 @@ export class AudioSoundLoad {
       if (this.mode == 'play' && trackPlayed) return
       actionBus.emit(action.topic, action)
     } else {
-      const dispose = onAudioStateChange(
+      this.dispose = onAudioStateChange(
         'hasAudioComponent',
         async loaded => {
           if (loaded) {
-            dispose()
             actionBus.emit(action.topic, action)
             debugIf(
               audioState.debug,
@@ -115,6 +115,7 @@ export class AudioSoundLoad {
             )
             this.sent = true
           }
+          this.dispose?.call(this)
         },
       )
     }
@@ -127,5 +128,9 @@ export class AudioSoundLoad {
 
   render() {
     return <Host></Host>
+  }
+
+  disconnectedCallback() {
+    this.dispose?.call(this)
   }
 }

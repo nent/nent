@@ -21,7 +21,8 @@ import {
 import { IRoute } from './interfaces'
 
 export class Route implements IRoute {
-  private readonly subscription: () => void
+  private onFinishedSubscription: () => void
+  private onStartedSubscription: () => void
   public match: MatchResults | null = null
   public scrollOnNextRender = false
   public previousMatch: MatchResults | null = null
@@ -40,7 +41,7 @@ export class Route implements IRoute {
   ) {
     this.router.routes.push(this)
     this.parentRoute?.addChildRoute(this)
-    this.subscription = router.eventBus.on(
+    this.onFinishedSubscription = router.eventBus.on(
       ROUTE_EVENTS.RouteChanged,
       () => {
         this.previousMatch = this.match
@@ -53,6 +54,27 @@ export class Route implements IRoute {
           this,
         )
         matchSetter(this.match)
+      },
+    )
+    this.onFinishedSubscription = router.eventBus.on(
+      ROUTE_EVENTS.RouteChanged,
+      () => {
+        this.previousMatch = this.match
+        this.match = router.matchPath(
+          {
+            path: this.path,
+            exact: this.exact,
+            strict: true,
+          },
+          this,
+        )
+        matchSetter(this.match)
+      },
+    )
+    this.onStartedSubscription = router.eventBus.on(
+      ROUTE_EVENTS.RouteChangeStart,
+      async () => {
+        await this.activateActions(ActionActivationStrategy.OnExit)
       },
     )
     this.match = this.router.matchPath(
@@ -136,8 +158,6 @@ export class Route implements IRoute {
         }
         this.router.viewsUpdated(routeViewOptions)
       }
-    } else if (this.didExit()) {
-      await this.activateActions(ActionActivationStrategy.OnExit)
     }
   }
 
@@ -298,7 +318,8 @@ export class Route implements IRoute {
   }
 
   public destroy() {
-    this.subscription()
+    this.onFinishedSubscription()
+    this.onStartedSubscription()
     this.routeDestroy?.call(this, this)
   }
 }

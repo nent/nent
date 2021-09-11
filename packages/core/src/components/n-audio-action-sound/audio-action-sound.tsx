@@ -32,6 +32,7 @@ export class AudioSoundAction implements IActionElement {
   @Element() el!: HTMLNAudioActionSoundElement
   @State() valid: boolean = true
   private actionService!: ActionService
+  private dispose?: () => void
 
   constructor() {
     this.actionService = new ActionService(this)
@@ -95,22 +96,27 @@ export class AudioSoundAction implements IActionElement {
     if (audioState.hasAudioComponent) {
       this.actionService.sendAction(data)
     } else {
-      const dispose = onAudioStateChange(
+      this.dispose = onAudioStateChange(
         'hasAudioComponent',
         async loaded => {
           if (loaded) {
-            dispose()
             this.actionService.sendAction(data)
             debugIf(
               audioState.debug,
               `n-audio-action-music: load-action sent for ${this.trackId}`,
             )
           }
+          this.dispose?.call(this)
         },
       )
     }
   }
+
   render() {
     return <Host></Host>
+  }
+
+  disconnectedCallback() {
+    this.dispose?.call(this)
   }
 }

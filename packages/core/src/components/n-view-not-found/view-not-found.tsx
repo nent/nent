@@ -67,7 +67,7 @@ export class ViewNotFound {
     )
 
     this.routeFinalizeSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteFinalized,
+      ROUTE_EVENTS.RouteChangeFinish,
       async () => {
         await this.setupView()
       },
