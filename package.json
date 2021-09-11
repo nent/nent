@@ -11,6 +11,7 @@
   "repository": "https://github.com/nent/nent.git",
   "scripts": {
     ":build ---": "---------------",
+    "prebuild": "rm -fR docs",
     "build": "run-s build:core build:docs",
     "prepublish": "yarn build",
     "publish": "lerna publish patch --yes",
