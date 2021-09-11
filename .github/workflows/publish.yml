@@ -31,7 +31,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
       - run: npm whoami
       - name: build
-        run: yarn install && yarn build
+        run: yarn install --frozen-lockfile && yarn build
 
       - name: publish
         run: lerna publish patch --yes --no-verify-access

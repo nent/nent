@@ -3,9 +3,10 @@
   "description": "A boilerplate project for web-apps built with NENT.",
   "version": "0.6.13",
   "author": "Support <user@nent.dev>",
-  "type": "commonjs",
-  "bin": {
-    "nent": "src/cli.js"
+  "type": "module",
+  "bin": "src/cli.js",
+  "engines": {
+    "node": ">13.1.0"
   },
   "private": false,
   "files": [

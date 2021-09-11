@@ -46,7 +46,7 @@
     "core": "yarn workspace @nent/core",
     "angular": "yarn workspace @nent/angular",
     "docs": "yarn workspace @nent/docs",
-    "example": "yarn workspace @nent/example",
+    "creator": "yarn workspace @nent/create",
     "vscode": "yarn workspace nent",
     ":tools ---": "------------",
     "clean": "lerna clean && run-p clean:core clean:docs",

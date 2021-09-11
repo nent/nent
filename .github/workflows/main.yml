@@ -28,7 +28,7 @@ jobs:
             nodeModules-
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
+        run: yarn install --frozen-lockfile
         env:
           CI: true
       - run: yarn lint
