@@ -28,7 +28,7 @@
     "build:docs": "yarn workspace @nent/docs run build",
     "watch:docs": "yarn workspace @nent/docs run watch",
     "start:docs": "yarn workspace @nent/docs run start",
-    "start:docs:ws": "yarn workspace @nent/docs run start:ws",
+    "start:docs:ws": "yarn build && yarn serve",
     ":vscode  ---": "---------------",
     "build:vscode": "yarn workspace nent run build",
     "publish:vscode": "yarn workspace nent run publish",
