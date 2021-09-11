@@ -2,16 +2,12 @@
 
 ## Basic Example
 
-Location: ./basic
+Location: [./basic]
 
 ### Features
 
-* SPA Routing
+* Markdown
+* Routing
+* Dark-mode
 * Partial Pages
-
-### Extras
-
-* Vite Live Preview
-* TS Bundling
-* Tailwind.css
-* Workbox PWA 
+\
