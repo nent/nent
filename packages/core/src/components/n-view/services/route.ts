@@ -41,42 +41,32 @@ export class Route implements IRoute {
   ) {
     this.router.routes.push(this)
     this.parentRoute?.addChildRoute(this)
-    this.onFinishedSubscription = router.eventBus.on(
-      ROUTE_EVENTS.RouteChanged,
-      () => {
-        this.previousMatch = this.match
-        this.match = router.matchPath(
-          {
-            path: this.path,
-            exact: this.exact,
-            strict: true,
-          },
-          this,
-        )
-        matchSetter(this.match)
-      },
-    )
-    this.onFinishedSubscription = router.eventBus.on(
-      ROUTE_EVENTS.RouteChanged,
-      () => {
-        this.previousMatch = this.match
-        this.match = router.matchPath(
-          {
-            path: this.path,
-            exact: this.exact,
-            strict: true,
-          },
-          this,
-        )
-        matchSetter(this.match)
-      },
-    )
+
     this.onStartedSubscription = router.eventBus.on(
       ROUTE_EVENTS.RouteChangeStart,
       async () => {
         await this.activateActions(ActionActivationStrategy.OnExit)
+        this.match = null
+        this.adjustClasses()
       },
     )
+
+    this.onFinishedSubscription = router.eventBus.on(
+      ROUTE_EVENTS.RouteChanged,
+      () => {
+        this.previousMatch = this.match
+        this.match = router.matchPath(
+          {
+            path: this.path,
+            exact: this.exact,
+            strict: true,
+          },
+          this,
+        )
+        matchSetter(this.match)
+      },
+    )
+
     this.match = this.router.matchPath(
       {
         path: this.path,

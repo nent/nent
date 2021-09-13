@@ -14,44 +14,36 @@
   "settings": {},
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
-	"formulahendry.github-actions",
-	"editorconfig.editorconfig",
-	"streetsidesoftware.code-spell-checker",
-	"orta.vscode-jest",
-	"ldez.ignore-files",
-	"dbaeumer.vscode-eslint",
-	"rvest.vs-code-prettier-eslint",
-	"natemoo-re.vscode-stencil-tools",
-	"sissel.markdown-script-tag",
-	"salbert.comment-ts",
-	"adam-bender.commit-message-editor",
-	"joshbolduc.commitlint",
-	"knisterpeter.vscode-github",
-	"codezombiech.gitignore",
-	"znck.grammarly",
-	"blackmist.linkcheckmd",
-	"wix.vscode-import-cost",
-	"kavod-io.vscode-jest-test-adapter",
-	"sissel.json-script-tag",
-	"yzhang.markdown-all-in-one",
-	"nent.nent",
-	"github.vscode-pull-request-github",
-	"ms-vsliveshare.vsliveshare",
-	"ms-vsliveshare.vsliveshare-audio"
-],
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [
-    3002,
-    5000
+    "formulahendry.github-actions",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    "orta.vscode-jest",
+    "ldez.ignore-files",
+    "dbaeumer.vscode-eslint",
+    "rvest.vs-code-prettier-eslint",
+    "natemoo-re.vscode-stencil-tools",
+    "sissel.markdown-script-tag",
+    "salbert.comment-ts",
+    "adam-bender.commit-message-editor",
+    "joshbolduc.commitlint",
+    "knisterpeter.vscode-github",
+    "codezombiech.gitignore",
+    "znck.grammarly",
+    "blackmist.linkcheckmd",
+    "wix.vscode-import-cost",
+    "kavod-io.vscode-jest-test-adapter",
+    "sissel.json-script-tag",
+    "yzhang.markdown-all-in-one",
+    "nent.nent",
+    "github.vscode-pull-request-github",
+    "ms-vsliveshare.vsliveshare",
+    "ms-vsliveshare.vsliveshare-audio"
   ],
   "mounts": [
     "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/root/.ssh,type=bind,consistency=delegated",
     "source=${env:HOME}${env:USERPROFILE}/.config,target=/root/.config,type=bind,consistency=delegated",
     "source=nent-node-modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
-    "source=nent-vscode-extensions,target=/home/root/.vscode-server/extensions,type=volume"
+    "source=nent-vscode-extensions,target=/root/.vscode-server/extensions,type=volume"
   ],
-  // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "yarn install",
-  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  //"remoteUser": "node"
+  "postCreateCommand": "yarn install"
 }
