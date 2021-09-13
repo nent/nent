@@ -33,11 +33,15 @@
       "destination": "/index.html"
     },
     {
-      "source": "/components/**",
+      "source": "/presentations/**",
       "destination": "/index.html"
     },
     {
       "source": "/elements/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/components/**",
       "destination": "/index.html"
     }
   ]

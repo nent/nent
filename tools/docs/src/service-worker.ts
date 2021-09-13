@@ -7,14 +7,18 @@ const { registerRoute, setDefaultHandler, NavigationRoute } =
 const { CacheableResponsePlugin } = workbox.cacheableResponse
 // Used to limit entries in cache, remove entries after a certain period of time
 const { ExpirationPlugin } = workbox.expiration
-const { precacheAndRoute, createHandlerBoundToURL } =
-  workbox.precaching
+const {
+  precacheAndRoute,
+  createHandlerBoundToURL,
+  cleanupOutdatedCaches,
+} = workbox.precaching
 
 const { CacheFirst, NetworkFirst, StaleWhileRevalidate } =
   workbox.strategies
 
 self.skipWaiting()
 clientsClaim()
+cleanupOutdatedCaches()
 
 const OFFLINE_VERSION = 1
 const CACHE_NAME = 'app'
@@ -60,7 +64,7 @@ registerRoute(
 
 registerRoute(
   new RegExp('/pages/.+'),
-  new CacheFirst({
+  new StaleWhileRevalidate({
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
@@ -71,7 +75,7 @@ registerRoute(
 )
 registerRoute(
   new RegExp('/assets/.+'),
-  new CacheFirst({
+  new StaleWhileRevalidate({
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
@@ -93,7 +97,7 @@ registerRoute(
 )
 registerRoute(
   new RegExp('/lib/.+'),
-  new CacheFirst({
+  new StaleWhileRevalidate({
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
