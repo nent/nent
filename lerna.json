@@ -1,8 +1,11 @@
 {
   "version": "0.6.17",
   "npmClient": "yarn",
-  "useWorkspaces": true,
-  "publish": {},
+  "useWorkspaces": false,
+  "packages": [
+    "packages/core",
+    "packages/create"
+  ],
   "command": {
     "version": {
       "message": "version(📦): version bumped [skip ci]"
