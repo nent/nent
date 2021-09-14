@@ -5,7 +5,7 @@
       "name": "n-action",
       "description": {
         "kind": "markdown",
-        "value": "This element just holds data to express the actionEvent to fire. This element\nshould always be the child of a n-action-activator."
+        "value": "This element just holds data to express the actionEvent to fire. This element\nshould always be the child of an n-action-activator."
       },
       "attributes": [
         {
@@ -15,6 +15,10 @@
         {
           "name": "topic",
           "description": "This is the topic this action-command is targeting."
+        },
+        {
+          "name": "when",
+          "description": "A predicate to evaluate prior to sending the action."
         }
       ],
       "references": [
@@ -95,7 +99,7 @@
       "name": "n-app",
       "description": {
         "kind": "markdown",
-        "value": "This component enables app services. These are console logging\ntheming and event-delegation as well as a plugin system to\nmanage a UI kit to add components like Modals, Drawers,\nmenus, etc."
+        "value": "This component enables app services. These are console logging,\ntheming and event-delegation. As well as a plugin system to\nmanage a UI kit to add components like Modals, Drawers,\nmenus, etc."
       },
       "attributes": [
         {
@@ -122,7 +126,7 @@
       "name": "n-app-analytics",
       "description": {
         "kind": "markdown",
-        "value": "This component serves as a proxy to delegate event-based\nfunctions to be consumed by various analytics snippets."
+        "value": "This element serves as a proxy to delegate event-based\nfunctions to be consumed by various analytics snippets."
       },
       "attributes": [
         {
@@ -145,7 +149,7 @@
       "name": "n-app-share",
       "description": {
         "kind": "markdown",
-        "value": "This component leverages the browser's web-share\nAPI to give the application a native-app feel."
+        "value": "This element leverages the browser's web-share\nAPI to give the application a native-app feel."
       },
       "attributes": [
         {
@@ -176,7 +180,7 @@
       "name": "n-app-theme",
       "description": {
         "kind": "markdown",
-        "value": "This component checks for the preferred light/dark theme preference of the\nuser and sets the ui state: theme, accordingly."
+        "value": "This element checks for the preferred light/dark theme preference of the\nuser and sets the ui state: theme, accordingly."
       },
       "attributes": [
         {
@@ -186,6 +190,10 @@
         {
           "name": "display",
           "description": "Display the user's system preference."
+        },
+        {
+          "name": "switch",
+          "description": "This element displays the current theme,\nunless in switch-mode, it will show the opposite."
         },
         {
           "name": "target-element",
@@ -207,7 +215,7 @@
       "name": "n-app-theme-switch",
       "description": {
         "kind": "markdown",
-        "value": "This component displays a checkbox to control the\ndark-theme setting applied to the ui.\n\nDefault: user-preference"
+        "value": "This element displays a checkbox to control the\ndark-theme setting applied to the ui.\n\nDefault: user-preference"
       },
       "attributes": [
         {
@@ -243,11 +251,11 @@
         },
         {
           "name": "debug",
-          "description": "Use debug for verbose logging. Useful for figuring\nthing out."
+          "description": "Use debug for verbose logging. Useful for figuring\nthings out."
         },
         {
           "name": "display",
-          "description": "The display mode enabled shows player state and stats.\nNo track information or duration is be displayed."
+          "description": "The display mode enabled shows player state and stats.\nNo track information or duration is to be displayed."
         },
         {
           "name": "howler-version",
@@ -312,6 +320,10 @@
         {
           "name": "value",
           "description": "The value payload for the command."
+        },
+        {
+          "name": "when",
+          "description": "A predicate to evaluate prior to sending the action."
         }
       ],
       "references": [
@@ -329,7 +341,7 @@
       "name": "n-audio-action-music-load",
       "description": {
         "kind": "markdown",
-        "value": "This component declares audio used within this \\<n-view-prompt\\> route.\nThe \\<n-audio-action-sound-load\\> instructs the player to load audio files\nwhile defining play behaviors.\n\nThe audio player will pre-load or play when the route is active.\nThe player manages them according to their settings."
+        "value": "This element declares audio used within this \\<n-view-prompt\\> route.\nThe \\<n-audio-action-sound-load\\> instructs the player to load audio files\nwhile defining play behaviors.\n\nThe audio player will pre-load or play when the route is active.\nThe player manages them according to their settings."
       },
       "attributes": [
         {
@@ -357,7 +369,7 @@
         },
         {
           "name": "mode",
-          "description": "This is loading strategy that determines\nwhat is should do after the file is retrieved.",
+          "description": "This is the loading strategy that determines\nwhat it should do after the file is retrieved.",
           "values": [
             {
               "name": "load"
@@ -394,7 +406,7 @@
       "name": "n-audio-action-sound",
       "description": {
         "kind": "markdown",
-        "value": "This element represents an action to be fired. This\nspecialized action encapsulates required parameters\nneeded for audio-based actions, for music."
+        "value": "This element represents an action to be fired. This\nspecialized action encapsulates required parameters\nneeded for audio-based actions, for sound."
       },
       "attributes": [
         {
@@ -454,7 +466,7 @@
       "name": "n-audio-action-sound-load",
       "description": {
         "kind": "markdown",
-        "value": "This component declares audio used within this \\<n-view-prompt\\> route.\nThe \\<n-audio-action-sound-load\\> instructs the player to load audio files\nwhile defining play behaviors.\n\nThe audio player will pre-load or play when the route is active.\nThe player manages them according to their settings."
+        "value": "This element declares audio used within this \\<n-view-prompt\\> route.\nThe \\<n-audio-action-sound-load\\> instructs the player to load audio files\nwhile defining play behaviors.\n\nThe audio player will pre-load or play when the route is active.\nThe player manages them according to their settings."
       },
       "attributes": [
         {
@@ -478,7 +490,7 @@
         },
         {
           "name": "mode",
-          "description": "This is loading strategy that determines\nwhat is should do after the file is retrieved.",
+          "description": "This is the loading strategy that determines\nwhat it should do after the file is retrieved.",
           "values": [
             {
               "name": "load"
@@ -515,7 +527,7 @@
       "name": "n-audio-switch",
       "description": {
         "kind": "markdown",
-        "value": "This component exposes a checkbox to enable or disable global audio for background sounds and video."
+        "value": "This element exposes a checkbox to enable or disable global audio for background sounds and video."
       },
       "attributes": [
         {
@@ -558,7 +570,7 @@
       "name": "n-content-include",
       "description": {
         "kind": "markdown",
-        "value": "This component fetches remote HTML and renders it safely and directly\ninto the page when when and where you tell it too, as soon as it renders."
+        "value": "This element fetches remote HTML and renders it safely and directly\ninto the page when and where you tell it too, as soon as it renders."
       },
       "attributes": [
         {
@@ -585,7 +597,7 @@
         },
         {
           "name": "resolve-tokens",
-          "description": "Before rendering HTML, replace any data-tokens with their\nresolved values. This also commands this component to\nre-render it's HTML for data-changes. This can affect\nperformance."
+          "description": "Before rendering HTML, replace any data-tokens with their\nresolved values. This also commands this element to\nre-render it's HTML for data-changes. This can affect\nperformance."
         },
         {
           "name": "src",
@@ -593,7 +605,7 @@
         },
         {
           "name": "when",
-          "description": "A data-token predicate to advise this component when\nto render (useful if used in a dynamic route or if\ntokens are used in the 'src' attribute)"
+          "description": "A data-token predicate to advise this element when\nto render (useful if used in a dynamic route or if\ntokens are used in the 'src' attribute)"
         }
       ],
       "references": [
@@ -611,7 +623,7 @@
       "name": "n-content-markdown",
       "description": {
         "kind": "markdown",
-        "value": "This component converts markdown text to HTML. It can render\nfrom an inline-template or from a remote source."
+        "value": "This element converts markdown text to HTML. It can render\nfrom an inline-template or from a remote source."
       },
       "attributes": [
         {
@@ -642,7 +654,7 @@
         },
         {
           "name": "resolve-tokens",
-          "description": "Before rendering HTML, replace any data-tokens with their\nresolved values. This also commands this component to\nre-render it's HTML for data-changes. This can affect\nperformance."
+          "description": "Before rendering HTML, replace any data-tokens with their\nresolved values. This also commands this element to\nre-render it's HTML for data-changes. This can affect\nperformance."
         },
         {
           "name": "src",
@@ -650,7 +662,7 @@
         },
         {
           "name": "when",
-          "description": "A data-token predicate to advise this component when\nto render (useful if used in a dynamic route or if\ntokens are used in the 'src' attribute)"
+          "description": "A data-token predicate to advise this element when\nto render (useful if used in a dynamic route or if\ntokens are used in the 'src' attribute)"
         }
       ],
       "references": [
@@ -668,7 +680,7 @@
       "name": "n-content-reference",
       "description": {
         "kind": "markdown",
-        "value": "This component makes a single reference to script and css sources. It can\nbe used by HTML fragment to ensure a reference is made, without worry\nthat it will create duplicate references."
+        "value": "This element makes a single reference to script and css sources. It can\nbe used by HTML fragment to ensure a reference is made, without worrying\nthat it will create duplicate references."
       },
       "attributes": [
         {
@@ -744,7 +756,7 @@
         },
         {
           "name": "when",
-          "description": "A data-token predicate to advise this component when\nto render (useful if used in a dynamic route or if\ntokens are used in the 'src' attribute)"
+          "description": "A data-token predicate to advise this element when\nto render (useful if used in a dynamic route or if\ntokens are used in the 'src' attribute)"
         }
       ],
       "references": [
@@ -762,7 +774,7 @@
       "name": "n-content-reveal",
       "description": {
         "kind": "markdown",
-        "value": "Use this component to add a little flair to any HTML.\nIt creates an entrance animation using the configured\nattributes to add pop to any page."
+        "value": "Use this element to add a little flair to any HTML.\nIt creates an entrance animation using the configured\nattributes to add pop to any page."
       },
       "attributes": [
         {
@@ -842,12 +854,50 @@
       },
       "attributes": [
         {
+          "name": "debug",
+          "description": "Turn on debug statements for load, update and render events."
+        },
+        {
           "name": "defer-load",
           "description": "If set, disables auto-rendering of this instance.\nTo fetch the contents change to false or remove\nattribute."
         },
         {
+          "name": "filter",
+          "description": "The JSONata query to filter the json items\nsee <https://try.jsonata.org> for more info."
+        },
+        {
+          "name": "mode",
+          "description": "Cross Origin Mode",
+          "values": [
+            {
+              "name": "cors"
+            },
+            {
+              "name": "navigate"
+            },
+            {
+              "name": "no-cors"
+            },
+            {
+              "name": "same-origin"
+            }
+          ]
+        },
+        {
+          "name": "no-cache",
+          "description": "Force render with data & route changes."
+        },
+        {
+          "name": "src",
+          "description": "The URL to remote JSON data to bind to this template"
+        },
+        {
           "name": "text",
-          "description": "The data expression to obtain a value for rendering as inner-text for this element.\n{{session:user.name}}"
+          "description": "The data expression to obtain a value for rendering as inner-text for this element."
+        },
+        {
+          "name": "when",
+          "description": "A data-token predicate to advise this element when\nto render (useful if used in a dynamic route or if\ntokens are used in the 'src' attribute)"
         }
       ],
       "references": [
@@ -892,7 +942,7 @@
       "name": "n-data-cookie",
       "description": {
         "kind": "markdown",
-        "value": "This component enables the *Cookie Data Provider*,\nafter requesting consent from the user. The consent\nmessage and the accept/reject button are customizable."
+        "value": "This element enables the *Cookie Data Provider*,\nafter requesting consent from the user. The consent\nmessage and the accept/reject button are customizable."
       },
       "attributes": [
         {
@@ -919,7 +969,7 @@
       "name": "n-data-session",
       "description": {
         "kind": "markdown",
-        "value": "This component enables the **Session Data Provider**.\nIt leverages the short-lived browser storage."
+        "value": "This element enables the **Session Data Provider**.\nIt leverages the short-lived browser storage."
       },
       "attributes": [
         {
@@ -946,7 +996,7 @@
       "name": "n-data-storage",
       "description": {
         "kind": "markdown",
-        "value": "This component enables the **Storage Data Provider**, that\nleverages the browser 'long-term' data storage."
+        "value": "This element enables the **Storage Data Provider**, that\nleverages the browsers 'long-term' data storage."
       },
       "attributes": [
         {
@@ -973,7 +1023,7 @@
       "name": "n-elements",
       "description": {
         "kind": "markdown",
-        "value": "This element enables element manipulation through n-actions.\nAdd it to the page to perform actions like 'add-css', toggle\nattributes or to execute functions on the DOM without code."
+        "value": "This element enables element manipulation through the n-actions element.\nAdd it to the page to perform actions like 'add-css', toggle\nattributes or to execute functions on the DOM without code."
       },
       "attributes": [
         {
@@ -996,7 +1046,7 @@
       "name": "n-presentation",
       "description": {
         "kind": "markdown",
-        "value": "This component encapsulates a timed presentation. This component uses\na child n-presentation-timer or n-video element to create time-events\nthen it delegates those events to time-based action-activators.\n\nIf enabled, the n-attributes for time will also get processed. This\ncomponent also has the ability to go to the next route using the active\nroute's 'goNext' function."
+        "value": "This element encapsulates a timed presentation. This element uses\na child n-presentation-timer or n-video element to create time-events\nthen it delegates those events to time-based action-activators.\n\nIf enabled, the n-attributes for time will also get processed. This\nelement also has the ability to go to the next route using the active\nroute's 'goNext' function."
       },
       "attributes": [
         {
@@ -1009,11 +1059,11 @@
         },
         {
           "name": "next-after",
-          "description": "Go to the next view after when the timer ends"
+          "description": "Go to the next view after the timer ends"
         },
         {
           "name": "timer-element",
-          "description": "The element selector for the timer-element to\nbind for interval events. If left blank, it looks\nfirst an n-timer, then for the first n-video.\n\nIf none are found, it creates on manually and starts\nit immediately"
+          "description": "The element selector for the timer-element to\nbind for interval events. If left blank, it looks\nfirst an n-timer, then for the first n-video.\n\nIf none are found, it creates one manually and starts\nit immediately"
         }
       ],
       "references": [
@@ -1050,6 +1100,10 @@
         {
           "name": "topic",
           "description": "This is the topic this action-command is targeting."
+        },
+        {
+          "name": "when",
+          "description": "A predicate to evaluate prior to sending the action."
         }
       ],
       "references": [
@@ -1076,7 +1130,7 @@
         },
         {
           "name": "defer-load",
-          "description": "If set, disables auto-starting the timer\non render. This will be removed if in a view\nwhen the view is activated or when the start\nmethod is called."
+          "description": "If set, disables auto-starting the timer\non render. This will be removed if in a view,\nwhen the view is activated or when the start\nmethod is called."
         },
         {
           "name": "display",
@@ -1106,7 +1160,7 @@
       "name": "n-video",
       "description": {
         "kind": "markdown",
-        "value": "This component enables th UI services. These are typically\nweb component plug-ins to manage things like Modals, Drawers,\nmenus, etc. The basic provider is used to toggle dark-mode."
+        "value": "This element enables the UI services. These are typically\nweb element plug-ins to manage things like Modals, Drawers,\nmenus, etc. The basic provider is used to toggle dark-mode."
       },
       "attributes": [
         {
@@ -1153,7 +1207,7 @@
       "name": "n-video-switch",
       "description": {
         "kind": "markdown",
-        "value": "This component displays a checkbox to control the autoplay setting,\nused for video playback - as well as automatic navigation to the\nnext page, when a video ends. Default: enabled"
+        "value": "This element displays a checkbox to control the autoplay setting,\nused for video playback - as well as automatic navigation to the\nnext page, when a video ends. Default: enabled"
       },
       "attributes": [
         {
@@ -1184,7 +1238,7 @@
       "name": "n-view",
       "description": {
         "kind": "markdown",
-        "value": "The View component holds a segment of content visible only when\na URL path matches. It defines a route and its content.\nThis provides the declarative mechanism\nfor in-page content/component routing by URL."
+        "value": "The View element holds a segment of content visible only when\na URL path matches. It defines a route and its content.\nThis provides the declarative mechanism\nfor in-page content/component routing by URL."
       },
       "attributes": [
         {
@@ -1227,7 +1281,7 @@
         },
         {
           "name": "resolve-tokens",
-          "description": "Before rendering remote HTML, replace any data-tokens with their\nresolved values. This also commands this component to\nre-render it's HTML for data-changes. This can affect\nperformance.\n\nIMPORTANT: ONLY WORKS ON REMOTE HTML"
+          "description": "Before rendering remote HTML, replace any data-tokens with their\nresolved values. This also commands this element to\nre-render it's HTML for data-changes. This can affect\nperformance.\n\nIMPORTANT: ONLY WORKS ON REMOTE HTML"
         },
         {
           "name": "scroll-top-offset",
@@ -1332,7 +1386,7 @@
       "attributes": [
         {
           "name": "active-class",
-          "description": "The active-class to use with the n-view-link components."
+          "description": "The active-class to use with the n-view-link elements."
         },
         {
           "name": "exclude-root",
@@ -1408,7 +1462,7 @@
       "name": "n-view-not-found",
       "description": {
         "kind": "markdown",
-        "value": "This component should be placed at the end of the content,\ninside the n-views component. It shows up when no views\nabove it resolve."
+        "value": "This element should be placed at the end of the content,\ninside the n-views element. It shows up when no views\nabove it resolve."
       },
       "attributes": [
         {
@@ -1439,7 +1493,7 @@
       "name": "n-view-prompt",
       "description": {
         "kind": "markdown",
-        "value": "This element represents a specialized child-route for a parent \\<n-view\\> component.\nIt represents a sub-route that has required and workflow behaviors.\n\nThey are used to create, wizards, input workflows, or step by step instructions or\nwherever you want guided or automatic navigation."
+        "value": "This element represents a specialized child-route for a parent \\<n-view\\> element.\nIt represents a sub-route that has required and workflow behaviors.\n\nThey are used to create, wizards, input workflows, or step by step instructions or\nwherever you want guided or automatic navigation."
       },
       "attributes": [
         {
@@ -1527,7 +1581,7 @@
       "name": "n-views",
       "description": {
         "kind": "markdown",
-        "value": "The root component is the base container for the view-engine and its\nchild components. This element should contain root-level HTML that\nis global to every view along with \\<n-view\\>\ncomponents placed within any global-html."
+        "value": "The root element is the base container for the view-engine and its\nchild elements. This element should contain root-level HTML that\nis global to every view along with \\<n-view\\>\nelements placed within any global-html."
       },
       "attributes": [
         {

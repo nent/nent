@@ -27,8 +27,7 @@
   },
   "extensionKind": [
     "workspace",
-    "ui",
-    "web"
+    "ui"
   ],
   "badges": [
     {
@@ -38,8 +37,9 @@
     }
   ],
   "scripts": {
-    "prebuild": "cp ../core/dist/custom-elements.json ./nent.html-data.json",
-    "build": "vsce package -o ./dist",
+    "auth": "vsce login nent",
+    "prebuild": "rm -fR dist && cp ../../packages/core/dist/custom-elements.json ./nent.html-data.json && mkdir dist",
+    "build": "vsce package --no-yarn -o dist/",
     "publish": "vsce publish"
   },
   "engines": {

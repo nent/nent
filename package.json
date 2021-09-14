@@ -13,10 +13,6 @@
     ":build ---": "---------------",
     "prebuild": "rm -fR docs",
     "build": "run-s build:core build:docs",
-    "prepublish": "yarn build",
-    "publish": "lerna publish patch --yes",
-    "prepublish:test": "yarn build",
-    "publish:test": "lerna publish --canary --preid beta --yes",
     ":dev ---": "---------------",
     "start": "run-p start:core start:docs",
     "serve": "serve docs",
@@ -31,8 +27,8 @@
     "start:docs": "yarn workspace @nent/docs run start",
     "start:docs:sw": "yarn build && yarn serve",
     ":vscode  ---": "---------------",
-    "build:vscode": "yarn workspace nent run build",
-    "publish:vscode": "yarn workspace nent run publish",
+    "build:vscode": "cd tools/vscode && npm run build",
+    "publish:vscode": "cd tools/vscode && npm run publish",
     ":test ---": "---------------",
     "test": "yarn workspace @nent/core run test",
     ":lint ---": "---------------",
@@ -55,9 +51,13 @@
     "clean:docs": "yarn docs run clean",
     ":auto ---": "------------",
     "prepare": "husky install",
-    "prepublishOnly": "pinst --disable",
+    "prepublish": "yarn build",
+    "publish": "lerna publish --yes --dist-tag $VERSION",
     "postpublish": "pinst --enable",
-    "init": "lerna bootstrap"
+    "prepublishOnly": "pinst --disable",
+    "prepublish:test": "yarn build",
+    "publish:test": "lerna publish --canary --preid beta --yes",
+    "postinstall": "lerna bootstrap"
   },
   "resolutions": {
     "set-value": ">=4.0.1"
