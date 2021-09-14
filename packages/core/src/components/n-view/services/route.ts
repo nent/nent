@@ -185,7 +185,7 @@ export class Route implements IRoute {
     this.toggleClass('exact', exact)
   }
 
-  private captureInnerLinksAndResolveHtml(root?: HTMLElement) {
+  public captureInnerLinksAndResolveHtml(root?: HTMLElement) {
     this.router.captureInnerLinks(
       root || this.routeElement,
       this.path,

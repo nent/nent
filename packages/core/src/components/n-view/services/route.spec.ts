@@ -66,7 +66,7 @@ describe('route', () => {
     )
 
     expect(subject).not.toBeNull()
-    expect(subject.match).toBeNull()
+    expect(match).toBeNull()
 
     subject.goToRoute('/route')
 
