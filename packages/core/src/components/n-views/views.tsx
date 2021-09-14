@@ -82,7 +82,7 @@ export class ViewRouter {
     const startPath = this.startPath
     function start() {
       if (routingState.router) {
-        routingState.router?.finalize(startPath)
+        routingState.router?.initialize(startPath)
       }
     }
     if (this.startDelay > 0)

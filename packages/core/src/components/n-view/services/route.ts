@@ -1,5 +1,6 @@
 import { activateActionActivators } from '../../../services/actions/elements'
 import { ActionActivationStrategy } from '../../../services/actions/interfaces'
+import { logIf } from '../../../services/common/logging'
 import { commonState } from '../../../services/common/state'
 import { resolveChildElementXAttributes } from '../../../services/data/elements'
 import {
@@ -8,6 +9,7 @@ import {
 } from '../../../services/data/tokens'
 import { getChildInputValidity } from '../../n-view-prompt/services/elements'
 import {
+  LocationSegments,
   MatchResults,
   RouteViewOptions,
   ROUTE_EVENTS,
@@ -21,8 +23,10 @@ import {
 import { IRoute } from './interfaces'
 
 export class Route implements IRoute {
-  private onFinishedSubscription: () => void
   private onStartedSubscription: () => void
+  private onChangedSubscription: () => void
+
+  public completed: boolean = false
   public match: MatchResults | null = null
   public scrollOnNextRender = false
   public previousMatch: MatchResults | null = null
@@ -42,40 +46,46 @@ export class Route implements IRoute {
     this.router.routes.push(this)
     this.parentRoute?.addChildRoute(this)
 
+    const evaluateRoute = () => {
+      logIf(
+        commonState.debug,
+        `route: ${this.path} changed -> ${location.pathname}`,
+      )
+      this.previousMatch = this.match
+      this.match = router.matchPath(
+        {
+          path: this.path,
+          exact: this.exact,
+          strict: true,
+        },
+        this,
+      )
+      matchSetter(this.match)
+      this.adjustClasses()
+    }
+
     this.onStartedSubscription = router.eventBus.on(
       ROUTE_EVENTS.RouteChangeStart,
-      async () => {
-        await this.activateActions(ActionActivationStrategy.OnExit)
-        this.match = null
-        this.adjustClasses()
+      async (location: LocationSegments) => {
+        logIf(
+          commonState.debug,
+          `route: ${this.path} started -> ${location.pathname} `,
+        )
+        this.previousMatch = this.match
+        if (this.didExit())
+          await this.activateActions(ActionActivationStrategy.OnExit)
+        this.completed = false
       },
     )
 
-    this.onFinishedSubscription = router.eventBus.on(
+    this.onChangedSubscription = router.eventBus.on(
       ROUTE_EVENTS.RouteChanged,
       () => {
-        this.previousMatch = this.match
-        this.match = router.matchPath(
-          {
-            path: this.path,
-            exact: this.exact,
-            strict: true,
-          },
-          this,
-        )
-        matchSetter(this.match)
+        evaluateRoute()
       },
     )
 
-    this.match = this.router.matchPath(
-      {
-        path: this.path,
-        exact: this.exact,
-        strict: true,
-      },
-      this,
-    )
-    matchSetter(this.match)
+    evaluateRoute()
   }
 
   public addChildRoute(route: Route) {
@@ -115,18 +125,16 @@ export class Route implements IRoute {
   }
 
   public async loadCompleted() {
-    this.adjustClasses()
-
     let routeViewOptions: RouteViewOptions = {}
 
-    // If this is an independent route and it matches then routes have updated.
+    if (this.match) {
+      this.captureInnerLinksAndResolveHtml()
 
-    if (this.match?.isExact) {
-      await this.adjustTitle()
-      await this.activateActions(ActionActivationStrategy.OnEnter)
-      if (!matchesAreEqual(this.match, this.previousMatch)) {
-        this.captureInnerLinks()
-        await resolveChildElementXAttributes(this.routeElement)
+      // If this is an independent route and it matches then routes have updated.
+      if (
+        this.match?.isExact &&
+        !matchesAreEqual(this.match, this.previousMatch)
+      ) {
         this.routeElement
           .querySelectorAll('[defer-load]')
           .forEach((el: any) => {
@@ -146,12 +154,18 @@ export class Route implements IRoute {
             scrollTopOffset: this.scrollTopOffset,
           }
         }
-        this.router.viewsUpdated(routeViewOptions)
+
+        await this.activateActions(ActionActivationStrategy.OnEnter)
+        await this.adjustTitle()
       }
     }
+
+    this.completed = true
+
+    this.router.viewsUpdated(routeViewOptions)
   }
 
-  toggleClass(className: string, force: boolean) {
+  private toggleClass(className: string, force: boolean) {
     const exists = this.routeElement.classList.contains(className)
     if (exists && force == false)
       this.routeElement.classList.remove(className)
@@ -171,11 +185,12 @@ export class Route implements IRoute {
     this.toggleClass('exact', exact)
   }
 
-  public captureInnerLinks(root?: HTMLElement) {
+  private captureInnerLinksAndResolveHtml(root?: HTMLElement) {
     this.router.captureInnerLinks(
       root || this.routeElement,
       this.path,
     )
+    resolveChildElementXAttributes(this.routeElement)
   }
 
   public async resolvedTitle() {
@@ -308,8 +323,8 @@ export class Route implements IRoute {
   }
 
   public destroy() {
-    this.onFinishedSubscription()
     this.onStartedSubscription()
+    this.onChangedSubscription()
     this.routeDestroy?.call(this, this)
   }
 }

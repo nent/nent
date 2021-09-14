@@ -1,5 +1,4 @@
 import { Component, Element, h, Prop, State } from '@stencil/core'
-import { eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common'
 import {
   MatchResults,
@@ -89,23 +88,23 @@ export class ViewLink {
       this.parentUrl || '/',
     )
 
-    this.routeSubscription = eventBus.on(
+    const resolveRoute = () => {
+      const match = routingState.router!.matchPath({
+        path: this.path,
+        exact: this.exact,
+        strict: this.strict,
+      })
+
+      this.match = match ? ({ ...match } as MatchResults) : null
+    }
+
+    this.routeSubscription = routingState.router!.eventBus.on(
       ROUTE_EVENTS.RouteChangeFinish,
       () => {
-        const match = routingState.router!.matchPath({
-          path: this.path,
-          exact: this.exact,
-          strict: this.strict,
-        })
-
-        this.match = match ? ({ ...match } as MatchResults) : null
+        resolveRoute()
       },
     )
-    this.match = routingState.router?.matchPath({
-      path: this.path,
-      exact: this.exact,
-      strict: this.strict,
-    })
+    resolveRoute()
   }
 
   private handleClick(e: MouseEvent) {

@@ -17,7 +17,6 @@ describe('n-view-not-found', () => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
     routingStateDispose()
-    jest.useRealTimers()
   })
 
   it('renders', async () => {
@@ -34,6 +33,9 @@ describe('n-view-not-found', () => {
     expect(page.root).toEqualHtml(`
       <n-views>
         <n-view-not-found>
+          <mock:shadow-root>
+            <slot></slot>
+          </mock:shadow-root>
           <h1>Not Found</h1>
         </n-view-not-found>
       </n-views>
@@ -74,6 +76,9 @@ describe('n-view-not-found', () => {
     expect(page.root).toEqualHtml(`
       <n-views transition="slide">
         <n-view-not-found class="slide">
+          <mock:shadow-root>
+            <slot></slot>
+          </mock:shadow-root>
           <h1>Not Found</h1>
         </n-view-not-found>
       </n-views>
@@ -105,6 +110,9 @@ describe('n-view-not-found', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-not-found hidden="">
+          <mock:shadow-root>
+            <slot></slot>
+          </mock:shadow-root>
           <h1>Not Found</h1>
         </n-view-not-found>
       </n-views>
@@ -138,6 +146,9 @@ describe('n-view-not-found', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-not-found>
+          <mock:shadow-root>
+            <slot></slot>
+          </mock:shadow-root>
           <h1>Not Found</h1>
         </n-view-not-found>
       </n-views>
@@ -162,6 +173,9 @@ describe('n-view-not-found', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-not-found hidden="">
+          <mock:shadow-root>
+            <slot></slot>
+          </mock:shadow-root>
           <h1>Not Found</h1>
         </n-view-not-found>
       </n-views>
@@ -173,13 +187,16 @@ describe('n-view-not-found', () => {
 
     expect(page.root).toEqualHtml(`
       <n-views>
-        <n-view  path="/home">
+        <n-view path="/home">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
           </mock:shadow-root>
         </n-view>
         <n-view-not-found>
+          <mock:shadow-root>
+            <slot></slot>
+          </mock:shadow-root>
           <h1>Not Found</h1>
         </n-view-not-found>
       </n-views>

@@ -1,6 +1,6 @@
 import { EventAction } from '../../../services/actions/interfaces'
 import { IEventEmitter } from '../../../services/common/interfaces'
-import { debugIf } from '../../../services/common/logging'
+import { debugIf, logIf } from '../../../services/common/logging'
 import { commonState } from '../../../services/common/state'
 import { Route } from '../../n-view/services/route'
 import {
@@ -27,19 +27,28 @@ export class NavigationActionListener {
     })
   }
 
-  notifyRouteChangeStart() {
-    this.events.emit(ROUTE_EVENTS.RouteChangeStart)
+  notifyRouterInitialized() {
+    logIf(commonState.debug, `route event: initialized`)
+    this.events.emit(ROUTE_EVENTS.Initialized, {})
+  }
+
+  notifyRouteChangeStarted(newPath: string) {
+    logIf(commonState.debug, `route event: started ${newPath}`)
+    this.events.emit(ROUTE_EVENTS.RouteChangeStart, newPath)
   }
 
   notifyRouteChanged(location: LocationSegments) {
+    logIf(commonState.debug, `route event: changed`)
     this.events.emit(ROUTE_EVENTS.RouteChanged, location)
   }
 
   notifyRouteFinalized(location: LocationSegments) {
+    logIf(commonState.debug, `route event: finalized`)
     this.events.emit(ROUTE_EVENTS.RouteChangeFinish, location)
   }
 
   notifyMatch(route: Route, match: MatchResults) {
+    logIf(commonState.debug, `route event: matched`)
     this.events.emit(ROUTE_EVENTS.RouteMatched, {
       route,
       match,
@@ -47,6 +56,7 @@ export class NavigationActionListener {
   }
 
   notifyMatchExact(route: Route, match: MatchResults) {
+    logIf(commonState.debug, `route event: matched-exact`)
     this.events.emit(ROUTE_EVENTS.RouteMatchedExact, {
       route,
       match,

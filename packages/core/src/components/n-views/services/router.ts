@@ -21,7 +21,6 @@ import {
   MatchOptions,
   MatchResults,
   RouteViewOptions,
-  ROUTE_EVENTS,
 } from './interfaces'
 import { RoutingDataProvider } from './provider'
 import { isAbsolute, resolvePathname } from './utils/location'
@@ -55,14 +54,11 @@ export class RouterService {
   ) {
     this.history = new HistoryService(win, root)
 
-    this.removeHandler = this.history.listen(
-      (location: LocationSegments) => {
-        this.location = location
-        this.notifyRouteChangeFinished(location)
-      },
+    this.listener = new NavigationActionListener(
+      this,
+      this.eventBus,
+      this.actions,
     )
-
-    this.enableActionListener()
 
     if (commonState.dataEnabled) this.enableDataProviders()
     else {
@@ -71,13 +67,23 @@ export class RouterService {
         enabled => {
           if (enabled) {
             this.enableDataProviders()
-            dataSubscription()
           }
+          dataSubscription()
         },
       )
     }
 
-    this.notifyRouteChangeFinished(this.history.location)
+    this.removeHandler = this.history.listen(
+      (location: LocationSegments) => {
+        this.location = location
+        this.listener.notifyRouteChanged(location)
+        this.routeData?.changed.emit(DATA_EVENTS.DataChanged, {
+          changed: ['route'],
+        })
+      },
+    )
+
+    this.listener.notifyRouteChanged(this.history.location)
   }
 
   public async enableDataProviders() {
@@ -114,26 +120,6 @@ export class RouterService {
     addDataProvider('visits', this.visitData)
   }
 
-  public enableActionListener() {
-    this.listener = new NavigationActionListener(
-      this,
-      this.eventBus,
-      this.actions,
-    )
-  }
-
-  private notifyRouteChangeStarted() {
-    this.listener?.notifyRouteChangeStart()
-  }
-
-  private notifyRouteChangeFinished(location: LocationSegments) {
-    this.routeData?.changed.emit(DATA_EVENTS.DataChanged, {
-      changed: ['route'],
-    })
-    this.listener?.notifyRouteChanged(location)
-    this.listener?.notifyRouteFinalized(location)
-  }
-
   adjustRootViewUrls(path: string): string {
     let stripped =
       this.root && hasBasename(path, this.root)
@@ -156,6 +142,8 @@ export class RouterService {
       }
     }
     this.scrollTo(options.scrollTopOffset || this.scrollTopOffset)
+    if (this.routes.every(r => r.completed))
+      this.listener.notifyRouteFinalized(this.location)
   }
 
   atRoot() {
@@ -165,7 +153,7 @@ export class RouterService {
     )
   }
 
-  finalize(startUrl?: string) {
+  initialize(startUrl?: string) {
     this.captureInnerLinks(this.win.document.body)
 
     if (startUrl && this.atRoot()) {
@@ -173,18 +161,17 @@ export class RouterService {
       this.replaceWithRoute(stripBasename(startUrl!, this.root))
       this.location.search = search
     }
-
-    this.eventBus.emit(ROUTE_EVENTS.Initialized, {})
+    this.listener.notifyRouterInitialized()
   }
 
   goBack() {
-    this.notifyRouteChangeStarted()
-    this.location.pathname = this.history.previousLocation.pathname
+    this.listener.notifyRouteChangeStarted(
+      this.history.previousLocation.pathname,
+    )
     this.history.goBack()
   }
 
   goToParentRoute() {
-    this.notifyRouteChangeStarted()
     const parentSegments = this.history.location.pathParts?.slice(
       0,
       -1,
@@ -217,16 +204,14 @@ export class RouterService {
   }
 
   public goToRoute(path: string) {
-    this.notifyRouteChangeStarted()
+    this.listener.notifyRouteChangeStarted(path)
     const pathName = resolvePathname(path, this.location.pathname)
-    this.location.pathname = pathName
     this.history.push(pathName)
   }
 
   public replaceWithRoute(path: string) {
-    this.notifyRouteChangeStarted()
+    this.listener.notifyRouteChangeStarted(path)
     const pathName = resolvePathname(path, this.location.pathname)
-    this.location.pathname = pathName
     this.history.replace(pathName)
   }
 
@@ -257,13 +242,9 @@ export class RouterService {
   public async adjustTitle(pageTitle: string) {
     if (this.win.document) {
       if (pageTitle) {
-        this.win.document.title = `${pageTitle} | ${
-          this.appTitle || this.win.document.title
-        }`
+        this.win.document.title = `${pageTitle} | ${this.appTitle}`
       } else {
-        this.win.document.title = `${
-          this.appTitle || this.win.document.title
-        }`
+        this.win.document.title = `${this.appTitle}`
       }
     }
   }

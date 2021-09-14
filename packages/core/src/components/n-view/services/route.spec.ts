@@ -74,7 +74,7 @@ describe('route', () => {
 
     await subject.loadCompleted()
 
-    subject.captureInnerLinks(page.body)
+    subject.captureInnerLinksAndResolveHtml(page.body)
     await page.waitForChanges()
     let anchor = page.body.querySelector('a')
 
@@ -211,12 +211,13 @@ describe('route', () => {
 
   it('loadComplete - scroll-top', async () => {
     page = await startPage('/route')
-    page.doc.title = 'Neat!'
     router = new RouterService(
       page.win,
       writeTask,
       eventBus,
       actionBus,
+      undefined,
+      'Neat!',
     )
     const routeElement = page.body.querySelector('div')!
     let subject = new Route(
@@ -259,7 +260,7 @@ describe('route', () => {
     const routeElement = page.body.querySelector('div')!
     let subject = new Route(router, routeElement, '/route')
 
-    subject.captureInnerLinks()
+    subject.captureInnerLinksAndResolveHtml()
 
     let anchor = page.body.querySelector('a')
 

@@ -140,14 +140,17 @@ export class HistoryService {
 
   go(n: number) {
     this.win.history.go(n)
+    this.events.emit('GO', this.location)
   }
 
   goBack() {
     this.win.history.back()
+    this.events.emit('BACK', this.location)
   }
 
   goForward() {
     this.win.history.forward()
+    this.events.emit('FORWARD', this.location)
   }
 
   public listen(listener: Listener) {

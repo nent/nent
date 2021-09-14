@@ -418,7 +418,8 @@ n-view.active + n-view-not-found {
 }
 
 .contained,
-n-views > n-view {
+n-views > n-view,
+n-views > n-view-not-found  {
   max-width: var(--content-max-width);
   padding: 0 var(--bs-gutter-x, 0.75rem);
   margin-right: auto !important;

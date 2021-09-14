@@ -63,6 +63,8 @@ describe('n-view-link', () => {
 
     expect(routingState?.router!.location.pathname).toBe('/foo')
 
+    await page.waitForChanges()
+
     expect(anchor?.classList.contains('active')).toBe(true)
     linkEl?.remove()
 

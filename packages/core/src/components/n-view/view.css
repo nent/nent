@@ -5,7 +5,7 @@
   display: inherit;
 }
 :host(.active) ::slotted([slot='content']),
-:host(.exact) div[slot='content'] {
+:host(.active) div[slot='content'] {
   display: none;
 }
 :host(.exact) {

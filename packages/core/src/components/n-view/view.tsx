@@ -168,7 +168,6 @@ export class View implements IView {
 
   async componentWillLoad() {
     debugIf(this.debug, `n-view: ${this.path} loading`)
-
     this.contentKey = `rem-content-${slugify(
       this.contentSrc || 'none',
     )}`
@@ -245,7 +244,7 @@ export class View implements IView {
           this.route.replaceWithRoute(nextDo.path)
           return
         } else {
-          if (this.contentSrc)
+          if (this.contentSrc && this.contentElement == null)
             this.contentElement = await resolveRemoteContentElement(
               window,
               this.contentSrc!,
@@ -267,6 +266,7 @@ export class View implements IView {
       `#${this.contentKey}`,
       this.contentElement,
     )
+
     return (
       <Host>
         <slot />
@@ -276,11 +276,8 @@ export class View implements IView {
   }
 
   async componentDidRender() {
-    debugIf(this.debug, `n-view: ${this.path} did render`)
-
     if (!this.route?.match?.isExact) {
       this.contentElement?.remove()
-      this.contentElement = null
     }
     await this.route?.loadCompleted()
   }

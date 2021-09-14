@@ -40,6 +40,7 @@ export class ViewPrompt implements IView {
 
   @Element() el!: HTMLNViewPromptElement
   @State() match: MatchResults | null = null
+  @State() exactMatch = false
   @State() contentElement: HTMLElement | null = null
   private contentKey!: string
 
@@ -150,7 +151,8 @@ export class ViewPrompt implements IView {
       this.el,
       this.parentView,
       (match: MatchResults | null) => {
-        this.match = match ? { ...match } : null
+        this.match = match ? ({ ...match } as MatchResults) : null
+        this.exactMatch = match?.isExact || false
       },
     )
 
@@ -168,7 +170,7 @@ export class ViewPrompt implements IView {
     debugIf(this.debug, `n-view-prompt: ${this.path} will render`)
 
     if (this.match?.isExact) {
-      debugIf(this.debug, `n-view-prompt: ${this.path} on-enter`)
+      debugIf(this.debug, `n-view-prompt: ${this.path} matched exact`)
       if (this.contentSrc && this.contentElement == null)
         this.contentElement = await resolveRemoteContentElement(
           window,
@@ -179,9 +181,6 @@ export class ViewPrompt implements IView {
           'content',
         )
       await recordVisit(this.visit as VisitStrategy, this.path)
-    } else {
-      // this.contentElement?.remove()
-      this.contentElement = null
     }
   }
 
@@ -192,6 +191,7 @@ export class ViewPrompt implements IView {
       `#${this.contentKey}`,
       this.contentElement,
     )
+
     return (
       <Host hidden={!this.match?.isExact}>
         <slot />
@@ -201,6 +201,9 @@ export class ViewPrompt implements IView {
   }
 
   async componentDidRender() {
+    if (!this.route?.match?.isExact) {
+      this.contentElement?.remove()
+    }
     await this.route?.loadCompleted()
   }
 

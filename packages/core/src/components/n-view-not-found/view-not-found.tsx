@@ -1,12 +1,11 @@
 import {
   Component,
   Element,
+  forceUpdate,
   h,
   Host,
   Prop,
-  State,
 } from '@stencil/core'
-import { eventBus } from '../../services/actions'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
 
@@ -19,15 +18,14 @@ import { routingState } from '../n-views/services/state'
  */
 @Component({
   tag: 'n-view-not-found',
-  shadow: false,
-  styles: `n-view-not-found { display: block; }`,
+  shadow: true,
+  styles: `:host { display: block; }`,
 })
 export class ViewNotFound {
-  private finalizeSubscription!: () => void
-  private routeFinalizeSubscription!: () => void
-  private exactMatchedSubscription!: () => void
+  private initializeSubscription?: () => void
+  private routeFinalizeSubscription?: () => void
+  private routeMatchedSubscription?: () => void
   @Element() el!: HTMLNViewNotFoundElement
-  @State() show: boolean = false
 
   /**
    * The title for this view. This is prefixed
@@ -48,59 +46,55 @@ export class ViewNotFound {
    */
   @Prop({ mutable: true }) transition?: string
 
-  private async setupView() {
-    if (!routingState.router?.hasRoutes) {
-      this.show = true
-      this.transition =
-        this.transition || routingState.router?.transition
+  componentWillLoad() {
+    const { router } = routingState
+    if (!router) {
       return
     }
-    this.show = !routingState.router.hasExactRoute()
+
+    this.transition = this.transition || router?.transition
+
+    this.initializeSubscription = router.eventBus.on(
+      ROUTE_EVENTS.Initialized,
+      () => {
+        forceUpdate(this.el)
+      },
+    )
+
+    this.routeMatchedSubscription = router.eventBus.on(
+      ROUTE_EVENTS.RouteMatchedExact,
+      () => {
+        forceUpdate(this.el)
+      },
+    )
+
+    this.routeFinalizeSubscription = router.eventBus.on(
+      ROUTE_EVENTS.RouteChangeFinish,
+      () => {
+        forceUpdate(this.el)
+      },
+    )
   }
 
-  async componentWillLoad() {
-    this.finalizeSubscription = eventBus.on(
-      ROUTE_EVENTS.Initialized,
-      async () => {
-        await this.setupView()
-      },
-    )
-
-    this.routeFinalizeSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteChangeFinish,
-      async () => {
-        await this.setupView()
-      },
-    )
-
-    this.exactMatchedSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteMatchedExact,
-      async () => {
-        this.show = false
-      },
+  render() {
+    const hide = routingState.router?.hasExactRoute() || false
+    return (
+      <Host hidden={hide} class={this.transition}>
+        <slot></slot>
+      </Host>
     )
   }
 
   async componentDidRender() {
-    if (this.show) {
-      routingState.router?.viewsUpdated({
-        scrollTopOffset: this.scrollTopOffset,
-      })
+    if (!routingState.router?.hasExactRoute()) {
       await routingState.router?.adjustTitle(this.pageTitle)
+      routingState.router?.scrollTo(this.scrollTopOffset)
     }
   }
 
   disconnectedCallback() {
-    this.finalizeSubscription?.call(this)
+    this.initializeSubscription?.call(this)
+    this.routeMatchedSubscription?.call(this)
     this.routeFinalizeSubscription?.call(this)
-    this.exactMatchedSubscription?.call(this)
-  }
-
-  render() {
-    return (
-      <Host hidden={!this.show} class={this.transition}>
-        <slot />
-      </Host>
-    )
   }
 }
