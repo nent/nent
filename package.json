@@ -110,6 +110,7 @@
   "workspaces": [
     "packages/core",
     "packages/create",
-    "tools/docs"
+    "tools/docs",
+    "tools/vscode"
   ]
 }

@@ -91,5 +91,8 @@
       "delay": 5000
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "gitHead": "c40332056cc61de47a4e9694b862a54c5e846313"
 }

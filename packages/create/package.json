@@ -16,6 +16,9 @@
   "dependencies": {
     "create-initializer": "1.1.2"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "gitHead": "c40332056cc61de47a4e9694b862a54c5e846313"
 }
