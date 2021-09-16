@@ -53,7 +53,7 @@ registerRoute(
     (url.origin === 'https://via.placeholder.com') |
     (url.origin === 'https://www.google-analytics.com') |
     (url.origin === 'https://www.googletagmanager.com'),
-  new NetworkFirst({
+  new StaleWhileRevalidate({
     plugins: [
       new CacheableResponsePlugin({
         statuses: [0, 200],
@@ -73,6 +73,7 @@ registerRoute(
     ],
   }),
 )
+
 registerRoute(
   new RegExp('/assets/.+'),
   new StaleWhileRevalidate({
@@ -84,9 +85,10 @@ registerRoute(
     ],
   }),
 )
+
 registerRoute(
   new RegExp('/dist/.+'),
-  new NetworkFirst({
+  new StaleWhileRevalidate({
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
@@ -95,6 +97,7 @@ registerRoute(
     ],
   }),
 )
+
 registerRoute(
   new RegExp('/lib/.+'),
   new StaleWhileRevalidate({
@@ -114,37 +117,35 @@ self.addEventListener('install', async () => {
   await cache.add(new Request(SHELL_URL, { cache: 'reload' }))
 })
 
-self.addEventListener('fetch', event => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      (async () => {
-        try {
-          // First, try to use the navigation preload response if it's supported.
-          const preloadResponse = await event.preloadResponse
-          if (preloadResponse) {
-            return preloadResponse
-          }
-
-          const networkResponse = await fetch(event.request)
-          return networkResponse
-        } catch (error) {
-          // catch is only triggered if an exception is thrown, which is likely
-          // due to a network error.
-          // If fetch() returns a valid HTTP response with a response code in
-          // the 4xx or 5xx range, the catch() will NOT be called.
-          console.log(
-            'Fetch failed; returning offline page instead.',
-            error,
-          )
-
-          const cache = await caches.open(CACHE_NAME)
-          const cachedResponse = await cache.match(SHELL_URL)
-          return cachedResponse
-        }
-      })(),
-    )
-  }
-})
+//self.addEventListener('fetch', event => {
+//  if (event.request.mode === 'navigate') {
+//    event.respondWith(async () => {
+//      try {
+//        // First, try to use the navigation preload response if it's supported.
+//        const preloadResponse = await event.preloadResponse
+//        if (preloadResponse) {
+//          return preloadResponse
+//        }
+//
+//        const networkResponse = await fetch(event.request)
+//        return networkResponse
+//      } catch (error) {
+//        // catch is only triggered if an exception is thrown, which is likely
+//        // due to a network error.
+//        // If fetch() returns a valid HTTP response with a response code in
+//        // the 4xx or 5xx range, the catch() will NOT be called.
+//        console.log(
+//          'Fetch failed; returning offline page instead.',
+//          error,
+//        )
+//
+//        const cache = await caches.open(CACHE_NAME)
+//        const cachedResponse = await cache.match(SHELL_URL)
+//        return cachedResponse
+//      }
+//    })
+//  }
+//})
 
 const handler = createHandlerBoundToURL('/index.html')
 const navigationRoute = new NavigationRoute(handler)
