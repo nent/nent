@@ -470,8 +470,7 @@
         <n-view path="/components"
           page-title="All Components"
           src="/pages/components/routes.html"
-          content-src="/pages/components/default.html"
-          transition="animate__animated animate__fadeIn">
+          content-src="/pages/components/default.html">
         </n-view>
         <n-view-not-found>
           <div class="content">
@@ -488,18 +487,19 @@
     <script>
       analytics.addEventListener( 'custom-event', ( e ) => {
         Object.getOwnPropertyNames(e.detail).forEach(n => {
-          //gtag( n, e.detail[n] )
-          console.debug(`gtag('${n}', '${e.detail[n]})'`)
+          gtag( n, e.detail[n] )
         })
       } )
       analytics.addEventListener( 'page-view', ( e ) => {
         gtag( 'page_view', e.detail.pathname )
-        // console.debug(`gtag('page_view', '${e.detail.pathname})'`)
       } )
       analytics.addEventListener( 'view-time', ( e ) => {
-        //gtag( e.detail.event, e.detail.time.elapsed )
-        console.debug(`gtag('${e.detail.event}','${e.detail.time.elapsed}'')`)
+        gtag( e.detail.event, e.detail.time.elapsed )
       } )
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+      for(let registration of registrations) {
+        registration.unregister()
+      } })
     </script>
   </body>
 
