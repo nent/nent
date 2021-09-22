@@ -353,6 +353,7 @@ export class RouterService {
         this.routes = this.routes.filter(r => r == route)
       },
     )
+
     return route
   }
 }

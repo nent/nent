@@ -1,11 +1,5 @@
 import { Component, Element, h, Prop, State } from '@stencil/core'
-import { eventBus } from '../../services/actions'
-import { Route } from '../n-view/services/route'
-import { ROUTE_EVENTS } from '../n-views/services/interfaces'
-import {
-  onRoutingChange,
-  routingState,
-} from '../n-views/services/state'
+import { routingState } from '../n-views/services/state'
 
 /**
  *
@@ -17,10 +11,9 @@ import {
   shadow: false,
 })
 export class ViewLinkBack {
-  private matchSubscription?: () => void
   @Element() el!: HTMLNViewLinkBackElement
-  @State() route: Route | null = null
-  @State() title?: string
+  @State() route = routingState.exactRoute?.previousRoute
+  private title?: string
 
   /**
    * The link text
@@ -32,69 +25,32 @@ export class ViewLinkBack {
    */
   @Prop() linkClass?: string
 
-  private get parentView() {
-    return this.el.closest('n-view')
-  }
-  private get parentViewPrompt() {
-    return this.el.closest('n-view-prompt')
-  }
-
-  componentWillLoad() {
-    if (routingState.router) {
-      this.setupRoute()
-    } else {
-      const dispose = onRoutingChange('router', () => {
-        this.setupRoute()
-        dispose()
-      })
-    }
-  }
-
-  private setupRoute() {
-    if (this.parentViewPrompt) {
-      this.route = this.parentViewPrompt!.route.previousRoute
-    } else if (this.parentView) {
-      this.route = this.parentView!.route.previousRoute
-    } else {
-      this.subscribe()
-    }
-  }
-
-  private subscribe() {
-    this.matchSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteMatchedExact,
-      async ({ route }: { route: Route }) => {
-        this.route = route.previousRoute
-        this.title = await route.resolvedTitle()
-      },
-    )
-    this.route =
-      routingState.router?.exactRoute?.previousRoute || null
+  async componentWillRender() {
+    this.title =
+      await routingState.exactRoute?.previousRoute?.resolvedTitle()
   }
 
   render() {
-    return this.route ? (
+    const route = routingState.exactRoute?.previousRoute
+    const title = this.text || this.title || route?.title || 'Back'
+    return (
       <a
         class={this.linkClass}
         onClick={e => {
           e.preventDefault()
-          this.route?.goToRoute(this.route.path)
+          routingState.exactRoute?.goBack()
         }}
         onKeyPress={e => {
           e.preventDefault()
-          this.route?.goToRoute(this.route.path)
+          routingState.exactRoute?.goBack()
         }}
-        href={this.route.path}
-        title={this.route.title}
+        href={route?.path}
+        title={title}
         n-attached-click
         n-attached-key-press
       >
-        {this.text || this.route.title}
+        {title}
       </a>
-    ) : null
-  }
-
-  disconnectedCallback() {
-    this.matchSubscription?.call(this)
+    )
   }
 }

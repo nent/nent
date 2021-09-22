@@ -18,6 +18,7 @@ import { RouterService } from '../../n-views/services/router'
 import {
   getPossibleParentPaths,
   isAbsolute,
+  locationsAreEqual,
   matchesAreEqual,
 } from '../../n-views/services/utils'
 import { IRoute } from './interfaces'
@@ -31,6 +32,7 @@ export class Route implements IRoute {
   public scrollOnNextRender = false
   public previousMatch: MatchResults | null = null
   public childRoutes: Route[] = []
+
   constructor(
     public router: RouterService,
     public routeElement: HTMLElement,
@@ -46,12 +48,26 @@ export class Route implements IRoute {
     this.router.routes.push(this)
     this.parentRoute?.addChildRoute(this)
 
+    this.onStartedSubscription = router.eventBus.on(
+      ROUTE_EVENTS.RouteChangeStart,
+      async (location: LocationSegments) => {
+        logIf(
+          commonState.debug,
+          `route: ${this.path} started -> ${location.pathname} `,
+        )
+        this.previousMatch = this.match
+        if (!locationsAreEqual(this.router.location, location)) {
+          await this.activateActions(ActionActivationStrategy.OnExit)
+          this.completed = false
+        }
+      },
+    )
+
     const evaluateRoute = () => {
       logIf(
         commonState.debug,
         `route: ${this.path} changed -> ${location.pathname}`,
       )
-      this.previousMatch = this.match
       this.match = router.matchPath(
         {
           path: this.path,
@@ -63,20 +79,6 @@ export class Route implements IRoute {
       matchSetter(this.match)
       this.adjustClasses()
     }
-
-    this.onStartedSubscription = router.eventBus.on(
-      ROUTE_EVENTS.RouteChangeStart,
-      async (location: LocationSegments) => {
-        logIf(
-          commonState.debug,
-          `route: ${this.path} started -> ${location.pathname} `,
-        )
-        this.previousMatch = this.match
-        if (this.didExit())
-          await this.activateActions(ActionActivationStrategy.OnExit)
-        this.completed = false
-      },
-    )
 
     this.onChangedSubscription = router.eventBus.on(
       ROUTE_EVENTS.RouteChanged,

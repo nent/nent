@@ -119,6 +119,11 @@ export class ViewPrompt implements IView {
   @Prop() resolveTokens: boolean = false
 
   /**
+   * Force render with data & route changes.
+   */
+  @Prop() noCache: boolean = false
+
+  /**
    * To debug timed elements, set this value to true.
    */
   @Prop() debug = false
@@ -203,6 +208,7 @@ export class ViewPrompt implements IView {
   async componentDidRender() {
     if (!this.route?.match?.isExact) {
       this.contentElement?.remove()
+      if (this.noCache) this.contentElement = null
     }
     await this.route?.loadCompleted()
   }

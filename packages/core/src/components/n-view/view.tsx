@@ -131,6 +131,11 @@ export class View implements IView {
   @Prop() debug = false
 
   /**
+   * Force render with data & route changes.
+   */
+  @Prop() noCache: boolean = false
+
+  /**
    * Return all child elements used for processing. This function is
    * primarily meant for testing.
    *
@@ -278,6 +283,7 @@ export class View implements IView {
   async componentDidRender() {
     if (!this.route?.match?.isExact) {
       this.contentElement?.remove()
+      if (this.noCache) this.contentElement = null
     }
     await this.route?.loadCompleted()
   }
