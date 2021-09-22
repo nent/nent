@@ -22,7 +22,6 @@ import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { resolveTokens } from '../../services/data/tokens'
-import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
 import { renderMarkdown } from './markdown/remarkable.worker'
 
@@ -41,10 +40,10 @@ import { renderMarkdown } from './markdown/remarkable.worker'
 export class ContentMarkdown {
   private readonly contentClass = 'rendered-content'
   private dataSubscription!: () => void
-  private routeSubscription!: () => void
   private renderCache: Record<string, HTMLElement> = {}
   @Element() el!: HTMLNContentMarkdownElement
-  @State() contentElement: HTMLElement | null = null
+  @State() location = routingState.location
+  private contentElement: HTMLElement | null = null
 
   /**
    * Remote Template URL
@@ -115,19 +114,6 @@ export class ContentMarkdown {
           },
         )
       }
-      if (commonState.routingEnabled) {
-        this.subscribeToRouteEvents()
-      } else {
-        const routeSubscription = onCommonStateChange(
-          'routingEnabled',
-          enabled => {
-            if (enabled) {
-              this.subscribeToRouteEvents()
-              routeSubscription()
-            }
-          },
-        )
-      }
     }
   }
 
@@ -135,16 +121,7 @@ export class ContentMarkdown {
     this.dataSubscription = eventBus.on(
       DATA_EVENTS.DataChanged,
       () => {
-        forceUpdate(this)
-      },
-    )
-  }
-
-  private subscribeToRouteEvents() {
-    this.routeSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteChanged,
-      () => {
-        forceUpdate(this)
+        forceUpdate(this.el)
       },
     )
   }
@@ -175,7 +152,7 @@ export class ContentMarkdown {
     div.innerHTML = (await renderMarkdown(content)) || ''
     div.className = this.contentClass
     if (commonState.elementsEnabled)
-      await resolveChildElementXAttributes(div)
+      resolveChildElementXAttributes(div)
     routingState.router?.captureInnerLinks(div)
     this.highlight(div)
     if (key && this.canCache) this.renderCache[key] = div
@@ -234,6 +211,5 @@ export class ContentMarkdown {
 
   disconnectedCallback() {
     this.dataSubscription?.call(this)
-    this.routeSubscription?.call(this)
   }
 }

@@ -683,6 +683,10 @@ export namespace Components {
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
+          * Force render with data & route changes.
+         */
+        "noCache": boolean;
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle": string;
@@ -814,6 +818,10 @@ export namespace Components {
           * Cross Origin Mode if the content is pulled from a remote location
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * Force render with data & route changes.
+         */
+        "noCache": boolean;
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
@@ -1766,6 +1774,10 @@ declare namespace LocalJSX {
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
+          * Force render with data & route changes.
+         */
+        "noCache"?: boolean;
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle"?: string;
@@ -1897,6 +1909,10 @@ declare namespace LocalJSX {
           * Cross Origin Mode if the content is pulled from a remote location
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * Force render with data & route changes.
+         */
+        "noCache"?: boolean;
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
