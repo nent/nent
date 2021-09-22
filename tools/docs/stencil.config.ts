@@ -21,6 +21,7 @@ const config: Config = {
     port: 3002,
     root: '../../docs',
     openBrowser: false,
+    reloadStrategy: 'pageReload',
   },
   outputTargets: [
     {

@@ -34,7 +34,7 @@ describe('n-view-link', () => {
     })
     expect(page.root).toEqualHtml(`
       <n-view-link>
-        <a class="active" n-attached-click="">
+        <a n-attached-click="">
         </a>
       </n-view-link>
     `)

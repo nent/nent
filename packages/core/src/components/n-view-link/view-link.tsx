@@ -1,13 +1,10 @@
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  State,
-} from '@stencil/core'
+import { Component, Element, h, Prop, State } from '@stencil/core'
 import { isValue, logIf } from '../../services/common'
-import { routingState } from '../n-views/services/state'
+import { MatchResults } from '../n-views/services/interfaces'
+import {
+  onRoutingChange,
+  routingState,
+} from '../n-views/services/state'
 
 /**
  * The element should be used in-place of an `a` tag to navigate without
@@ -24,12 +21,15 @@ import { routingState } from '../n-views/services/state'
   shadow: false,
 })
 export class ViewLink {
+  private routeSubscription!: () => void
   @Element() el!: HTMLNViewLinkElement
+  @State() match?: MatchResults | null
+  @State() location = routingState?.location
 
   /**
    * The destination route for this link
    */
-  @Prop() path!: string
+  @Prop({ mutable: true }) path!: string
 
   /**
    * The class to add to the anchor tag.
@@ -60,18 +60,32 @@ export class ViewLink {
    */
   @Prop() debug: boolean = false
 
-  @State()
-  location = routingState?.location
-
   get parentUrl() {
     return (
       this.el.closest('n-view-prompt')?.path ||
-      this.el.closest('n-view')?.path ||
-      routingState.location?.pathname
+      this.el.closest('n-view')?.path
     )
   }
 
+  componentWillLoad() {
+    this.routeSubscription = onRoutingChange('location', () => {
+      this.path = routingState.router!.resolvePathname(
+        this.path,
+        this.parentUrl || '/',
+      )
+
+      const match = routingState.router!.matchPath({
+        path: this.path,
+        exact: this.exact,
+        strict: this.strict,
+      })
+
+      this.match = match ? ({ ...match } as MatchResults) : null
+    })
+  }
+
   private handleClick(e: MouseEvent, path?: string) {
+    if (this.match?.isExact) return
     const router = routingState.router
     if (
       !router ||
@@ -81,8 +95,8 @@ export class ViewLink {
     ) {
       return
     }
-    e.preventDefault()
 
+    e.preventDefault()
     router.goToRoute(path)
   }
 
@@ -101,7 +115,7 @@ export class ViewLink {
       [this.linkClass || '']: true,
     }
 
-    logIf(this.debug, 'n-view-link re-render ' + this.path)
+    logIf(this.debug, 'n-view-link re-render ' + path)
 
     let anchorAttributes: Record<string, any> = {
       title: this.el.title,
@@ -110,20 +124,22 @@ export class ViewLink {
     }
 
     return (
-      <Host>
-        <a
-          href={path}
-          title={this.el.title}
-          {...anchorAttributes}
-          n-attached-click
-          class={classes}
-          onClick={(e: MouseEvent) => {
-            this.handleClick(e, path)
-          }}
-        >
-          <slot></slot>
-        </a>
-      </Host>
+      <a
+        href={path}
+        title={this.el.title}
+        {...anchorAttributes}
+        n-attached-click
+        class={classes}
+        onClick={(e: MouseEvent) => {
+          this.handleClick(e, path)
+        }}
+      >
+        <slot></slot>
+      </a>
     )
+  }
+
+  disconnectedCallback() {
+    this.routeSubscription?.call(this)
   }
 }

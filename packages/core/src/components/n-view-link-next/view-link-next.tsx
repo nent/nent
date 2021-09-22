@@ -1,5 +1,11 @@
 import { Component, Element, h, Prop, State } from '@stencil/core'
-import { routingState } from '../n-views/services/state'
+import { eventBus } from '../../services/actions'
+import { Route } from '../n-view/services/route'
+import { ROUTE_EVENTS } from '../n-views/services/interfaces'
+import {
+  onRoutingChange,
+  routingState,
+} from '../n-views/services/state'
 
 /**
  * This element will automatically go to the next
@@ -12,9 +18,10 @@ import { routingState } from '../n-views/services/state'
   shadow: false,
 })
 export class ViewLinkNext {
+  private matchSubscription?: () => void
   @Element() el!: HTMLNViewLinkNextElement
-  @State() route = routingState.exactRoute?.nextRoute
-  private title?: string
+  @State() route: Route | null = null
+  @State() title?: string
 
   /**
    * The link text
@@ -26,31 +33,69 @@ export class ViewLinkNext {
    */
   @Prop() linkClass?: string
 
-  async componentWillRender() {
-    this.title = await this.route?.nextRoute?.resolvedTitle()
+  private get parentView() {
+    return this.el.closest('n-view')
+  }
+
+  private get parentViewPrompt() {
+    return this.el.closest('n-view-prompt')
+  }
+
+  componentWillLoad() {
+    if (routingState.router) {
+      this.setupRoute()
+    } else {
+      const dispose = onRoutingChange('router', () => {
+        this.setupRoute()
+        dispose()
+      })
+    }
+  }
+
+  private setupRoute() {
+    if (this.parentViewPrompt) {
+      this.route = this.parentViewPrompt!.route.nextRoute
+    } else if (this.parentView) {
+      this.route = this.parentView!.route.nextRoute
+    } else {
+      this.subscribe()
+    }
+  }
+
+  private subscribe() {
+    this.matchSubscription = eventBus.on(
+      ROUTE_EVENTS.RouteMatchedExact,
+      async ({ route }: { route: Route }) => {
+        this.route = route.nextRoute
+        this.title = await route.resolvedTitle()
+      },
+    )
+    this.route = routingState.router?.exactRoute?.nextRoute || null
   }
 
   render() {
-    const route = routingState.exactRoute?.nextRoute
-    const title = this.text || this.title || route?.title || 'Next'
-    return (
+    return this.route ? (
       <a
         class={this.linkClass}
         onClick={e => {
           e.preventDefault()
-          routingState.exactRoute?.goNext()
+          this.route?.goToRoute(this.route.path)
         }}
         onKeyPress={e => {
           e.preventDefault()
-          routingState.exactRoute?.goNext()
+          this.route?.goToRoute(this.route.path)
         }}
-        href={route?.path}
-        title={title}
+        href={this.route.path}
+        title={this.route.title}
         n-attached-click
         n-attached-key-press
       >
-        {title}
+        {this.text || this.route.title}
       </a>
-    )
+    ) : null
+  }
+
+  disconnectedCallback() {
+    this.matchSubscription?.call(this)
   }
 }

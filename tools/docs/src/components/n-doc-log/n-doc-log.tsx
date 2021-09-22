@@ -9,7 +9,7 @@ export class DocLog {
   @Element() el!: HTMLNDocLogElement
 
   private proxyConsole(name: string, autoScroll: boolean) {
-    this[`old${name}`] = console[name]
+    this[`old${name}`] = window.console[name]
     const log = this.el.shadowRoot.querySelector('#log')!
     const logContainer =
       this.el.shadowRoot.querySelector('#container')!
@@ -120,7 +120,7 @@ export class DocLog {
 
   private unproxyConsole(name: string) {
     // @ts-ignore
-    console[name] = this[`old${name}`]
+    window.console[name] = this[`old${name}`]
   }
 
   componentDidLoad() {
