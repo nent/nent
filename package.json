@@ -51,11 +51,10 @@
     "clean:docs": "yarn docs run clean",
     ":auto ---": "------------",
     "prepare": "husky install",
-    "publish": "lerna publish --yes --dist-tag $VERSION",
     "postpublish": "pinst --enable",
     "prepublishOnly": "pinst --disable",
     "prepublish:test": "yarn build",
-    "publish:test": "lerna publish --canary --preid beta --yes"
+    "publish:test": "lerna publish bump --canary --preid beta --yes"
   },
   "resolutions": {
     "set-value": ">=4.0.1"
