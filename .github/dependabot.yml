@@ -5,29 +5,20 @@
 
 version: 2
 updates:
-
   # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'daily'
 
   # Maintain dependencies for npm
-  - package-ecosystem: "npm"
-    directory: "/packages/core"
+  - package-ecosystem: 'npm'
+    directory: '/packages/core'
     versioning-strategy: auto
-    ignore:
-    - jest
-    - jest-cli
     schedule:
-      interval: "daily"
+      interval: 'daily'
 
-  - package-ecosystem: "npm"
-    directory: "/packages/create"
+  - package-ecosystem: 'npm'
+    directory: '/packages/create'
     schedule:
-      interval: "daily"
-
-  - package-ecosystem: "npm"
-    directory: "/examples/basic"
-    schedule:
-      interval: "daily"
+      interval: 'daily'
