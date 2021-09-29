@@ -5,6 +5,12 @@ name: publish
 
 on:
   workflow_dispatch:
+    inputs:
+      draft:
+        default: 'true'
+        description: release as draft
+        required: true
+
   push:
     branches: [main]
     paths:
@@ -40,6 +46,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
   release:
+    needs:
+      - publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -47,3 +55,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
+        with:
+          prerelease: true
+          draft: ${{ equals(inputs.draft, 'true') }}
