@@ -4,9 +4,6 @@
   "useWorkspaces": true,
   "publish": {},
   "command": {
-    "version": {
-      "message": "version(📦): version bumped [skip ci]"
-    },
     "publish": {
       "ignoreChanges": [
         "ignored-file",

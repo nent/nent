@@ -6,7 +6,11 @@
       "name": "E2E Test Current File",
       "cwd": "${workspaceFolder}",
       "program": "${workspaceFolder}/node_modules/.bin/stencil",
-      "args": ["test", "--e2e", "${relativeFile}"],
+      "args": [
+        "test",
+        "--e2e",
+        "${relativeFile}"
+      ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true
@@ -17,19 +21,37 @@
       "name": "Spec Test Current File",
       "cwd": "${workspaceFolder}",
       "program": "${workspaceFolder}/node_modules/.bin/stencil",
-      "args": ["test", "--spec", "${relativeFile}"],
+      "args": [
+        "test",
+        "--spec",
+        "${relativeFile}"
+      ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true
     },
     {
-			"name": "Run Extension",
-			"type": "extensionHost",
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}"
-			]
-		}
+      "name": "Run Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ]
+    },
+    {
+      "type": "node",
+      "name": "vscode-jest-tests",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "program": "${workspaceFolder}/jest",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--runInBand",
+        "--watchAll=false"
+      ]
+    }
   ]
 }
