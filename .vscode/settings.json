@@ -32,6 +32,7 @@
     "jsonata",
     "linebreak",
     "loadash",
+    "logrythmik",
     "markdownlint",
     "maxlevel",
     "modulepreload",
@@ -296,14 +297,5 @@
   ],
   "commit-message-editor.view.saveAndClose": true,
   "html.format.wrapLineLength": 80,
-  "peacock.color": "#ae9ae4",
-  "jest.jestCommandLine": "jest",
-  "json.schemas": [
-    {
-      "fileMatch": [
-        ".commitlintrc.json"
-      ],
-      "url": "https://json.schemastore.org/commitlintrc.json"
-    }
-  ]
+  "peacock.color": "#ae9ae4"
 }

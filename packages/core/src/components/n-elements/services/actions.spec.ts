@@ -134,7 +134,7 @@ describe('elements-actions:', () => {
 
     const interfaceListener = new ElementsActionListener()
     interfaceListener.initialize(
-      fakeWindow.window,
+      fakeWindow.window as any,
       actionBus,
       eventBus,
     )
@@ -175,7 +175,7 @@ describe('elements-actions:', () => {
 
     const interfaceListener = new ElementsActionListener()
     interfaceListener.initialize(
-      fakeWindow.window,
+      fakeWindow.window as any,
       actionBus,
       eventBus,
     )
@@ -216,7 +216,7 @@ describe('elements-actions:', () => {
 
     const interfaceListener = new ElementsActionListener()
     interfaceListener.initialize(
-      fakeWindow.window,
+      fakeWindow.window as any,
       actionBus,
       eventBus,
     )
@@ -272,7 +272,7 @@ describe('elements-actions:', () => {
 
     const interfaceListener = new ElementsActionListener()
     interfaceListener.initialize(
-      fakeWindow.window,
+      fakeWindow.window as any,
       actionBus,
       eventBus,
     )
