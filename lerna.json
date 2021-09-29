@@ -5,10 +5,12 @@
   "publish": {},
   "command": {
     "publish": {
+      "conventionalCommits": true,
       "ignoreChanges": [
         "ignored-file",
         "*.md"
       ],
+      "yes": true,
       "registry": "https://registry.npmjs.org",
       "message": "release(📦): version published [skip ci]"
     }

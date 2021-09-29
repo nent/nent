@@ -34,7 +34,7 @@ jobs:
         run: yarn install --frozen-lockfile && yarn build
 
       - name: publish
-        run: lerna publish patch --yes --no-verify-access
+        run: HUSKY_BYPASS=true lerna publish patch --yes --no-verify-access
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}

@@ -19,6 +19,7 @@
     "wix.vscode-import-cost",
     "sissel.json-script-tag",
     "yzhang.markdown-all-in-one",
-    "nent.nent"
+    "nent.nent",
+    "dotup.dotup-vscode-test-generator"
   ]
 }
