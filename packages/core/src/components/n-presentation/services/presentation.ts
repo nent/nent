@@ -1,28 +1,28 @@
 import { actionBus } from '../../../services/actions'
 import {
   activateActionActivators,
-  sendActions,
+  sendActions
 } from '../../../services/actions/elements'
 import {
   ActionActivationStrategy,
-  IActionElement,
+  IActionElement
 } from '../../../services/actions/interfaces'
 import { debugIf } from '../../../services/common/logging'
 import {
   ANALYTICS_COMMANDS,
   ANALYTICS_TOPIC,
-  ViewTime,
+  ViewTime
 } from '../../n-app-analytics/services/interfaces'
 import {
   captureElementChildTimedNodes,
   resolveElementChildTimedNodesByTime,
-  restoreElementChildTimedNodes,
+  restoreElementChildTimedNodes
 } from './elements'
 import {
   ITimer,
   TimeDetails,
   TimedNode,
-  TIMER_EVENTS,
+  TIMER_EVENTS
 } from './interfaces'
 
 export class PresentationService {
@@ -104,7 +104,15 @@ export class PresentationService {
     })
   }
 
-  private async handleEnded() {
+  private async handleEnded(time: TimeDetails) {
+    if (this.elements) {
+      resolveElementChildTimedNodesByTime(
+        this.el,
+        this.timedNodes,
+        time.elapsed,
+        time.percentage,
+      )
+    }
     await activateActionActivators(
       this.actionActivators,
       ActionActivationStrategy.AtTimeEnd,
@@ -125,9 +133,9 @@ export class PresentationService {
 
     this.endSubscription = this.timeEmitter.on(
       TIMER_EVENTS.OnEnd,
-      async () => {
+      async (time: TimeDetails) => {
         debugIf(this.debug, `presentation: ended`)
-        await this.handleEnded()
+        await this.handleEnded(time)
       },
     )
   }

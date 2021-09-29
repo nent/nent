@@ -134,17 +134,19 @@ export class ActionActivator {
       return
     }
 
-    this.childActions.forEach(async a => {
-      const action = await a.getAction()
-      if (!action) return
+    await Promise.all(
+      this.childActions.map(async a => {
+        const action = await a.getAction()
+        if (!action) return
 
-      const dataString = JSON.stringify(action.data)
-      debugIf(
-        this.debug,
-        `n-action-activator: registered [${this.activate}~{topic: ${action?.topic}, command:${action?.command}, data: ${dataString}}}] `,
-      )
-      this.actions.push(a)
-    })
+        const dataString = JSON.stringify(action.data)
+        debugIf(
+          this.debug,
+          `n-action-activator: registered [${this.activate}~{topic: ${action?.topic}, command:${action?.command}, data: ${dataString}}}] `,
+        )
+        this.actions.push(a)
+      }),
+    )
 
     if (this.activate === ActionActivationStrategy.OnElementEvent) {
       const elements = this.targetElement

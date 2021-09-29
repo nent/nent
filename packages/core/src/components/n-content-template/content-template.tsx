@@ -8,8 +8,8 @@ import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
-import { hasToken, resolveTokens } from '../../services/data/tokens'
-import { filterData } from '../n-content-repeat/filter/jsonata.worker'
+import { filterData } from '../../services/data/jsonata.worker'
+import { resolveTokens } from '../../services/data/tokens'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
 /**
@@ -131,7 +131,7 @@ export class ContentTemplate {
     container.innerHTML = content
     container.className = this.contentClass
     if (commonState.elementsEnabled) {
-      await resolveChildElementXAttributes(container)
+      resolveChildElementXAttributes(container)
     }
     if (routingState.router) {
       routingState.router?.captureInnerLinks(container)
@@ -167,33 +167,21 @@ export class ContentTemplate {
       }
     }
 
-    let remote: any = {}
     if (this.src) {
       try {
-        remote = await fetchJson(window, this.src, this.mode)
+        let remoteData = await fetchJson(window, this.src, this.mode)
+        data = Object.assign(data, remoteData)
         if (this.filter) {
-          let filterString = this.filter.slice()
           debugIf(
             this.debug,
-            `n-content-template: filtering: ${filterString}`,
+            `n-content-template: filtering: ${this.filter}`,
           )
-          remote = await filterData(filterString, data)
+          data = await filterData(this.filter, remoteData)
         }
       } catch (error) {
         warn(
           `n-content-template: unable to fetch and filter data data ${error}`,
         )
-      }
-
-      data = Object.assign(data, remote)
-    }
-
-    if (commonState.dataEnabled) {
-      for await (const _ of Object.keys(data).map(async name => {
-        data[name] = hasToken(data[name])
-          ? await resolveTokens(data[name])
-          : data[name]
-      })) {
       }
     }
 

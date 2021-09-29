@@ -63,7 +63,7 @@ export class AudioActionListener {
       },
     )
 
-    if (commonState.audioEnabled) this.subscribe()
+    this.subscribe()
   }
 
   private subscribe() {

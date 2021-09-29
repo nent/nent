@@ -1,4 +1,6 @@
 jest.mock('../../services/common/logging')
+jest.mock('../../services/data/evaluate.worker')
+jest.mock('../../services/data/jsonata.worker')
 jest.mock('./services/track')
 jest.mock('./services/actions')
 import { newSpecPage } from '@stencil/core/testing'
@@ -9,9 +11,19 @@ import {
 } from '../../services/common'
 import { contentStateDispose } from '../../services/content/state'
 import { dataStateDispose } from '../../services/data/state'
+import { App } from '../n-app/app'
 import { ContentReference } from '../n-content-reference/content-reference'
+import { ContentTemplate } from '../n-content-template/content-template'
+import { Data } from '../n-data/data'
 import { Audio } from './audio'
 import { AudioActionListener } from './services/actions'
+import {
+  AudioType,
+  AUDIO_COMMANDS,
+  AUDIO_TOPIC,
+  DiscardStrategy,
+  LoadStrategy,
+} from './services/interfaces'
 import { audioStateDispose } from './services/state'
 
 describe('n-audio', () => {
@@ -261,6 +273,56 @@ describe('n-audio', () => {
       </mock:shadow-root>
     </n-audio>
     `)
+
+    page.root?.remove()
+  })
+
+  it('display, audio loaded - data-enabled', async () => {
+    jest.dontMock('./services/actions')
+    const page = await newSpecPage({
+      components: [App, Data, Audio, ContentTemplate],
+    })
+    page.win.localStorage.setItem('audio-enabled', 'true')
+    commonState.dataEnabled = true
+    await page.setContent(`
+    <n-app>
+      <n-data></n-data>
+      <n-audio data-provider></n-audio>
+      <n-content-template>
+        <template>
+          <p id="hasAudio">{{audio:hasAudio}}</p>
+        </template>
+      </n-content-data>
+    </n-app>`)
+
+    await page.waitForChanges()
+
+    const audio = page.body.querySelector(
+      'n-audio',
+    ) as HTMLNAudioElement
+    expect(audio).toBeDefined()
+
+    const listener = audio.actions as AudioActionListener
+
+    expect(listener).toBeDefined()
+
+    actionBus.emit(AUDIO_TOPIC, {
+      command: AUDIO_COMMANDS.load,
+      data: {
+        src: 'fake.mp3',
+        mode: LoadStrategy.play,
+        type: AudioType.music,
+        discard: DiscardStrategy.next,
+        trackId: 'test',
+        loop: false,
+      },
+    })
+
+    await page.waitForChanges()
+
+    //  const subject = page.body.querySelector('#hasAudio')
+    // TODO: Get this working!
+    // expect(subject?.innerHTML).toEqualHtml(`true`)
 
     page.root?.remove()
   })

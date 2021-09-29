@@ -11,11 +11,15 @@ export class AudioDataProvider implements IDataProvider {
   listenerSubscription!: () => void
   constructor(private audioListener: AudioActionListener) {
     this.changed = new EventEmitter()
-    const change = debounce(1000, () => {
-      this.changed.emit(DATA_EVENTS.DataChanged, {
-        provider: 'audio',
-      })
-    })
+    const change = debounce(
+      1000,
+      () => {
+        this.changed.emit(DATA_EVENTS.DataChanged, {
+          provider: 'audio',
+        })
+      },
+      true,
+    )
     this.listenerSubscription = this.audioListener.changed.on(
       'changed',
       () => {

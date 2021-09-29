@@ -1,4 +1,4 @@
-jest.mock('./filter/jsonata.worker')
+jest.mock('../../services/data/jsonata.worker')
 jest.mock('../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'

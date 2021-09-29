@@ -6,6 +6,7 @@ import {
   EventAction,
   eventBus,
 } from '../../services/actions'
+import { sleep } from '../../services/common'
 import { Action } from '../n-action/action'
 import { PresentationTimer } from '../n-presentation-timer/presentation-timer'
 import { RequestAnimationFrameMockSession } from '../n-presentation/mocks/animationFrame'
@@ -47,9 +48,30 @@ describe('n-action-activator', () => {
     })
     expect(page.root).toEqualHtml(
       `<n-action-activator>
-      <n-action topic="fake" command="noop"></n-action>
+        <n-action topic="fake" command="noop"></n-action>
       </n-action-activator>`,
     )
+  })
+
+  it('render event', async () => {
+    let action: EventAction<any>
+    actionBus.on('fake', e => {
+      action = e
+    })
+    const page = await newSpecPage({
+      components: [ActionActivator, Action],
+      html: `<n-action-activator activate="on-render">
+              <n-action topic="fake" command="noop"></n-action>
+             </n-action-activator>`,
+      autoApplyChanges: true,
+      hydrateClientSide: true,
+    })
+
+    await page.waitForChanges()
+
+    await sleep(1000)
+
+    expect(action!).toBeDefined()
   })
 
   it('captures child actions', async () => {

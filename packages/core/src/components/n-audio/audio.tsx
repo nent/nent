@@ -114,6 +114,7 @@ export class Audio {
         },
       )
     }
+    this.registerServices()
   }
 
   private registerServices() {
