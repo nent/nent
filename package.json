@@ -51,7 +51,6 @@
     "clean:docs": "yarn docs run clean",
     ":auto ---": "------------",
     "prepare": "husky install",
-    "prepublish": "yarn build",
     "publish": "lerna publish --yes --dist-tag $VERSION",
     "postpublish": "pinst --enable",
     "prepublishOnly": "pinst --disable",
