@@ -6,6 +6,10 @@ name: publish
 on:
   workflow_dispatch:
     inputs:
+      increment:
+        default: 'patch'
+        description: the publish version rev
+        required: true
       draft:
         default: 'true'
         description: release as draft
@@ -39,7 +43,7 @@ jobs:
       - name: build
         run: yarn install --frozen-lockfile && yarn build
       - name: publish
-        run: lerna publish patch --yes --no-verify-access
+        run: lerna publish ${{ github.event.inputs.increment }} --yes --no-verify-access
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
@@ -57,4 +61,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           prerelease: true
-          draft: ${{ inputs.draft }}
+          draft: ${{ github.event.inputs.draft == 'true' }}
