@@ -38,7 +38,6 @@ export class Presentation {
   private navigationSubscription?: () => void
   @Element() el!: HTMLNPresentationElement
   @State() elementWithTimer: IElementTimer | null = null
-
   @State() timer: ITimer | null = null
 
   /**

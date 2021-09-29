@@ -83,8 +83,8 @@ export class ActionActivator {
    * Manually activate all actions within this activator.
    */
   @Method()
-  async activateActions(): Promise<void> {
-    if (this.once && this.activated) return
+  async activateActions(once: boolean = false): Promise<void> {
+    if ((once || this.once) && this.activated) return
 
     const values: Record<string, any> = {}
 

@@ -92,7 +92,7 @@ describe('n-presentation', () => {
 
     await page.waitForChanges()
 
-    //expect(spy).toBeCalled()
+    expect(spy).toBeCalled()
 
     expect(page.root).toEqualHtml(`
     <n-views>

@@ -25,8 +25,9 @@ import { ActionService } from '../../services/actions/service'
   tag: 'n-presentation-action',
   shadow: false,
 })
-export class NPresentationAction implements IActionElement {
+export class PresentationAction implements IActionElement {
   @State() valid: boolean = true
+  @State() sent: boolean = false
   @Element() el!: HTMLNPresentationActionElement
 
   private actionService!: ActionService
@@ -71,7 +72,9 @@ export class NPresentationAction implements IActionElement {
    */
   @Method()
   async sendAction(data?: Record<string, any>) {
-    return this.actionService.sendAction(data)
+    if (this.sent) return
+    await this.actionService.sendAction(data)
+    this.sent = true
   }
 
   get childScript(): HTMLScriptElement | null {

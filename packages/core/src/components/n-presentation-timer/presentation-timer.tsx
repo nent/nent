@@ -94,7 +94,7 @@ export class PresentationTimer implements IElementTimer {
    */
   @Method()
   async begin() {
-    this.timer?.begin()
+    this.timer!.begin()
   }
 
   /**
@@ -102,7 +102,7 @@ export class PresentationTimer implements IElementTimer {
    */
   @Method()
   async stop() {
-    this.timer?.stop()
+    this.timer!.stop()
   }
 
   componentWillLoad() {

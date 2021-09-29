@@ -52,7 +52,7 @@ export namespace Components {
         /**
           * Manually activate all actions within this activator.
          */
-        "activateActions": () => Promise<void>;
+        "activateActions": (once?: boolean) => Promise<void>;
         /**
           * Turn on debug statements for load, update and render events.
          */

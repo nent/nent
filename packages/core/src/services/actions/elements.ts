@@ -9,12 +9,15 @@ export async function activateActionActivators(
   filter: (activator: HTMLNActionActivatorElement) => boolean = _a =>
     true,
 ) {
+  let once =
+    forEvent == ActionActivationStrategy.AtTime ||
+    forEvent == ActionActivationStrategy.AtTimeEnd
   await Promise.all(
     actionActivators
       .filter(activator => activator.activate === forEvent)
       .filter(filter)
       .map(async activator => {
-        await activator.activateActions()
+        await activator.activateActions(once)
       }),
   )
 }
