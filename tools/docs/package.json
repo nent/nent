@@ -42,7 +42,7 @@
   "watch": {
     "build:dev": {
       "patterns": [
-        "src"
+        "src/**/*.*"
       ]
     }
   }

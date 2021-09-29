@@ -30,6 +30,7 @@ export interface TimeDetails {
   elapsed: number
   percentage: number
   duration: number
+  ended: boolean
 }
 
 export interface ITimer extends IEventEmitter {
