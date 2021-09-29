@@ -54,6 +54,9 @@ const config: Config = {
         {
           src: '_redirects',
         },
+        {
+          src: 'robots.txt',
+        },
       ],
     },
   ],
