@@ -31,8 +31,7 @@ jobs:
         run: |
           git config --global user.name '@logrythmik'
           git config --global user.email 'logrythmik@users.noreply.github.com'
-
-      - name: setup-npm
+      - name: setup
         uses: actions/setup-node@v2.4.1
         with:
           node-version: '16.x'
@@ -48,17 +47,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           HUSKY_BYPASS: true
-
-  release:
-    needs:
-      - publish
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Release
+      - name: release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           prerelease: true
           draft: ${{ github.event.inputs.draft != 'false' }}
