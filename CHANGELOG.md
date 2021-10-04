@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.7.3 (2021-10-04)
+
+
+### Bug Fixes
+
+* **🔧:** fixed the audio-bug where the action listener was initialized before howler is loaded ([2744858](https://github.com/nent/nent/commit/2744858f09cf17cf93df504d48e8b5e6fdeaf7d6))
+
+
+
+
+
 ## 0.7.2 (2021-09-30)
 
 **Note:** Version bump only for package nent-repo
