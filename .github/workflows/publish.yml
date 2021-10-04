@@ -15,12 +15,6 @@ on:
         description: release as draft
         required: true
 
-  push:
-    branches: [main]
-    paths:
-      - 'packages/core/**/*.tsx'
-      - 'packages/core/**/*.ts'
-
 jobs:
   publish:
     name: Publish
