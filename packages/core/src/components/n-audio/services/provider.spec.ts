@@ -33,10 +33,12 @@ describe('audio-provider', () => {
     addDataProvider('audio', subject)
   })
 
-  it('get:hasAudio', async () => {
+  it('get:hasAudio (playing)', async () => {
     listener.music.active = {
       trackId: 'track-1',
-      playing: true,
+      playing: function () {
+        return true
+      },
     }
 
     let result = await resolveTokens('{{audio:hasAudio}}')

@@ -60,7 +60,7 @@ describe('player-sound', () => {
     expect(active).not.toBeNull()
     active.destroy = jest.fn()
 
-    expect(active?.playing).toBeTruthy()
+    expect(active?.playing()).toBeTruthy()
 
     active.onEnd!()
 

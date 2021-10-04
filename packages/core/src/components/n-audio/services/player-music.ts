@@ -59,8 +59,8 @@ export class MusicPlayer extends PlayerBase {
   public hasAudio() {
     return (
       this.active != null ||
-      this.loader.hasItems ||
-      this.queue.hasItems
+      this.loader.hasItems() ||
+      this.queue.hasItems()
     )
   }
 

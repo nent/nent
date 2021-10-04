@@ -42,7 +42,7 @@ export class SoundPlayer extends PlayerBase {
   }
 
   public hasAudio() {
-    return this.active != null || this.loader.hasItems
+    return this.active != null || this.loader.hasItems()
   }
 
   public destroy() {

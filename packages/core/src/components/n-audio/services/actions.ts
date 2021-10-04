@@ -28,13 +28,14 @@ import { audioState, onAudioStateChange } from './state'
 export class AudioActionListener {
   changed: IEventEmitter
   private stateEnabledSubscription!: () => void
+  private stateDataSubscription!: () => void
   private stateMutedSubscription!: () => void
   private actionSubscription?: () => void
   private eventSubscription?: () => void
 
   public music!: MusicPlayer
   public sound!: SoundPlayer
-  private provider?: AudioDataProvider
+  public provider?: AudioDataProvider
 
   constructor(
     private readonly window: Window,
@@ -44,6 +45,14 @@ export class AudioActionListener {
     private readonly debug: boolean = false,
   ) {
     this.changed = new EventEmitter()
+
+    this.music = new MusicPlayer(() => {
+      this.changed.emit('changed')
+    })
+
+    this.sound = new SoundPlayer(() => {
+      this.changed.emit('changed')
+    })
 
     this.volume = 1
 
@@ -55,6 +64,32 @@ export class AudioActionListener {
       },
     )
 
+    if (commonState.audioEnabled) this.subscribe()
+  }
+
+  private subscribe() {
+    const enableDataProvider = () => {
+      if (this.enableDataProvider && this.provider == undefined) {
+        this.provider = new AudioDataProvider(this)
+        addDataProvider('audio', this.provider)
+      }
+    }
+    if (commonState.audioEnabled) enableDataProvider()
+
+    this.stateDataSubscription = onCommonStateChange(
+      'dataEnabled',
+      enabled => {
+        if (enabled) {
+          enableDataProvider()
+        } else {
+          removeDataProvider('audio')
+          this.provider?.destroy()
+          this.provider = undefined
+        }
+      },
+    )
+
+    if (audioState.muted) this.mute()
     this.stateMutedSubscription = onAudioStateChange(
       'muted',
       mute => {
@@ -62,18 +97,6 @@ export class AudioActionListener {
         else this.play()
       },
     )
-
-    this.subscribe()
-  }
-
-  private subscribe() {
-    this.music = new MusicPlayer(() => {
-      this.changed.emit('changed')
-    })
-
-    this.sound = new SoundPlayer(() => {
-      this.changed.emit('changed')
-    })
 
     this.actionSubscription = this.actionBus.on(
       AUDIO_TOPIC,
@@ -103,19 +126,14 @@ export class AudioActionListener {
       },
     )
 
-    if (commonState.dataEnabled && this.enableDataProvider) {
-      this.provider = new AudioDataProvider(this)
-      addDataProvider('audio', this.provider)
-    }
-
-    if (audioState.muted) this.mute()
-
     this.changed.emit('changed')
   }
 
   private unsubscribe() {
     this.eventSubscription?.call(this)
     this.actionSubscription?.call(this)
+    this.stateDataSubscription?.call(this)
+    this.stateMutedSubscription?.call(this)
     this.music.destroy()
     this.sound.destroy()
 
@@ -130,8 +148,8 @@ export class AudioActionListener {
 
   public isPlaying(): boolean {
     return Boolean(
-      this.music.active?.playing ||
-        this.sound.active?.playing ||
+      this.music.active?.playing() ||
+        this.sound.active?.playing() ||
         false,
     )
   }
