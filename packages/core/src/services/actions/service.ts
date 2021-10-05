@@ -44,6 +44,8 @@ export class ActionService {
       }
     })
 
+    if (!this.element.valid) return null
+
     if (this.element.when && commonState.dataEnabled) {
       let predicateResult = await evaluatePredicate(this.element.when)
       if (predicateResult == false) {
