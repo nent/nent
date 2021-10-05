@@ -139,7 +139,7 @@
         <n-data-session></n-data-session>
         <n-data-storage></n-data-storage>
       </n-data>
-      <n-views>
+      <n-views transition="fade-in">
         <header n-cloak
           class="navbar">
           <div class="container container-fluid">
@@ -258,13 +258,14 @@
             exclude-root>
           </n-view-link-list>
         </nav>
+        <n-content-reference
+          style-src="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+        </n-content-reference>
+
         <n-view path="/"
           transition="none"
           page-title="Landing"
           exact>
-          <n-content-reference
-            style-src="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
-          </n-content-reference>
 
           <div slot="content">
             <h2>Functional Elements</h2>
