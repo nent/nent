@@ -303,11 +303,11 @@ describe('n-content', () => {
     )
 
     await page.setContent(
-      `<n-content-include src="fake.html"></n-content-include>`,
+      `<n-content-include resolve-tokens src="fake.html"></n-content-include>`,
     )
 
     expect(page.root).toEqualHtml(`
-      <n-content-include src="fake.html">
+      <n-content-include resolve-tokens="" src="fake.html">
         <div class="remote-content">
           <h1>
             HI FRIEND!
@@ -324,7 +324,7 @@ describe('n-content', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-include src="fake.html">
+      <n-content-include resolve-tokens="" src="fake.html">
         <div class="remote-content">
           <h1>
           HI MAX!
