@@ -19,6 +19,7 @@ import { ElementsActionListener } from './services/actions'
  */
 @Component({
   tag: 'n-elements',
+  styles: `n-cloak { display: inherit; }`,
   shadow: false,
 })
 export class Elements {

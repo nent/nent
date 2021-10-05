@@ -1,5 +1,5 @@
 <n-data-cookie n-cloak
-  class="container container-fluid shadow-sm p-2 mt-2">
+  class="container container-fluid shadow p-2 mt-2">
   <p>This site uses cookies as a data-provider for demonstration purposes. </p>
   <p>Here's where the lawyers add all their jargon knowing you will likely not
     read it.</p>
@@ -18,13 +18,15 @@
     collect data, store it in your browser and use it later. </p>
   <p>Tell us what to call you and it will show up in fun ways later.</p>
   <div class="form-group mb-3">
-    <n-action-activator target-element="#next"
-      target-event="click,keydown">
+    <n-action-activator target-element="#name"
+      debug
+      target-event="change,blur">
       <n-action topic="storage"
         command="set-data">
         <label for="name">Nickname</label>
         <input type="text"
           name="name"
+          id="name"
           required
           class="form-control"
           n-value-from="{{storage:name}}" />

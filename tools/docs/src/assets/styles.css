@@ -426,14 +426,16 @@ n-view.active + n-view-not-found {
   display: none;
 }
 
-.contained,
+.container,
 n-views > n-view,
+n-views > n-view-prompt,
 n-views > n-view-not-found  {
   max-width: var(--content-max-width);
   padding: 0 var(--bs-gutter-x, 0.75rem);
   margin-right: auto !important;
   margin-left: auto !important;
   position: relative;
+
 }
 
 
@@ -710,3 +712,6 @@ a:any-link,
 a:current {
   text-decoration: none !important;
 }
+
+
+

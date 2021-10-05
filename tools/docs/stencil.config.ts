@@ -1,6 +1,4 @@
-import purgecss from '@fullhuman/postcss-purgecss'
 import { Config } from '@stencil/core'
-import { postcss } from '@stencil/postcss'
 import { sass } from '@stencil/sass'
 const config: Config = {
   namespace: 'docs',
@@ -9,13 +7,13 @@ const config: Config = {
   globalStyle: 'src/index.scss',
   plugins: [
     sass(),
-    postcss({
-      plugins: [
-        purgecss({
-          content: ['src/index.html', 'src/pages/**/*.html'],
-        }),
-      ],
-    }),
+    // postcss({
+    //   plugins: [
+    //     purgecss({
+    //       content: ['src/index.html', 'src/pages/**/*.html'],
+    //     }),
+    //   ],
+    // }),
   ],
   devServer: {
     port: 3002,
