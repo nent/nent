@@ -10,8 +10,6 @@ on:
         default: 'patch'
         description: publish version rev-type
         required: true
-
-
 jobs:
   publish:
     name: Publish
@@ -38,7 +36,3 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           HUSKY_BYPASS: true
-      - name: release
-        uses: softprops/action-gh-release@v1
-        with:
-          prerelease: true
