@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.7.6 (2021-10-05)
+
+
+### Features
+
+* **✨:** exposed valid and getAction now respects when to provide expression functionality ([ddbbadc](https://github.com/nent/nent/commit/ddbbadcea3c5bde799d254f84187c26479a9082f))
+
+
+
+
+
 ## 0.7.5 (2021-10-05)
 
 **Note:** Version bump only for package nent-repo
