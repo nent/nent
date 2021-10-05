@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.7.4 (2021-10-05)
+
+
+### Bug Fixes
+
+* **🔧:** set content-include to default to NOT resolve tokens ([9aff232](https://github.com/nent/nent/commit/9aff23216135c9020033795a5d55e10f3849e172))
+
+
+
+
+
 ## 0.7.3 (2021-10-04)
 
 
