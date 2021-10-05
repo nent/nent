@@ -1,3 +1,4 @@
+jest.mock('../../../services/data/evaluate.worker')
 jest.mock('./track')
 
 import {

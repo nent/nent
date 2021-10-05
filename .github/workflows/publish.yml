@@ -10,10 +10,7 @@ on:
         default: 'patch'
         description: publish version rev-type
         required: true
-      draft:
-        default: 'true'
-        description: release as draft
-        required: true
+
 
 jobs:
   publish:
@@ -45,4 +42,3 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           prerelease: true
-          draft: ${{ github.event.inputs.draft != 'false' }}

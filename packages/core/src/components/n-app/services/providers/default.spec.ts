@@ -1,10 +1,11 @@
+jest.mock('../../../../services/data/evaluate.worker')
+jest.mock('../../../../services/common/logging')
+
 import { newSpecPage } from '@stencil/core/testing'
 import { appState, APP_COMMANDS, APP_TOPIC } from '..'
 import { actionBus, eventBus } from '../../../../services/actions'
 import { App } from '../../app'
 import { DefaultAppProvider } from './default'
-
-jest.mock('../../../../services/common/logging')
 
 describe('default-provider', () => {
   let custom: DefaultAppProvider

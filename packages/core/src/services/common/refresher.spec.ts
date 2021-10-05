@@ -1,3 +1,5 @@
+jest.mock('../data/evaluate.worker')
+
 import { eventBus } from '../actions'
 import { ComponentRefresher } from './refresher'
 

@@ -1,3 +1,4 @@
+jest.mock('../../../services/data/evaluate.worker')
 import { newSpecPage, SpecPage } from '@stencil/core/testing'
 import {
   commonState,
