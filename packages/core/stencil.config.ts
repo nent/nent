@@ -30,6 +30,9 @@ const config: Config = {
       ],
     },
     {
+      type: 'dist-custom-elements',
+    },
+    {
       type: 'dist-custom-elements-bundle',
     },
     {

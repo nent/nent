@@ -44,6 +44,17 @@ export class ActionService {
       }
     })
 
+    if (this.element.when && commonState.dataEnabled) {
+      let predicateResult = await evaluatePredicate(this.element.when)
+      if (predicateResult == false) {
+        debugIf(
+          commonState.debug,
+          `${this.elementName}: not fired, predicate '${this.element.when}' evaluated to false`,
+        )
+        return null
+      }
+    }
+
     return {
       topic: this.element.topic,
       command: this.element.command,
@@ -53,19 +64,6 @@ export class ActionService {
 
   async sendAction(data?: Record<string, void>): Promise<void> {
     const action = await this.element.getAction()
-
-    if (this.element.when && commonState.dataEnabled) {
-      const predicateResult = await evaluatePredicate(
-        this.element.when,
-      )
-      if (predicateResult == false) {
-        debugIf(
-          commonState.debug,
-          `${this.elementName}: not fired, predicate '${this.element.when}' evaluated to false`,
-        )
-        return
-      }
-    }
 
     if (action && this.element.valid) {
       if (data) Object.assign(action.data, data)

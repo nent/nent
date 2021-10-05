@@ -22,7 +22,7 @@ import { ActionService } from '../../services/actions/service'
 })
 export class Action implements IActionElement {
   @Element() el!: HTMLNActionElement
-  @State() valid: boolean = true
+  @State() public valid: boolean = true
   private actionService!: ActionService
 
   constructor() {
