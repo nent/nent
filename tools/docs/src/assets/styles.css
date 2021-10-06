@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  --primary: hsl(256, 23%, 51%);
+  --primary: rgb(117, 101, 159);
   --primary-dark: hsl(256, 23%, 41%);
   --primary-bg: hsl(256, 21%, 31%);
 
@@ -712,6 +712,8 @@ a:any-link,
 a:current {
   text-decoration: none !important;
 }
+
+
 
 
 

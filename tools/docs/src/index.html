@@ -126,6 +126,9 @@
       gtag( 'js', new Date() )
       gtag( 'config', 'G-XYMNMQ1G1X' )
     </script>
+    <script type="module" src="https://unpkg.com/@bruit/component/dist/bruit/bruit.esm.js"></script>
+    <script nomodule src="https://unpkg.com/@bruit/component/dist/bruit/bruit.js"></script>
+
   </head>
 
   <body>
@@ -181,6 +184,7 @@
                 <i class="ri-sun-line show-dark"></i>
 
               </n-app-theme-switch>
+
             </div>
           </div>
         </header>
@@ -257,6 +261,7 @@
             item-class="breadcrumb-item"
             exclude-root>
           </n-view-link-list>
+
         </nav>
         <n-content-reference
           style-src="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
@@ -476,7 +481,9 @@
             <h1>Page Not Found</h1>
           </div>
         </n-view-not-found>
-
+        <bruit-io title="Report a bug or provide feedback"
+          style="position: fixed; right: .7rem;bottom: 4rem;">
+        </bruit-io>
       </n-views>
 
       <n-elements>
@@ -499,6 +506,38 @@
       for(let registration of registrations) {
         registration.unregister()
       } })
+    </script>
+
+    <script>
+      var bruitCmp = document.querySelector('bruit-io');
+      bruitCmp.addEventListener('onReady', function () {
+        bruitCmp.start();
+      });
+
+      bruitCmp.config = {
+        apiKey: "30add7f4-e9bb-4717-9ed7-ea671d9ed309",
+        labels: {
+          title: "Help Us Improve",
+          introduction: "Thank you for letting us know about any issues, bugs or your general feedback."
+        },
+        colors: {
+          header: '#75659f',
+        },
+        form: [
+          {
+            label: "What is going on?",
+            type: "text",
+            required: true,
+            id: "title"
+          },
+          {
+            id: "agreement",
+            type: "checkbox",
+            label: "I agree to send technical information in addition to my answers",
+            value: null
+          }
+        ]
+      };
     </script>
   </body>
 
