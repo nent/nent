@@ -177,11 +177,6 @@ export class Route implements IRoute {
   private adjustClasses() {
     const match = this.match != null
     const exact = this.match?.isExact || false
-    if (this.transition) {
-      this.transition.split(' ').forEach(t => {
-        this.toggleClass(t, match)
-      })
-    }
 
     this.toggleClass('active', match)
     this.toggleClass('exact', exact)

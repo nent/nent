@@ -9,7 +9,7 @@
   display: none;
 }
 :host(.exact) {
-  display: ∫;
+  display: block;
 }
 :host(.exact) ::slotted([slot='content']),
 :host(.exact) div[slot='content'] {
