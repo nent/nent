@@ -10,3 +10,7 @@
   </n-view>
 </n-views>
 ```
+
+Guided navigation uses a convention-based approach to determine the intended navigation scheme, based on the `n-view` structure and order. 
+
+> You can provide expressions on routes using the `when` attribute as well as a `visit` strategy to create rule-based navigation. All navigation elements respect those rules and support `n-view-prompt` to collect consent, data and/or present one-time notifications.
