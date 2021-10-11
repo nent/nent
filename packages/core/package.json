@@ -60,7 +60,7 @@
     "@stencil/core": "2.9.0",
     "@stencil/store": "1.5.0",
     "@types/howler": "2.2.4",
-    "eslint-plugin-clean-regex": "0.5.1",
+    "eslint-plugin-clean-regex": "0.5.2",
     "expr-eval": "2.0.2",
     "jsonata": "1.8.5",
     "remarkable": "2.0.1"
