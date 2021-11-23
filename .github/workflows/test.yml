@@ -17,7 +17,7 @@ jobs:
           node-version: 14.x
       - name: Use cached node_modules
         id: cache
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: node_modules
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
