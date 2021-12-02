@@ -2246,6 +2246,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@stencil/core@2.11.0":
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.11.0.tgz#8accc2791e2c34cce2d2aa8b40864dd40be4e10c"
+  integrity sha512-/IubCWhVXCguyMUp/3zGrg3c882+RJNg/zpiKfyfJL3kRCOwe+/MD8OoAXVGdd+xAohZKIi1Ik+EHFlsptsjLg==
+
 "@stencil/core@2.8.1":
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.8.1.tgz#21b15c115d9a5e2f56379774fcbd9bc947bf336f"
@@ -2271,10 +2276,10 @@
   resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-1.4.1.tgz#ef5a1dd1b56c024ed08e80475e8a6f8d1c25bb10"
   integrity sha512-aFKoqtxZ/8BRbvNFiWRycGiqvMI22Ifn5qsKfq0U23j43XD81jT6d7K0WQd55ejNpoSpdxJcbOuFgQy3mXizfA==
 
-"@stencil/store@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-1.4.1.tgz#6804de778921df7dd222a487363a147690254d83"
-  integrity sha512-kAtMblucNnDNfTpSqhN9jccExgFWmOe+4U98cXZJrg/6nozNtEd92pY6s3Jko7KUrZ+1MQJU2oLwwS8VuyK3Zg==
+"@stencil/store@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-1.5.0.tgz#5c4e14ed078771bb8ed635867cfa8c3452f15ac4"
+  integrity sha512-fe5fCF6dgVlDM1iLRkkJUyUh0Tfx305asVGgMAJjIs7Q+x/b1pGgTLROm9Ibr53PZuFwr5Kg+4h9p4FLbYqHgA==
 
 "@surma/rollup-plugin-off-main-thread@^1.4.1":
   version "1.4.2"
@@ -4699,10 +4704,10 @@ eslint-module-utils@^2.6.2:
     debug "^3.2.7"
     pkg-dir "^2.0.0"
 
-eslint-plugin-clean-regex@0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-clean-regex/-/eslint-plugin-clean-regex-0.5.1.tgz#1fc8d61a1df2702d8f267d58ac101f5243e7ef7c"
-  integrity sha512-ZuZxP2V2s2LI2OZPUF5eQQtgUQv1/Z7jDI2DG5GEHGM9D0T0LSbcg8ViuFolrOOmUP7dCz+JHN4gDQWyeDdvJg==
+eslint-plugin-clean-regex@0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-clean-regex/-/eslint-plugin-clean-regex-0.5.2.tgz#91adb45204e1ef494b6f1ca51425bd4be447871a"
+  integrity sha512-xYa5bs6qHrg/tzAiGdk7Gm/koa6kIE+KRXnol/iPPBrMtO8ASdQLDsr/JCV04oUUATuFwI3DjQrPDaMCfzIQHA==
   dependencies:
     refa "^0.7.1"
     regexpp "^3.1.0"

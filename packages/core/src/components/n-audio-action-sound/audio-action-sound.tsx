@@ -76,6 +76,11 @@ export class AudioSoundAction implements IActionElement {
    */
   @Prop() value?: string | boolean | number
 
+  /**
+   * A predicate to evaluate prior to sending the action.
+   */
+  @Prop() when?: string
+
   private getData() {
     return {
       type: AudioType.sound,

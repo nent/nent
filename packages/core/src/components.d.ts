@@ -259,6 +259,10 @@ export namespace Components {
           * The value payload for the command.
          */
         "value"?: string | boolean | number;
+        /**
+          * A predicate to evaluate prior to sending the action.
+         */
+        "when"?: string;
     }
     interface NAudioActionSoundLoad {
         /**
@@ -1370,6 +1374,10 @@ declare namespace LocalJSX {
           * The value payload for the command.
          */
         "value"?: string | boolean | number;
+        /**
+          * A predicate to evaluate prior to sending the action.
+         */
+        "when"?: string;
     }
     interface NAudioActionSoundLoad {
         /**
