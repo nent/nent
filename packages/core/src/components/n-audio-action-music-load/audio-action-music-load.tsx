@@ -14,6 +14,8 @@ import {
   AudioRequest,
   AudioType,
   AUDIO_TOPIC,
+  DiscardStrategy,
+  LoadStrategy,
 } from '../n-audio/services/interfaces'
 import {
   audioState,
@@ -83,14 +85,14 @@ export class AudioMusicLoad {
   > {
     return {
       topic: AUDIO_TOPIC,
-      command: this.mode,
+      command: this.mode || LoadStrategy.load,
       data: {
         trackId: this.trackId || this.src,
         src: this.src,
-        discard: this.discard,
+        discard: this.discard || DiscardStrategy.route,
         loop: this.loop,
         type: AudioType.music,
-        mode: this.mode,
+        mode: this.mode || LoadStrategy.load,
       },
     }
   }

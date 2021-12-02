@@ -17,12 +17,13 @@ This element represents an action to be fired. This specialized action encapsula
 
 ## Properties
 
-| Property               | Attribute  | Description                        | Type                                                             | Default     |
-| ---------------------- | ---------- | ---------------------------------- | ---------------------------------------------------------------- | ----------- |
-| `command` _(required)_ | `command`  | The command to execute.            | `"mute"`, `"pause"`, `"resume"`, `"seek"`, `"start"`, `"volume"` | `undefined` |
-| `topic`                | `topic`    | Readonly topic                     | `"audio"`                                                        | `'audio'`   |
-| `trackId`              | `track-id` | The track to target.               | `string`, `undefined`                                            | `undefined` |
-| `value`                | `value`    | The value payload for the command. | `boolean`, `number`, `string`, `undefined`                       | `undefined` |
+| Property               | Attribute  | Description                                          | Type                                                             | Default     |
+| ---------------------- | ---------- | ---------------------------------------------------- | ---------------------------------------------------------------- | ----------- |
+| `command` _(required)_ | `command`  | The command to execute.                              | `"mute"`, `"pause"`, `"resume"`, `"seek"`, `"start"`, `"volume"` | `undefined` |
+| `topic`                | `topic`    | Readonly topic                                       | `"audio"`                                                        | `'audio'`   |
+| `trackId`              | `track-id` | The track to target.                                 | `string`, `undefined`                                            | `undefined` |
+| `value`                | `value`    | The value payload for the command.                   | `boolean`, `number`, `string`, `undefined`                       | `undefined` |
+| `when`                 | `when`     | A predicate to evaluate prior to sending the action. | `string`, `undefined`                                            | `undefined` |
 
 
 ## Methods
