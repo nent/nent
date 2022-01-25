@@ -4,7 +4,7 @@ import {
   h,
   Host,
   Prop,
-  State,
+  State
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { ComponentRefresher, slugify } from '../../services/common'
@@ -53,6 +53,18 @@ export class ViewPrompt implements IView {
    *
    */
   @Prop() pageTitle = ''
+
+  /**
+   * The page description for this view.
+   *
+   */
+  @Prop() pageDescription = ''
+
+  /**
+   * The keywords to add to the keywords meta-tag for this view.
+   *
+   */
+  @Prop() pageKeywords = ''
 
   /**
    * Header height or offset for scroll-top on this

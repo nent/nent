@@ -42,7 +42,7 @@ export class App {
 
   /**
    * This is the application / site title.
-   * If the views or dos have titles,
+   * If the views have titles,
    * this is added as a suffix.
    */
   @Prop() appTitle?: string

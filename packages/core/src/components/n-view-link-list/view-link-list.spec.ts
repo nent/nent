@@ -5,7 +5,7 @@ import { newSpecPage } from '@stencil/core/testing'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
-  commonStateDispose,
+  commonStateDispose
 } from '../../services/common'
 import { dataStateDispose } from '../../services/data/state'
 import { ViewLink } from '../n-view-link/view-link'
@@ -16,7 +16,6 @@ import { ViewLinkList } from './view-link-list'
 
 describe('n-view-link-list', () => {
   beforeEach(() => {
-    commonState.dataEnabled = true
     commonState.dataEnabled = true
   })
   afterEach(() => {

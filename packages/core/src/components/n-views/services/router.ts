@@ -3,7 +3,7 @@ import { warn } from '../../../services/common'
 import { IEventEmitter } from '../../../services/common/interfaces'
 import {
   commonState,
-  onCommonStateChange,
+  onCommonStateChange
 } from '../../../services/common/state'
 import { addDataProvider } from '../../../services/data/factory'
 import { DATA_EVENTS } from '../../../services/data/interfaces'
@@ -11,7 +11,7 @@ import { Route } from '../../n-view/services/route'
 import {
   getSessionVisits,
   getStoredVisits,
-  getVisits,
+  getVisits
 } from '../../n-view/services/visits'
 import { NavigationActionListener } from './actions'
 import { captureElementsEventOnce } from './elements'
@@ -20,7 +20,7 @@ import {
   LocationSegments,
   MatchOptions,
   MatchResults,
-  RouteViewOptions,
+  RouteViewOptions
 } from './interfaces'
 import { RoutingDataProvider } from './provider'
 import { isAbsolute, resolvePathname } from './utils/location'
@@ -29,7 +29,7 @@ import {
   ensureBasename,
   hasBasename,
   isFilename,
-  stripBasename,
+  stripBasename
 } from './utils/path'
 import { matchPath } from './utils/path-match'
 
@@ -239,13 +239,31 @@ export class RouterService {
     return ev.metaKey || ev.altKey || ev.ctrlKey || ev.shiftKey
   }
 
-  public async adjustTitle(pageTitle: string) {
+  public async setPageTags(
+    pageTitle: string,
+    pageDescription?: string,
+    pageKeywords?: string,
+  ) {
     if (this.win.document) {
       if (pageTitle) {
         this.win.document.title = `${pageTitle} | ${this.appTitle}`
       } else {
         this.win.document.title = `${this.appTitle}`
       }
+
+      this.win.document
+        .querySelectorAll('meta[name*=description]')
+        .forEach((element: Element) => {
+          const metaTag = element as HTMLMetaElement
+          metaTag.content = pageDescription || ''
+        })
+
+      this.win.document
+        .querySelectorAll('meta[name*=keywords]')
+        .forEach((element: Element) => {
+          const metaTag = element as HTMLMetaElement
+          metaTag.content = pageKeywords || ''
+        })
     }
   }
 
@@ -322,8 +340,15 @@ export class RouterService {
     parentElement: HTMLNViewElement | null,
     matchSetter: (m: MatchResults | null) => void,
   ) {
-    let { path, exact, pageTitle, transition, scrollTopOffset } =
-      routeElement
+    let {
+      path,
+      exact,
+      pageTitle,
+      pageDescription,
+      pageKeywords,
+      transition,
+      scrollTopOffset,
+    } = routeElement
 
     const parent = parentElement?.route || null
     if (parent) {
@@ -342,11 +367,13 @@ export class RouterService {
     const route = new Route(
       this,
       routeElement,
-      routeElement.path,
+      path,
       parent,
       exact,
       pageTitle || parent?.pageTitle,
-      routeElement.transition,
+      pageDescription,
+      pageKeywords,
+      transition,
       scrollTopOffset,
       matchSetter,
       () => {

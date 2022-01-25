@@ -76,7 +76,7 @@ export namespace Components {
     }
     interface NApp {
         /**
-          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
+          * This is the application / site title. If the views have titles, this is added as a suffix.
          */
         "appTitle"?: string;
         /**
@@ -691,6 +691,14 @@ export namespace Components {
          */
         "noCache": boolean;
         /**
+          * The page description for this view.
+         */
+        "pageDescription": string;
+        /**
+          * The keywords to add to the keywords meta-tag for this view.
+         */
+        "pageKeywords": string;
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle": string;
@@ -826,6 +834,14 @@ export namespace Components {
           * Force render with data & route changes.
          */
         "noCache": boolean;
+        /**
+          * The page description for this view.
+         */
+        "pageDescription": string;
+        /**
+          * The keywords to add to the keywords meta-tag for this view.
+         */
+        "pageKeywords": string;
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
@@ -1200,7 +1216,7 @@ declare namespace LocalJSX {
     }
     interface NApp {
         /**
-          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
+          * This is the application / site title. If the views have titles, this is added as a suffix.
          */
         "appTitle"?: string;
         /**
@@ -1786,6 +1802,14 @@ declare namespace LocalJSX {
          */
         "noCache"?: boolean;
         /**
+          * The page description for this view.
+         */
+        "pageDescription"?: string;
+        /**
+          * The keywords to add to the keywords meta-tag for this view.
+         */
+        "pageKeywords"?: string;
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle"?: string;
@@ -1921,6 +1945,14 @@ declare namespace LocalJSX {
           * Force render with data & route changes.
          */
         "noCache"?: boolean;
+        /**
+          * The page description for this view.
+         */
+        "pageDescription"?: string;
+        /**
+          * The keywords to add to the keywords meta-tag for this view.
+         */
+        "pageKeywords"?: string;
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */

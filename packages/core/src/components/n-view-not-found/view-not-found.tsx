@@ -87,7 +87,7 @@ export class ViewNotFound {
 
   async componentDidRender() {
     if (!routingState.router?.hasExactRoute()) {
-      await routingState.router?.adjustTitle(this.pageTitle)
+      await routingState.router?.setPageTags(this.pageTitle)
       routingState.router?.scrollTo(this.scrollTopOffset)
     }
   }

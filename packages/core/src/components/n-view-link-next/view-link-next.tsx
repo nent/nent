@@ -4,7 +4,7 @@ import { Route } from '../n-view/services/route'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import {
   onRoutingChange,
-  routingState,
+  routingState
 } from '../n-views/services/state'
 
 /**
@@ -67,7 +67,7 @@ export class ViewLinkNext {
       ROUTE_EVENTS.RouteMatchedExact,
       async ({ route }: { route: Route }) => {
         this.route = route.nextRoute
-        this.title = await route.resolvedTitle()
+        this.title = await route.resolvePageTitle()
       },
     )
     this.route = routingState.router?.exactRoute?.nextRoute || null

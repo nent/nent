@@ -70,6 +70,18 @@ export class View implements IView {
   @Prop() pageTitle = ''
 
   /**
+   * The page description for this view.
+   *
+   */
+  @Prop() pageDescription = ''
+
+  /**
+   * The keywords to add to the keywords meta-tag for this view.
+   *
+   */
+  @Prop() pageKeywords = ''
+
+  /**
    * Header height or offset for scroll-top on this
    * view.
    */

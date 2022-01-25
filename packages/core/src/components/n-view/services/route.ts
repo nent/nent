@@ -5,21 +5,21 @@ import { commonState } from '../../../services/common/state'
 import { resolveChildElementXAttributes } from '../../../services/data/elements'
 import {
   hasToken,
-  resolveTokens,
+  resolveTokens
 } from '../../../services/data/tokens'
 import { getChildInputValidity } from '../../n-view-prompt/services/elements'
 import {
   LocationSegments,
   MatchResults,
   RouteViewOptions,
-  ROUTE_EVENTS,
+  ROUTE_EVENTS
 } from '../../n-views/services/interfaces'
 import { RouterService } from '../../n-views/services/router'
 import {
   getPossibleParentPaths,
   isAbsolute,
   locationsAreEqual,
-  matchesAreEqual,
+  matchesAreEqual
 } from '../../n-views/services/utils'
 import { IRoute } from './interfaces'
 
@@ -40,6 +40,8 @@ export class Route implements IRoute {
     public parentRoute: Route | null = null,
     public exact: boolean = true,
     public pageTitle: string = '',
+    public pageDescription: string = '',
+    public pageKeywords: string = '',
     public transition: string | null = null,
     public scrollTopOffset: number = 0,
     matchSetter: (m: MatchResults | null) => void = () => {},
@@ -158,7 +160,7 @@ export class Route implements IRoute {
         }
 
         await this.activateActions(ActionActivationStrategy.OnEnter)
-        await this.adjustTitle()
+        await this.adjustPageTags()
       }
     }
 
@@ -190,10 +192,10 @@ export class Route implements IRoute {
     resolveChildElementXAttributes(this.routeElement)
   }
 
-  public async resolvedTitle() {
-    if (!this.pageTitle) return ''
+  public async resolvePageTitle() {
+    if (this._title) return this._title
     if (commonState.dataEnabled) {
-      if (hasToken(this.pageTitle)) {
+      if (this.pageTitle && hasToken(this.pageTitle)) {
         return (this._title = await resolveTokens(this.pageTitle))
       }
     }
@@ -205,9 +207,19 @@ export class Route implements IRoute {
     return this._title || this.pageTitle
   }
 
-  public async adjustTitle() {
-    let pageTitle = (this._title = await this.resolvedTitle())
-    this.router.adjustTitle(pageTitle)
+  public async adjustPageTags() {
+    let title = (this._title = await this.resolvePageTitle())
+    let description = this.pageDescription
+    let keywords = this.pageKeywords
+    if (commonState.dataEnabled) {
+      if (!this.pageDescription && hasToken(this.pageDescription)) {
+        description = await resolveTokens(this.pageDescription)
+      }
+      if (!this.pageKeywords && hasToken(this.pageKeywords)) {
+        keywords = await resolveTokens(this.pageKeywords)
+      }
+    }
+    this.router.setPageTags(title, description, keywords)
   }
 
   public goBack() {
@@ -253,7 +265,7 @@ export class Route implements IRoute {
         .map(async route => {
           const resolvedPath =
             route?.match?.path.toString() || route?.path
-          const title = (await route?.resolvedTitle()) || ''
+          const title = (await route?.resolvePageTitle()) || ''
           return Object.assign({}, route, {
             path: resolvedPath,
             title,
