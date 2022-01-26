@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.2 (2022-01-26)
+
+
+### Features
+
+* **✨:** added token support for action data values ([f7418f2](https://github.com/nent/nent/commit/f7418f21cb9652c49fa990704b4c68305034268b))
+
+
+
+
+
 ## 0.8.1 (2022-01-26)
 
 **Note:** Version bump only for package @nent/create
