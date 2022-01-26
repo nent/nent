@@ -19,7 +19,6 @@ import { ElementsActionListener } from './services/actions'
  */
 @Component({
   tag: 'n-elements',
-  styles: `[n-cloak] { display: inherit; }`,
   shadow: false,
 })
 export class Elements {
@@ -43,12 +42,15 @@ export class Elements {
     if (commonState.dataEnabled) {
       this.subscribeToDataEvents()
     } else {
-      const dispose = onCommonStateChange('dataEnabled', enabled => {
-        if (enabled) {
-          this.subscribeToDataEvents()
-        }
-        dispose()
-      })
+      const dispose = onCommonStateChange(
+        'dataEnabled',
+        (enabled: Boolean) => {
+          if (enabled) {
+            this.subscribeToDataEvents()
+          }
+          dispose()
+        },
+      )
     }
   }
 
