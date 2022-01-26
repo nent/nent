@@ -5,21 +5,21 @@ import { commonState } from '../../../services/common/state'
 import { resolveChildElementXAttributes } from '../../../services/data/elements'
 import {
   hasToken,
-  resolveTokens
+  resolveTokens,
 } from '../../../services/data/tokens'
 import { getChildInputValidity } from '../../n-view-prompt/services/elements'
 import {
   LocationSegments,
   MatchResults,
   RouteViewOptions,
-  ROUTE_EVENTS
+  ROUTE_EVENTS,
 } from '../../n-views/services/interfaces'
 import { RouterService } from '../../n-views/services/router'
 import {
   getPossibleParentPaths,
   isAbsolute,
   locationsAreEqual,
-  matchesAreEqual
+  matchesAreEqual,
 } from '../../n-views/services/utils'
 import { IRoute } from './interfaces'
 

@@ -3,7 +3,7 @@ import { warn } from '../../../services/common'
 import { IEventEmitter } from '../../../services/common/interfaces'
 import {
   commonState,
-  onCommonStateChange
+  onCommonStateChange,
 } from '../../../services/common/state'
 import { addDataProvider } from '../../../services/data/factory'
 import { DATA_EVENTS } from '../../../services/data/interfaces'
@@ -11,7 +11,7 @@ import { Route } from '../../n-view/services/route'
 import {
   getSessionVisits,
   getStoredVisits,
-  getVisits
+  getVisits,
 } from '../../n-view/services/visits'
 import { NavigationActionListener } from './actions'
 import { captureElementsEventOnce } from './elements'
@@ -20,7 +20,7 @@ import {
   LocationSegments,
   MatchOptions,
   MatchResults,
-  RouteViewOptions
+  RouteViewOptions,
 } from './interfaces'
 import { RoutingDataProvider } from './provider'
 import { isAbsolute, resolvePathname } from './utils/location'
@@ -29,7 +29,7 @@ import {
   ensureBasename,
   hasBasename,
   isFilename,
-  stripBasename
+  stripBasename,
 } from './utils/path'
 import { matchPath } from './utils/path-match'
 

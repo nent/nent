@@ -4,7 +4,7 @@ import {
   h,
   Host,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { ComponentRefresher, slugify } from '../../services/common'

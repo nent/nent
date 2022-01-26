@@ -5,7 +5,7 @@ import { newSpecPage } from '@stencil/core/testing'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
-  commonStateDispose
+  commonStateDispose,
 } from '../../services/common'
 import { dataStateDispose } from '../../services/data/state'
 import { ViewLink } from '../n-view-link/view-link'

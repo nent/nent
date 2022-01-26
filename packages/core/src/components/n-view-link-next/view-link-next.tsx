@@ -4,7 +4,7 @@ import { Route } from '../n-view/services/route'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import {
   onRoutingChange,
-  routingState
+  routingState,
 } from '../n-views/services/state'
 
 /**

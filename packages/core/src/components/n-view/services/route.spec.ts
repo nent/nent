@@ -4,7 +4,7 @@ import { RafCallback } from '@stencil/core'
 import { newSpecPage, SpecPage } from '@stencil/core/testing'
 import {
   commonState,
-  commonStateDispose
+  commonStateDispose,
 } from '../../../services/common'
 import { EventEmitter } from '../../../services/common/emitter'
 import { dataStateDispose } from '../../../services/data/state'
