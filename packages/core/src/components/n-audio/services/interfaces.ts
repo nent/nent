@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export const AUDIO_TOPIC = 'audio'
 
 export interface AudioRequest {

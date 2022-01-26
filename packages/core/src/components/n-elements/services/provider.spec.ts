@@ -30,7 +30,6 @@ describe('elements-provider:', () => {
               <input id="test" value="1"/>
               <n-elements><n-elements>
             </n-app>`,
-      autoApplyChanges: true,
     })
 
     await page.waitForChanges()

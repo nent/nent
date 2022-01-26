@@ -47,7 +47,7 @@ export class PresentationTimer implements IElementTimer {
 
   /**
    * Duration before the timer stops and raises
-   * the ended event. 0 = never
+   * the ended event (seconds). 0 = never
    */
   @Prop() duration: number = 0
 
@@ -112,7 +112,7 @@ export class PresentationTimer implements IElementTimer {
       this.duration,
       () => performance.now(),
       () => {
-        this.elapsed = this.timer.currentTime.elapsed
+        this.elapsed = this.timer.currentTime.elapsedSeconds
       },
       this.debug,
     )

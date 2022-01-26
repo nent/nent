@@ -609,7 +609,7 @@ export namespace Components {
          */
         "display": boolean;
         /**
-          * Duration before the timer stops and raises the ended event. 0 = never
+          * Duration before the timer stops and raises the ended event (seconds). 0 = never
          */
         "duration": number;
         /**
@@ -1728,7 +1728,7 @@ declare namespace LocalJSX {
          */
         "display"?: boolean;
         /**
-          * Duration before the timer stops and raises the ended event. 0 = never
+          * Duration before the timer stops and raises the ended event (seconds). 0 = never
          */
         "duration"?: number;
         /**

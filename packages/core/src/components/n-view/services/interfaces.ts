@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { ActionActivationStrategy } from '../../../services/actions/interfaces'
 import { MatchResults } from '../../n-views/services/interfaces'
 import { Route } from './route'

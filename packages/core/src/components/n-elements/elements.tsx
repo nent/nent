@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop } from '@stencil/core'
+import { Component, Element, Prop } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
 import {

@@ -8,7 +8,7 @@ import {
 import { getTimeDetails } from '../../n-presentation/services/time'
 
 export class VideoTimer extends EventEmitter implements ITimer {
-  public duration: number = 0
+  public durationSeconds: number = 0
   constructor(
     private video: HTMLMediaElement | any,
     private timeEvent: string = 'timeupdate',
@@ -23,12 +23,12 @@ export class VideoTimer extends EventEmitter implements ITimer {
       warn(`n-video-timer: a media element is required`)
       return
     }
-    this.duration = Number(video[this.durationProperty] || 0)
+    this.durationSeconds = Number(video[this.durationProperty] || 0)
     const start = 0
 
     debugIf(
       this.debug,
-      `n-video-timer: creating video timer with duration ${this.duration}`,
+      `n-video-timer: creating video timer with duration ${this.durationSeconds}`,
     )
 
     video.addEventListener(this.timeEvent, () => {
@@ -36,7 +36,7 @@ export class VideoTimer extends EventEmitter implements ITimer {
       this.currentTime = getTimeDetails(
         start,
         currentTime * 1000,
-        this.duration,
+        this.durationSeconds * 1000,
       )
       this.emit(TIMER_EVENTS.OnInterval, this.currentTime)
     })
@@ -45,7 +45,11 @@ export class VideoTimer extends EventEmitter implements ITimer {
       this.emit(TIMER_EVENTS.OnEnd)
     })
 
-    this.currentTime = getTimeDetails(0, 0, this.duration)
+    this.currentTime = getTimeDetails(
+      0,
+      0,
+      this.durationSeconds * 1000,
+    )
   }
 
   currentTime!: TimeDetails

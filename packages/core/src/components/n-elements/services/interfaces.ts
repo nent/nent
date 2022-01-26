@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export const ELEMENTS_TOPIC = 'elements'
 
 export enum ELEMENTS_COMMANDS {

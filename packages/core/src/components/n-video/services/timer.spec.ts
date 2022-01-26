@@ -52,9 +52,7 @@ describe('element-timer:', () => {
     await page.waitForChanges()
 
     expect(subject.currentTime.minutes).toBe(1)
-    expect(subject.currentTime.elapsed).toBe(60)
-    expect(subject.currentTime!.minutes).toBe(1)
-    expect(subject.currentTime!.elapsed).toBe(60)
+    expect(subject.currentTime.elapsedSeconds).toBe(60)
 
     source.dispatchEvent(new CustomEvent('ended'))
 
