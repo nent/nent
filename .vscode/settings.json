@@ -96,7 +96,7 @@
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.markdownlint": false,
-    "source.organizeImports": true,
+    "source.organizeImports": false,
     "source.fixAll.eslint": true
   },
   "[markdown]": {

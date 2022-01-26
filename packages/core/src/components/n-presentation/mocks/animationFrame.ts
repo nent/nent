@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export class RequestAnimationFrameMockSession {
   handleCounter: number = 0
   queue: Map<number, FrameRequestCallback>

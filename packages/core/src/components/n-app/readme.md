@@ -38,10 +38,12 @@ Additionally, this element is required to add external elements that need to be 
 
 ## Properties
 
-| Property   | Attribute   | Description                                                                                | Type                  | Default     |
-| ---------- | ----------- | ------------------------------------------------------------------------------------------ | --------------------- | ----------- |
-| `appTitle` | `app-title` | This is the application / site title. If the views have titles, this is added as a suffix. | `string`, `undefined` | `undefined` |
-| `debug`    | `debug`     | Turn on debugging to get helpful messages from the app, routing, data and action systems.  | `boolean`             | `false`     |
+| Property         | Attribute         | Description                                                                                | Type                  | Default     |
+| ---------------- | ----------------- | ------------------------------------------------------------------------------------------ | --------------------- | ----------- |
+| `appDescription` | `app-description` | This is the application default page description.                                          | `string`, `undefined` | `undefined` |
+| `appKeywords`    | `app-keywords`    | This is the application default page keywords.                                             | `string`, `undefined` | `undefined` |
+| `appTitle`       | `app-title`       | This is the application / site title. If the views have titles, this is added as a suffix. | `string`, `undefined` | `undefined` |
+| `debug`          | `debug`           | Turn on debugging to get helpful messages from the app, routing, data and action systems.  | `boolean`             | `false`     |
 
 
 ## Events

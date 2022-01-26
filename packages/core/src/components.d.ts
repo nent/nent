@@ -76,6 +76,14 @@ export namespace Components {
     }
     interface NApp {
         /**
+          * This is the application default page description.
+         */
+        "appDescription"?: string;
+        /**
+          * This is the application default page keywords.
+         */
+        "appKeywords"?: string;
+        /**
           * This is the application / site title. If the views have titles, this is added as a suffix.
          */
         "appTitle"?: string;
@@ -1215,6 +1223,14 @@ declare namespace LocalJSX {
         "time"?: number;
     }
     interface NApp {
+        /**
+          * This is the application default page description.
+         */
+        "appDescription"?: string;
+        /**
+          * This is the application default page keywords.
+         */
+        "appKeywords"?: string;
         /**
           * This is the application / site title. If the views have titles, this is added as a suffix.
          */

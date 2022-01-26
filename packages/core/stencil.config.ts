@@ -33,9 +33,6 @@ const config: Config = {
       type: 'dist-custom-elements',
     },
     {
-      type: 'dist-custom-elements-bundle',
-    },
-    {
       type: 'docs-readme',
       footer: `NENT 2021 - all rights reserved`,
       dependencies: false,

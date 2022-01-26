@@ -48,6 +48,16 @@ export class App {
   @Prop() appTitle?: string
 
   /**
+   * This is the application default page description.
+   */
+  @Prop() appDescription?: string
+
+  /**
+   * This is the application default page keywords.
+   */
+  @Prop() appKeywords?: string
+
+  /**
    * Turn on debugging to get helpful messages from the
    * app, routing, data and action systems.
    */

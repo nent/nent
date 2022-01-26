@@ -103,8 +103,16 @@
       },
       "attributes": [
         {
+          "name": "app-description",
+          "description": "This is the application default page description."
+        },
+        {
+          "name": "app-keywords",
+          "description": "This is the application default page keywords."
+        },
+        {
           "name": "app-title",
-          "description": "This is the application / site title.\nIf the views or dos have titles,\nthis is added as a suffix."
+          "description": "This is the application / site title.\nIf the views have titles,\nthis is added as a suffix."
         },
         {
           "name": "debug",
@@ -449,6 +457,10 @@
         {
           "name": "value",
           "description": "The value payload for the command."
+        },
+        {
+          "name": "when",
+          "description": "A predicate to evaluate prior to sending the action."
         }
       ],
       "references": [
@@ -1272,6 +1284,18 @@
           ]
         },
         {
+          "name": "no-cache",
+          "description": "Force render with data & route changes."
+        },
+        {
+          "name": "page-description",
+          "description": "The page description for this view."
+        },
+        {
+          "name": "page-keywords",
+          "description": "The keywords to add to the keywords meta-tag for this view."
+        },
+        {
           "name": "page-title",
           "description": "The title for this view. This is prefixed\nbefore the app title configured in n-views"
         },
@@ -1525,6 +1549,18 @@
               "name": "same-origin"
             }
           ]
+        },
+        {
+          "name": "no-cache",
+          "description": "Force render with data & route changes."
+        },
+        {
+          "name": "page-description",
+          "description": "The page description for this view."
+        },
+        {
+          "name": "page-keywords",
+          "description": "The keywords to add to the keywords meta-tag for this view."
         },
         {
           "name": "page-title",

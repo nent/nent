@@ -49,6 +49,8 @@ export class RouterService {
     public actions: IEventEmitter,
     public root: string = '',
     public appTitle: string = '',
+    public appDescription: string = '',
+    public appKeywords: string = '',
     public transition: string = '',
     public scrollTopOffset = 0,
   ) {
@@ -255,14 +257,15 @@ export class RouterService {
         .querySelectorAll('meta[name*=description]')
         .forEach((element: Element) => {
           const metaTag = element as HTMLMetaElement
-          metaTag.content = pageDescription || ''
+          metaTag.content =
+            pageDescription || this.appDescription || ''
         })
 
       this.win.document
         .querySelectorAll('meta[name*=keywords]')
         .forEach((element: Element) => {
           const metaTag = element as HTMLMetaElement
-          metaTag.content = pageKeywords || ''
+          metaTag.content = pageKeywords || this.appKeywords || ''
         })
     }
   }

@@ -66,13 +66,17 @@ export class ViewRouter {
 
   componentWillLoad() {
     commonState.routingEnabled = true
+    const { appTitle, appDescription, appKeywords } =
+      this.parentApp || {}
     routingState.router = new RouterService(
       window,
       writeTask,
       eventBus,
       actionBus,
       this.root,
-      this.parentApp?.appTitle,
+      appTitle,
+      appDescription,
+      appKeywords,
       this.transition,
       this.scrollTopOffset,
     )
