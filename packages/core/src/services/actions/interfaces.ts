@@ -1,6 +1,6 @@
-import { IEventEmitter } from '../common/interfaces'
 /* istanbul ignore file */
 
+import { IEventEmitter } from '../common/interfaces'
 export interface IEventActionListener {
   initialize(
     win: Window,

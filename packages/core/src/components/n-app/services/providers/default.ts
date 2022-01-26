@@ -1,5 +1,10 @@
 import { IEventEmitter } from '../../../../services/common'
-import { log, warn } from '../../../../services/common/logging'
+import {
+  dir,
+  log,
+  table,
+  warn,
+} from '../../../../services/common/logging'
 import { APP_EVENTS } from '../interfaces'
 import { appState, onAppChange } from '../state'
 
@@ -36,26 +41,26 @@ export class DefaultAppProvider {
     appState.darkMode = value != undefined ? Boolean(value) : null
   }
 
-  log(args: any) {
-    const { message } = args
+  log(data: any) {
+    const { message } = data
     if (message) {
       log(message)
     } else {
-      console.table(args)
+      table(data)
     }
   }
 
-  warn(args: any) {
-    const { message } = args
+  warn(data: any) {
+    const { message } = data
     if (message) {
       warn(message)
     } else {
-      console.table(args)
+      table(data)
     }
   }
 
-  dir(args: any) {
-    console.dir(args)
+  dir(data: any) {
+    dir(data)
   }
 
   destroy() {

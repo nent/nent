@@ -5,6 +5,8 @@ export const APP_TOPIC = 'app'
 export enum APP_COMMANDS {
   RegisterProvider = 'register-provider',
   Log = 'log',
+  Warn = 'warn',
+  Dir = 'dir',
   SetDarkMode = 'set-dark-mode',
 }
 

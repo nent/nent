@@ -32,6 +32,14 @@ export function warn(warning: string) {
   console.warn(prefix + warning, ...colors.warn)
 }
 
+export function table(args: any[]) {
+  console.table(args)
+}
+
+export function dir(args: any[]) {
+  console.dir(args)
+}
+
 export function error(message: string, error_?: Error) {
   console.error(prefix + message, ...colors.error, error_)
 }
