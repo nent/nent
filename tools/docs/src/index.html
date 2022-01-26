@@ -11,6 +11,8 @@
       content="IE=Edge" />
     <meta name="description"
       content="Functional elements to super-charge your HTML" />
+    <meta name="keywords"
+      content="web-components, low-code, no-framework, jam-stack, nent" />
     <meta name="og:title"
       content="NENT" />
     <meta name="og:description"
@@ -108,7 +110,9 @@
       media="print"
       onload="this.media = 'all'" />
     <link rel="stylesheet"
-      href="/assets/styles.css" />
+      href="/assets/styles.css"
+      media="print"
+      onload="this.media = 'all'" />
     <link
       href="https://fonts.googleapis.com/css2?family=Blinker:wght@200;400&display=swap"
       rel="stylesheet"
@@ -126,15 +130,16 @@
       gtag( 'js', new Date() )
       gtag( 'config', 'G-XYMNMQ1G1X' )
     </script>
-    <script type="module" src="https://unpkg.com/@bruit/component/dist/bruit/bruit.esm.js"></script>
-    <script nomodule src="https://unpkg.com/@bruit/component/dist/bruit/bruit.js"></script>
+
 
   </head>
 
   <body>
-    <n-app app-title="NENT">
-      <n-app-analytics id="analytics">
-      </n-app-analytics>
+    <n-app id="app"
+      app-title="NENT"
+      app-description="Functional elements to super-charge your HTML"
+      app-keywords="web-components, low-code, no-framework, jam-stack, nent"
+      >
       <n-app-theme>
       </n-app-theme>
       <n-data>
@@ -484,64 +489,33 @@
             <h1>Page Not Found</h1>
           </div>
         </n-view-not-found>
-        <bruit-io title="Report a bug or provide feedback"
-          style="position: fixed; right: .7rem;bottom: 4rem;">
-        </bruit-io>
       </n-views>
-
       <n-elements>
-        <!-- enable element manipulation-->
       </n-elements>
+      <n-app-analytics id="analytics">
+        <script async>
+          analytics.addEventListener( 'page-view', ( e ) => {
+            gtag( 'page_view', e.detail.pathname )
+          } )
+          analytics.addEventListener( 'view-time', ( e ) => {
+            gtag( e.detail.event, e.detail.time.elapsed )
+          } )
+        </script>
+      </n-app-analytics>
     </n-app>
-    <script>
-      analytics.addEventListener( 'custom-event', ( e ) => {
-        Object.getOwnPropertyNames(e.detail).forEach(n => {
-          gtag( n, e.detail[n] )
-        })
-      } )
-      analytics.addEventListener( 'page-view', ( e ) => {
-        gtag( 'page_view', e.detail.pathname )
-      } )
-      analytics.addEventListener( 'view-time', ( e ) => {
-        gtag( e.detail.event, e.detail.time.elapsed )
-      } )
-      navigator.serviceWorker.getRegistrations().then(function(registrations) {
-      for(let registration of registrations) {
-        registration.unregister()
-      } })
-    </script>
-
-    <script>
-      var bruitCmp = document.querySelector('bruit-io');
-      bruitCmp.addEventListener('onReady', function () {
-        bruitCmp.start();
+  <script async defer>
+    if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js').then(function(registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
       });
-
-      bruitCmp.config = {
-        apiKey: "30add7f4-e9bb-4717-9ed7-ea671d9ed309",
-        labels: {
-          title: "Help Us Improve",
-          introduction: "Thank you for letting us know about any issues, bugs or your general feedback."
-        },
-        colors: {
-          header: '#75659f',
-        },
-        form: [
-          {
-            label: "What is going on?",
-            type: "text",
-            required: true,
-            id: "title"
-          },
-          {
-            id: "agreement",
-            type: "checkbox",
-            label: "I agree to send technical information in addition to my answers",
-            value: null
-          }
-        ]
-      };
-    </script>
+    });
+  }
+  </script>
   </body>
 
 </html>

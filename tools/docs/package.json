@@ -4,7 +4,7 @@
   "version": "0.7.0",
   "description": "nent docs",
   "main": "./dist/index.cjs.js",
-  "module": "./dist/custom-elements/index.js",
+  "module": "./dist/index.js",
   "collection": "./dist/collection/collection-manifest.json",
   "types": "./dist/types/components.d.ts",
   "scripts": {

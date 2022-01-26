@@ -27,13 +27,13 @@ const config: Config = {
       dir: '../../docs',
       buildDir: 'lib',
       empty: false,
-      serviceWorker: null,
-      // serviceWorker: {
-      //   globPatterns: [
-      //     '**/*.{ico,wav,txt,js,css,json,html,md,png,svg}',
-      //   ],
-      //   swSrc: 'src/service-worker.ts',
-      // },
+      serviceWorker: {
+        globPatterns: [
+          '**/*.{ico,wav,txt,js,css,json,html,md,png,svg}',
+        ],
+        swSrc: 'src/service-worker.ts',
+        swDest: 'sw.js',
+      },
       indexHtml: 'index.html',
       copy: [
         {

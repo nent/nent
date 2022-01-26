@@ -15,7 +15,7 @@
     "build": "run-s build:core build:docs",
     ":dev ---": "---------------",
     "start": "run-p start:core start:docs",
-    "serve": "serve docs",
+    "serve": "serve docs -l 3002",
     ":core  ---": "---------------",
     "prebuild:core": "cp README.md ./packages/core/README.md",
     "build:core": "yarn workspace @nent/core run build",
@@ -101,7 +101,7 @@
     "rimraf": "3.0.2",
     "rollup-plugin-analyzer": "4.0.0",
     "rollup-plugin-visualizer": "5.5.4",
-    "serve": "12.0.1",
+    "serve": "13.0.2",
     "trim-newlines": "4.0.2",
     "typescript": "4.5.5",
     "yargs": "17.3.1"
