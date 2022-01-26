@@ -57,17 +57,21 @@
     "publish:test": "lerna publish bump --canary --preid beta --yes"
   },
   "resolutions": {
+    "json-schema": ">=0.4.0",
+    "markdown-it": ">=12.3.2",
+    "node-fetch": ">=2.6.7",
     "set-value": ">=4.0.1"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "13.1.0",
     "@popperjs/core": "2.11.2",
-    "@stencil/eslint-plugin": "0.3.1",
+    "@stencil/core": "^2.13.0",
+    "@stencil/eslint-plugin": "^0.4.0",
     "@types/jest": "27.4.0",
     "@types/puppeteer": "5.4.4",
     "@types/rollup-plugin-visualizer": "4.2.1",
     "@typescript-eslint/eslint-plugin": "4.31.2",
-    "@typescript-eslint/parser": "4.31.2",
+    "@typescript-eslint/parser": "<5\n",
     "chalk": "4.1.2",
     "commitlint": "13.1.0",
     "copyfiles": "2.4.1",
@@ -110,8 +114,5 @@
     "packages/create",
     "tools/docs",
     "tools/vscode"
-  ],
-  "dependencies": {
-    "@stencil/core": "^2.13.0"
-  }
+  ]
 }
