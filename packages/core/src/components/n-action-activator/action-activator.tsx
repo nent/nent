@@ -83,8 +83,8 @@ export class ActionActivator {
    * Manually activate all actions within this activator.
    */
   @Method()
-  async activateActions(): Promise<void> {
-    if (this.once && this.activated) return
+  async activateActions(once: boolean = false): Promise<void> {
+    if ((once || this.once) && this.activated) return
 
     const values: Record<string, any> = {}
 
@@ -101,14 +101,17 @@ export class ActionActivator {
 
     if (!isValid) return
 
-    // Activate children
     await Promise.all(
-      this.actions.map(async action => {
+      this.childActions.map(async a => {
+        const action = await a.getAction()
+        if (!action) return
+
+        const dataString = JSON.stringify(action.data)
         debugIf(
           this.debug,
-          `n-action-activator: activating [${this.activate}~{topic: ${action?.topic}, command:${action?.command}]`,
+          `n-action-activator: activating [${this.activate}~{topic: ${action?.topic}, command:${action?.command}, data: ${dataString}]`,
         )
-        await action.sendAction(values)
+        await a.sendAction(values)
       }),
     )
 
@@ -133,18 +136,6 @@ export class ActionActivator {
       warn(`n-action-activator: no children actions detected`)
       return
     }
-
-    this.childActions.forEach(async a => {
-      const action = await a.getAction()
-      if (!action) return
-
-      const dataString = JSON.stringify(action.data)
-      debugIf(
-        this.debug,
-        `n-action-activator: registered [${this.activate}~{topic: ${action?.topic}, command:${action?.command}, data: ${dataString}}}] `,
-      )
-      this.actions.push(a)
-    })
 
     if (this.activate === ActionActivationStrategy.OnElementEvent) {
       const elements = this.targetElement

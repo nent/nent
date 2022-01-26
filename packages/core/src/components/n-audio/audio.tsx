@@ -37,8 +37,9 @@ export class Audio {
   private stateSubscription!: () => void
   private audioStateSubscription?: () => void
   private commonStateSubscription?: () => void
-  @Element() el!: HTMLNAudioElement
 
+  @Element() el!: HTMLNAudioElement
+  @State() loaded: boolean = false
   @State() error: string | null = null
   @State() stats = {
     m: 0,
@@ -95,8 +96,10 @@ export class Audio {
         'storage',
       )) as IServiceProvider
 
-      commonState.audioEnabled =
-        (await storage?.get('audio-enabled')) == 'true'
+      const storedValue = await storage?.get('audio-enabled')
+      if (storedValue) {
+        commonState.audioEnabled = storedValue != 'false'
+      }
 
       audioState.muted = (await storage?.get('audio-muted')) == 'true'
 
@@ -117,6 +120,8 @@ export class Audio {
   }
 
   private registerServices() {
+    if (this.loaded) return
+
     debugIf(this.debug, `n-audio: loading listener`)
 
     this.actions = new AudioActionListener(
@@ -135,6 +140,8 @@ export class Audio {
     )
 
     audioState.hasAudioComponent = true
+
+    this.loaded = true
   }
 
   private updateState() {

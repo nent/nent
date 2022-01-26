@@ -58,8 +58,8 @@ export class FrameTimer extends EventEmitter implements ITimer {
     if (this.timer) this.stop()
     this.start = this.getStart()
     this.currentTime = getTimeDetails(this.start, 0, this.duration)
-    this.provider.requestAnimationFrame(current => {
-      this.doInterval(current)
+    this.provider.requestAnimationFrame(async current => {
+      await this.doInterval(current)
     })
   }
 
@@ -68,17 +68,11 @@ export class FrameTimer extends EventEmitter implements ITimer {
   }
 
   private async doInterval(time: number) {
-    let currentTime = getTimeDetails(this.start, time, this.duration)
-    if (this.duration > 0 && currentTime.elapsed > this.duration) {
+    this.currentTime = getTimeDetails(this.start, time, this.duration)
+    if (this.currentTime.ended) {
       this.stop()
-      this.currentTime = getTimeDetails(
-        this.start,
-        this.duration * 1000,
-        this.duration,
-      )
       this.emit(TIMER_EVENTS.OnEnd, this.currentTime)
     } else {
-      this.currentTime = currentTime
       this.emit(TIMER_EVENTS.OnInterval, this.currentTime)
       await this.debouncedInterval()
     }

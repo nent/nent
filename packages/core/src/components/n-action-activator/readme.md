@@ -127,7 +127,7 @@ This element should only ever contain child [\<n-action\>](/components/n-action)
 
 ## Methods
 
-### `activateActions() => Promise<void>`
+### `activateActions(once?: boolean) => Promise<void>`
 
 Manually activate all actions within this activator.
 

@@ -4,11 +4,11 @@ import { AudioTrack } from './track'
 export class AudioList {
   public items: Array<AudioTrack> = []
 
-  public get isEmpty() {
+  public isEmpty() {
     return this.items.length == 0
   }
 
-  public get hasItems() {
+  public hasItems() {
     return this.items.length > 0
   }
 
@@ -18,7 +18,7 @@ export class AudioList {
 
   public stop() {
     this.items.forEach(t => {
-      if (t.playing) t.stop()
+      if (t.playing()) t.stop()
     })
   }
 

@@ -8,6 +8,7 @@
     "Codacy",
     "commitlint",
     "copyfiles",
+    "coverallsapp",
     "cview",
     "Debouncing",
     "Delimeter",
@@ -30,8 +31,10 @@
     "jsdelivr",
     "jsnext",
     "jsonata",
+    "lcov",
     "linebreak",
     "loadash",
+    "logrythmik",
     "markdownlint",
     "maxlevel",
     "modulepreload",
@@ -71,6 +74,7 @@
     "remixicon",
     "sarif",
     "searchjs",
+    "softprops",
     "Stackedit",
     "storyinput",
     "stylelint",
@@ -92,7 +96,7 @@
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.markdownlint": false,
-    "source.organizeImports": true,
+    "source.organizeImports": false,
     "source.fixAll.eslint": true
   },
   "[markdown]": {
@@ -100,27 +104,17 @@
     "editor.quickSuggestions": true,
     "editor.formatOnSave": false
   },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript"
-  ],
-  "html.customData": [
-     "./tools/vscode/nent.html-data.json"
-  ],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript"],
+  "html.customData": ["./tools/vscode/nent.html-data.json"],
   "vsicons.associations.files": [
     {
       "icon": "node",
-      "extensions": [
-        ".rc"
-      ],
+      "extensions": [".rc"],
       "format": "svg"
     },
     {
       "icon": "config",
-      "extensions": [
-        ".config.js"
-      ],
+      "extensions": [".config.js"],
       "format": "svg"
     }
   ],
@@ -295,5 +289,6 @@
   ],
   "commit-message-editor.view.saveAndClose": true,
   "html.format.wrapLineLength": 80,
-  "peacock.color": "#ae9ae4"
+  "peacock.color": "#ae9ae4",
+  "jest.jestCommandLine": "jest"
 }

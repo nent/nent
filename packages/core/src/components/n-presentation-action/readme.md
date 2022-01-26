@@ -1,5 +1,7 @@
 # N-PRESENTATION-ACTION
 
+For use in the `n-presentation` element only. Action activation occurs when the `n-presentation` element reaches a certain time.
+
 
 
 <!-- Auto Generated Below -->

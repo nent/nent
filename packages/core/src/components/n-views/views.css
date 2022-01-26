@@ -1,7 +1,3 @@
 n-views {
   display: block;
 }
-
-n-view.active + n-view {
-  display: none;
-}

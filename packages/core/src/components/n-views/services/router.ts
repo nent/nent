@@ -49,6 +49,8 @@ export class RouterService {
     public actions: IEventEmitter,
     public root: string = '',
     public appTitle: string = '',
+    public appDescription: string = '',
+    public appKeywords: string = '',
     public transition: string = '',
     public scrollTopOffset = 0,
   ) {
@@ -239,13 +241,32 @@ export class RouterService {
     return ev.metaKey || ev.altKey || ev.ctrlKey || ev.shiftKey
   }
 
-  public async adjustTitle(pageTitle: string) {
+  public async setPageTags(
+    pageTitle: string,
+    pageDescription?: string,
+    pageKeywords?: string,
+  ) {
     if (this.win.document) {
       if (pageTitle) {
         this.win.document.title = `${pageTitle} | ${this.appTitle}`
       } else {
         this.win.document.title = `${this.appTitle}`
       }
+
+      this.win.document
+        .querySelectorAll('meta[name*=description]')
+        .forEach((element: Element) => {
+          const metaTag = element as HTMLMetaElement
+          metaTag.content =
+            pageDescription || this.appDescription || ''
+        })
+
+      this.win.document
+        .querySelectorAll('meta[name*=keywords]')
+        .forEach((element: Element) => {
+          const metaTag = element as HTMLMetaElement
+          metaTag.content = pageKeywords || this.appKeywords || ''
+        })
     }
   }
 
@@ -322,8 +343,15 @@ export class RouterService {
     parentElement: HTMLNViewElement | null,
     matchSetter: (m: MatchResults | null) => void,
   ) {
-    let { path, exact, pageTitle, transition, scrollTopOffset } =
-      routeElement
+    let {
+      path,
+      exact,
+      pageTitle,
+      pageDescription,
+      pageKeywords,
+      transition,
+      scrollTopOffset,
+    } = routeElement
 
     const parent = parentElement?.route || null
     if (parent) {
@@ -342,17 +370,20 @@ export class RouterService {
     const route = new Route(
       this,
       routeElement,
-      routeElement.path,
+      path,
       parent,
       exact,
       pageTitle || parent?.pageTitle,
-      routeElement.transition,
+      pageDescription,
+      pageKeywords,
+      transition,
       scrollTopOffset,
       matchSetter,
       () => {
         this.routes = this.routes.filter(r => r == route)
       },
     )
+
     return route
   }
 }

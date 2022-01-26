@@ -23,7 +23,8 @@ export class ComponentRefresher {
         enabled => {
           if (enabled) {
             this.subscribeToEvents()
-            this.stateSubscription()
+          } else {
+            this.subscription?.call(this)
           }
         },
       )
@@ -38,5 +39,6 @@ export class ComponentRefresher {
 
   destroy() {
     this.subscription?.call(this)
+    this.stateSubscription?.call(this)
   }
 }

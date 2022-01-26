@@ -6,11 +6,19 @@ import {
   EventAction,
   eventBus,
 } from '../../services/actions'
+import { sleep } from '../../services/common'
 import { Action } from '../n-action/action'
+import { PresentationTimer } from '../n-presentation-timer/presentation-timer'
+import { RequestAnimationFrameMockSession } from '../n-presentation/mocks/animationFrame'
+import { Presentation } from '../n-presentation/presentation'
 import { ActionActivator } from './action-activator'
 
 describe('n-action-activator', () => {
-  beforeAll(() => {})
+  let requestAnimationFrameMock: RequestAnimationFrameMockSession
+
+  beforeEach(() => {
+    requestAnimationFrameMock = new RequestAnimationFrameMockSession()
+  })
 
   afterAll(() => {
     actionBus.removeAllListeners()
@@ -40,9 +48,30 @@ describe('n-action-activator', () => {
     })
     expect(page.root).toEqualHtml(
       `<n-action-activator>
-      <n-action topic="fake" command="noop"></n-action>
+        <n-action topic="fake" command="noop"></n-action>
       </n-action-activator>`,
     )
+  })
+
+  it('render event', async () => {
+    let action: EventAction<any>
+    actionBus.on('fake', e => {
+      action = e
+    })
+    const page = await newSpecPage({
+      components: [ActionActivator, Action],
+      html: `<n-action-activator activate="on-render">
+              <n-action topic="fake" command="noop"></n-action>
+             </n-action-activator>`,
+      autoApplyChanges: true,
+      hydrateClientSide: true,
+    })
+
+    await page.waitForChanges()
+
+    await sleep(1000)
+
+    expect(action!).toBeDefined()
   })
 
   it('captures child actions', async () => {
@@ -218,5 +247,67 @@ describe('n-action-activator', () => {
     expect(command).toBeNull()
 
     activator?.remove()
+  })
+
+  it('timed-actions only send once', async () => {
+    const sentActions: Array<EventAction<any>> = []
+    actionBus.on('test', e => {
+      sentActions.push(e)
+    })
+
+    const page = await newSpecPage({
+      components: [
+        Presentation,
+        PresentationTimer,
+        ActionActivator,
+        Action,
+      ],
+      html: `<div></div>`,
+    })
+
+    page.win.performance.now = () => 0
+
+    page.win.requestAnimationFrame =
+      requestAnimationFrameMock.requestAnimationFrame.bind(
+        requestAnimationFrameMock,
+      )
+    page.win.cancelAnimationFrame =
+      requestAnimationFrameMock.cancelAnimationFrame.bind(
+        requestAnimationFrameMock,
+      )
+
+    await page.setContent(`
+      <n-presentation>
+        <n-presentation-timer duration="4" interval="0">
+        </n-presentation-timer>
+        <n-action-activator activate="at-time" time="2">
+          <n-action topic="test" command="do"></n-action>
+        </n-action-activator>
+      </n-presentation>
+    `)
+
+    await page.waitForChanges()
+
+    requestAnimationFrameMock.triggerNextAnimationFrame(1000)
+    await page.waitForChanges()
+
+    requestAnimationFrameMock.triggerNextAnimationFrame(2000)
+    await page.waitForChanges()
+
+    expect(sentActions.length).toBe(1)
+
+    requestAnimationFrameMock.triggerNextAnimationFrame(3000)
+    await page.waitForChanges()
+
+    requestAnimationFrameMock.triggerAllAnimationFrames(4000)
+    await page.waitForChanges()
+
+    expect(sentActions.length).toBe(1)
+
+    const sentAction = sentActions[0]
+
+    expect(sentAction).toBeDefined()
+    expect(sentAction!.topic).toBe('test')
+    expect(sentAction!.command).toBe('do')
   })
 })

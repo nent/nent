@@ -5,12 +5,11 @@ name: publish
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'package/core/**/*.tsx'
-      - 'package/core/**/*.ts'
-
+    inputs:
+      increment:
+        default: 'patch'
+        description: publish version rev-type
+        required: true
 jobs:
   publish:
     name: Publish
@@ -21,20 +20,17 @@ jobs:
         run: |
           git config --global user.name '@logrythmik'
           git config --global user.email 'logrythmik@users.noreply.github.com'
-
-      - name: setup-npm
-        uses: actions/setup-node@v2.4.0
+      - uses: actions/setup-node@v2.5.1
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
-      - run: npm whoami
-      - name: build
-        run: yarn install --frozen-lockfile && yarn build
-
+      - name: dependencies
+        run: yarn install --frozen-lockfile
       - name: publish
-        run: lerna publish patch --yes --no-verify-access
+        run: lerna publish ${{ github.event.inputs.increment || 'patch' }} --yes --no-verify-access
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          HUSKY_BYPASS: true

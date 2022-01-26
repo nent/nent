@@ -19,15 +19,15 @@ export class AudioTrack implements AudioInfo {
 
   public onEnd?: Listener
   public onLoad?: Listener
-  public get playing() {
+  public playing() {
     return this.sound.playing()
   }
 
-  public get muted() {
+  public muted() {
     return this.sound.volume() == 0
   }
 
-  public get state() {
+  public state() {
     return this.sound.state()
   }
 

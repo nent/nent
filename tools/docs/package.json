@@ -1,10 +1,10 @@
 {
   "name": "@nent/docs",
   "private": true,
-  "version": "0.6.17",
+  "version": "0.7.0",
   "description": "nent docs",
   "main": "./dist/index.cjs.js",
-  "module": "./dist/custom-elements/index.js",
+  "module": "./dist/index.js",
   "collection": "./dist/collection/collection-manifest.json",
   "types": "./dist/types/components.d.ts",
   "scripts": {
@@ -21,28 +21,25 @@
     "postbuild": "npm run copy"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "4.0.3",
-    "@stencil/core": "2.8.0",
-    "@stencil/postcss": "2.0.0",
-    "@stencil/sass": "1.4.1",
-    "autoprefixer": "10.3.4",
-    "bootstrap": "5.1.1",
-    "postcss": "8.3.6",
+    "@fullhuman/postcss-purgecss": "4.1.3",
+    "@stencil/core": "2.13.0",
+    "@stencil/postcss": "2.1.0",
+    "@stencil/sass": "1.5.2",
+    "autoprefixer": "10.4.2",
+    "bootstrap": "5.1.3",
+    "postcss": "8.4.5",
     "postcss-import": "14.0.2",
-    "postcss-scss": "4.0.0",
+    "postcss-scss": "4.0.3",
     "remixicon": "2.5.0",
     "tailwindcss": "2.2.15",
-    "workbox-build": "6.3.0",
-    "workbox-window": "6.3.0"
+    "workbox-build": "6.4.2",
+    "workbox-window": "6.4.2"
   },
   "license": "MIT",
-  "dependencies": {
-    "bootstrap": "5.1.1"
-  },
   "watch": {
     "build:dev": {
       "patterns": [
-        "src"
+        "src/**/*.*"
       ]
     }
   }

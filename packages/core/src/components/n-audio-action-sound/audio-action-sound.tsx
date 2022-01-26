@@ -38,7 +38,6 @@ export class AudioSoundAction implements IActionElement {
     this.actionService = new ActionService(
       this,
       'n-audio-action-music',
-      false,
     )
   }
 
@@ -76,6 +75,11 @@ export class AudioSoundAction implements IActionElement {
    * The value payload for the command.
    */
   @Prop() value?: string | boolean | number
+
+  /**
+   * A predicate to evaluate prior to sending the action.
+   */
+  @Prop() when?: string
 
   private getData() {
     return {

@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  --primary: hsl(256, 23%, 51%);
+  --primary: rgb(117, 101, 159);
   --primary-dark: hsl(256, 23%, 41%);
   --primary-bg: hsl(256, 21%, 31%);
 
@@ -225,10 +225,11 @@ a.active * {
 /* ELEMENTS ------ */
 
 h1 {
-  font-size: 1.5rem;
-  line-height: 1;
-  margin: .5rem 0;
+  font-size: 2.5rem;
+  line-height: 1em;
+  margin: .5rem 0 1rem 0;
   vertical-align: middle;
+  text-transform: lowercase;
 }
 
 h2 {
@@ -240,6 +241,7 @@ h3 {
   border-bottom: 1px dotted var(--secondary);
   padding-bottom: 0.2em;
   display: flex;
+  margin-bottom: 1em;
 }
 
 h2,
@@ -333,7 +335,7 @@ footer {
   max-width: var(--content-max-width);
   padding-left: .7rem;
   padding-right: .7rem;
-  padding-bottom: .5rem;
+  padding-bottom: 1rem;
   padding-top: .5rem;
   margin-right: auto !important;
   margin-left: auto !important;
@@ -366,8 +368,15 @@ n-app {
   width: 100%;
 }
 
+n-app-theme-switch {
+  cursor: pointer;
+}
+
 n-app-theme svg {
   fill: var(--text-color);
+}
+n-app-theme:hover  svg {
+  fill: var(--accent);
 }
 
 n-app-theme.left  {
@@ -417,14 +426,16 @@ n-view.active + n-view-not-found {
   display: none;
 }
 
-.contained,
+.container,
 n-views > n-view,
+n-views > n-view-prompt,
 n-views > n-view-not-found  {
   max-width: var(--content-max-width);
   padding: 0 var(--bs-gutter-x, 0.75rem);
   margin-right: auto !important;
   margin-left: auto !important;
   position: relative;
+
 }
 
 
@@ -483,6 +494,7 @@ n-doc-log {
 
 n-audio {
   position: sticky;
+  border-radius: 5px;
 }
 
 .button-nav {
@@ -700,3 +712,8 @@ a:any-link,
 a:current {
   text-decoration: none !important;
 }
+
+
+
+
+

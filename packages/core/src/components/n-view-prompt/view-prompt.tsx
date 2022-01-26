@@ -55,6 +55,18 @@ export class ViewPrompt implements IView {
   @Prop() pageTitle = ''
 
   /**
+   * The page description for this view.
+   *
+   */
+  @Prop() pageDescription = ''
+
+  /**
+   * The keywords to add to the keywords meta-tag for this view.
+   *
+   */
+  @Prop() pageKeywords = ''
+
+  /**
    * Header height or offset for scroll-top on this
    * view.
    */
@@ -117,6 +129,11 @@ export class ViewPrompt implements IView {
    * IMPORTANT: ONLY WORKS ON REMOTE HTML
    */
   @Prop() resolveTokens: boolean = false
+
+  /**
+   * Force render with data & route changes.
+   */
+  @Prop() noCache: boolean = false
 
   /**
    * To debug timed elements, set this value to true.
@@ -193,7 +210,10 @@ export class ViewPrompt implements IView {
     )
 
     return (
-      <Host hidden={!this.match?.isExact}>
+      <Host
+        hidden={!this.match?.isExact}
+        class={this.match?.isExact ? this.route.transition || '' : ''}
+      >
         <slot />
         <slot name="content" />
       </Host>
@@ -203,6 +223,7 @@ export class ViewPrompt implements IView {
   async componentDidRender() {
     if (!this.route?.match?.isExact) {
       this.contentElement?.remove()
+      if (this.noCache) this.contentElement = null
     }
     await this.route?.loadCompleted()
   }

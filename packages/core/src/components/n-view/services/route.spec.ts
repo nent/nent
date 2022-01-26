@@ -60,6 +60,8 @@ describe('route', () => {
       null,
       true,
       'Page',
+      '',
+      '',
       null,
       0,
       m => (match = m),
@@ -104,7 +106,7 @@ describe('route', () => {
     expect(normalized).toBe('/child')
   })
 
-  it('adjustPageTitle', async () => {
+  it('adjustPageTags', async () => {
     page = await startPage('/')
     router = new RouterService(
       page.win,
@@ -122,19 +124,21 @@ describe('route', () => {
       null,
       true,
       'Page',
+      'My page description',
+      'desc, stuff',
       null,
       0,
       () => {},
     )
 
-    await subject.adjustTitle()
+    await subject.adjustPageTags()
 
     await page.waitForChanges()
 
     expect(page.doc.title).toBe('Page | Router')
   })
 
-  it('adjustPageTitle - dynamic', async () => {
+  it('adjustPageTags - dynamic', async () => {
     page = await startPage('/route/Widget')
     router = new RouterService(
       page.win,
@@ -152,19 +156,21 @@ describe('route', () => {
       null,
       true,
       '{{route:product}}',
+      '',
+      '',
       null,
       0,
       () => {},
     )
 
-    await subject.adjustTitle()
+    await subject.adjustPageTags()
 
     await page.waitForChanges()
 
     expect(page.doc.title).toBe('Widget | Router')
   })
 
-  it('adjustPageTitle - no page', async () => {
+  it('adjustPageTags - no page', async () => {
     page = await startPage('/route')
     router = new RouterService(
       page.win,
@@ -177,7 +183,7 @@ describe('route', () => {
     const routeElement = page.body.querySelector('div')!
     let subject = new Route(router, routeElement, '/route')
 
-    subject.adjustTitle()
+    subject.adjustPageTags()
 
     await page.waitForChanges()
 
@@ -227,6 +233,8 @@ describe('route', () => {
       null,
       true,
       'Page',
+      '',
+      '',
       null,
       10,
     )

@@ -42,10 +42,20 @@ export class App {
 
   /**
    * This is the application / site title.
-   * If the views or dos have titles,
+   * If the views have titles,
    * this is added as a suffix.
    */
   @Prop() appTitle?: string
+
+  /**
+   * This is the application default page description.
+   */
+  @Prop() appDescription?: string
+
+  /**
+   * This is the application default page keywords.
+   */
+  @Prop() appKeywords?: string
 
   /**
    * Turn on debugging to get helpful messages from the

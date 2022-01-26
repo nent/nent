@@ -11,6 +11,8 @@
       content="IE=Edge" />
     <meta name="description"
       content="Functional elements to super-charge your HTML" />
+    <meta name="keywords"
+      content="web-components, low-code, no-framework, jam-stack, nent" />
     <meta name="og:title"
       content="NENT" />
     <meta name="og:description"
@@ -108,7 +110,9 @@
       media="print"
       onload="this.media = 'all'" />
     <link rel="stylesheet"
-      href="/assets/styles.css" />
+      href="/assets/styles.css"
+      media="print"
+      onload="this.media = 'all'" />
     <link
       href="https://fonts.googleapis.com/css2?family=Blinker:wght@200;400&display=swap"
       rel="stylesheet"
@@ -126,12 +130,16 @@
       gtag( 'js', new Date() )
       gtag( 'config', 'G-XYMNMQ1G1X' )
     </script>
+
+
   </head>
 
   <body>
-    <n-app app-title="NENT">
-      <n-app-analytics id="analytics">
-      </n-app-analytics>
+    <n-app id="app"
+      app-title="NENT"
+      app-description="Functional elements to super-charge your HTML"
+      app-keywords="web-components, low-code, no-framework, jam-stack, nent"
+      >
       <n-app-theme>
       </n-app-theme>
       <n-data>
@@ -139,7 +147,7 @@
         <n-data-session></n-data-session>
         <n-data-storage></n-data-storage>
       </n-data>
-      <n-views transition="animate__animated animate__fadeIn">
+      <n-views transition="fade-in">
         <header n-cloak
           class="navbar">
           <div class="container container-fluid">
@@ -181,6 +189,7 @@
                 <i class="ri-sun-line show-dark"></i>
 
               </n-app-theme-switch>
+
             </div>
           </div>
         </header>
@@ -250,24 +259,25 @@
           </div>
         </nav>
         <nav aria-label="breadcrumb"
-          class="bread-nav contained text-end">
+          class="bread-nav container text-end">
           <n-view-link-list class=""
             list-class="breadcrumb justify-content-start"
             active-class="active"
             item-class="breadcrumb-item"
             exclude-root>
           </n-view-link-list>
+
         </nav>
+        <n-content-reference
+          style-src="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+        </n-content-reference>
+
         <n-view path="/"
           transition="none"
           page-title="Landing"
+          page-description="Functional elements to super-charge your HTML"
           exact>
-          <n-content-reference
-            style-src="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
-          </n-content-reference>
-          <n-content-reference
-            style-src="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
-          </n-content-reference>
+
           <div slot="content">
             <h2>Functional Elements</h2>
             <p class="lead"> Application functionality without leaving the
@@ -275,7 +285,7 @@
             <div id="features">
               <div>
                 <h3 id="app">
-                  <i class="ri-install-line"></i> App Elements
+                  <i class="ri-install-line"></i> <a href="app">App Elements</a>
                 </h3>
                 <p>Independent elements related to the file as an application.
                 </p>
@@ -290,7 +300,8 @@
               </div>
               <div>
                 <h3 id="actions">
-                  <i class="ri-flashlight-line"></i> Action Elements
+                  <i class="ri-flashlight-line"></i> <a href="actions">Action
+                    Elements</a>
                 </h3>
                 <p>Action elements to declare event-based functionality for NENT
                   and custom components.</p>
@@ -302,7 +313,8 @@
               </div>
               <div>
                 <h3 id="routing">
-                  <i class="ri-route-line"></i> Routing Elements
+                  <i class="ri-route-line"></i> <a href="routing">Routing
+                    Elements</a>
                 </h3>
                 <p>Independent view routing and navigation system.</p>
                 <ul>
@@ -319,7 +331,8 @@
               </div>
               <div>
                 <h3 id="content">
-                  <i class="ri-code-box-line"></i> Content Elements
+                  <i class="ri-code-box-line"></i> <a href="content">Content
+                    Elements</a>
                 </h3>
                 <p>Independent elements for features around content HTML.</p>
                 <ul>
@@ -331,8 +344,37 @@
                 </ul>
               </div>
               <div>
+                <h3 id="audio">
+                  <i class="ri-music-line"></i> <a href="audio">Audio
+                    Elements</a>
+                </h3>
+                <p>Optional elements to display a global player for declared
+                  audio commands. The player orchestrates audio playback in a
+                  declared, reactive and unobtrusive way.</p>
+                <ul>
+                  <li>Voice-over Audio</li>
+                  <li>Event-based Sounds</li>
+                  <li>Route-driven Background Music</li>
+                </ul>
+              </div>
+              <div>
+                <h3 id="presentation">
+                  <i class="ri-movie-line"></i> <a
+                    href="presentations">Presentation
+                    Elements</a>
+                </h3>
+                <p>Optional elements to normalize timing events between various
+                  video players or time on route</p>
+                <ul>
+                  <li>Time-based Action Activation</li>
+                  <li>Automatic Navigation by Time or Media Events</li>
+                  <li>Video-based Content Updates</li>
+                </ul>
+              </div>
+              <div>
                 <h3 id="data">
-                  <i class="ri-database-2-line"></i> Data Extension
+                  <i class="ri-database-2-line"></i> <a href="data">Data
+                    Extension</a>
                 </h3>
                 <p>Optional enhancements elements to add data-functionality and
                   data-providers.</p>
@@ -344,7 +386,8 @@
               </div>
               <div>
                 <h3 id="elements">
-                  <i class="ri-plug-line"></i> Element Extension
+                  <i class="ri-plug-line"></i> <a href="elements">Element
+                    Extension</a>
                 </h3>
                 <p>Optional extension that allows for light DOM manipulation</p>
                 <ul>
@@ -353,31 +396,6 @@
                   <li>Conditional Rule Evaluation</li>
                 </ul>
               </div>
-            </div>
-            <div>
-              <h3 id="audio">
-                <i class="ri-music-line"></i> Audio Elements
-              </h3>
-              <p>Optional elements to display a global player for declared
-                audio commands. The player orchestrates audio playback in a
-                declared, reactive and unobtrusive way.</p>
-              <ul>
-                <li>Voice-over Audio</li>
-                <li>Event-based Sounds</li>
-                <li>Route-driven Background Music</li>
-              </ul>
-            </div>
-            <div>
-              <h3 id="presentation">
-                <i class="ri-movie-line"></i>Presentation Elements
-              </h3>
-              <p>Optional elements to normalize timing events between various
-                video players or time on route</p>
-              <ul>
-                <li>Time-based Action Activation</li>
-                <li>Automatic Navigation by Time or Media Events</li>
-                <li>Video-based Content Updates</li>
-              </ul>
             </div>
 
             <h2>Built with Love</h2>
@@ -403,13 +421,16 @@
             <footer>
               <a href="/home"
                 n-cloak
-                class="btn btn-primary btn-lg d-block"> Go to Demo </a>
+                class="btn btn-primary btn-lg d-block"> Proceed to Demo-Docs
+              </a>
             </footer>
           </div>
         </n-view>
 
         <n-view path="/home"
           page-title="Home"
+          page-description="Home page description"
+          page-keywords="NENT, low-code"
           src="/pages/home/routes.html"
           content-src="/pages/home/default.html">
         </n-view>
@@ -431,8 +452,7 @@
         <n-view path="/routing"
           page-title="Routing"
           src="/pages/routing/routes.html"
-          content-src="/pages/routing/default.html"
-          transition="animate__animated animate__fadeIn">
+          content-src="/pages/routing/default.html">
         </n-view>
         <n-view path="/content"
           page-title="Content"
@@ -462,37 +482,40 @@
         <n-view path="/components"
           page-title="All Components"
           src="/pages/components/routes.html"
-          content-src="/pages/components/default.html"
-          transition="animate__animated animate__fadeIn">
+          content-src="/pages/components/default.html">
         </n-view>
         <n-view-not-found>
           <div class="content">
             <h1>Page Not Found</h1>
           </div>
         </n-view-not-found>
-
       </n-views>
-
       <n-elements>
-        <!-- enable element manipulation-->
       </n-elements>
+      <n-app-analytics id="analytics">
+        <script async>
+          analytics.addEventListener( 'page-view', ( e ) => {
+            gtag( 'page_view', e.detail.pathname )
+          } )
+          analytics.addEventListener( 'view-time', ( e ) => {
+            gtag( e.detail.event, e.detail.time.elapsed )
+          } )
+        </script>
+      </n-app-analytics>
     </n-app>
-    <script>
-      analytics.addEventListener( 'custom-event', ( e ) => {
-        Object.getOwnPropertyNames(e.detail).forEach(n => {
-          //gtag( n, e.detail[n] )
-          console.debug(`gtag('${n}', '${e.detail[n]})'`)
-        })
-      } )
-      analytics.addEventListener( 'page-view', ( e ) => {
-        gtag( 'page_view', e.detail.pathname )
-        // console.debug(`gtag('page_view', '${e.detail.pathname})'`)
-      } )
-      analytics.addEventListener( 'view-time', ( e ) => {
-        //gtag( e.detail.event, e.detail.time.elapsed )
-        console.debug(`gtag('${e.detail.event}','${e.detail.time.elapsed}'')`)
-      } )
-    </script>
+  <script async defer>
+    // if ('serviceWorker' in navigator) {
+    //   window.addEventListener('load', function() {
+    //     navigator.serviceWorker.register('/sw.js').then(function(registration) {
+    //       // Registration was successful
+    //       console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    //     }, function(err) {
+    //       // registration failed :(
+    //       console.log('ServiceWorker registration failed: ', err);
+    //     });
+    //   });
+    // }
+  </script>
   </body>
 
 </html>

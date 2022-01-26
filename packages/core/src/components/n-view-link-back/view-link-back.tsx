@@ -65,7 +65,7 @@ export class ViewLinkBack {
       ROUTE_EVENTS.RouteMatchedExact,
       async ({ route }: { route: Route }) => {
         this.route = route.previousRoute
-        this.title = await route.resolvedTitle()
+        this.title = await route.resolvePageTitle()
       },
     )
     this.route =

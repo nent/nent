@@ -70,6 +70,18 @@ export class View implements IView {
   @Prop() pageTitle = ''
 
   /**
+   * The page description for this view.
+   *
+   */
+  @Prop() pageDescription = ''
+
+  /**
+   * The keywords to add to the keywords meta-tag for this view.
+   *
+   */
+  @Prop() pageKeywords = ''
+
+  /**
    * Header height or offset for scroll-top on this
    * view.
    */
@@ -129,6 +141,11 @@ export class View implements IView {
    * Turn on debug statements for load, update and render events.
    */
   @Prop() debug = false
+
+  /**
+   * Force render with data & route changes.
+   */
+  @Prop() noCache: boolean = false
 
   /**
    * Return all child elements used for processing. This function is
@@ -268,7 +285,9 @@ export class View implements IView {
     )
 
     return (
-      <Host>
+      <Host
+        class={this.match?.isExact ? this.route.transition || '' : ''}
+      >
         <slot />
         <slot name="content" />
       </Host>
@@ -278,6 +297,7 @@ export class View implements IView {
   async componentDidRender() {
     if (!this.route?.match?.isExact) {
       this.contentElement?.remove()
+      if (this.noCache) this.contentElement = null
     }
     await this.route?.loadCompleted()
   }

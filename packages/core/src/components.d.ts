@@ -52,7 +52,7 @@ export namespace Components {
         /**
           * Manually activate all actions within this activator.
          */
-        "activateActions": () => Promise<void>;
+        "activateActions": (once?: boolean) => Promise<void>;
         /**
           * Turn on debug statements for load, update and render events.
          */
@@ -76,7 +76,15 @@ export namespace Components {
     }
     interface NApp {
         /**
-          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
+          * This is the application default page description.
+         */
+        "appDescription"?: string;
+        /**
+          * This is the application default page keywords.
+         */
+        "appKeywords"?: string;
+        /**
+          * This is the application / site title. If the views have titles, this is added as a suffix.
          */
         "appTitle"?: string;
         /**
@@ -259,6 +267,10 @@ export namespace Components {
           * The value payload for the command.
          */
         "value"?: string | boolean | number;
+        /**
+          * A predicate to evaluate prior to sending the action.
+         */
+        "when"?: string;
     }
     interface NAudioActionSoundLoad {
         /**
@@ -683,6 +695,18 @@ export namespace Components {
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
+          * Force render with data & route changes.
+         */
+        "noCache": boolean;
+        /**
+          * The page description for this view.
+         */
+        "pageDescription": string;
+        /**
+          * The keywords to add to the keywords meta-tag for this view.
+         */
+        "pageKeywords": string;
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle": string;
@@ -814,6 +838,18 @@ export namespace Components {
           * Cross Origin Mode if the content is pulled from a remote location
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * Force render with data & route changes.
+         */
+        "noCache": boolean;
+        /**
+          * The page description for this view.
+         */
+        "pageDescription": string;
+        /**
+          * The keywords to add to the keywords meta-tag for this view.
+         */
+        "pageKeywords": string;
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
@@ -1188,7 +1224,15 @@ declare namespace LocalJSX {
     }
     interface NApp {
         /**
-          * This is the application / site title. If the views or dos have titles, this is added as a suffix.
+          * This is the application default page description.
+         */
+        "appDescription"?: string;
+        /**
+          * This is the application default page keywords.
+         */
+        "appKeywords"?: string;
+        /**
+          * This is the application / site title. If the views have titles, this is added as a suffix.
          */
         "appTitle"?: string;
         /**
@@ -1362,6 +1406,10 @@ declare namespace LocalJSX {
           * The value payload for the command.
          */
         "value"?: string | boolean | number;
+        /**
+          * A predicate to evaluate prior to sending the action.
+         */
+        "when"?: string;
     }
     interface NAudioActionSoundLoad {
         /**
@@ -1766,6 +1814,18 @@ declare namespace LocalJSX {
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
+          * Force render with data & route changes.
+         */
+        "noCache"?: boolean;
+        /**
+          * The page description for this view.
+         */
+        "pageDescription"?: string;
+        /**
+          * The keywords to add to the keywords meta-tag for this view.
+         */
+        "pageKeywords"?: string;
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle"?: string;
@@ -1897,6 +1957,18 @@ declare namespace LocalJSX {
           * Cross Origin Mode if the content is pulled from a remote location
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        /**
+          * Force render with data & route changes.
+         */
+        "noCache"?: boolean;
+        /**
+          * The page description for this view.
+         */
+        "pageDescription"?: string;
+        /**
+          * The keywords to add to the keywords meta-tag for this view.
+         */
+        "pageKeywords"?: string;
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */

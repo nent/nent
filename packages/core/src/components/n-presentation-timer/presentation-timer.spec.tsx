@@ -1,3 +1,5 @@
+jest.mock('../../services/data/evaluate.worker')
+
 import { newSpecPage } from '@stencil/core/testing'
 import { PresentationTimer } from './presentation-timer'
 

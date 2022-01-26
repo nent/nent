@@ -17,10 +17,10 @@ import {
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
+import { filterData } from '../../services/data/jsonata.worker'
 import { hasToken, resolveTokens } from '../../services/data/tokens'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
-import { filterData } from './filter/jsonata.worker'
 
 /**
  * This tag renders a template for each item in the configured array.
@@ -222,7 +222,7 @@ export class ContentDataRepeat {
         this.debug,
         `n-content-repeat: filtering: ${filterString}`,
       )
-      items = await filterData(filterString, items)
+      items = valueToArray(await filterData(filterString, items))
     }
     return items
   }

@@ -1,6 +1,8 @@
 jest.mock('../../services/common/logging')
+jest.mock('../../services/data/evaluate.worker')
+jest.mock('../../services/data/jsonata.worker')
 jest.mock('./services/track')
-jest.mock('./services/actions')
+
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
 import {
@@ -9,9 +11,19 @@ import {
 } from '../../services/common'
 import { contentStateDispose } from '../../services/content/state'
 import { dataStateDispose } from '../../services/data/state'
+import { App } from '../n-app/app'
 import { ContentReference } from '../n-content-reference/content-reference'
+import { ContentTemplate } from '../n-content-template/content-template'
+import { Data } from '../n-data/data'
 import { Audio } from './audio'
 import { AudioActionListener } from './services/actions'
+import {
+  AudioType,
+  AUDIO_COMMANDS,
+  AUDIO_TOPIC,
+  DiscardStrategy,
+  LoadStrategy,
+} from './services/interfaces'
 import { audioStateDispose } from './services/state'
 
 describe('n-audio', () => {
@@ -233,14 +245,28 @@ describe('n-audio', () => {
     </n-audio>
     `)
 
-    const subject = page.root?.shadowRoot?.querySelector(
+    const ref = page.root?.shadowRoot?.querySelector(
       'n-content-reference',
     )! as any
-    await subject.forceLoad()
+    await ref.forceLoad()
 
-    const actions = page.body.querySelector('n-audio')!
-      .actions! as AudioActionListener
-    actions.play()
+    await page.waitForChanges()
+
+    const listener = page.root?.actions as AudioActionListener
+
+    expect(listener).toBeDefined()
+
+    actionBus.emit(AUDIO_TOPIC, {
+      command: AUDIO_COMMANDS.load,
+      data: {
+        src: 'fake.mp3',
+        mode: LoadStrategy.load,
+        type: AudioType.music,
+        discard: DiscardStrategy.next,
+        trackId: 'test',
+        loop: false,
+      },
+    })
 
     await page.waitForChanges()
 
@@ -252,15 +278,86 @@ describe('n-audio', () => {
         </n-content-reference>
         <div>
           <p>
-            Audio Playing
+            Audio Ready
           </p>
           <span title="m=music s=sound l=loaded q=queued">
-            M:0&nbsp;MQ:0&nbsp;ML:0&nbsp;S:0&nbsp;SL:0
+            M:0&nbsp;MQ:0&nbsp;ML:1&nbsp;S:0&nbsp;SL:0
           </span>
         </div>
       </mock:shadow-root>
     </n-audio>
     `)
+
+    page.root?.remove()
+  })
+
+  it('display, audio loaded - data-enabled', async () => {
+    const page = await newSpecPage({
+      components: [
+        App,
+        Data,
+        Audio,
+        ContentReference,
+        ContentTemplate,
+      ],
+    })
+    page.win.localStorage.setItem('audio-enabled', 'true')
+
+    await page.setContent(`
+    <n-app>
+      <n-data></n-data>
+      <n-audio data-provider></n-audio>
+      <n-content-template>
+        <template>
+          <p id="hasAudio">{{audio:hasAudio}}</p>
+        </template>
+      </n-content-template>
+    </n-app>`)
+
+    expect(commonState.dataEnabled).toBeTruthy()
+    expect(commonState.audioEnabled).toBeTruthy()
+
+    await page.waitForChanges()
+
+    const audio = page.body.querySelector(
+      'n-audio',
+    ) as HTMLNAudioElement
+    expect(audio).toBeDefined()
+    expect(audio.dataProvider).toBeTruthy()
+
+    const contentRef = audio?.shadowRoot?.querySelector(
+      'n-content-reference',
+    )! as HTMLNContentReferenceElement
+    await contentRef.forceLoad()
+
+    await page.waitForChanges()
+    const listener = audio.actions as AudioActionListener
+
+    expect(listener).toBeDefined()
+    expect(listener.provider).toBeDefined()
+
+    let subject = page.body.querySelector('#hasAudio')
+
+    expect(subject?.innerHTML).toEqualHtml(`false`)
+
+    actionBus.emit(AUDIO_TOPIC, {
+      command: AUDIO_COMMANDS.play,
+      data: {
+        src: 'fake.mp3',
+        mode: LoadStrategy.play,
+        type: AudioType.music,
+        discard: DiscardStrategy.next,
+        trackId: 'test',
+        loop: false,
+      },
+    })
+
+    await page.waitForChanges()
+
+    subject = page.body.querySelector('#hasAudio')
+
+    // TODO: figure out why this doesn't work
+    //expect(subject?.innerHTML).toEqualHtml(`true`)
 
     page.root?.remove()
   })

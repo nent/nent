@@ -23,6 +23,8 @@ export type RouteInfo = {
   path: string
   routeElement: HTMLElement
   pageTitle: string
+  pageDescription: string
+  pageKeywords: string
 }
 
 export enum VisitStrategy {

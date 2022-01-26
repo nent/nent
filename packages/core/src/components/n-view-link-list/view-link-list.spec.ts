@@ -17,7 +17,6 @@ import { ViewLinkList } from './view-link-list'
 describe('n-view-link-list', () => {
   beforeEach(() => {
     commonState.dataEnabled = true
-    commonState.dataEnabled = true
   })
   afterEach(() => {
     dataStateDispose()
@@ -60,6 +59,40 @@ describe('n-view-link-list', () => {
     page.root?.remove()
   })
 
+  it('renders single home route, late router init', async () => {
+    const page = await newSpecPage({
+      components: [ViewRouter, View, ViewLinkList, ViewLink],
+      html: `
+      <div>
+        <n-view-link-list></n-view-link-list>
+        <n-views>
+          <n-view path="/" page-title="Home"></n-view>
+        </n-views>
+      </div>
+      `,
+    })
+
+    await page.waitForChanges()
+
+    expect(page.root).toEqualHtml(`
+
+      <n-view-link-list>
+        <ol>
+          <li>
+            <n-view-link>
+              <a class="active" href="/" n-attached-click="">
+                Home
+              </a>
+            </n-view-link>
+          </li>
+        </ol>
+      </n-view-link-list>
+
+    `)
+
+    page.root?.remove()
+  })
+
   it('renders multiple deep route', async () => {
     const page = await newSpecPage({
       components: [ViewRouter, View, ViewLinkList, ViewLink],
@@ -72,6 +105,8 @@ describe('n-view-link-list', () => {
       </n-views>`,
       url: 'http://local.com/home/page1',
     })
+
+    await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
     <n-views>
@@ -124,6 +159,8 @@ describe('n-view-link-list', () => {
       </n-views>`,
       url: 'http://local.com/home',
     })
+
+    await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
     <n-views>
@@ -179,6 +216,8 @@ describe('n-view-link-list', () => {
 
       </n-views>`,
     })
+
+    await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
     <n-views>
@@ -238,6 +277,8 @@ describe('n-view-link-list', () => {
       url: 'http://local.com/home/dogs',
     })
 
+    await page.waitForChanges()
+
     expect(page.root).toEqualHtml(`
     <n-views>
       <n-view-link-list>
@@ -290,6 +331,8 @@ describe('n-view-link-list', () => {
       </n-views>`,
       url: 'http://local.com/home/page1',
     })
+
+    await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
     <n-views>

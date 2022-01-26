@@ -3,7 +3,6 @@
     <n-content-repeat no-cache
       items-src="/dist/components.json"
       when="{{route:component}}"
-      no-cache=""
       filter="components[tag='{{route:component}}'].docsTags[name='extension']">
       <template>
         <li class="text-end">
@@ -16,7 +15,8 @@
     </n-content-repeat>
   </ul>
   <n-content-markdown when="{{route:component}}"
+    no-cache
     src="/pages/components/{{route:component}}/readme.md"
-    class="flex-shrink animate__animated animate__fadeIn">
+    class="flex-shrink">
   </n-content-markdown>
 </div>

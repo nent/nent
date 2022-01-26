@@ -1,9 +1,6 @@
 import { Component, Element, h, Prop, State } from '@stencil/core'
-import { debugIf } from '../../services/common'
-import {
-  MatchResults,
-  ROUTE_EVENTS,
-} from '../n-views/services/interfaces'
+import { isValue, logIf } from '../../services/common'
+import { MatchResults } from '../n-views/services/interfaces'
 import {
   onRoutingChange,
   routingState,
@@ -27,6 +24,7 @@ export class ViewLink {
   private routeSubscription!: () => void
   @Element() el!: HTMLNViewLinkElement
   @State() match?: MatchResults | null
+  @State() location = routingState?.location
 
   /**
    * The destination route for this link
@@ -70,25 +68,12 @@ export class ViewLink {
   }
 
   componentWillLoad() {
-    if (routingState.router) {
-      this.subscribe()
-    } else {
-      const routerSubscription = onRoutingChange('router', router => {
-        if (router) {
-          this.subscribe()
-        }
-        routerSubscription()
-      })
-    }
-  }
+    this.routeSubscription = onRoutingChange('location', () => {
+      this.path = routingState.router!.resolvePathname(
+        this.path,
+        this.parentUrl || '/',
+      )
 
-  private subscribe() {
-    this.path = routingState.router!.resolvePathname(
-      this.path,
-      this.parentUrl || '/',
-    )
-
-    const resolveRoute = () => {
       const match = routingState.router!.matchPath({
         path: this.path,
         exact: this.exact,
@@ -96,47 +81,41 @@ export class ViewLink {
       })
 
       this.match = match ? ({ ...match } as MatchResults) : null
-    }
-
-    this.routeSubscription = routingState.router!.eventBus.on(
-      ROUTE_EVENTS.RouteChangeFinish,
-      () => {
-        resolveRoute()
-      },
-    )
-    resolveRoute()
+    })
   }
 
-  private handleClick(e: MouseEvent) {
+  private handleClick(e: MouseEvent, path?: string) {
     if (this.match?.isExact) return
     const router = routingState.router
     if (
       !router ||
       router?.isModifiedEvent(e) ||
       !router?.history ||
-      !this.path
+      !path
     ) {
       return
     }
 
     e.preventDefault()
-    router.goToRoute(this.path)
-  }
-
-  disconnectedCallback() {
-    this.routeSubscription?.call(this)
+    router.goToRoute(path)
   }
 
   render() {
-    debugIf(
-      this.debug,
-      `n-view-link: ${this.path} matched: ${this.match != null}`,
-    )
+    const { router } = routingState
+    const path = router?.resolvePathname(this.path, this.parentUrl)
+
+    const match = router?.matchPath({
+      path: path,
+      exact: this.exact,
+      strict: this.strict,
+    })
 
     const classes = {
-      [this.activeClass]: this.match !== null,
+      [this.activeClass]: isValue(match),
       [this.linkClass || '']: true,
     }
+
+    logIf(this.debug, 'n-view-link re-render ' + path)
 
     let anchorAttributes: Record<string, any> = {
       title: this.el.title,
@@ -146,15 +125,21 @@ export class ViewLink {
 
     return (
       <a
-        href={this.path}
+        href={path}
         title={this.el.title}
         {...anchorAttributes}
         n-attached-click
         class={classes}
-        onClick={(e: MouseEvent) => this.handleClick(e)}
+        onClick={(e: MouseEvent) => {
+          this.handleClick(e, path)
+        }}
       >
-        <slot />
+        <slot></slot>
       </a>
     )
+  }
+
+  disconnectedCallback() {
+    this.routeSubscription?.call(this)
   }
 }

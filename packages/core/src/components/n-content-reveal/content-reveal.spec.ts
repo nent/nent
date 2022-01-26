@@ -10,6 +10,9 @@ describe('n-content-reveal', () => {
       html: `<n-content-reveal>
              </n-content-reveal>`,
     })
+
+    await page.waitForChanges()
+
     expect(page.root).toEqualHtml(`
       <n-content-reveal>
       <mock:shadow-root>
@@ -19,6 +22,8 @@ describe('n-content-reveal', () => {
         </mock:shadow-root>
       </n-content-reveal>
     `)
+
+    await page.waitForChanges()
 
     page.root?.remove()
   })

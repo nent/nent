@@ -165,7 +165,7 @@ describe('n-action', () => {
 
     const event = await action?.getAction()
 
-    expect(event).not.toBeNull()
+    expect(event).toBeNull()
 
     action?.sendAction({
       path: '/test',

@@ -67,7 +67,7 @@ export class ViewLinkNext {
       ROUTE_EVENTS.RouteMatchedExact,
       async ({ route }: { route: Route }) => {
         this.route = route.nextRoute
-        this.title = await route.resolvedTitle()
+        this.title = await route.resolvePageTitle()
       },
     )
     this.route = routingState.router?.exactRoute?.nextRoute || null

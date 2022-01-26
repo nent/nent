@@ -1,11 +1,4 @@
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  State,
-} from '@stencil/core'
+import { Component, Element, h, Host, Prop } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
@@ -39,7 +32,7 @@ export class ContentInclude {
 
   @Element() el!: HTMLNContentIncludeElement
 
-  @State() contentElement: HTMLElement | null = null
+  private contentElement: HTMLElement | null = null
 
   /**
    * Remote Template URL
@@ -58,7 +51,7 @@ export class ContentInclude {
    * re-render it's HTML for data-changes. This can affect
    * performance.
    */
-  @Prop() resolveTokens: boolean = true
+  @Prop() resolveTokens: boolean = false
 
   /**
    * If set, disables auto-rendering of this instance.
@@ -100,7 +93,7 @@ export class ContentInclude {
       this.contentElement = this.src
         ? await this.resolveContentElement()
         : null
-    else this.contentElement = null
+    else if (this.resolveTokens) this.contentElement = null
   }
 
   private async resolveContentElement() {
@@ -117,18 +110,13 @@ export class ContentInclude {
       div.innerHTML = content
       div.className = this.contentClass
       if (commonState.elementsEnabled)
-        await resolveChildElementXAttributes(div)
+        resolveChildElementXAttributes(div)
       routingState.router?.captureInnerLinks(div)
       return div
     } catch {
       warn(`n-content: unable to retrieve from ${this.src}`)
       return null
     }
-  }
-
-  disconnectedCallback() {
-    this.dataSubscription?.destroy()
-    this.routeSubscription?.destroy()
   }
 
   render() {
@@ -138,5 +126,10 @@ export class ContentInclude {
       this.contentElement,
     )
     return <Host hidden={this.contentElement == null}></Host>
+  }
+
+  disconnectedCallback() {
+    this.dataSubscription?.destroy()
+    this.routeSubscription?.destroy()
   }
 }

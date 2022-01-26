@@ -2,16 +2,16 @@
   display: none;
 }
 :host(.active) {
-  display: inherit;
+  display: block;
 }
 :host(.active) ::slotted([slot='content']),
 :host(.active) div[slot='content'] {
   display: none;
 }
 :host(.exact) {
-  display: inherit;
+  display: block;
 }
 :host(.exact) ::slotted([slot='content']),
 :host(.exact) div[slot='content'] {
-  display: inherit;
+  display: block;
 }

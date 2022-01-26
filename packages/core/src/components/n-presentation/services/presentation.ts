@@ -104,7 +104,15 @@ export class PresentationService {
     })
   }
 
-  private async handleEnded() {
+  private async handleEnded(time: TimeDetails) {
+    if (this.elements) {
+      resolveElementChildTimedNodesByTime(
+        this.el,
+        this.timedNodes,
+        time.elapsed,
+        time.percentage,
+      )
+    }
     await activateActionActivators(
       this.actionActivators,
       ActionActivationStrategy.AtTimeEnd,
@@ -125,9 +133,9 @@ export class PresentationService {
 
     this.endSubscription = this.timeEmitter.on(
       TIMER_EVENTS.OnEnd,
-      async () => {
+      async (time: TimeDetails) => {
         debugIf(this.debug, `presentation: ended`)
-        await this.handleEnded()
+        await this.handleEnded(time)
       },
     )
   }

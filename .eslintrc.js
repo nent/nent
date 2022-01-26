@@ -1,7 +1,7 @@
 module.exports = {
   parserOptions: {
     project: "./tsconfig.json",
-    ecmaVersion: 2017,
+    ecmaVersion: 2018,
   },
   extends: [
     "plugin:@stencil/recommended",
@@ -12,7 +12,7 @@ module.exports = {
       "version": "16.7"
     }
   },
-  plugins: ["prettier", "clean-regex"],
+  plugins: ["prettier", "jest", "clean-regex", "@typescript-eslint"],
   rules: {
     '@stencil/strict-boolean-conditions': 0,
     '@stencil/strict-mutable': 0,

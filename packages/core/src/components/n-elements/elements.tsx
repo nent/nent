@@ -42,12 +42,15 @@ export class Elements {
     if (commonState.dataEnabled) {
       this.subscribeToDataEvents()
     } else {
-      const dispose = onCommonStateChange('dataEnabled', enabled => {
-        if (enabled) {
-          this.subscribeToDataEvents()
-        }
-        dispose()
-      })
+      const dispose = onCommonStateChange(
+        'dataEnabled',
+        (enabled: Boolean) => {
+          if (enabled) {
+            this.subscribeToDataEvents()
+          }
+          dispose()
+        },
+      )
     }
   }
 

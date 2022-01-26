@@ -13,34 +13,35 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v2.4.0
+      - name: checkout
+        uses: actions/checkout@v2.3.4
+      - uses: actions/setup-node@v2.5.1
         with:
           node-version: 14.x
-      - name: Use cached node_modules
+      - name: cache
         id: cache
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: node_modules
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
           restore-keys: |
             nodeModules-
-      - name: Install dependencies
+      - name: dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
         env:
           CI: true
-      - run: yarn lint
-      - run: yarn test
+      - name: test
+        run: |
+          yarn lint
+          yarn test
         env:
           CI: true
       - uses: actions/upload-artifact@v2
         with:
           name: coverage-report
           path: ./packages/core/coverage/
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@1.1.3
+      - uses: coverallsapp/github-action@1.1.3
         with:
           path-to-lcov: ./packages/core/coverage/lcov.info
           base-path: ./packages/core
@@ -51,22 +52,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
-      - name: Node.js 14.x
-        uses: actions/setup-node@v2.4.0
+      - uses: actions/setup-node@v2.5.1
         with:
           node-version: 14.x
-      - name: Cache
+      - name: cache
         id: cache
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: node_modules
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
           restore-keys: |
             nodeModules-
-      - name: Yarn
+      - name: dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
+        run: yarn install --frozen-lockfile
         env:
           CI: true
-      - run: yarn build
+      - name: build
+        run: yarn build
 

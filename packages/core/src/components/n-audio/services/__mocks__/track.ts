@@ -17,7 +17,10 @@ export class AudioTrack implements AudioInfo {
   preventRepeat!: boolean
   loop!: boolean
   volume: number = 0.5
-  playing: boolean = false
+  _playing: boolean = false
+  playing() {
+    return this._playing
+  }
   state: string = 'loading'
   time: number = 0
 
@@ -31,7 +34,7 @@ export class AudioTrack implements AudioInfo {
   constructor(info: AudioInfo, onEnd?: Listener) {
     Object.assign(this, info, {
       onEnd: () => {
-        this.playing = false
+        this._playing = false
         onEnd?.call(this, this)
       },
     })
@@ -46,12 +49,12 @@ export class AudioTrack implements AudioInfo {
   }
 
   play() {
-    this.playing = true
+    this._playing = true
     return this
   }
 
   pause() {
-    this.playing = false
+    this._playing = false
     return this
   }
 
@@ -60,7 +63,7 @@ export class AudioTrack implements AudioInfo {
   }
 
   stop() {
-    this.playing = false
+    this._playing = false
     return this
   }
 
@@ -79,7 +82,7 @@ export class AudioTrack implements AudioInfo {
   }
 
   destroy() {
-    this.playing = false
+    this._playing = false
     this.state = 'unloaded'
   }
 }

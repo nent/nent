@@ -3,7 +3,6 @@
     "formulahendry.github-actions",
     "editorconfig.editorconfig",
     "streetsidesoftware.code-spell-checker",
-    "orta.vscode-jest",
     "ldez.ignore-files",
     "dbaeumer.vscode-eslint",
     "rvest.vs-code-prettier-eslint",
@@ -17,9 +16,9 @@
     "znck.grammarly",
     "blackmist.linkcheckmd",
     "wix.vscode-import-cost",
-    "kavod-io.vscode-jest-test-adapter",
     "sissel.json-script-tag",
     "yzhang.markdown-all-in-one",
-    "nent.nent"
+    "nent.nent",
+    "dotup.dotup-vscode-test-generator"
   ]
 }

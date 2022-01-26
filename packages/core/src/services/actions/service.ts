@@ -4,12 +4,9 @@ import { evaluatePredicate } from '../data/expressions'
 import { EventAction, IActionElement } from './interfaces'
 
 export class ActionService {
-  private sent: boolean = false
-
   constructor(
     private element: IActionElement,
     private elementName: string,
-    private once = true,
   ) {}
 
   async getAction(): Promise<EventAction<any> | null> {
@@ -47,6 +44,19 @@ export class ActionService {
       }
     })
 
+    if (!this.element.valid) return null
+
+    if (this.element.when && commonState.dataEnabled) {
+      let predicateResult = await evaluatePredicate(this.element.when)
+      if (predicateResult == false) {
+        debugIf(
+          commonState.debug,
+          `${this.elementName}: not fired, predicate '${this.element.when}' evaluated to false`,
+        )
+        return null
+      }
+    }
+
     return {
       topic: this.element.topic,
       command: this.element.command,
@@ -55,26 +65,11 @@ export class ActionService {
   }
 
   async sendAction(data?: Record<string, void>): Promise<void> {
-    if (this.once && this.sent) return
     const action = await this.element.getAction()
-
-    if (this.element.when && commonState.dataEnabled) {
-      const predicateResult = await evaluatePredicate(
-        this.element.when,
-      )
-      if (predicateResult == false) {
-        debugIf(
-          commonState.debug,
-          `${this.elementName}: not fired, predicate '${this.element.when}' evaluated to false`,
-        )
-        return
-      }
-    }
 
     if (action && this.element.valid) {
       if (data) Object.assign(action.data, data)
       actionBus.emit(action.topic, action)
-      this.sent = true
     }
   }
 }

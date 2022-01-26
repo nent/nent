@@ -241,7 +241,7 @@ describe('audio-listener:', () => {
       },
     })
 
-    expect(playing!.playing).toBeTruthy()
+    expect(playing!.playing()).toBeTruthy()
 
     // bad seek
     actionBus.emit(AUDIO_TOPIC, {

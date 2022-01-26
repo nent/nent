@@ -4,10 +4,8 @@
   display: none;
 }
 
+[n-cloak] { display: inherit; }
+
 n-app {
   display: block;
-}
-
-n-cloak {
-  display: inherit;
 }

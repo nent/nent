@@ -41,7 +41,6 @@ export class AudioMusicAction implements IActionElement {
     this.actionService = new ActionService(
       this,
       'n-audio-action-music',
-      false,
     )
   }
 
