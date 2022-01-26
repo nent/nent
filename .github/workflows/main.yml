@@ -31,8 +31,10 @@ jobs:
         run: yarn install --frozen-lockfile
         env:
           CI: true
-      - run: yarn lint
-      - run: yarn test
+      - name: Test
+        run: |
+          yarn lint
+          yarn test
         env:
           CI: true
       - uses: actions/upload-artifact@v2
@@ -63,10 +65,11 @@ jobs:
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
           restore-keys: |
             nodeModules-
-      - name: Yarn
+      - name: Build
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
+        run: |
+          yarn install --frozen-lockfile
+          yarn build
         env:
           CI: true
-      - run: yarn build
 
