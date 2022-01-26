@@ -145,4 +145,4 @@ Much like its parent, [\<n-view\>](/components/n-view), basic routing informatio
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

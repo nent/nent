@@ -20,7 +20,7 @@ import {
 export class ViewLinkNext {
   private matchSubscription?: () => void
   @Element() el!: HTMLNViewLinkNextElement
-  @State() route: Route | null = null
+  @State() route: Route | null | undefined = null
   @State() title?: string
 
   /**
@@ -41,36 +41,36 @@ export class ViewLinkNext {
     return this.el.closest('n-view-prompt')
   }
 
-  componentWillLoad() {
+  async componentWillLoad() {
     if (routingState.router) {
-      this.setupRoute()
+      await this.setupRoute()
     } else {
-      const dispose = onRoutingChange('router', () => {
-        this.setupRoute()
+      const dispose = onRoutingChange('router', async () => {
+        await this.setupRoute()
         dispose()
       })
     }
   }
 
-  private setupRoute() {
+  private async setupRoute() {
     if (this.parentViewPrompt) {
-      this.route = this.parentViewPrompt!.route.nextRoute
+      this.route = await this.parentViewPrompt!.route.getNextRoute()
     } else if (this.parentView) {
-      this.route = this.parentView!.route.nextRoute
+      this.route = await this.parentView!.route.getNextRoute()
     } else {
-      this.subscribe()
+      await this.subscribe()
     }
   }
 
-  private subscribe() {
+  private async subscribe() {
     this.matchSubscription = eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
       async ({ route }: { route: Route }) => {
-        this.route = route.nextRoute
+        this.route = await route.getNextRoute()
         this.title = await route.resolvePageTitle()
       },
     )
-    this.route = routingState.router?.exactRoute?.nextRoute || null
+    this.route = await routingState.router?.exactRoute?.getNextRoute()
   }
 
   render() {
@@ -86,11 +86,11 @@ export class ViewLinkNext {
           this.route?.goToRoute(this.route.path)
         }}
         href={this.route.path}
-        title={this.route.title}
+        title={this.title || this.route.pageTitle}
         n-attached-click
         n-attached-key-press
       >
-        {this.text || this.route.title}
+        {this.text || this.title || this.route.pageTitle}
       </a>
     ) : null
   }

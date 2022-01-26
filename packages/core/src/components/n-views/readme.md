@@ -56,4 +56,4 @@ The example sets an offset for scrolling, a global page transition and has a non
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

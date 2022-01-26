@@ -31,7 +31,11 @@ export class ViewLinkList {
   private routeStartSubscription?: () => void
   private matchSubscription?: () => void
   private finalizeSubscription?: () => void
-  @State() routes: Route[] | any[] = []
+  @State() routes: Array<{
+    route?: Route
+    path?: string
+    title?: string
+  }> = []
 
   /**
    * The display mode for which routes to display.
@@ -74,10 +78,10 @@ export class ViewLinkList {
       const routerSubscription = onRoutingChange('router', router => {
         if (router) {
           this.subscribe()
-          routerSubscription()
         } else {
           this.matchSubscription?.call(this)
         }
+        routerSubscription()
       })
     }
   }
@@ -103,7 +107,8 @@ export class ViewLinkList {
 
   async componentWillRender() {
     let routes = (await this.getRoutes()) || []
-    if (this.excludeRoot && routes[0]?.path == '/') routes.shift()
+    if (this.excludeRoot && routes?.length && routes[0]?.path == '/')
+      routes.shift()
 
     this.routes = routes
   }
@@ -111,15 +116,15 @@ export class ViewLinkList {
   private async getRoutes() {
     switch (this.mode) {
       case 'parents':
-        return (await this.route?.getParentRoutes()) || null
+        return await this.route?.getParentRoutes()
       case 'siblings':
-        return this.route?.getSiblingRoutes() || null
+        return await this.route?.getSiblingRoutes()
       case 'children':
-        return this.route?.childRoutes || null
+        return await this.route?.getChildRoutes()
     }
   }
 
-  private getUrl(route: any) {
+  private getUrl(route: Route) {
     let url = route.match?.url || route.path
     if (this.match) {
       Object.keys(this.match?.params).forEach(param => {
@@ -140,7 +145,7 @@ export class ViewLinkList {
         {this.routes?.map((r: any) => [
           <li class={this.itemClass}>
             <n-view-link
-              path={this.getUrl(r)}
+              path={this.getUrl(r.route)}
               exact={true}
               linkClass={linkClasses}
               activeClass={this.activeClass}

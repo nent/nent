@@ -148,14 +148,14 @@
         <n-data-storage></n-data-storage>
       </n-data>
       <n-views transition="fade-in">
-        <header n-cloak
+        <header
           class="navbar">
           <div class="container container-fluid">
             <h1 class="navbar-brand flex-grow-1">
               <a href="/home"
                 title="home"> nent </a>
             </h1>
-            <div class="flex-row d-flex">
+            <div class="flex-row d-flex" n-cloak>
               <n-app-share headline="nent: function elements"
                 title="Share"
                 class="nav-link text-white fs-2 ps-0"
@@ -193,7 +193,7 @@
             </div>
           </div>
         </header>
-        <nav n-cloak
+        <nav
           class="navbar-nav bg-dark sticky-top">
           <div class="container container-fluid d-flex flex-row">
             <n-view-link class="nav-link flex-fill tip"
@@ -260,13 +260,12 @@
         </nav>
         <nav aria-label="breadcrumb"
           class="bread-nav container text-end">
-          <n-view-link-list class=""
+          <n-view-link-list class="" mode="parents"
             list-class="breadcrumb justify-content-start"
             active-class="active"
             item-class="breadcrumb-item"
             exclude-root>
           </n-view-link-list>
-
         </nav>
         <n-content-reference
           style-src="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
@@ -504,17 +503,14 @@
       </n-app-analytics>
     </n-app>
   <script async defer>
-    // if ('serviceWorker' in navigator) {
-    //   window.addEventListener('load', function() {
-    //     navigator.serviceWorker.register('/sw.js').then(function(registration) {
-    //       // Registration was successful
-    //       console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    //     }, function(err) {
-    //       // registration failed :(
-    //       console.log('ServiceWorker registration failed: ', err);
-    //     });
-    //   });
-    // }
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').catch(function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
   </script>
   </body>
 

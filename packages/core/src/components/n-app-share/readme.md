@@ -46,4 +46,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

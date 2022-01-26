@@ -42,4 +42,4 @@ To create a link to a route, simply use the route in the `href` attribute.
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

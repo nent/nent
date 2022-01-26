@@ -69,18 +69,20 @@ export class ViewLink {
 
   componentWillLoad() {
     this.routeSubscription = onRoutingChange('location', () => {
-      this.path = routingState.router!.resolvePathname(
-        this.path,
-        this.parentUrl || '/',
-      )
+      if (routingState.router) {
+        this.path = routingState.router!.resolvePathname(
+          this.path,
+          this.parentUrl || '/',
+        )
 
-      const match = routingState.router!.matchPath({
-        path: this.path,
-        exact: this.exact,
-        strict: this.strict,
-      })
+        const match = routingState.router!.matchPath({
+          path: this.path,
+          exact: this.exact,
+          strict: this.strict,
+        })
 
-      this.match = match ? ({ ...match } as MatchResults) : null
+        this.match = match ? ({ ...match } as MatchResults) : null
+      }
     })
   }
 
@@ -134,7 +136,7 @@ export class ViewLink {
           this.handleClick(e, path)
         }}
       >
-        <slot></slot>
+        <slot />
       </a>
     )
   }

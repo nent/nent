@@ -34,7 +34,7 @@ const config: Config = {
     },
     {
       type: 'docs-readme',
-      footer: `NENT 2021 - all rights reserved`,
+      footer: `NENT 2022 - all rights reserved`,
       dependencies: false,
       strict: true,
     },

@@ -103,7 +103,7 @@ For more complex data shapes, you can define the data parameters as JSON in a ch
 
 ### Tokens
 
-If the [`n-data`](/components/n-data) extension is enabled, you can use token-expressions as the value for actions:
+If the `n-data` extension is enabled, you can use token-expressions as the value for actions:
 
 ```html
 <n-action 
@@ -149,4 +149,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

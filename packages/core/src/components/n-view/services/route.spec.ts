@@ -10,6 +10,7 @@ import { EventEmitter } from '../../../services/common/emitter'
 import { dataStateDispose } from '../../../services/data/state'
 import { MatchResults } from '../../n-views/services/interfaces'
 import { RouterService } from '../../n-views/services/router'
+import { routingStateDispose } from '../../n-views/services/state'
 import { Route } from './route'
 
 describe('route', () => {
@@ -36,6 +37,9 @@ describe('route', () => {
   afterEach(() => {
     dataStateDispose()
     commonStateDispose()
+    routingStateDispose()
+    actionBus.removeAllListeners()
+    eventBus.removeAllListeners()
   })
 
   it('router-service -> create-route', async () => {
@@ -49,6 +53,8 @@ describe('route', () => {
       actionBus,
       '',
       'Router',
+      '',
+      '',
       '',
       0,
     )
@@ -294,6 +300,12 @@ describe('route', () => {
       writeTask,
       eventBus,
       actionBus,
+      '',
+      '',
+      '',
+      '',
+      '',
+      0,
     )
     const routeElement = page.body.querySelector(
       'div#parent',
@@ -329,29 +341,30 @@ describe('route', () => {
       parent,
     )
 
+    const routes = parent.childRoutes
     expect(a.parentRoute).toBe(parent)
-    expect(a.siblingIndex).toBe(0)
+    expect(a.getSiblingIndex(routes)).toBe(0)
 
     expect(b.parentRoute).toBe(parent)
-    expect(b.siblingIndex).toBe(1)
+    expect(b.getSiblingIndex(routes)).toBe(1)
 
     expect(c.parentRoute).toBe(parent)
-    expect(c.siblingIndex).toBe(2)
+    expect(c.getSiblingIndex(routes)).toBe(2)
 
     expect(d.parentRoute).toBe(parent)
-    expect(d.siblingIndex).toBe(3)
+    expect(d.getSiblingIndex(routes)).toBe(3)
 
-    expect(a.previousRoute?.path).toBe(parent.path)
-    expect(a.nextRoute?.path).toBe(b.path)
+    expect((await a.getPreviousRoute())?.path).toBe(parent.path)
+    expect((await a.getNextRoute())?.path).toBe(b.path)
 
-    expect(b.previousRoute?.path).toBe(a.path)
-    expect(b.nextRoute?.path).toBe(c.path)
+    expect((await b.getPreviousRoute())?.path).toBe(a.path)
+    expect((await b.getNextRoute())?.path).toBe(c.path)
 
-    expect(c.previousRoute?.path).toBe(b.path)
-    expect(c.nextRoute?.path).toBe(d.path)
+    expect((await c.getPreviousRoute())?.path).toBe(b.path)
+    expect((await c.getNextRoute())?.path).toBe(d.path)
 
-    expect(d.previousRoute?.path).toBe(c.path)
-    expect(d.nextRoute?.path).toBe(parent.path)
+    expect((await d.getPreviousRoute())?.path).toBe(c.path)
+    expect((await d.getNextRoute())?.path).toBe(parent.path)
 
     router.destroy()
   })

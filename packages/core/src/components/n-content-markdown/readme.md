@@ -95,4 +95,4 @@ Or, just include it in one of the [\<n-view\>](/components/n-view) or [\<n-view-
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

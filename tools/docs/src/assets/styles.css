@@ -31,7 +31,7 @@ body {
   --nav-bg: hsl(203, 24%, 47%);
 
   --content-max-width: 950px;
-
+  --white: #fff;
   font-family: 'Blinker', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
@@ -402,7 +402,7 @@ n-view.active {
 }
 
 n-view-link a:any-link {
-  color: var(--primary);
+  color: var(--accent-dark);
   text-decoration: none;
   font-weight: 400;
 }
@@ -415,7 +415,7 @@ n-view-link-back.btn a:any-link,
 n-view-link-next.btn a:any-link,
 n-view-link-back.text-white a:any-link,
 n-view-link-next.text-white a:any-link,
-n-view-link.text-white a:any-link {
+n-view-link.text-white a:any-link  {
   color: white;
 }
 
@@ -523,7 +523,7 @@ n-audio {
 }
 
 .button-nav > * {
-  flex: 1 1 auto;
+  flex: 1 1;
   vertical-align: middle;
 }
 
@@ -710,6 +710,7 @@ a:active,
 a:visited,
 a:any-link,
 a:current {
+  color: var(--accent-dark)
   text-decoration: none !important;
 }
 

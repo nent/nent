@@ -80,6 +80,8 @@ describe('n-view-link-next', () => {
 
     link?.click()
 
+    await page.waitForChanges()
+
     expect(routingState.router?.location.pathname).toBe('/second')
     page.root?.remove()
   })

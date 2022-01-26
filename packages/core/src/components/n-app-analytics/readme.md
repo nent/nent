@@ -80,4 +80,4 @@ Using the [\<n-app-analytics\>](/components/n-app-analytics) element is simple, 
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

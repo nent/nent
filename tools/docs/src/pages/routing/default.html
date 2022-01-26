@@ -12,8 +12,8 @@
       <template>
         <li class="list-group-item">
 
-          <a href="/components/{{data:tag}}?group=routing"> &lt;{{data:tag}}&gt;
-          </a>
+          <n-view-link path="/components/{{data:tag}}?group=routing"> &lt;{{data:tag}}&gt;
+          </n-view-link>
         </li>
       </template>
     </n-content-repeat>
@@ -27,9 +27,9 @@
     allowing users to bookmark and link to multiple "pages", managed as a single
     file. </p>
   <h2>How it works</h2>
-  <p> By wrapping content in an <a href="/components/n-view">
+  <p> By wrapping content in an <n-view-link path="/components/n-view">
       <b>&lt;n-view&gt;</b>
-    </a> element and setting the <b>path</b> attribute, the contained-content
+    </n-view-link> element and setting the <b>path</b> attribute, the contained-content
     won't be displayed until the URL path matches the path set in the
     <b>path</b>
     attribute.
@@ -40,7 +40,7 @@
   <a hidden
     href="/examples/simple.html"
     target="_blank"
-    class="btn btn-light float-end my-2 ms-2">
+    link-class="btn btn-light float-end my-2 ms-2">
     <i class="ri-external-link-line"></i> Visit Demo</a>
   <p> The following example shows a very simple routing implementation. it is
     used throughout this document, but you can also see a concise example here:
@@ -51,28 +51,28 @@
   <p> The routing components can handle complex routing strategies too. Check
     out some advance use-cases they support below. </p>
   <div class="button-nav">
-    <a href="/routing/lazy"
-      class="btn btn-secondary">
-      <i class="ri-rest-time-line"></i> Lazy Routes </a>
-    <a href="/routing/child"
-      class="btn btn-secondary">
-      <i class="ri-stack-line"></i> Child Routes </a>
-    <a href="/routing/dynamic"
-      class="btn btn-secondary">
-      <i class="ri-database-line"></i> Dynamic Routes </a>
-    <a href="/routing/navigation"
-      class="btn btn-secondary">
-      <i class="ri-compass-3-line"></i> Navigation </a>
-    <a href="/routing/provider"
-      class="btn btn-secondary">
-      <i class="ri-database-line"></i> Data Provider </a>
+    <n-view-link path="/routing/lazy"
+      link-class="btn btn-secondary">
+      <i class="ri-rest-time-line"></i> Lazy Routes </n-view-link>
+    <n-view-link path="/routing/child"
+      link-class="btn btn-secondary">
+      <i class="ri-stack-line"></i> Child Routes </n-view-link>
+    <n-view-link path="/routing/dynamic"
+      link-class="btn btn-secondary">
+      <i class="ri-database-line"></i> Dynamic Routes </n-view-link>
+    <n-view-link path="/routing/navigation"
+      link-class="btn btn-secondary">
+      <i class="ri-compass-3-line"></i> Navigation </n-view-link>
+    <n-view-link path="/routing/provider"
+      link-class="btn btn-secondary">
+      <i class="ri-database-line"></i> Data Provider </n-view-link>
   </div>
   <footer>
     <n-view-link-back slot="start"
-      link-class="btn btn-primary btn-lg">
+      link-link-class="btn btn-primary btn-lg">
     </n-view-link-back>
     <n-view-link-next slot="end"
-      link-class="btn btn-primary btn-lg">
+      link-link-class="btn btn-primary btn-lg">
     </n-view-link-next>
   </footer>
 </div>

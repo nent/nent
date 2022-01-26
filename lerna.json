@@ -1,11 +1,7 @@
 {
   "version": "0.8.2",
   "npmClient": "yarn",
-  "useWorkspaces": false,
-  "packages": [
-    "packages/core",
-    "packages/create"
-  ],
+  "useWorkspaces": true,
   "command": {
     "publish": {
       "conventionalCommits": true,
