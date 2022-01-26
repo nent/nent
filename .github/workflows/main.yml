@@ -13,12 +13,12 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v2.5.1
+      - name: checkout
+        uses: actions/checkout@v2.3.4
+      - uses: actions/setup-node@v2.5.1
         with:
           node-version: 14.x
-      - name: Use cached node_modules
+      - name: cache
         id: cache
         uses: actions/cache@v2.1.7
         with:
@@ -26,12 +26,12 @@ jobs:
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
           restore-keys: |
             nodeModules-
-      - name: Install dependencies
+      - name: dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
         env:
           CI: true
-      - name: Test
+      - name: test
         run: |
           yarn lint
           yarn test
@@ -41,8 +41,7 @@ jobs:
         with:
           name: coverage-report
           path: ./packages/core/coverage/
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@1.1.3
+      - uses: coverallsapp/github-action@1.1.3
         with:
           path-to-lcov: ./packages/core/coverage/lcov.info
           base-path: ./packages/core
@@ -53,11 +52,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
-      - name: Node.js 14.x
-        uses: actions/setup-node@v2.5.1
+      - uses: actions/setup-node@v2.5.1
         with:
           node-version: 14.x
-      - name: Cache
+      - name: cache
         id: cache
         uses: actions/cache@v2.1.7
         with:
@@ -65,11 +63,11 @@ jobs:
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
           restore-keys: |
             nodeModules-
-      - name: Build
+      - name: dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          yarn install --frozen-lockfile
-          yarn build
+        run: yarn install --frozen-lockfile
         env:
           CI: true
+      - name: build
+        run: yarn build
 

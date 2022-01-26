@@ -20,15 +20,13 @@ jobs:
         run: |
           git config --global user.name '@logrythmik'
           git config --global user.email 'logrythmik@users.noreply.github.com'
-      - name: setup
-        uses: actions/setup-node@v2.5.1
+      - uses: actions/setup-node@v2.5.1
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
-      - run: npm whoami
-      - name: install
+      - name: dependencies
         run: yarn install --frozen-lockfile
       - name: publish
         run: lerna publish ${{ github.event.inputs.increment || 'patch' }} --yes --no-verify-access
