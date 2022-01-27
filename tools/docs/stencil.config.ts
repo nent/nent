@@ -42,24 +42,18 @@ const config: Config = {
         ],
         globDirectory: '../../docs',
         swDest: 'sw.js',
-        skipWaiting: false,
+        skipWaiting: true,
         sourcemap: false,
         navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,
         offlineGoogleAnalytics: true,
+        handleFetch: true,
         runtimeCaching: [
           {
             urlPattern: /\.json$/,
             handler: 'NetworkFirst',
             options: {
               cacheName: 'data',
-            },
-          },
-          {
-            urlPattern: /\.(?:js|css)$/,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: pkg.version + '-runtime',
             },
           },
           {
