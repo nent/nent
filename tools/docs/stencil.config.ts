@@ -49,16 +49,6 @@ const config: Config = {
         offlineGoogleAnalytics: true,
         runtimeCaching: [
           {
-            urlPattern: /^assets\/.*/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'assets',
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-          {
             urlPattern: /\.json$/,
             handler: 'NetworkFirst',
             options: {
