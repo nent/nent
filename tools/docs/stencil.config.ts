@@ -47,7 +47,6 @@ const config: Config = {
         navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,
         offlineGoogleAnalytics: true,
-        handleFetch: true,
         runtimeCaching: [
           {
             urlPattern: /\.json$/,
