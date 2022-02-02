@@ -1,4 +1,11 @@
-import { Component, Element, h, Prop, State } from '@stencil/core'
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { Route } from '../n-view/services/route'
 import {
@@ -45,22 +52,22 @@ export class ViewLinkList {
   /**
    * The active-class to use with the n-view-link elements.
    */
-  @Prop() activeClass?: string
+  @Prop() activeClass?: string = 'active'
 
   /**
    * The class to add to the anchor tag.
    */
-  @Prop() linkClass?: string
+  @Prop() linkClass?: string = ''
 
   /**
    * The list-class to use with the UL tag
    */
-  @Prop() listClass?: string
+  @Prop() listClass?: string = ''
 
   /**
    * The list-item-class to use with the li tag
    */
-  @Prop() itemClass?: string
+  @Prop() itemClass?: string = ''
 
   /**
    * Specify if the '/' route should
@@ -136,26 +143,24 @@ export class ViewLinkList {
   }
 
   render() {
-    const linkClasses: string = `${this.activeClass || ''} ${
-      this.route?.transition || ''
-    }`
-
     return this.routes ? (
-      <ol class={this.listClass}>
+      <ul class={this.listClass}>
         {this.routes?.map((r: any) => [
           <li class={this.itemClass}>
             <n-view-link
               path={this.getUrl(r.route)}
               exact={true}
-              linkClass={linkClasses}
-              activeClass={this.activeClass}
+              link-class={this.linkClass}
+              active-class={this.activeClass}
             >
               {r.title}
             </n-view-link>
           </li>,
         ])}
-      </ol>
-    ) : null
+      </ul>
+    ) : (
+      <Host></Host>
+    )
   }
 
   disconnectedCallback() {

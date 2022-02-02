@@ -37,15 +37,15 @@ describe('n-view-link-list', () => {
     expect(page.root).toEqualHtml(`
     <n-views>
       <n-view-link-list>
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a class="active" href="/" n-attached-click="">
                 Home
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
       <n-view class="active exact" page-title="Home" path="/">
         <mock:shadow-root>
@@ -77,15 +77,15 @@ describe('n-view-link-list', () => {
     expect(page.root).toEqualHtml(`
 
       <n-view-link-list>
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a class="active" href="/" n-attached-click="">
                 Home
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
 
     `)
@@ -111,22 +111,22 @@ describe('n-view-link-list', () => {
     expect(page.root).toEqualHtml(`
     <n-views>
       <n-view-link-list>
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a href="/home" n-attached-click="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a class="active" href="/home/page1" n-attached-click="">
                 Page 1
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
       <n-view class="active " page-title="Home" path="/home">
         <mock:shadow-root>
@@ -165,22 +165,22 @@ describe('n-view-link-list', () => {
     expect(page.root).toEqualHtml(`
     <n-views>
       <n-view-link-list  mode="siblings">
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a class="active" href="/home" n-attached-click="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a href="/page1" n-attached-click="">
                 Page 1
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
       <n-view class="active exact" page-title="Home" path="/home">
         <mock:shadow-root>
@@ -222,22 +222,22 @@ describe('n-view-link-list', () => {
     expect(page.root).toEqualHtml(`
     <n-views>
       <n-view-link-list mode="children">
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a href="/page1" n-attached-click="">
                 Page 1
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a href="/page2" n-attached-click="">
                 Page 2
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
       <n-view class="active exact" page-title="Home" path="/">
         <mock:shadow-root>
@@ -282,24 +282,24 @@ describe('n-view-link-list', () => {
     expect(page.root).toEqualHtml(`
     <n-views>
       <n-view-link-list>
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a href="/home" n-attached-click="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a class="active" href="/home/dogs" n-attached-click="">
                 dogs
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
-      <n-view class="active " page-title="Home" path="/home">
+      <n-view class="active" page-title="Home" path="/home">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -337,29 +337,29 @@ describe('n-view-link-list', () => {
     expect(page.root).toEqualHtml(`
     <n-views>
       <n-view-link-list>
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a href="/" n-attached-click="">
                 Root
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a href="/home" n-attached-click="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
+            <n-view-link active-class="active" link-class="">
               <a class="active" href="/home/page1" n-attached-click="">
                 Page 1
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
       <n-view class="active " page-title="Root" path="/">
         <mock:shadow-root>
