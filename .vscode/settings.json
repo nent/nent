@@ -291,5 +291,8 @@
   "commit-message-editor.view.saveAndClose": true,
   "html.format.wrapLineLength": 80,
   "peacock.color": "#ae9ae4",
-  "jest.jestCommandLine": "jest"
+  "jest.jestCommandLine": "node_modules/.bin/jest",
+  "jest.autoRun": { "watch": false, "onSave": "test-src-file" },
+  "testExplorer.gutterDecoration": true,
+  "debug.allowBreakpointsEverywhere": true
 }

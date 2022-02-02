@@ -1,11 +1,4 @@
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  State,
-} from '@stencil/core'
+import { Component, Element, h, Prop, State } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { Route } from '../n-view/services/route'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
@@ -59,50 +52,43 @@ export class ViewLinkBack {
 
   private async setupRoute() {
     if (this.parentViewPrompt) {
-      this.route =
-        await this.parentViewPrompt!.route.getPreviousRoute()
+      this.setPage(this.parentViewPrompt!.route)
     } else if (this.parentView) {
-      this.route = await this.parentView!.route.getPreviousRoute()
+      this.setPage(this.parentView!.route)
     } else {
       this.subscribe()
     }
+  }
+
+  private async setPage(route: Route) {
+    this.route = await route.getPreviousRoute()
+    this.title = await this.route?.resolvePageTitle()
   }
 
   private async subscribe() {
     this.matchSubscription = eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
       async ({ route }: { route: Route }) => {
-        this.route = await route.getPreviousRoute()
-        this.title = await route.resolvePageTitle()
+        await this.setPage(route)
       },
     )
-    this.route =
-      await routingState.router?.exactRoute?.getPreviousRoute()
+    if (routingState.router?.exactRoute)
+      await this.setPage(routingState.router?.exactRoute)
   }
 
   render() {
-    return this.route ? (
-      <a
-        class={this.linkClass}
-        onClick={e => {
-          e.preventDefault()
-          this.route?.goToRoute(this.route.path)
-        }}
-        onKeyPress={e => {
-          e.preventDefault()
-          this.route?.goToRoute(this.route.path)
-        }}
-        href={this.route.path}
-        title={this.title || this.route.pageTitle}
-        n-attached-click
-        n-attached-key-press
+    const text = this.text || this.title
+    return (
+      <n-view-link
+        link-class={this.linkClass}
+        path={this.route?.path || ''}
+        title={this.title}
+        active-class="none"
       >
-        <slot>{this.text || this.title || this.route.pageTitle}</slot>
-      </a>
-    ) : (
-      <Host>
-        <slot />
-      </Host>
+        <slot name="start"></slot>
+        {text ? text : <slot />}
+        <slot name="end"></slot>
+      </n-view-link>
     )
   }
 

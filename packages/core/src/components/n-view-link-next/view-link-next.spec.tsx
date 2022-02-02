@@ -7,6 +7,7 @@ import {
   commonState,
   commonStateDispose,
 } from '../../services/common'
+import { ViewLink } from '../n-view-link/view-link'
 import { ViewPrompt } from '../n-view-prompt/view-prompt'
 import { View } from '../n-view/view'
 import {
@@ -37,36 +38,41 @@ describe('n-view-link-next', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-view-link-next>
-      Test
-    </n-view-link-next>`)
+      <n-view-link-next>
+        <n-view-link active-class="none" path="">
+          Test
+        </n-view-link>
+      </n-view-link-next>`)
   })
 
   it('render next view link', async () => {
     const page = await newSpecPage({
-      components: [ViewRouter, View, ViewLinkNext],
-      html: `<n-views >
-        <n-view path='/first'>
-          <n-view-link-next>
-          </n-view-link-next>
-        </n-view>
-        <n-view path='/second'>
-        </n-view>
-       </n-views>`,
+      components: [ViewRouter, View, ViewLinkNext, ViewLink],
+      html: `<n-views  start-path="/first">
+              <n-view path='/first'>
+                <n-view-link-next>
+                  Next
+                </n-view-link-next>
+              </n-view>
+              <n-view path='/second'>
+              </n-view>
+            </n-views>`,
     })
 
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
-      <n-views>
-        <n-view path="/first">
+      <n-views start-path="/first">
+        <n-view class="active exact" path="/first">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
           </mock:shadow-root>
           <n-view-link-next>
-            <a href="/second" n-attached-click="" n-attached-key-press="">
-              <slot-fb hidden=""></slot-fb>
-            </a>
+            <n-view-link active-class="none">
+              <a href="/second" n-attached-click="" n-attached-key-press="">
+                Next
+              </a>
+            </n-view-link>
           </n-view-link-next>
         </n-view>
         <n-view path="/second">
@@ -79,16 +85,16 @@ describe('n-view-link-next', () => {
     `)
 
     const link = page.body.querySelector(
-      'n-view-link-next>a',
+      'n-view-link-next a',
     ) as HTMLAnchorElement
     expect(link).not.toBeUndefined()
 
-    link?.click()
+    link!.click()
 
     await page.waitForChanges()
 
-    expect(routingState.router?.location.pathname).toBe('/second')
-    page.root?.remove()
+    expect(routingState.router!.location.pathname).toBe('/second')
+    page.root!.remove()
   })
 
   it('render parent view link', async () => {
@@ -98,6 +104,7 @@ describe('n-view-link-next', () => {
         <n-view path='/parent'>
           <n-view path='/child'>
             <n-view-link-next>
+              Next
             </n-view-link-next>
           </n-view>
         </n-view>
@@ -118,9 +125,9 @@ describe('n-view-link-next', () => {
               <slot name="content"></slot>
             </mock:shadow-root>
             <n-view-link-next>
-              <a href="/parent" n-attached-click="" n-attached-key-press="">
-                <slot-fb hidden=""></slot-fb>
-              </a>
+              <n-view-link active-class="none" path="/parent">
+                Next
+              </n-view-link>
             </n-view-link-next>
           </n-view>
         </n-view>
@@ -132,11 +139,18 @@ describe('n-view-link-next', () => {
 
   it('render parent view link from prompt', async () => {
     const page = await newSpecPage({
-      components: [ViewRouter, View, ViewPrompt, ViewLinkNext],
+      components: [
+        ViewRouter,
+        View,
+        ViewPrompt,
+        ViewLinkNext,
+        ViewLink,
+      ],
       html: `<n-views >
         <n-view path='/'>
           <n-view-prompt path='/child'>
             <n-view-link-next>
+              Next
             </n-view-link-next>
           </n-view-prompt>
         </n-view>
@@ -157,9 +171,11 @@ describe('n-view-link-next', () => {
               <slot name="content"></slot>
             </mock:shadow-root>
             <n-view-link-next>
-              <a href="/" n-attached-click="" n-attached-key-press="">
-                <slot-fb hidden=""></slot-fb>
-              </a>
+              <n-view-link active-class="none">
+                <a class="none" href="/" n-attached-click="" n-attached-key-press="">
+                  Next
+                </a>
+              </n-view-link>
             </n-view-link-next>
           </n-view-prompt>
         </n-view>
@@ -167,7 +183,7 @@ describe('n-view-link-next', () => {
     `)
 
     const link = page.body.querySelector(
-      'n-view-link-next>a',
+      'n-view-link-next a',
     ) as HTMLAnchorElement
     expect(link).not.toBeUndefined()
 
@@ -181,7 +197,7 @@ describe('n-view-link-next', () => {
 
   it('render next link from views', async () => {
     const page = await newSpecPage({
-      components: [ViewRouter, View, ViewLinkNext],
+      components: [ViewRouter, View, ViewLinkNext, ViewLink],
       html: `<n-views >
         <n-view path='/'>
         </n-view>
@@ -189,7 +205,9 @@ describe('n-view-link-next', () => {
         </n-view>
         <n-view path='/second'>
         </n-view>
-        <n-view-link-next></n-view-link-next>
+        <n-view-link-next>
+          Next
+        </n-view-link-next>
        </n-views>`,
     })
 
@@ -215,9 +233,11 @@ describe('n-view-link-next', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-link-next>
-          <a href="/first" n-attached-click="" n-attached-key-press="">
-            <slot-fb></slot-fb>
-          </a>
+          <n-view-link active-class="none">
+            <a href="/first" n-attached-click="" n-attached-key-press="">
+              Next
+            </a>
+          </n-view-link>
         </n-view-link-next>
       </n-views>
     `)
@@ -246,9 +266,11 @@ describe('n-view-link-next', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-link-next>
-          <a href="/second" n-attached-click="" n-attached-key-press="">
-            <slot-fb></slot-fb>
-          </a>
+          <n-view-link active-class="none">
+            <a href="/second" n-attached-click="" n-attached-key-press="">
+              Next
+            </a>
+          </n-view-link>
         </n-view-link-next>
       </n-views>
     `)

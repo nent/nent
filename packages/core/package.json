@@ -76,8 +76,7 @@
       "patterns": [
         "src"
       ],
-      "extensions": "ts,tsx",
-      "ignore": "*.spec.ts"
+      "extensions": "ts,tsx"
     },
     "copy:docs": {
       "patterns": [

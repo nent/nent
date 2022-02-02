@@ -1,11 +1,4 @@
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  State,
-} from '@stencil/core'
+import { Component, Element, h, Prop, State } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { Route } from '../n-view/services/route'
 import {
@@ -35,9 +28,7 @@ export class ViewLinkList {
   @Element() el!: HTMLNViewLinkListElement
   @State() route: Route | null = null
   @State() match: MatchResults | null = null
-  private routeStartSubscription?: () => void
   private matchSubscription?: () => void
-  private finalizeSubscription?: () => void
   @State() routes: Array<{
     route?: Route
     path?: string
@@ -75,36 +66,48 @@ export class ViewLinkList {
    */
   @Prop() excludeRoot: boolean = false
 
+  private get parentView() {
+    return this.el.closest('n-view')
+  }
+
+  private get parentViewPrompt() {
+    return this.el.closest('n-view-prompt')
+  }
+
   componentWillLoad() {
     if (routingState.router) {
-      const dispose = eventBus.on(ROUTE_EVENTS.Initialized, () => {
-        this.subscribe()
-        dispose()
-      })
+      this.setupRoute()
     } else {
-      const routerSubscription = onRoutingChange('router', router => {
-        if (router) {
-          this.subscribe()
-        } else {
-          this.matchSubscription?.call(this)
-        }
-        routerSubscription()
+      const dispose = onRoutingChange('router', () => {
+        this.setupRoute()
+        dispose()
       })
     }
   }
 
+  get inView() {
+    return this.parentView != null || this.parentViewPrompt != null
+  }
+
+  private setupRoute() {
+    if (this.parentViewPrompt) {
+      this.route = this.parentViewPrompt?.route || null
+    } else if (this.parentView) {
+      this.route = this.parentView?.route || null
+    }
+
+    if (this.route == null) this.subscribe()
+  }
+
   private subscribe() {
-    this.routeStartSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteChanged,
-      () => {
-        this.routes = []
-      },
-    )
     this.matchSubscription = eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
       ({ route, match }: { route: Route; match: MatchResults }) => {
         this.route = route
         this.match = match
+        if (this.inView) {
+          this.matchSubscription!.call(this)
+        }
       },
     )
 
@@ -113,11 +116,11 @@ export class ViewLinkList {
   }
 
   async componentWillRender() {
-    let routes = (await this.getRoutes()) || []
-    if (this.excludeRoot && routes?.length && routes[0]?.path == '/')
+    let routes = await this.getRoutes()
+    if (this.mode == 'parents' && routes?.length && this.excludeRoot)
       routes.shift()
 
-    this.routes = routes
+    this.routes = routes || []
   }
 
   private async getRoutes() {
@@ -143,7 +146,7 @@ export class ViewLinkList {
   }
 
   render() {
-    return this.routes ? (
+    return (
       <ul class={this.listClass}>
         {this.routes?.map((r: any) => [
           <li class={this.itemClass}>
@@ -158,14 +161,10 @@ export class ViewLinkList {
           </li>,
         ])}
       </ul>
-    ) : (
-      <Host></Host>
     )
   }
 
   disconnectedCallback() {
     this.matchSubscription?.call(this)
-    this.finalizeSubscription?.call(this)
-    this.routeStartSubscription?.call(this)
   }
 }

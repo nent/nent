@@ -193,12 +193,15 @@ export class Route implements IRoute {
   }
 
   public async resolvePageTitle() {
-    if (commonState.dataEnabled) {
-      if (this.pageTitle && hasToken(this.pageTitle)) {
-        return await resolveTokens(this.pageTitle)
-      }
+    let title = this.pageTitle
+    if (
+      commonState.dataEnabled &&
+      this.pageTitle &&
+      hasToken(this.pageTitle)
+    ) {
+      title = await resolveTokens(this.pageTitle)
     }
-    return this.pageTitle
+    return title || this.pageTitle
   }
 
   public async adjustPageTags() {

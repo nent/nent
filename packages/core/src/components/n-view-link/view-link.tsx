@@ -1,4 +1,11 @@
-import { Component, Element, h, Prop, State } from '@stencil/core'
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core'
 import { isValue, logIf } from '../../services/common'
 import { MatchResults } from '../n-views/services/interfaces'
 import {
@@ -86,12 +93,12 @@ export class ViewLink {
     })
   }
 
-  private handleClick(e: MouseEvent, path?: string) {
+  private handleClick(e: MouseEvent | KeyboardEvent, path?: string) {
     if (this.match?.isExact) return
     const router = routingState.router
     if (
       !router ||
-      router?.isModifiedEvent(e) ||
+      router?.isModifiedEvent(e as MouseEvent) ||
       !router?.history ||
       !path
     ) {
@@ -126,18 +133,23 @@ export class ViewLink {
     }
 
     return (
-      <a
-        href={path}
-        title={this.el.title}
-        {...anchorAttributes}
-        n-attached-click
-        class={classes}
-        onClick={(e: MouseEvent) => {
-          this.handleClick(e, path)
-        }}
-      >
-        <slot />
-      </a>
+      <Host>
+        <a
+          href={path}
+          {...anchorAttributes}
+          n-attached-click
+          n-attached-key-press
+          class={classes}
+          onClick={(e: MouseEvent) => {
+            this.handleClick(e, path)
+          }}
+          onKeyPress={(e: KeyboardEvent) => {
+            this.handleClick(e, path)
+          }}
+        >
+          <slot></slot>
+        </a>
+      </Host>
     )
   }
 

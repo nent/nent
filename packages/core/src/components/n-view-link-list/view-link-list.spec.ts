@@ -40,7 +40,7 @@ describe('n-view-link-list', () => {
         <ul>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a class="active" href="/" n-attached-click="">
+              <a class="active" href="/" n-attached-click=""  n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
@@ -80,7 +80,7 @@ describe('n-view-link-list', () => {
         <ul>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a class="active" href="/" n-attached-click="">
+              <a class="active" href="/" n-attached-click=""  n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
@@ -114,14 +114,14 @@ describe('n-view-link-list', () => {
         <ul>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a href="/home" n-attached-click="">
+              <a href="/home" n-attached-click="" n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a class="active" href="/home/page1" n-attached-click="">
+              <a class="active" href="/home/page1" n-attached-click=""  n-attached-key-press="">
                 Page 1
               </a>
             </n-view-link>
@@ -168,14 +168,14 @@ describe('n-view-link-list', () => {
         <ul>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a class="active" href="/home" n-attached-click="">
+              <a class="active" href="/home" n-attached-click="" n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a href="/page1" n-attached-click="">
+              <a href="/page1" n-attached-click=""  n-attached-key-press="">
                 Page 1
               </a>
             </n-view-link>
@@ -200,39 +200,37 @@ describe('n-view-link-list', () => {
     page.root?.remove()
   })
 
-  it('renders children routes', async () => {
+  it('renders children routes - active route', async () => {
     const page = await newSpecPage({
       components: [ViewRouter, View, ViewLinkList, ViewLink],
       html: `
-      <n-views>
+      <n-views start-path="/">
         <n-view-link-list mode="children"></n-view-link-list>
         <n-view path="/" page-title="Home">
-
           <n-view path="/page1" page-title="Page 1">
           </n-view>
           <n-view path="/page2" page-title="Page 2">
           </n-view>
         </n-view>
-
       </n-views>`,
     })
 
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views  start-path="/">
       <n-view-link-list mode="children">
         <ul>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a href="/page1" n-attached-click="">
+              <a href="/page1" n-attached-click="" n-attached-key-press="">
                 Page 1
               </a>
             </n-view-link>
           </li>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a href="/page2" n-attached-click="">
+              <a href="/page2" n-attached-click="" n-attached-key-press="">
                 Page 2
               </a>
             </n-view-link>
@@ -244,6 +242,7 @@ describe('n-view-link-list', () => {
           <slot></slot>
           <slot name="content"></slot>
         </mock:shadow-root>
+
         <n-view page-title="Page 1" path="/page1">
           <mock:shadow-root>
             <slot></slot>
@@ -263,6 +262,69 @@ describe('n-view-link-list', () => {
 
     page.root?.remove()
   })
+
+  // it('renders children routes - inside route', async () => {
+  //   const page = await newSpecPage({
+  //     components: [ViewRouter, View, ViewLinkList, ViewLink],
+  //     html: `
+  //     <n-views>
+  //       <n-view path="/" page-title="Home">
+  //         <n-view-link-list mode="children">
+  //         </n-view-link-list>
+  //         <n-view path="/page1" page-title="Page 1">
+  //         </n-view>
+  //         <n-view path="/page2" page-title="Page 2">
+  //         </n-view>
+  //       </n-view>
+  //     </n-views>`,
+  //   })
+  //
+  //   await page.waitForChanges()
+  //
+  //   expect(page.root).toEqualHtml(`
+  //   <n-views>
+  //     <n-view class="active exact" page-title="Home" path="/">
+  //       <mock:shadow-root>
+  //         <slot></slot>
+  //         <slot name="content"></slot>
+  //       </mock:shadow-root>
+  //       <n-view-link-list mode="children">
+  //         <ul>
+  //           <li>
+  //             <n-view-link active-class="active" link-class="">
+  //               <a href="/page1" n-attached-click="" n-attached-key-press="">
+  //                 Page 1
+  //               </a>
+  //             </n-view-link>
+  //           </li>
+  //           <li>
+  //             <n-view-link active-class="active" link-class="">
+  //               <a href="/page2" n-attached-click="" n-attached-key-press="">
+  //                 Page 2
+  //               </a>
+  //             </n-view-link>
+  //           </li>
+  //         </ul>
+  //       </n-view-link-list>
+  //       <n-view page-title="Page 1" path="/page1">
+  //         <mock:shadow-root>
+  //           <slot></slot>
+  //           <slot name="content"></slot>
+  //         </mock:shadow-root>
+  //       </n-view>
+  //       <n-view page-title="Page 2" path="/page2">
+  //         <mock:shadow-root>
+  //           <slot></slot>
+  //           <slot name="content"></slot>
+  //         </mock:shadow-root>
+  //       </n-view>
+  //     </n-view>
+  //
+  //   </n-views>
+  //   `)
+  //
+  //   page.root?.remove()
+  // })
 
   it('renders dynamic route', async () => {
     const page = await newSpecPage({
@@ -285,14 +347,14 @@ describe('n-view-link-list', () => {
         <ul>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a href="/home" n-attached-click="">
+              <a href="/home" n-attached-click="" n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a class="active" href="/home/dogs" n-attached-click="">
+              <a class="active" href="/home/dogs" n-attached-click="" n-attached-key-press="">
                 dogs
               </a>
             </n-view-link>
@@ -340,21 +402,21 @@ describe('n-view-link-list', () => {
         <ul>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a href="/" n-attached-click="">
+              <a href="/" n-attached-click="" n-attached-key-press="">
                 Root
               </a>
             </n-view-link>
           </li>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a href="/home" n-attached-click="">
+              <a href="/home" n-attached-click="" n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
             <n-view-link active-class="active" link-class="">
-              <a class="active" href="/home/page1" n-attached-click="">
+              <a class="active" href="/home/page1" n-attached-click="" n-attached-key-press="">
                 Page 1
               </a>
             </n-view-link>
