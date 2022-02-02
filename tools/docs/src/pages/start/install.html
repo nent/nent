@@ -2,7 +2,7 @@
   <h1>Installed</h1>
   <div n-hide-when="{{storage:installed}} != 'npm'">
     <h2>Local Reference</h2>
-    <n-view-link path="/start/cdn">
+    <n-view-link path="/start/install/cdn">
       <button class="btn btn-light btn-sm float-end">Switch to Remote</button>
     </n-view-link>
     <p>Add the local module reference to the document head.</p>
@@ -11,7 +11,7 @@
   </div>
   <div n-hide-when="{{storage:installed}} != 'cdn'">
     <h2>Remote Reference</h2>
-    <n-view-link path="/start/npm">
+    <n-view-link path="/start/install/npm">
       <button class="btn btn-light btn-sm float-end">Switch to Local</button>
     </n-view-link>
     <p>Add the CDN reference to the document head.</p>
@@ -22,7 +22,6 @@
     <n-view-link-back slot="start"
       link-class="btn btn-secondary"></n-view-link-back>
     <n-view-link-next slot="end"
-      text="Next"
       link-class="btn btn-secondary"></n-view-link-next>
   </footer>
 </div>

@@ -8,7 +8,7 @@
       }]
     },
     {
-      "source" : "**/*.@(js}|css)",
+      "source" : "**/*.@(js|html|md|css|json)",
       "headers" : [{
         "key" : "Cache-Control",
         "value" : "public, max-age=500"

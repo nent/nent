@@ -1,6 +1,6 @@
 {
   "name": "nent demo",
-  "short_name": "Nent",
+  "short_name": "nent",
   "start_url": "/",
   "display_override": [
     "window-control-overlay",
