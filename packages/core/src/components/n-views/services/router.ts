@@ -360,8 +360,8 @@ export class RouterService {
     } else {
       path = this.adjustRootViewUrls(routeElement.path)
     }
+
     routeElement.path = path
-    routeElement.transition = transition || this.transition
 
     if (this.routes.find(r => r.path == path)) {
       warn(`route: duplicate route detected for ${path}.`)
@@ -376,7 +376,7 @@ export class RouterService {
       pageTitle || parent?.pageTitle,
       pageDescription,
       pageKeywords,
-      transition,
+      transition || this.transition,
       scrollTopOffset,
       matchSetter,
       () => {

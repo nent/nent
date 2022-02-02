@@ -182,6 +182,7 @@ export class Route implements IRoute {
 
     this.toggleClass('active', match)
     this.toggleClass('exact', exact)
+    if (this.transition) this.toggleClass(this.transition!, exact)
   }
 
   public captureInnerLinksAndResolveHtml(root?: HTMLElement) {

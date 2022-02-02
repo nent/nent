@@ -285,9 +285,7 @@ export class View implements IView {
     )
 
     return (
-      <Host
-        class={this.match?.isExact ? this.route.transition || '' : ''}
-      >
+      <Host>
         <slot />
         <slot name="content" />
       </Host>

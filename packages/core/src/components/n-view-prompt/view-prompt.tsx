@@ -210,10 +210,7 @@ export class ViewPrompt implements IView {
     )
 
     return (
-      <Host
-        hidden={!this.match?.isExact}
-        class={this.match?.isExact ? this.route.transition || '' : ''}
-      >
+      <Host hidden={!this.match?.isExact}>
         <slot />
         <slot name="content" />
       </Host>
