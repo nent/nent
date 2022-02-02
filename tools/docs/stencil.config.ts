@@ -36,6 +36,8 @@ const config: Config = {
       dir: '../../docs',
       buildDir: 'lib',
       empty: false,
+      baseUrl: 'https://nent.dev',
+      prerenderConfig: './prerender.config.ts',
       serviceWorker: {
         globPatterns: [
           '**/*.{ico,wav,txt,js,css,json,html,md,png,svg}',

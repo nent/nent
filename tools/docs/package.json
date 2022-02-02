@@ -17,6 +17,7 @@
     "--- production ---": "---------------",
     "clean": "rm -fR ../../docs",
     "build": "stencil build --www",
+    "build:ssg": "stencil build --prerender",
     "build:dev": "stencil build --dev --www",
     "postbuild": "npm run copy",
     "publish": ""
