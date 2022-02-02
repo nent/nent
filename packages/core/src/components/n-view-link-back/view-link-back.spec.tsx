@@ -31,10 +31,11 @@ describe('n-view-link-back', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [ViewLinkBack],
-      html: `<n-view-link-back></n-view-link-back>`,
+      html: `<n-view-link-back>Test</n-view-link-back>`,
     })
     expect(page.root).toEqualHtml(`
       <n-view-link-back>
+        Test
       </n-view-link-back>
     `)
   })
@@ -67,7 +68,9 @@ describe('n-view-link-back', () => {
             <slot name="content"></slot>
           </mock:shadow-root>
           <n-view-link-back>
-            <a href="/first" n-attached-click="" n-attached-key-press=""></a>
+            <a href="/first" n-attached-click="" n-attached-key-press="">
+              <slot-fb></slot-fb>
+            </a>
           </n-view-link-back>
         </n-view>
       </n-views>
@@ -110,7 +113,9 @@ describe('n-view-link-back', () => {
               <slot name="content"></slot>
             </mock:shadow-root>
             <n-view-link-back>
-              <a href="/parent" n-attached-click="" n-attached-key-press=""></a>
+              <a href="/parent" n-attached-click="" n-attached-key-press="">
+                <slot-fb></slot-fb>
+              </a>
             </n-view-link-back>
           </n-view>
         </n-view>
@@ -146,7 +151,9 @@ describe('n-view-link-back', () => {
               <slot name="content"></slot>
             </mock:shadow-root>
             <n-view-link-back>
-              <a href="/" n-attached-click="" n-attached-key-press=""></a>
+              <a href="/" n-attached-click="" n-attached-key-press="">
+                <slot-fb></slot-fb>
+              </a>
             </n-view-link-back>
           </n-view-prompt>
         </n-view>
@@ -176,11 +183,12 @@ describe('n-view-link-back', () => {
         </n-view>
         <n-view path='/second'>
         </n-view>
-        <n-view-link-back></n-view-link-back>
+        <n-view-link-back>Back</n-view-link-back>
        </n-views>`,
     })
 
     await page.waitForChanges()
+
     expect(page.root).toEqualHtml(`
       <n-views>
         <n-view class="active exact" path="/">
@@ -202,6 +210,7 @@ describe('n-view-link-back', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-link-back>
+          Back
         </n-view-link-back>
       </n-views>
     `)
@@ -209,6 +218,7 @@ describe('n-view-link-back', () => {
     routingState.router?.goToRoute('/second')
 
     await page.waitForChanges()
+
     expect(page.root).toEqualHtml(`
       <n-views>
         <n-view  class="active" path="/">
@@ -230,7 +240,10 @@ describe('n-view-link-back', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-link-back>
-          <a href="/first" n-attached-click="" n-attached-key-press=""></a>
+          <a href="/first" n-attached-click="" n-attached-key-press="">
+            <slot-fb hidden=""></slot-fb>
+          </a>
+          Back
         </n-view-link-back>
       </n-views>
     `)

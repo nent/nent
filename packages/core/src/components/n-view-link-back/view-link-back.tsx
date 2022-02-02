@@ -1,4 +1,11 @@
-import { Component, Element, h, Prop, State } from '@stencil/core'
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { Route } from '../n-view/services/route'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
@@ -90,9 +97,13 @@ export class ViewLinkBack {
         n-attached-click
         n-attached-key-press
       >
-        {this.text || this.title || this.route.pageTitle}
+        <slot>{this.text || this.title || this.route.pageTitle}</slot>
       </a>
-    ) : null
+    ) : (
+      <Host>
+        <slot />
+      </Host>
+    )
   }
 
   disconnectedCallback() {

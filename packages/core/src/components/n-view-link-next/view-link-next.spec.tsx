@@ -31,12 +31,15 @@ describe('n-view-link-next', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [ViewLinkNext],
-      html: `<n-view-link-next></n-view-link-next>`,
+      html: `<n-view-link-next>Test</n-view-link-next>`,
     })
+
+    await page.waitForChanges()
+
     expect(page.root).toEqualHtml(`
-      <n-view-link-next>
-      </n-view-link-next>
-    `)
+    <n-view-link-next>
+      Test
+    </n-view-link-next>`)
   })
 
   it('render next view link', async () => {
@@ -44,11 +47,11 @@ describe('n-view-link-next', () => {
       components: [ViewRouter, View, ViewLinkNext],
       html: `<n-views >
         <n-view path='/first'>
-          <n-view-link-next></n-view-link-next>
+          <n-view-link-next>
+          </n-view-link-next>
         </n-view>
         <n-view path='/second'>
         </n-view>
-
        </n-views>`,
     })
 
@@ -61,7 +64,9 @@ describe('n-view-link-next', () => {
             <slot name="content"></slot>
           </mock:shadow-root>
           <n-view-link-next>
-            <a href="/second" n-attached-click="" n-attached-key-press=""></a>
+            <a href="/second" n-attached-click="" n-attached-key-press="">
+              <slot-fb hidden=""></slot-fb>
+            </a>
           </n-view-link-next>
         </n-view>
         <n-view path="/second">
@@ -92,7 +97,8 @@ describe('n-view-link-next', () => {
       html: `<n-views >
         <n-view path='/parent'>
           <n-view path='/child'>
-          <n-view-link-next></n-view-link-next>
+            <n-view-link-next>
+            </n-view-link-next>
           </n-view>
         </n-view>
        </n-views>`,
@@ -112,7 +118,9 @@ describe('n-view-link-next', () => {
               <slot name="content"></slot>
             </mock:shadow-root>
             <n-view-link-next>
-              <a href="/parent" n-attached-click="" n-attached-key-press=""></a>
+              <a href="/parent" n-attached-click="" n-attached-key-press="">
+                <slot-fb hidden=""></slot-fb>
+              </a>
             </n-view-link-next>
           </n-view>
         </n-view>
@@ -128,7 +136,8 @@ describe('n-view-link-next', () => {
       html: `<n-views >
         <n-view path='/'>
           <n-view-prompt path='/child'>
-            <n-view-link-next></n-view-link-next>
+            <n-view-link-next>
+            </n-view-link-next>
           </n-view-prompt>
         </n-view>
        </n-views>`,
@@ -148,7 +157,9 @@ describe('n-view-link-next', () => {
               <slot name="content"></slot>
             </mock:shadow-root>
             <n-view-link-next>
-              <a href="/" n-attached-click="" n-attached-key-press=""></a>
+              <a href="/" n-attached-click="" n-attached-key-press="">
+                <slot-fb hidden=""></slot-fb>
+              </a>
             </n-view-link-next>
           </n-view-prompt>
         </n-view>
@@ -204,7 +215,9 @@ describe('n-view-link-next', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-link-next>
-          <a href="/first" n-attached-click="" n-attached-key-press=""></a>
+          <a href="/first" n-attached-click="" n-attached-key-press="">
+            <slot-fb></slot-fb>
+          </a>
         </n-view-link-next>
       </n-views>
     `)
@@ -233,7 +246,9 @@ describe('n-view-link-next', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-link-next>
-          <a href="/second" n-attached-click="" n-attached-key-press=""></a>
+          <a href="/second" n-attached-click="" n-attached-key-press="">
+            <slot-fb></slot-fb>
+          </a>
         </n-view-link-next>
       </n-views>
     `)
