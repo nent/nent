@@ -5,6 +5,11 @@ name: main
 
 on:
   workflow_dispatch:
+    inputs:
+      increment:
+        default: 'patch'
+        description: publish version rev-type
+        required: true
   push:
     branches: [main]
 
@@ -71,3 +76,27 @@ jobs:
       - name: build
         run: yarn build
 
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - name: checkout
+        run: |
+          git config --global user.name '@logrythmik'
+          git config --global user.email 'logrythmik@users.noreply.github.com'
+      - uses: actions/setup-node@v2.5.1
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
+      - name: dependencies
+        run: yarn install --frozen-lockfile
+      - name: publish
+        run: lerna publish ${{ github.event.inputs.increment || 'patch' }} --yes --no-verify-access
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          HUSKY_BYPASS: true
