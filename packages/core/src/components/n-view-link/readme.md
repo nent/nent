@@ -30,14 +30,15 @@ To create a link to a route, simply use the route in the `href` attribute.
 
 ## Properties
 
-| Property            | Attribute      | Description                                                                             | Type                  | Default     |
-| ------------------- | -------------- | --------------------------------------------------------------------------------------- | --------------------- | ----------- |
-| `activeClass`       | `active-class` | The class to add when the matching route is active in the browser                       | `string`              | `'active'`  |
-| `debug`             | `debug`        | Provide log messages for path matching.                                                 | `boolean`             | `false`     |
-| `exact`             | `exact`        | Only active on the exact href match, and not on child routes                            | `boolean`             | `false`     |
-| `linkClass`         | `link-class`   | The class to add to the anchor tag.                                                     | `string`, `undefined` | `undefined` |
-| `path` _(required)_ | `path`         | The destination route for this link                                                     | `string`              | `undefined` |
-| `strict`            | `strict`       | Only active on the exact href match using every aspect of the URL including parameters. | `boolean`             | `true`      |
+| Property            | Attribute      | Description                                                                                          | Type                  | Default     |
+| ------------------- | -------------- | ---------------------------------------------------------------------------------------------------- | --------------------- | ----------- |
+| `activeClass`       | `active-class` | The class to add when the matching route is active in the browser                                    | `string`              | `'active'`  |
+| `debug`             | `debug`        | Provide log messages for path matching.                                                              | `boolean`             | `false`     |
+| `exact`             | `exact`        | Only active on the exact href match, and not on child routes                                         | `boolean`             | `false`     |
+| `linkClass`         | `link-class`   | The class to add to the anchor tag.                                                                  | `string`, `undefined` | `undefined` |
+| `path` _(required)_ | `path`         | The destination route for this link                                                                  | `string`              | `undefined` |
+| `strict`            | `strict`       | Only active on the exact href match using every aspect of the URL including parameters.              | `boolean`             | `true`      |
+| `validate`          | `validate`     | Validates any current-route inputs before navigating. Disables navigation if any inputs are invalid. | `boolean`             | `false`     |
 
 
 ----------------------------------------------
