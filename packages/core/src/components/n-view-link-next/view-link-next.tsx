@@ -64,7 +64,7 @@ export class ViewLinkNext {
 
   private async setPage(route: Route) {
     this.route = await route.getNextRoute()
-    this.title = await route.resolvePageTitle()
+    this.title = await this.route!.resolvePageTitle()
   }
 
   private async subscribe() {
