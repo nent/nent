@@ -11,6 +11,7 @@ import {
 import { contentStateDispose } from '../../services/content'
 import { addDataProvider } from '../../services/data/factory'
 import { InMemoryProvider } from '../../services/data/providers/memory'
+import { clearVisits } from '../n-view/services/visits'
 import { View } from '../n-view/view'
 import {
   routingState,
@@ -37,6 +38,7 @@ describe('n-view-prompt', () => {
     routingStateDispose()
     contentStateDispose()
     commonStateDispose()
+    await clearVisits()
   })
 
   it('renders inactive', async () => {

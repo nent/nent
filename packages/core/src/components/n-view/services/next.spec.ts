@@ -27,9 +27,9 @@ describe('next-resolver: find next', () => {
   afterEach(async () => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
-    await clearVisits()
     commonStateDispose()
     dataStateDispose()
+    await clearVisits()
   })
 
   const setupBasicPath = () => {

@@ -1,3 +1,4 @@
+import { Mutex } from '../../../services/common/mutex'
 import { getDataProvider } from '../../../services/data/factory'
 import { IServiceProvider } from '../../../services/data/interfaces'
 import { InMemoryProvider } from '../../../services/data/providers/memory'
@@ -16,37 +17,44 @@ function stringifyVisits(visits: string[]) {
   return JSON.stringify(visits || '[]')
 }
 
-export async function getSessionVisits() {
-  var provider = (await getDataProvider('session')) || sessionFallback
+const sessionMutex = new Mutex()
 
-  const visits = await provider.get(visitKey)
-  return visits ? parseVisits(visits) : []
+export async function getSessionVisits() {
+  return await sessionMutex.dispatch(async () => {
+    var provider =
+      (await getDataProvider('session')) || sessionFallback
+    const visits = await provider.get(visitKey)
+    return visits ? parseVisits(visits) : []
+  })
 }
 
 export async function setSessionVisits(visits: string[]) {
-  const provider = ((await getDataProvider('session')) ||
-    sessionFallback) as IServiceProvider
-  if (provider) {
+  return await sessionMutex.dispatch(async () => {
+    const provider = ((await getDataProvider('session')) ||
+      sessionFallback) as IServiceProvider
     await provider.set(visitKey, stringifyVisits(visits))
-  }
+  })
 }
 
-export async function getStoredVisits() {
-  var provider =
-    (await getDataProvider(navigationState.storageProvider)) ||
-    storageFallback
+const storageMutex = new Mutex()
 
-  const visits = await provider.get(visitKey)
-  return visits ? parseVisits(visits) : []
+export async function getStoredVisits() {
+  return await storageMutex.dispatch(async () => {
+    var provider =
+      (await getDataProvider(navigationState.storageProvider)) ||
+      storageFallback
+    const visits = await provider.get(visitKey)
+    return visits ? parseVisits(visits) : []
+  })
 }
 
 export async function setStoredVisits(visits: string[]) {
-  var provider = ((await getDataProvider(
-    navigationState.storageProvider,
-  )) || storageFallback) as IServiceProvider
-  if (provider) {
+  return await storageMutex.dispatch(async () => {
+    var provider = ((await getDataProvider(
+      navigationState.storageProvider,
+    )) || storageFallback) as IServiceProvider
     await provider.set(visitKey, stringifyVisits(visits))
-  }
+  })
 }
 
 export async function hasVisited(url: string) {

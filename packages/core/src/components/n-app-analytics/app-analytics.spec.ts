@@ -5,6 +5,7 @@ import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonStateDispose } from '../../services/common'
 import { ViewPrompt } from '../n-view-prompt/view-prompt'
+import { clearVisits } from '../n-view/services/visits'
 import { View } from '../n-view/view'
 import {
   routingState,
@@ -23,6 +24,7 @@ describe('n-app-analytics', () => {
     eventBus.removeAllListeners()
     actionBus.removeAllListeners()
     routingStateDispose()
+    await clearVisits()
   })
   it('renders and subscribes to page views', async () => {
     const page = await newSpecPage({

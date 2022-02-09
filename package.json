@@ -101,6 +101,7 @@
     "prettier": "2.5.1",
     "puppeteer": "10.4.0",
     "rimraf": "3.0.2",
+    "rollup": "^2.66.1",
     "rollup-plugin-analyzer": "4.0.0",
     "rollup-plugin-visualizer": "5.5.4",
     "serve": "13.0.2",
@@ -109,7 +110,8 @@
     "yargs": "17.3.1"
   },
   "jest": {
-    "preset": "@stencil/core/testing"
+    "preset": "@stencil/core/testing",
+    "testTimeout": 30000
   },
   "workspaces": [
     "packages/core",
@@ -118,6 +120,6 @@
     "tools/vscode"
   ],
   "dependencies": {
-    "rollup": "^2.66.1"
+
   }
 }

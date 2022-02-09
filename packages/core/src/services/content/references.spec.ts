@@ -9,10 +9,10 @@ import {
 describe('references:', () => {
   it('all methods ', async () => {
     const url = 'https://some-url.com'
-    markReference(url)
+    await markReference(url)
 
-    expect(hasReference(url)).toBe(true)
+    expect(await hasReference(url)).toBe(true)
 
-    clearReferences()
+    await clearReferences()
   })
 })

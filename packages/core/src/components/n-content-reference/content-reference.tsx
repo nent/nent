@@ -99,79 +99,74 @@ export class ContentReference {
   }
 
   private async getStylePromise(element: HTMLHeadElement) {
-    if (this.styleSrc) {
-      const url = this.styleSrc
-      return new Promise<void>(resolve => {
-        if (hasReference(this.styleSrc!)) {
-          this.registered(ReferenceType.styles, true)
-          resolve()
-          return
-        }
-        this.linkElement = this.el.ownerDocument.createElement('link')
-        this.linkElement.href = url
-        this.linkElement.rel = 'stylesheet'
-        let loaded = false
+    const url = this.styleSrc
+    return new Promise<boolean>(async resolve => {
+      if (url == undefined) {
+        return resolve(false)
+      }
+      const reffed = await hasReference(url)
+      if (reffed) {
+        return resolve(true)
+      }
+      this.linkElement = this.el.ownerDocument.createElement('link')
+      this.linkElement.href = url
+      this.linkElement.rel = 'stylesheet'
+      let loaded = false
 
-        this.linkElement.addEventListener('load', () => {
-          loaded = true
-          markReference(url)
-          this.registered(ReferenceType.styles, loaded)
-          resolve()
-        })
-        element.append(this.linkElement)
-        setTimeout(() => {
-          if (!loaded) {
-            this.registered(ReferenceType.styles, false)
-            warn(
-              `Stylesheet '${url}' did not load before the ${this.timeout} timeout.`,
-            )
-            resolve()
-          }
-        }, this.timeout)
+      this.linkElement.addEventListener('load', async () => {
+        loaded = true
+        await markReference(url)
+        return resolve(loaded)
       })
-    }
+      element.append(this.linkElement)
+      setTimeout(() => {
+        if (!loaded) {
+          warn(
+            `Stylesheet '${url}' did not load before the ${this.timeout} timeout.`,
+          )
+          resolve(false)
+        }
+      }, this.timeout)
+    })
   }
 
   private getScriptPromise(element: HTMLHeadElement) {
-    // Make the style reference
-    if (this.scriptSrc) {
-      const url = this.scriptSrc
-      return new Promise<void>(resolve => {
-        if (hasReference(this.scriptSrc!)) {
-          this.registered(ReferenceType.script, true)
-          resolve()
-          return
-        }
-        this.scriptElement =
-          this.el.ownerDocument.createElement('script')
-        this.scriptElement.src = url
-        let loaded = false
+    const url = this.scriptSrc
+    return new Promise<boolean>(async resolve => {
+      if (url == undefined) {
+        return resolve(false)
+      }
+      const reffed = await hasReference(url)
+      if (reffed) {
+        return resolve(true)
+      }
+      this.scriptElement =
+        this.el.ownerDocument.createElement('script')
+      this.scriptElement.src = url
+      let loaded = false
 
-        if (this.module) {
-          this.scriptElement.type = 'module'
-        } else if (this.noModule) {
-          this.scriptElement.setAttribute('nomodule', '')
-        }
+      if (this.module) {
+        this.scriptElement.type = 'module'
+      } else if (this.noModule) {
+        this.scriptElement.setAttribute('nomodule', '')
+      }
 
-        this.scriptElement.addEventListener('load', () => {
-          loaded = true
-          markReference(url)
-          this.registered(ReferenceType.script, loaded)
-          resolve()
-        })
-
-        element.append(this.scriptElement)
-        setTimeout(() => {
-          if (!loaded) {
-            this.registered(ReferenceType.script, false)
-            warn(
-              `Script '${url}' did not load before the ${this.timeout} timeout.`,
-            )
-            resolve()
-          }
-        }, this.timeout)
+      this.scriptElement.addEventListener('load', async () => {
+        loaded = true
+        await markReference(url)
+        return resolve(loaded)
       })
-    }
+
+      element.append(this.scriptElement)
+      setTimeout(() => {
+        if (!loaded) {
+          warn(
+            `Script '${url}' did not load before the ${this.timeout} timeout.`,
+          )
+          resolve(false)
+        }
+      }, this.timeout)
+    })
   }
 
   async componentWillRender() {
@@ -181,9 +176,13 @@ export class ContentReference {
 
     const element = this.inline ? this.el : this.el.ownerDocument.head
 
-    await this.getStylePromise(element)
+    await this.getStylePromise(element).then(loaded =>
+      this.registered(ReferenceType.styles, loaded),
+    )
 
-    await this.getScriptPromise(element)
+    await this.getScriptPromise(element).then(loaded =>
+      this.registered(ReferenceType.script, loaded),
+    )
   }
 
   disconnectedCallback() {}

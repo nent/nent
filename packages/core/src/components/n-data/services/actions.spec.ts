@@ -13,6 +13,7 @@ import {
   IDataProvider,
 } from '../../../services/data/interfaces'
 import { InMemoryProvider } from '../../../services/data/providers/memory'
+import { clearVisits } from '../../n-view/services/visits'
 import { DataListener } from './actions'
 import { DATA_COMMANDS } from './interfaces'
 
@@ -33,6 +34,7 @@ describe('data-provider-listener', () => {
   let mockDataProvider: IDataProvider
   let actionBus: EventEmitter
   let eventBus: EventEmitter
+
   beforeEach(() => {
     mockDataProvider = new MockDataProvider()
     clearDataProviders()
@@ -42,6 +44,10 @@ describe('data-provider-listener', () => {
       sessionStorage: mockDataProvider,
       localStorage: mockDataProvider,
     }
+  })
+
+  afterEach(async () => {
+    await clearVisits()
   })
 
   it('detects session', async () => {

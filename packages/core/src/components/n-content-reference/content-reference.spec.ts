@@ -37,7 +37,7 @@ describe('n-content-reference', () => {
       </n-content-reference>
     `)
 
-    expect(hasReference('https://foo.js')).toBeTruthy()
+    expect(await hasReference('https://foo.js')).toBeTruthy()
 
     subject.remove()
   })
@@ -59,7 +59,7 @@ describe('n-content-reference', () => {
       </n-content-reference>
     `)
 
-    expect(hasReference('https://foo.css')).toBeTruthy()
+    expect(await hasReference('https://foo.css')).toBeTruthy()
   })
 
   it('renders module scripts', async () => {
@@ -80,7 +80,7 @@ describe('n-content-reference', () => {
       </n-content-reference>
     `)
 
-    expect(hasReference('https://foo.jsm')).toBeTruthy()
+    expect(await hasReference('https://foo.jsm')).toBeTruthy()
   })
 
   it('renders no-module scripts', async () => {
@@ -106,7 +106,7 @@ describe('n-content-reference', () => {
       </n-content-reference>
     `)
 
-    expect(hasReference('https://foo.jsm')).toBeTruthy()
+    expect(await hasReference('https://foo.jsm')).toBeTruthy()
   })
 
   it('prevents duplicates styles', async () => {

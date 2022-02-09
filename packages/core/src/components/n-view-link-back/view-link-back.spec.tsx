@@ -9,6 +9,7 @@ import {
 } from '../../services/common'
 import { ViewLink } from '../n-view-link/view-link'
 import { ViewPrompt } from '../n-view-prompt/view-prompt'
+import { clearVisits } from '../n-view/services/visits'
 import { View } from '../n-view/view'
 import {
   routingState,
@@ -21,12 +22,13 @@ describe('n-view-link-back', () => {
   beforeEach(() => {
     commonState.dataEnabled = true
   })
-  afterEach(() => {
+  afterEach(async () => {
     commonStateDispose()
     routingStateDispose()
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
     jest.resetAllMocks()
+    await clearVisits()
   })
 
   it('renders', async () => {

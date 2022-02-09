@@ -1,15 +1,25 @@
+import { Mutex } from '../common/mutex'
 import { contentState } from './state'
 
-export function hasReference(url: string) {
-  return contentState.references.includes(url)
+const collectionMutex = new Mutex()
+
+export async function hasReference(url: string) {
+  const unlock = await collectionMutex.lock()
+  const result = contentState.references.includes(url)
+  unlock()
+  return result
 }
 
-export function markReference(url: string) {
-  contentState.references = [
-    ...new Set([...contentState.references, url]),
-  ]
+export async function markReference(url: string) {
+  return await collectionMutex.dispatch(async () => {
+    contentState.references = [
+      ...new Set([...contentState.references, url]),
+    ]
+  })
 }
 
-export function clearReferences() {
+export async function clearReferences() {
+  const unlock = await collectionMutex.lock()
   contentState.references = []
+  unlock()
 }
