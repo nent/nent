@@ -19,17 +19,15 @@ import {
 } from './visits'
 
 describe('visits', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     dataState.providerTimeout = 0
   })
 
   afterEach(() => {
     commonStateDispose()
     navigationStateDispose()
-  })
-
-  afterAll(() => {
     dataStateDispose()
+    sessionStorage?.clear()
   })
 
   it('markVisit', async () => {

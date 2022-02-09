@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { IEventEmitter, IEvents, Listener } from './interfaces'
 
 export class EventEmitter implements IEventEmitter {

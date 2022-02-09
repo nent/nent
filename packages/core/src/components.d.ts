@@ -760,6 +760,10 @@ export namespace Components {
           * Only active on the exact href match using every aspect of the URL including parameters.
          */
         "strict": boolean;
+        /**
+          * Validates any current-route inputs before navigating. Disables navigation if any inputs are invalid.
+         */
+        "validate": boolean;
     }
     interface NViewLinkBack {
         /**
@@ -1879,6 +1883,10 @@ declare namespace LocalJSX {
           * Only active on the exact href match using every aspect of the URL including parameters.
          */
         "strict"?: boolean;
+        /**
+          * Validates any current-route inputs before navigating. Disables navigation if any inputs are invalid.
+         */
+        "validate"?: boolean;
     }
     interface NViewLinkBack {
         /**

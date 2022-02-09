@@ -3,7 +3,7 @@ jest.mock('../../services/common/logging')
 import { sendActions } from './elements'
 import { IActionElement } from './interfaces'
 describe('elements', () => {
-  test('sendActions: happy path', async () => {
+  it('sendActions: happy path', async () => {
     let sendActionWasCalled = false
     const action = {
       command: '',

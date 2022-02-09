@@ -21,7 +21,7 @@ describe('n-action-activator', () => {
     requestAnimationFrameMock = new RequestAnimationFrameMockSession()
   })
 
-  afterAll(() => {
+  afterEach(() => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
   })
@@ -195,6 +195,40 @@ describe('n-action-activator', () => {
     expect(eventAction!.data.hidden).toBe('fed-ex')
     expect(eventAction!.data.agree).toBe(true)
     expect(eventAction!.data[3]).toBe('index')
+
+    page.root?.remove()
+  })
+
+  it('fails with invalid child input values', async () => {
+    const page = await newSpecPage({
+      components: [ActionActivator, Action],
+      html: `<n-action-activator activate="on-element-event" target-element="button" >
+               <n-action topic="test" command="pass"></n-action>
+               <input type="text" name="text" required />
+               <button type="button">Click Me</button>
+             </n-action-activator>`,
+    })
+
+    await page.waitForChanges()
+
+    const activator = page.body.querySelector('n-action-activator')
+    expect(activator).toBeDefined()
+
+    const button = page.body.querySelector('button')
+
+    const input = page.body.querySelector('input')
+    input!.checkValidity = () => false
+
+    let eventAction: EventAction<any> | null = null
+    actionBus.on('test', e => {
+      eventAction = e
+    })
+
+    button?.click()
+
+    await page.waitForChanges()
+
+    expect(eventAction).toBeNull()
 
     page.root?.remove()
   })

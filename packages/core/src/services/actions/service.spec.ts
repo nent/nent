@@ -14,7 +14,7 @@ describe('ActionService', () => {
     actionBus.removeAllListeners()
   })
 
-  test('getAction', async () => {
+  it('getAction', async () => {
     const page = await newSpecPage({
       components: [Action],
       html: `<n-action
@@ -38,7 +38,7 @@ describe('ActionService', () => {
     page.root?.remove()
   })
 
-  test('getAction:token-value', async () => {
+  it('getAction:token-value', async () => {
     const page = await newSpecPage({
       components: [App, Data, Elements, Action],
       html: `
@@ -70,7 +70,7 @@ describe('ActionService', () => {
     page.root?.remove()
   })
 
-  test('sendAction', async () => {
+  it('sendAction', async () => {
     const actions: EventAction<any>[] = []
     actionBus.on('*', (event: string, action: EventAction<any>) => {
       action.topic = event

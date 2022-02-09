@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { forceUpdate } from '@stencil/core'
 import { IEventEmitter } from './interfaces'
 import {

@@ -1,5 +1,5 @@
 import { debounce, findAsyncSequential, sleep } from './promises'
-// @ponicode
+
 describe('promise_utils.sleep', () => {
   beforeAll(() => {
     jest.useFakeTimers()
@@ -8,19 +8,19 @@ describe('promise_utils.sleep', () => {
   afterAll(() => {
     jest.useRealTimers()
   })
-  test('0', () => {
+  it('0', () => {
     sleep(100)
   })
 
-  test('1', () => {
+  it('1', () => {
     sleep(1)
   })
 
-  test('2', () => {
+  it('2', () => {
     sleep(0)
   })
 
-  test('3', () => {
+  it('3', () => {
     sleep(NaN)
   })
 })
@@ -56,7 +56,7 @@ describe('misc_utils.debounce', () => {
     jest.useRealTimers()
   })
 
-  test('executes correctly', async () => {
+  it('executes correctly', async () => {
     let result = false
     const func = () => {
       result = true
@@ -68,7 +68,7 @@ describe('misc_utils.debounce', () => {
     expect(result)
   })
 
-  test('executes only once given many sequential executions', () => {
+  it('executes only once given many sequential executions', () => {
     const results: boolean[] = []
     const subject = debounce(
       1000,

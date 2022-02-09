@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export type Listener = (...args: any[]) => void
 
 export type IEvents = Record<string, Listener[]>

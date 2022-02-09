@@ -38,7 +38,7 @@ describe('interface-actions:', () => {
     eventBus = new EventEmitter()
   })
 
-  test('register-provider', async () => {
+  it('register-provider', async () => {
     const page = await newSpecPage({
       components: [],
       html: `<div></div>`,
@@ -96,7 +96,7 @@ describe('interface-actions:', () => {
     subject.destroy()
   })
 
-  test('set-theme: action', async () => {
+  it('set-theme: action', async () => {
     const page = await newSpecPage({
       components: [],
       html: `<div></div>`,
@@ -117,7 +117,7 @@ describe('interface-actions:', () => {
     subject.destroy()
   })
 
-  test('log, warn and dir', async () => {
+  it('log, warn and dir', async () => {
     const page = await newSpecPage({
       components: [],
       html: `<div></div>`,
