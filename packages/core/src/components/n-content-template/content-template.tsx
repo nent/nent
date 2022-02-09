@@ -23,7 +23,6 @@ import { routingState } from '../n-views/services/state'
  */
 @Component({
   tag: 'n-content-template',
-  styleUrl: 'content-template.css',
   shadow: false,
 })
 export class ContentTemplate {
