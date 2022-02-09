@@ -108,17 +108,17 @@ export class ContentReference {
       if (reffed) {
         return resolve(true)
       }
+
       this.linkElement = this.el.ownerDocument.createElement('link')
       this.linkElement.href = url
       this.linkElement.rel = 'stylesheet'
       let loaded = false
-
       this.linkElement.addEventListener('load', async () => {
         loaded = true
-        await markReference(url)
         return resolve(loaded)
       })
       element.append(this.linkElement)
+      await markReference(url)
       setTimeout(() => {
         if (!loaded) {
           warn(
@@ -158,6 +158,7 @@ export class ContentReference {
       })
 
       element.append(this.scriptElement)
+      await markReference(url)
       setTimeout(() => {
         if (!loaded) {
           warn(

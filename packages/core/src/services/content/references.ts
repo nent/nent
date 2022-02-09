@@ -4,10 +4,9 @@ import { contentState } from './state'
 const collectionMutex = new Mutex()
 
 export async function hasReference(url: string) {
-  const unlock = await collectionMutex.lock()
-  const result = contentState.references.includes(url)
-  unlock()
-  return result
+  return await collectionMutex.dispatch(async () => {
+    return contentState.references.includes(url)
+  })
 }
 
 export async function markReference(url: string) {
@@ -19,7 +18,7 @@ export async function markReference(url: string) {
 }
 
 export async function clearReferences() {
-  const unlock = await collectionMutex.lock()
-  contentState.references = []
-  unlock()
+  return await collectionMutex.dispatch(async () => {
+    contentState.references = []
+  })
 }

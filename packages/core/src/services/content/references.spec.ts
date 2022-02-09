@@ -15,4 +15,13 @@ describe('references:', () => {
 
     await clearReferences()
   })
+
+  it('no reference ', async () => {
+    const url = 'https://some-url.com'
+    await markReference(url)
+
+    expect(await hasReference('https://some-other.com')).toBe(false)
+
+    await clearReferences()
+  })
 })

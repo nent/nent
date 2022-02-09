@@ -91,7 +91,6 @@ describe('n-content-reference', () => {
       `,
     })
 
-    let event
     page.body.addEventListener('onReferenced', ev => {
       event = ev
     })
@@ -113,20 +112,27 @@ describe('n-content-reference', () => {
     const page = await newSpecPage({
       components: [ContentReference],
       html: `
-      <n-content-reference style-src="https://foo.css" inline  timeout="300"></n-content-reference>
-      <n-content-reference style-src="https://foo.css" inline  timeout="300"></n-content-reference>`,
+      <n-content-reference style-src="https://foo.css" inline module timeout="300"></n-content-reference>
+      <n-content-reference style-src="https://foo.css" inline module timeout="300"></n-content-reference>
+      `,
     })
     await page.waitForChanges()
 
-    const subject = page.body.querySelector('n-content-reference')!
-    await subject.forceLoad()
+    const subjects = page.body.querySelectorAll('n-content-reference')
 
-    expect(page.root).toEqualHtml(`
-      <n-content-reference style-src="https://foo.css" inline=""  timeout="300">
+    subjects.forEach(async s => await s.forceLoad())
+
+    expect(subjects[0]).toEqualHtml(`
+      <n-content-reference style-src="https://foo.css" inline="" module=""  timeout="300">
         <link href="https://foo.css" rel="stylesheet">
       </n-content-reference>
     `)
 
-    expect(hasReference('https://foo.css')).toBeTruthy()
+    expect(subjects[1]).toEqualHtml(`
+      <n-content-reference style-src="https://foo.css" inline="" module=""  timeout="300">\
+      </n-content-reference>
+    `)
+
+    expect(await hasReference('https://foo.css')).toBeTruthy()
   })
 })
