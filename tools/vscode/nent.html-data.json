@@ -1150,7 +1150,7 @@
         },
         {
           "name": "duration",
-          "description": "Duration before the timer stops and raises\nthe ended event. 0 = never"
+          "description": "Duration before the timer stops and raises\nthe ended event (seconds). 0 = never"
         },
         {
           "name": "interval",
@@ -1361,6 +1361,10 @@
         {
           "name": "strict",
           "description": "Only active on the exact href match\nusing every aspect of the URL including\nparameters."
+        },
+        {
+          "name": "validate",
+          "description": "Validates any current-route inputs before navigating. Disables\nnavigation if any inputs are invalid."
         }
       ],
       "references": [
@@ -1378,7 +1382,7 @@
       "name": "n-view-link-back",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "This component automatically links to the previous route, as defined in the HTML. It first goes to the previous sibling route. If none, then it links to the parent route."
       },
       "attributes": [
         {
