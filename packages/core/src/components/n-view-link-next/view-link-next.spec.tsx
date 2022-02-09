@@ -39,7 +39,7 @@ describe('n-view-link-next', () => {
 
     expect(page.root).toEqualHtml(`
       <n-view-link-next>
-        <n-view-link active-class="none" path="">
+        <n-view-link active-class="none" path="" validate="" >
           Test
         </n-view-link>
       </n-view-link-next>`)
@@ -68,7 +68,7 @@ describe('n-view-link-next', () => {
             <slot name="content"></slot>
           </mock:shadow-root>
           <n-view-link-next>
-            <n-view-link active-class="none">
+            <n-view-link active-class="none" validate="">
               <a href="/second" n-attached-click="" n-attached-key-press="">
                 Next
               </a>
@@ -94,6 +94,7 @@ describe('n-view-link-next', () => {
     await page.waitForChanges()
 
     expect(routingState.router!.location.pathname).toBe('/second')
+
     page.root!.remove()
   })
 
@@ -125,7 +126,7 @@ describe('n-view-link-next', () => {
               <slot name="content"></slot>
             </mock:shadow-root>
             <n-view-link-next>
-              <n-view-link active-class="none" path="/parent">
+              <n-view-link active-class="none" path="/parent" validate="">
                 Next
               </n-view-link>
             </n-view-link-next>
@@ -171,7 +172,7 @@ describe('n-view-link-next', () => {
               <slot name="content"></slot>
             </mock:shadow-root>
             <n-view-link-next>
-              <n-view-link active-class="none">
+              <n-view-link active-class="none" validate="">
                 <a class="none" href="/" n-attached-click="" n-attached-key-press="">
                   Next
                 </a>
@@ -233,7 +234,7 @@ describe('n-view-link-next', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-link-next>
-          <n-view-link active-class="none">
+          <n-view-link active-class="none" validate="">
             <a href="/first" n-attached-click="" n-attached-key-press="">
               Next
             </a>
@@ -266,7 +267,7 @@ describe('n-view-link-next', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-link-next>
-          <n-view-link active-class="none">
+          <n-view-link active-class="none" validate="">
             <a href="/second" n-attached-click="" n-attached-key-press="">
               Next
             </a>
@@ -274,6 +275,68 @@ describe('n-view-link-next', () => {
         </n-view-link-next>
       </n-views>
     `)
+
+    page.root?.remove()
+  })
+
+  it('validates inputs before navigation', async () => {
+    const page = await newSpecPage({
+      components: [ViewRouter, View, ViewLinkNext, ViewLink],
+      html: `<n-views >
+        <n-view path='/'>
+          <input type="email" required/>
+        </n-view>
+        <n-view path='/first'>
+        </n-view>
+        <n-view-link-next>
+          Next
+        </n-view-link-next>
+       </n-views>`,
+    })
+
+    await page.waitForChanges()
+    expect(page.root).toEqualHtml(`
+      <n-views>
+        <n-view class="active exact" path="/">
+          <mock:shadow-root>
+            <slot></slot>
+            <slot name="content"></slot>
+          </mock:shadow-root>
+          <input type="email" required/>
+        </n-view>
+        <n-view path="/first">
+          <mock:shadow-root>
+            <slot></slot>
+            <slot name="content"></slot>
+          </mock:shadow-root>
+        </n-view>
+        <n-view-link-next>
+          <n-view-link active-class="none" validate="">
+            <a href="/first" n-attached-click="" n-attached-key-press="">
+              Next
+            </a>
+          </n-view-link>
+        </n-view-link-next>
+      </n-views>
+    `)
+
+    const link = page.body.querySelector(
+      'n-view-link-next a',
+    ) as HTMLAnchorElement
+    expect(link).not.toBeUndefined()
+
+    const input = page.body.querySelector(
+      'n-view:first input',
+    ) as HTMLInputElement
+    expect(input).not.toBeUndefined()
+
+    input.checkValidity = () => false
+
+    link.click()
+
+    await page.waitForChanges()
+
+    expect(routingState.router!.location.pathname).toBe('/')
 
     page.root?.remove()
   })

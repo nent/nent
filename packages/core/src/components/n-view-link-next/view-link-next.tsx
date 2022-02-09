@@ -64,7 +64,7 @@ export class ViewLinkNext {
 
   private async setPage(route: Route) {
     this.route = await route.getNextRoute()
-    this.title = await this.route?.resolvePageTitle()
+    this.title = await route.resolvePageTitle()
   }
 
   private async subscribe() {
@@ -86,6 +86,7 @@ export class ViewLinkNext {
         path={this.route?.path || ''}
         title={this.title}
         active-class="none"
+        validate={true}
       >
         <slot name="start"></slot>
         {text ? text : <slot />}

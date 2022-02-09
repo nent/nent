@@ -7,6 +7,7 @@ import {
   State,
 } from '@stencil/core'
 import { isValue, logIf } from '../../services/common'
+import { getChildInputValidity } from '../n-view-prompt/services/elements'
 import { MatchResults } from '../n-views/services/interfaces'
 import {
   onRoutingChange,
@@ -31,7 +32,6 @@ export class ViewLink {
   private routeSubscription!: () => void
   @Element() el!: HTMLNViewLinkElement
   @State() match?: MatchResults | null
-  @State() location = routingState?.location
 
   /**
    * The destination route for this link
@@ -67,6 +67,15 @@ export class ViewLink {
    */
   @Prop() debug: boolean = false
 
+  /**
+   * Validates any current-route inputs before navigating. Disables
+   * navigation if any inputs are invalid.
+   */
+  @Prop({
+    reflect: true,
+  })
+  validate: boolean = false
+
   get parentUrl() {
     return (
       this.el.closest('n-view-prompt')?.path ||
@@ -94,19 +103,24 @@ export class ViewLink {
   }
 
   private handleClick(e: MouseEvent | KeyboardEvent, path?: string) {
-    if (this.match?.isExact) return
     const router = routingState.router
     if (
-      !router ||
-      router?.isModifiedEvent(e as MouseEvent) ||
-      !router?.history ||
-      !path
+      router == null ||
+      router.isModifiedEvent(e as MouseEvent) ||
+      path == undefined
     ) {
-      return
+      return true
+    } else {
+      e.stopImmediatePropagation()
+      e.preventDefault()
+      if (
+        this.validate == false ||
+        getChildInputValidity(router.exactRoute!.routeElement)
+      ) {
+        router.goToRoute(path)
+      }
+      return false
     }
-
-    e.preventDefault()
-    router.goToRoute(path)
   }
 
   render() {
@@ -141,10 +155,10 @@ export class ViewLink {
           n-attached-key-press
           class={classes}
           onClick={(e: MouseEvent) => {
-            this.handleClick(e, path)
+            return this.handleClick(e, path)
           }}
           onKeyPress={(e: KeyboardEvent) => {
-            this.handleClick(e, path)
+            return this.handleClick(e, path)
           }}
         >
           <slot></slot>
