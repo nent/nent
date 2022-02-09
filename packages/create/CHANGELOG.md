@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.9 (2022-02-09)
+
+
+### Bug Fixes
+
+* **🔧:** fix the n-view-link-next title ([3906512](https://github.com/nent/nent/commit/39065120addabdacdc58fd02cbacf5a6b496b884))
+
+
+
+
+
 ## 0.8.8 (2022-02-09)
 
 **Note:** Version bump only for package @nent/create
