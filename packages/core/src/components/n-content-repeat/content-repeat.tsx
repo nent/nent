@@ -33,7 +33,6 @@ import { routingState } from '../n-views/services/state'
  */
 @Component({
   tag: 'n-content-repeat',
-  styles: `n-content-repeat { display: contents; }`,
   shadow: false,
 })
 export class ContentDataRepeat {
@@ -129,7 +128,7 @@ export class ContentDataRepeat {
 
     if (this.dynamicContent && !this.noCache) {
       if (commonState.elementsEnabled) {
-        await resolveChildElementXAttributes(this.el)
+        resolveChildElementXAttributes(this.el)
       }
       return
     }
@@ -143,7 +142,7 @@ export class ContentDataRepeat {
       this.dynamicContent!.className = this.contentKey!
       this.dynamicContent!.innerHTML = innerContent
       if (commonState.elementsEnabled) {
-        await resolveChildElementXAttributes(this.dynamicContent!)
+        resolveChildElementXAttributes(this.dynamicContent!)
       }
       this.dynamicContent!.innerHTML = innerContent
       if (routingState?.router) {
@@ -274,18 +273,16 @@ export class ContentDataRepeat {
     return items
   }
 
-  componentDidRender() {}
-
-  disconnectedCallback() {
-    this.dataSubscription.destroy()
-    this.routeSubscription.destroy()
-  }
-
   render() {
     return (
       <Host>
         <slot></slot>
       </Host>
     )
+  }
+
+  disconnectedCallback() {
+    this.dataSubscription?.destroy.call(this)
+    this.routeSubscription?.destroy.call(this)
   }
 }

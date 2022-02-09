@@ -506,7 +506,7 @@ n-audio {
 }
 
 .components n-view {
-  display: contents;
+  display: block;
 }
 .components ul ul {
   padding-left: 3px;
