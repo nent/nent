@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.7 (2022-02-09)
+
+
+### Bug Fixes
+
+* **🔧:** added mutex to handle concurrency issues in content-ref ([f07a0b5](https://github.com/nent/nent/commit/f07a0b5ae61a9f87dde7680b90cac21defd22e8b))
+
+
+
+
+
 ## 0.8.6 (2022-02-09)
 
 **Note:** Version bump only for package @nent/create
