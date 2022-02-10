@@ -1,5 +1,3 @@
-jest.mock('../common/logging')
-
 import {
   clearReferences,
   hasReference,

@@ -13,11 +13,8 @@ import {
   onCommonStateChange,
 } from '../../services/common'
 import { warn } from '../../services/common/logging'
-import { replaceHtmlInElement } from '../../services/content/elements'
-import {
-  resolveRemoteContent,
-  resolveSrc,
-} from '../../services/content/remote'
+import { replaceHtmlInElement } from '../n-content/elements'
+import { resolveRemoteContent, resolveSrc } from '../n-content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'

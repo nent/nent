@@ -1,5 +1,5 @@
-import { Mutex } from '../common/mutex'
-import { contentState } from './state'
+import { Mutex } from '../../../services/common/mutex'
+import { contentState } from '../../n-content/state'
 
 const collectionMutex = new Mutex()
 

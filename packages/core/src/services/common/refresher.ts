@@ -18,25 +18,24 @@ export class ComponentRefresher {
     private eventName: string,
   ) {
     if (commonState[commonSetting]) {
-      this.subscribeToEvents()
+      this.subscription = this.eventBus.on(this.eventName, () => {
+        forceUpdate(this.component)
+      })
     } else {
       this.stateSubscription = onCommonStateChange(
         commonSetting,
         enabled => {
           if (enabled) {
-            this.subscribeToEvents()
+            this.subscription = this.eventBus.on(this.eventName, () => {
+              forceUpdate(this.component)
+            })
+            this.stateSubscription()
           } else {
             this.subscription?.call(this)
           }
         },
       )
     }
-  }
-
-  private subscribeToEvents() {
-    this.subscription = this.eventBus.on(this.eventName, () => {
-      forceUpdate(this.component)
-    })
   }
 
   destroy() {

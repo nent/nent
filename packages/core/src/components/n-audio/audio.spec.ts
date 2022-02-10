@@ -9,7 +9,7 @@ import {
   commonState,
   commonStateDispose,
 } from '../../services/common'
-import { contentStateDispose } from '../../services/content/state'
+import { contentStateDispose } from '../n-content/state'
 import { dataStateDispose } from '../../services/data/state'
 import { App } from '../n-app/app'
 import { ContentReference } from '../n-content-reference/content-reference'
@@ -149,7 +149,7 @@ describe('n-audio', () => {
     const subject = page.root?.shadowRoot?.querySelector(
       'n-content-reference',
     )!
-    await subject.forceLoad()
+    //await subject.forceLoad()
 
     const audio2 = page.doc.createElement('n-audio')
     audio2.display = true
@@ -248,7 +248,7 @@ describe('n-audio', () => {
     const ref = page.root?.shadowRoot?.querySelector(
       'n-content-reference',
     )! as any
-    await ref.forceLoad()
+    //await ref.forceLoad()
 
     await page.waitForChanges()
 
@@ -328,7 +328,7 @@ describe('n-audio', () => {
     const contentRef = audio?.shadowRoot?.querySelector(
       'n-content-reference',
     )! as HTMLNContentReferenceElement
-    await contentRef.forceLoad()
+    //await contentRef.forceLoad()
 
     await page.waitForChanges()
     const listener = audio.actions as AudioActionListener

@@ -15,8 +15,8 @@ import {
   slugify,
 } from '../../services/common'
 import { warn } from '../../services/common/logging'
-import { replaceHtmlInElement } from '../../services/content/elements'
-import { resolveRemoteContentElement } from '../../services/content/remote'
+import { replaceHtmlInElement } from '../n-content/elements'
+import { resolveRemoteContentElement } from '../n-content/remote'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { MatchResults } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'

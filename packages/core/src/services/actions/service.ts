@@ -1,6 +1,6 @@
 import { actionBus } from '.'
 import { commonState, debugIf, warn } from '../common'
-import { hasToken, resolveTokens } from '../data'
+import { hasToken, resolveTokens } from '../data/tokens'
 import { evaluatePredicate } from '../data/expressions'
 import { EventAction, IActionElement } from './interfaces'
 

@@ -5,8 +5,8 @@ import {
   ComponentRefresher,
   warn,
 } from '../../services/common'
-import { replaceHtmlInElement } from '../../services/content/elements'
-import { resolveRemoteContent } from '../../services/content/remote'
+import { replaceHtmlInElement } from '../n-content/elements'
+import { resolveRemoteContent } from '../n-content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'

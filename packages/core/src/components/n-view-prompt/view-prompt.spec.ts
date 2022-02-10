@@ -8,7 +8,7 @@ import {
   commonState,
   commonStateDispose,
 } from '../../services/common'
-import { contentStateDispose } from '../../services/content'
+import { contentStateDispose } from '../n-content'
 import { addDataProvider } from '../../services/data/factory'
 import { InMemoryProvider } from '../../services/data/providers/memory'
 import { clearVisits } from '../n-view/services/visits'

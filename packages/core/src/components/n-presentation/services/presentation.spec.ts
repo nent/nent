@@ -3,7 +3,7 @@ jest.mock('../../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../../services/actions'
-import { contentStateDispose } from '../../../services/content/state'
+import { contentStateDispose } from '../../n-content/state'
 import { ActionActivator } from '../../n-action-activator/action-activator'
 import { Action } from '../../n-action/action'
 import { ElementsActionListener } from '../../n-elements/services/actions'

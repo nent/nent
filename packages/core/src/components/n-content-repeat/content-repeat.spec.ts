@@ -7,7 +7,6 @@ import {
   commonState,
   commonStateDispose,
 } from '../../services/common/state'
-import { contentStateDispose } from '../../services/content'
 import { addDataProvider } from '../../services/data/factory'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { InMemoryProvider } from '../../services/data/providers/memory'
@@ -19,7 +18,6 @@ import remoteData from './test/data.json'
 describe('n-content-repeat', () => {
   let provider: InMemoryProvider
   beforeEach(() => {
-    commonState.dataEnabled = true
     provider = new InMemoryProvider()
     commonState.dataEnabled = true
     commonState.routingEnabled = true
@@ -27,12 +25,10 @@ describe('n-content-repeat', () => {
   })
 
   afterEach(() => {
-    dataStateDispose()
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
-    jest.resetAllMocks()
-    contentStateDispose()
     commonStateDispose()
+    dataStateDispose()
   })
 
   it('renders', async () => {
@@ -60,6 +56,8 @@ describe('n-content-repeat', () => {
       components: [ContentDataRepeat],
       html: `<n-content-repeat defer-load><div></div></n-content-repeat>`,
     })
+
+    await page.waitForChanges()
     expect(page.root).toEqualHtml(`
       <n-content-repeat defer-load="">
         <div></div>
@@ -68,6 +66,12 @@ describe('n-content-repeat', () => {
 
     commonState.dataEnabled = true
     commonState.routingEnabled = true
+
+    expect(page.root).toEqualHtml(`
+      <n-content-repeat defer-load="">
+        <div></div>
+      </n-content-repeat>
+    `)
 
     eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
     eventBus.emit(DATA_EVENTS.DataChanged, {})
@@ -99,7 +103,7 @@ describe('n-content-repeat', () => {
 
   it('render inline array from tokens', async () => {
     addDataProvider('some', provider)
-    provider.set('list', '[0, 9, 8, 7]')
+    await provider.set('list', '[0, 9, 8, 7]')
 
     const page = await newSpecPage({
       components: [ContentDataRepeat],

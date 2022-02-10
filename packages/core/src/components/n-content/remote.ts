@@ -1,6 +1,6 @@
-import { warn } from '../common/logging'
-import { commonState } from '../common/state'
-import { hasToken, resolveTokens } from '../data/tokens'
+import { warn } from '../../services/common/logging'
+import { commonState } from '../../services/common/state'
+import { hasToken, resolveTokens } from '../../services/data/tokens'
 
 export async function fetchContent(
   win: Window,

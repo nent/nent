@@ -125,7 +125,6 @@ If inline is present, the source would be nested inside this element, otherwise,
 | `noModule`  | `no-module`  | Declare the script only for use when modules aren't supported                                                | `boolean`             | `false`     |
 | `scriptSrc` | `script-src` | The script file to reference.                                                                                | `string`, `undefined` | `undefined` |
 | `styleSrc`  | `style-src`  | The css file to reference                                                                                    | `string`, `undefined` | `undefined` |
-| `timeout`   | `timeout`    | Timeout (in milliseconds) to wait for the references to load.                                                | `number`              | `1000`      |
 
 
 ## Events
@@ -133,20 +132,6 @@ If inline is present, the source would be nested inside this element, otherwise,
 | Event        | Description                                                                                                                                                                      | Type                                                     |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | `referenced` | This event is fired when the script and style elements are loaded or timed out. The value for each style and script will be true or false, for loaded or timedout, respectively. | `CustomEvent<{ type: ReferenceType; loaded: boolean; }>` |
-
-
-## Methods
-
-### `forceLoad() => Promise<void>`
-
-Force the 'load' event of the script or link element.
-This is meant for testing.
-
-#### Returns
-
-Type: `Promise<void>`
-
-
 
 
 ----------------------------------------------

@@ -2,11 +2,14 @@ jest.mock('../../services/data/evaluate.worker')
 jest.mock('../../services/common/logging')
 
 import { newSpecPage } from '@stencil/core/testing'
-import { hasReference } from '../../services/content/references'
-import { contentStateReset } from '../../services/content/state'
+import { hasReference } from './services/references'
+import { contentStateReset } from '../n-content/state'
 import { ContentReference } from './content-reference'
 
 describe('n-content-reference', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
   afterEach(() => {
     contentStateReset()
   })
@@ -25,15 +28,14 @@ describe('n-content-reference', () => {
   it('renders inline script', async () => {
     const page = await newSpecPage({
       components: [ContentReference],
-      html: `<n-content-reference script-src="https://foo.js" inline timeout="300"></n-content-reference>`,
+      html: `<n-content-reference script-src="https://foo.js" inline></n-content-reference>`,
     })
     await page.waitForChanges()
 
     const subject = page.body.querySelector('n-content-reference')!
-    await subject.forceLoad()
 
     expect(page.root).toEqualHtml(`
-      <n-content-reference script-src="https://foo.js" inline  timeout="300"><script src="https://foo.js"></script>
+      <n-content-reference script-src="https://foo.js" inline ><script src="https://foo.js"></script>
       </n-content-reference>
     `)
 
@@ -45,16 +47,13 @@ describe('n-content-reference', () => {
   it('renders inline styles', async () => {
     const page = await newSpecPage({
       components: [ContentReference],
-      html: `<n-content-reference style-src="https://foo.css" inline timeout="300"></n-content-reference>`,
+      html: `<n-content-reference style-src="https://foo.css" inline></n-content-reference>`,
     })
 
     await page.waitForChanges()
 
-    const subject = page.body.querySelector('n-content-reference')!
-    await subject.forceLoad()
-
     expect(page.root).toEqualHtml(`
-      <n-content-reference style-src="https://foo.css" inline="" timeout="300">
+      <n-content-reference style-src="https://foo.css" inline="">
         <link href="https://foo.css" rel="stylesheet"/>
       </n-content-reference>
     `)
@@ -66,16 +65,13 @@ describe('n-content-reference', () => {
     const page = await newSpecPage({
       components: [ContentReference],
       html: `
-       <n-content-reference inline  timeout="300" module script-src="https://foo.jsm"></n-content-reference>
+       <n-content-reference inline  module script-src="https://foo.jsm"></n-content-reference>
       `,
     })
     await page.waitForChanges()
 
-    const subject = page.body.querySelector('n-content-reference')!
-    await subject.forceLoad()
-
     expect(page.root).toEqualHtml(`
-      <n-content-reference inline=""  timeout="300" module="" script-src="https://foo.jsm">
+      <n-content-reference inline=""  module="" script-src="https://foo.jsm">
         <script type="module" src="https://foo.jsm"></script>
       </n-content-reference>
     `)
@@ -87,7 +83,7 @@ describe('n-content-reference', () => {
     const page = await newSpecPage({
       components: [ContentReference],
       html: `
-       <n-content-reference inline  timeout="300" no-module script-src="https://foo.jsm"></n-content-reference>
+       <n-content-reference inline  no-module script-src="https://foo.jsm"></n-content-reference>
       `,
     })
 
@@ -97,10 +93,10 @@ describe('n-content-reference', () => {
     await page.waitForChanges()
 
     const subject = page.body.querySelector('n-content-reference')!
-    await subject.forceLoad()
+    //await subject.forceLoad()
 
     expect(page.root).toEqualHtml(`
-      <n-content-reference inline="" timeout="300" no-module="" script-src="https://foo.jsm">
+      <n-content-reference inline="" no-module="" script-src="https://foo.jsm">
         <script nomodule="" src="https://foo.jsm"></script>
       </n-content-reference>
     `)
@@ -112,24 +108,22 @@ describe('n-content-reference', () => {
     const page = await newSpecPage({
       components: [ContentReference],
       html: `
-      <n-content-reference style-src="https://foo.css" inline module timeout="300"></n-content-reference>
-      <n-content-reference style-src="https://foo.css" inline module timeout="300"></n-content-reference>
+      <n-content-reference style-src="https://foo.css" inline module></n-content-reference>
+      <n-content-reference style-src="https://foo.css" inline module></n-content-reference>
       `,
     })
     await page.waitForChanges()
 
     const subjects = page.body.querySelectorAll('n-content-reference')
 
-    subjects.forEach(async s => await s.forceLoad())
-
     expect(subjects[0]).toEqualHtml(`
-      <n-content-reference style-src="https://foo.css" inline="" module=""  timeout="300">
+      <n-content-reference style-src="https://foo.css" inline="" module="" >
         <link href="https://foo.css" rel="stylesheet">
       </n-content-reference>
     `)
 
     expect(subjects[1]).toEqualHtml(`
-      <n-content-reference style-src="https://foo.css" inline="" module=""  timeout="300">\
+      <n-content-reference style-src="https://foo.css" inline="" module="" >\
       </n-content-reference>
     `)
 

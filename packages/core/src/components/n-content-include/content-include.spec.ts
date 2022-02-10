@@ -7,7 +7,7 @@ import {
   commonState,
   commonStateDispose,
 } from '../../services/common'
-import { contentStateDispose } from '../../services/content'
+import { contentStateDispose } from '../n-content'
 import {
   addDataProvider,
   clearDataProviders,

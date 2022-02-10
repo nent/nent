@@ -10,7 +10,7 @@ import { LocationSegments } from "./services/common";
 import { ViewTime } from "./components/n-app-analytics/services";
 import { AudioActionListener } from "./components/n-audio/services/actions";
 import { AudioInfo, AudioRequest } from "./components/n-audio/services/interfaces";
-import { ReferenceCompleteResults } from "./services/content";
+import { ReferenceCompleteResults } from "./components/n-content-reference/services/interfaces";
 import { CookieConsent } from "./components/n-data-cookie/cookie/interfaces";
 import { SetData } from "./components/n-data/services/interfaces";
 import { EventAction as EventAction1 } from "./services/actions/interfaces";
@@ -374,10 +374,6 @@ export namespace Components {
          */
         "deferLoad": boolean;
         /**
-          * Force the 'load' event of the script or link element. This is meant for testing.
-         */
-        "forceLoad": () => Promise<void>;
-        /**
           * When inline the link/script tags are rendered in-place rather than added to the head.
          */
         "inline": boolean;
@@ -397,10 +393,6 @@ export namespace Components {
           * The css file to reference
          */
         "styleSrc"?: string;
-        /**
-          * Timeout (in milliseconds) to wait for the references to load.
-         */
-        "timeout": number;
     }
     interface NContentRepeat {
         /**
@@ -1532,10 +1524,6 @@ declare namespace LocalJSX {
           * The css file to reference
          */
         "styleSrc"?: string;
-        /**
-          * Timeout (in milliseconds) to wait for the references to load.
-         */
-        "timeout"?: number;
     }
     interface NContentRepeat {
         /**
