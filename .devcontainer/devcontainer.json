@@ -45,5 +45,5 @@
     "source=nent-node-modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
     "source=nent-vscode-extensions,target=/root/.vscode-server/extensions,type=volume"
   ],
-  "postCreateCommand": "yarn install"
+  "postCreateCommand": "sudo chown node node_modules"
 }
