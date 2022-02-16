@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.10 (2022-02-16)
+
+
+### Bug Fixes
+
+* **🔧:** preserved querystring on history replace ([2446ed4](https://github.com/nent/nent/commit/2446ed446b1c79f56a10a75663a059eced5e3e4f))
+
+
+
+
+
 ## 0.8.9 (2022-02-09)
 
 
