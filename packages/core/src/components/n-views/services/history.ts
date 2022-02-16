@@ -99,12 +99,14 @@ export class HistoryService {
 
   replace(path: string, state: any = {}) {
     const action = 'REPLACE'
+
     const location = createLocation(
       path,
       state,
       createKey(KeyLength),
       this.location,
     )
+    location.search = this.location.search
 
     const href = this.createHref(location)
     const { key } = location

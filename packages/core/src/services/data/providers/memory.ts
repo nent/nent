@@ -9,14 +9,18 @@ export class InMemoryProvider implements IDataProvider {
     this.changed = new EventEmitter()
   }
 
-  async get(key: string): Promise<string | null> {
+  public async get(key: string): Promise<string | null> {
     return this.data[key] || null
   }
 
-  async set(key: string, value: string): Promise<void> {
+  public async set(key: string, value: string): Promise<void> {
     this.data[key] = value
     this.changed.emit(DATA_EVENTS.DataChanged)
   }
 
-  changed: EventEmitter
+  public changed: EventEmitter
+
+  public destroy() {
+    this.changed.removeAllListeners()
+  }
 }

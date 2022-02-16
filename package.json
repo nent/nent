@@ -111,7 +111,10 @@
   },
   "jest": {
     "preset": "@stencil/core/testing",
-    "testTimeout": 30000
+    "testTimeout": 30000,
+    "testPathIgnorePatterns": [
+      "/dist/"
+    ]
   },
   "workspaces": [
     "packages/core",

@@ -94,7 +94,7 @@ export class ContentDataRepeat {
     return this.el.querySelector('script')
   }
 
-  async componentWillLoad() {
+  componentWillLoad() {
     debugIf(this.debug, 'n-content-repeat: loading')
 
     this.dataSubscription = new ComponentRefresher(
@@ -282,7 +282,7 @@ export class ContentDataRepeat {
   }
 
   disconnectedCallback() {
-    this.dataSubscription?.destroy.call(this)
-    this.routeSubscription?.destroy.call(this)
+    this.dataSubscription!.destroy()
+    this.routeSubscription!.destroy()
   }
 }

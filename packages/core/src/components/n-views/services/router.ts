@@ -158,11 +158,9 @@ export class RouterService {
   initialize(startUrl?: string) {
     this.captureInnerLinks(this.win.document.body)
 
-    if (startUrl && this.atRoot()) {
-      const search = this.location.search
+    if (startUrl && this.atRoot())
       this.replaceWithRoute(stripBasename(startUrl!, this.root))
-      this.location.search = search
-    }
+
     this.listener.notifyRouterInitialized()
   }
 
