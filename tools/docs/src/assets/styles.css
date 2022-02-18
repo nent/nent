@@ -350,6 +350,9 @@ n-view {
 n-view.active {
   padding-bottom: 5rem;
 }
+n-view-link  {
+  display: contents;
+}
 
 n-view-link a:any-link {
   color: var(--accent-dark);
@@ -466,7 +469,7 @@ n-audio {
 .button-nav > * {
   flex: 1 1;
   vertical-align: middle;
-  
+
 }
 .button-nav a {
   flex-grow: 1;

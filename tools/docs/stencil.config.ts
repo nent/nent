@@ -3,7 +3,6 @@ import { sass } from '@stencil/sass'
 import postcss from 'postcss'
 import purgecss from '@fullhuman/postcss-purgecss'
 import tailwindcss from 'tailwindcss'
-import { Workbox } from '@stencil/core/internal'
 
 const pkg = require('./package.json')
 const config: Config = {
@@ -40,13 +39,13 @@ const config: Config = {
       prerenderConfig: './prerender.config.ts',
       serviceWorker: {
         globPatterns: [
-          '**/*.{ico,wav,txt,js,css,json,html,md,png,svg}',
+          '**/*.{ico,wav,txt,js,css,json,md,png,svg}',
+          '/pages/**/*.*'
         ],
         globDirectory: '../../docs',
         swDest: 'sw.js',
         skipWaiting: true,
         sourcemap: false,
-        navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,
         offlineGoogleAnalytics: true,
         runtimeCaching: [
@@ -76,17 +75,7 @@ const config: Config = {
                 maxEntries: 30,
               },
             },
-          },
-          {
-            urlPattern: ({ request }: any): boolean =>
-              request.mode === 'navigate',
-            handler: 'NetworkFirst',
-            options: {
-              precacheFallback: {
-                fallbackURL: '/index.html',
-              },
-            },
-          },
+          }
         ],
       },
       indexHtml: 'index.html',

@@ -8,21 +8,21 @@
 
 <n-view path="/start/install"
   page-title="Installing NENT"
-  content-src="/pages/start/install.html">
+  content-src="/pages/start/install/default.html">
   <n-view-prompt path="select"
     when="!{{storage:installed}}"
     page-title="Select Installation"
-    content-src="/pages/start/select.html">
+    content-src="/pages/start/install/select.html">
   </n-view-prompt>
   <n-view path="cdn"
     visit="optional"
     page-title="Use CDN"
-    content-src="/pages/start/cdn.html">
+    content-src="/pages/start/install/cdn.html">
   </n-view>
   <n-view path="npm"
     visit="optional"
     page-title="Use Node"
-    content-src="/pages/start/npm.html">
+    content-src="/pages/start/install/npm.html">
   </n-view>
 </n-view>
 <n-view path="/start/develop"
