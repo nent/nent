@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2.3.4
-      - uses: actions/setup-node@v2.5.1
+      - uses: actions/setup-node@v3.0.0
         with:
           node-version: 14.x
       - name: cache
@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
-      - uses: actions/setup-node@v2.5.1
+      - uses: actions/setup-node@v3.0.0
         with:
           node-version: 14.x
       - name: cache
@@ -86,7 +86,7 @@ jobs:
         run: |
           git config --global user.name '@logrythmik'
           git config --global user.email 'logrythmik@users.noreply.github.com'
-      - uses: actions/setup-node@v2.5.1
+      - uses: actions/setup-node@v3.0.0
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
