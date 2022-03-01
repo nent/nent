@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
       - uses: actions/setup-node@v3.0.0
         with:
           node-version: 14.x
@@ -56,7 +56,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3.0.0
         with:
           node-version: 14.x
@@ -81,7 +81,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
       - name: checkout
         run: |
           git config --global user.name '@logrythmik'
