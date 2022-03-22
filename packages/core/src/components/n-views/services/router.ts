@@ -259,6 +259,23 @@ export class RouterService {
             pageDescription || this.appDescription || ''
         })
 
+      const canonicalLink = this.win.document.querySelector(
+        'link[rel=canonical]',
+      ) as HTMLLinkElement
+      if (canonicalLink) {
+        const { protocol, host } = document.location
+        const { pathname } = this.location
+        canonicalLink.href = `${protocol}//${host}${pathname}`
+      }
+
+      this.win.document
+        .querySelectorAll('meta[name*=description]')
+        .forEach((element: Element) => {
+          const metaTag = element as HTMLMetaElement
+          metaTag.content =
+            pageDescription || this.appDescription || ''
+        })
+
       this.win.document
         .querySelectorAll('meta[name*=keywords]')
         .forEach((element: Element) => {
