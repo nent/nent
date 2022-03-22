@@ -32,7 +32,6 @@ jobs:
           restore-keys: |
             nodeModules-
       - name: dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
         env:
           CI: true
