@@ -7,7 +7,6 @@
     // Update 'VARIANT' to pick a Node version: 12, 14, 16
     "args": {
       "VARIANT": "16",
-      "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock"
     }
   },
   // Set *default* container specific settings.json values on container create.
@@ -40,10 +39,17 @@
     "ms-vsliveshare.vsliveshare-audio"
   ],
   "mounts": [
-    "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/root/.ssh,type=bind,consistency=delegated",
-    "source=${env:HOME}${env:USERPROFILE}/.config,target=/root/.config,type=bind,consistency=delegated",
+    "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached",
+    "source=${env:HOME}${env:USERPROFILE}/.config,target=/home/node/.config,type=bind,consistency=cached",
     "source=nent-node-modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
     "source=nent-vscode-extensions,target=/root/.vscode-server/extensions,type=volume"
   ],
-  "postCreateCommand": "sudo chown node node_modules"
+  "postCreateCommand": "sudo chown node node_modules",
+  "remoteUser": "node",
+  "features": {
+    "docker-from-docker": "20.10",
+    "git": "os-provided",
+    "git-lfs": "latest",
+    "python": "os-provided"
+  }
 }
