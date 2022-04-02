@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.13 (2022-04-02)
+
+
+### Bug Fixes
+
+* **🔧:** removed automatic stripping of the trailing slash ([23fbc02](https://github.com/nent/nent/commit/23fbc02454239a07174b3a1b8bae0b54e4213b0c))
+
+
+
+
+
 ## 0.8.12 (2022-03-22)
 
 **Note:** Version bump only for package @nent/create

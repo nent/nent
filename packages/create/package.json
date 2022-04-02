@@ -1,7 +1,7 @@
 {
   "name": "@nent/create",
   "description": "A boilerplate project for web-apps built with NENT.",
-  "version": "0.8.12",
+  "version": "0.8.13",
   "author": "Support <user@nent.dev>",
   "type": "module",
   "bin": "src/cli.js",
