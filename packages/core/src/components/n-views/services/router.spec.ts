@@ -47,10 +47,10 @@ describe('router', () => {
     expect(normalized).toBe('/parent/child')
 
     normalized = subject.normalizeChildUrl('//child/', '//parent')
-    expect(normalized).toBe('/parent/child')
+    expect(normalized).toBe('/parent/child/')
 
     normalized = subject.normalizeChildUrl('child/', 'parent/')
-    expect(normalized).toBe('/parent/child')
+    expect(normalized).toBe('/parent/child/')
   }
 
   const testGoToPath = (subject: RouterService) => {
