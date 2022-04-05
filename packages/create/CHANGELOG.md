@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.14 (2022-04-05)
+
+
+### Bug Fixes
+
+* **🔧:** moved getAction's data resolution to an awaitable format ([c3dea79](https://github.com/nent/nent/commit/c3dea79a96f864ed2f4e9f945bc2199b7ebbeb89))
+
+
+
+
+
 ## 0.8.13 (2022-04-02)
 
 
