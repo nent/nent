@@ -20,7 +20,7 @@ jobs:
         run: |
           git config --global user.name '@logrythmik'
           git config --global user.email 'logrythmik@users.noreply.github.com'
-      - uses: actions/setup-node@v3.1.0
+      - uses: actions/setup-node@v3.1.1
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
