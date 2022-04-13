@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.16 (2022-04-13)
+
+
+### Features
+
+* **✨:** added graphql support to n-content-template ([32405cf](https://github.com/nent/nent/commit/32405cf9f2c2afbcc13b4d082103e0c2be88abc0))
+
+
+
+
+
 ## 0.8.15 (2022-04-13)
 
 
