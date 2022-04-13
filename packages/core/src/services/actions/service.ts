@@ -62,12 +62,14 @@ export class ActionService {
       }
 
       // resolve token values
-      await Promise.all(Object.keys(data).map(async key => {
-        const value = data[key]
-        if (typeof value == 'string' && hasToken(value)) {
-          data[key] = await resolveTokens(value)
-        }
-      }))
+      await Promise.all(
+        Object.keys(data).map(async key => {
+          const value = data[key]
+          if (typeof value == 'string' && hasToken(value)) {
+            data[key] = await resolveTokens(value)
+          }
+        }),
+      )
     }
 
     return {

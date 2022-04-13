@@ -82,6 +82,13 @@ export class ContentTemplate {
   @Prop() mode: 'cors' | 'navigate' | 'no-cors' | 'same-origin' =
     'cors'
 
+  /**
+   * When declared, the child script tag is required and should be
+   * the query text for the request. Also, this forces the HTTP
+   * method to 'POST'.
+   */
+  @Prop() graphql: boolean = false
+
   private get childTemplate(): HTMLTemplateElement | null {
     return this.el.querySelector('template')
   }
@@ -155,7 +162,7 @@ export class ContentTemplate {
     if (this.el.dataset) {
       Object.assign(data, this.el.dataset)
     }
-    if (this.childScript !== null) {
+    if (this.childScript !== null && !this.graphql) {
       try {
         const json = JSON.parse(this.childScript.textContent || '')
         data = Object.assign(data, json)
@@ -168,7 +175,17 @@ export class ContentTemplate {
 
     if (this.src) {
       try {
-        let remoteData = await fetchJson(window, this.src, this.mode)
+        let remoteData = this.graphql
+          ? await fetchJson(
+              window,
+              this.src,
+              this.mode,
+              'POST',
+              JSON.stringify({
+                query: this.childScript?.textContent || '',
+              }),
+            )
+          : await fetchJson(window, this.src, this.mode)
         data = Object.assign(data, remoteData)
         if (this.filter) {
           debugIf(

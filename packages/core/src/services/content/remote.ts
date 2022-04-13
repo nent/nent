@@ -24,9 +24,13 @@ export async function fetchJson(
   win: Window,
   src: string,
   mode: RequestMode,
+  method: 'GET' | 'POST' = 'GET',
+  body?: string,
 ) {
   const response = await win.fetch(src, {
     mode,
+    method,
+    body,
   })
   if (response.status == 200 || response.ok) {
     const data = await response.json()

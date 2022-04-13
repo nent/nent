@@ -168,7 +168,6 @@ export class ContentMarkdown {
 
   private async getContentFromSrc() {
     try {
-
       let content = await resolveRemoteContent(
         window,
         this.src!,
@@ -176,17 +175,19 @@ export class ContentMarkdown {
         this.resolveTokens,
       )
       if (content && this.json) {
-          debugIf(
-            commonState.debug,
-            `n-content-markdown: filtering: ${this.json}`,
-          )
-          const data = JSON.parse(content)
-          content = await filterData(this.json, data)
+        debugIf(
+          commonState.debug,
+          `n-content-markdown: filtering: ${this.json}`,
+        )
+        const data = JSON.parse(content)
+        content = await filterData(this.json, data)
       }
 
       return content
-    } catch(err) {
-      error(`n-content-markdown: unable to retrieve content from ${this.src}. ${err}`)
+    } catch (err) {
+      error(
+        `n-content-markdown: unable to retrieve content from ${this.src}. ${err}`,
+      )
       return null
     }
   }

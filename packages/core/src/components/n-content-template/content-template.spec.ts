@@ -320,4 +320,45 @@ describe('n-content-template', () => {
     `)
     page.root?.remove()
   })
+
+  it('renders grqphql json', async () => {
+    const page = await newSpecPage({
+      components: [ContentTemplate],
+    })
+    let options: any = {}
+    page.win.fetch = jest
+      .fn()
+      .mockImplementation((...args: any[]) => {
+        ;[, options] = args
+        return Promise.resolve({
+          status: 200,
+          json: () =>
+            Promise.resolve({
+              value: 'Hello!',
+            }),
+        })
+      })
+
+    await page.setContent(`
+      <n-content-template src="http://data.com/api" graphql>
+        <script type="text/graphql"> { value } </script>
+        <template><b>{{data:value}}</b></template>
+      </n-content-template>`)
+
+    await page.waitForChanges()
+
+    expect(page.root).toEqualHtml(`
+      <n-content-template src="http://data.com/api" graphql>
+        <script type="text/graphql"> { value } </script>
+        <template><b>{{data:value}}</b></template>
+        <div class="dynamic">
+          <b>Hello!</b>
+        </div>
+      </n-content-template>
+    `)
+
+    expect(options.method).toBe('POST')
+    expect(options.body).toBe(`{"query":" { value } "}`)
+    page.root?.remove()
+  })
 })

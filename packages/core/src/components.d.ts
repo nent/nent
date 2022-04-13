@@ -326,6 +326,10 @@ export namespace Components {
          */
         "deferLoad": boolean;
         /**
+          * The JSONata expression to select the HTML from a json response. see <https://try.jsonata.org> for more info.
+         */
+        "json"?: string;
+        /**
           * Cross Origin Mode
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
@@ -347,6 +351,10 @@ export namespace Components {
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
         "deferLoad": boolean;
+        /**
+          * The JSONata expression to select the markdown from a json response. see <https://try.jsonata.org> for more info.
+         */
+        "json"?: string;
         /**
           * Cross Origin Mode
          */
@@ -1461,6 +1469,10 @@ declare namespace LocalJSX {
          */
         "deferLoad"?: boolean;
         /**
+          * The JSONata expression to select the HTML from a json response. see <https://try.jsonata.org> for more info.
+         */
+        "json"?: string;
+        /**
           * Cross Origin Mode
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
@@ -1482,6 +1494,10 @@ declare namespace LocalJSX {
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
         "deferLoad"?: boolean;
+        /**
+          * The JSONata expression to select the markdown from a json response. see <https://try.jsonata.org> for more info.
+         */
+        "json"?: string;
         /**
           * Cross Origin Mode
          */

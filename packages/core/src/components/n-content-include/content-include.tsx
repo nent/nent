@@ -114,12 +114,12 @@ export class ContentInclude {
       )
 
       if (content && this.json) {
-          debugIf(
-            commonState.debug,
-            `n-content-include: filtering: ${this.json}`,
-          )
-          const data = JSON.parse(content)
-          content = await filterData(this.json, data)
+        debugIf(
+          commonState.debug,
+          `n-content-include: filtering: ${this.json}`,
+        )
+        const data = JSON.parse(content)
+        content = await filterData(this.json, data)
       }
 
       if (content == null) return null
