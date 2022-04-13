@@ -7,7 +7,7 @@ import { version } from './package.json'
 const config: Config = {
   namespace: 'nent',
   hashFileNames: false,
-  buildEs5: true,
+  buildEs5: false,
   rollupPlugins: {
     after: [
       analyzer({
@@ -54,7 +54,7 @@ const config: Config = {
       type: 'docs-json',
       file: 'dist/components.json',
     },
-    { type: 'stats' }
+    { type: 'stats' },
   ],
 }
 

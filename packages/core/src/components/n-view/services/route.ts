@@ -1,5 +1,6 @@
 import { activateActionActivators } from '../../../services/actions/elements'
 import { ActionActivationStrategy } from '../../../services/actions/interfaces'
+import { PageData } from '../../../services/common'
 import { logIf } from '../../../services/common/logging'
 import { commonState } from '../../../services/common/state'
 import { resolveChildElementXAttributes } from '../../../services/data/elements'
@@ -39,9 +40,7 @@ export class Route implements IRoute {
     public path: string,
     public parentRoute: Route | null = null,
     public exact: boolean = true,
-    public pageTitle: string = '',
-    public pageDescription: string = '',
-    public pageKeywords: string = '',
+    public pageData: PageData = {},
     public transition: string | null = null,
     public scrollTopOffset: number = 0,
     matchSetter: (m: MatchResults | null) => void = () => {},
@@ -194,30 +193,31 @@ export class Route implements IRoute {
   }
 
   public async resolvePageTitle() {
-    let title = this.pageTitle
+    let title = this.pageData.title
     if (
       commonState.dataEnabled &&
-      this.pageTitle &&
-      hasToken(this.pageTitle)
+      this.pageData.title &&
+      hasToken(this.pageData.title)
     ) {
-      title = await resolveTokens(this.pageTitle)
+      title = await resolveTokens(this.pageData.title)
     }
-    return title || this.pageTitle
+    return title || this.pageData.title
   }
 
   public async adjustPageTags() {
     let title = await this.resolvePageTitle()
-    let description = this.pageDescription
-    let keywords = this.pageKeywords
+    let description = this.pageData.description
+    let keywords = this.pageData.keywords
+    let robots = this.pageData.robots
     if (commonState.dataEnabled) {
-      if (!this.pageDescription && hasToken(this.pageDescription)) {
-        description = await resolveTokens(this.pageDescription)
+      if (!this.pageData.description && hasToken(this.pageData.description!)) {
+        description = await resolveTokens(this.pageData.description!)
       }
-      if (!this.pageKeywords && hasToken(this.pageKeywords)) {
-        keywords = await resolveTokens(this.pageKeywords)
+      if (!this.pageData.keywords && hasToken(this.pageData.keywords!)) {
+        keywords = await resolveTokens(this.pageData.keywords!)
       }
     }
-    this.router.setPageTags(title, description, keywords)
+    this.router.setPageTags(title!, description, keywords, robots)
   }
 
   public async goBack() {

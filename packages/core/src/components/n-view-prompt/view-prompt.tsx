@@ -67,6 +67,12 @@ export class ViewPrompt implements IView {
   @Prop() pageKeywords = ''
 
   /**
+   * The robots instruction for search indexing
+   *
+   */
+  @Prop() pageRobots: 'all' | 'noindex' | 'nofollow' | 'none' = 'none'
+
+  /**
    * Header height or offset for scroll-top on this
    * view.
    */

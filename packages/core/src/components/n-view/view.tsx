@@ -81,6 +81,12 @@ export class View implements IView {
    */
   @Prop() pageKeywords = ''
 
+   /**
+   * The robots instruction for search indexing
+   *
+   */
+  @Prop() pageRobots: 'all' | 'noindex' | 'nofollow' | 'none' = 'all'
+
   /**
    * Header height or offset for scroll-top on this
    * view.

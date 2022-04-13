@@ -25,3 +25,10 @@ export interface IEventEmitter {
   once(event: string, listener: Listener): () => void
   destroy(): void
 }
+
+export type PageData = {
+  title?: string
+  description?: string
+  keywords?: string
+  robots?: string
+}

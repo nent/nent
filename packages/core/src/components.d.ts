@@ -719,6 +719,10 @@ export namespace Components {
          */
         "pageKeywords": string;
         /**
+          * The robots instruction for search indexing
+         */
+        "pageRobots": 'all' | 'noindex' | 'nofollow' | 'none';
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle": string;
@@ -866,6 +870,10 @@ export namespace Components {
           * The keywords to add to the keywords meta-tag for this view.
          */
         "pageKeywords": string;
+        /**
+          * The robots instruction for search indexing
+         */
+        "pageRobots": 'all' | 'noindex' | 'nofollow' | 'none';
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
@@ -1854,6 +1862,10 @@ declare namespace LocalJSX {
          */
         "pageKeywords"?: string;
         /**
+          * The robots instruction for search indexing
+         */
+        "pageRobots"?: 'all' | 'noindex' | 'nofollow' | 'none';
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle"?: string;
@@ -2001,6 +2013,10 @@ declare namespace LocalJSX {
           * The keywords to add to the keywords meta-tag for this view.
          */
         "pageKeywords"?: string;
+        /**
+          * The robots instruction for search indexing
+         */
+        "pageRobots"?: 'all' | 'noindex' | 'nofollow' | 'none';
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */

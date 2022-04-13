@@ -243,6 +243,7 @@ export class RouterService {
     pageTitle: string,
     pageDescription?: string,
     pageKeywords?: string,
+    robots?: string
   ) {
     if (this.win.document) {
       if (pageTitle) {
@@ -251,13 +252,13 @@ export class RouterService {
         this.win.document.title = `${this.appTitle}`
       }
 
-      this.win.document
-        .querySelectorAll('meta[name*=description]')
-        .forEach((element: Element) => {
-          const metaTag = element as HTMLMetaElement
-          metaTag.content =
-            pageDescription || this.appDescription || ''
-        })
+      if (robots)
+        this.win.document
+          .querySelectorAll('meta[name*=bot]')
+          .forEach((element: Element) => {
+            const metaTag = element as HTMLMetaElement
+            metaTag.content = robots
+          })
 
       const canonicalLink = this.win.document.querySelector(
         'link[rel=canonical]',
@@ -364,6 +365,7 @@ export class RouterService {
       pageTitle,
       pageDescription,
       pageKeywords,
+      pageRobots,
       transition,
       scrollTopOffset,
     } = routeElement
@@ -388,9 +390,12 @@ export class RouterService {
       path,
       parent,
       exact,
-      pageTitle || parent?.pageTitle,
-      pageDescription,
-      pageKeywords,
+      {
+        title: pageTitle || parent?.pageData.title,
+        description: pageDescription,
+        keywords: pageKeywords,
+        robots: pageRobots || parent?.pageData.robots
+      },
       transition || this.transition,
       scrollTopOffset,
       matchSetter,

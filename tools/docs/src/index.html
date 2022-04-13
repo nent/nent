@@ -13,6 +13,8 @@
       content="Functional elements to super-charge your HTML" />
     <meta name="keywords"
       content="web-components, low-code, no-framework, jam-stack, nent" />
+    <meta name="robots"
+      content="all" />
     <meta name="og:title"
       content="NENT" />
     <meta name="og:description"
@@ -29,7 +31,8 @@
       content="black" />
     <meta name="theme-color"
       content="#ae9ae4" />
-    <link rel="canonical" href="" />
+    <link rel="canonical"
+      href="" />
     <link rel="apple-touch-icon"
       href="/assets/icon/apple-touch-icon.png">
     <link rel="dns-prefetch"
@@ -138,8 +141,7 @@
     <n-app id="app"
       app-title="NENT"
       app-description="Functional elements to super-charge your HTML"
-      app-keywords="web-components, low-code, no-framework, jam-stack, nent"
-      >
+      app-keywords="web-components, low-code, no-framework, jam-stack, nent">
       <n-app-theme>
       </n-app-theme>
       <n-data>
@@ -148,14 +150,14 @@
         <n-data-storage></n-data-storage>
       </n-data>
       <n-views transition="fade-in">
-        <header
-          class="navbar">
+        <header class="navbar">
           <div class="container container-fluid">
             <h1 class="navbar-brand flex-grow-1">
               <a href="/home"
                 title="home"> nent </a>
             </h1>
-            <div class="flex-row d-flex" n-cloak>
+            <div class="flex-row d-flex"
+              n-cloak>
               <n-app-share headline="nent: function elements"
                 title="Share"
                 class="nav-link text-white fs-2 ps-0"
@@ -191,11 +193,10 @@
               </n-app-theme-switch>
 
             </div>
+
           </div>
         </header>
-        <nav
-          class="navbar-nav bg-dark sticky-top"
-          >
+        <nav class="navbar-nav bg-dark sticky-top">
           <div class="container container-fluid d-flex flex-row">
             <n-view-link class="nav-link flex-fill"
               title="Get Started"
@@ -247,11 +248,13 @@
               path="/components">
               <i class="ri-settings-6-line"></i>
             </n-view-link>
+
           </div>
         </nav>
         <nav aria-label="breadcrumb"
           class="bread-nav container text-end">
-          <n-view-link-list class="" mode="parents"
+          <n-view-link-list class=""
+            mode="parents"
             list-class="breadcrumb justify-content-start"
             active-class="active"
             item-class="breadcrumb-item"
@@ -287,6 +290,7 @@
                   <li>PWA Support (coming)</li>
                   <li>Expose Event/Actions to the DOM</li>
                 </ul>
+
               </div>
               <div>
                 <h3 id="actions">
@@ -300,6 +304,7 @@
                   <li>Reactive Activators</li>
                   <li>Add Custom Async Functions</li>
                 </ul>
+
               </div>
               <div>
                 <h3 id="routing">
@@ -318,6 +323,7 @@
                   </li>
                   <li>Guided Navigation</li>
                 </ul>
+
               </div>
               <div>
                 <h3 id="content">
@@ -332,6 +338,7 @@
                   <li>Markdown Rendering</li>
                   <li>Remote HTML / Partials</li>
                 </ul>
+
               </div>
               <div>
                 <h3 id="audio">
@@ -346,6 +353,7 @@
                   <li>Event-based Sounds</li>
                   <li>Route-driven Background Music</li>
                 </ul>
+
               </div>
               <div>
                 <h3 id="presentation">
@@ -360,6 +368,7 @@
                   <li>Automatic Navigation by Time or Media Events</li>
                   <li>Video-based Content Updates</li>
                 </ul>
+
               </div>
               <div>
                 <h3 id="data">
@@ -373,6 +382,7 @@
                   <li>Data Token Resolution for any Data Provider</li>
                   <li>Conditional Rule Evaluation for Guided Navigation</li>
                 </ul>
+
               </div>
               <div>
                 <h3 id="elements">
@@ -385,7 +395,9 @@
                   <li>Special Attributes for Conditional on Any Element</li>
                   <li>Conditional Rule Evaluation</li>
                 </ul>
+
               </div>
+
             </div>
 
             <h2>Built with Love</h2>
@@ -414,7 +426,9 @@
                 class="btn btn-primary btn-lg d-block"> Proceed to Demo-Docs
               </a>
             </footer>
+
           </div>
+
         </n-view>
 
         <n-view path="/home"
@@ -423,60 +437,72 @@
           page-keywords="NENT, low-code"
           src="/pages/home/routes.html"
           content-src="/pages/home/default.html">
+
         </n-view>
         <n-view path="/start"
           page-title="Get Started"
           src="/pages/start/routes.html"
           content-src="/pages/start/default.html">
+
         </n-view>
         <n-view path="/app"
           page-title="App Elements"
           src="/pages/app/routes.html"
           content-src="/pages/app/default.html">
+
         </n-view>
         <n-view path="/actions"
           page-title="Actions"
           src="/pages/actions/routes.html"
           content-src="/pages/actions/default.html">
+
         </n-view>
         <n-view path="/routing"
           page-title="Routing"
           src="/pages/routing/routes.html"
           content-src="/pages/routing/default.html">
+
         </n-view>
         <n-view path="/content"
           page-title="Content"
           src="/pages/content/routes.html"
           content-src="/pages/content/default.html">
+
         </n-view>
         <n-view path="/audio"
           page-title="Audio"
           src="/pages/audio/routes.html"
           content-src="/pages/audio/default.html">
+
         </n-view>
         <n-view path="/presentations"
           page-title="Presentations"
           src="/pages/presentations/routes.html"
           content-src="/pages/presentations/default.html">
+
         </n-view>
         <n-view path="/data"
           page-title="Data Extension"
           src="/pages/data/routes.html"
           content-src="/pages/data/default.html">
+
         </n-view>
         <n-view path="/elements"
           page-title="Elements Extension"
           src="/pages/elements/routes.html"
           content-src="/pages/elements/default.html">
+
         </n-view>
         <n-view path="/components"
           page-title="All Components"
           src="/pages/components/routes.html"
           content-src="/pages/components/default.html">
+
         </n-view>
         <n-view-not-found>
           <div class="content">
             <h1>Page Not Found</h1>
+
           </div>
         </n-view-not-found>
       </n-views>
@@ -493,16 +519,7 @@
         </script>
       </n-app-analytics>
     </n-app>
-  <script async defer>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').catch(function(err) {
-          // registration failed :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      });
-    }
-  </script>
+
   </body>
 
 </html>

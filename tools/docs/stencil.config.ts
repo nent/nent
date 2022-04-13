@@ -46,7 +46,6 @@ const _sw = {
   ],
 }
 
-const pkg = require('./package.json')
 const config: Config = {
   namespace: 'docs',
   excludeUnusedDependencies: true,
