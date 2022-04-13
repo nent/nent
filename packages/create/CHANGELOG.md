@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.15 (2022-04-13)
+
+
+### Features
+
+* **✨:** added the ability to use JSON for HTML and Markdown content ([1186e42](https://github.com/nent/nent/commit/1186e4270cd6bf3eafc4c9dd04dd533898f25804))
+
+
+
+
+
 ## 0.8.14 (2022-04-05)
 
 
