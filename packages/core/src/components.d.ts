@@ -483,6 +483,10 @@ export namespace Components {
          */
         "filter"?: string;
         /**
+          * When declared, the child script tag is required and should be the query text for the request. Also, this forces the HTTP method to 'POST'.
+         */
+        "graphql": boolean;
+        /**
           * Cross Origin Mode
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
@@ -1625,6 +1629,10 @@ declare namespace LocalJSX {
           * The JSONata query to filter the json items see <https://try.jsonata.org> for more info.
          */
         "filter"?: string;
+        /**
+          * When declared, the child script tag is required and should be the query text for the request. Also, this forces the HTTP method to 'POST'.
+         */
+        "graphql"?: boolean;
         /**
           * Cross Origin Mode
          */
