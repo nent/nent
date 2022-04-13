@@ -12,7 +12,7 @@ import {
   commonState,
   onCommonStateChange,
 } from '../../services/common'
-import { debugIf, error, warn } from '../../services/common/logging'
+import { debugIf, error } from '../../services/common/logging'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import {
   resolveRemoteContent,

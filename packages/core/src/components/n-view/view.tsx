@@ -81,7 +81,7 @@ export class View implements IView {
    */
   @Prop() pageKeywords = ''
 
-   /**
+  /**
    * The robots instruction for search indexing
    *
    */

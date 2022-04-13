@@ -66,7 +66,7 @@ describe('route', () => {
       null,
       true,
       {
-        title: 'Page'
+        title: 'Page',
       },
       null,
       0,
@@ -129,7 +129,8 @@ describe('route', () => {
       '/route',
       null,
       true,
-      { title:'Page',
+      {
+        title: 'Page',
         description: 'My page description',
         keywords: 'desc, stuff',
       },
@@ -162,7 +163,7 @@ describe('route', () => {
       '/route/:product',
       null,
       true,
-      { title: '{{route:product}}' } ,
+      { title: '{{route:product}}' },
       null,
       0,
       () => {},
@@ -237,7 +238,7 @@ describe('route', () => {
       '/route',
       null,
       true,
-      { title:'Page' },
+      { title: 'Page' },
       null,
       10,
     )

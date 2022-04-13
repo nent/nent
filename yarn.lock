@@ -2261,10 +2261,10 @@
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.13.0.tgz#993fd74a5c7c8fe8af75848ca9df2211cd05b818"
   integrity sha512-EEKHOHgYpg3/iFUKMXTZJjUayRul7sXDwNw0OGgkEOe4t7JWiibDkzUHuruvpbqEydX+z1+ez5K2bMMY76c2wA==
 
-"@stencil/core@2.14.2":
-  version "2.14.2"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.14.2.tgz#c221d18bbfd9b637d755d43631598695c7526ff2"
-  integrity sha512-NMC5Xi8sPFJxaO4rz6CbMHuD6PteE/RJWtjrbkusmpjKRtMXkfZJPIgOrleZ4xO+vXcNyL535Ru7vUADqEsTiQ==
+"@stencil/core@2.15.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.15.0.tgz#cc49f090a24906b28c926e2f6dc49e75c4adaedf"
+  integrity sha512-58+FPFpJCJScd5nmqVsZN+qk7aui57wFcMHWzySr1SQzoY8Efst9OPG7XRf27UsNj1DNeEdYWTtdrTfJyn3mZg==
 
 "@stencil/eslint-plugin@^0.4.0":
   version "0.4.0"

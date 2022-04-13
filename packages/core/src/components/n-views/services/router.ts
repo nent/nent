@@ -243,7 +243,7 @@ export class RouterService {
     pageTitle: string,
     pageDescription?: string,
     pageKeywords?: string,
-    robots?: string
+    robots?: string,
   ) {
     if (this.win.document) {
       if (pageTitle) {
@@ -394,7 +394,7 @@ export class RouterService {
         title: pageTitle || parent?.pageData.title,
         description: pageDescription,
         keywords: pageKeywords,
-        robots: pageRobots || parent?.pageData.robots
+        robots: pageRobots || parent?.pageData.robots,
       },
       transition || this.transition,
       scrollTopOffset,

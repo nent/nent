@@ -210,10 +210,16 @@ export class Route implements IRoute {
     let keywords = this.pageData.keywords
     let robots = this.pageData.robots
     if (commonState.dataEnabled) {
-      if (!this.pageData.description && hasToken(this.pageData.description!)) {
+      if (
+        !this.pageData.description &&
+        hasToken(this.pageData.description!)
+      ) {
         description = await resolveTokens(this.pageData.description!)
       }
-      if (!this.pageData.keywords && hasToken(this.pageData.keywords!)) {
+      if (
+        !this.pageData.keywords &&
+        hasToken(this.pageData.keywords!)
+      ) {
         keywords = await resolveTokens(this.pageData.keywords!)
       }
     }
