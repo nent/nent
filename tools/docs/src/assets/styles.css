@@ -305,6 +305,7 @@ footer [slot='end'] {
   float: right;
   right: 0;
   margin-left: 0.2rem;
+  display: inline-block;
 }
 footer [slot='start'] {
   float: left;
