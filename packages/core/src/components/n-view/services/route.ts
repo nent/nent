@@ -134,36 +134,32 @@ export class Route implements IRoute {
       this.captureInnerLinksAndResolveHtml()
 
       // If this is an independent route and it matches then routes have updated.
-      if (
-        this.match?.isExact &&
-        !matchesAreEqual(this.match, this.previousMatch)
-      ) {
+      if (this.match?.isExact) {
         this.routeElement
           .querySelectorAll('[defer-load]')
           .forEach((el: any) => {
             el.removeAttribute('defer-load')
           })
 
-        // If the only change to location is a hash change then do not scroll.
-        if (
-          this.router.history &&
-          this.router.history.location.hash
-        ) {
-          routeViewOptions = {
-            scrollToId: this.router.history.location.hash.slice(1),
-          }
-        } else if (this.scrollTopOffset) {
-          routeViewOptions = {
-            scrollTopOffset: this.scrollTopOffset,
-          }
-        }
+        if (!matchesAreEqual(this.match, this.previousMatch))
+          await this.activateActions(ActionActivationStrategy.OnEnter)
 
-        await this.activateActions(ActionActivationStrategy.OnEnter)
         await this.adjustPageTags()
       }
     }
 
     this.completed = true
+
+    // If the only change to location is a hash change then do not scroll.
+    if (this.router.history && this.router.history.location.hash) {
+      routeViewOptions = {
+        scrollToId: this.router.history.location.hash.slice(1),
+      }
+    } else if (this.scrollTopOffset) {
+      routeViewOptions = {
+        scrollTopOffset: this.scrollTopOffset,
+      }
+    }
 
     this.router.viewsUpdated(routeViewOptions)
   }

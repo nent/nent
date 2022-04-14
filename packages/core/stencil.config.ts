@@ -7,7 +7,8 @@ import { version } from './package.json'
 const config: Config = {
   namespace: 'nent',
   hashFileNames: false,
-  buildEs5: false,
+  preamble: 'NENT 2022',
+  invisiblePrehydration: false,
   rollupPlugins: {
     after: [
       analyzer({

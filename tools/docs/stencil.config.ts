@@ -49,8 +49,9 @@ const _sw = {
 const config: Config = {
   namespace: 'docs',
   excludeUnusedDependencies: true,
-  preamble: 'NENT 2021',
+  preamble: 'NENT 2022',
   globalStyle: 'src/index.scss',
+  invisiblePrehydration: true,
   plugins: [
     sass(),
     postcss([
