@@ -162,7 +162,7 @@ describe('router', () => {
       didScroll = true
     }
 
-    subject.viewsUpdated({
+    subject.routeCompleted({
       scrollTopOffset: 10,
       scrollToId: 'test',
     })

@@ -58,6 +58,9 @@ export enum NAVIGATION_COMMANDS {
   goNext = 'go-next',
   goTo = 'go-to',
   goBack = 'go-back',
+  goToParent = 'go-to-parent',
+  back = 'back',
+
 }
 
 export type NavigateTo = {

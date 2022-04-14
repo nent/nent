@@ -42,6 +42,7 @@ export class RouterService {
   private routeData?: RoutingDataProvider
   private queryData?: RoutingDataProvider
   private visitData?: RoutingDataProvider
+  public startUrl: string | undefined
   constructor(
     private win: Window,
     private readonly writeTask: (t: RafCallback) => void,
@@ -133,19 +134,26 @@ export class RouterService {
     return addLeadingSlash(stripped)
   }
 
-  viewsUpdated(options: RouteViewOptions = {}) {
-    if (options.scrollToId) {
-      const elm = this.win.document.querySelector(
-        '#' + options.scrollToId,
-      )
-      if (elm) {
-        elm.scrollIntoView()
-        return
+  routeCompleted(options: RouteViewOptions) {
+    if (this.routes.every(r => r.completed)) {
+      this.listener.notifyRouteFinalized(this.location)
+      // If the only change to location is a hash change then do not scroll.
+      if (!options.scrollTopOffset && this.history?.location?.hash) {
+        options.scrollToId = this.history.location.hash.slice(1)
+      }
+
+      if (options.scrollToId) {
+        const elm = this.win.document.querySelector(
+          '#' + options.scrollToId,
+        )
+        if (elm) {
+          elm.scrollIntoView()
+          return
+        }
+      } else {
+        this.scrollTo(options.scrollTopOffset || this.scrollTopOffset)
       }
     }
-    this.scrollTo(options.scrollTopOffset || this.scrollTopOffset)
-    if (this.routes.every(r => r.completed))
-      this.listener.notifyRouteFinalized(this.location)
   }
 
   atRoot() {
@@ -156,6 +164,7 @@ export class RouterService {
   }
 
   initialize(startUrl?: string) {
+    this.startUrl = startUrl
     this.captureInnerLinks(this.win.document.body)
 
     if (startUrl && this.atRoot())
@@ -179,7 +188,7 @@ export class RouterService {
     if (parentSegments) {
       this.goToRoute(addLeadingSlash(parentSegments.join('/')))
     } else {
-      this.goBack()
+      this.goToRoute(this.startUrl || '/')
     }
   }
 
@@ -218,9 +227,10 @@ export class RouterService {
   public matchPath(
     options: MatchOptions = {},
     route: Route | null = null,
+    sendEvent: boolean = true,
   ): MatchResults | null {
     const match = matchPath(this.location, options)
-    if (route && match) {
+    if (route && match && sendEvent) {
       if (match.isExact) this.listener.notifyMatchExact(route, match)
       else this.listener.notifyMatch(route, match)
     }

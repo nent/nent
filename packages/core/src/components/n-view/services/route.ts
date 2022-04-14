@@ -12,7 +12,6 @@ import { getChildInputValidity } from '../../n-view-prompt/services/elements'
 import {
   LocationSegments,
   MatchResults,
-  RouteViewOptions,
   ROUTE_EVENTS,
 } from '../../n-views/services/interfaces'
 import { RouterService } from '../../n-views/services/router'
@@ -64,7 +63,7 @@ export class Route implements IRoute {
       },
     )
 
-    const evaluateRoute = () => {
+    const evaluateRoute = (sendEvent: boolean = true) => {
       logIf(
         commonState.debug,
         `route: ${this.path} changed -> ${location.pathname}`,
@@ -76,6 +75,7 @@ export class Route implements IRoute {
           strict: true,
         },
         this,
+        sendEvent,
       )
       matchSetter(this.match)
       this.adjustClasses()
@@ -128,8 +128,6 @@ export class Route implements IRoute {
   }
 
   public async loadCompleted() {
-    let routeViewOptions: RouteViewOptions = {}
-
     if (this.match) {
       this.captureInnerLinksAndResolveHtml()
 
@@ -141,27 +139,16 @@ export class Route implements IRoute {
             el.removeAttribute('defer-load')
           })
 
-        if (!matchesAreEqual(this.match, this.previousMatch))
-          await this.activateActions(ActionActivationStrategy.OnEnter)
+        await this.activateActions(ActionActivationStrategy.OnEnter)
 
         await this.adjustPageTags()
       }
     }
 
     this.completed = true
-
-    // If the only change to location is a hash change then do not scroll.
-    if (this.router.history && this.router.history.location.hash) {
-      routeViewOptions = {
-        scrollToId: this.router.history.location.hash.slice(1),
-      }
-    } else if (this.scrollTopOffset) {
-      routeViewOptions = {
-        scrollTopOffset: this.scrollTopOffset,
-      }
-    }
-
-    this.router.viewsUpdated(routeViewOptions)
+    this.router.routeCompleted({
+      scrollTopOffset: this.scrollTopOffset,
+    })
   }
 
   private toggleClass(className: string, force: boolean) {
@@ -225,8 +212,6 @@ export class Route implements IRoute {
   public async goBack() {
     const back = await this.getPreviousRoute()
     if (back) this.router.goToRoute(back.path)
-    else if (this.router.history.previousLocation)
-      this.router.history.goBack()
     else this.goToParentRoute()
   }
 

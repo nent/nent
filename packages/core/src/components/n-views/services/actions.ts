@@ -75,7 +75,15 @@ export class NavigationActionListener {
 
     switch (eventAction.command) {
       case NAVIGATION_COMMANDS.goNext: {
-        this.router.goToParentRoute()
+        this.router.exactRoute?.goNext()
+        break
+      }
+      case NAVIGATION_COMMANDS.goBack: {
+        this.router.exactRoute?.goBack()
+        break
+      }
+      case NAVIGATION_COMMANDS.goToParent: {
+        this.router.exactRoute?.goToParentRoute()
         break
       }
       case NAVIGATION_COMMANDS.goTo: {
@@ -83,9 +91,8 @@ export class NavigationActionListener {
         this.router.goToRoute(path)
         break
       }
-      case NAVIGATION_COMMANDS.goBack: {
+      case NAVIGATION_COMMANDS.back: {
         this.router.goBack()
-        break
       }
     }
   }
