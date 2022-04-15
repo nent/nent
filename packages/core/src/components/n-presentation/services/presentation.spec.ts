@@ -140,11 +140,7 @@ describe('presentation-service', () => {
       new MockRequestAnimationFrameProvider()
     const timer = new FrameTimer(animationFrameProvider, 0, 0)
 
-    const route = new MockRoute()
-
-    const goNext = jest
-      .spyOn(route, 'goNext')
-      .mockImplementationOnce(async () => {})
+    const goNext = jest.fn().mockImplementationOnce(async () => {})
 
     subject = new PresentationService(
       page.body,
@@ -152,7 +148,7 @@ describe('presentation-service', () => {
       false,
       null,
       async () => {
-        route.goNext()
+        goNext()
       },
     )
 
@@ -277,7 +273,7 @@ describe('presentation-service', () => {
     expect(page.body).toEqualHtml(
       `<n-presentation>
         <p>Show me!</p>
-        <n-action-activator activate="at-time" time="1">
+        <n-action-activator activate="at-time" time="1" style="display: contents;">
           <n-action topic="elements" command="remove-attribute"
             data-selector="p"
             data-attribute="hidden">

@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
 import { forceUpdate } from '@stencil/core'
+import { eventBus } from '../actions'
 import { IEventEmitter } from './interfaces'
 import {
   commonState,
@@ -8,14 +9,14 @@ import {
   onCommonStateChange,
 } from './state'
 
-export class ComponentRefresher {
+export class CommonStateSubscriber {
   private subscription!: () => void
   private stateSubscription!: () => void
   constructor(
     private component: any,
-    private eventBus: IEventEmitter,
     commonSetting: keyof CommonStateModel,
     private eventName: string,
+    private events: IEventEmitter = eventBus,
   ) {
     if (commonState[commonSetting]) {
       this.subscribeToEvents()
@@ -34,12 +35,12 @@ export class ComponentRefresher {
   }
 
   private subscribeToEvents() {
-    this.subscription = this.eventBus.on(this.eventName, () => {
+    this.subscription = this.events.on(this.eventName, () => {
       forceUpdate(this.component)
     })
   }
 
-  destroy() {
+  public destroy() {
     this.subscription?.call(this)
     this.stateSubscription?.call(this)
   }

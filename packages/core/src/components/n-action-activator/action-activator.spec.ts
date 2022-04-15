@@ -34,8 +34,8 @@ describe('n-action-activator', () => {
              </n-action-activator>`,
     })
     expect(page.root).toEqualHtml(
-      `<n-action-activator>
-      <div></div>
+      `<n-action-activator style="display: contents;">
+        <div></div>
       </n-action-activator>`,
     )
   })
@@ -48,7 +48,7 @@ describe('n-action-activator', () => {
              </n-action-activator>`,
     })
     expect(page.root).toEqualHtml(
-      `<n-action-activator>
+      `<n-action-activator style="display: contents;">
         <n-action topic="fake" command="noop"></n-action>
       </n-action-activator>`,
     )

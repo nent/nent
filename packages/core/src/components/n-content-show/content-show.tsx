@@ -6,9 +6,9 @@ import {
   Prop,
   State,
 } from '@stencil/core'
-import { eventBus } from '../../services/actions'
-import { ComponentRefresher } from '../../services/common'
-import { evaluatePredicate } from '../../services/data/expressions'
+import { commonState } from '../../services/common'
+import { CommonStateSubscriber } from '../../services/common/state-subscriber'
+
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 
@@ -27,8 +27,8 @@ import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 })
 export class ContentShow {
   @Element() el!: HTMLNContentShowElement
-  private dataSubscription!: ComponentRefresher
-  private routeSubscription!: ComponentRefresher
+  private dataSubscription!: CommonStateSubscriber
+  private routeSubscription!: CommonStateSubscriber
   @State() show = true
 
   /**
@@ -38,23 +38,26 @@ export class ContentShow {
   @Prop() when!: string
 
   componentWillLoad() {
-    this.dataSubscription = new ComponentRefresher(
+    this.dataSubscription = new CommonStateSubscriber(
       this,
-      eventBus,
       'dataEnabled',
       DATA_EVENTS.DataChanged,
     )
 
-    this.routeSubscription = new ComponentRefresher(
+    this.routeSubscription = new CommonStateSubscriber(
       this,
-      eventBus,
       'routingEnabled',
       ROUTE_EVENTS.RouteChanged,
     )
   }
 
   async componentWillRender() {
-    this.show = await evaluatePredicate(this.when)
+    if (commonState.dataEnabled) {
+      const { evaluatePredicate } = await import(
+        '../../services/data/expressions'
+      )
+      this.show = await evaluatePredicate(this.when)
+    }
   }
 
   disconnectedCallback() {

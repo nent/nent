@@ -47,7 +47,7 @@
     "watch": "npm-watch",
     "--- production ---": "---------------",
     "clean": "rm -fR ./dist",
-    "prebuild": "rm -fR ./dist",
+    "prebuild": "run-s clean",
     "build": "stencil build --docs-readme --dist",
     "postbuild": "node .build && npm run copy",
     "--- test ---": "---------------",

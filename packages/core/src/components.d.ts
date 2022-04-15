@@ -909,6 +909,14 @@ export namespace Components {
     }
     interface NViews {
         /**
+          * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+         */
+        "debug": boolean;
+        /**
+          * Enable the not-found display. To customize it, use: slot="not-found"
+         */
+        "notFound": boolean;
+        /**
           * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
          */
         "root": string;
@@ -2051,6 +2059,14 @@ declare namespace LocalJSX {
         "when"?: string;
     }
     interface NViews {
+        /**
+          * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+         */
+        "debug"?: boolean;
+        /**
+          * Enable the not-found display. To customize it, use: slot="not-found"
+         */
+        "notFound"?: boolean;
         /**
           * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
          */

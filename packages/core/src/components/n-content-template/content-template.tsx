@@ -1,12 +1,11 @@
 import { Component, Element, Prop, State } from '@stencil/core'
-import { eventBus } from '../../services/actions'
-import { ComponentRefresher } from '../../services/common'
+import { CommonStateSubscriber } from '../../services/common'
 import { debugIf, warn } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import { fetchJson } from '../../services/content'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
-import { evaluatePredicate } from '../../services/data/expressions'
+
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { filterData } from '../../services/data/jsonata.worker'
 import { resolveTokens } from '../../services/data/tokens'
@@ -26,8 +25,8 @@ import { routingState } from '../n-views/services/state'
   shadow: false,
 })
 export class ContentTemplate {
-  private dataSubscription!: ComponentRefresher
-  private routeSubscription!: ComponentRefresher
+  private dataSubscription!: CommonStateSubscriber
+  private routeSubscription!: CommonStateSubscriber
   private contentClass = 'dynamic'
   @Element() el!: HTMLNContentTemplateElement
   @State() innerTemplate!: string
@@ -98,16 +97,14 @@ export class ContentTemplate {
   }
 
   componentWillLoad() {
-    this.dataSubscription = new ComponentRefresher(
+    this.dataSubscription = new CommonStateSubscriber(
       this,
-      eventBus,
       'dataEnabled',
       DATA_EVENTS.DataChanged,
     )
 
-    this.routeSubscription = new ComponentRefresher(
+    this.routeSubscription = new CommonStateSubscriber(
       this,
-      eventBus,
       'routingEnabled',
       ROUTE_EVENTS.RouteChanged,
     )
@@ -119,8 +116,12 @@ export class ContentTemplate {
 
   async componentWillRender() {
     let shouldRender = !this.deferLoad
-    if (shouldRender && this.when)
+    if (shouldRender && this.when && commonState.dataEnabled) {
+      const { evaluatePredicate } = await import(
+        '../../services/data/expressions'
+      )
       shouldRender = await evaluatePredicate(this.when)
+    }
 
     if (shouldRender)
       this.contentElement = await this.resolveContentElement()

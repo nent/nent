@@ -181,7 +181,7 @@ export class ActionActivator {
 
   render() {
     return (
-      <Host>
+      <Host style={{ display: 'contents' }}>
         <slot />
       </Host>
     )

@@ -21,7 +21,7 @@ describe('n-app', () => {
       html: `<n-app></n-app>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-app>
+      <n-app style="display: block;">
       </n-app>
     `)
 
@@ -37,7 +37,7 @@ describe('n-app', () => {
       html: `<n-app debug></n-app>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-app debug="">
+      <n-app debug="" style="display:block;">
       </n-app>
     `)
     expect(actionBus.events['*'].length).toBe(1)
@@ -52,7 +52,7 @@ describe('n-app', () => {
       html: `<n-app></n-app>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-app>
+      <n-app style="display: block;">
       </n-app>
     `)
 
@@ -89,7 +89,7 @@ describe('n-app', () => {
       html: `<n-app></n-app>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-app>
+      <n-app style="display: block;">
       </n-app>
     `)
 

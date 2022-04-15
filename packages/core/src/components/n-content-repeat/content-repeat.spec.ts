@@ -202,7 +202,8 @@ describe('n-content-repeat', () => {
         }),
       )
 
-    await page.setContent(`<n-content-repeat items-src="items.json" no-cache>
+    await page.setContent(`
+      <n-content-repeat items-src="items.json" no-cache>
         <template><b>{{data:item}}</b></template>
       </n-content-repeat>`)
 

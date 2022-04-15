@@ -1,7 +1,6 @@
 import { actionBus } from '.'
 import { commonState, debugIf, warn } from '../common'
-import { hasToken, resolveTokens } from '../data'
-import { evaluatePredicate } from '../data/expressions'
+
 import { EventAction, IActionElement } from './interfaces'
 
 export class ActionService {
@@ -49,6 +48,9 @@ export class ActionService {
 
     if (commonState.dataEnabled) {
       if (this.element.when) {
+        const { evaluatePredicate } = await import(
+          '../data/expressions'
+        )
         let predicateResult = await evaluatePredicate(
           this.element.when,
         )
@@ -60,6 +62,10 @@ export class ActionService {
           return null
         }
       }
+
+      const { hasToken, resolveTokens } = await import(
+        '../data/tokens'
+      )
 
       // resolve token values
       await Promise.all(

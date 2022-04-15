@@ -6,7 +6,6 @@ import {
   Prop,
   State,
 } from '@stencil/core'
-import { eventBus } from '../../services/actions'
 import { CommonStateSubscriber, slugify } from '../../services/common'
 import { debugIf, warn } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
@@ -182,7 +181,6 @@ export class ViewPrompt implements IView {
     if (commonState.dataEnabled && this.resolveTokens) {
       this.dataSubscription = new CommonStateSubscriber(
         this,
-        eventBus,
         'dataEnabled',
         DATA_EVENTS.DataChanged,
       )
