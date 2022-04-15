@@ -162,10 +162,7 @@ describe('router', () => {
       didScroll = true
     }
 
-    subject.routeCompleted({
-      scrollTopOffset: 10,
-      scrollToId: 'test',
-    })
+    subject.routeCompleted()
 
     subject.scrollTo(0)
     subject.destroy()
@@ -247,6 +244,8 @@ describe('router', () => {
       writeTask,
       eventBus,
       actionBus,
+      '',
+      '',
       '',
       '',
       '',

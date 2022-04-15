@@ -60,7 +60,7 @@ describe('n-view-link-back', () => {
 
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
-      <n-views start-path="/second">
+      <n-views start-path="/second" style="display:block;">
         <n-view path="/first">
           <mock:shadow-root>
             <slot></slot>
@@ -112,7 +112,7 @@ describe('n-view-link-back', () => {
 
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display:block;">
         <n-view path="/parent">
           <mock:shadow-root>
             <slot></slot>
@@ -145,7 +145,7 @@ describe('n-view-link-back', () => {
         ViewLinkBack,
         ViewLink,
       ],
-      html: `<n-views >
+      html: `<n-views>
         <n-view path='/'>
           <n-view-prompt path='/child'>
             <n-view-link-back>
@@ -158,7 +158,7 @@ describe('n-view-link-back', () => {
 
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display:block;">
         <n-view class="active" path="/">
           <mock:shadow-root>
             <slot></slot>
@@ -213,7 +213,7 @@ describe('n-view-link-back', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display:block;">
         <n-view class="active exact" path="/">
           <mock:shadow-root>
             <slot></slot>
@@ -245,7 +245,7 @@ describe('n-view-link-back', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display:block;">
         <n-view  class="active" path="/">
           <mock:shadow-root>
             <slot></slot>

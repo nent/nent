@@ -14,10 +14,9 @@ export interface IRoute {
     AtTime: ActionActivationStrategy,
     filter: (activator: any) => boolean,
   ): Promise<void>
-  goBack(): void
-  goNext(): void
-  goToRoute(path: string): void
-  goToParentRoute(): void
+  getPreviousRoute(): Promise<Route | null>
+  getNextRoute(): Promise<Route | null>
+  getParentRoute(): Route | null
 }
 
 export type RouteInfo = {

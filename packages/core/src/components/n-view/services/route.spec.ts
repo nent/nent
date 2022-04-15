@@ -76,7 +76,7 @@ describe('route', () => {
     expect(subject).not.toBeNull()
     expect(match).toBeNull()
 
-    subject.goToRoute('/route')
+    router.goToRoute('/route')
 
     await page.waitForChanges()
 

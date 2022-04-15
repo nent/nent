@@ -8,7 +8,7 @@ const config: Config = {
   namespace: 'nent',
   hashFileNames: false,
   preamble: 'NENT 2022',
-  invisiblePrehydration: false,
+  invisiblePrehydration: true,
   rollupPlugins: {
     after: [
       analyzer({

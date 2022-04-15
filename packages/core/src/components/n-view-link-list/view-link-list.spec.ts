@@ -35,7 +35,7 @@ describe('n-view-link-list', () => {
     })
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view-link-list>
         <ul>
           <li>
@@ -109,7 +109,7 @@ describe('n-view-link-list', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view-link-list>
         <ul>
           <li>
@@ -163,7 +163,7 @@ describe('n-view-link-list', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view-link-list  mode="siblings">
         <ul>
           <li>
@@ -218,7 +218,7 @@ describe('n-view-link-list', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views  start-path="/">
+    <n-views  start-path="/" style="display:block;">
       <n-view-link-list mode="children">
         <ul>
           <li>
@@ -342,7 +342,7 @@ describe('n-view-link-list', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view-link-list>
         <ul>
           <li>
@@ -397,7 +397,7 @@ describe('n-view-link-list', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view-link-list>
         <ul>
           <li>

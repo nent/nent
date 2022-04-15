@@ -146,9 +146,7 @@ export class Route implements IRoute {
     }
 
     this.completed = true
-    this.router.routeCompleted({
-      scrollTopOffset: this.scrollTopOffset,
-    })
+    this.router.routeCompleted()
   }
 
   private toggleClass(className: string, force: boolean) {
@@ -188,40 +186,26 @@ export class Route implements IRoute {
   }
 
   public async adjustPageTags() {
-    let title = await this.resolvePageTitle()
-    let description = this.pageData.description
-    let keywords = this.pageData.keywords
-    let robots = this.pageData.robots
+    const data = this.pageData
+    data.title = await this.resolvePageTitle()
+
     if (commonState.dataEnabled) {
       if (
         !this.pageData.description &&
         hasToken(this.pageData.description!)
       ) {
-        description = await resolveTokens(this.pageData.description!)
+        data.description = await resolveTokens(
+          this.pageData.description!,
+        )
       }
       if (
         !this.pageData.keywords &&
         hasToken(this.pageData.keywords!)
       ) {
-        keywords = await resolveTokens(this.pageData.keywords!)
+        data.keywords = await resolveTokens(this.pageData.keywords!)
       }
     }
-    this.router.setPageTags(title!, description, keywords, robots)
-  }
-
-  public async goBack() {
-    const back = await this.getPreviousRoute()
-    if (back) this.router.goToRoute(back.path)
-    else this.goToParentRoute()
-  }
-
-  public async goNext() {
-    const valid = getChildInputValidity(this.routeElement)
-    if (valid) {
-      const next = await this.getNextRoute()
-      if (next) this.router.goToRoute(next.path)
-      else this.goToParentRoute()
-    }
+    this.router.setPageTags(data)
   }
 
   public async getPreviousRoute(): Promise<Route | null> {
@@ -229,6 +213,10 @@ export class Route implements IRoute {
     const index = this.getSiblingIndex(siblings.map(r => r.route))
     let back = index > 0 ? siblings.slice(index - 1) : []
     return back[0]?.route || this.parentRoute
+  }
+
+  public isValidForNext() {
+    return getChildInputValidity(this.routeElement)
   }
 
   public async getNextRoute(): Promise<Route | null> {
@@ -260,12 +248,8 @@ export class Route implements IRoute {
     return parents
   }
 
-  public goToParentRoute() {
-    if (this.parentRoute) {
-      this.goToRoute(this.parentRoute.path)
-    } else {
-      this.router.goToParentRoute()
-    }
+  public getParentRoute() {
+    return this.parentRoute
   }
 
   public sortRoutes(elements: Element[]) {
@@ -323,13 +307,6 @@ export class Route implements IRoute {
 
   public getSiblingIndex(siblings: Route[]) {
     return siblings?.findIndex(p => p.path == this.path) || 0
-  }
-
-  public goToRoute(path: string) {
-    const route = isAbsolute(path)
-      ? path
-      : this.router.resolvePathname(path, this.path)
-    this.router.goToRoute(route)
   }
 
   public replaceWithRoute(path: string) {

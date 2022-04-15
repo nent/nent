@@ -60,11 +60,15 @@ export enum NAVIGATION_COMMANDS {
   goBack = 'go-back',
   goToParent = 'go-to-parent',
   back = 'back',
-
+  scrollTo = 'scroll-to',
 }
 
 export type NavigateTo = {
   path: string
+}
+
+export type ScrollToId = {
+  id: string
 }
 
 export const NAVIGATION_TOPIC = 'navigation'

@@ -56,7 +56,7 @@ describe('n-view-prompt', () => {
     expect(page.win.location.pathname).toBe('/')
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view path="/foo">
         <mock:shadow-root>
           <slot></slot>
@@ -96,7 +96,7 @@ describe('n-view-prompt', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view class="active " path="/">
         <mock:shadow-root>
           <slot></slot>
@@ -294,7 +294,7 @@ describe('n-view-prompt', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display: block;">
         <n-view class="active" path="/">
           <mock:shadow-root>
             <slot></slot>
@@ -347,7 +347,7 @@ describe('n-view-prompt', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display: block;">
         <n-view class="active" path="/">
           <mock:shadow-root>
             <slot></slot>
@@ -396,7 +396,7 @@ describe('n-view-prompt', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display: block;">
         <n-view class="active" path="/">
           <mock:shadow-root>
             <slot></slot>

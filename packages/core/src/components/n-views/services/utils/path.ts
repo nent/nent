@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-import { isValue } from '../../../../services/common'
+import { isValue } from '../../../../services/common/values'
 import { LocationSegments } from '../interfaces'
 
 /**

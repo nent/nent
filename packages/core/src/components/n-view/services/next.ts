@@ -1,5 +1,4 @@
 import { commonState } from '../../../services/common/state'
-import { evaluatePredicate } from '../../../services/data/expressions'
 import { IViewPrompt, VisitStrategy } from './interfaces'
 import { hasVisited } from './visits'
 
@@ -9,6 +8,9 @@ export async function getViewPromptStateProperties(
   let { when, path, visit = VisitStrategy.once } = viewPrompt
   let visited = await hasVisited(path)
   if (commonState.dataEnabled && when) {
+    const { evaluatePredicate } = await import(
+      '../../../services/data/expressions'
+    )
     const shouldGo = await evaluatePredicate(when)
     if (shouldGo) {
       visit = VisitStrategy.once

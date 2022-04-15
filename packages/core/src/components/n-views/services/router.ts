@@ -1,6 +1,9 @@
 import { RafCallback } from '@stencil/core'
-import { warn } from '../../../services/common'
-import { IEventEmitter } from '../../../services/common/interfaces'
+import { warn } from '../../../services/common/logging'
+import {
+  IEventEmitter,
+  PageData,
+} from '../../../services/common/interfaces'
 import {
   commonState,
   onCommonStateChange,
@@ -20,7 +23,6 @@ import {
   LocationSegments,
   MatchOptions,
   MatchResults,
-  RouteViewOptions,
 } from './interfaces'
 import { RoutingDataProvider } from './provider'
 import { isAbsolute, resolvePathname } from './utils/location'
@@ -134,28 +136,6 @@ export class RouterService {
     return addLeadingSlash(stripped)
   }
 
-  routeCompleted(options: RouteViewOptions) {
-    if (this.routes.every(r => r.completed)) {
-      this.listener.notifyRouteFinalized(this.location)
-      // If the only change to location is a hash change then do not scroll.
-      if (!options.scrollTopOffset && this.history?.location?.hash) {
-        options.scrollToId = this.history.location.hash.slice(1)
-      }
-
-      if (options.scrollToId) {
-        const elm = this.win.document.querySelector(
-          '#' + options.scrollToId,
-        )
-        if (elm) {
-          elm.scrollIntoView()
-          return
-        }
-      } else {
-        this.scrollTo(options.scrollTopOffset || this.scrollTopOffset)
-      }
-    }
-  }
-
   atRoot() {
     return (
       this.location?.pathname == this.root ||
@@ -163,24 +143,73 @@ export class RouterService {
     )
   }
 
-  initialize(startUrl?: string) {
+  public initialize(startUrl?: string) {
     this.startUrl = startUrl
-    this.captureInnerLinks(this.win.document.body)
 
     if (startUrl && this.atRoot())
       this.replaceWithRoute(stripBasename(startUrl!, this.root))
 
+    this.captureInnerLinks(this.win.document.body)
+
     this.listener.notifyRouterInitialized()
+    if (this.routes.every(r => r.completed)) {
+      this.allRoutesComplete()
+    }
   }
 
-  goBack() {
+  private allRoutesComplete() {
+    if (!this.hasExactRoute()) {
+      this.setPageTags({
+        title: 'Not found',
+        robots: 'nofollow',
+      })
+    }
+    this.listener.notifyRouteFinalized(this.location)
+  }
+
+  public routeCompleted() {
+    if (this.routes.every(r => r.completed)) {
+      this.allRoutesComplete()
+    }
+  }
+
+  public async goBack() {
+    if (this.exactRoute) {
+      const nextRoute = await this.exactRoute.getNextRoute()
+      if (nextRoute) {
+        this.goToRoute(nextRoute?.path)
+        return
+      }
+    }
     this.listener.notifyRouteChangeStarted(
       this.history.previousLocation.pathname,
     )
     this.history.goBack()
   }
 
-  goToParentRoute() {
+  public async goNext() {
+    if (this.exactRoute) {
+      if (!this.exactRoute.isValidForNext()) return
+      const nextRoute = await this.exactRoute.getNextRoute()
+      // if the route returns null, then we can't move due to validation
+      if (nextRoute) {
+        this.goToRoute(nextRoute!.path)
+        return
+      }
+    }
+
+    this.goToParentRoute()
+  }
+
+  public goToParentRoute() {
+    if (this.exactRoute) {
+      const parentRoute = this.exactRoute.getParentRoute()
+      if (parentRoute) {
+        this.goToRoute(parentRoute!.path)
+        return
+      }
+    }
+
     const parentSegments = this.history.location.pathParts?.slice(
       0,
       -1,
@@ -192,23 +221,26 @@ export class RouterService {
     }
   }
 
-  public scrollTo(scrollToLocation: number) {
-    if (Array.isArray(this.history.location.scrollPosition)) {
-      if (
-        this.history.location &&
-        Array.isArray(this.history.location.scrollPosition)
-      ) {
+  public scrollTo(scrollOffset: number) {
+    // Okay, the frame has passed. Go ahead and render now
+    this.writeTask(() => {
+      // first check if we have a stored scroll location
+      if (Array.isArray(this.history.location?.scrollPosition)) {
         this.win.scrollTo(
           this.history.location.scrollPosition[0],
           this.history.location.scrollPosition[1],
         )
+        return
       }
-      return
-    }
 
-    // Okay, the frame has passed. Go ahead and render now
+      this.win.scrollTo(0, scrollOffset || 0)
+    })
+  }
+
+  public scrollToId(id: string) {
     this.writeTask(() => {
-      this.win.scrollTo(0, scrollToLocation || 0)
+      const elm = this.win.document.querySelector('#' + id)
+      elm?.scrollIntoView()
     })
   }
 
@@ -249,18 +281,12 @@ export class RouterService {
     return ev.metaKey || ev.altKey || ev.ctrlKey || ev.shiftKey
   }
 
-  public async setPageTags(
-    pageTitle: string,
-    pageDescription?: string,
-    pageKeywords?: string,
-    robots?: string,
-  ) {
+  public async setPageTags(pageData: PageData) {
+    const { title, description, keywords, robots } = pageData
     if (this.win.document) {
-      if (pageTitle) {
-        this.win.document.title = `${pageTitle} | ${this.appTitle}`
-      } else {
-        this.win.document.title = `${this.appTitle}`
-      }
+      this.win.document.title = [title, this.appTitle]
+        .filter(v => v)
+        .join(' | ')
 
       if (robots)
         this.win.document
@@ -283,16 +309,24 @@ export class RouterService {
         .querySelectorAll('meta[name*=description]')
         .forEach((element: Element) => {
           const metaTag = element as HTMLMetaElement
-          metaTag.content =
-            pageDescription || this.appDescription || ''
+          metaTag.content = description || this.appDescription || ''
         })
 
       this.win.document
         .querySelectorAll('meta[name*=keywords]')
         .forEach((element: Element) => {
           const metaTag = element as HTMLMetaElement
-          metaTag.content = pageKeywords || this.appKeywords || ''
+          metaTag.content = keywords || this.appKeywords || ''
         })
+
+      // If the only change to location is a hash change then do not scroll.
+      if (this.history?.location?.hash) {
+        this.scrollToId(this.history.location.hash.slice(1))
+      } else {
+        this.scrollTo(
+          this.exactRoute?.scrollTopOffset || this.scrollTopOffset,
+        )
+      }
     }
   }
 

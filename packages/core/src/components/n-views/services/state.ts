@@ -1,20 +1,21 @@
 /* istanbul ignore file */
 
 import { createStore } from '@stencil/store'
-import { Route } from '../../n-view/services/route'
 import { LocationSegments } from './interfaces'
 import { RouterService } from './router'
 
-class StateModel {
+export class RoutingStateModel {
   router!: RouterService | null
   location!: LocationSegments | null
-  exactRoute!: Route | null
+  hasExactRoute: boolean = false
+  debug: boolean = false
 }
 
-const store = createStore<StateModel>({
+const store = createStore<RoutingStateModel>({
   router: null,
   location: null,
-  exactRoute: null,
+  hasExactRoute: false,
+  debug: false,
 })
 
 const { state, onChange, reset, dispose } = store
@@ -22,8 +23,9 @@ let subscribed = false
 onChange('router', router => {
   if (router && subscribed == false) {
     router.eventBus.on('*', () => {
+      state.hasExactRoute = false
       state.location = router.location
-      state.exactRoute = router.exactRoute
+      state.hasExactRoute = router.hasExactRoute()
     })
     subscribed = true
   }
