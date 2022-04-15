@@ -20,13 +20,16 @@
       </template>
     </n-content-repeat>
   </ul>
-  <n-view no-cache exact
+  <n-view no-cache
+    exact
     class="flex-shrink"
     path="/components/:component"
     page-title="<{{route:component?Details}}>"
     content-src="/pages/components/component.html">
+
   </n-view>
-  <n-view no-cache exact
+  <n-view no-cache
+    exact
     class="flex-shrink"
     path="/components/:component/:extension"
     page-title="{{route:extension}}">
@@ -36,6 +39,18 @@
         class="d-block"
         lang="html">
       </n-content-markdown>
+
+      <n-action-activator>
+        <n-action topic="navigation"
+          command="back"></n-action>
+        <button class="btn btn-primary">
+          Back
+        </button>
+      </n-action-activator>
+
     </div>
+
+
   </n-view>
+
 </div>

@@ -385,6 +385,7 @@ n-view.active + n-view-not-found {
 }
 
 .container,
+n-views [slot=not-found],
 n-views > n-view,
 n-views > n-view-prompt,
 n-views > n-view-not-found  {
