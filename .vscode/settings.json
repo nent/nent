@@ -107,17 +107,36 @@
     "editor.quickSuggestions": true,
     "editor.formatOnSave": false
   },
-  "eslint.validate": ["javascript", "javascriptreact", "typescript"],
-  "html.customData": ["./tools/vscode/nent.html-data.json"],
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": false
+    }
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": false
+    }
+  },
+  "html.customData": [
+    "./tools/vscode/nent.html-data.json"
+  ],
   "vsicons.associations.files": [
     {
       "icon": "node",
-      "extensions": [".rc"],
+      "extensions": [
+        ".rc"
+      ],
       "format": "svg"
     },
     {
       "icon": "config",
-      "extensions": [".config.js"],
+      "extensions": [
+        ".config.js"
+      ],
       "format": "svg"
     }
   ],
@@ -294,7 +313,14 @@
   "html.format.wrapLineLength": 80,
   "peacock.color": "#ae9ae4",
   "jest.jestCommandLine": "node_modules/.bin/jest",
-  "jest.autoRun": { "watch": false, "onSave": "test-src-file" },
+  "jest.autoRun": {
+    "watch": false,
+    "onSave": "test-src-file"
+  },
   "testExplorer.gutterDecoration": true,
-  "debug.allowBreakpointsEverywhere": true
+  "debug.allowBreakpointsEverywhere": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "stencilTools.component.alphabetizeImports": true,
+  "typescript.format.enable": true
 }

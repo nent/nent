@@ -11,13 +11,13 @@
   "repository": "https://github.com/nent/nent.git",
   "scripts": {
     ":build ---": "---------------",
-    "prebuild": "rm -fR docs",
+    "prebuild": "run-p clean format",
     "build": "run-s build:core build:docs",
     "prebuild:ssg": "rm -fR docs",
     "build:ssg": "run-s build:core build:docs:ssg",
     ":dev ---": "---------------",
     "start": "run-p start:core start:docs",
-    "serve": "serve docs -l 3002",
+    "serve": "serve -s -C -n --no-port-switching -p 3002 docs",
     ":core  ---": "---------------",
     "prebuild:core": "cp README.md ./packages/core/README.md",
     "build:core": "yarn workspace @nent/core run build",
@@ -49,7 +49,7 @@
     "creator": "yarn workspace @nent/create",
     "vscode": "yarn workspace nent",
     ":tools ---": "------------",
-    "clean": "lerna clean && run-p clean:core clean:docs",
+    "clean": "run-p clean:core clean:docs",
     "clean:core": "yarn core run clean",
     "clean:docs": "yarn docs run clean",
     ":auto ---": "------------",
@@ -88,6 +88,7 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "glob-parent": "6.0.2",
     "husky": "7.0.4",
     "jest": "26.6.3",
@@ -99,6 +100,7 @@
     "onchange": "7.1.0",
     "pinst": "2.1.6",
     "prettier": "2.5.1",
+    "prettier-eslint": "^13.0.0",
     "puppeteer": "10.4.0",
     "rimraf": "3.0.2",
     "rollup": "^2.66.1",
@@ -122,7 +124,5 @@
     "tools/docs",
     "tools/vscode"
   ],
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }

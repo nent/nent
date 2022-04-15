@@ -11,12 +11,7 @@ jest.mock('../../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { EventEmitter } from '../../../services/common/emitter'
-import {
-  dir,
-  log,
-  table,
-  warn,
-} from '../../../services/common/logging'
+import { dir, log, warn } from '../../../services/common/logging'
 import { AppActionListener } from './actions'
 import { clearAppProvider, getAppProvider } from './factory'
 import { APP_COMMANDS, APP_TOPIC } from './interfaces'
