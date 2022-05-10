@@ -152,9 +152,9 @@ export class ContentDataRepeat {
     debugIf(this.debug, 'n-content-repeat: resolving html')
     let shouldRender = !this.deferLoad
     if (shouldRender && this.when && commonState.dataEnabled) {
-      const {
-        evaluatePredicate,
-      } = require('../../services/data/expressions')
+      const { evaluatePredicate } = await import(
+        '../../services/data/expressions'
+      )
       shouldRender = await evaluatePredicate(this.when)
     }
 

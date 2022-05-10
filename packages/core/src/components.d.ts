@@ -585,7 +585,7 @@ export namespace Components {
         /**
           * Get the underlying actionEvent instance. Used by the n-action-activator element.
          */
-        "getAction": () => Promise<EventAction<any> | null>;
+        "getAction": () => Promise<EventAction1<any> | null>;
         /**
           * Send this action to the action messaging system.
          */
