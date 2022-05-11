@@ -21,7 +21,6 @@ import {
  */
 @Component({
   tag: 'n-view-link-list',
-  styles: 'n-view-link-list { display: block; }',
   shadow: false,
 })
 export class ViewLinkList {

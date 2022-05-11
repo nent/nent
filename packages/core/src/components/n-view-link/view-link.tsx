@@ -25,7 +25,6 @@ import {
  */
 @Component({
   tag: 'n-view-link',
-  styleUrl: `view-link.css`,
   shadow: false,
 })
 export class ViewLink {
