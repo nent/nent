@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.9.2 (2022-05-11)
+
+**Note:** Version bump only for package @nent/core
+
+
+
+
+
 ## 0.9.1 (2022-05-10)
 
 **Note:** Version bump only for package @nent/core
