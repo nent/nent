@@ -4,54 +4,13 @@ import postcss from 'postcss'
 import purgecss from '@fullhuman/postcss-purgecss'
 import tailwindcss from 'tailwindcss'
 
-const _sw = {
-  globPatterns: [
-    '**/*.{ico,wav,txt,js,css,json,md,png,svg}',
-    '/pages/**/*.*',
-  ],
-  globDirectory: '../../docs',
-  swDest: 'sw.js',
-  skipWaiting: true,
-  sourcemap: false,
-  cleanupOutdatedCaches: true,
-  offlineGoogleAnalytics: true,
-  runtimeCaching: [
-    {
-      urlPattern: /\.json$/,
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'data',
-      },
-    },
-    {
-      urlPattern: ({ url }: any): boolean =>
-        url.origin === 'https://fonts.googleapis.com',
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'font-stylesheets',
-      },
-    },
-    {
-      urlPattern: ({ url }: any): boolean =>
-        url.origin === 'https://fonts.gstatic.com',
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'fonts-static',
-        expiration: {
-          maxAgeSeconds: 60 * 60 * 24 * 365,
-          maxEntries: 30,
-        },
-      },
-    },
-  ],
-}
-
 const config: Config = {
   namespace: 'docs',
   excludeUnusedDependencies: true,
   preamble: 'NENT 2022',
   globalStyle: 'src/index.scss',
-  invisiblePrehydration: true,
+  hashFileNames: true,
+  invisiblePrehydration: false,
   plugins: [
     sass(),
     postcss([

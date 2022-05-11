@@ -13,13 +13,7 @@ module.exports = {
       version: '16.7',
     },
   },
-  plugins: [
-    'prettier',
-    'jest',
-    'clean-regex',
-    '@typescript-eslint',
-    'unused-imports',
-  ],
+  plugins: ['prettier', 'jest', 'clean-regex', '@typescript-eslint'],
   rules: {
     '@stencil/strict-boolean-conditions': 0,
     '@stencil/strict-mutable': 0,
@@ -40,7 +34,6 @@ module.exports = {
     'function-paren-newline': 0,
     'linebreak-style': 0,
     'no-restricted-syntax': 0,
-    'unused-imports/no-unused-imports': 'error',
     'object-curly-spacing': 0,
     'object-curly-newline': 0,
     'no-plusplus': 0,

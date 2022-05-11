@@ -110,8 +110,7 @@
     <!-- Page Styles -->
     <link rel="stylesheet"
       href="/lib/docs.css"
-      media="print"
-      onload="this.media = 'all'" />
+      />
     <link rel="stylesheet"
       href="/assets/styles.css"
       me-dia="print"
@@ -122,16 +121,15 @@
       media="print"
       onload="this.media = 'all'" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async
-      defer
+    <script defer
       src="https://www.googletagmanager.com/gtag/js?id=G-XYMNMQ1G1X"></script>
     <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
         dataLayer.push( arguments )
       }
-      gtag( 'js', new Date() )
-      gtag( 'config', 'G-XYMNMQ1G1X' )
+      gtag( { key: 'js', value: new Date() } )
+      gtag( { key: 'config', value: 'G-XYMNMQ1G1X' } )
     </script>
 
 
@@ -500,13 +498,6 @@
           content-src="/pages/components/default.html">
 
         </n-view>
-
-        <div slot="not-found"
-          class="content">
-          <h1>Page Not Found</h1>
-          <p>Return <a href="/home">Home</a></p>
-
-        </div>
 
       </n-views>
       <n-elements>
