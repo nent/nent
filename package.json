@@ -44,6 +44,7 @@
     "docker:push": "docker push nent/nent-docs",
     ":workspace ---": "---------------",
     "core": "yarn workspace @nent/core",
+    "cli": "yarn workspace @nent/cli",
     "angular": "yarn workspace @nent/angular",
     "docs": "yarn workspace @nent/docs",
     "creator": "yarn workspace @nent/create",
@@ -119,6 +120,7 @@
     ]
   },
   "workspaces": [
+    "packages/cli",
     "packages/core",
     "packages/create",
     "tools/docs",

@@ -49,6 +49,7 @@
     "noslash",
     "notitle",
     "nowait",
+    "oclif",
     "onbeforeexit",
     "onloaderror",
     "onplayerror",
