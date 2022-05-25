@@ -13,6 +13,7 @@ import { AudioInfo, AudioRequest } from "./components/n-audio/services/interface
 import { ReferenceCompleteResults } from "./services/content";
 import { CookieConsent } from "./components/n-data-cookie/cookie/interfaces";
 import { SetData } from "./components/n-data/services/interfaces";
+import { Path } from "./components/n-views/services/utils/path-regex";
 import { EventAction as EventAction1 } from "./services/actions/interfaces";
 import { ITimer } from "./components/n-presentation/services/interfaces";
 import { Route } from "./components/n-view/services/route";
@@ -541,6 +542,24 @@ export namespace Components {
          */
         "name": string;
     }
+    interface NDetectRoute {
+        /**
+          * Only active on the exact href match, and not on child routes
+         */
+        "exact": boolean;
+        /**
+          * The route that will toggle the active slot of this component
+         */
+        "route": string;
+        /**
+          * Optional Regex value to route match on
+         */
+        "routeMatch"?: Path;
+        /**
+          * Only active on the exact href match using every aspect of the URL including parameters.
+         */
+        "strict": boolean;
+    }
     interface NElements {
         /**
           * Turn on debug statements for load, update and render events.
@@ -1051,6 +1070,12 @@ declare global {
         prototype: HTMLNDataStorageElement;
         new (): HTMLNDataStorageElement;
     };
+    interface HTMLNDetectRouteElement extends Components.NDetectRoute, HTMLStencilElement {
+    }
+    var HTMLNDetectRouteElement: {
+        prototype: HTMLNDetectRouteElement;
+        new (): HTMLNDetectRouteElement;
+    };
     interface HTMLNElementsElement extends Components.NElements, HTMLStencilElement {
     }
     var HTMLNElementsElement: {
@@ -1160,6 +1185,7 @@ declare global {
         "n-data-cookie": HTMLNDataCookieElement;
         "n-data-session": HTMLNDataSessionElement;
         "n-data-storage": HTMLNDataStorageElement;
+        "n-detect-route": HTMLNDetectRouteElement;
         "n-elements": HTMLNElementsElement;
         "n-presentation": HTMLNPresentationElement;
         "n-presentation-action": HTMLNPresentationActionElement;
@@ -1672,6 +1698,24 @@ declare namespace LocalJSX {
          */
         "name"?: string;
     }
+    interface NDetectRoute {
+        /**
+          * Only active on the exact href match, and not on child routes
+         */
+        "exact"?: boolean;
+        /**
+          * The route that will toggle the active slot of this component
+         */
+        "route": string;
+        /**
+          * Optional Regex value to route match on
+         */
+        "routeMatch"?: Path;
+        /**
+          * Only active on the exact href match using every aspect of the URL including parameters.
+         */
+        "strict"?: boolean;
+    }
     interface NElements {
         /**
           * Turn on debug statements for load, update and render events.
@@ -2049,6 +2093,7 @@ declare namespace LocalJSX {
         "n-data-cookie": NDataCookie;
         "n-data-session": NDataSession;
         "n-data-storage": NDataStorage;
+        "n-detect-route": NDetectRoute;
         "n-elements": NElements;
         "n-presentation": NPresentation;
         "n-presentation-action": NPresentationAction;
@@ -2093,6 +2138,7 @@ declare module "@stencil/core" {
             "n-data-cookie": LocalJSX.NDataCookie & JSXBase.HTMLAttributes<HTMLNDataCookieElement>;
             "n-data-session": LocalJSX.NDataSession & JSXBase.HTMLAttributes<HTMLNDataSessionElement>;
             "n-data-storage": LocalJSX.NDataStorage & JSXBase.HTMLAttributes<HTMLNDataStorageElement>;
+            "n-detect-route": LocalJSX.NDetectRoute & JSXBase.HTMLAttributes<HTMLNDetectRouteElement>;
             "n-elements": LocalJSX.NElements & JSXBase.HTMLAttributes<HTMLNElementsElement>;
             "n-presentation": LocalJSX.NPresentation & JSXBase.HTMLAttributes<HTMLNPresentationElement>;
             "n-presentation-action": LocalJSX.NPresentationAction & JSXBase.HTMLAttributes<HTMLNPresentationActionElement>;
