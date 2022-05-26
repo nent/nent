@@ -25,7 +25,9 @@ const compilePath = (
   const cacheKey = `${options.end}${options.strict}`
   const cache =
     patternCache[cacheKey] || (patternCache[cacheKey] = {})
-  const cachePattern = JSON.stringify(pattern)
+  const cachePattern = JSON.stringify(
+    pattern instanceof RegExp ? pattern.source : pattern,
+  )
 
   if (cache[cachePattern]) {
     return cache[cachePattern]
