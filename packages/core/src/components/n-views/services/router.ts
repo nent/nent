@@ -1,6 +1,9 @@
 import { RafCallback } from '@stencil/core'
-import { warn } from '../../../services/common'
-import { IEventEmitter } from '../../../services/common/interfaces'
+import { warn } from '../../../services/common/logging'
+import {
+  IEventEmitter,
+  PageData,
+} from '../../../services/common/interfaces'
 import {
   commonState,
   onCommonStateChange,
@@ -20,7 +23,6 @@ import {
   LocationSegments,
   MatchOptions,
   MatchResults,
-  RouteViewOptions,
 } from './interfaces'
 import { RoutingDataProvider } from './provider'
 import { isAbsolute, resolvePathname } from './utils/location'
@@ -42,6 +44,7 @@ export class RouterService {
   private routeData?: RoutingDataProvider
   private queryData?: RoutingDataProvider
   private visitData?: RoutingDataProvider
+  public startUrl: string | undefined
   constructor(
     private win: Window,
     private readonly writeTask: (t: RafCallback) => void,
@@ -133,21 +136,6 @@ export class RouterService {
     return addLeadingSlash(stripped)
   }
 
-  viewsUpdated(options: RouteViewOptions = {}) {
-    if (options.scrollToId) {
-      const elm = this.win.document.querySelector(
-        '#' + options.scrollToId,
-      )
-      if (elm) {
-        elm.scrollIntoView()
-        return
-      }
-    }
-    this.scrollTo(options.scrollTopOffset || this.scrollTopOffset)
-    if (this.routes.every(r => r.completed))
-      this.listener.notifyRouteFinalized(this.location)
-  }
-
   atRoot() {
     return (
       this.location?.pathname == this.root ||
@@ -155,25 +143,73 @@ export class RouterService {
     )
   }
 
-  initialize(startUrl?: string) {
+  public initialize(startUrl?: string) {
+    this.startUrl = startUrl
+
+    if (startUrl && this.atRoot())
+      this.replaceWithRoute(stripBasename(startUrl!, this.root))
+
     this.captureInnerLinks(this.win.document.body)
 
-    if (startUrl && this.atRoot()) {
-      const search = this.location.search
-      this.replaceWithRoute(stripBasename(startUrl!, this.root))
-      this.location.search = search
-    }
     this.listener.notifyRouterInitialized()
+    if (this.routes.every(r => r.completed)) {
+      this.allRoutesComplete()
+    }
   }
 
-  goBack() {
+  private allRoutesComplete() {
+    if (!this.hasExactRoute()) {
+      this.setPageTags({
+        title: 'Not found',
+        robots: 'nofollow',
+      })
+    }
+    this.listener.notifyRouteFinalized(this.location)
+  }
+
+  public routeCompleted() {
+    if (this.routes.every(r => r.completed)) {
+      this.allRoutesComplete()
+    }
+  }
+
+  public async goBack() {
+    if (this.exactRoute) {
+      const nextRoute = await this.exactRoute.getNextRoute()
+      if (nextRoute) {
+        this.goToRoute(nextRoute?.path)
+        return
+      }
+    }
     this.listener.notifyRouteChangeStarted(
       this.history.previousLocation.pathname,
     )
     this.history.goBack()
   }
 
-  goToParentRoute() {
+  public async goNext() {
+    if (this.exactRoute) {
+      if (!this.exactRoute.isValidForNext()) return
+      const nextRoute = await this.exactRoute.getNextRoute()
+      // if the route returns null, then we can't move due to validation
+      if (nextRoute) {
+        this.goToRoute(nextRoute!.path)
+        return
+      }
+    }
+
+    this.goToParentRoute()
+  }
+
+  public goToParentRoute() {
+    if (this.exactRoute) {
+      const parentRoute = this.exactRoute.getParentRoute()
+      if (parentRoute) {
+        this.goToRoute(parentRoute!.path)
+        return
+      }
+    }
+
     const parentSegments = this.history.location.pathParts?.slice(
       0,
       -1,
@@ -181,27 +217,30 @@ export class RouterService {
     if (parentSegments) {
       this.goToRoute(addLeadingSlash(parentSegments.join('/')))
     } else {
-      this.goBack()
+      this.goToRoute(this.startUrl || '/')
     }
   }
 
-  public scrollTo(scrollToLocation: number) {
-    if (Array.isArray(this.history.location.scrollPosition)) {
-      if (
-        this.history.location &&
-        Array.isArray(this.history.location.scrollPosition)
-      ) {
+  public scrollTo(scrollOffset: number) {
+    // Okay, the frame has passed. Go ahead and render now
+    this.writeTask(() => {
+      // first check if we have a stored scroll location
+      if (Array.isArray(this.history.location?.scrollPosition)) {
         this.win.scrollTo(
           this.history.location.scrollPosition[0],
           this.history.location.scrollPosition[1],
         )
+        return
       }
-      return
-    }
 
-    // Okay, the frame has passed. Go ahead and render now
+      this.win.scrollTo(0, scrollOffset || 0)
+    })
+  }
+
+  public scrollToId(id: string) {
     this.writeTask(() => {
-      this.win.scrollTo(0, scrollToLocation || 0)
+      const elm = this.win.document.querySelector('#' + id)
+      elm?.scrollIntoView()
     })
   }
 
@@ -220,9 +259,10 @@ export class RouterService {
   public matchPath(
     options: MatchOptions = {},
     route: Route | null = null,
+    sendEvent: boolean = true,
   ): MatchResults | null {
     const match = matchPath(this.location, options)
-    if (route && match) {
+    if (route && match && sendEvent) {
       if (match.isExact) this.listener.notifyMatchExact(route, match)
       else this.listener.notifyMatch(route, match)
     }
@@ -241,32 +281,52 @@ export class RouterService {
     return ev.metaKey || ev.altKey || ev.ctrlKey || ev.shiftKey
   }
 
-  public async setPageTags(
-    pageTitle: string,
-    pageDescription?: string,
-    pageKeywords?: string,
-  ) {
+  public async setPageTags(pageData: PageData) {
+    const { title, description, keywords, robots } = pageData
     if (this.win.document) {
-      if (pageTitle) {
-        this.win.document.title = `${pageTitle} | ${this.appTitle}`
-      } else {
-        this.win.document.title = `${this.appTitle}`
+      this.win.document.title = [title, this.appTitle]
+        .filter(v => v)
+        .join(' | ')
+
+      if (robots)
+        this.win.document
+          .querySelectorAll('meta[name*=bot]')
+          .forEach((element: Element) => {
+            const metaTag = element as HTMLMetaElement
+            metaTag.content = robots
+          })
+
+      const canonicalLink = this.win.document.querySelector(
+        'link[rel=canonical]',
+      ) as HTMLLinkElement
+      if (canonicalLink) {
+        const { protocol, host } = document.location
+        const { pathname } = this.location
+        canonicalLink.href = `${protocol}//${host}${pathname}`
       }
 
       this.win.document
         .querySelectorAll('meta[name*=description]')
         .forEach((element: Element) => {
           const metaTag = element as HTMLMetaElement
-          metaTag.content =
-            pageDescription || this.appDescription || ''
+          metaTag.content = description || this.appDescription || ''
         })
 
       this.win.document
         .querySelectorAll('meta[name*=keywords]')
         .forEach((element: Element) => {
           const metaTag = element as HTMLMetaElement
-          metaTag.content = pageKeywords || this.appKeywords || ''
+          metaTag.content = keywords || this.appKeywords || ''
         })
+
+      // If the only change to location is a hash change then do not scroll.
+      if (this.history?.location?.hash) {
+        this.scrollToId(this.history.location.hash.slice(1))
+      } else {
+        this.scrollTo(
+          this.exactRoute?.scrollTopOffset || this.scrollTopOffset,
+        )
+      }
     }
   }
 
@@ -349,6 +409,7 @@ export class RouterService {
       pageTitle,
       pageDescription,
       pageKeywords,
+      pageRobots,
       transition,
       scrollTopOffset,
     } = routeElement
@@ -360,8 +421,8 @@ export class RouterService {
     } else {
       path = this.adjustRootViewUrls(routeElement.path)
     }
+
     routeElement.path = path
-    routeElement.transition = transition || this.transition
 
     if (this.routes.find(r => r.path == path)) {
       warn(`route: duplicate route detected for ${path}.`)
@@ -373,10 +434,13 @@ export class RouterService {
       path,
       parent,
       exact,
-      pageTitle || parent?.pageTitle,
-      pageDescription,
-      pageKeywords,
-      transition,
+      {
+        title: pageTitle || parent?.pageData.title,
+        description: pageDescription,
+        keywords: pageKeywords,
+        robots: pageRobots || parent?.pageData.robots,
+      },
+      transition || this.transition,
       scrollTopOffset,
       matchSetter,
       () => {

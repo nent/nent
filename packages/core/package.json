@@ -1,6 +1,6 @@
 {
   "name": "@nent/core",
-  "version": "0.8.0",
+  "version": "0.9.2",
   "displayName": "NENT",
   "description": "Functional elements to add routing, data-binding, dynamic HTML, declarative actions, audio, video, and so much more. Supercharge static HTML files into web apps without script or builds.",
   "author": "support <support@nent.dev> (https://nent.dev)",
@@ -47,7 +47,7 @@
     "watch": "npm-watch",
     "--- production ---": "---------------",
     "clean": "rm -fR ./dist",
-    "prebuild": "rm -fR ./dist",
+    "prebuild": "run-s clean",
     "build": "stencil build --docs-readme --dist",
     "postbuild": "node .build && npm run copy",
     "--- test ---": "---------------",
@@ -57,12 +57,12 @@
     "prepublish": "yarn run build"
   },
   "devDependencies": {
-    "@stencil/core": "2.13.0",
+    "@stencil/core": "2.15.2",
     "@stencil/store": "1.5.0",
-    "@types/howler": "2.2.4",
+    "@types/howler": "2.2.7",
     "eslint-plugin-clean-regex": "0.5.2",
     "expr-eval": "2.0.2",
-    "jsonata": "1.8.5",
+    "jsonata": "1.8.6",
     "remarkable": "2.0.1"
   },
   "jest": {
@@ -76,8 +76,7 @@
       "patterns": [
         "src"
       ],
-      "extensions": "ts,tsx",
-      "ignore": "*.spec.ts"
+      "extensions": "ts,tsx"
     },
     "copy:docs": {
       "patterns": [

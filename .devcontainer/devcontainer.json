@@ -7,7 +7,6 @@
     // Update 'VARIANT' to pick a Node version: 12, 14, 16
     "args": {
       "VARIANT": "16",
-      "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock"
     }
   },
   // Set *default* container specific settings.json values on container create.
@@ -17,7 +16,6 @@
     "formulahendry.github-actions",
     "editorconfig.editorconfig",
     "streetsidesoftware.code-spell-checker",
-    "orta.vscode-jest",
     "ldez.ignore-files",
     "dbaeumer.vscode-eslint",
     "rvest.vs-code-prettier-eslint",
@@ -28,22 +26,23 @@
     "joshbolduc.commitlint",
     "knisterpeter.vscode-github",
     "codezombiech.gitignore",
-    "znck.grammarly",
     "blackmist.linkcheckmd",
     "wix.vscode-import-cost",
     "kavod-io.vscode-jest-test-adapter",
     "sissel.json-script-tag",
     "yzhang.markdown-all-in-one",
     "nent.nent",
-    "github.vscode-pull-request-github",
-    "ms-vsliveshare.vsliveshare",
-    "ms-vsliveshare.vsliveshare-audio"
+    "github.vscode-pull-request-github"
   ],
   "mounts": [
-    "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/root/.ssh,type=bind,consistency=delegated",
-    "source=${env:HOME}${env:USERPROFILE}/.config,target=/root/.config,type=bind,consistency=delegated",
+    "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
+    "source=${env:HOME}${env:USERPROFILE}/.config,target=/root/.config,type=bind,consistency=cached",
     "source=nent-node-modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
     "source=nent-vscode-extensions,target=/root/.vscode-server/extensions,type=volume"
   ],
-  "postCreateCommand": "yarn install"
+  "features": {
+    "docker-from-docker": "20.10",
+    "git": "os-provided",
+    "git-lfs": "latest",
+  }
 }

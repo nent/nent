@@ -20,7 +20,7 @@ import {
 export class ViewLinkNext {
   private matchSubscription?: () => void
   @Element() el!: HTMLNViewLinkNextElement
-  @State() route: Route | null = null
+  @State() route: Route | null | undefined = null
   @State() title?: string
 
   /**
@@ -41,58 +41,58 @@ export class ViewLinkNext {
     return this.el.closest('n-view-prompt')
   }
 
-  componentWillLoad() {
+  async componentWillLoad() {
     if (routingState.router) {
-      this.setupRoute()
+      await this.setupRoute()
     } else {
-      const dispose = onRoutingChange('router', () => {
-        this.setupRoute()
+      const dispose = onRoutingChange('router', async () => {
+        await this.setupRoute()
         dispose()
       })
     }
   }
 
-  private setupRoute() {
+  private async setupRoute() {
     if (this.parentViewPrompt) {
-      this.route = this.parentViewPrompt!.route.nextRoute
+      this.setPage(this.parentViewPrompt!.route)
     } else if (this.parentView) {
-      this.route = this.parentView!.route.nextRoute
+      this.setPage(this.parentView!.route)
     } else {
-      this.subscribe()
+      await this.subscribe()
     }
   }
 
-  private subscribe() {
+  private async setPage(route: Route) {
+    this.route = await route.getNextRoute()
+    this.title = await this.route?.resolvePageTitle()
+  }
+
+  private async subscribe() {
     this.matchSubscription = eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
       async ({ route }: { route: Route }) => {
-        this.route = route.nextRoute
-        this.title = await route.resolvePageTitle()
+        await this.setPage(route)
       },
     )
-    this.route = routingState.router?.exactRoute?.nextRoute || null
+    if (routingState.router?.exactRoute)
+      await this.setPage(routingState.router?.exactRoute)
   }
 
   render() {
-    return this.route ? (
-      <a
-        class={this.linkClass}
-        onClick={e => {
-          e.preventDefault()
-          this.route?.goToRoute(this.route.path)
-        }}
-        onKeyPress={e => {
-          e.preventDefault()
-          this.route?.goToRoute(this.route.path)
-        }}
-        href={this.route.path}
-        title={this.route.title}
-        n-attached-click
-        n-attached-key-press
+    const text = this.text || this.title
+    return (
+      <n-view-link
+        link-class={this.linkClass}
+        path={this.route?.path || ''}
+        title={this.title}
+        active-class="none"
+        validate={true}
       >
-        {this.text || this.route.title}
-      </a>
-    ) : null
+        <slot name="start"></slot>
+        {text ? text : <slot />}
+        <slot name="end"></slot>
+      </n-view-link>
+    )
   }
 
   disconnectedCallback() {

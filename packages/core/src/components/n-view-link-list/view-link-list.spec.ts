@@ -35,17 +35,17 @@ describe('n-view-link-list', () => {
     })
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view-link-list>
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
-              <a class="active" href="/" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a class="active" href="/" n-attached-click=""  n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
       <n-view class="active exact" page-title="Home" path="/">
         <mock:shadow-root>
@@ -77,15 +77,15 @@ describe('n-view-link-list', () => {
     expect(page.root).toEqualHtml(`
 
       <n-view-link-list>
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
-              <a class="active" href="/" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a class="active" href="/" n-attached-click=""  n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
 
     `)
@@ -109,24 +109,24 @@ describe('n-view-link-list', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view-link-list>
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
-              <a href="/home" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a href="/home" n-attached-click="" n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
-              <a class="active" href="/home/page1" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a class="active" href="/home/page1" n-attached-click=""  n-attached-key-press="">
                 Page 1
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
       <n-view class="active " page-title="Home" path="/home">
         <mock:shadow-root>
@@ -163,24 +163,24 @@ describe('n-view-link-list', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view-link-list  mode="siblings">
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
-              <a class="active" href="/home" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a class="active" href="/home" n-attached-click="" n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
-              <a href="/page1" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a href="/page1" n-attached-click=""  n-attached-key-press="">
                 Page 1
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
       <n-view class="active exact" page-title="Home" path="/home">
         <mock:shadow-root>
@@ -200,50 +200,49 @@ describe('n-view-link-list', () => {
     page.root?.remove()
   })
 
-  it('renders children routes', async () => {
+  it('renders children routes - active route', async () => {
     const page = await newSpecPage({
       components: [ViewRouter, View, ViewLinkList, ViewLink],
       html: `
-      <n-views>
+      <n-views start-path="/">
         <n-view-link-list mode="children"></n-view-link-list>
         <n-view path="/" page-title="Home">
-
           <n-view path="/page1" page-title="Page 1">
           </n-view>
           <n-view path="/page2" page-title="Page 2">
           </n-view>
         </n-view>
-
       </n-views>`,
     })
 
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views  start-path="/" style="display:block;">
       <n-view-link-list mode="children">
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
-              <a href="/page1" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a href="/page1" n-attached-click="" n-attached-key-press="">
                 Page 1
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
-              <a href="/page2" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a href="/page2" n-attached-click="" n-attached-key-press="">
                 Page 2
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
       <n-view class="active exact" page-title="Home" path="/">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
         </mock:shadow-root>
+
         <n-view page-title="Page 1" path="/page1">
           <mock:shadow-root>
             <slot></slot>
@@ -264,6 +263,69 @@ describe('n-view-link-list', () => {
     page.root?.remove()
   })
 
+  // it('renders children routes - inside route', async () => {
+  //   const page = await newSpecPage({
+  //     components: [ViewRouter, View, ViewLinkList, ViewLink],
+  //     html: `
+  //     <n-views>
+  //       <n-view path="/" page-title="Home">
+  //         <n-view-link-list mode="children">
+  //         </n-view-link-list>
+  //         <n-view path="/page1" page-title="Page 1">
+  //         </n-view>
+  //         <n-view path="/page2" page-title="Page 2">
+  //         </n-view>
+  //       </n-view>
+  //     </n-views>`,
+  //   })
+  //
+  //   await page.waitForChanges()
+  //
+  //   expect(page.root).toEqualHtml(`
+  //   <n-views>
+  //     <n-view class="active exact" page-title="Home" path="/">
+  //       <mock:shadow-root>
+  //         <slot></slot>
+  //         <slot name="content"></slot>
+  //       </mock:shadow-root>
+  //       <n-view-link-list mode="children">
+  //         <ul>
+  //           <li>
+  //             <n-view-link active-class="active" link-class="">
+  //               <a href="/page1" n-attached-click="" n-attached-key-press="">
+  //                 Page 1
+  //               </a>
+  //             </n-view-link>
+  //           </li>
+  //           <li>
+  //             <n-view-link active-class="active" link-class="">
+  //               <a href="/page2" n-attached-click="" n-attached-key-press="">
+  //                 Page 2
+  //               </a>
+  //             </n-view-link>
+  //           </li>
+  //         </ul>
+  //       </n-view-link-list>
+  //       <n-view page-title="Page 1" path="/page1">
+  //         <mock:shadow-root>
+  //           <slot></slot>
+  //           <slot name="content"></slot>
+  //         </mock:shadow-root>
+  //       </n-view>
+  //       <n-view page-title="Page 2" path="/page2">
+  //         <mock:shadow-root>
+  //           <slot></slot>
+  //           <slot name="content"></slot>
+  //         </mock:shadow-root>
+  //       </n-view>
+  //     </n-view>
+  //
+  //   </n-views>
+  //   `)
+  //
+  //   page.root?.remove()
+  // })
+
   it('renders dynamic route', async () => {
     const page = await newSpecPage({
       components: [ViewRouter, View, ViewLinkList, ViewLink],
@@ -280,26 +342,26 @@ describe('n-view-link-list', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view-link-list>
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
-              <a href="/home" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a href="/home" n-attached-click="" n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
-              <a class="active" href="/home/dogs" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a class="active" href="/home/dogs" n-attached-click="" n-attached-key-press="">
                 dogs
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
-      <n-view class="active " page-title="Home" path="/home">
+      <n-view class="active" page-title="Home" path="/home">
         <mock:shadow-root>
           <slot></slot>
           <slot name="content"></slot>
@@ -335,31 +397,31 @@ describe('n-view-link-list', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view-link-list>
-        <ol>
+        <ul>
           <li>
-            <n-view-link>
-              <a href="/" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a href="/" n-attached-click="" n-attached-key-press="">
                 Root
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
-              <a href="/home" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a href="/home" n-attached-click="" n-attached-key-press="">
                 Home
               </a>
             </n-view-link>
           </li>
           <li>
-            <n-view-link>
-              <a class="active" href="/home/page1" n-attached-click="">
+            <n-view-link active-class="active" link-class="">
+              <a class="active" href="/home/page1" n-attached-click="" n-attached-key-press="">
                 Page 1
               </a>
             </n-view-link>
           </li>
-        </ol>
+        </ul>
       </n-view-link-list>
       <n-view class="active " page-title="Root" path="/">
         <mock:shadow-root>

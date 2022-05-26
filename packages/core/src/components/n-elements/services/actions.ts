@@ -2,6 +2,7 @@ import {
   EventAction,
   IEventActionListener,
 } from '../../../services/actions'
+import { EventEmitter } from '../../../services/common/emitter'
 import { IEventEmitter } from '../../../services/common/interfaces'
 import { debugIf } from '../../../services/common/logging'
 import { commonState } from '../../../services/common/state'
@@ -10,6 +11,7 @@ import { ELEMENTS_COMMANDS, ELEMENTS_TOPIC } from './interfaces'
 export class ElementsActionListener implements IEventActionListener {
   actionsSubscription!: () => void
   eventBus!: IEventEmitter
+  changed: EventEmitter = new EventEmitter()
   private body!: HTMLBodyElement
 
   initialize(
@@ -27,6 +29,7 @@ export class ElementsActionListener implements IEventActionListener {
           `elements-listener: action received ${ev.topic}:${ev.command}`,
         )
         await this.commandReceived(ev.command, ev.data)
+        this.changed.emit('changed')
       },
     )
   }

@@ -45,20 +45,19 @@ export class NDocSource {
 
   async componentWillLoad() {
     const content = await this.getContent()
-    this.content = this.dedent(content) + '\n'
+    this.content = '\n' + this.dedent(content) + '\n'
   }
 
   private async getContent() {
     try {
       const content = await this.fetchSource()
       if (content == null) return
-
-      return ('\n' + content)
-        .split('\n')
-        .slice(this.from - 1, this.to + 1)
-        .join('\n')
+      const lines = content.split('\n')
+      const from = this.from - 1
+      const to = this.to >= lines.length ? -1 : this.to
+      return lines.slice(from, to).join('\n')
     } catch {
-      return null
+      return ''
     }
   }
 

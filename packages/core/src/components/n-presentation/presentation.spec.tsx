@@ -42,7 +42,7 @@ describe('n-presentation', () => {
             </n-views>`,
     })
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views  style="display: block;">
       <n-view path="/" class="active exact">
         <mock:shadow-root>
           <slot></slot>
@@ -74,7 +74,7 @@ describe('n-presentation', () => {
     const spy = jest.spyOn(timer!.timer, 'begin')
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views  style="display: block;">
       <n-view path="/home" >
         <mock:shadow-root>
           <slot></slot>
@@ -95,7 +95,7 @@ describe('n-presentation', () => {
     expect(spy).toBeCalled()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views  style="display: block;">
       <n-view path="/home" class="active exact" >
         <mock:shadow-root>
           <slot></slot>

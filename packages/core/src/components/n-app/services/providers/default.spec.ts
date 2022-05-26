@@ -1,9 +1,18 @@
 jest.mock('../../../../services/data/evaluate.worker')
-jest.mock('../../../../services/common/logging')
+jest.mock('../../../../services/common/logging', () => {
+  return {
+    dir: jest.fn(),
+    log: jest.fn(),
+    warn: jest.fn(),
+    table: jest.fn(),
+    debugIf: jest.fn<boolean, any[]>(),
+  }
+})
 
 import { newSpecPage } from '@stencil/core/testing'
 import { appState, APP_COMMANDS, APP_TOPIC } from '..'
 import { actionBus, eventBus } from '../../../../services/actions'
+import { table } from '../../../../services/common/logging'
 import { App } from '../../app'
 import { DefaultAppProvider } from './default'
 
@@ -66,8 +75,6 @@ describe('default-provider', () => {
 
     await page.waitForChanges()
 
-    const spy = jest.spyOn(console, 'table')
-
     actionBus.emit(APP_TOPIC, {
       command: APP_COMMANDS.Log,
       data: {
@@ -75,6 +82,6 @@ describe('default-provider', () => {
       },
     })
 
-    expect(spy).toBeCalled()
+    expect(table).toBeCalled()
   })
 })

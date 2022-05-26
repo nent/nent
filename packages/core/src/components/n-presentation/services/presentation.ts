@@ -7,7 +7,7 @@ import {
   ActionActivationStrategy,
   IActionElement,
 } from '../../../services/actions/interfaces'
-import { debugIf } from '../../../services/common/logging'
+import { debugIf, error } from '../../../services/common/logging'
 import {
   ANALYTICS_COMMANDS,
   ANALYTICS_TOPIC,
@@ -53,7 +53,7 @@ export class PresentationService {
     if (this.elements) {
       this.timedNodes = captureElementChildTimedNodes(
         this.el,
-        this.timeEmitter.duration,
+        this.timeEmitter.durationSeconds,
       )
       debugIf(
         this.debug,
@@ -69,7 +69,7 @@ export class PresentationService {
       resolveElementChildTimedNodesByTime(
         this.el,
         this.timedNodes,
-        time.elapsed,
+        time.elapsedSeconds,
         time.percentage,
       )
     }
@@ -92,7 +92,7 @@ export class PresentationService {
       ActionActivationStrategy.AtTime,
       activator => {
         if (this.activatedActions.includes(activator)) return false
-        if (activator.time && time.elapsed >= activator.time) {
+        if (activator.time && time.elapsedSeconds >= activator.time) {
           this.activatedActions.push(activator)
           return true
         }
@@ -100,7 +100,7 @@ export class PresentationService {
       },
     )
     await sendActions(this.actions, action => {
-      return action.time && time.elapsed >= action.time
+      return action.time && time.elapsedSeconds >= action.time
     })
   }
 
@@ -109,7 +109,7 @@ export class PresentationService {
       resolveElementChildTimedNodesByTime(
         this.el,
         this.timedNodes,
-        time.elapsed,
+        time.elapsedSeconds,
         time.percentage,
       )
     }
@@ -126,16 +126,16 @@ export class PresentationService {
   public subscribe() {
     this.intervalSubscription = this.timeEmitter.on(
       TIMER_EVENTS.OnInterval,
-      async (time: TimeDetails) => {
-        await this.handleInterval(time)
+      (time: TimeDetails) => {
+        this.handleInterval(time).catch(e => error(e))
       },
     )
 
     this.endSubscription = this.timeEmitter.on(
       TIMER_EVENTS.OnEnd,
-      async (time: TimeDetails) => {
+      (time: TimeDetails) => {
         debugIf(this.debug, `presentation: ended`)
-        await this.handleEnded(time)
+        this.handleEnded(time).catch(e => error(e))
       },
     )
   }

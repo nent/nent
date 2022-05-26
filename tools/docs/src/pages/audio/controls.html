@@ -18,34 +18,36 @@
     <n-audio-action-music command="play"
       track-id="music">
     </n-audio-action-music>
-    <button type="button"
+    <button type="button" n-hide-when="{{audio:isPlaying}}"
       class="btn btn-info">
-      <i class="ri-play-line"></i> Play </button>
+      <i class="ri-play-line"></i>
+      Play </button>
   </n-action-activator>
   <n-doc-source src="/pages/audio/controls.html"
     from="17"
-    to="23">
+    to="25">
   </n-doc-source>
   <h3>Pause / Resume</h3>
   <n-action-activator activate="on-element-event">
     <n-audio-action-music command="pause"
       track-id="music">
     </n-audio-action-music>
-    <button type="button"
+    <button type="button" hidden n-show-when="{{audio:isPlaying}}"
       class="btn btn-info">
       <i class="ri-pause-line"></i> Pause </button>
   </n-action-activator>
   <n-action-activator activate="on-element-event">
-    <n-audio-action-music command="resume"
+    <n-audio-action-music
+      command="resume" 
       track-id="music">
     </n-audio-action-music>
-    <button type="button"
+    <button type="button"  n-hide-when="{{audio:isPlaying}}"∂
       class="btn btn-info">
       <i class="ri-play-line"></i> Resume </button>
   </n-action-activator>
   <n-doc-source src="/pages/audio/controls.html"
-    from="37"
-    to="44">
+    from="31"
+    to="46">
   </n-doc-source>
   <h3>Seek</h3>
   <n-action-activator activate="on-element-event">
@@ -58,8 +60,8 @@
       <i class="ri-arrow-right-line"></i> Seek to 10 Seconds </button>
   </n-action-activator>
   <n-doc-source src="/pages/audio/controls.html"
-    from="50"
-    to="58">
+    from="52"
+    to="60">
   </n-doc-source>
   <h3>Stop</h3>
   <n-action-activator activate="on-element-event">
@@ -71,8 +73,8 @@
       <i class="ri-stop-line"></i> Stop </button>
   </n-action-activator>
   <n-doc-source src="/pages/audio/controls.html"
-    from="64"
-    to="71">
+    from="66"
+    to="73">
   </n-doc-source>
   <footer>
     <n-view-link-back slot="start"

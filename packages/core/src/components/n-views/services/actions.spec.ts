@@ -13,13 +13,17 @@ describe('actions:', () => {
   beforeEach(() => {
     actionBus = new EventEmitter()
     eventBus = new EventEmitter()
-    mockRouter = jest.fn<RouterService>(() => {
+    mockRouter = jest.fn(() => {
       return {
         goBack: jest.fn(),
+        goNext: jest.fn(),
         goToParentRoute: jest.fn(),
         goToRoute: jest.fn(),
+        history: {
+          goBack: jest.fn(),
+        },
       }
-    })() as RouterService
+    })() as unknown as RouterService
 
     subject = new NavigationActionListener(
       mockRouter,
@@ -32,7 +36,8 @@ describe('actions:', () => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
   })
-  it('go-to', async () => {
+
+  test('go-to', async () => {
     actionBus.emit(NAVIGATION_TOPIC, {
       topic: NAVIGATION_TOPIC,
       command: NAVIGATION_COMMANDS.goTo,
@@ -43,7 +48,7 @@ describe('actions:', () => {
     expect(mockRouter.goToRoute).toBeCalledWith('/home')
   })
 
-  it('go-back', async () => {
+  test('go-back', async () => {
     actionBus.emit(NAVIGATION_TOPIC, {
       topic: NAVIGATION_TOPIC,
       command: NAVIGATION_COMMANDS.goBack,
@@ -51,11 +56,11 @@ describe('actions:', () => {
     expect(mockRouter.goBack).toBeCalled()
   })
 
-  it('go-next', async () => {
+  test('go-next', async () => {
     actionBus.emit(NAVIGATION_TOPIC, {
       topic: NAVIGATION_TOPIC,
       command: NAVIGATION_COMMANDS.goNext,
     })
-    expect(mockRouter.goToParentRoute).toBeCalled()
+    expect(mockRouter.goNext).toBeCalled()
   })
 })

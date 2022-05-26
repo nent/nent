@@ -6,8 +6,7 @@ import {
   Prop,
   State,
 } from '@stencil/core'
-import { eventBus } from '../../services/actions'
-import { ComponentRefresher, slugify } from '../../services/common'
+import { CommonStateSubscriber, slugify } from '../../services/common'
 import { debugIf, warn } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import { replaceHtmlInElement } from '../../services/content/elements'
@@ -36,7 +35,7 @@ import { routingState } from '../n-views/services/state'
   shadow: true,
 })
 export class ViewPrompt implements IView {
-  private dataSubscription!: ComponentRefresher
+  private dataSubscription!: CommonStateSubscriber
 
   @Element() el!: HTMLNViewPromptElement
   @State() match: MatchResults | null = null
@@ -65,6 +64,12 @@ export class ViewPrompt implements IView {
    *
    */
   @Prop() pageKeywords = ''
+
+  /**
+   * The robots instruction for search indexing
+   *
+   */
+  @Prop() pageRobots: 'all' | 'noindex' | 'nofollow' | 'none' = 'none'
 
   /**
    * Header height or offset for scroll-top on this
@@ -174,9 +179,8 @@ export class ViewPrompt implements IView {
     )
 
     if (commonState.dataEnabled && this.resolveTokens) {
-      this.dataSubscription = new ComponentRefresher(
+      this.dataSubscription = new CommonStateSubscriber(
         this,
-        eventBus,
         'dataEnabled',
         DATA_EVENTS.DataChanged,
       )
@@ -210,10 +214,7 @@ export class ViewPrompt implements IView {
     )
 
     return (
-      <Host
-        hidden={!this.match?.isExact}
-        class={this.match?.isExact ? this.route.transition || '' : ''}
-      >
+      <Host hidden={!this.match?.isExact}>
         <slot />
         <slot name="content" />
       </Host>

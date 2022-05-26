@@ -30,7 +30,7 @@ import { AppActionListener } from './services/actions'
  */
 @Component({
   tag: 'n-app',
-  styleUrl: 'app.css',
+  styles: '[n-cloak] { display: inherit; }',
   shadow: false,
 })
 export class App {
@@ -126,7 +126,7 @@ export class App {
   }
 
   render() {
-    return <Host></Host>
+    return <Host style={{ display: 'block' }}></Host>
   }
 
   componentDidLoad() {

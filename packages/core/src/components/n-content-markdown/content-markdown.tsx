@@ -12,7 +12,7 @@ import {
   commonState,
   onCommonStateChange,
 } from '../../services/common'
-import { warn } from '../../services/common/logging'
+import { debugIf, error } from '../../services/common/logging'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import {
   resolveRemoteContent,
@@ -21,6 +21,7 @@ import {
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
+import { filterData } from '../../services/data/jsonata.worker'
 import { resolveTokens } from '../../services/data/tokens'
 import { routingState } from '../n-views/services/state'
 import { renderMarkdown } from './markdown/remarkable.worker'
@@ -82,6 +83,12 @@ export class ContentMarkdown {
    * Force render with data & route changes.
    */
   @Prop() noCache: boolean = false
+
+  /**
+   * The JSONata expression to select the markdown from a json response.
+   * see <https://try.jsonata.org> for more info.
+   */
+  @Prop() json?: string
 
   private async getContentKey() {
     return this.src
@@ -161,15 +168,26 @@ export class ContentMarkdown {
 
   private async getContentFromSrc() {
     try {
-      const content = await resolveRemoteContent(
+      let content = await resolveRemoteContent(
         window,
         this.src!,
         this.mode,
         this.resolveTokens,
       )
+      if (content && this.json) {
+        debugIf(
+          commonState.debug,
+          `n-content-markdown: filtering: ${this.json}`,
+        )
+        const data = JSON.parse(content)
+        content = await filterData(this.json, data)
+      }
+
       return content
-    } catch {
-      warn(`n-content-markdown: unable to retrieve from ${this.src}`)
+    } catch (err) {
+      error(
+        `n-content-markdown: unable to retrieve content from ${this.src}. ${err}`,
+      )
       return null
     }
   }

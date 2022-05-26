@@ -27,5 +27,11 @@ export async function evalExpression(
   expression: string,
   context: ExpressionContext = {},
 ): Promise<number | boolean | string> {
-  return expressionEvaluator.evaluate(expression, context)
+  let result = false
+  try {
+    result = expressionEvaluator.evaluate(expression, context)
+  } catch (error) {
+    console.debug(error)
+  }
+  return result
 }

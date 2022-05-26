@@ -1,6 +1,6 @@
 import { actionBus } from '.'
 import { commonState, debugIf, warn } from '../common'
-import { evaluatePredicate } from '../data/expressions'
+
 import { EventAction, IActionElement } from './interfaces'
 
 export class ActionService {
@@ -46,15 +46,36 @@ export class ActionService {
 
     if (!this.element.valid) return null
 
-    if (this.element.when && commonState.dataEnabled) {
-      let predicateResult = await evaluatePredicate(this.element.when)
-      if (predicateResult == false) {
-        debugIf(
-          commonState.debug,
-          `${this.elementName}: not fired, predicate '${this.element.when}' evaluated to false`,
+    if (commonState.dataEnabled) {
+      if (this.element.when) {
+        const { evaluatePredicate } = await import(
+          '../data/expressions'
         )
-        return null
+        let predicateResult = await evaluatePredicate(
+          this.element.when,
+        )
+        if (predicateResult == false) {
+          debugIf(
+            commonState.debug,
+            `${this.elementName}: not fired, predicate '${this.element.when}' evaluated to false`,
+          )
+          return null
+        }
       }
+
+      const { hasToken, resolveTokens } = await import(
+        '../data/tokens'
+      )
+
+      // resolve token values
+      await Promise.all(
+        Object.keys(data).map(async key => {
+          const value = data[key]
+          if (typeof value == 'string' && hasToken(value)) {
+            data[key] = await resolveTokens(value)
+          }
+        }),
+      )
     }
 
     return {

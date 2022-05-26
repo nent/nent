@@ -1,19 +1,28 @@
 import { Config } from '@stencil/core'
 import { sass } from '@stencil/sass'
+import postcss from 'postcss'
+import purgecss from '@fullhuman/postcss-purgecss'
+import tailwindcss from 'tailwindcss'
+
 const config: Config = {
   namespace: 'docs',
   excludeUnusedDependencies: true,
-  preamble: 'NENT 2021',
+  preamble: 'NENT 2022',
   globalStyle: 'src/index.scss',
+  hashFileNames: true,
+  invisiblePrehydration: false,
   plugins: [
     sass(),
-    // postcss({
-    //   plugins: [
-    //     purgecss({
-    //       content: ['src/index.html', 'src/pages/**/*.html'],
-    //     }),
-    //   ],
-    // }),
+    postcss([
+      tailwindcss({
+        darkMode: 'class',
+        theme: {},
+      }),
+      purgecss({
+        content: ['src/index.html', 'src/pages/**/*.html'],
+      }),
+    ]),
+    ,
   ],
   devServer: {
     port: 3002,
@@ -27,13 +36,9 @@ const config: Config = {
       dir: '../../docs',
       buildDir: 'lib',
       empty: false,
-      serviceWorker: {
-        globPatterns: [
-          '**/*.{ico,wav,txt,js,css,json,html,md,png,svg}',
-        ],
-        swSrc: 'src/service-worker.ts',
-        swDest: 'sw.js',
-      },
+      baseUrl: 'https://nent.dev',
+      prerenderConfig: './prerender.config.ts',
+      serviceWorker: null,
       indexHtml: 'index.html',
       copy: [
         {

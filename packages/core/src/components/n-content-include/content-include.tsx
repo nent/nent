@@ -1,15 +1,15 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core'
-import { eventBus } from '../../services/actions'
 import {
   commonState,
-  ComponentRefresher,
+  CommonStateSubscriber,
+  debugIf,
   warn,
 } from '../../services/common'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import { resolveRemoteContent } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
-import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
+import { filterData } from '../../services/data/jsonata.worker'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
 
@@ -27,8 +27,8 @@ import { routingState } from '../n-views/services/state'
 })
 export class ContentInclude {
   private readonly contentClass = 'remote-content'
-  private dataSubscription!: ComponentRefresher
-  private routeSubscription!: ComponentRefresher
+  private dataSubscription!: CommonStateSubscriber
+  private routeSubscription!: CommonStateSubscriber
 
   @Element() el!: HTMLNContentIncludeElement
 
@@ -67,18 +67,22 @@ export class ContentInclude {
    */
   @Prop({ mutable: true }) when?: string
 
-  async componentWillLoad() {
+  /**
+   * The JSONata expression to select the HTML from a json response.
+   * see <https://try.jsonata.org> for more info.
+   */
+  @Prop() json?: string
+
+  componentWillLoad() {
     if (this.resolveTokens || this.when != undefined) {
-      this.dataSubscription = new ComponentRefresher(
+      this.dataSubscription = new CommonStateSubscriber(
         this,
-        eventBus,
         'dataEnabled',
         DATA_EVENTS.DataChanged,
       )
 
-      this.routeSubscription = new ComponentRefresher(
+      this.routeSubscription = new CommonStateSubscriber(
         this,
-        eventBus,
         'routingEnabled',
         ROUTE_EVENTS.RouteChanged,
       )
@@ -87,7 +91,12 @@ export class ContentInclude {
 
   async componentWillRender() {
     let shouldRender = !this.deferLoad
-    if (this.when) shouldRender = await evaluatePredicate(this.when)
+    if (commonState.dataEnabled && this.when) {
+      const { evaluatePredicate } = await import(
+        '../../services/data/expressions'
+      )
+      shouldRender = await evaluatePredicate(this.when)
+    }
 
     if (shouldRender)
       this.contentElement = this.src
@@ -98,12 +107,22 @@ export class ContentInclude {
 
   private async resolveContentElement() {
     try {
-      const content = await resolveRemoteContent(
+      let content = await resolveRemoteContent(
         window,
         this.src,
         this.mode,
         this.resolveTokens,
       )
+
+      if (content && this.json) {
+        debugIf(
+          commonState.debug,
+          `n-content-include: filtering: ${this.json}`,
+        )
+        const data = JSON.parse(content)
+        content = await filterData(this.json, data)
+      }
+
       if (content == null) return null
 
       const div = document.createElement('div')

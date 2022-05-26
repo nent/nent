@@ -9,27 +9,40 @@
   <ul class="d-none d-sm-flex">
     <n-content-repeat items-src="/dist/components.json"
       when="{{route:component}}"
-      no-cache=""
+      no-cache
       filter="components">
       <template>
         <li class="mb-1">
-          <n-view-link path="/components/{{data:tag}}">
+          <n-view-link path="/components/{{data:tag}}" >
             {{data:tag}}
           </n-view-link>
         </li>
       </template>
     </n-content-repeat>
   </ul>
-  <n-view exact
+  <n-view no-cache
+    exact
     class="flex-shrink"
     path="/components/:component"
     page-title="<{{route:component?Details}}>"
     content-src="/pages/components/component.html">
+
   </n-view>
-  <n-view exact
+  <n-view no-cache
+    exact
     class="flex-shrink"
     path="/components/:component/:extension"
-    page-title="{{route:extension}}"
-    content-src="/pages/components/extension.html">
+    page-title="{{route:extension}}">
+    <div class="content">
+      <n-content-markdown when="{{route:extension}}"
+        src="/pages/components/{{route:component}}/{{route:extension}}.md"
+        class="d-block"
+        lang="html">
+      </n-content-markdown>
+
+    </div>
+
+
   </n-view>
+
 </div>

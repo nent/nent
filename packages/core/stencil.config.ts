@@ -7,6 +7,9 @@ import { version } from './package.json'
 const config: Config = {
   namespace: 'nent',
   hashFileNames: false,
+  preamble: 'NENT 2022',
+  invisiblePrehydration: false,
+  taskQueue: 'congestionAsync',
   rollupPlugins: {
     after: [
       analyzer({
@@ -34,7 +37,7 @@ const config: Config = {
     },
     {
       type: 'docs-readme',
-      footer: `NENT 2021 - all rights reserved`,
+      footer: `NENT 2022 - all rights reserved`,
       dependencies: false,
       strict: true,
     },
@@ -53,6 +56,7 @@ const config: Config = {
       type: 'docs-json',
       file: 'dist/components.json',
     },
+    { type: 'stats' },
   ],
 }
 

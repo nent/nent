@@ -1,4 +1,5 @@
 jest.mock('../../../services/common/logging')
+jest.mock('../../../services/data/evaluate.worker')
 
 import { getAppProvider, setAppProvider } from './factory'
 import { DefaultAppProvider } from './providers/default'

@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-import { isValue } from '../../../../services/common'
+import { isValue } from '../../../../services/common/values'
 import { LocationSegments } from '../interfaces'
 
 /**
@@ -11,7 +11,7 @@ import { LocationSegments } from '../interfaces'
  */
 export function ensureBasename(path: string, prefix: string) {
   let result = hasBasename(path, prefix) ? path : `${prefix}/${path}`
-  result = stripTrailingSlash(result.replace(/\/{2,}/g, '/'))
+  result = result.replace(/\/{2,}/g, '/') // stripTrailingSlash()
   return addLeadingSlash(result)
 }
 
@@ -42,13 +42,6 @@ export const stripBasename = (path: string, prefix: string) => {
  * @param path
  */
 export const isFilename = (path: string) => path.includes('.')
-
-/**
- * Paths strip trailing slash
- * @param path
- */
-export const stripTrailingSlash = (path: string) =>
-  path?.endsWith('/') ? path.slice(0, -1) : path
 
 /**
  * Paths add leading slash

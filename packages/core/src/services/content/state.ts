@@ -2,7 +2,7 @@
 
 import { createStore } from '@stencil/store'
 
-class StateModel {
+export class StateModel {
   references!: string[]
   cache!: Record<string, string>
 }

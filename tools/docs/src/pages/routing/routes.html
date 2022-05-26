@@ -20,7 +20,8 @@
 </n-view>
 <n-view path="/routing/dynamic"
   page-title="Data Routes"
-  content-src="/pages/routing/dynamic/default.html">
+  content-src="/pages/routing/dynamic/default.html"
+  no-cache>
   <n-view-prompt path="/routing/dynamic/custom"
     page-title="Custom Selection"
     content-src="/pages/routing/dynamic/custom.html"
@@ -28,7 +29,7 @@
   </n-view-prompt>
   <n-view path="/routing/dynamic/item/:item"
     page-title="Data Route: {{route:item}}"
-    resolve-tokens
+    resolve-tokens no-cache
     content-src="/pages/routing/dynamic/child.html">
 
   </n-view>

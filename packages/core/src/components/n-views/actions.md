@@ -26,6 +26,28 @@ This tells the navigation system to go to the next [`n-view-prompt`](/components
 </n-action-activator>
 ```
 
+### `go-back`
+
+This tells the navigation system to go back to the previous route, which could be a parent route.
+
+```html
+<n-action-activator activate="...">
+  <n-action topic="navigation" 
+    command="go-back"></n-action>
+</n-action-activator>
+```
+
+### `back`
+
+This is the same as `history.back()` in JavaScript
+
+```html
+<n-action-activator activate="...">
+  <n-action topic="navigation" 
+    command="back"></n-action>
+</n-action-activator>
+```
+
 ### `go-to`
 
 This tells the navigation system to go to a specific route.
@@ -43,15 +65,14 @@ Arguments:
 </n-action-activator>
 ```
 
-### `go-back`
 
-This tells the navigation system to go back to the previous route.
+### `go-to-parent`
 
-> Same as `history.back()` in JavaScript
+This tells the navigation system to go to the parent route, or start url.
 
 ```html
 <n-action-activator activate="...">
   <n-action topic="navigation" 
-    command="go-back"></n-action>
+    command="go-to-parent"></n-action>
 </n-action-activator>
 ```

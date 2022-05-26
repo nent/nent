@@ -1,5 +1,6 @@
 jest.mock('../../services/common/logging')
 jest.mock('../../services/data/evaluate.worker')
+jest.mock('../../services/data/jsonata.worker')
 jest.mock('./markdown/remarkable.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
@@ -438,6 +439,35 @@ describe('n-content-markdown', () => {
         <div class="rendered-content">
           <h1>
           HI John!
+          </h1>
+        </div>
+      </n-content-markdown>
+    `)
+
+    page.root?.remove()
+  })
+
+  it('renders markup from JSON, using a data expression', async () => {
+    const page = await newSpecPage({
+      components: [ContentMarkdown],
+    })
+
+    page.win.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve(`{ "data": "# HI WORLD! "}`),
+      }),
+    )
+
+    await page.setContent(
+      `<n-content-markdown json="data" src="fake.json"></n-content-markdown>`,
+    )
+
+    expect(page.root).toEqualHtml(`
+      <n-content-markdown json="data" src="fake.json">
+        <div class="rendered-content">
+          <h1>
+          HI WORLD!
           </h1>
         </div>
       </n-content-markdown>

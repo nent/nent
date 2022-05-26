@@ -8,7 +8,6 @@ import { ActionActivator } from '../../n-action-activator/action-activator'
 import { Action } from '../../n-action/action'
 import { ElementsActionListener } from '../../n-elements/services/actions'
 import { MockRequestAnimationFrameProvider } from '../../n-presentation-timer/services/mocks/frame-provider'
-import { MockRoute } from '../../n-presentation-timer/services/mocks/route'
 import { FrameTimer } from '../../n-presentation-timer/services/timer'
 import { NVideo } from '../../n-video/video'
 import { Presentation } from '../presentation'
@@ -21,8 +20,8 @@ describe('presentation-service', () => {
   afterEach(() => {
     eventBus.removeAllListeners()
     actionBus.removeAllListeners()
-    subject?.unsubscribe()
     contentStateDispose()
+    subject?.unsubscribe()
   })
 
   it('initialized with element timer', async () => {
@@ -56,6 +55,8 @@ describe('presentation-service', () => {
     animationFrameProvider.triggerNextAnimationFrame(60000)
     await page.waitForChanges()
     expect(input!.value).toBe('1.00')
+
+    timer.destroy()
   })
 
   it('initializes with video timer', async () => {
@@ -84,7 +85,8 @@ describe('presentation-service', () => {
     subject.subscribe()
 
     nVideo.timer?.emit(TIMER_EVENTS.OnInterval, {
-      elapsed: 1,
+      elapsed: 1000,
+      elapsedSeconds: 1,
     })
 
     const input = page.body.querySelector('input')!
@@ -120,6 +122,8 @@ describe('presentation-service', () => {
     await page.waitForChanges()
     let p = page.body.querySelector('p')
     expect(p!.innerText).toBe('98%')
+
+    timer.destroy()
   })
 
   it('next on end', async () => {
@@ -135,11 +139,7 @@ describe('presentation-service', () => {
       new MockRequestAnimationFrameProvider()
     const timer = new FrameTimer(animationFrameProvider, 0, 0)
 
-    const route = new MockRoute()
-
-    const goNext = jest
-      .spyOn(route, 'goNext')
-      .mockImplementationOnce(async () => {})
+    const goNext = jest.fn().mockImplementationOnce(async () => {})
 
     subject = new PresentationService(
       page.body,
@@ -147,7 +147,7 @@ describe('presentation-service', () => {
       false,
       null,
       async () => {
-        route.goNext()
+        goNext()
       },
     )
 
@@ -158,6 +158,9 @@ describe('presentation-service', () => {
     await page.waitForChanges()
 
     expect(goNext).toBeCalled()
+
+    subject.unsubscribe()
+    timer.destroy()
   })
 
   it('captures n-time-in,n-in-class, n-time-out, n-out-class', async () => {
@@ -201,8 +204,9 @@ describe('presentation-service', () => {
     )
 
     animationFrameProvider.triggerNextAnimationFrame(3500)
+    await page.waitForChanges()
 
-    expect(page.root).toEqualHtml(
+    expect(page.body).toEqualHtml(
       `<div class="fade-out"
           n-in-time="1"
           n-in-class="fade-in"
@@ -217,7 +221,7 @@ describe('presentation-service', () => {
 
     subject.unsubscribe()
 
-    expect(page.root).toEqualHtml(`<div
+    expect(page.body).toEqualHtml(`<div
         n-in-time="1"
         n-in-class="fade-in"
         n-out-time="3"
@@ -225,6 +229,8 @@ describe('presentation-service', () => {
         Cool Thing
       </div>
       `)
+
+    timer.destroy()
   })
 
   it('processes timed actions', async () => {
@@ -259,16 +265,14 @@ describe('presentation-service', () => {
     subject.subscribe()
 
     animationFrameProvider.triggerNextAnimationFrame(1500)
-
-    expect(timer.currentTime?.elapsed).toBeGreaterThan(1)
-
     await page.waitForChanges()
 
-    expect(page.body.innerHTML).toEqualHtml(
+    expect(timer.currentTime!.elapsedSeconds).toBe(1)
+
+    expect(page.body).toEqualHtml(
       `<n-presentation>
         <p>Show me!</p>
-        <n-action-activator activate="at-time" time="1">
-          <!---->
+        <n-action-activator activate="at-time" time="1" style="display: contents;">
           <n-action topic="elements" command="remove-attribute"
             data-selector="p"
             data-attribute="hidden">
@@ -278,6 +282,9 @@ describe('presentation-service', () => {
       `,
     )
 
+    subject.unsubscribe()
     listener.destroy()
+    timer.destroy()
+    page.root?.remove()
   })
 })

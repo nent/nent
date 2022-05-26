@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { IEventEmitter } from '../../../services/common'
 
 export enum TIMER_EVENTS {
@@ -28,14 +30,16 @@ export interface TimeDetails {
   minutes: number
   seconds: number
   elapsed: number
+  elapsedSeconds: number
   percentage: number
   duration: number
+  durationSeconds: number
   ended: boolean
 }
 
 export interface ITimer extends IEventEmitter {
   currentTime: TimeDetails
-  duration: number
+  durationSeconds: number
   begin(): void
   stop(): void
   destroy(): void

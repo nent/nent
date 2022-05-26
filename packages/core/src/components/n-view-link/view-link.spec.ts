@@ -34,7 +34,7 @@ describe('n-view-link', () => {
     })
     expect(page.root).toEqualHtml(`
       <n-view-link>
-        <a n-attached-click="">
+        <a n-attached-click="" n-attached-key-press="">
         </a>
       </n-view-link>
     `)
@@ -53,6 +53,22 @@ describe('n-view-link', () => {
         </n-view>
       </n-views>`,
     })
+
+    expect(page.root).toEqualHtml(`
+      <n-views style="display:block;">
+        <n-view-link path="/foo">
+          <a href="/foo" n-attached-click="" n-attached-key-press="">
+            Go to Foo
+          </a>
+        </n-view-link>
+        <n-view path="/foo">
+        <mock:shadow-root>
+          <slot></slot>
+          <slot name="content"></slot>
+        </mock:shadow-root>
+        </n-view>
+      </n-views>
+    `)
 
     let linkEl = page.body.querySelector('n-view-link')
     let anchor = page.body.querySelector('a')

@@ -67,6 +67,7 @@ You can provide the data to use for this element directly in-line using a inner 
 | `debug`     | `debug`      | Turn on debug statements for load, update and render events.                                                                                  | `boolean`                                            | `false`     |
 | `deferLoad` | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.                                  | `boolean`                                            | `false`     |
 | `filter`    | `filter`     | The JSONata query to filter the json items see <https://try.jsonata.org> for more info.                                                       | `string`, `undefined`                                | `undefined` |
+| `graphql`   | `graphql`    | When declared, the child script tag is required and should be the query text for the request. Also, this forces the HTTP method to 'POST'.    | `boolean`                                            | `false`     |
 | `mode`      | `mode`       | Cross Origin Mode                                                                                                                             | `"cors"`, `"navigate"`, `"no-cors"`, `"same-origin"` | `'cors'`    |
 | `noCache`   | `no-cache`   | Force render with data & route changes.                                                                                                       | `boolean`                                            | `false`     |
 | `src`       | `src`        | The URL to remote JSON data to bind to this template                                                                                          | `string`, `undefined`                                | `undefined` |
@@ -76,4 +77,4 @@ You can provide the data to use for this element directly in-line using a inner 
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

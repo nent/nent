@@ -104,9 +104,9 @@ export class Presentation {
             if (this.currentRoute && this.nextAfter) {
               this.presentation?.unsubscribe()
               if (typeof this.nextAfter == 'string') {
-                this.currentRoute.goToRoute(this.nextAfter)
+                this.currentRoute.router.goToRoute(this.nextAfter)
               } else {
-                this.currentRoute.goNext()
+                this.currentRoute.router.goNext()
               }
             }
           },

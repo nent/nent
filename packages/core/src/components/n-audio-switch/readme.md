@@ -32,4 +32,4 @@ Using the [\<n-audio-switch\>](/components/n-audio-switch) element description.
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

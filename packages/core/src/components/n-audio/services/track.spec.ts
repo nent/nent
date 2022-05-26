@@ -1,4 +1,5 @@
 jest.mock('../../../services/common/logging')
+jest.mock('../../../services/data/evaluate.worker')
 
 import { EventEmitter } from '../../../services/common'
 import {

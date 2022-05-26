@@ -1,4 +1,5 @@
 jest.mock('../../services/data/evaluate.worker')
+jest.mock('../../services/common/logging')
 
 import { newSpecPage } from '@stencil/core/testing'
 import {
@@ -31,6 +32,8 @@ describe('n-data', () => {
     `)
 
     expect(commonState.dataEnabled).toBeTruthy()
+
+    page.root?.remove()
   })
 
   it('debug setting', async () => {
@@ -47,6 +50,8 @@ describe('n-data', () => {
     `)
 
     expect(dataState.debug).toBeTruthy()
+
+    page.root?.remove()
   })
 
   it('timeout setting', async () => {
@@ -63,5 +68,7 @@ describe('n-data', () => {
     `)
 
     expect(dataState.providerTimeout).toBe(5)
+
+    page.root?.remove()
   })
 })

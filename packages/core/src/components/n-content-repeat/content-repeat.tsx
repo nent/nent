@@ -6,16 +6,14 @@ import {
   Prop,
   State,
 } from '@stencil/core'
-import { eventBus } from '../../services/actions'
 import {
   commonState,
-  ComponentRefresher,
+  CommonStateSubscriber,
   debugIf,
   valueToArray,
   warnIf,
 } from '../../services/common'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
-import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { filterData } from '../../services/data/jsonata.worker'
 import { hasToken, resolveTokens } from '../../services/data/tokens'
@@ -33,12 +31,11 @@ import { routingState } from '../n-views/services/state'
  */
 @Component({
   tag: 'n-content-repeat',
-  styles: `n-content-repeat { display: contents; }`,
   shadow: false,
 })
 export class ContentDataRepeat {
-  private dataSubscription!: ComponentRefresher
-  private routeSubscription!: ComponentRefresher
+  private dataSubscription!: CommonStateSubscriber
+  private routeSubscription!: CommonStateSubscriber
   @Element() el!: HTMLNContentRepeatElement
   @State() innerTemplate!: string
   @State() resolvedTemplate!: string
@@ -95,19 +92,17 @@ export class ContentDataRepeat {
     return this.el.querySelector('script')
   }
 
-  async componentWillLoad() {
+  componentWillLoad() {
     debugIf(this.debug, 'n-content-repeat: loading')
 
-    this.dataSubscription = new ComponentRefresher(
+    this.dataSubscription = new CommonStateSubscriber(
       this,
-      eventBus,
       'dataEnabled',
       DATA_EVENTS.DataChanged,
     )
 
-    this.routeSubscription = new ComponentRefresher(
+    this.routeSubscription = new CommonStateSubscriber(
       this,
-      eventBus,
       'routingEnabled',
       ROUTE_EVENTS.RouteChanged,
     )
@@ -129,7 +124,7 @@ export class ContentDataRepeat {
 
     if (this.dynamicContent && !this.noCache) {
       if (commonState.elementsEnabled) {
-        await resolveChildElementXAttributes(this.el)
+        resolveChildElementXAttributes(this.el)
       }
       return
     }
@@ -143,7 +138,7 @@ export class ContentDataRepeat {
       this.dynamicContent!.className = this.contentKey!
       this.dynamicContent!.innerHTML = innerContent
       if (commonState.elementsEnabled) {
-        await resolveChildElementXAttributes(this.dynamicContent!)
+        resolveChildElementXAttributes(this.dynamicContent!)
       }
       this.dynamicContent!.innerHTML = innerContent
       if (routingState?.router) {
@@ -156,8 +151,12 @@ export class ContentDataRepeat {
   private async resolveHtml(items: any[]) {
     debugIf(this.debug, 'n-content-repeat: resolving html')
     let shouldRender = !this.deferLoad
-    if (shouldRender && this.when)
+    if (shouldRender && this.when && commonState.dataEnabled) {
+      const { evaluatePredicate } = await import(
+        '../../services/data/expressions'
+      )
       shouldRender = await evaluatePredicate(this.when)
+    }
 
     if (!shouldRender) {
       return null
@@ -274,18 +273,16 @@ export class ContentDataRepeat {
     return items
   }
 
-  componentDidRender() {}
-
-  disconnectedCallback() {
-    this.dataSubscription.destroy()
-    this.routeSubscription.destroy()
-  }
-
   render() {
     return (
       <Host>
         <slot></slot>
       </Host>
     )
+  }
+
+  disconnectedCallback() {
+    this.dataSubscription!.destroy()
+    this.routeSubscription!.destroy()
   }
 }

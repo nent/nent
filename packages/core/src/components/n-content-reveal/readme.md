@@ -31,4 +31,4 @@ Use this element to add a little flair to any HTML. It creates an entrance anima
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

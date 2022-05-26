@@ -21,17 +21,18 @@ import {
  */
 @Component({
   tag: 'n-view-link-list',
-  styles: 'n-view-link-list { display: block; }',
   shadow: false,
 })
 export class ViewLinkList {
   @Element() el!: HTMLNViewLinkListElement
   @State() route: Route | null = null
   @State() match: MatchResults | null = null
-  private routeStartSubscription?: () => void
   private matchSubscription?: () => void
-  private finalizeSubscription?: () => void
-  @State() routes: Route[] | any[] = []
+  @State() routes: Array<{
+    route?: Route
+    path?: string
+    title?: string
+  }> = []
 
   /**
    * The display mode for which routes to display.
@@ -41,22 +42,22 @@ export class ViewLinkList {
   /**
    * The active-class to use with the n-view-link elements.
    */
-  @Prop() activeClass?: string
+  @Prop() activeClass?: string = 'active'
 
   /**
    * The class to add to the anchor tag.
    */
-  @Prop() linkClass?: string
+  @Prop() linkClass?: string = ''
 
   /**
    * The list-class to use with the UL tag
    */
-  @Prop() listClass?: string
+  @Prop() listClass?: string = ''
 
   /**
    * The list-item-class to use with the li tag
    */
-  @Prop() itemClass?: string
+  @Prop() itemClass?: string = ''
 
   /**
    * Specify if the '/' route should
@@ -64,36 +65,48 @@ export class ViewLinkList {
    */
   @Prop() excludeRoot: boolean = false
 
+  private get parentView() {
+    return this.el.closest('n-view')
+  }
+
+  private get parentViewPrompt() {
+    return this.el.closest('n-view-prompt')
+  }
+
   componentWillLoad() {
     if (routingState.router) {
-      const dispose = eventBus.on(ROUTE_EVENTS.Initialized, () => {
-        this.subscribe()
-        dispose()
-      })
+      this.setupRoute()
     } else {
-      const routerSubscription = onRoutingChange('router', router => {
-        if (router) {
-          this.subscribe()
-          routerSubscription()
-        } else {
-          this.matchSubscription?.call(this)
-        }
+      const dispose = onRoutingChange('router', () => {
+        this.setupRoute()
+        dispose()
       })
     }
   }
 
+  get inView() {
+    return this.parentView != null || this.parentViewPrompt != null
+  }
+
+  private setupRoute() {
+    if (this.parentViewPrompt) {
+      this.route = this.parentViewPrompt?.route || null
+    } else if (this.parentView) {
+      this.route = this.parentView?.route || null
+    }
+
+    if (this.route == null) this.subscribe()
+  }
+
   private subscribe() {
-    this.routeStartSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteChanged,
-      () => {
-        this.routes = []
-      },
-    )
     this.matchSubscription = eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
       ({ route, match }: { route: Route; match: MatchResults }) => {
         this.route = route
         this.match = match
+        if (this.inView) {
+          this.matchSubscription!.call(this)
+        }
       },
     )
 
@@ -102,24 +115,25 @@ export class ViewLinkList {
   }
 
   async componentWillRender() {
-    let routes = (await this.getRoutes()) || []
-    if (this.excludeRoot && routes[0]?.path == '/') routes.shift()
+    let routes = await this.getRoutes()
+    if (this.mode == 'parents' && routes?.length && this.excludeRoot)
+      routes.shift()
 
-    this.routes = routes
+    this.routes = routes || []
   }
 
   private async getRoutes() {
     switch (this.mode) {
       case 'parents':
-        return (await this.route?.getParentRoutes()) || null
+        return await this.route?.getParentRoutes()
       case 'siblings':
-        return this.route?.getSiblingRoutes() || null
+        return await this.route?.getSiblingRoutes()
       case 'children':
-        return this.route?.childRoutes || null
+        return await this.route?.getChildRoutes()
     }
   }
 
-  private getUrl(route: any) {
+  private getUrl(route: Route) {
     let url = route.match?.url || route.path
     if (this.match) {
       Object.keys(this.match?.params).forEach(param => {
@@ -131,31 +145,25 @@ export class ViewLinkList {
   }
 
   render() {
-    const linkClasses: string = `${this.activeClass || ''} ${
-      this.route?.transition || ''
-    }`
-
-    return this.routes ? (
-      <ol class={this.listClass}>
+    return (
+      <ul class={this.listClass}>
         {this.routes?.map((r: any) => [
           <li class={this.itemClass}>
             <n-view-link
-              path={this.getUrl(r)}
+              path={this.getUrl(r.route)}
               exact={true}
-              linkClass={linkClasses}
-              activeClass={this.activeClass}
+              link-class={this.linkClass}
+              active-class={this.activeClass}
             >
               {r.title}
             </n-view-link>
           </li>,
         ])}
-      </ol>
-    ) : null
+      </ul>
+    )
   }
 
   disconnectedCallback() {
     this.matchSubscription?.call(this)
-    this.finalizeSubscription?.call(this)
-    this.routeStartSubscription?.call(this)
   }
 }

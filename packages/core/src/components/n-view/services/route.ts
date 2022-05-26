@@ -1,5 +1,6 @@
 import { activateActionActivators } from '../../../services/actions/elements'
 import { ActionActivationStrategy } from '../../../services/actions/interfaces'
+import { PageData } from '../../../services/common'
 import { logIf } from '../../../services/common/logging'
 import { commonState } from '../../../services/common/state'
 import { resolveChildElementXAttributes } from '../../../services/data/elements'
@@ -11,7 +12,6 @@ import { getChildInputValidity } from '../../n-view-prompt/services/elements'
 import {
   LocationSegments,
   MatchResults,
-  RouteViewOptions,
   ROUTE_EVENTS,
 } from '../../n-views/services/interfaces'
 import { RouterService } from '../../n-views/services/router'
@@ -39,9 +39,7 @@ export class Route implements IRoute {
     public path: string,
     public parentRoute: Route | null = null,
     public exact: boolean = true,
-    public pageTitle: string = '',
-    public pageDescription: string = '',
-    public pageKeywords: string = '',
+    public pageData: PageData = {},
     public transition: string | null = null,
     public scrollTopOffset: number = 0,
     matchSetter: (m: MatchResults | null) => void = () => {},
@@ -65,7 +63,7 @@ export class Route implements IRoute {
       },
     )
 
-    const evaluateRoute = () => {
+    const evaluateRoute = (sendEvent: boolean = true) => {
       logIf(
         commonState.debug,
         `route: ${this.path} changed -> ${location.pathname}`,
@@ -77,6 +75,7 @@ export class Route implements IRoute {
           strict: true,
         },
         this,
+        sendEvent,
       )
       matchSetter(this.match)
       this.adjustClasses()
@@ -129,44 +128,25 @@ export class Route implements IRoute {
   }
 
   public async loadCompleted() {
-    let routeViewOptions: RouteViewOptions = {}
-
     if (this.match) {
       this.captureInnerLinksAndResolveHtml()
 
       // If this is an independent route and it matches then routes have updated.
-      if (
-        this.match?.isExact &&
-        !matchesAreEqual(this.match, this.previousMatch)
-      ) {
+      if (this.match?.isExact) {
         this.routeElement
           .querySelectorAll('[defer-load]')
           .forEach((el: any) => {
             el.removeAttribute('defer-load')
           })
 
-        // If the only change to location is a hash change then do not scroll.
-        if (
-          this.router.history &&
-          this.router.history.location.hash
-        ) {
-          routeViewOptions = {
-            scrollToId: this.router.history.location.hash.slice(1),
-          }
-        } else if (this.scrollTopOffset) {
-          routeViewOptions = {
-            scrollTopOffset: this.scrollTopOffset,
-          }
-        }
-
         await this.activateActions(ActionActivationStrategy.OnEnter)
+
         await this.adjustPageTags()
       }
     }
 
     this.completed = true
-
-    this.router.viewsUpdated(routeViewOptions)
+    this.router.routeCompleted()
   }
 
   private toggleClass(className: string, force: boolean) {
@@ -182,6 +162,7 @@ export class Route implements IRoute {
 
     this.toggleClass('active', match)
     this.toggleClass('exact', exact)
+    if (this.transition) this.toggleClass(this.transition!, exact)
   }
 
   public captureInnerLinksAndResolveHtml(root?: HTMLElement) {
@@ -193,68 +174,59 @@ export class Route implements IRoute {
   }
 
   public async resolvePageTitle() {
-    if (this._title) return this._title
-    if (commonState.dataEnabled) {
-      if (this.pageTitle && hasToken(this.pageTitle)) {
-        return (this._title = await resolveTokens(this.pageTitle))
-      }
+    let title = this.pageData.title
+    if (
+      commonState.dataEnabled &&
+      this.pageData.title &&
+      hasToken(this.pageData.title)
+    ) {
+      title = await resolveTokens(this.pageData.title)
     }
-    return this.pageTitle
-  }
-
-  private _title?: string
-  public get title() {
-    return this._title || this.pageTitle
+    return title || this.pageData.title
   }
 
   public async adjustPageTags() {
-    let title = (this._title = await this.resolvePageTitle())
-    let description = this.pageDescription
-    let keywords = this.pageKeywords
+    const data = this.pageData
+    data.title = await this.resolvePageTitle()
+
     if (commonState.dataEnabled) {
-      if (!this.pageDescription && hasToken(this.pageDescription)) {
-        description = await resolveTokens(this.pageDescription)
+      if (
+        !this.pageData.description &&
+        hasToken(this.pageData.description!)
+      ) {
+        data.description = await resolveTokens(
+          this.pageData.description!,
+        )
       }
-      if (!this.pageKeywords && hasToken(this.pageKeywords)) {
-        keywords = await resolveTokens(this.pageKeywords)
+      if (
+        !this.pageData.keywords &&
+        hasToken(this.pageData.keywords!)
+      ) {
+        data.keywords = await resolveTokens(this.pageData.keywords!)
       }
     }
-    this.router.setPageTags(title, description, keywords)
+    this.router.setPageTags(data)
   }
 
-  public goBack() {
-    const back = this.previousRoute
-    if (back) this.router.goToRoute(back.path)
-    else if (this.router.history.previousLocation)
-      this.router.history.goBack()
-    else this.goToParentRoute()
+  public async getPreviousRoute(): Promise<Route | null> {
+    const siblings = await this.getSiblingRoutes()
+    const index = this.getSiblingIndex(siblings.map(r => r.route))
+    let back = index > 0 ? siblings.slice(index - 1) : []
+    return back[0]?.route || this.parentRoute
   }
 
-  public goNext() {
-    const valid = getChildInputValidity(this.routeElement)
-    if (valid) {
-      const next = this.nextRoute
-      if (next) this.router.goToRoute(next.path)
-      else this.goToParentRoute()
-    }
+  public isValidForNext() {
+    return getChildInputValidity(this.routeElement)
   }
 
-  public get previousRoute(): Route | null {
-    const siblings = this.getSiblingRoutes()
-    let back =
-      this.siblingIndex > 0
-        ? siblings.slice(this.siblingIndex - 1)
-        : []
-    return back[0] || this.parentRoute
-  }
-
-  public get nextRoute(): Route | null {
+  public async getNextRoute(): Promise<Route | null> {
     if (this.routeElement.tagName == 'N-VIEW-PROMPT') {
       return this.parentRoute
     }
-    const siblings = this.getSiblingRoutes()
-    let next = siblings.slice(this.siblingIndex + 1)
-    return next[0] || this.parentRoute
+    const siblings = await this.getSiblingRoutes()
+    const index = this.getSiblingIndex(siblings.map(r => r.route))
+    let next = siblings.slice(index + 1)
+    return next.length && next[0] ? next[0].route : this.parentRoute
   }
 
   public async getParentRoutes() {
@@ -263,51 +235,78 @@ export class Route implements IRoute {
         .map(path => this.router.routes!.find(p => p.path == path))
         .filter(r => r)
         .map(async route => {
-          const resolvedPath =
-            route?.match?.path.toString() || route?.path
-          const title = (await route?.resolvePageTitle()) || ''
-          return Object.assign({}, route, {
-            path: resolvedPath,
+          const path = route?.match?.path.toString() || route?.path
+          const title = await route!.resolvePageTitle()
+          return {
+            route,
+            path,
             title,
-          })
+          }
         }),
     )
 
     return parents
   }
 
-  public goToParentRoute() {
-    if (this.parentRoute) {
-      this.goToRoute(this.parentRoute.path)
-    } else {
-      this.router.goToParentRoute()
-    }
+  public getParentRoute() {
+    return this.parentRoute
   }
 
-  public getSiblingRoutes() {
-    const siblings =
-      this.parentRoute?.childRoutes ||
-      this.router.routes
-        .filter(r => r.parentRoute == null)
+  public sortRoutes(elements: Element[]) {
+    return elements.sort((a, b) =>
+      a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING
+        ? -1
+        : 1,
+    )
+  }
+
+  public async getSiblingRoutes() {
+    return await Promise.all(
+      (
+        this.parentRoute?.childRoutes ||
+        this.router.routes.filter(r => r.parentRoute == null)
+      )
         .sort((a, b) =>
           a.routeElement.compareDocumentPosition(b.routeElement) &
           Node.DOCUMENT_POSITION_FOLLOWING
             ? -1
             : 1,
         )
-    return siblings
+        .map(async (route: Route) => {
+          const path = route.match?.path.toString() || route.path
+          const title = await route.resolvePageTitle()
+          return {
+            route,
+            path,
+            title,
+          }
+        }),
+    )
   }
 
-  public get siblingIndex() {
-    const siblings = this.getSiblingRoutes()
+  public async getChildRoutes() {
+    return await Promise.all(
+      this.childRoutes
+        .sort((a, b) =>
+          a.routeElement.compareDocumentPosition(b.routeElement) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+            ? -1
+            : 1,
+        )
+        .map(async (route: Route) => {
+          const path = route.match?.path.toString() || route.path
+          const title = await route.resolvePageTitle()
+          return {
+            route,
+            path,
+            title,
+          }
+        }),
+    )
+  }
+
+  public getSiblingIndex(siblings: Route[]) {
     return siblings?.findIndex(p => p.path == this.path) || 0
-  }
-
-  public goToRoute(path: string) {
-    const route = isAbsolute(path)
-      ? path
-      : this.router.resolvePathname(path, this.path)
-    this.router.goToRoute(route)
   }
 
   public replaceWithRoute(path: string) {

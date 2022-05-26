@@ -326,6 +326,10 @@ export namespace Components {
          */
         "deferLoad": boolean;
         /**
+          * The JSONata expression to select the HTML from a json response. see <https://try.jsonata.org> for more info.
+         */
+        "json"?: string;
+        /**
           * Cross Origin Mode
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
@@ -347,6 +351,10 @@ export namespace Components {
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
         "deferLoad": boolean;
+        /**
+          * The JSONata expression to select the markdown from a json response. see <https://try.jsonata.org> for more info.
+         */
+        "json"?: string;
         /**
           * Cross Origin Mode
          */
@@ -475,6 +483,10 @@ export namespace Components {
          */
         "filter"?: string;
         /**
+          * When declared, the child script tag is required and should be the query text for the request. Also, this forces the HTTP method to 'POST'.
+         */
+        "graphql": boolean;
+        /**
           * Cross Origin Mode
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
@@ -573,7 +585,7 @@ export namespace Components {
         /**
           * Get the underlying actionEvent instance. Used by the n-action-activator element.
          */
-        "getAction": () => Promise<EventAction<any> | null>;
+        "getAction": () => Promise<EventAction1<any> | null>;
         /**
           * Send this action to the action messaging system.
          */
@@ -609,7 +621,7 @@ export namespace Components {
          */
         "display": boolean;
         /**
-          * Duration before the timer stops and raises the ended event. 0 = never
+          * Duration before the timer stops and raises the ended event (seconds). 0 = never
          */
         "duration": number;
         /**
@@ -707,6 +719,10 @@ export namespace Components {
          */
         "pageKeywords": string;
         /**
+          * The robots instruction for search indexing
+         */
+        "pageRobots": 'all' | 'noindex' | 'nofollow' | 'none';
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle": string;
@@ -760,6 +776,10 @@ export namespace Components {
           * Only active on the exact href match using every aspect of the URL including parameters.
          */
         "strict": boolean;
+        /**
+          * Validates any current-route inputs before navigating. Disables navigation if any inputs are invalid.
+         */
+        "validate": boolean;
     }
     interface NViewLinkBack {
         /**
@@ -851,6 +871,10 @@ export namespace Components {
          */
         "pageKeywords": string;
         /**
+          * The robots instruction for search indexing
+         */
+        "pageRobots": 'all' | 'noindex' | 'nofollow' | 'none';
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle": string;
@@ -884,6 +908,14 @@ export namespace Components {
         "when"?: string;
     }
     interface NViews {
+        /**
+          * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+         */
+        "debug": boolean;
+        /**
+          * Enable the not-found display. To customize it, use: slot="not-found"
+         */
+        "notFound": boolean;
         /**
           * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
          */
@@ -1457,6 +1489,10 @@ declare namespace LocalJSX {
          */
         "deferLoad"?: boolean;
         /**
+          * The JSONata expression to select the HTML from a json response. see <https://try.jsonata.org> for more info.
+         */
+        "json"?: string;
+        /**
           * Cross Origin Mode
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
@@ -1478,6 +1514,10 @@ declare namespace LocalJSX {
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
          */
         "deferLoad"?: boolean;
+        /**
+          * The JSONata expression to select the markdown from a json response. see <https://try.jsonata.org> for more info.
+         */
+        "json"?: string;
         /**
           * Cross Origin Mode
          */
@@ -1606,6 +1646,10 @@ declare namespace LocalJSX {
          */
         "filter"?: string;
         /**
+          * When declared, the child script tag is required and should be the query text for the request. Also, this forces the HTTP method to 'POST'.
+         */
+        "graphql"?: boolean;
+        /**
           * Cross Origin Mode
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
@@ -1728,7 +1772,7 @@ declare namespace LocalJSX {
          */
         "display"?: boolean;
         /**
-          * Duration before the timer stops and raises the ended event. 0 = never
+          * Duration before the timer stops and raises the ended event (seconds). 0 = never
          */
         "duration"?: number;
         /**
@@ -1826,6 +1870,10 @@ declare namespace LocalJSX {
          */
         "pageKeywords"?: string;
         /**
+          * The robots instruction for search indexing
+         */
+        "pageRobots"?: 'all' | 'noindex' | 'nofollow' | 'none';
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle"?: string;
@@ -1879,6 +1927,10 @@ declare namespace LocalJSX {
           * Only active on the exact href match using every aspect of the URL including parameters.
          */
         "strict"?: boolean;
+        /**
+          * Validates any current-route inputs before navigating. Disables navigation if any inputs are invalid.
+         */
+        "validate"?: boolean;
     }
     interface NViewLinkBack {
         /**
@@ -1970,6 +2022,10 @@ declare namespace LocalJSX {
          */
         "pageKeywords"?: string;
         /**
+          * The robots instruction for search indexing
+         */
+        "pageRobots"?: 'all' | 'noindex' | 'nofollow' | 'none';
+        /**
           * The title for this view. This is prefixed before the app title configured in n-views
          */
         "pageTitle"?: string;
@@ -2003,6 +2059,14 @@ declare namespace LocalJSX {
         "when"?: string;
     }
     interface NViews {
+        /**
+          * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+         */
+        "debug"?: boolean;
+        /**
+          * Enable the not-found display. To customize it, use: slot="not-found"
+         */
+        "notFound"?: boolean;
         /**
           * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
          */

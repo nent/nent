@@ -31,7 +31,7 @@ body {
   --nav-bg: hsl(203, 24%, 47%);
 
   --content-max-width: 950px;
-
+  --white: #fff;
   font-family: 'Blinker', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
@@ -130,56 +130,6 @@ nav.bg-dark .active i {
   color: var(--accent);
 }
 
-/* setup tooltips */
-.tip {
-  display: flex;
-  position: relative;
-}
-
-.tip span {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.tip span {
-  border: 2px solid var(--accent);
-  border-radius: 2px;
-  background: var(--background-color);
-  color: var(--text-color) !important;
-  padding: 6px 10px;
-  white-space: nowrap;
-  left: -50%;
-  top: 3rem;
-}
-
-.tip span.right {
-  right: 0;
-  left: auto;
-}
-
-.tip span.left {
-  left: 0;
-  right: auto;
-}
-
-/* expand */
-.tip:before {
-  transform: scale3d(0.2, 0.2, 1);
-  transition: all 0.2s ease-in-out;
-}
-.tip span {
-  transform: translate3d(0, 6px, 0);
-  transition: all 0.1s ease-in-out;
-}
-.tip:hover:before,
-.tip:hover span {
-  opacity: 1;
-  transform: scale3d(1, 1, 1);
-}
-.tip:hover span {
-  transition: all 0.2s 0.1s ease-in-out;
-}
 
 b.brand {
   color: var(--primary);
@@ -355,6 +305,7 @@ footer [slot='end'] {
   float: right;
   right: 0;
   margin-left: 0.2rem;
+  display: inline-block;
 }
 footer [slot='start'] {
   float: left;
@@ -400,9 +351,12 @@ n-view {
 n-view.active {
   padding-bottom: 5rem;
 }
+n-view-link  {
+  display: contents;
+}
 
 n-view-link a:any-link {
-  color: var(--primary);
+  color: var(--accent-dark);
   text-decoration: none;
   font-weight: 400;
 }
@@ -411,11 +365,15 @@ n-view-link a:hover {
   text-decoration: none;
 }
 
+n-view-link slot-fb {
+
+}
+
 n-view-link-back.btn a:any-link,
 n-view-link-next.btn a:any-link,
 n-view-link-back.text-white a:any-link,
 n-view-link-next.text-white a:any-link,
-n-view-link.text-white a:any-link {
+n-view-link.text-white a:any-link  {
   color: white;
 }
 
@@ -427,6 +385,7 @@ n-view.active + n-view-not-found {
 }
 
 .container,
+n-views [slot=not-found],
 n-views > n-view,
 n-views > n-view-prompt,
 n-views > n-view-not-found  {
@@ -509,6 +468,14 @@ n-audio {
   margin: 1em 0;
   list-style: none;
 }
+.button-nav > * {
+  flex: 1 1;
+  vertical-align: middle;
+
+}
+.button-nav a {
+  flex-grow: 1;
+}
 
 .accent {
   border: solid 2px var(--dark);
@@ -522,10 +489,7 @@ n-audio {
   );
 }
 
-.button-nav > * {
-  flex: 1 1 auto;
-  vertical-align: middle;
-}
+
 
 .components {
   width: auto;
@@ -547,7 +511,7 @@ n-audio {
 }
 
 .components n-view {
-  display: contents;
+  display: block;
 }
 .components ul ul {
   padding-left: 3px;
@@ -710,6 +674,7 @@ a:active,
 a:visited,
 a:any-link,
 a:current {
+  color: var(--accent-dark)
   text-decoration: none !important;
 }
 

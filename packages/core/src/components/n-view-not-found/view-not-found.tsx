@@ -6,7 +6,9 @@ import {
   Host,
   Prop,
 } from '@stencil/core'
+
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
+import { RouterService } from '../n-views/services/router'
 import { routingState } from '../n-views/services/state'
 
 /**
@@ -22,9 +24,9 @@ import { routingState } from '../n-views/services/state'
   styles: `:host { display: block; }`,
 })
 export class ViewNotFound {
-  private initializeSubscription?: () => void
   private routeFinalizeSubscription?: () => void
   private routeMatchedSubscription?: () => void
+  private routeChangeStartSubscription?: () => void
   @Element() el!: HTMLNViewNotFoundElement
 
   /**
@@ -46,6 +48,15 @@ export class ViewNotFound {
    */
   @Prop({ mutable: true }) transition?: string
 
+  private async setPageTags(router: RouterService) {
+    if (router.hasExactRoute()) return
+    await router.setPageTags({
+      title: this.pageTitle,
+      robots: 'nofollow',
+    })
+    router.scrollTo(this.scrollTopOffset)
+  }
+
   componentWillLoad() {
     const { router } = routingState
     if (!router) {
@@ -54,24 +65,27 @@ export class ViewNotFound {
 
     this.transition = this.transition || router?.transition
 
-    this.initializeSubscription = router.eventBus.on(
-      ROUTE_EVENTS.Initialized,
-      () => {
-        forceUpdate(this.el)
+    this.routeChangeStartSubscription = router.eventBus.on(
+      ROUTE_EVENTS.RouteChanged,
+      async () => {
+        forceUpdate(this)
+        await this.setPageTags(router)
       },
     )
 
     this.routeMatchedSubscription = router.eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
-      () => {
-        forceUpdate(this.el)
+      async () => {
+        forceUpdate(this)
+        await this.setPageTags(router)
       },
     )
 
     this.routeFinalizeSubscription = router.eventBus.on(
       ROUTE_EVENTS.RouteChangeFinish,
-      () => {
-        forceUpdate(this.el)
+      async () => {
+        await this.setPageTags(router)
+        forceUpdate(this)
       },
     )
   }
@@ -85,15 +99,12 @@ export class ViewNotFound {
     )
   }
 
-  async componentDidRender() {
-    if (!routingState.router?.hasExactRoute()) {
-      await routingState.router?.setPageTags(this.pageTitle)
-      routingState.router?.scrollTo(this.scrollTopOffset)
-    }
+  async componentDidLoad() {
+    await this.setPageTags(routingState.router!)
   }
 
   disconnectedCallback() {
-    this.initializeSubscription?.call(this)
+    this.routeChangeStartSubscription?.call(this)
     this.routeMatchedSubscription?.call(this)
     this.routeFinalizeSubscription?.call(this)
   }

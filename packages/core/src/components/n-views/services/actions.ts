@@ -11,6 +11,7 @@ import {
   NAVIGATION_COMMANDS,
   NAVIGATION_TOPIC,
   ROUTE_EVENTS,
+  ScrollToId,
 } from './interfaces'
 import { RouterService } from './router'
 
@@ -75,6 +76,14 @@ export class NavigationActionListener {
 
     switch (eventAction.command) {
       case NAVIGATION_COMMANDS.goNext: {
+        this.router.goNext()
+        break
+      }
+      case NAVIGATION_COMMANDS.goBack: {
+        this.router.goBack()
+        break
+      }
+      case NAVIGATION_COMMANDS.goToParent: {
         this.router.goToParentRoute()
         break
       }
@@ -83,8 +92,13 @@ export class NavigationActionListener {
         this.router.goToRoute(path)
         break
       }
-      case NAVIGATION_COMMANDS.goBack: {
-        this.router.goBack()
+      case NAVIGATION_COMMANDS.back: {
+        this.router.history.goBack()
+        break
+      }
+      case NAVIGATION_COMMANDS.scrollTo: {
+        const { id } = eventAction.data as ScrollToId
+        this.router.scrollToId(id)
         break
       }
     }

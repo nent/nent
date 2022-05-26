@@ -8,33 +8,33 @@
       href="/components/n-view">
       <b>&lt;n-view&gt;</b>
     </a> element's <b>URL</b> attribute, the route data becomes available in our
-    unified <a href="/data/expressions">data expression</a> system. </p>
+    unified <n-view-link path="/data/expressions">data expression</n-view-link> system. </p>
   <p> Routes can express dynamic parameters, to provide data-driven views You
     can even use that data in your HTML, again with no code. </p>
   <h3>Contrived Example</h3>
   <p>This page's child-routes demonstrate how dynamic, data-driven routes can be
-    used with this routing system.</p>
+    used with this routing system. Set the dynamic value <n-view-link path="/routing/dynamic/custom">here</n-view-link>.</p>
   <div class="button-nav">
-    <a href="/routing/dynamic/item/cake"
+    <n-view-link path="/routing/dynamic/item/cake"
       class="btn btn-info btn-sm">
-      <i class="ri-cake-2-line"></i> Cake </a>
-    <a href="/routing/dynamic/item/wine"
+      <i class="ri-cake-2-line"></i> Cake </n-view-link>
+    <n-view-link path="/routing/dynamic/item/wine"
       class="btn btn-info btn-sm">
-      <i class="ri-goblet-fill"></i> Wine </a>
+      <i class="ri-goblet-fill"></i> Wine </n-view-link>
     <n-content-template hidden
       n-show-when="{{storage:favorite}}">
       <template>
-        <a href="/routing/dynamic/item/{{storage:favorite}}"
+        <n-view-link path="/routing/dynamic/item/{{storage:favorite}}"
           class="btn btn-info btn-sm">
           <i class="ri-user-heart-line"></i>
           {{storage:favorite}}
-        </a>
+        </n-view-link>
       </template>
     </n-content-template>
-    <a href="/routing/dynamic/custom"
+    <n-view-link path="/routing/dynamic/custom"
       n-hide-when="{{storage:favorite}}"
       class="btn btn-info btn-sm">
-      <i class="ri-discuss-line"></i> Custom Item </a>
+      <i class="ri-discuss-line"></i> Custom Item </n-view-link>
   </div>
   <n-content-markdown>
     <script type="text/markdown">
@@ -46,18 +46,18 @@
           ... content that uses foodKey to render ...
         </n-view>
 
-        <a href="/routing/dynamic/item/cake">Cake</a>
-        <a href="/routing/dynamic/item/wine">Wine</a>
+        <n-view-link path="/routing/dynamic/item/cake">Cake</n-view-link>
+        <n-view-link path="/routing/dynamic/item/wine">Wine</n-view-link>
       </n-view>
       ```
     </script>
   </n-content-markdown>
   <footer>
     <n-view-link-back slot="start"
-      link-class="btn btn-secondary">
+      class="btn btn-secondary">
     </n-view-link-back>
     <n-view-link-next slot="end"
-      link-class="btn btn-secondary">
+      class="btn btn-secondary">
     </n-view-link-next>
   </footer>
 </div>

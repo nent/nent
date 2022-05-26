@@ -3,6 +3,7 @@ jest.mock('../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
+import { sleep } from '../../services/common'
 import { View } from '../n-view/view'
 import {
   routingState,
@@ -19,7 +20,7 @@ describe('n-view-not-found', () => {
     routingStateDispose()
   })
 
-  it('renders', async () => {
+  test('renders', async () => {
     const page = await newSpecPage({
       components: [ViewRouter, ViewNotFound],
       html: `<n-views>
@@ -31,7 +32,7 @@ describe('n-view-not-found', () => {
     })
 
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display: block;">
         <n-view-not-found>
           <mock:shadow-root>
             <slot></slot>
@@ -45,10 +46,12 @@ describe('n-view-not-found', () => {
     page.root!.remove()
   })
 
-  it('renders page title', async () => {
+  test('renders page title', async () => {
     const page = await newSpecPage({
-      components: [ViewRouter, ViewNotFound],
-      html: `<n-views>
+      components: [ViewRouter, View, ViewNotFound],
+      html: `
+       <n-views>
+        <n-view path="/home"></n-view>
         <n-view-not-found page-title="Lost">
           <h1>Not Found</h1>
         </n-view-not-found>
@@ -56,13 +59,15 @@ describe('n-view-not-found', () => {
     })
     await page.waitForChanges()
 
-    expect(page.win.document.title).toBe('Lost |')
+    await sleep(1000)
+
+    expect(page.win.document.title).toBe('Lost')
 
     page.body.querySelector('n-view-not-found')!.remove()
     page.root!.remove()
   })
 
-  it('renders page transitions from app', async () => {
+  test('renders page transitions from app', async () => {
     const page = await newSpecPage({
       components: [ViewRouter, ViewNotFound],
       html: `<n-views transition="slide">
@@ -74,7 +79,7 @@ describe('n-view-not-found', () => {
 
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
-      <n-views transition="slide">
+      <n-views transition="slide" style="display:block;">
         <n-view-not-found class="slide">
           <mock:shadow-root>
             <slot></slot>
@@ -88,7 +93,7 @@ describe('n-view-not-found', () => {
     page.root!.remove()
   })
 
-  it('hides when a route is found', async () => {
+  test('hides when a route is found', async () => {
     const page = await newSpecPage({
       components: [ViewRouter, View, ViewNotFound],
       html: `<n-views>
@@ -102,7 +107,7 @@ describe('n-view-not-found', () => {
 
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display: block;">
         <n-view class="active exact" path="/">
           <mock:shadow-root>
             <slot></slot>
@@ -122,7 +127,7 @@ describe('n-view-not-found', () => {
     page.root!.remove()
   })
 
-  it('hides when a route is found, then shows with a bad route navigation', async () => {
+  test('hides when a route is found, then shows with a bad route navigation', async () => {
     const page = await newSpecPage({
       components: [ViewRouter, View, ViewNotFound],
       html: `<n-views>
@@ -138,7 +143,7 @@ describe('n-view-not-found', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display: block;">
         <n-view path="/home">
           <mock:shadow-root>
             <slot></slot>
@@ -165,7 +170,7 @@ describe('n-view-not-found', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display: block;">
         <n-view class="active exact" path="/home">
           <mock:shadow-root>
             <slot></slot>
@@ -186,7 +191,7 @@ describe('n-view-not-found', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display: block;">
         <n-view path="/home">
           <mock:shadow-root>
             <slot></slot>

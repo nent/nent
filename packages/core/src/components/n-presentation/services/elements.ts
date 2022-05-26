@@ -32,14 +32,14 @@ export function captureElementChildTimedNodes(
 export function resolveElementChildTimedNodesByTime(
   rootElement: HTMLElement,
   timedNodes: TimedNode[],
-  time: number,
+  elapsedSeconds: number,
   percentage: number,
 ) {
   timedNodes?.forEach(node => {
     if (
       node.start > -1 &&
-      time >= node.start &&
-      (node.end > -1 ? time < node.end : true)
+      elapsedSeconds >= node.start &&
+      (node.end > -1 ? elapsedSeconds < node.end : true)
     ) {
       // Time is after start and before end, if it exists
       if (
@@ -55,7 +55,7 @@ export function resolveElementChildTimedNodesByTime(
       }
     }
 
-    if (node.end > -1 && time > node.end) {
+    if (node.end > -1 && elapsedSeconds >= node.end) {
       // Time is after end, if it exists
 
       if (
@@ -83,7 +83,7 @@ export function resolveElementChildTimedNodesByTime(
   const timeValueElements =
     rootElement.querySelectorAll('[n-time-to]')
   timeValueElements?.forEach(el => {
-    const seconds = time
+    const seconds = elapsedSeconds
     const attributeName = el.getAttribute('n-time-to')
     if (attributeName) {
       el.setAttribute(attributeName, seconds.toString())

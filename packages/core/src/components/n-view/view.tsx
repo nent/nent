@@ -7,10 +7,10 @@ import {
   Prop,
   State,
 } from '@stencil/core'
-import { eventBus } from '../../services/actions'
+
 import {
   commonState,
-  ComponentRefresher,
+  CommonStateSubscriber,
   debugIf,
   slugify,
 } from '../../services/common'
@@ -49,7 +49,7 @@ import { markVisit } from './services/visits'
   shadow: true,
 })
 export class View implements IView {
-  private dataSubscription!: ComponentRefresher
+  private dataSubscription!: CommonStateSubscriber
 
   @Element() el!: HTMLNViewElement
   @State() match: MatchResults | null = null
@@ -80,6 +80,12 @@ export class View implements IView {
    *
    */
   @Prop() pageKeywords = ''
+
+  /**
+   * The robots instruction for search indexing
+   *
+   */
+  @Prop() pageRobots: 'all' | 'noindex' | 'nofollow' | 'none' = 'all'
 
   /**
    * Header height or offset for scroll-top on this
@@ -208,9 +214,8 @@ export class View implements IView {
     )
 
     if (commonState.dataEnabled && this.resolveTokens) {
-      this.dataSubscription = new ComponentRefresher(
+      this.dataSubscription = new CommonStateSubscriber(
         this,
-        eventBus,
         'dataEnabled',
         DATA_EVENTS.DataChanged,
       )
@@ -285,9 +290,7 @@ export class View implements IView {
     )
 
     return (
-      <Host
-        class={this.match?.isExact ? this.route.transition || '' : ''}
-      >
+      <Host>
         <slot />
         <slot name="content" />
       </Host>

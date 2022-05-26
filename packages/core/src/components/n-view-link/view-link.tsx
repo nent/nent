@@ -1,5 +1,13 @@
-import { Component, Element, h, Prop, State } from '@stencil/core'
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core'
 import { isValue, logIf } from '../../services/common'
+import { getChildInputValidity } from '../n-view-prompt/services/elements'
 import { MatchResults } from '../n-views/services/interfaces'
 import {
   onRoutingChange,
@@ -17,14 +25,12 @@ import {
  */
 @Component({
   tag: 'n-view-link',
-  styleUrl: `view-link.css`,
   shadow: false,
 })
 export class ViewLink {
   private routeSubscription!: () => void
   @Element() el!: HTMLNViewLinkElement
   @State() match?: MatchResults | null
-  @State() location = routingState?.location
 
   /**
    * The destination route for this link
@@ -60,6 +66,15 @@ export class ViewLink {
    */
   @Prop() debug: boolean = false
 
+  /**
+   * Validates any current-route inputs before navigating. Disables
+   * navigation if any inputs are invalid.
+   */
+  @Prop({
+    reflect: true,
+  })
+  validate: boolean = false
+
   get parentUrl() {
     return (
       this.el.closest('n-view-prompt')?.path ||
@@ -69,35 +84,42 @@ export class ViewLink {
 
   componentWillLoad() {
     this.routeSubscription = onRoutingChange('location', () => {
-      this.path = routingState.router!.resolvePathname(
-        this.path,
-        this.parentUrl || '/',
-      )
+      if (routingState.router) {
+        this.path = routingState.router!.resolvePathname(
+          this.path,
+          this.parentUrl || '/',
+        )
 
-      const match = routingState.router!.matchPath({
-        path: this.path,
-        exact: this.exact,
-        strict: this.strict,
-      })
+        const match = routingState.router!.matchPath({
+          path: this.path,
+          exact: this.exact,
+          strict: this.strict,
+        })
 
-      this.match = match ? ({ ...match } as MatchResults) : null
+        this.match = match ? ({ ...match } as MatchResults) : null
+      }
     })
   }
 
-  private handleClick(e: MouseEvent, path?: string) {
-    if (this.match?.isExact) return
+  private handleClick(e: MouseEvent | KeyboardEvent, path?: string) {
     const router = routingState.router
     if (
-      !router ||
-      router?.isModifiedEvent(e) ||
-      !router?.history ||
-      !path
+      router == null ||
+      router.isModifiedEvent(e as MouseEvent) ||
+      path == undefined
     ) {
-      return
+      return true
+    } else {
+      e.stopImmediatePropagation()
+      e.preventDefault()
+      if (
+        this.validate == false ||
+        getChildInputValidity(router.exactRoute!.routeElement)
+      ) {
+        router.goToRoute(path)
+      }
+      return false
     }
-
-    e.preventDefault()
-    router.goToRoute(path)
   }
 
   render() {
@@ -124,18 +146,23 @@ export class ViewLink {
     }
 
     return (
-      <a
-        href={path}
-        title={this.el.title}
-        {...anchorAttributes}
-        n-attached-click
-        class={classes}
-        onClick={(e: MouseEvent) => {
-          this.handleClick(e, path)
-        }}
-      >
-        <slot></slot>
-      </a>
+      <Host>
+        <a
+          href={path}
+          {...anchorAttributes}
+          n-attached-click
+          n-attached-key-press
+          class={classes}
+          onClick={(e: MouseEvent) => {
+            return this.handleClick(e, path)
+          }}
+          onKeyPress={(e: KeyboardEvent) => {
+            return this.handleClick(e, path)
+          }}
+        >
+          <slot></slot>
+        </a>
+      </Host>
     )
   }
 

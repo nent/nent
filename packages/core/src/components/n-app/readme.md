@@ -11,8 +11,9 @@ Additionally, this element is required to add external elements that need to be 
 ```html
 <n-app
   name=""
-  short-name=""
   description="" 
+  keywords=""
+  short-name=""
   icon-src=""
   theme-color=""
   background-color=""
@@ -56,4 +57,4 @@ Additionally, this element is required to add external elements that need to be 
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

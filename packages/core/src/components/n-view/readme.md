@@ -71,6 +71,7 @@ At that point, the inner HTML content is finally revealed. Using this convention
 | `noCache`            | `no-cache`          | Force render with data & route changes.                                                                                                                                                                                       | `boolean`                                            | `false`     |
 | `pageDescription`    | `page-description`  | The page description for this view.                                                                                                                                                                                           | `string`                                             | `''`        |
 | `pageKeywords`       | `page-keywords`     | The keywords to add to the keywords meta-tag for this view.                                                                                                                                                                   | `string`                                             | `''`        |
+| `pageRobots`         | `page-robots`       | The robots instruction for search indexing                                                                                                                                                                                    | `"all"`, `"nofollow"`, `"noindex"`, `"none"`         | `'all'`     |
 | `pageTitle`          | `page-title`        | The title for this view. This is prefixed before the app title configured in n-views                                                                                                                                          | `string`                                             | `''`        |
 | `path` _(required)_  | `path`              | The path for this route, including the parent's routes, excluding the router's root.                                                                                                                                          | `string`                                             | `undefined` |
 | `resolveTokens`      | `resolve-tokens`    | Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML | `boolean`                                            | `false`     |
@@ -104,4 +105,4 @@ Type: `Promise<{ activators: HTMLNActionActivatorElement[]; views: HTMLNViewElem
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved
