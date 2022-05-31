@@ -57,7 +57,7 @@
     "prepublish": "yarn run build"
   },
   "devDependencies": {
-    "@stencil/core": "2.15.2",
+    "@stencil/core": "2.16.0",
     "@stencil/store": "1.5.0",
     "@types/howler": "2.2.7",
     "eslint-plugin-clean-regex": "0.5.2",
