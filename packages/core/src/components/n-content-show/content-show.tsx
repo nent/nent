@@ -29,7 +29,7 @@ export class ContentShow {
   @Element() el!: HTMLNContentShowElement
   private dataSubscription!: CommonStateSubscriber
   private routeSubscription!: CommonStateSubscriber
-  @State() show = true
+  @State() show = false
 
   /**
    The data expression to obtain a predicate for conditionally rendering
