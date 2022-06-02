@@ -1,8 +1,11 @@
 name: main-publish
 on:
   push:
-    tags: ['**']
-
+    branches:
+      - main
+    tags:
+      - '*'
+    
 permissions:
   contents: write
 
