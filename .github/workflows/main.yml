@@ -12,6 +12,10 @@ on:
         required: true
   push:
     branches: [main]
+    paths:
+      - 'packages/core/**/**.ts'
+      - 'packages/core/**/***.tsx'
+      - 'packages/core/**/***.md'
 
 jobs:
   test:
@@ -85,21 +89,50 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        name: Checkout
+        with:
+          fetch-depth: 0
       - name: checkout
         run: |
           git config --global user.name '@logrythmik'
           git config --global user.email 'logrythmik@users.noreply.github.com'
       - uses: actions/setup-node@v3.2.0
+        name: setup-node
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
+      - name: cached node_modules
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
+          restore-keys: |
+            nodeModules-{{ hashFiles('**/yarn.lock') }}-14.x
       - name: dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
+        env:
+          CI: true
       - name: publish
         run: lerna publish ${{ github.event.inputs.increment || 'patch' }} --yes --no-verify-access
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           HUSKY_BYPASS: true
+      - name: release
+        uses: softprops/action-gh-release@v1
+      - name: get-version
+        uses: damienaicheh/extract-version-from-tag-action@v1.0.0
+      - name: announce-twitter
+        uses: mugi111/tweet-trigger-release@v1.1
+        with:
+          consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+          access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          tweet_body: |-
+            NENT v$MAJOR.$MINOR.$PATCH Published to NPM
+            https://github.com/nent/nent/releases/tag/$MAJOR.$MINOR.$PATCH
