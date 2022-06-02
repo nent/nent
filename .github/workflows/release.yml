@@ -4,7 +4,7 @@ on:
     branches:
       - main
     tags:
-      - '*'
+      - 'v**'
     
 permissions:
   contents: write
@@ -20,8 +20,6 @@ jobs:
       - name: release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
-    outputs:
-      url: ${{ steps.release.outputs.url }}
 
   announce:
     name: Announce
@@ -37,12 +35,10 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
       - name: twitter
         uses: mugi111/tweet-trigger-release@v1.1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
           consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
           access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-          tweet_body: |
-            NENT v$MAJOR.$MINOR.$PATCH Published
-            Get the latest here:
-            https://www.npmjs.com/package/@nent/core
+          tweet_body: "NENT v$MAJOR.$MINOR.$PATCH released! https://www.npmjs.com/package/@nent/core"
