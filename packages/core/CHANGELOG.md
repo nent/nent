@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.10](https://github.com/nent/nent/compare/v0.9.9...v0.9.10) (2022-06-02)
+
+
+### Bug Fixes
+
+* reverted stencil/core ([24d12fa](https://github.com/nent/nent/commit/24d12fa10ab1e31ce673fc02ff16391830a8fb2a))
+
+
+
+
+
 ## [0.9.9](https://github.com/nent/nent/compare/v0.9.8...v0.9.9) (2022-06-02)
 
 
