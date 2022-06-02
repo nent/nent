@@ -10,6 +10,7 @@ import {
 import { Action } from './action'
 
 describe('n-action', () => {
+
   afterAll(() => {
     actionBus.removeAllListeners()
     commonStateDispose()
