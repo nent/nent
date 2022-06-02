@@ -6,6 +6,7 @@
 [![NPM](https://badgen.net/npm/v/@nent/core?icon&color=purple)](https://www.npmjs.com/package/@nent/core)
 [![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=purple)](https://coveralls.io/github/nent/nent)
 [![unpkgd](https://badgen.net/badge/unpkg/CDN?color=purple)](https://unpkg.com/browse/@nent/core)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8e52f7ee9e654e87bd569b83f79578f4)](https://www.codacy.com/gh/nent/nent/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nent/nent&amp;utm_campaign=Badge_Grade)
 
 ## What is NENT?
 
