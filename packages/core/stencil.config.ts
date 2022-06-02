@@ -9,7 +9,6 @@ const config: Config = {
   hashFileNames: false,
   preamble: 'NENT 2022',
   invisiblePrehydration: false,
-  taskQueue: 'congestionAsync',
   rollupPlugins: {
     after: [
       analyzer({
