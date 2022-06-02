@@ -22,7 +22,7 @@ jobs:
           path: node_modules
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
           restore-keys: |
-            nodeModules-
+            nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
