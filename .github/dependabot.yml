@@ -15,9 +15,7 @@ updates:
   - package-ecosystem: 'npm'
     directory: /
     schedule:
-      interval: weekly
-    ignore:
-      - dependency-type: all
+      interval: daily
 
   - package-ecosystem: 'npm'
     directory: '/packages/core'
@@ -26,6 +24,7 @@ updates:
       interval: 'daily'
     ignore:
       - dependency-type: development
+        dependency-name: '**'
 
   - package-ecosystem: 'npm'
     directory: '/packages/create'
@@ -33,3 +32,4 @@ updates:
       interval: 'daily'
     ignore:
       - dependency-type: development
+        dependency-name: '**'
