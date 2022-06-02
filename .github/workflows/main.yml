@@ -50,6 +50,11 @@ jobs:
           path-to-lcov: ./packages/core/coverage/lcov.info
           base-path: ./packages/core
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Codacy Coverage
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ./packages/core/coverage/lcov.info
   build:
     name: Build
     needs: test
