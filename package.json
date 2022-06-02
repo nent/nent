@@ -54,7 +54,7 @@
     "clean:docs": "yarn docs run clean",
     ":auto ---": "------------",
     "prepare": "husky install",
-    "postpublish": "pinst --enable",
+    "postpublish": "pinst --enable && gh-release -y",
     "prepublishOnly": "pinst --disable",
     "prepublish:test": "yarn build",
     "publish:test": "lerna publish bump --canary --preid beta --yes"
@@ -123,5 +123,7 @@
     "tools/docs",
     "tools/vscode"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "gh-release": "^6.0.4"
+  }
 }

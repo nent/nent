@@ -1,4 +1,4 @@
-name: release
+name: announce
 on:
   release:
     types: [published]
