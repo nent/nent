@@ -18,7 +18,7 @@ jobs:
       - name: version
         uses: damienaicheh/extract-version-from-tag-action@v1.0.0
       - name: twitter
-        uses: mugi111/tweet-trigger-release@v1.1
+        uses: mugi111/tweet-trigger-release@v1.2
         with:
           consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
           consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
