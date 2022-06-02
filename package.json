@@ -73,7 +73,7 @@
     "@types/rollup-plugin-visualizer": "4.2.1",
     "@typescript-eslint/eslint-plugin": "4.31.2",
     "@typescript-eslint/parser": "<5\n",
-    "chalk": "5.0.0",
+    "chalk": "5.0.1",
     "commitlint": "13.1.0",
     "copyfiles": "2.4.1",
     "dotenv": "10.0.0",
