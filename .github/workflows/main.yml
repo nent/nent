@@ -14,9 +14,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'packages/core/**/**.ts'
-      - 'packages/core/**/***.tsx'
-      - 'packages/core/**/***.md'
+      - 'packages/core/**'
 
 jobs:
   test:
