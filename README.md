@@ -180,9 +180,9 @@ If you like the idea, join us! Or give it a star.
 
 [![github](https://badgen.net/badge/github/★?icon=github&color=purple)](https://github.com/nent/nent)
 
-If you have requests, ideas, or feedback, reach out to me personally:
+If you have requests, ideas, or feedback, reach out to us:
 
-[![Twitter](https://badgen.net/badge/tweet/me?icon=twitter&color=purple)](https://twitter.com/logrythmik)
+[![Twitter](https://badgen.net/badge/tweet/me?icon=twitter&color=purple)](https://twitter.com/NENT_dev)
 
 ## Attribution
 
