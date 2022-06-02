@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.9](https://github.com/nent/nent/compare/v0.9.8...v0.9.9) (2022-06-02)
+
+
+### Bug Fixes
+
+* dependency bug in 9.8 ([ba57f18](https://github.com/nent/nent/commit/ba57f189313583ebd69a4490d874ce0f344e64f8))
+
+
+
+
+
 ## [0.9.8](https://github.com/nent/nent/compare/v0.9.7...v0.9.8) (2022-06-02)
 
 **Note:** Version bump only for package @nent/core
