@@ -11244,11 +11244,6 @@ workbox-cacheable-response@6.5.3:
   dependencies:
     workbox-core "6.5.3"
 
-workbox-core@6.4.2:
-  version "6.4.2"
-  resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-6.4.2.tgz#f99fd36a211cc01dce90aa7d5f2c255e8fe9d6bc"
-  integrity sha512-1U6cdEYPcajRXiboSlpJx6U7TvhIKbxRRerfepAJu2hniKwJ3DHILjpU/zx3yvzSBCWcNJDoFalf7Vgd7ey/rw==
-
 workbox-core@6.5.3:
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-6.5.3.tgz#bca038a9ef0d7a634a6db2a60f45313ed22ac249"
@@ -11333,14 +11328,6 @@ workbox-sw@6.5.3:
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/workbox-sw/-/workbox-sw-6.5.3.tgz#cd2f0c086f4496acd25774ed02c48504189bebdd"
   integrity sha512-BQBzm092w+NqdIEF2yhl32dERt9j9MDGUTa2Eaa+o3YKL4Qqw55W9yQC6f44FdAHdAJrJvp0t+HVrfh8AiGj8A==
-
-workbox-window@6.4.2:
-  version "6.4.2"
-  resolved "https://registry.yarnpkg.com/workbox-window/-/workbox-window-6.4.2.tgz#5319a3e343fa1e4bd15a1f53a07b58999d064c8a"
-  integrity sha512-KVyRKmrJg7iB+uym/B/CnEUEFG9CvnTU1Bq5xpXHbtgD9l+ShDekSl1wYpqw/O0JfeeQVOFb8CiNfvnwWwqnWQ==
-  dependencies:
-    "@types/trusted-types" "^2.0.2"
-    workbox-core "6.4.2"
 
 workbox-window@6.5.3:
   version "6.5.3"
