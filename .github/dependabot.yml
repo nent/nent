@@ -22,14 +22,8 @@ updates:
     versioning-strategy: auto
     schedule:
       interval: 'daily'
-    ignore:
-      - dependency-type: development
-        dependency-name: '**'
 
   - package-ecosystem: 'npm'
     directory: '/packages/create'
     schedule:
       interval: 'daily'
-    ignore:
-      - dependency-type: development
-        dependency-name: '**'
