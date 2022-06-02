@@ -1,6 +1,6 @@
 {
   "name": "@nent/core",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "displayName": "NENT",
   "description": "Functional elements to add routing, data-binding, dynamic HTML, declarative actions, audio, video, and so much more. Supercharge static HTML files into web apps without script or builds.",
   "author": "support <support@nent.dev> (https://nent.dev)",
