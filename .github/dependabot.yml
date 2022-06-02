@@ -13,12 +13,23 @@ updates:
 
   # Maintain dependencies for npm
   - package-ecosystem: 'npm'
+    directory: /
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-type: all
+
+  - package-ecosystem: 'npm'
     directory: '/packages/core'
     versioning-strategy: auto
     schedule:
       interval: 'daily'
+    ignore:
+      - dependency-type: development
 
   - package-ecosystem: 'npm'
     directory: '/packages/create'
     schedule:
       interval: 'daily'
+    ignore:
+      - dependency-type: development

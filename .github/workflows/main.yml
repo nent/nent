@@ -1,4 +1,4 @@
-name: main-publish
+name: main
 on:
   workflow_dispatch:
     inputs:
@@ -15,7 +15,7 @@ on:
     branches: [main]
     paths:
       - 'packages/core/**'
-      
+
 permissions:
   contents: write
 
