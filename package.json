@@ -54,7 +54,7 @@
     "clean:docs": "yarn docs run clean",
     ":auto ---": "------------",
     "prepare": "husky install",
-    "postpublish": "pinst --enable && gh-release -y",
+    "postpublish": "pinst --enable",
     "prepublishOnly": "pinst --disable",
     "prepublish:test": "yarn build",
     "publish:test": "lerna publish bump --canary --preid beta --yes"

@@ -103,3 +103,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           HUSKY_BYPASS: true
+      - run: gh-release -y
