@@ -1,4 +1,4 @@
-name: main-publish
+name: release
 on:
   push:
     branches:
