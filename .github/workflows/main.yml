@@ -88,7 +88,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        name: Checkout
+        name: checkout
         with:
           fetch-depth: 0
       - name: setup-git
@@ -121,17 +121,3 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           HUSKY_BYPASS: true
-      - name: release
-        uses: softprops/action-gh-release@v1
-      - name: get-version
-        uses: damienaicheh/extract-version-from-tag-action@v1.0.0
-      - name: announce-twitter
-        uses: mugi111/tweet-trigger-release@v1.1
-        with:
-          consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
-          consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-          access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
-          access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-          tweet_body: |-
-            NENT v$MAJOR.$MINOR.$PATCH Published to NPM
-            https://github.com/nent/nent/releases/tag/$MAJOR.$MINOR.$PATCH

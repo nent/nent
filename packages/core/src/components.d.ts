@@ -938,6 +938,30 @@ export namespace Components {
         "transition"?: string;
     }
 }
+export interface NAppCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNAppElement;
+}
+export interface NAppAnalyticsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNAppAnalyticsElement;
+}
+export interface NContentReferenceCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNContentReferenceElement;
+}
+export interface NDataCookieCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNDataCookieElement;
+}
+export interface NPresentationTimerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNPresentationTimerElement;
+}
+export interface NVideoCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNVideoElement;
+}
 declare global {
     interface HTMLNActionElement extends Components.NAction, HTMLStencilElement {
     }
@@ -1274,11 +1298,11 @@ declare namespace LocalJSX {
         /**
           * These events are command-requests for action handlers to perform tasks. Any outside handlers should cancel the event.
          */
-        "onNent:actions"?: (event: CustomEvent<any>) => void;
+        "onNent:actions"?: (event: NAppCustomEvent<any>) => void;
         /**
           * Listen for events that occurred within the nent event system.
          */
-        "onNent:events"?: (event: CustomEvent<any>) => void;
+        "onNent:events"?: (event: NAppCustomEvent<any>) => void;
     }
     interface NAppAnalytics {
         /**
@@ -1288,15 +1312,15 @@ declare namespace LocalJSX {
         /**
           * Raised analytics events.
          */
-        "onCustom-event"?: (event: CustomEvent<any>) => void;
+        "onCustom-event"?: (event: NAppAnalyticsCustomEvent<any>) => void;
         /**
           * Page views.
          */
-        "onPage-view"?: (event: CustomEvent<LocationSegments>) => void;
+        "onPage-view"?: (event: NAppAnalyticsCustomEvent<LocationSegments>) => void;
         /**
           * View percentage views.
          */
-        "onView-time"?: (event: CustomEvent<ViewTime>) => void;
+        "onView-time"?: (event: NAppAnalyticsCustomEvent<ViewTime>) => void;
     }
     interface NAppShare {
         /**
@@ -1559,7 +1583,7 @@ declare namespace LocalJSX {
         /**
           * This event is fired when the script and style elements are loaded or timed out. The value for each style and script will be true or false, for loaded or timedout, respectively.
          */
-        "onReferenced"?: (event: CustomEvent<ReferenceCompleteResults>) => void;
+        "onReferenced"?: (event: NContentReferenceCustomEvent<ReferenceCompleteResults>) => void;
         /**
           * The script file to reference.
          */
@@ -1690,7 +1714,7 @@ declare namespace LocalJSX {
         /**
           * This event is raised when the user consents to cookies.
          */
-        "onDidConsent"?: (event: CustomEvent<CookieConsent>) => void;
+        "onDidConsent"?: (event: NDataCookieCustomEvent<CookieConsent>) => void;
         /**
           * When skipConsent is true, the accept-cookies banner will not be displayed before accessing cookie-data.
          */
@@ -1782,7 +1806,7 @@ declare namespace LocalJSX {
         /**
           * Ready event letting the presentation layer know it can begin.
          */
-        "onReady"?: (event: CustomEvent<any>) => void;
+        "onReady"?: (event: NPresentationTimerCustomEvent<any>) => void;
         /**
           * Normalized timer.
          */
@@ -1804,7 +1828,7 @@ declare namespace LocalJSX {
         /**
           * Ready event letting the presentation layer know it can begin.
          */
-        "onReady"?: (event: CustomEvent<any>) => void;
+        "onReady"?: (event: NVideoCustomEvent<any>) => void;
         /**
           * Provide the ready event name. Default is ready
          */
