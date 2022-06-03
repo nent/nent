@@ -71,7 +71,7 @@
     "@types/jest": "27.4.0",
     "@types/puppeteer": "5.4.4",
     "@types/rollup-plugin-visualizer": "4.2.1",
-    "@typescript-eslint/eslint-plugin": "4.31.2",
+    "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "<5\n",
     "chalk": "5.0.1",
     "commitlint": "13.1.0",
