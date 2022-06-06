@@ -51,4 +51,4 @@ The above example will toggle to the active slot when the app route is a child o
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT 2022 - all rights reserved

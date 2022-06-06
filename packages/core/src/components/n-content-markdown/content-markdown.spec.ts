@@ -475,4 +475,29 @@ describe('n-content-markdown', () => {
 
     page.root?.remove()
   })
+
+  it('renders URLs as external links', async () => {
+    const page = await newSpecPage({
+      components: [ContentMarkdown],
+      html: `
+      <n-content-markdown>
+        <script>https://google.com</script>
+     </n-content-markdown>`,
+    })
+
+    await page.waitForChanges()
+
+    expect(page.root).toEqualHtml(`
+      <n-content-markdown>
+        <script>https://google.com</script>
+        <div class="rendered-content">
+         <p>
+          <a href="https://google.com" target="_blank">https://google.com</a>
+         </p>
+        </div>
+      </n-content-markdown>
+    `)
+
+    page.root?.remove()
+  })
 })
