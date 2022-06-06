@@ -7,8 +7,12 @@ import {
 import { Path } from '../n-views/services/utils/path-regex'
 
 /**
+ * Hide or show content based on the active route.
+ *
  * @slot active - content to display when route match
  * @slot inactive - content to display when no route match
+ *
+ * @system routing
  */
 @Component({
   tag: 'n-view-detect',
