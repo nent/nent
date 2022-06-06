@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/nent/nent/compare/v0.9.11...v0.10.0) (2022-06-06)
+
+
+### Features
+
+* initial n-detect-route component implementation ([#333](https://github.com/nent/nent/issues/333)) ([6df7cba](https://github.com/nent/nent/commit/6df7cba5069687dc4a2d9eee01bfad1013687d84))
+
+
+
+
+
 ## [0.9.11](https://github.com/nent/nent/compare/v0.9.10...v0.9.11) (2022-06-02)
 
 **Note:** Version bump only for package nent-repo
