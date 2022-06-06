@@ -15,9 +15,9 @@ import {
 import { View } from '../n-view/view'
 import { ViewRouter } from '../n-views/views'
 import { ViewLink } from '../n-view-link/view-link'
-import { NDetectRoute } from './n-detect-route'
+import { ViewDetect } from './view-detect'
 
-describe('n-detect-route', () => {
+describe('n-view-detect', () => {
   beforeEach(() => {
     commonState.dataEnabled = true
   })
@@ -32,35 +32,35 @@ describe('n-detect-route', () => {
 
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [NDetectRoute],
-      html: `<n-detect-route></n-detect-route>`,
+      components: [ViewDetect],
+      html: `<n-view-detect></n-view-detect>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-detect-route>
+      <n-view-detect>
         <mock:shadow-root>
           <slot name="inactive"></slot>
         </mock:shadow-root>
-      </n-detect-route>
+      </n-view-detect>
     `)
     page.root?.remove()
   })
 
   it('renders with view', async () => {
     const page = await newSpecPage({
-      components: [ViewRouter, View, ViewLink, NDetectRoute],
+      components: [ViewRouter, View, ViewLink, ViewDetect],
       html: `
       <n-views>
         <n-view-link path="/foo">Go to Foo</n-view-link>
         <n-view path="/foo">
         </n-view>
-        <n-detect-route route="foo">
+        <n-view-detect route="foo">
           <span slot="active">Yea!</span>
           <span slot="inactive">Nah!</span>
-        </n-detect-route>
+        </n-view-detect>
       </n-views>`,
     })
 
-    const detectEl = page.root?.querySelector('n-detect-route')
+    const detectEl = page.root?.querySelector('n-view-detect')
     let detectSlot = detectEl?.shadowRoot?.querySelector('slot')
     expect(detectSlot?.getAttribute('name')).toBe('inactive')
 

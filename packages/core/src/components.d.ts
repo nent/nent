@@ -13,10 +13,10 @@ import { AudioInfo, AudioRequest } from "./components/n-audio/services/interface
 import { ReferenceCompleteResults } from "./services/content";
 import { CookieConsent } from "./components/n-data-cookie/cookie/interfaces";
 import { SetData } from "./components/n-data/services/interfaces";
-import { Path } from "./components/n-views/services/utils/path-regex";
 import { EventAction as EventAction1 } from "./services/actions/interfaces";
 import { ITimer } from "./components/n-presentation/services/interfaces";
 import { Route } from "./components/n-view/services/route";
+import { Path } from "./components/n-views/services/utils/path-regex";
 export namespace Components {
     interface NAction {
         /**
@@ -554,24 +554,6 @@ export namespace Components {
          */
         "name": string;
     }
-    interface NDetectRoute {
-        /**
-          * Only active on the exact href match, and not on child routes
-         */
-        "exact": boolean;
-        /**
-          * The route that will toggle the active slot of this component
-         */
-        "route": string;
-        /**
-          * Optional Regex value to route match on
-         */
-        "routeMatch"?: Path;
-        /**
-          * Only active on the exact href match using every aspect of the URL including parameters.
-         */
-        "strict": boolean;
-    }
     interface NElements {
         /**
           * Turn on debug statements for load, update and render events.
@@ -769,6 +751,24 @@ export namespace Components {
           * Navigation transition between routes. This is a CSS animation class.
          */
         "transition"?: string;
+    }
+    interface NViewDetect {
+        /**
+          * Only active on the exact href match, and not on child routes
+         */
+        "exact": boolean;
+        /**
+          * The route that will toggle the active slot of this component
+         */
+        "route": string;
+        /**
+          * Optional Regex value to route match on
+         */
+        "routeMatch"?: Path;
+        /**
+          * Only active on the exact href match using every aspect of the URL including parameters.
+         */
+        "strict": boolean;
     }
     interface NViewLink {
         /**
@@ -1126,12 +1126,6 @@ declare global {
         prototype: HTMLNDataStorageElement;
         new (): HTMLNDataStorageElement;
     };
-    interface HTMLNDetectRouteElement extends Components.NDetectRoute, HTMLStencilElement {
-    }
-    var HTMLNDetectRouteElement: {
-        prototype: HTMLNDetectRouteElement;
-        new (): HTMLNDetectRouteElement;
-    };
     interface HTMLNElementsElement extends Components.NElements, HTMLStencilElement {
     }
     var HTMLNElementsElement: {
@@ -1173,6 +1167,12 @@ declare global {
     var HTMLNViewElement: {
         prototype: HTMLNViewElement;
         new (): HTMLNViewElement;
+    };
+    interface HTMLNViewDetectElement extends Components.NViewDetect, HTMLStencilElement {
+    }
+    var HTMLNViewDetectElement: {
+        prototype: HTMLNViewDetectElement;
+        new (): HTMLNViewDetectElement;
     };
     interface HTMLNViewLinkElement extends Components.NViewLink, HTMLStencilElement {
     }
@@ -1241,7 +1241,6 @@ declare global {
         "n-data-cookie": HTMLNDataCookieElement;
         "n-data-session": HTMLNDataSessionElement;
         "n-data-storage": HTMLNDataStorageElement;
-        "n-detect-route": HTMLNDetectRouteElement;
         "n-elements": HTMLNElementsElement;
         "n-presentation": HTMLNPresentationElement;
         "n-presentation-action": HTMLNPresentationActionElement;
@@ -1249,6 +1248,7 @@ declare global {
         "n-video": HTMLNVideoElement;
         "n-video-switch": HTMLNVideoSwitchElement;
         "n-view": HTMLNViewElement;
+        "n-view-detect": HTMLNViewDetectElement;
         "n-view-link": HTMLNViewLinkElement;
         "n-view-link-back": HTMLNViewLinkBackElement;
         "n-view-link-list": HTMLNViewLinkListElement;
@@ -1766,24 +1766,6 @@ declare namespace LocalJSX {
          */
         "name"?: string;
     }
-    interface NDetectRoute {
-        /**
-          * Only active on the exact href match, and not on child routes
-         */
-        "exact"?: boolean;
-        /**
-          * The route that will toggle the active slot of this component
-         */
-        "route": string;
-        /**
-          * Optional Regex value to route match on
-         */
-        "routeMatch"?: Path;
-        /**
-          * Only active on the exact href match using every aspect of the URL including parameters.
-         */
-        "strict"?: boolean;
-    }
     interface NElements {
         /**
           * Turn on debug statements for load, update and render events.
@@ -1969,6 +1951,24 @@ declare namespace LocalJSX {
           * Navigation transition between routes. This is a CSS animation class.
          */
         "transition"?: string;
+    }
+    interface NViewDetect {
+        /**
+          * Only active on the exact href match, and not on child routes
+         */
+        "exact"?: boolean;
+        /**
+          * The route that will toggle the active slot of this component
+         */
+        "route": string;
+        /**
+          * Optional Regex value to route match on
+         */
+        "routeMatch"?: Path;
+        /**
+          * Only active on the exact href match using every aspect of the URL including parameters.
+         */
+        "strict"?: boolean;
     }
     interface NViewLink {
         /**
@@ -2181,7 +2181,6 @@ declare namespace LocalJSX {
         "n-data-cookie": NDataCookie;
         "n-data-session": NDataSession;
         "n-data-storage": NDataStorage;
-        "n-detect-route": NDetectRoute;
         "n-elements": NElements;
         "n-presentation": NPresentation;
         "n-presentation-action": NPresentationAction;
@@ -2189,6 +2188,7 @@ declare namespace LocalJSX {
         "n-video": NVideo;
         "n-video-switch": NVideoSwitch;
         "n-view": NView;
+        "n-view-detect": NViewDetect;
         "n-view-link": NViewLink;
         "n-view-link-back": NViewLinkBack;
         "n-view-link-list": NViewLinkList;
@@ -2226,7 +2226,6 @@ declare module "@stencil/core" {
             "n-data-cookie": LocalJSX.NDataCookie & JSXBase.HTMLAttributes<HTMLNDataCookieElement>;
             "n-data-session": LocalJSX.NDataSession & JSXBase.HTMLAttributes<HTMLNDataSessionElement>;
             "n-data-storage": LocalJSX.NDataStorage & JSXBase.HTMLAttributes<HTMLNDataStorageElement>;
-            "n-detect-route": LocalJSX.NDetectRoute & JSXBase.HTMLAttributes<HTMLNDetectRouteElement>;
             "n-elements": LocalJSX.NElements & JSXBase.HTMLAttributes<HTMLNElementsElement>;
             "n-presentation": LocalJSX.NPresentation & JSXBase.HTMLAttributes<HTMLNPresentationElement>;
             "n-presentation-action": LocalJSX.NPresentationAction & JSXBase.HTMLAttributes<HTMLNPresentationActionElement>;
@@ -2234,6 +2233,7 @@ declare module "@stencil/core" {
             "n-video": LocalJSX.NVideo & JSXBase.HTMLAttributes<HTMLNVideoElement>;
             "n-video-switch": LocalJSX.NVideoSwitch & JSXBase.HTMLAttributes<HTMLNVideoSwitchElement>;
             "n-view": LocalJSX.NView & JSXBase.HTMLAttributes<HTMLNViewElement>;
+            "n-view-detect": LocalJSX.NViewDetect & JSXBase.HTMLAttributes<HTMLNViewDetectElement>;
             "n-view-link": LocalJSX.NViewLink & JSXBase.HTMLAttributes<HTMLNViewLinkElement>;
             "n-view-link-back": LocalJSX.NViewLinkBack & JSXBase.HTMLAttributes<HTMLNViewLinkBackElement>;
             "n-view-link-list": LocalJSX.NViewLinkList & JSXBase.HTMLAttributes<HTMLNViewLinkListElement>;

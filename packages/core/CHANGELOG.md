@@ -8,7 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* initial n-detect-route component implementation ([#333](https://github.com/nent/nent/issues/333)) ([6df7cba](https://github.com/nent/nent/commit/6df7cba5069687dc4a2d9eee01bfad1013687d84))
+* initial n-view-detect component implementation ([#333](https://github.com/nent/nent/issues/333)) ([6df7cba](https://github.com/nent/nent/commit/6df7cba5069687dc4a2d9eee01bfad1013687d84))
 
 
 

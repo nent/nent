@@ -11,13 +11,13 @@ import { Path } from '../n-views/services/utils/path-regex'
  * @slot inactive - content to display when no route match
  */
 @Component({
-  tag: 'n-detect-route',
+  tag: 'n-view-detect',
   shadow: true,
 })
-export class NDetectRoute {
+export class ViewDetect {
   private routeSubscription!: () => void
   @State() match?: MatchResults | null
-  @Element() el!: HTMLNDetectRouteElement
+  @Element() el!: HTMLNViewDetectElement
   /**
    * The route that will toggle the active slot of this component
    */

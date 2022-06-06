@@ -1,4 +1,4 @@
-# n-detect-route
+# n-view-detect
 
 This component will conditionally display an 'active' or 'inactive' slot.  
 
@@ -7,10 +7,10 @@ The default slot is shown when the current route of the app does not match eithe
 ## Basic Usage
 
 ```html
-<n-detect-route route='/route' exact>
+<n-view-detect route='/route' exact>
   <span slot="active">My route is active!</span>
   <span slot="inactive">My route is not active!</span>
-</n-detect-route>
+</n-view-detect>
 ```
 
 The above example will toggle to the active slot when the app route is exactly `/route` (no children or URL params).
@@ -20,10 +20,10 @@ The above example will toggle to the active slot when the app route is exactly `
 Using the `route-match` property, you can leverage regex to match on multiple paths.
 
 ```html
-<n-detect-route route-match="^\/start\/(?:.*|)?|\/end|\/bar$">
+<n-view-detect route-match="^\/start\/(?:.*|)?|\/end|\/bar$">
   <span slot="active">I matched on a condition!</span>
   <span slot="inactive">None of my route conditions matched!</span>
-<n-detect-route>
+<n-view-detect>
 ```
 
 The above example will toggle to the active slot when the app route is a child of start or exactly `/end` or `/bar`.
