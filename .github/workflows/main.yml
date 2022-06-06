@@ -38,7 +38,7 @@ jobs:
           restore-keys: |
             nodeModules-
       - name: dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
         env:
           CI: true
       - name: test
@@ -92,7 +92,7 @@ jobs:
             nodeModules-{{ hashFiles('**/yarn.lock') }}
       - name: dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+        run: yarn install
         env:
           CI: true
       - name: build
