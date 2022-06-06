@@ -97,6 +97,7 @@ jobs:
           CI: true
       - name: build
         run: yarn build
+      - run: git reset --hard
       - name: publish
         run: lerna publish ${{ github.event.inputs.increment || 'patch' }} --yes --no-verify-access
         env:
