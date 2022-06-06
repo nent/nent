@@ -8,7 +8,7 @@ import { Path } from '../n-views/services/utils/path-regex'
 
 /**
  * @slot active - content to display when route match
- * @slot default - content to display when no route match
+ * @slot inactive - content to display when no route match
  */
 @Component({
   tag: 'n-detect-route',
@@ -78,7 +78,11 @@ export class NDetectRoute {
   }
 
   render() {
-    return this.match ? <slot name="active"></slot> : <slot></slot>
+    return this.match ? (
+      <slot name="active"></slot>
+    ) : (
+      <slot name="inactive"></slot>
+    )
   }
 
   disconnectedCallback() {

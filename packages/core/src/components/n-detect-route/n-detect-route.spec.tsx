@@ -38,7 +38,7 @@ describe('n-detect-route', () => {
     expect(page.root).toEqualHtml(`
       <n-detect-route>
         <mock:shadow-root>
-          <slot></slot>
+          <slot name="inactive"></slot>
         </mock:shadow-root>
       </n-detect-route>
     `)
@@ -55,14 +55,14 @@ describe('n-detect-route', () => {
         </n-view>
         <n-detect-route route="foo">
           <span slot="active">Yea!</span>
-          <span>Nah!</span>
+          <span slot="inactive">Nah!</span>
         </n-detect-route>
       </n-views>`,
     })
 
     const detectEl = page.root?.querySelector('n-detect-route')
     let detectSlot = detectEl?.shadowRoot?.querySelector('slot')
-    expect(detectSlot?.getAttribute('name')).toBe(null)
+    expect(detectSlot?.getAttribute('name')).toBe('inactive')
 
     const linkEl = page.body.querySelector('n-view-link')
     const anchor = page.body.querySelector('a')
