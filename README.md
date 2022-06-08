@@ -9,7 +9,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8e52f7ee9e654e87bd569b83f79578f4)](https://www.codacy.com/gh/nent/nent/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nent/nent&amp;utm_campaign=Badge_Grade)
 [![Tests](https://github.com/nent/nent/actions/workflows/main.yml/badge.svg)](https://github.com/nent/nent/actions/workflows/main.yml)
 
-![NENT](https://files.nent.dev/assets/logo-transparent.png)
+![NENT](https://files.nent.dev/assets/logo-white-bg.png)
 
 NENT is a library of functional elements (web components) that extend HTML with web application-specific features.
 
