@@ -8582,9 +8582,9 @@ postcss-nested@5.0.6:
   dependencies:
     postcss-selector-parser "^6.0.6"
 
-postcss-scss@4.0.3:
-  version "4.0.3"
-  resolved "https://registry.npmjs.org/postcss-scss/-/postcss-scss-4.0.3.tgz"
+postcss-scss@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/postcss-scss/-/postcss-scss-4.0.4.tgz#aa8f60e19ee18259bc193db9e4b96edfce3f3b1f"
 
 postcss-selector-parser@^6.0.6, postcss-selector-parser@^6.0.8:
   version "6.0.10"
