@@ -2171,9 +2171,9 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stencil/core@2.16.0", "@stencil/core@^2.13.0", "@stencil/core@^2.16.0":
-  version "2.16.0"
-  resolved "https://registry.npmjs.org/@stencil/core/-/core-2.16.0.tgz"
+"@stencil/core@2.16.1", "@stencil/core@^2.13.0", "@stencil/core@^2.16.0":
+  version "2.16.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.16.1.tgz#f6752026af72a10356d5b1f27e2db6b1ee0c730f"
 
 "@stencil/eslint-plugin@^0.4.0":
   version "0.4.0"
