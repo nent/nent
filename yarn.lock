@@ -8209,8 +8209,8 @@ rollup-plugin-visualizer@5.6.0:
     yargs "^17.3.1"
 
 rollup@^2.42.3, rollup@^2.43.1, rollup@^2.66.1:
-  version "2.75.6"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.75.6.tgz#ac4dc8600f95942a0180f61c7c9d6200e374b439"
+  version "2.75.7"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.75.7.tgz#221ff11887ae271e37dcc649ba32ce1590aaa0b9"
   optionalDependencies:
     fsevents "~2.3.2"
 
