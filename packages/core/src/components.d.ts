@@ -321,6 +321,8 @@ export namespace Components {
          */
         "setting": 'muted' | 'enabled';
     }
+    interface NContent {
+    }
     interface NContentInclude {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -1060,6 +1062,12 @@ declare global {
         prototype: HTMLNAudioSwitchElement;
         new (): HTMLNAudioSwitchElement;
     };
+    interface HTMLNContentElement extends Components.NContent, HTMLStencilElement {
+    }
+    var HTMLNContentElement: {
+        prototype: HTMLNContentElement;
+        new (): HTMLNContentElement;
+    };
     interface HTMLNContentIncludeElement extends Components.NContentInclude, HTMLStencilElement {
     }
     var HTMLNContentIncludeElement: {
@@ -1230,6 +1238,7 @@ declare global {
         "n-audio-action-sound": HTMLNAudioActionSoundElement;
         "n-audio-action-sound-load": HTMLNAudioActionSoundLoadElement;
         "n-audio-switch": HTMLNAudioSwitchElement;
+        "n-content": HTMLNContentElement;
         "n-content-include": HTMLNContentIncludeElement;
         "n-content-markdown": HTMLNContentMarkdownElement;
         "n-content-reference": HTMLNContentReferenceElement;
@@ -1532,6 +1541,8 @@ declare namespace LocalJSX {
           * Which state property this switch controls.
          */
         "setting"?: 'muted' | 'enabled';
+    }
+    interface NContent {
     }
     interface NContentInclude {
         /**
@@ -2170,6 +2181,7 @@ declare namespace LocalJSX {
         "n-audio-action-sound": NAudioActionSound;
         "n-audio-action-sound-load": NAudioActionSoundLoad;
         "n-audio-switch": NAudioSwitch;
+        "n-content": NContent;
         "n-content-include": NContentInclude;
         "n-content-markdown": NContentMarkdown;
         "n-content-reference": NContentReference;
@@ -2215,6 +2227,7 @@ declare module "@stencil/core" {
             "n-audio-action-sound": LocalJSX.NAudioActionSound & JSXBase.HTMLAttributes<HTMLNAudioActionSoundElement>;
             "n-audio-action-sound-load": LocalJSX.NAudioActionSoundLoad & JSXBase.HTMLAttributes<HTMLNAudioActionSoundLoadElement>;
             "n-audio-switch": LocalJSX.NAudioSwitch & JSXBase.HTMLAttributes<HTMLNAudioSwitchElement>;
+            "n-content": LocalJSX.NContent & JSXBase.HTMLAttributes<HTMLNContentElement>;
             "n-content-include": LocalJSX.NContentInclude & JSXBase.HTMLAttributes<HTMLNContentIncludeElement>;
             "n-content-markdown": LocalJSX.NContentMarkdown & JSXBase.HTMLAttributes<HTMLNContentMarkdownElement>;
             "n-content-reference": LocalJSX.NContentReference & JSXBase.HTMLAttributes<HTMLNContentReferenceElement>;
