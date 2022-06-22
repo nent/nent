@@ -1,8 +1,8 @@
 import { newSpecPage } from '@stencil/core/testing'
 import { Content } from './content'
 
-test('n-content', () => {
-  it('renders', async () => {
+describe('n-content', () => {
+  test('renders', async () => {
     const page = await newSpecPage({
       components: [Content],
       html: `<n-content><h1>Test</h1></n-content>`,
