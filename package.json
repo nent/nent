@@ -61,7 +61,8 @@
   },
   "resolutions": {
     "json-schema": ">=0.4.0",
-    "set-value": ">=4.0.1"
+    "set-value": ">=4.0.1",
+    "got": ">=11.8.5"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "17.0.2",
