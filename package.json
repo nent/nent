@@ -118,7 +118,7 @@
     "testPathIgnorePatterns": [
       "dist/"
     ],
-    "test-runner": "jest-circus"
+    "testRunner": "jest-circus"
   },
   "workspaces": [
     "packages/core",
@@ -127,6 +127,7 @@
     "tools/vscode"
   ],
   "dependencies": {
-    "gh-release": "^6.0.4"
+    "gh-release": "^6.0.4",
+    "jasmine": "^4.2.1"
   }
 }
