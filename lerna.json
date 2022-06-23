@@ -1,5 +1,5 @@
 {
-  "version": "0.9.4",
+  "version": "0.10.2",
   "npmClient": "yarn",
   "useWorkspaces": false,
   "packages": [
@@ -15,7 +15,7 @@
       ],
       "yes": true,
       "registry": "https://registry.npmjs.org",
-      "message": "release(📦): version published [skip ci]"
+      "message": "release(📦): version published"
     }
   }
 }

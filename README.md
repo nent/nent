@@ -1,22 +1,23 @@
 # NENT: Web Application Elements
 
-![MIT](https://badgen.net/github/license/nent/nent?icon=github&color=purple)
-![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label&color=purple)
-[![webnamespaces.org](https://badgen.net/badge/webnamespaces.org/n-*?color=purple)](https://webnamespaces.org)
-[![NPM](https://badgen.net/npm/v/@nent/core?icon&color=purple)](https://www.npmjs.com/package/@nent/core)
-[![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov&color=purple)](https://coveralls.io/github/nent/nent)
-[![unpkgd](https://badgen.net/badge/unpkg/CDN?color=purple)](https://unpkg.com/browse/@nent/core)
+![MIT](https://badgen.net/github/license/nent/nent?icon=github)
+![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label)
+[![webnamespaces.org](https://badgen.net/badge/webnamespaces.org/n-*)](https://webnamespaces.org)
+[![NPM](https://badgen.net/npm/v/@nent/core?icon)](https://www.npmjs.com/package/@nent/core)
+[![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov)](https://coveralls.io/github/nent/nent)
+[![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8e52f7ee9e654e87bd569b83f79578f4)](https://www.codacy.com/gh/nent/nent/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nent/nent&amp;utm_campaign=Badge_Grade)
+[![Tests](https://github.com/nent/nent/actions/workflows/main.yml/badge.svg)](https://github.com/nent/nent/actions/workflows/main.yml)
 
-## What is NENT?
+![NENT](https://files.nent.dev/assets/logo-white-bg.png)
 
 NENT is a library of functional elements (web components) that extend HTML with web application-specific features.
 
-> 'NENT' comes from the word compo**NENT**. Yeah, that's it.
+> ⚠️ This project is still under development. Expect breaking changes until the 1.0 release.
 
-## Motivation
+## Why use NENT?
 
-The goal of this project is to empower the next generation of web developers to create web experiences with less development and deployment friction, all within the semantics of HTML. (Truth: I just needed to make high-performing, lightweight, web applications quickly -- without a complex build or framework - declarative applications are a happy side-effect).
+This project empower the next generation of design-first web developers to create interactive webpages for world-class experiences, all with less development and deployment friction, using the semantics of HTML. Write HTML and CSS with NENT to make high-performing, lightweight, web applications quickly -- without a complex build or framework.
 
 ## Declared Functionality
 
@@ -180,9 +181,9 @@ If you like the idea, join us! Or give it a star.
 
 [![github](https://badgen.net/badge/github/★?icon=github&color=purple)](https://github.com/nent/nent)
 
-If you have requests, ideas, or feedback, reach out to me personally:
+If you have requests, ideas, or feedback, reach out to us:
 
-[![Twitter](https://badgen.net/badge/tweet/me?icon=twitter&color=purple)](https://twitter.com/logrythmik)
+[![Twitter](https://badgen.net/badge/tweet/me?icon=twitter&color=purple)](https://twitter.com/NENT_dev)
 
 ## Attribution
 

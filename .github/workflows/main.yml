@@ -1,8 +1,4 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: main
-
 on:
   workflow_dispatch:
     inputs:
@@ -10,8 +6,18 @@ on:
         default: 'patch'
         description: publish version rev-type
         required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
   push:
     branches: [main]
+    paths:
+      - 'packages/core/**'
+
+permissions:
+  contents: write
 
 jobs:
   test:
@@ -20,7 +26,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - uses: actions/setup-node@v3.2.0
+      - uses: actions/setup-node@v3.3.0
         with:
           node-version: 14.x
       - name: cache
@@ -32,7 +38,7 @@ jobs:
           restore-keys: |
             nodeModules-
       - name: dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
         env:
           CI: true
       - name: test
@@ -55,51 +61,49 @@ jobs:
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: ./packages/core/coverage/lcov.info
-  build:
-    name: Build
+
+  publish:
+    name: Publish
     needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3.2.0
+        name: checkout
         with:
-          node-version: 14.x
-      - name: cache
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
-          restore-keys: |
-            nodeModules-
-      - name: dependencies
-        run: yarn install --frozen-lockfile
-        env:
-          CI: true
-      - name: build
-        run: yarn build
-
-  publish:
-    name: Publish
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: checkout
+          fetch-depth: 0
+      - name: setup-git
         run: |
           git config --global user.name '@logrythmik'
           git config --global user.email 'logrythmik@users.noreply.github.com'
-      - uses: actions/setup-node@v3.2.0
+      - uses: actions/setup-node@v3.3.0
+        name: setup-node
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
+      - name: cached
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            nodeModules-{{ hashFiles('**/yarn.lock') }}
       - name: dependencies
-        run: yarn install --frozen-lockfile
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install
+        env:
+          CI: true
+      - name: build
+        run: yarn build
+      - run: git reset --hard
       - name: publish
         run: lerna publish ${{ github.event.inputs.increment || 'patch' }} --yes --no-verify-access
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           HUSKY_BYPASS: true
+      - run: node_modules/.bin/gh-release -y
+        env:
+          GH_RELEASE_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}

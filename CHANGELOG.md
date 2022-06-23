@@ -3,6 +3,95 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.2](https://github.com/nent/nent/compare/v0.10.1...v0.10.2) (2022-06-22)
+
+**Note:** Version bump only for package nent-repo
+
+
+
+
+
+## [0.10.1](https://github.com/nent/nent/compare/v0.10.0...v0.10.1) (2022-06-06)
+
+**Note:** Version bump only for package nent-repo
+
+
+
+
+
+# [0.10.0](https://github.com/nent/nent/compare/v0.9.11...v0.10.0) (2022-06-06)
+
+
+### Features
+
+* initial n-view-detect component implementation ([#333](https://github.com/nent/nent/issues/333)) ([6df7cba](https://github.com/nent/nent/commit/6df7cba5069687dc4a2d9eee01bfad1013687d84))
+
+
+
+
+
+## [0.9.11](https://github.com/nent/nent/compare/v0.9.10...v0.9.11) (2022-06-02)
+
+**Note:** Version bump only for package nent-repo
+
+
+
+
+
+## [0.9.10](https://github.com/nent/nent/compare/v0.9.9...v0.9.10) (2022-06-02)
+
+
+### Bug Fixes
+
+* reverted stencil/core ([24d12fa](https://github.com/nent/nent/commit/24d12fa10ab1e31ce673fc02ff16391830a8fb2a))
+
+
+
+
+
+## [0.9.9](https://github.com/nent/nent/compare/v0.9.8...v0.9.9) (2022-06-02)
+
+
+### Bug Fixes
+
+* dependency bug in 9.8 ([ba57f18](https://github.com/nent/nent/commit/ba57f189313583ebd69a4490d874ce0f344e64f8))
+
+
+
+
+
+## [0.9.8](https://github.com/nent/nent/compare/v0.9.7...v0.9.8) (2022-06-02)
+
+**Note:** Version bump only for package nent-repo
+
+
+
+
+
+## [0.9.7](https://github.com/nent/nent/compare/v0.9.6...v0.9.7) (2022-06-02)
+
+**Note:** Version bump only for package nent-repo
+
+
+
+
+
+## [0.9.6](https://github.com/nent/nent/compare/v0.9.5...v0.9.6) (2022-06-02)
+
+**Note:** Version bump only for package nent-repo
+
+
+
+
+
+## 0.9.5 (2022-06-02)
+
+**Note:** Version bump only for package nent-repo
+
+
+
+
+
 ## 0.9.4 (2022-06-01)
 
 **Note:** Version bump only for package nent-repo

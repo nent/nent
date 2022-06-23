@@ -1,0 +1,24 @@
+name: announce
+on:
+  release:
+    types: [published]
+
+jobs:
+  announce:
+    name: Announce
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: checkout
+        with:
+          fetch-depth: 0
+      - name: version
+        uses: damienaicheh/extract-version-from-tag-action@v1.0.0
+      - name: twitter
+        uses: mugi111/tweet-trigger-release@v1.2
+        with:
+          consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+          access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          tweet_body: "NENT v$MAJOR.$MINOR.$PATCH released! https://www.npmjs.com/package/@nent/core"

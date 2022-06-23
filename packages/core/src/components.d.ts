@@ -16,6 +16,7 @@ import { SetData } from "./components/n-data/services/interfaces";
 import { EventAction as EventAction1 } from "./services/actions/interfaces";
 import { ITimer } from "./components/n-presentation/services/interfaces";
 import { Route } from "./components/n-view/services/route";
+import { Path } from "./components/n-views/services/utils/path-regex";
 export namespace Components {
     interface NAction {
         /**
@@ -319,6 +320,8 @@ export namespace Components {
           * Which state property this switch controls.
          */
         "setting": 'muted' | 'enabled';
+    }
+    interface NContent {
     }
     interface NContentInclude {
         /**
@@ -751,6 +754,24 @@ export namespace Components {
          */
         "transition"?: string;
     }
+    interface NViewDetect {
+        /**
+          * Only active on the exact href match, and not on child routes
+         */
+        "exact": boolean;
+        /**
+          * The route that will toggle the active slot of this component
+         */
+        "route": string;
+        /**
+          * Optional Regex value to route match on
+         */
+        "routeMatch"?: Path;
+        /**
+          * Only active on the exact href match using every aspect of the URL including parameters.
+         */
+        "strict": boolean;
+    }
     interface NViewLink {
         /**
           * The class to add when the matching route is active in the browser
@@ -938,6 +959,30 @@ export namespace Components {
         "transition"?: string;
     }
 }
+export interface NAppCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNAppElement;
+}
+export interface NAppAnalyticsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNAppAnalyticsElement;
+}
+export interface NContentReferenceCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNContentReferenceElement;
+}
+export interface NDataCookieCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNDataCookieElement;
+}
+export interface NPresentationTimerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNPresentationTimerElement;
+}
+export interface NVideoCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNVideoElement;
+}
 declare global {
     interface HTMLNActionElement extends Components.NAction, HTMLStencilElement {
     }
@@ -1016,6 +1061,12 @@ declare global {
     var HTMLNAudioSwitchElement: {
         prototype: HTMLNAudioSwitchElement;
         new (): HTMLNAudioSwitchElement;
+    };
+    interface HTMLNContentElement extends Components.NContent, HTMLStencilElement {
+    }
+    var HTMLNContentElement: {
+        prototype: HTMLNContentElement;
+        new (): HTMLNContentElement;
     };
     interface HTMLNContentIncludeElement extends Components.NContentInclude, HTMLStencilElement {
     }
@@ -1125,6 +1176,12 @@ declare global {
         prototype: HTMLNViewElement;
         new (): HTMLNViewElement;
     };
+    interface HTMLNViewDetectElement extends Components.NViewDetect, HTMLStencilElement {
+    }
+    var HTMLNViewDetectElement: {
+        prototype: HTMLNViewDetectElement;
+        new (): HTMLNViewDetectElement;
+    };
     interface HTMLNViewLinkElement extends Components.NViewLink, HTMLStencilElement {
     }
     var HTMLNViewLinkElement: {
@@ -1181,6 +1238,7 @@ declare global {
         "n-audio-action-sound": HTMLNAudioActionSoundElement;
         "n-audio-action-sound-load": HTMLNAudioActionSoundLoadElement;
         "n-audio-switch": HTMLNAudioSwitchElement;
+        "n-content": HTMLNContentElement;
         "n-content-include": HTMLNContentIncludeElement;
         "n-content-markdown": HTMLNContentMarkdownElement;
         "n-content-reference": HTMLNContentReferenceElement;
@@ -1199,6 +1257,7 @@ declare global {
         "n-video": HTMLNVideoElement;
         "n-video-switch": HTMLNVideoSwitchElement;
         "n-view": HTMLNViewElement;
+        "n-view-detect": HTMLNViewDetectElement;
         "n-view-link": HTMLNViewLinkElement;
         "n-view-link-back": HTMLNViewLinkBackElement;
         "n-view-link-list": HTMLNViewLinkListElement;
@@ -1274,11 +1333,11 @@ declare namespace LocalJSX {
         /**
           * These events are command-requests for action handlers to perform tasks. Any outside handlers should cancel the event.
          */
-        "onNent:actions"?: (event: CustomEvent<any>) => void;
+        "onNent:actions"?: (event: NAppCustomEvent<any>) => void;
         /**
           * Listen for events that occurred within the nent event system.
          */
-        "onNent:events"?: (event: CustomEvent<any>) => void;
+        "onNent:events"?: (event: NAppCustomEvent<any>) => void;
     }
     interface NAppAnalytics {
         /**
@@ -1288,15 +1347,15 @@ declare namespace LocalJSX {
         /**
           * Raised analytics events.
          */
-        "onCustom-event"?: (event: CustomEvent<any>) => void;
+        "onCustom-event"?: (event: NAppAnalyticsCustomEvent<any>) => void;
         /**
           * Page views.
          */
-        "onPage-view"?: (event: CustomEvent<LocationSegments>) => void;
+        "onPage-view"?: (event: NAppAnalyticsCustomEvent<LocationSegments>) => void;
         /**
           * View percentage views.
          */
-        "onView-time"?: (event: CustomEvent<ViewTime>) => void;
+        "onView-time"?: (event: NAppAnalyticsCustomEvent<ViewTime>) => void;
     }
     interface NAppShare {
         /**
@@ -1483,6 +1542,8 @@ declare namespace LocalJSX {
          */
         "setting"?: 'muted' | 'enabled';
     }
+    interface NContent {
+    }
     interface NContentInclude {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -1559,7 +1620,7 @@ declare namespace LocalJSX {
         /**
           * This event is fired when the script and style elements are loaded or timed out. The value for each style and script will be true or false, for loaded or timedout, respectively.
          */
-        "onReferenced"?: (event: CustomEvent<ReferenceCompleteResults>) => void;
+        "onReferenced"?: (event: NContentReferenceCustomEvent<ReferenceCompleteResults>) => void;
         /**
           * The script file to reference.
          */
@@ -1690,7 +1751,7 @@ declare namespace LocalJSX {
         /**
           * This event is raised when the user consents to cookies.
          */
-        "onDidConsent"?: (event: CustomEvent<CookieConsent>) => void;
+        "onDidConsent"?: (event: NDataCookieCustomEvent<CookieConsent>) => void;
         /**
           * When skipConsent is true, the accept-cookies banner will not be displayed before accessing cookie-data.
          */
@@ -1782,7 +1843,7 @@ declare namespace LocalJSX {
         /**
           * Ready event letting the presentation layer know it can begin.
          */
-        "onReady"?: (event: CustomEvent<any>) => void;
+        "onReady"?: (event: NPresentationTimerCustomEvent<any>) => void;
         /**
           * Normalized timer.
          */
@@ -1804,7 +1865,7 @@ declare namespace LocalJSX {
         /**
           * Ready event letting the presentation layer know it can begin.
          */
-        "onReady"?: (event: CustomEvent<any>) => void;
+        "onReady"?: (event: NVideoCustomEvent<any>) => void;
         /**
           * Provide the ready event name. Default is ready
          */
@@ -1901,6 +1962,24 @@ declare namespace LocalJSX {
           * Navigation transition between routes. This is a CSS animation class.
          */
         "transition"?: string;
+    }
+    interface NViewDetect {
+        /**
+          * Only active on the exact href match, and not on child routes
+         */
+        "exact"?: boolean;
+        /**
+          * The route that will toggle the active slot of this component
+         */
+        "route": string;
+        /**
+          * Optional Regex value to route match on
+         */
+        "routeMatch"?: Path;
+        /**
+          * Only active on the exact href match using every aspect of the URL including parameters.
+         */
+        "strict"?: boolean;
     }
     interface NViewLink {
         /**
@@ -2102,6 +2181,7 @@ declare namespace LocalJSX {
         "n-audio-action-sound": NAudioActionSound;
         "n-audio-action-sound-load": NAudioActionSoundLoad;
         "n-audio-switch": NAudioSwitch;
+        "n-content": NContent;
         "n-content-include": NContentInclude;
         "n-content-markdown": NContentMarkdown;
         "n-content-reference": NContentReference;
@@ -2120,6 +2200,7 @@ declare namespace LocalJSX {
         "n-video": NVideo;
         "n-video-switch": NVideoSwitch;
         "n-view": NView;
+        "n-view-detect": NViewDetect;
         "n-view-link": NViewLink;
         "n-view-link-back": NViewLinkBack;
         "n-view-link-list": NViewLinkList;
@@ -2146,6 +2227,7 @@ declare module "@stencil/core" {
             "n-audio-action-sound": LocalJSX.NAudioActionSound & JSXBase.HTMLAttributes<HTMLNAudioActionSoundElement>;
             "n-audio-action-sound-load": LocalJSX.NAudioActionSoundLoad & JSXBase.HTMLAttributes<HTMLNAudioActionSoundLoadElement>;
             "n-audio-switch": LocalJSX.NAudioSwitch & JSXBase.HTMLAttributes<HTMLNAudioSwitchElement>;
+            "n-content": LocalJSX.NContent & JSXBase.HTMLAttributes<HTMLNContentElement>;
             "n-content-include": LocalJSX.NContentInclude & JSXBase.HTMLAttributes<HTMLNContentIncludeElement>;
             "n-content-markdown": LocalJSX.NContentMarkdown & JSXBase.HTMLAttributes<HTMLNContentMarkdownElement>;
             "n-content-reference": LocalJSX.NContentReference & JSXBase.HTMLAttributes<HTMLNContentReferenceElement>;
@@ -2164,6 +2246,7 @@ declare module "@stencil/core" {
             "n-video": LocalJSX.NVideo & JSXBase.HTMLAttributes<HTMLNVideoElement>;
             "n-video-switch": LocalJSX.NVideoSwitch & JSXBase.HTMLAttributes<HTMLNVideoSwitchElement>;
             "n-view": LocalJSX.NView & JSXBase.HTMLAttributes<HTMLNViewElement>;
+            "n-view-detect": LocalJSX.NViewDetect & JSXBase.HTMLAttributes<HTMLNViewDetectElement>;
             "n-view-link": LocalJSX.NViewLink & JSXBase.HTMLAttributes<HTMLNViewLinkElement>;
             "n-view-link-back": LocalJSX.NViewLinkBack & JSXBase.HTMLAttributes<HTMLNViewLinkBackElement>;
             "n-view-link-list": LocalJSX.NViewLinkList & JSXBase.HTMLAttributes<HTMLNViewLinkListElement>;
