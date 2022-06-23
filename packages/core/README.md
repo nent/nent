@@ -58,10 +58,9 @@ Independent content elements for managing the HTML on the page.
 - Content Data Injection
 - Markdown Rendering
 - Remote HTML / Partials
-- Hybrid SSG/SPA
 
 ### App: `<n-app-*>`
-For use with SPA/WPA HTML applications for app-level configuration, native sharing, theming and extensions. Add App features to HTML with no framework or build-dependencies.
+Option elements to add robust application features to the HTML file with no dependencies.
 - App Console Logging
 - App Theme Detection & Control
 - UI Component Kit Integrations (Ionic, shoelace, Material, etc)

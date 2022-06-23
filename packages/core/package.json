@@ -65,7 +65,7 @@
     "remarkable": "2.0.1"
   },
   "dependencies": {
-    "@stencil/core": "^2.13.0",
+    "@stencil/core": "^2.16.0",
     "@stencil/store": "2.0.0",
     "remarkable-external-link": "^2.1.0"
   },
