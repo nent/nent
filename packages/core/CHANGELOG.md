@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.3](https://github.com/nent/nent/compare/v0.10.2...v0.10.3) (2022-06-29)
+
+
+### Bug Fixes
+
+* **template:** dedented the graphql query to fix ([432b054](https://github.com/nent/nent/commit/432b0543409561e77f482302940063809dbca75b))
+
+
+
+
+
 ## [0.10.2](https://github.com/nent/nent/compare/v0.10.1...v0.10.2) (2022-06-22)
 
 **Note:** Version bump only for package @nent/core
