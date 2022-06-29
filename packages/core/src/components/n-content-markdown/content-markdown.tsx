@@ -203,8 +203,6 @@ export class ContentMarkdown {
     return content
   }
 
-
-
   private highlight(container: HTMLElement) {
     const win = window as any
     const prism = win.Prism
