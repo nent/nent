@@ -31,6 +31,9 @@ export async function fetchJson(
     mode,
     method,
     body,
+    headers: {
+      'content-type': 'application/json',
+    },
   })
   if (response.status == 200 || response.ok) {
     const data = await response.json()

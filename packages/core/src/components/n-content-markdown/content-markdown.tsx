@@ -23,6 +23,7 @@ import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { filterData } from '../../services/data/jsonata.worker'
 import { resolveTokens } from '../../services/data/tokens'
+import { dedent } from '../n-content/services/utils'
 import { routingState } from '../n-views/services/state'
 import { renderMarkdown } from './markdown/remarkable.worker'
 
@@ -196,19 +197,13 @@ export class ContentMarkdown {
     const element = this.childScript
     if (!element?.textContent) return null
 
-    let content = this.dedent(element.textContent)
+    let content = dedent(element.textContent)
     if (this.resolveTokens) content = await resolveTokens(content)
 
     return content
   }
 
-  private dedent(innerText: string) {
-    const string = innerText?.replace(/^\n/, '')
-    const match = string?.match(/^\s+/)
-    return match
-      ? string?.replace(new RegExp(`^${match[0]}`, 'gm'), '')
-      : string
-  }
+
 
   private highlight(container: HTMLElement) {
     const win = window as any

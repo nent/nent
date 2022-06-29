@@ -9,6 +9,7 @@ import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { filterData } from '../../services/data/jsonata.worker'
 import { resolveTokens } from '../../services/data/tokens'
+import { dedent } from '../n-content/services/utils'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { routingState } from '../n-views/services/state'
 /**
@@ -176,24 +177,24 @@ export class ContentTemplate {
 
     if (this.src) {
       try {
-        let remoteData = this.graphql
+        data = this.graphql
           ? await fetchJson(
               window,
               this.src,
               this.mode,
               'POST',
               JSON.stringify({
-                query: this.childScript?.textContent || '',
+                query: dedent(this.childScript?.textContent || ''),
               }),
             )
           : await fetchJson(window, this.src, this.mode)
-        data = Object.assign(data, remoteData)
+
         if (this.filter) {
           debugIf(
             this.debug,
             `n-content-template: filtering: ${this.filter}`,
           )
-          data = await filterData(this.filter, remoteData)
+          data = await filterData(this.filter, data)
         }
       } catch (error) {
         warn(

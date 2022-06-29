@@ -40,6 +40,70 @@ This element supports HTML string interpolation within a child template tag. The
 > This element only supports template interpolation within the **\<template\>** tag.
 
 
+### Graphql
+
+```html
+<n-content-template graphql 
+  src='https://content.io/graphql'
+  filter="$sum(data.cart.items.(cost*count))"
+  >
+  <n-query data-value="{{user:id}}">
+    query cart(id: $value) {
+      items {
+        count
+        cost
+      }
+    }
+  </n-query>
+  <template>
+    {{data:item}}
+  </template>
+  
+  </n-content-template>
+```
+
+### GraphQL Response
+```json
+{
+  "data": {
+    "cart": [
+      {
+        "items": [
+          {
+            "count": 3,
+            "cost": 5
+          },
+          {
+            "count": 3,
+            "cost": 8
+          }
+        ],
+        "effective": "2022-06-01"
+      }
+    ]
+  }
+}
+```
+
+### JSON Filter transforms the response data to this:
+
+The expression can be any string or an expression with tokens from a registered provider.
+
+### Template Interpolation
+
+This element supports HTML string interpolation within a child template tag. The values get resolved, just like the expression. The values in the attributes replace the tokens in the content.
+
+```html
+<n-content-template>
+  <template>
+    <h1>Hello {{expression}}!</h1>
+  </template>
+</n-content-template>
+```
+
+> This element only supports template interpolation within the **\<template\>** tag.
+
+
 ### Json
 
 You can provide the data to use for this element directly in-line using a inner script tag.

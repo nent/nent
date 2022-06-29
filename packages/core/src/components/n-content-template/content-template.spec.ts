@@ -14,6 +14,7 @@ import { dataStateDispose } from '../../services/data/state'
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
 import { ContentTemplate } from './content-template'
 import remoteData from './test/data.json'
+
 describe('n-content-template', () => {
   let session: InMemoryProvider
 
@@ -321,7 +322,7 @@ describe('n-content-template', () => {
     page.root?.remove()
   })
 
-  it('renders grqphql json', async () => {
+  it('renders graphql json', async () => {
     const page = await newSpecPage({
       components: [ContentTemplate],
     })
@@ -341,7 +342,9 @@ describe('n-content-template', () => {
 
     await page.setContent(`
       <n-content-template src="http://data.com/api" graphql>
-        <script type="text/graphql"> { value } </script>
+        <script>
+        query { value }
+        </script>
         <template><b>{{data:value}}</b></template>
       </n-content-template>`)
 
@@ -349,7 +352,9 @@ describe('n-content-template', () => {
 
     expect(page.root).toEqualHtml(`
       <n-content-template src="http://data.com/api" graphql>
-        <script type="text/graphql"> { value } </script>
+        <script>
+        query { value }
+        </script>
         <template><b>{{data:value}}</b></template>
         <div class="dynamic">
           <b>Hello!</b>
@@ -358,7 +363,7 @@ describe('n-content-template', () => {
     `)
 
     expect(options.method).toBe('POST')
-    expect(options.body).toBe(`{"query":" { value } "}`)
+    expect(options.body).toBe('{"query":"query { value }\\n"}')
     page.root?.remove()
   })
 })
