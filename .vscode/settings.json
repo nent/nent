@@ -62,6 +62,7 @@
     "postbuild",
     "postpublish",
     "prebuild",
+    "prebuilds",
     "precache",
     "precaching",
     "preconnect",

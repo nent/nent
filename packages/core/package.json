@@ -73,7 +73,8 @@
     "preset": "@stencil/core/testing",
     "testPathIgnorePatterns": [
       "<rootDir>/dist"
-    ]
+    ],
+    "testRunner": "jasmine2"
   },
   "watch": {
     "build": {

@@ -1,14 +1,15 @@
+
 github:
   prebuilds:
     # enable for the default branch (defaults to true)
-    master: true
-    # enable for all branches in this repo (defaults to false)
+    main: true
+# enable for all branches in this repo (defaults to false)
     branches: true
-    # enable for pull requests coming from this repo (defaults to true)
+# enable for pull requests coming from this repo (defaults to true)
     pullRequests: true
-    # add a check to pull requests (defaults to true)
+# add a check to pull requests (defaults to true)
     addCheck: true
-    # add a "Review in Gitpod" button to the pull request's description (defaults to false)
+# add a "Review in Gitpod" button to the pull request's description (defaults to false)
     addBadge: true
 # Commands to start on workspace startup
 tasks:
@@ -18,3 +19,8 @@ tasks:
 ports:
   - port: 3002
     onOpen: open-preview
+
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - znck.grammarly
