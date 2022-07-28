@@ -19,6 +19,7 @@
     "sissel.json-script-tag",
     "yzhang.markdown-all-in-one",
     "nent.nent",
-    "dotup.dotup-vscode-test-generator"
+    "dotup.dotup-vscode-test-generator",
+    "buianhthang.gitflow"
   ]
 }

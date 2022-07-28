@@ -15,6 +15,9 @@ const config: Config = {
     sass(),
     postcss([
       tailwindcss({
+        content: [
+          'src/**/*.html'
+        ],
         darkMode: 'class',
         theme: {},
       }),
@@ -59,6 +62,9 @@ const config: Config = {
         },
         {
           src: 'robots.txt',
+        },
+        {
+          src: 'favicon.ico',
         },
       ],
     },
