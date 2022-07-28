@@ -15,9 +15,7 @@ const config: Config = {
     sass(),
     postcss([
       tailwindcss({
-        content: [
-          'src/**/*.html'
-        ],
+        content: ['src/**/*.html'],
         darkMode: 'class',
         theme: {},
       }),
