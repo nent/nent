@@ -24,7 +24,6 @@ export class FrameTimer extends EventEmitter implements ITimer {
     private debug: boolean = false,
   ) {
     super()
-    this.start = this.getStart()
     this.durationMs = this.durationSeconds * 1000
     debugIf(
       this.debug,

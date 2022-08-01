@@ -47,8 +47,6 @@ export namespace Components {
         "activate": | 'on-render'
     | 'on-element-event'
     | 'on-enter'
-    | 'at-time'
-    | 'at-time-end'
     | 'on-exit';
         /**
           * Manually activate all actions within this activator.
@@ -1289,8 +1287,6 @@ declare namespace LocalJSX {
         "activate"?: | 'on-render'
     | 'on-element-event'
     | 'on-enter'
-    | 'at-time'
-    | 'at-time-end'
     | 'on-exit';
         /**
           * Turn on debug statements for load, update and render events.

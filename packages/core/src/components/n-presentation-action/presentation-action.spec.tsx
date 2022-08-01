@@ -6,18 +6,12 @@ import {
   EventAction,
   eventBus,
 } from '../../services/actions'
+import { sleep } from '../../services/common'
 import { PresentationTimer } from '../n-presentation-timer/presentation-timer'
-import { RequestAnimationFrameMockSession } from '../n-presentation/mocks/animationFrame'
 import { Presentation } from '../n-presentation/presentation'
 import { PresentationAction } from './presentation-action'
 
 describe('n-presentation-action', () => {
-  let requestAnimationFrameMock: RequestAnimationFrameMockSession
-
-  beforeEach(() => {
-    requestAnimationFrameMock = new RequestAnimationFrameMockSession()
-  })
-
   afterEach(() => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
@@ -98,17 +92,6 @@ describe('n-presentation-action', () => {
       html: `<div></div>`,
     })
 
-    page.win.performance.now = () => 0
-
-    page.win.requestAnimationFrame =
-      requestAnimationFrameMock.requestAnimationFrame.bind(
-        requestAnimationFrameMock,
-      )
-    page.win.cancelAnimationFrame =
-      requestAnimationFrameMock.cancelAnimationFrame.bind(
-        requestAnimationFrameMock,
-      )
-
     await page.setContent(`
       <n-presentation>
         <n-presentation-timer duration="4" interval="0">
@@ -120,18 +103,18 @@ describe('n-presentation-action', () => {
 
     await page.waitForChanges()
 
-    requestAnimationFrameMock.triggerNextAnimationFrame(1000)
+    await sleep(1000)
     await page.waitForChanges()
 
-    requestAnimationFrameMock.triggerNextAnimationFrame(2000)
+    await sleep(1000)
     await page.waitForChanges()
 
     expect(sentActions.length).toBe(1)
 
-    requestAnimationFrameMock.triggerNextAnimationFrame(3000)
+    await sleep(1000)
     await page.waitForChanges()
 
-    requestAnimationFrameMock.triggerAllAnimationFrames(4000)
+    await sleep(1000)
     await page.waitForChanges()
 
     expect(sentActions.length).toBe(1)
@@ -139,7 +122,7 @@ describe('n-presentation-action', () => {
     const sentAction = sentActions[0]
 
     expect(sentAction).toBeDefined()
-    expect(sentAction!.topic).toBe('test')
-    expect(sentAction!.command).toBe('do')
+    expect(sentAction.topic).toBe('test')
+    expect(sentAction.command).toBe('do')
   })
 })

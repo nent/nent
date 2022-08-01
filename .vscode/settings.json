@@ -328,5 +328,11 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "stencilTools.component.alphabetizeImports": true,
-  "typescript.format.enable": true
+  "typescript.format.enable": true,
+  "jestrunner.jestPath": "${workFolder}/node_modules/.bin/jest",
+  "jestrunner.projectPath": "${workFolder}/packages/core",
+  "jestrunner.enableYarnPnpSupport": true,
+  "jestTestExplorer.pathToJest": "/usr/local/share/npm-global/bin/jest",
+  "jestTestExplorer.debugOutput": "internalConsole",
+  "jestTestExplorer.flattenExplorer": false
 }

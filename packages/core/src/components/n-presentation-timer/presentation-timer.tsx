@@ -110,7 +110,7 @@ export class PresentationTimer implements IElementTimer {
       window,
       this.interval,
       this.duration,
-      () => performance.now(),
+      () => new Date().getTime(),
       () => {
         this.elapsed = this.timer.currentTime.elapsedSeconds
       },

@@ -3,6 +3,7 @@
 export class RequestAnimationFrameMockSession {
   handleCounter: number = 0
   queue: Map<number, FrameRequestCallback>
+  time = new Date().getTime()
 
   constructor() {
     this.handleCounter = 0
@@ -16,7 +17,8 @@ export class RequestAnimationFrameMockSession {
   cancelAnimationFrame(handle: number) {
     this.queue.delete(handle)
   }
-  triggerNextAnimationFrame(time = performance.now()) {
+  triggerNextAnimationFrame(time: number) {
+    this.time = time
     const nextEntry = this.queue.entries().next().value
     if (nextEntry === undefined) return
 
@@ -25,7 +27,8 @@ export class RequestAnimationFrameMockSession {
     nextCallback(time)
     this.queue.delete(nextHandle)
   }
-  triggerAllAnimationFrames(time = performance.now()) {
+  triggerAllAnimationFrames(time: number) {
+    this.time = time
     while (this.queue.size > 0) this.triggerNextAnimationFrame(time)
   }
   reset() {

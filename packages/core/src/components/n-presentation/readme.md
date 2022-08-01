@@ -14,10 +14,8 @@
   * Background Music
   * Voice-overs
 - Supports [actions](/actions):
-  * At route entrance
   * At a given time
-  * At a given user interaction
-  * Before route exit
+  * When a presentation is complete
 - Built-in timer & optional duration:
   * Synced to video (respecting scrub, pause, etc)
     - OR -

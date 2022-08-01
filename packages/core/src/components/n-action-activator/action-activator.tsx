@@ -36,8 +36,6 @@ export class ActionActivator {
     | 'on-render'
     | 'on-element-event'
     | 'on-enter'
-    | 'at-time'
-    | 'at-time-end'
     | 'on-exit' = 'on-element-event'
 
   /**
