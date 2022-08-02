@@ -25,7 +25,7 @@ import { filterData } from '../../services/data/jsonata.worker'
 import { resolveTokens } from '../../services/data/tokens'
 import { dedent } from '../n-content/services/utils'
 import { routingState } from '../n-views/services/state'
-import { renderMarkdown } from './markdown/remarkable.worker'
+import { renderMarkdown } from './services/remarkable.worker'
 
 /**
  * This element converts markdown text to HTML. It can render

@@ -57,7 +57,7 @@ export class Audio {
   /**
    * The Howler.js Script Reference
    */
-  @Prop() howlerVersion: string = '2.2.1'
+  @Prop() howlerVersion: string = '2.2.3'
 
   /**
    * The display mode enabled shows player state and stats.

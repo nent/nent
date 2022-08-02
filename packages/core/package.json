@@ -26,13 +26,13 @@
   },
   "main": "dist/index.cjs.js",
   "module": "dist/components/components/index.js",
-  "es2015": "dist/nent/index.esm.js",
-  "es2017": "dist/nent/index.esm.js",
+  "es2015": "dist/nent/nent.esm.js",
+  "es2017": "dist/nent/nent.esm.js",
   "types": "dist/types/components.d.ts",
   "loader": "dist/loader",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/nent/nent.esm.js",
+  "jsdelivr": "dist/nent/nent.esm.js",
   "custom-elements": "dist/custom-elements.json",
   "files": [
     "dist/"
@@ -60,14 +60,14 @@
     "@types/howler": "2.2.7",
     "@types/remarkable": "^2.0.3",
     "check-peer-dependencies": "^4.1.0",
-    "expr-eval": "2.0.2",
-    "jsonata": "1.8.6",
-    "remarkable": "2.0.1",
     "rollup-plugin-visualizer": "^5.7.1"
   },
   "dependencies": {
     "@stencil/core": "^2.17.2",
     "@stencil/store": "2.0.0",
+    "expr-eval": "2.0.2",
+    "jsonata": "1.8.6",
+    "remarkable": "2.0.1",
     "remarkable-external-link": "^2.1.0"
   },
   "jest": {
