@@ -1,7 +1,7 @@
 ```html
 <n-content-reference module
-  script-src="https://cdn.cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"
-  style-src="https://cdn.cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css">
+  script-src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"
+  style-src="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css">
 </n-content-reference>
 <n-presentation next-after
   analytics-event="pres-video">

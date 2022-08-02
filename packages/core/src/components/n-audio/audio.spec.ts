@@ -47,8 +47,8 @@ describe('n-audio', () => {
     expect(page.root).toEqualHtml(`
     <n-audio hidden="">
       <mock:shadow-root>
-        <n-content-reference script-src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
-          <script src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
+        <n-content-reference script-src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
+          <script src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
         </n-content-reference>
       </mock:shadow-root>
     </n-audio>
@@ -68,8 +68,8 @@ describe('n-audio', () => {
     expect(page.root).toEqualHtml(`
     <n-audio display="">
       <mock:shadow-root>
-        <n-content-reference script-src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
-          <script src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
+        <n-content-reference script-src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
+          <script src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
         </n-content-reference>
         <div>
           <p>
@@ -113,8 +113,8 @@ describe('n-audio', () => {
     expect(page.root).toEqualHtml(`
     <n-audio display="">
       <mock:shadow-root>
-        <n-content-reference script-src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
-          <script src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
+        <n-content-reference script-src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
+          <script src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
         </n-content-reference>
         <div>
           <p>
@@ -139,8 +139,8 @@ describe('n-audio', () => {
     expect(page.body).toEqualHtml(`
     <n-audio hidden="">
       <mock:shadow-root>
-        <n-content-reference script-src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
-          <script src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
+        <n-content-reference script-src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
+          <script src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
         </n-content-reference>
       </mock:shadow-root>
     </n-audio>
@@ -160,8 +160,8 @@ describe('n-audio', () => {
     expect(page.body).toEqualHtml(`
     <n-audio hidden="">
       <mock:shadow-root>
-        <n-content-reference script-src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
-          <script src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
+        <n-content-reference script-src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
+          <script src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
         </n-content-reference>
       </mock:shadow-root>
     </n-audio>
@@ -190,8 +190,8 @@ describe('n-audio', () => {
     expect(page.root).toEqualHtml(`
     <n-audio display="">
       <mock:shadow-root>
-        <n-content-reference script-src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
-          <script src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
+        <n-content-reference script-src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
+          <script src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
         </n-content-reference>
         <div>
           <p>
@@ -233,8 +233,8 @@ describe('n-audio', () => {
     expect(page.root).toEqualHtml(`
     <n-audio display="">
       <mock:shadow-root>
-        <n-content-reference script-src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
-          <script src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
+        <n-content-reference script-src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
+          <script src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
         </n-content-reference>
         <div>
           <p>
@@ -273,8 +273,8 @@ describe('n-audio', () => {
     expect(page.root).toEqualHtml(`
     <n-audio display="">
       <mock:shadow-root>
-        <n-content-reference script-src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
-          <script src="https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
+        <n-content-reference script-src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js">
+          <script src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js"></script>
         </n-content-reference>
         <div>
           <p>

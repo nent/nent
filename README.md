@@ -123,7 +123,7 @@ Each component you use is lazy-loaded when you first use one. Most are tiny, wit
 <head>
   <script
     type="module"
-    src="https://cdn.cdn.jsdelivr.net/npm/@nent/core/dist/esm/nent.js"
+    src="https://cdn.jsdelivr.net/npm/@nent/core/dist/esm/nent.js"
   ></script>
 </head>
 ```

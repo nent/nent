@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 ;(self as any).importScripts(
-  'https://cdn.cdn.jsdelivr.net/npm/expr-eval@2.0.2/dist/bundle.min.js',
+  'https://cdn.jsdelivr.net/npm/expr-eval@2.0.2/dist/bundle.min.js',
 )
 
 import type { ExpressionContext } from './interfaces'

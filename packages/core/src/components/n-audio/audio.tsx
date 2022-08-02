@@ -20,7 +20,7 @@ import { audioState, onAudioStateChange } from './services/state'
 /**
  * Use this element only once per page to enable audio features.
  * It will add a CDN reference to Howler.js:
- * <https://cdn.cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js>
+ * <https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js>
  *
  * @system audio
  * @extension actions
@@ -216,7 +216,7 @@ export class Audio {
           onReferenced={() => {
             this.registerServices()
           }}
-          script-src={`https://cdn.cdn.jsdelivr.net/npm/howler@${this.howlerVersion}/dist/howler.core.min.js`}
+          script-src={`https://cdn.jsdelivr.net/npm/howler@${this.howlerVersion}/dist/howler.core.min.js`}
         ></n-content-reference>
         {this.actions?.hasAudio() ? this.Audio() : this.NoAudio()}
       </Host>
