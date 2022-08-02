@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.6](https://github.com/nent/nent/compare/v0.10.5...v0.10.6) (2022-08-02)
+
+
+### Bug Fixes
+
+* **🔧:** updated versions on web-workers to force a new hash ([8786f1d](https://github.com/nent/nent/commit/8786f1d0832c4ba5d6e5302ba89cf705abf7cbb5))
+
+
+
+
+
 ## [0.10.5](https://github.com/nent/nent/compare/v0.10.3...v0.10.5) (2022-08-02)
 
 **Note:** Version bump only for package @nent/core
