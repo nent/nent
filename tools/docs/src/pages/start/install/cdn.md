@@ -3,11 +3,11 @@
   ...
   <script
     type="module"
-    src="https://unpkg.com/@nent/core/dist/nent/nent.esm.js">
+    src="https://cdn.jsdelivr.net/npm/@nent/core/dist/nent/nent.esm.js">
   </script>
   <script
     nomodule
-    src="https://unpkg.com/@nent/core/dist/nent/nent.js">
+    src="https://cdn.jsdelivr.net/npm/@nent/core/dist/nent/nent.js">
   </script>
   ...
 </head>

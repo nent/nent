@@ -4,8 +4,8 @@
 ![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![webnamespaces.org](https://img.shields.io/static/v1?label=webnamespaces.org&color=blue&message=n-*)](https://webnamespaces.org)
 [![NPM](https://badgen.net/npm/v/@nent/core?icon&color=blue)](https://www.npmjs.com/package/@nent/core)
-[![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=blue)](https://cdn.jsdelivr.net/npm/@nent/core/+esm)
-[![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
+[![jsdelivr](https://badgen.net/badge/jsdelivr/CDN?icon=jsdelivr&color=blue)](https://cdn.cdn.jsdelivr.net/npm/@nent/core/+esm)
+[![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://cdn.jsdelivr.net/npm/browse/@nent/core)
 
 ## What is NENT?
 

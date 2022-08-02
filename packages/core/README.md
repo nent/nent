@@ -3,11 +3,11 @@
 ![MIT](https://badgen.net/github/license/nent/nent?icon=github)
 ![ts](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![webnamespaces.org](https://badgen.net/badge/webnamespaces.org/n-*)](https://webnamespaces.org)
-[![NPM](https://badgen.net/npm/v/@nent/core?icon)](https://www.npmjs.com/package/@nent/core)
+[![npm](https://badgen.net/npm/v/@nent/core?icon)](https://www.npmjs.com/package/@nent/core)
 [![coverall](https://badgen.net/coveralls/c/github/nent/nent?icon=codecov)](https://coveralls.io/github/nent/nent)
-[![unpkgd](https://badgen.net/badge/unpkg/CDN)](https://unpkg.com/browse/@nent/core)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8e52f7ee9e654e87bd569b83f79578f4)](https://www.codacy.com/gh/nent/nent/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nent/nent&amp;utm_campaign=Badge_Grade)
-[![Tests](https://github.com/nent/nent/actions/workflows/main.yml/badge.svg)](https://github.com/nent/nent/actions/workflows/main.yml)
+[![jsdelivr](https://badgen.net/badge/jsdelivr/CDN)](https://cdn.jsdelivr.net/npm/@nent/core/)
+[![codacy](https://app.codacy.com/project/badge/Grade/8e52f7ee9e654e87bd569b83f79578f4)](https://www.codacy.com/gh/nent/nent/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nent/nent&amp;utm_campaign=Badge_Grade)
+[![coverage](https://github.com/nent/nent/actions/workflows/main.yml/badge.svg)](https://github.com/nent/nent/actions/workflows/main.yml)
 
 ![NENT](https://files.nent.dev/assets/logo-white-bg.png)
 
@@ -123,7 +123,7 @@ Each component you use is lazy-loaded when you first use one. Most are tiny, wit
 <head>
   <script
     type="module"
-    src="https://cdn.jsdelivr.net/npm/@nent/core/dist/esm/nent.js"
+    src="https://cdn.cdn.jsdelivr.net/npm/@nent/core/dist/esm/nent.js"
   ></script>
 </head>
 ```

@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 ;(self as any).importScripts(
-  'https://cdn.jsdelivr.net/npm/jsonata@1.8.4/jsonata.min.js',
+  'https://cdn.cdn.jsdelivr.net/npm/jsonata@1.8.4/jsonata.min.js',
 )
 
 /**
