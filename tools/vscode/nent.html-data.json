@@ -250,7 +250,7 @@
       "name": "n-audio",
       "description": {
         "kind": "markdown",
-        "value": "Use this element only once per page to enable audio features.\nIt will add a CDN reference to Howler.js:\n<https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js>"
+        "value": "Use this element only once per page to enable audio features.\nIt will add a CDN reference to Howler.js:\n<https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.core.min.js>"
       },
       "attributes": [
         {

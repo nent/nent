@@ -1,7 +1,7 @@
 jest.mock('../../services/common/logging')
 jest.mock('../../services/data/evaluate.worker')
 jest.mock('../../services/data/jsonata.worker')
-jest.mock('./markdown/remarkable.worker')
+jest.mock('./services/remarkable.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'

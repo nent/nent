@@ -124,5 +124,7 @@ describe('n-presentation-action', () => {
     expect(sentAction).toBeDefined()
     expect(sentAction.topic).toBe('test')
     expect(sentAction.command).toBe('do')
+
+    page.root?.remove()
   })
 })
