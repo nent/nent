@@ -334,5 +334,6 @@
   "jestrunner.enableYarnPnpSupport": true,
   "jestTestExplorer.pathToJest": "/usr/local/share/npm-global/bin/jest",
   "jestTestExplorer.debugOutput": "internalConsole",
-  "jestTestExplorer.flattenExplorer": false
+  "jestTestExplorer.flattenExplorer": false,
+  "eslint.format.enable": true
 }

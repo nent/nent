@@ -314,7 +314,7 @@ describe('n-action-activator', () => {
           </n-action-activator>
         </n-presentation>
       `,
-      hydrateClientSide: true
+      hydrateClientSide: true,
     })
     await page.waitForChanges()
 

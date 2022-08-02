@@ -4,16 +4,13 @@ module.exports = {
     project: './tsconfig.json',
     ecmaVersion: 2018,
   },
-  extends: [
-    'plugin:@stencil/recommended',
-    'plugin:clean-regex/recommended',
-  ],
+  extends: ['plugin:@stencil/recommended'],
   settings: {
     react: {
       version: '16.7',
     },
   },
-  plugins: ['prettier', 'jest', 'clean-regex', '@typescript-eslint'],
+  plugins: ['prettier', '@typescript-eslint'],
   rules: {
     '@stencil/strict-boolean-conditions': 0,
     '@stencil/strict-mutable': 0,
