@@ -6,7 +6,7 @@ Provider Key: **elements**
 
 ## Installation
 
-The elements provider is registered using the elements element **[\<n-elements\>](/components/n-elements)**.
+The elements provider is registered using the elements element **[`n-elements`](/components/n-elements)**.
 
 The only value expression, relies on the ID of the element for which we want the data: `{{elements:<element-id>}}`
 

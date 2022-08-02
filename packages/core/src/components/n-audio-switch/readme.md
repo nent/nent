@@ -1,6 +1,6 @@
 # N-AUDIO-SWITCH
 
-The [\<n-audio-switch\>](/components/n-audio-switch) element exposes a checkbox to enable or disable global audio, for background sounds and video components.
+The [`n-audio-switch`](/components/n-audio-switch) element exposes a checkbox to enable or disable global audio, for background sounds and video components.
 
 
 <!-- Auto Generated Below -->
@@ -12,7 +12,7 @@ The [\<n-audio-switch\>](/components/n-audio-switch) element exposes a checkbox 
 
 Display a checkbox for users to set a preference for sound. Disabled mutes all videos and disables all presentational audio.
 
-Using the [\<n-audio-switch\>](/components/n-audio-switch) element description.
+Using the [`n-audio-switch`](/components/n-audio-switch) element description.
 
 ```html
 <n-audio-switch></n-audio-switch>

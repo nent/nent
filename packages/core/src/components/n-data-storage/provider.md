@@ -6,7 +6,7 @@ This provider uses the built-in key-value store in the browser to persist data a
 
 ## Installation
 
-The storage provider is registered using the **[\<n-data-storage\>](/components/n-data-storage)** element.
+The storage provider is registered using the **[`n-data-storage`](/components/n-data-storage)** element.
 
 ```html
 <n-data-storage 

@@ -2,7 +2,7 @@
 
 Activation occurs when the presentation has been playing for the given time within the **time** attribute.
 
-> ℹ️ Note: The `at-time` activation-strategy only works when this element is a child of  [\<n-presentation\>](/components/n-presentation).
+> ℹ️ Note: The `at-time` activation-strategy only works when this element is a child of  [`n-presentation`](/components/n-presentation).
 
 ```html
 

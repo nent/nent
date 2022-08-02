@@ -1,5 +1,5 @@
 
-Much like its parent, [\<n-view\>](/components/n-view), basic routing information is required.
+Much like its parent, [`n-view`](/components/n-view), basic routing information is required.
 
 ```html
 <n-view ...>

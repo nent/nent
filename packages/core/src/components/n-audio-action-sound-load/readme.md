@@ -1,6 +1,6 @@
 # N-AUDIO-ACTION-SOUND-LOAD
 
-The [\<n-audio-action-sound-load\>](/components/n-audio-action-sound-load) element represents audio files and play behaviors. They are all sent to the global-audio player to pre-load or play when the route is active. The player manages them according to their settings.
+The [`n-audio-action-sound-load`](/components/n-audio-action-sound-load) element represents audio files and play behaviors. They are all sent to the global-audio player to pre-load or play when the route is active. The player manages them according to their settings.
 
 > ℹ️ Note: See the [audio](/audio) systems documentation for more information.
 
@@ -31,7 +31,7 @@ The [\<n-audio-action-sound-load\>](/components/n-audio-action-sound-load) eleme
 
 ## Timed
 
-For timed audio, the audio is sent upfront for pre-loading. Then at the given time, a separate [\<n-audio-action-sound\>](/components/n-audio-action-sound) event is dispatched to play it at a given time. This way, the audio is likely to play on time without any buffering.
+For timed audio, the audio is sent upfront for pre-loading. Then at the given time, a separate [`n-audio-action-sound`](/components/n-audio-action-sound) event is dispatched to play it at a given time. This way, the audio is likely to play on time without any buffering.
 
 The following demonstrates how to load a track, and wait 10 seconds until it plays. It's important to remember this time can be paused by the user, so it could be any amount of time if a video is playing.
 

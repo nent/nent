@@ -157,7 +157,7 @@ Now let’s move out of theory and into our new HTML Elements.
 
 ## Views and Dos
 
-In our examples above, we discussed routes and sub-routes. The routes are expressed in nent using the [\<n-view\>](/components/n-view) tag and their sub-routes would be [\<n-view-prompt\>](/components/n-view-prompt) tags.
+In our examples above, we discussed routes and sub-routes. The routes are expressed in nent using the [`n-view`](/components/n-view) tag and their sub-routes would be [`n-view-prompt`](/components/n-view-prompt) tags.
 
 The default visit-requirement is ‘once’, so it can be omitted. Also, if the 'when’ property exists, the visit requirement is always derived from that expression, leaving few occasions where we have to express the visit-strategy.
 

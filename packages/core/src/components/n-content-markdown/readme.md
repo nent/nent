@@ -16,7 +16,7 @@ By default, there is no styling added to the rendered HTML, so it blends with yo
 
 ### Resolve Tokens
 
-This element can optionally render data-tokens directly without the need for the [\<n-content-template\>](/components/n-content-template) element. Just add the **resolve-tokens** attribute.
+This element can optionally render data-tokens directly without the need for the [`n-content-template`](/components/n-content-template) element. Just add the **resolve-tokens** attribute.
 
 ```html
 <!-- Do not set the `src` attribute -->
@@ -77,7 +77,7 @@ const include = document.querySelector('#markdown);
 include.removeAttribute('defer-load');
 ```
 
-Or, just include it in one of the [\<n-view\>](/components/n-view) or [\<n-view-prompt\>](/components/n-view-prompt) elements. These elements remove any **defer-load** attributes on child elements once their route is activated, giving us lazy-loaded routes with this element.
+Or, just include it in one of the [`n-view`](/components/n-view) or [`n-view-prompt`](/components/n-view-prompt) elements. These elements remove any **defer-load** attributes on child elements once their route is activated, giving us lazy-loaded routes with this element.
 
 
 

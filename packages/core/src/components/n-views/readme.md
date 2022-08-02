@@ -1,6 +1,6 @@
 # N-VIEWS
 
-The root element is the base container for the view-engine and its child elements. This element should contain root-level HTML that is global to every view along with [\<n-view\>](/components/n-view) elements placed within any global HTML.
+The root element is the base container for the view-engine and its child elements. This element should contain root-level HTML that is global to every view along with [`n-view`](/components/n-view) elements placed within any global HTML.
 
 
 This element is the root container for all routing. It provides an entry-point for the content-routing.

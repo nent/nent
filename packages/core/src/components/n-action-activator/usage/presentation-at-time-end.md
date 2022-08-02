@@ -1,6 +1,6 @@
 
 
-> ℹ️ Note: The `at-time=end` activation-strategy only works when this element is a child of  [\<n-presentation\>](/components/n-presentation).
+> ℹ️ Note: The `at-time=end` activation-strategy only works when this element is a child of  [`n-presentation`](/components/n-presentation).
 
 ```html
 
@@ -14,4 +14,4 @@
   </n-action-activator>
 </n-presentation>
 
-> ℹ️ Note: For more information on presentation and how they work, see  [\<n-presentation\>](/components/n-presentation)
+> ℹ️ Note: For more information on presentation and how they work, see  [`n-presentation`](/components/n-presentation)

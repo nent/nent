@@ -4,7 +4,7 @@ This provider allows expression to include route and visit data.
 
 ## Installation
 
-The router system adds a few providers when you use the component **[\<n-views\>](/components/n-views)**. 
+The router system adds a few providers when you use the component **[`n-views`](/components/n-views)**. 
 
 ```html
 <n-views>

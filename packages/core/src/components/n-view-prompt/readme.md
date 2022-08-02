@@ -1,21 +1,21 @@
 # N-VIEW-PROMPT
 
-The [\<n-view-prompt\>](/components/n-view-prompt) element represents a specialized child-route that can force a prompt before the parent route is displayed.
+The [`n-view-prompt`](/components/n-view-prompt) element represents a specialized child-route that can force a prompt before the parent route is displayed.
 
-> ℹ️ Note: [\<n-view-prompt\>](/components/n-view-prompt) can be used to capture data, agree to terms or anything else the parent route may need.
+> ℹ️ Note: [`n-view-prompt`](/components/n-view-prompt) can be used to capture data, agree to terms or anything else the parent route may need.
 
 They are used to create presentations, wizards, input workflows, or step-by-step instructions.
 
 
 ### How it works
 
-When the parent [\<n-view\>](/components/n-view)'s route is activated, before rendering, it:
+When the parent [`n-view`](/components/n-view)'s route is activated, before rendering, it:
 
-1. Lists all direct-child [\<n-view-prompt\>](/components/n-view-prompt) items, one at a time in sequence.
+1. Lists all direct-child [`n-view-prompt`](/components/n-view-prompt) items, one at a time in sequence.
 2. Finds the first unvisited route respecting the **'visit'** requirement or [**'when'** predicate](/expression), if present.
 
    - **If found**: It pushes the page state to its URL, thus activated the child route.
-   - **Otherwise**: The [\<n-view\>](/components/n-view) is satisfied and can now render its own contents.
+   - **Otherwise**: The [`n-view`](/components/n-view) is satisfied and can now render its own contents.
 
 ## Samples
 
@@ -98,7 +98,7 @@ This evaluation has to take place before the route is activated as the underlyin
 
 ### Basic
 
-Much like its parent, [\<n-view\>](/components/n-view), basic routing information is required.
+Much like its parent, [`n-view`](/components/n-view), basic routing information is required.
 
 ```html
 <n-view ...>

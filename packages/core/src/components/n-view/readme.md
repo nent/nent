@@ -29,9 +29,9 @@ Views can hold any HTML, including View elements. This implicitly creates child 
 
 ### View Prompts
 
-The contained HTML is parsed before rendering and special handling is given if any child elements are [\<n-view-prompt\>](/components/n-view-prompt) elements. Before rendering its HTML, this element iterates the collection and evaluates their conditions (_when_ attribute) looking for the first [\<n-view-prompt\>](/components/n-view-prompt) that should be displayed, using the order they are declared. If and when a non-visited [\<n-view-prompt\>](/components/n-view-prompt) is found, its route is activated and subsequently marked as visited.
+The contained HTML is parsed before rendering and special handling is given if any child elements are [`n-view-prompt`](/components/n-view-prompt) elements. Before rendering its HTML, this element iterates the collection and evaluates their conditions (_when_ attribute) looking for the first [`n-view-prompt`](/components/n-view-prompt) that should be displayed, using the order they are declared. If and when a non-visited [`n-view-prompt`](/components/n-view-prompt) is found, its route is activated and subsequently marked as visited.
 
-[\<n-view-prompt\>](/components/n-view-prompt) elements each have their own **visit** strategies, but each of them need only return to their parent URL when completed. The parent performs the above evaluation until each child [\<n-view-prompt\>](/components/n-view-prompt) element has been visited or is excluded by its rule (_when_ attribute).
+[`n-view-prompt`](/components/n-view-prompt) elements each have their own **visit** strategies, but each of them need only return to their parent URL when completed. The parent performs the above evaluation until each child [`n-view-prompt`](/components/n-view-prompt) element has been visited or is excluded by its rule (_when_ attribute).
 
 At that point, the inner HTML content is finally revealed. Using this convention, you can declaratively create a workflow of pages that must be visited to reach a destination.
 

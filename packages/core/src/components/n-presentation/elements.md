@@ -10,7 +10,7 @@ When elements are enabled, this element can use special attributes for real-time
 
 ## Time-Presentation Child Attribute Resolution
 
-The [\<n-presentation\>](/components/n-presentation) element is always keeping track of time once it is active. As such, you can create timed-based actions using special attributes placed on any child element.
+The [`n-presentation`](/components/n-presentation) element is always keeping track of time once it is active. As such, you can create timed-based actions using special attributes placed on any child element.
 
 > ℹ️ If a video element is detected, its time is used, allowing pause & play.
 
@@ -48,7 +48,7 @@ When used with n-out-class, this attribute adds the specified class and removes 
 
 ## Time To: [n-time-to]
 
-This attribute instructs [\<n-presentation\>](/components/n-presentation) to inject the current time to the named attributes. In this example's case, 'value' will be updated.
+This attribute instructs [`n-presentation`](/components/n-presentation) to inject the current time to the named attributes. In this example's case, 'value' will be updated.
 
 ```html
 <any value='' n-time-to='value' />
@@ -58,7 +58,7 @@ This attribute instructs [\<n-presentation\>](/components/n-presentation) to inj
 
 ## Time Percentage To: [n-percentage-to]
 
-This attribute instructs [\<n-presentation\>](/components/n-presentation) to inject the current time percentage (based on the **next-after** attribute or the video-duration) to the named attributes. In this example's case, 'value' will be updated.
+This attribute instructs [`n-presentation`](/components/n-presentation) to inject the current time percentage (based on the **next-after** attribute or the video-duration) to the named attributes. In this example's case, 'value' will be updated.
 
 ```html
 <any value='' n-percentage-to='value' />

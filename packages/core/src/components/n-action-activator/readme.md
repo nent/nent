@@ -1,8 +1,8 @@
 # N-ACTION-ACTIVATOR
 
-This element defines how and when a group of Actions, defined with the [\<n-action\>](/components/n-action) element, are submitted through the [actions system](/actions).
+This element defines how and when a group of Actions, defined with the [`n-action`](/components/n-action) element, are submitted through the [actions system](/actions).
 
-This element should only ever contain child [\<n-action\>](/components/n-action) tags. The attributes defines how and when the child-actions are submitted through the [actions system](/actions).
+This element should only ever contain child [`n-action`](/components/n-action) tags. The attributes defines how and when the child-actions are submitted through the [actions system](/actions).
 
 ```html
 <n-action-activator
@@ -78,7 +78,7 @@ The default activation is OnElementEvent and the default event is click. Also, i
 
 ### On-enter
 
-> ℹ️ Note: The `on-exit` activation-strategy only works when this element is a child of  [\<n-view\>](/components/n-view) or [\<n-view-prompt\>](/components/n-view-prompt).
+> ℹ️ Note: The `on-exit` activation-strategy only works when this element is a child of  [`n-view`](/components/n-view) or [`n-view-prompt`](/components/n-view-prompt).
 
 ```html
 <n-view-prompt ...>
@@ -93,7 +93,7 @@ The default activation is OnElementEvent and the default event is click. Also, i
 
 ### On-exit
 
-> ℹ️ Note: The `on-exit` activation-strategy only works when this element is a child of  [\<n-view\>](/components/n-view) or [\<n-view-prompt\>](/components/n-view-prompt).
+> ℹ️ Note: The `on-exit` activation-strategy only works when this element is a child of  [`n-view`](/components/n-view) or [`n-view-prompt`](/components/n-view-prompt).
 
 ```html
 <n-view-prompt ...>
@@ -112,7 +112,7 @@ The default activation is OnElementEvent and the default event is click. Also, i
 
 Activation occurs when the presentation has been playing for the given time within the **time** attribute.
 
-> ℹ️ Note: The `at-time` activation-strategy only works when this element is a child of  [\<n-presentation\>](/components/n-presentation).
+> ℹ️ Note: The `at-time` activation-strategy only works when this element is a child of  [`n-presentation`](/components/n-presentation).
 
 ```html
 
@@ -130,7 +130,7 @@ Activation occurs when the presentation has been playing for the given time with
 
 ### Presentation-at-time-end
 
-> ℹ️ Note: The `at-time=end` activation-strategy only works when this element is a child of  [\<n-presentation\>](/components/n-presentation).
+> ℹ️ Note: The `at-time=end` activation-strategy only works when this element is a child of  [`n-presentation`](/components/n-presentation).
 
 ```html
 
@@ -144,7 +144,7 @@ Activation occurs when the presentation has been playing for the given time with
   </n-action-activator>
 </n-presentation>
 
-> ℹ️ Note: For more information on presentation and how they work, see  [\<n-presentation\>](/components/n-presentation)
+> ℹ️ Note: For more information on presentation and how they work, see  [`n-presentation`](/components/n-presentation)
 
 
 
