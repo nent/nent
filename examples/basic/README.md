@@ -34,4 +34,4 @@ Serve your application locally. Visit: http://127.0.0.1:8080/
 yarn build
 ```
 
-> Depending on the host, you may need to configure URL rewriting.
+> ℹ️ Note: Depending on the host, you may need to configure URL rewriting.

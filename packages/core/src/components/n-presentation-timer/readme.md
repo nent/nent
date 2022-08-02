@@ -1,8 +1,25 @@
 # N-PRESENTATION-TIMER
 
-
+The `n-presentation-timer` is useful when you want to create a timeline to stage animations and sound or any other HTML-wizardy as part of a non-video presentation. The element takes a duration and begins when you'd expect: on-route enter (if within a route) OR when the parent element renders to the page. It will run, firing all configure timed actions and elements until the duration is reached.
 
 <!-- Auto Generated Below -->
+
+
+## Usage
+
+### Basic
+
+```html
+<n-elements></n-elements>
+<n-presentation>
+  <n-presentation-timer duration="3">
+  </n-presentation-timer>
+  <div hidden n-show-at="1" n-hide-at="3">
+    A temp message!
+  </div>
+</n-presentation>
+```
+
 
 
 ## Properties

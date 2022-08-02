@@ -108,7 +108,7 @@ npm create @nent my-nent-app
 
 ## Installation
 
-> This is a pre-release project and is subject to breaking changes and incomplete features. Thank you for trying it out!
+> ℹ️ Note: This is a pre-release project and is subject to breaking changes and incomplete features. Thank you for trying it out!
 
 Add a single script reference to the page head and the library is ready to go. 
 
@@ -116,7 +116,7 @@ Add a single script reference to the page head and the library is ready to go.
 
 Each component you use is lazy-loaded when you first use one. Most are tiny, with the largest around 60k.
 
-> [Component Sizes](https://nent.dev/dist/stats.html)
+> ℹ️ [Component Sizes](https://nent.dev/dist/stats.html)
 
 ### CDN:
 ```html

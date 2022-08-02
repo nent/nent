@@ -2,7 +2,7 @@
 
 This sample app uses a CDN-hosted CSS theme and basic styles to demonstrate a simple design. 
 
-> CSS: https://milligram.io/
+> ℹ️ Note: CSS: https://milligram.io/
 
 This two-page app has live previewing and a basic build function.
 
@@ -36,4 +36,4 @@ Serve your application locally. Visit: http://127.0.0.1:8080/
 yarn build
 ```
 
-> Depending on the host, you may need to configure URL rewriting.
+> ℹ️ Note: Depending on the host, you may need to configure URL rewriting.

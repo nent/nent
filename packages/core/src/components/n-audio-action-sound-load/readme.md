@@ -2,7 +2,7 @@
 
 The [\<n-audio-action-sound-load\>](/components/n-audio-action-sound-load) element represents audio files and play behaviors. They are all sent to the global-audio player to pre-load or play when the route is active. The player manages them according to their settings.
 
-> See the [audio](/audio) systems documentation for more information.
+> ℹ️ Note: See the [audio](/audio) systems documentation for more information.
 
 ## Usage
 

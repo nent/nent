@@ -2,7 +2,7 @@
 
 This provider uses the built-in key-value store in the browser to persist data across page refreshes during a single browsing session.
 
-> Data Providers are a read-only data store used by NENT to resolve data expressions.
+> ℹ️ Note: Data Providers are a read-only data store used by NENT to resolve data expressions.
 
 ## Installation
 
@@ -19,4 +19,4 @@ Provider Key: '**session**'
 
 Sample Token: `{{session:key}}`
 
-> Where key is the key of the value you are displaying
+> ℹ️ Note: Where key is the key of the value you are displaying

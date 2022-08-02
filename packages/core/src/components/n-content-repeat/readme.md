@@ -24,7 +24,7 @@ This component supports HTML string interpolation within a child template tag. E
 
 \* _If there are any dots in the key, the evaluator attempts to parse the base value as JSON, then uses the dot-notation to select a value from the object. For example, the expression `{{data:user.name}}` means the session value 'user' is a JSON object, parse it and replace it with the 'name' property._
 
-> See [data](/data) for full documentation
+> ℹ️ Note: See [data](/data) for full documentation
 
 
 ## Items Source

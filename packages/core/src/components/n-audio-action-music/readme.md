@@ -2,7 +2,7 @@
 
 This element represents an action to be fired. This specialized action encapsulates the required parameters needed for audio-based actions, for music.
 
-> See the [audio](/audio) systems documentation for more information.
+> ℹ️ Note: See the [audio](/audio) systems documentation for more information.
 
 <!-- Auto Generated Below -->
 

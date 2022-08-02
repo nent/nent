@@ -8,7 +8,7 @@ While it can be placed anywhere, only ONE player is allowed within an HTML docum
 
 Once in-place, the [\<n-audio\>](/components/n-audio) element listens on the **audio** topic for commands.
 
-> Note: This element subscribes to route-change notifications - as some audio clips are meant to end when the route changes.
+> ℹ️ Note: This element subscribes to route-change notifications - as some audio clips are meant to end when the route changes.
 
 ## Audio Actions
 

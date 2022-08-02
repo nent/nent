@@ -2,7 +2,7 @@
 
 The [\<n-view-prompt\>](/components/n-view-prompt) element represents a specialized child-route that can force a prompt before the parent route is displayed.
 
-> [\<n-view-prompt\>](/components/n-view-prompt) can be used to capture data, agree to terms or anything else the parent route may need.
+> ℹ️ Note: [\<n-view-prompt\>](/components/n-view-prompt) can be used to capture data, agree to terms or anything else the parent route may need.
 
 They are used to create presentations, wizards, input workflows, or step-by-step instructions.
 
@@ -33,7 +33,7 @@ This route will be activated once for each new visit to the page. (Visit 'once' 
 </n-view-prompt>
 ```
 
-> By default, the visit strategy is 'once'. In this case, the visit is stored in the local storage. Any subsequent visits to this page with the same browser won't see it again.
+> ℹ️ Note: By default, the visit strategy is 'once'. In this case, the visit is stored in the local storage. Any subsequent visits to this page with the same browser won't see it again.
 
 ### Present Each Visit
 
@@ -49,7 +49,7 @@ This route will be activated once for each new session visit to the page.
 </n-view-prompt>
 ```
 
-> For **'always'**, the visit is stored in local-session which is destroyed when the browser tab is closed, but retained while on the site.
+> ℹ️ Note: For **'always'**, the visit is stored in local-session which is destroyed when the browser tab is closed, but retained while on the site.
 
 ### Collect Required Data
 
@@ -118,7 +118,7 @@ Much like its parent, [\<n-view\>](/components/n-view), basic routing informatio
 </n-view>
 ```
 
-> The **when** attribute is a data expression that overrides the **visit** strategy. It is a predicate that produces a boolean result. **true: visit=always** false: visit=optional
+> ℹ️ Note: The **when** attribute is a data expression that overrides the **visit** strategy. It is a predicate that produces a boolean result. **true: visit=always** false: visit=optional
 
 
 

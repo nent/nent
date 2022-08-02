@@ -30,3 +30,5 @@
   </div>
 </n-presentation>
 ```
+
+> ℹ️ Note: For more information on timed-elements, read about the ([`\<n-elements\>](./elements)) extension.

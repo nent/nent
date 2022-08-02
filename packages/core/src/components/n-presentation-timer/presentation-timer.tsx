@@ -8,6 +8,7 @@ import {
   Method,
   Prop,
   State,
+  Build
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common'
@@ -80,6 +81,9 @@ export class PresentationTimer implements IElementTimer {
   })
   ready!: EventEmitter
   private navigationSubscription?: () => void
+  private now = (Build.isTesting || Build.isServer)
+    ? () => new Date().getTime()
+    : () => performance.now()
 
   private get currentRoute(): Route | null {
     const parent =
@@ -110,7 +114,7 @@ export class PresentationTimer implements IElementTimer {
       window,
       this.interval,
       this.duration,
-      () => new Date().getTime(),
+      () => this.now(),
       () => {
         this.elapsed = this.timer.currentTime.elapsedSeconds
       },

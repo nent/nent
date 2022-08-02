@@ -2,7 +2,7 @@
 
 Data Providers are the underlying data-store for expressions. You can extend your HTML with data from a custom provider by registering it.
 
-> The Data Provider system is a way to normalize data access for use within Data Expressions.
+> ℹ️ Note: The Data Provider system is a way to normalize data access for use within Data Expressions.
 
 ## Register Custom Provider
 

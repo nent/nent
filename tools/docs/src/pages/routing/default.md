@@ -52,5 +52,5 @@
   </n-view>
 </n-views>
 ```
-> **TIP:** Content that should only appear on a route, and not a child route should be inserted using
-> the `slot="content"` attribute.
+> ℹ️ Note: **TIP:** Content that should only appear on a route, and not a child route should be inserted using
+> ℹ️ Note: the `slot="content"` attribute.

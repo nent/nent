@@ -37,7 +37,7 @@ This element supports HTML string interpolation within a child template tag. The
 </n-content-template>
 ```
 
-> This element only supports template interpolation within the **\<template\>** tag.
+> ℹ️ Note: This element only supports template interpolation within the **\<template\>** tag.
 
 
 ### Graphql

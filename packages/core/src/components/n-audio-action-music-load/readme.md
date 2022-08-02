@@ -2,7 +2,7 @@
 
 This component declares audio playback. The [\<n-audio-action-music-load\>](/components/n-audio-action-music-load) element represents audio files and play behaviors. They are sent to the audio player to pre-load or play when the route is active. The player manages them according to their settings.
 
-> See the [audio](/audio) systems documentation for more information.
+> ℹ️ Note: See the [audio](/audio) systems documentation for more information.
 
 ## Usage
 

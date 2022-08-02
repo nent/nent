@@ -24,7 +24,7 @@ For each child element with this attribute, the value of the attribute is evalua
 <any n-show-when='predicate' hidden />
 ```
 
-> To initially hide the element, be sure to include the ‘hidden’ attribute.
+> ℹ️ Note: To initially hide the element, be sure to include the ‘hidden’ attribute.
 
 ## Conditioned Classes: [n-class-when] && [n-class]
 

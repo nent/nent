@@ -22,7 +22,7 @@ The element listens for their click events and acts accordingly.
 </n-data-cookie>
 ```
 
-> The HTML inside the element is shown directly on the banner. Use it to display your terms, privacy policy and explanation for using the cookie.
+> ℹ️ Note: The HTML inside the element is shown directly on the banner. Use it to display your terms, privacy policy and explanation for using the cookie.
 
 Alternatively, you can skip this by including the 'skip-consent' attribute.
 

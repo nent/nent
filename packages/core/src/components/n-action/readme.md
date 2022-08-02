@@ -2,7 +2,7 @@
 
 This element holds am action event and its data to be submitted through [Actions](/actions) bus. The parent tag defines how and when the child actions are submitted through [Actions](/actions). 
 
-> This element does not activate these actions automatically. They need to be activated through script, or by wrapping them in an [\<n-action-activator\>](/components/n-action-activator) tag.
+> ℹ️ This element does not activate these actions automatically. They need to be activated through script, or by wrapping them in an [\<n-action-activator\>](/components/n-action-activator) tag.
 
 
 ## Element
@@ -31,7 +31,7 @@ For most action-argument data, it is easiest to specify them as key-value pairs 
 </n-action>
 ```
 
-> NOTE: If a listener declares an argument using 'camelCase', it should be converted to 'kebab-case' in HTML, (words separated by dashes, all lowercase). It will be converted to 'camelCase' automatically when activated.
+> ℹ️ Note: If a listener declares an argument using 'camelCase', it should be converted to 'kebab-case' in HTML, (words separated by dashes, all lowercase). It will be converted to 'camelCase' automatically when activated.
 
 
 #### Real example
@@ -58,7 +58,7 @@ To add a condition to your actions, add a when attribute to the action element w
 <n-data></n-data>
 ```
 
-> NOTE: You must enable data services, by adding an `n-data` element to the page.
+> ℹ️ Note: You must enable data services, by adding an `n-data` element to the page.
 
 
 #### Real example

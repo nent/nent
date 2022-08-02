@@ -8,7 +8,7 @@ The View element is a child element for the `<n-view>` element for adding a page
 * [Data](/components/n-view/data)
 
 
-> The view element uses the display property in CSS to hide and show based on the route. It is important that any class added does not override this
+> ℹ️ Note: The view element uses the display property in CSS to hide and show based on the route. It is important that any class added does not override this
 
 ### Child Views & Routing
 

@@ -113,7 +113,7 @@ Visit: optional
 Path: /home
 ```
 
-> In this example, the sub-route “choose-favorite” displays a list of choices, each with its own direct links to its corresponding optional sub-routes. If Next() was clicked, the user would return home.
+> ℹ️ Note: In this example, the sub-route “choose-favorite” displays a list of choices, each with its own direct links to its corresponding optional sub-routes. If Next() was clicked, the user would return home.
 
 Now we have sub-routes that won’t automatically be visited if they are optional. They could only be visited by explicit navigation.
 
@@ -123,7 +123,7 @@ The above strategies account for most experience navigation rules, but we are st
 
 Let’s first assume the data context is established and there is a persistent data store providing data to the view engine.
 
-> The data store is left generic on purpose, however, for our purposes, this would be experience data.
+> ℹ️ Note: The data store is left generic on purpose, however, for our purposes, this would be experience data.
 
 We are going to add a new strategy called **When**. The **When** visit strategy informs the navigation system to derive the strategy from the expression contained in the **When** property. The **When** expression evaluates to true or false.
 

@@ -12,7 +12,7 @@ When elements are enabled, this element can use special attributes for real-time
 
 The [\<n-presentation\>](/components/n-presentation) element is always keeping track of time once it is active. As such, you can create timed-based actions using special attributes placed on any child element.
 
-> ℹ️) If a video element is detected, its time is used, allowing pause & play.
+> ℹ️ If a video element is detected, its time is used, allowing pause & play.
 
 ## [n-in-time] & [n-in-class]
 
@@ -22,7 +22,7 @@ This attribute removes the 'hidden' attribute, if present, at the specified time
 <any hidden n-in-time='1' />
 ```
 
-> To initially hide the element, be sure to include the ‘hidden’ attribute.
+> ℹ️ Note: To initially hide the element, be sure to include the ‘hidden’ attribute.
 
 When used with n-in-class, this attribute adds the specified class and removes the 'hidden' attribute, if present, at the specified time in seconds.
 
@@ -38,7 +38,7 @@ This attribute adds the 'hidden' attribute if no n-out-class attribute is presen
 <any n-out-time='1' />
 ```
 
-> ℹ️) To initially hide the element, be sure to include the ‘hidden’ attribute.
+> ℹ️ To initially hide the element, be sure to include the ‘hidden’ attribute.
 
 When used with n-out-class, this attribute adds the specified class and removes the 'hidden' attribute, if present, at the specified time-out seconds.
 

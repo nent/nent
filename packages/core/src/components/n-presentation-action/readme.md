@@ -2,9 +2,28 @@
 
 For use in the `n-presentation` element only. Action activation occurs when the `n-presentation` element reaches a certain time.
 
-
+> ℹ️ Note: This element combines the `n-action-activator` and `n-action` for convenience. It uses the activation strategy `at-time`.
 
 <!-- Auto Generated Below -->
+
+
+## Usage
+
+### Basic
+
+```html
+<n-presentation>
+  <n-video ...>
+  </n-video>
+  <n-presentation-action time="2" 
+    topic="elements"
+    command="add-class" 
+    data-selector="#animation"
+    data-class=".fadeIn">
+  </n-n-presentation-action>
+</n-presentation>
+```
+
 
 
 ## Properties
