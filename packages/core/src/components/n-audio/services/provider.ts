@@ -6,9 +6,18 @@ import {
 } from '../../../services/data/interfaces'
 import { AudioActionListener } from './actions'
 
+/* It listens to the audio listener and emits a `changed` event when the audio listener changes */
 export class AudioDataProvider implements IDataProvider {
   changed: EventEmitter
   listenerSubscription!: () => void
+  /**
+   * A constructor function that takes in an audioListener as a parameter. It then creates a new
+   * EventEmitter and assigns it to the changed property. It then creates a change function that is
+   * debounced and emits a changed event. It then subscribes to the audioListener's changed event and
+   * calls the change function.
+   * @param {AudioActionListener} audioListener - AudioActionListener - this is the service that
+   * listens for changes to the audio data.
+   */
   constructor(private audioListener: AudioActionListener) {
     this.changed = new EventEmitter()
     const change = debounce(
@@ -69,7 +78,10 @@ export class AudioDataProvider implements IDataProvider {
     // do nothing
   }
 
-  destroy() {
+  /**
+   * It destroys the listener subscription.
+   */
+  public destroy() {
     this.listenerSubscription()
   }
 }

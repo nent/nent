@@ -1,5 +1,12 @@
 /* istanbul ignore file */
 
+/**
+ * It attaches an event handler to all elements matching a query selector, but only once per element
+ * @param {HTMLElement} rootElement - The root element to search for the query.
+ * @param {string} query - The query to find the elements.
+ * @param {string} event - The event name, such as "click" or "mouseover".
+ * @param eventHandler - (el: TElement, ev: TEvent) => void
+ */
 export function captureElementsEventOnce<
   TElement extends HTMLElement,
   TEvent extends Event,

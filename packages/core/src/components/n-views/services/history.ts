@@ -20,6 +20,7 @@ import {
 
 const KeyLength = 6
 
+/* It's a wrapper around the browser's history API that emits events when the location changes */
 export class HistoryService {
   events: IEventEmitter
   location: LocationSegments
@@ -44,6 +45,11 @@ export class HistoryService {
     return this.win.history.state || {}
   }
 
+  /**
+   * It returns a location object with the pathname, state, and key properties
+   * @param {any} historyState - any
+   * @returns A location object
+   */
   public getDOMLocation(historyState: any) {
     const { key, state = {} } = historyState || {}
     const { pathname, search, hash } = this.win.location
@@ -62,14 +68,20 @@ export class HistoryService {
     return createLocation(path, state, key || createKey(6))
   }
 
-  handlePop(location: LocationSegments) {
+  private handlePop(location: LocationSegments) {
     if (locationsAreEqual(this.location, location)) {
       return // A hashchange doesn't always == location change.
     }
     this.setState('POP', location)
   }
 
-  push(path: string, state: any = {}) {
+  /**
+   * It pushes a new location to the history stack, and updates the state of the history object
+   * @param {string} path - string
+   * @param {any} state - any = {}
+   * @returns the location object.
+   */
+  public push(path: string, state: any = {}) {
     const action = 'PUSH'
     const location = createLocation(
       path,
@@ -97,7 +109,12 @@ export class HistoryService {
     this.setState(action, location)
   }
 
-  replace(path: string, state: any = {}) {
+  /**
+   * It replaces the current history entry with a new one
+   * @param {string} path - The path of the URL.
+   * @param {any} state - any = {}
+   */
+  public replace(path: string, state: any = {}) {
     const action = 'REPLACE'
 
     const location = createLocation(
@@ -121,11 +138,22 @@ export class HistoryService {
     this.setState(action, location)
   }
 
-  createHref(location: LocationSegments) {
+  /**
+   * It takes a location object and returns a path string
+   * @param {LocationSegments} location - LocationSegments
+   * @returns A string that is the pathname of the location object.
+   */
+  public createHref(location: LocationSegments) {
     return ensureBasename(createPath(location), this.basename)
   }
 
-  setState(action: string, location: LocationSegments) {
+  /**
+   * It captures the scroll position of the current view, then updates the location and scroll position
+   * of the new view
+   * @param {string} action - string
+   * @param {LocationSegments} location - LocationSegments
+   */
+  public setState(action: string, location: LocationSegments) {
     // Capture location for the view before changing history.
     this.scrollHistory.capture(this.location.key)
 
@@ -140,21 +168,37 @@ export class HistoryService {
     this.events.emit(action, this.location)
   }
 
-  go(n: number) {
+  /**
+   * It goes to a specific page in the history
+   * @param {number} n - number - The number of steps to go back or forward in the history.
+   */
+  public go(n: number) {
     this.win.history.go(n)
     this.events.emit('GO', this.location)
   }
 
-  goBack() {
+  /**
+   * It goes back one page in the browser's history, and then emits an event called BACK
+   */
+  public goBack() {
     this.win.history.back()
     this.events.emit('BACK', this.location)
   }
 
-  goForward() {
+  /**
+   * It goes forward in the browser history
+   */
+  public goForward() {
     this.win.history.forward()
     this.events.emit('FORWARD', this.location)
   }
 
+  /**
+   * It takes a listener function as an argument, calls that function with the current location, and
+   * then returns a function that will remove the listener from the event emitter
+   * @param {Listener} listener - Listener
+   * @returns A function that removes the listener from the events object.
+   */
   public listen(listener: Listener) {
     listener(this.location)
     return this.events.on('*', (_a, location) => {
@@ -162,7 +206,10 @@ export class HistoryService {
     })
   }
 
-  destroy() {
+  /**
+   * Destroys history service
+   */
+  public destroy() {
     this.events.removeAllListeners()
   }
 }

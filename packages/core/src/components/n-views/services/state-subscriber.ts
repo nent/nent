@@ -8,9 +8,17 @@ import {
   onRoutingChange,
 } from './state'
 
+/* It subscribes to changes in the routing state and updates the component when the setting changes */
 export class RouteStateSubscriber {
   private subscription?: () => void
   private stateSubscription?: () => void
+  /**
+   * If the router is already set, subscribe to the router events. Otherwise, wait for the router to be
+   * set and then subscribe to the router events
+   * @param {any} component - any - The component that you want to subscribe to.
+   * @param setting - keyof RoutingStateModel
+   * @param [settingFunction] - This is a function that will be called when the setting is changed.
+   */
   constructor(
     private component: any,
     private setting: keyof RoutingStateModel,
@@ -36,6 +44,9 @@ export class RouteStateSubscriber {
     })
   }
 
+  /**
+   * It unsubscribes from the observable.
+   */
   public destroy() {
     this.subscription?.call(this)
     this.stateSubscription?.call(this)

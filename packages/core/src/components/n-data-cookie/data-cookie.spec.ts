@@ -11,7 +11,7 @@ import {
 import { dataStateDispose } from '../../services/data/state'
 import { Action } from '../n-action/action'
 import { Data } from '../n-data/data'
-import { CookieService } from './cookie/service'
+import { CookieService } from './services/cookie'
 import { DataCookie } from './data-cookie'
 
 describe('n-data-cookie', () => {

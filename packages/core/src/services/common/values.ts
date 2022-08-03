@@ -102,7 +102,6 @@ export function getPropertyValue(
  *
  * @returns {Array<any>}
  */
-
 export function valueToArray(any: any): Array<any> {
   return any ? (Array.isArray(any) ? any : [any]) : []
 }

@@ -1,4 +1,4 @@
-### `on-element-event`: Default Element and Event
+### On Element Event
 
 The default activation is OnElementEvent and the default event is click. Also, if no target-element is supplied, it looks for the first element that isn't an action or script and attaches to its event. If no target-event is defined, it assumes 'click'
 

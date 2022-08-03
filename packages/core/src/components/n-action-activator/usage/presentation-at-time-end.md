@@ -1,5 +1,4 @@
-
-
+#### At Time End
 > ℹ️ Note: The `at-time=end` activation-strategy only works when this element is a child of  [`n-presentation`](/components/n-presentation).
 
 ```html

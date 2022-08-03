@@ -1,3 +1,3 @@
 export * from './interfaces'
-export * from './service'
+export * from './cookie'
 export * from './utils'

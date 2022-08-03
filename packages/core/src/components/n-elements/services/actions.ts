@@ -8,13 +8,24 @@ import { debugIf } from '../../../services/common/logging'
 import { commonState } from '../../../services/common/state'
 import { ELEMENTS_COMMANDS, ELEMENTS_TOPIC } from './interfaces'
 
+/* It listens for actions on the `ELEMENTS_TOPIC` topic and executes the corresponding command on the
+element(s) specified by the `selector` property */
 export class ElementsActionListener implements IEventActionListener {
   actionsSubscription!: () => void
   eventBus!: IEventEmitter
   changed: EventEmitter = new EventEmitter()
   private body!: HTMLBodyElement
 
-  initialize(
+  /**
+   * It listens for events on the action bus, and when it receives one, it calls the `commandReceived`
+   * function
+   * @param {Window} win - Window - the window object of the browser
+   * @param {IEventEmitter} actionBus - This is the event bus that the extension listens to for
+   * commands from the extension.
+   * @param {IEventEmitter} eventBus - This is the event bus that the plugin is using to communicate
+   * with the rest of the application.
+   */
+  public initialize(
     win: Window,
     actionBus: IEventEmitter,
     eventBus: IEventEmitter,

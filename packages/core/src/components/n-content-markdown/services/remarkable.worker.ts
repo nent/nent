@@ -12,6 +12,11 @@ const { Remarkable, linkify } = me.remarkable
  */
 let markdown: any = null
 
+/**
+ * It renders markdown to HTML
+ * @param {string} content - The markdown content to render
+ * @returns A promise that resolves to a string or undefined.
+ */
 export async function renderMarkdown(
   content: string,
 ): Promise<string | undefined> {

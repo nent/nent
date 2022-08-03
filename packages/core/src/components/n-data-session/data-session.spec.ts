@@ -8,7 +8,7 @@ import { dataStateDispose } from '../../services/data/state'
 import { Action } from '../n-action/action'
 import { Data } from '../n-data/data'
 import { DataSession } from './data-session'
-import { SessionService } from './session/service'
+import { SessionService } from './services/session'
 
 describe('n-data-session', () => {
   afterEach(() => {

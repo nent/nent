@@ -19,10 +19,20 @@ import {
   SetData,
 } from './interfaces'
 
+/* It listens for actions on the `DATA_TOPIC` topic, and when it receives a
+`DATA_COMMANDS.RegisterDataProvider` command, it registers the provider with the `addDataProvider`
+function */
 export class DataListener implements IEventActionListener {
   private eventBus!: IEventEmitter
   disposeHandles: Array<() => void> = []
 
+  /**
+   * > This function is called when the plugin is initialized. It sets up an event listener for the
+   * `DATA_TOPIC` event on the `actionBus` and calls `handleAction` when the event is emitted
+   * @param {Window} _window - Window - The window object
+   * @param {IEventEmitter} actionBus - This is the event emitter that is used to listen for actions.
+   * @param {IEventEmitter} eventBus - This is the event bus that the plugin will use to emit events.
+   */
   public initialize(
     _window: Window,
     actionBus: IEventEmitter,

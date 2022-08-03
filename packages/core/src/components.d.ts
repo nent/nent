@@ -11,7 +11,7 @@ import { ViewTime } from "./components/n-app-analytics/services";
 import { AudioActionListener } from "./components/n-audio/services/actions";
 import { AudioInfo, AudioRequest } from "./components/n-audio/services/interfaces";
 import { ReferenceCompleteResults } from "./services/content";
-import { CookieConsent } from "./components/n-data-cookie/cookie/interfaces";
+import { CookieConsent } from "./components/n-data-cookie/services/interfaces";
 import { SetData } from "./components/n-data/services/interfaces";
 import { EventAction as EventAction1 } from "./services/actions/interfaces";
 import { ITimer } from "./components/n-presentation/services/interfaces";

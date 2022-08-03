@@ -25,6 +25,9 @@ import {
   TIMER_EVENTS,
 } from './interfaces'
 
+/* It subscribes to the timer's `OnInterval` and `OnEnd` events, and when those events are emitted, it
+activates any `n-action-activator` elements that are configured to activate at that time, and it
+also sends any `n-presentation-action` elements that are configured to send at that time */
 export class PresentationService {
   public timedNodes: TimedNode[] = []
   private intervalSubscription?: () => void
@@ -42,6 +45,15 @@ export class PresentationService {
 
   private activatedActions: any = []
 
+  /**
+   * > This function creates a new instance of the Presentation class
+   * @param {HTMLElement} el - HTMLElement - the element that will be the root of the presentation
+   * @param {ITimer} timeEmitter - ITimer
+   * @param {boolean} [elements=false] - boolean = false
+   * @param {string | null} [analyticsEvent=null] - string | null = null
+   * @param {(() => void) | null} [onEnd=null] - (() => void) | null = null,
+   * @param {boolean} [debug=false] - boolean = false,
+   */
   constructor(
     private el: HTMLElement,
     private timeEmitter: ITimer,
@@ -123,6 +135,9 @@ export class PresentationService {
     this.onEnd?.call(this)
   }
 
+  /**
+   * > The function subscribes to the `timeEmitter` and listens for the `OnInterval` and `OnEnd` events
+   */
   public subscribe() {
     this.intervalSubscription = this.timeEmitter.on(
       TIMER_EVENTS.OnInterval,
@@ -140,6 +155,9 @@ export class PresentationService {
     )
   }
 
+  /**
+   * It unsubscribes from the interval and end subscriptions.
+   */
   public unsubscribe() {
     if (this.elements) {
       restoreElementChildTimedNodes(this.el, this.timedNodes)

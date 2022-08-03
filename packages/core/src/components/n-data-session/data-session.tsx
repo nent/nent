@@ -9,7 +9,7 @@ import {
   removeDataProvider,
 } from '../../services/data/factory'
 import { DATA_COMMANDS, SetData } from '../n-data/services/interfaces'
-import { SessionService } from './session/service'
+import { SessionService } from './services/session'
 
 /**
  * This element enables the **Session Data Provider**.

@@ -6,7 +6,15 @@ import {
 } from '../../../services/data/interfaces'
 import { getCookie, setCookie } from './utils'
 
+/* It's a data provider that uses cookies to store data */
 export class CookieService implements IDataProvider, IDataMutator {
+  /**
+   * A constructor function.
+   * @param {Document} document - The document object.
+   * @param {IEventEmitter} eventBus - IEventEmitter - This is the event bus that the component will
+   * use to communicate with other components.
+   * @param {string} name - The name of the component.
+   */
   constructor(
     private document: Document,
     private eventBus: IEventEmitter,

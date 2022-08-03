@@ -1,3 +1,8 @@
+/**
+ * It checks if the input elements are valid or not.
+ * @param {HTMLElement} rootElement - HTMLElement - The root element to search for inputs.
+ * @returns A boolean value.
+ */
 export function getChildInputValidity(rootElement: HTMLElement) {
   const inputElements = [
     ...Array.from(rootElement.querySelectorAll('input')),

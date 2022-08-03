@@ -3,6 +3,12 @@ import {
   IActionElement,
 } from './interfaces'
 
+/**
+ * Activates action activators
+ * @param actionActivators
+ * @param forEvent
+ * @param [filter]
+ */
 export async function activateActionActivators(
   actionActivators: HTMLNActionActivatorElement[],
   forEvent: ActionActivationStrategy,
@@ -22,6 +28,11 @@ export async function activateActionActivators(
   )
 }
 
+/**
+ * It sends all the actions in the array that pass the filter function
+ * @param {IActionElement[]} actions - An array of IActionElement objects.
+ * @param filter - (action: IActionElement | any) => boolean = _a => true,
+ */
 export async function sendActions(
   actions: IActionElement[],
   filter: (action: IActionElement | any) => boolean = _a => true,

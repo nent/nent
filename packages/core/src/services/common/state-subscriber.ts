@@ -9,6 +9,8 @@ import {
   onCommonStateChange,
 } from './state'
 
+/* It subscribes to an event on the event bus and calls forceUpdate on the component when the event is
+emitted */
 export class CommonStateSubscriber {
   private subscription!: () => void
   private stateSubscription!: () => void
@@ -40,6 +42,9 @@ export class CommonStateSubscriber {
     })
   }
 
+  /**
+   * It unsubscribes from the observable.
+   */
   public destroy() {
     this.subscription?.call(this)
     this.stateSubscription?.call(this)

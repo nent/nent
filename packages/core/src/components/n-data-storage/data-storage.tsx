@@ -9,7 +9,7 @@ import {
   removeDataProvider,
 } from '../../services/data/factory'
 import { DATA_COMMANDS, SetData } from '../n-data/services/interfaces'
-import { StorageService } from './storage/service'
+import { StorageService } from './services/storage'
 
 /**
  * This element enables the **Storage Data Provider**, that

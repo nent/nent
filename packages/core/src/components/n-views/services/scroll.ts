@@ -2,9 +2,16 @@ import { getDataProvider } from '../../../services/data/factory'
 import { IServiceProvider } from '../../../services/data/interfaces'
 
 const RouterScrollKey = 'scrollPositions'
+
+/* It's a class that stores scroll positions in a map and saves them to the session storage */
 export class ScrollHistory {
   scrollPositions: Map<string, [number, number]>
   provider?: IServiceProvider | null
+  /**
+   * We're getting the scroll position from the session storage and setting it to the scrollPositions
+   * variable
+   * @param {Window} win - Window - This is the window object.
+   */
   constructor(private win: Window) {
     this.scrollPositions = new Map<string, [number, number]>()
 

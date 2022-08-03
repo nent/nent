@@ -5,8 +5,17 @@ import {
   IDataProvider,
 } from '../../../services/data/interfaces'
 
+/* It's a wrapper around the localStorage API that emits an event when the data changes */
 export class StorageService implements IDataProvider, IDataMutator {
   private readonly localStorage!: Storage
+  /**
+   * `constructor` is a function that is called when a new instance of the class is created
+   * @param {Window} win - Window - the window object
+   * @param {IEventEmitter} eventBus - This is the event bus that we created in the previous step.
+   * @param {string} name - The name of the provider. This is used to identify the provider when
+   * emitting events.
+   * @param {string} [prefix] - This is the prefix that will be used for all keys in the local storage.
+   */
   constructor(
     win: Window,
     private eventBus: IEventEmitter,

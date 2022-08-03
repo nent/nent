@@ -1,5 +1,22 @@
 import { TimeDetails } from './interfaces'
 
+/**
+ * It takes a start time, a current time, and a duration, and returns an object with the elapsed time,
+ * the percentage of the duration that has elapsed, and whether the duration has ended
+ * @param {number} startTicks - The time in milliseconds when the timer started.
+ * @param {number} timeTicks - The current time in milliseconds.
+ * @param {number} durationMs - The duration of the timer in milliseconds.
+ * @returns An object with the following properties:
+ * hours: number
+ * minutes: number
+ * seconds: number
+ * elapsed: number
+ * elapsedSeconds: number
+ * percentage: number
+ * duration: number
+ * durationSeconds: number
+ * ended: boolean
+ */
 export function getTimeDetails(
   startTicks: number,
   timeTicks: number,

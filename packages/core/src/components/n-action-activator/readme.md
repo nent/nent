@@ -38,7 +38,6 @@ Activation occurs when the parent route is de-activated and the next route is di
 
 Activation occurs when the parent element is displayed.
 
-
 ### `at-time`
 
 Activation occurs when the parent route has been activated for the given time within the **time** attribute.
@@ -47,20 +46,14 @@ Activation occurs when the parent route has been activated for the given time wi
 
 Activation occurs when the presentation ends.
 
-
 <!-- Auto Generated Below -->
 
 
 ## Usage
 
-### Basic / on-render
-
-
-
-
 ### On-element-event
 
-### `on-element-event`: Default Element and Event
+### On Element Event
 
 The default activation is OnElementEvent and the default event is click. Also, if no target-element is supplied, it looks for the first element that isn't an action or script and attaches to its event. If no target-event is defined, it assumes 'click'
 
@@ -78,26 +71,29 @@ The default activation is OnElementEvent and the default event is click. Also, i
 
 ### On-enter
 
-> ℹ️ Note: The `on-exit` activation-strategy only works when this element is a child of  [`n-view`](/components/n-view) or [`n-view-prompt`](/components/n-view-prompt).
+### On Enter
 
 ```html
 <n-view-prompt ...>
-  <n-action-activator activate='OnEnter'>
+  <n-action-activator activate='on-enter'>
     <n-action ...></n-action>
     <n-action ...></n-action>
     <n-action ...></n-action>
   </n-action-activator>
 </n-view-prompt>
 ```
+
+> ℹ️ Note: The `on-enter` activation-strategy only works when this element is a child of  [`n-view`](/components/n-view) or [`n-view-prompt`](/components/n-view-prompt).
 
 
 ### On-exit
 
-> ℹ️ Note: The `on-exit` activation-strategy only works when this element is a child of  [`n-view`](/components/n-view) or [`n-view-prompt`](/components/n-view-prompt).
+### On Exit
+
 
 ```html
 <n-view-prompt ...>
-  <n-action-activator activate='OnExit'>
+  <n-action-activator activate='on-exit'>
     <n-action ...></n-action>
     <n-action ...></n-action>
     <n-action ...></n-action>
@@ -105,10 +101,29 @@ The default activation is OnElementEvent and the default event is click. Also, i
 </n-view-prompt>
 ```
 
+> ℹ️ Note: The `on-exit` activation-strategy only works when this element is a child of  [`n-view`](/components/n-view) or [`n-view-prompt`](/components/n-view-prompt).
+
+
+### On-render
+
+### On Render
+
+This activation-strategy fires as soon as the activator component renders. It can be pulled in through remote templates or added to a page for analytics.
+
+```html
+<n-action-activator activate='on-render'>
+  <n-action ...></n-action>
+  <n-action ...></n-action>
+  <n-action ...></n-action>
+</n-action-activator>
+```
+
+> ℹ️ Note: The `on-exit` activation-strategy only works when this element is a child of  [`n-view`](/components/n-view) or [`n-view-prompt`](/components/n-view-prompt).
+
 
 ### Presentation-at-time
 
-### `at-time`
+### At Time
 
 Activation occurs when the presentation has been playing for the given time within the **time** attribute.
 
@@ -130,6 +145,7 @@ Activation occurs when the presentation has been playing for the given time with
 
 ### Presentation-at-time-end
 
+#### At Time End
 > ℹ️ Note: The `at-time=end` activation-strategy only works when this element is a child of  [`n-presentation`](/components/n-presentation).
 
 ```html

@@ -1,14 +1,21 @@
 import { actionBus } from '.'
 import { commonState, debugIf, warn } from '../common'
-
 import { EventAction, IActionElement } from './interfaces'
 
+/***
+  It provides a method to get an action object from an action element, and a method to send that
+  action object to the action bus
+***/
 export class ActionService {
   constructor(
     private element: IActionElement,
     private elementName: string,
   ) {}
 
+  /**
+   * It takes the data from the form, resolves any tokens, and returns an event action
+   * @returns An object with a topic, command, and data property.
+   */
   async getAction(): Promise<EventAction<any> | null> {
     if (!this.element.topic) {
       warn(
@@ -85,6 +92,11 @@ export class ActionService {
     }
   }
 
+  /**
+   * It gets the action from the element, if it exists, and if the element is valid, it emits the
+   * action on the action bus
+   * @param [data] - An object containing data to be sent with the action.
+   */
   async sendAction(data?: Record<string, void>): Promise<void> {
     const action = await this.element.getAction()
 

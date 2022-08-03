@@ -18,9 +18,13 @@ import { DataItemProvider } from './providers/item'
 
 const tokenRegEx =
   /\{\{([\w-]*):(\w*)((?:\[\d+\]|\.)[\w.\-\]]+)?(?:\?([\w.-]*))?\}\}/g
-
 const escapeStringsRegex = /['"]?([a-z/][\w-/?.]+)['"]?/gi
 
+/**
+ * If the value is a string, and it contains a token, return true, otherwise return false.
+ * @param {string} value - The string to check for tokens
+ * @returns A boolean value.
+ */
 export function hasToken(value: string) {
   return (value?.match(tokenRegEx)?.length || 0) > 0
 }
