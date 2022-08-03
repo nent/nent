@@ -70,4 +70,4 @@ This tag conditionally renders child elements based on the configured predicate 
 
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

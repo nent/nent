@@ -127,20 +127,20 @@ This activation-strategy fires as soon as the activator component renders. It ca
 
 Activation occurs when the presentation has been playing for the given time within the **time** attribute.
 
-> ℹ️ Note: The `at-time` activation-strategy only works when this element is a child of  [`n-presentation`](/components/n-presentation).
-
 ```html
-
 <n-presentation>
   <n-presentation-timer duration="3">
   </n-presentation-timer>
-  <n-action-activator activate='AtTime' 
+  <n-action-activator 
+    activate='AtTime' 
     time='3'>
     <n-action ...></n-action>
     <n-action ...></n-action>
   </n-action-activator>
 </n-presentation>
 ```
+
+> ℹ️ Note: The `at-time` activation-strategy only works when this element is a child of  [`n-presentation`](/components/n-presentation).
 
 
 ### Presentation-at-time-end
@@ -191,4 +191,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

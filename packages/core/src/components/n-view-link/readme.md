@@ -41,6 +41,23 @@ To create a link to a route, simply use the route in the `href` attribute.
 | `validate`          | `validate`     | Validates any current-route inputs before navigating. Disables navigation if any inputs are invalid. | `boolean`             | `false`     |
 
 
+## Dependencies
+
+### Used by
+
+ - [n-view-link-back](../n-view-link-back)
+ - [n-view-link-list](../n-view-link-list)
+ - [n-view-link-next](../n-view-link-next)
+
+### Graph
+```mermaid
+graph TD;
+  n-view-link-back --> n-view-link
+  n-view-link-list --> n-view-link
+  n-view-link-next --> n-view-link
+  style n-view-link fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

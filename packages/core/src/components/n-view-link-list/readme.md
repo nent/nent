@@ -62,6 +62,19 @@ A menu that displays the current route's child routes.
 | `mode`        | `mode`         | The display mode for which routes to display.           | `"children"`, `"parents"`, `"siblings"` | `'parents'` |
 
 
+## Dependencies
+
+### Depends on
+
+- [n-view-link](../n-view-link)
+
+### Graph
+```mermaid
+graph TD;
+  n-view-link-list --> n-view-link
+  style n-view-link-list fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

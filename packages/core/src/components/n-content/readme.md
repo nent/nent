@@ -68,4 +68,4 @@ This component should surround the inner-content of a remote HTML file that can 
 
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

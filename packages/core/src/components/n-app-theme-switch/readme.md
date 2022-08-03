@@ -25,4 +25,4 @@ Add the `<n-app-theme-switch>` element to any page to allow the user to adjust t
 
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

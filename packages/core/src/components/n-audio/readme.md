@@ -86,6 +86,19 @@ This player can be configured to display or remain hidden. When displayed, it sh
 | `howlerVersion` | `howler-version` | The Howler.js Script Reference                                                                              | `string`                           | `'2.2.3'`   |
 
 
+## Dependencies
+
+### Depends on
+
+- [n-content-reference](../n-content-reference)
+
+### Graph
+```mermaid
+graph TD;
+  n-audio --> n-content-reference
+  style n-audio fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

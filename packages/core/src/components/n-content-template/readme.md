@@ -127,4 +127,4 @@ You can provide the data to use for this element directly in-line using a inner 
 
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

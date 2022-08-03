@@ -64,4 +64,4 @@ Additionally, this element is required to add external elements that need to be 
 
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

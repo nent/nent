@@ -149,6 +149,19 @@ Type: `Promise<void>`
 
 
 
+## Dependencies
+
+### Used by
+
+ - [n-audio](../n-audio)
+
+### Graph
+```mermaid
+graph TD;
+  n-audio --> n-content-reference
+  style n-content-reference fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

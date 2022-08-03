@@ -37,6 +37,19 @@ The link will wrap whatever HTML you include between the tags.
 | `text`      | `text`       | The link text                       | `string`, `undefined` | `undefined` |
 
 
+## Dependencies
+
+### Depends on
+
+- [n-view-link](../n-view-link)
+
+### Graph
+```mermaid
+graph TD;
+  n-view-link-next --> n-view-link
+  style n-view-link-next fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]

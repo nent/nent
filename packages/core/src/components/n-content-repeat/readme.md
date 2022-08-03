@@ -109,4 +109,4 @@ The `items` attribute can be any array-string or an [expression](/data/expressio
 
 ----------------------------------------------
 
-NENT 2022 - all rights reserved
+NENT v0.10.6 - Copyright 2022 [all rights reserved]
