@@ -104,4 +104,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           HUSKY_BYPASS: true
-
+      #- name: publish vscode extension
+      #  run: |
+      #    yarn vscode install
+      #    yarn vscode publish

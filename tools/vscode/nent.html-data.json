@@ -579,6 +579,24 @@
       ]
     },
     {
+      "name": "n-content",
+      "description": {
+        "kind": "markdown",
+        "value": "This component should surround the inner-content of a remote HTML file that can be prioritized during SPA navigation."
+      },
+      "attributes": [],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-content"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-content"
+        }
+      ]
+    },
+    {
       "name": "n-content-include",
       "description": {
         "kind": "markdown",
@@ -588,6 +606,10 @@
         {
           "name": "defer-load",
           "description": "If set, disables auto-rendering of this instance.\nTo fetch the contents change to false or remove\nattribute."
+        },
+        {
+          "name": "json",
+          "description": "The JSONata expression to select the HTML from a json response.\nsee <https://try.jsonata.org> for more info."
         },
         {
           "name": "mode",
@@ -641,6 +663,10 @@
         {
           "name": "defer-load",
           "description": "If set, disables auto-rendering of this instance.\nTo fetch the contents change to false or remove\nattribute."
+        },
+        {
+          "name": "json",
+          "description": "The JSONata expression to select the markdown from a json response.\nsee <https://try.jsonata.org> for more info."
         },
         {
           "name": "mode",
@@ -876,6 +902,10 @@
         {
           "name": "filter",
           "description": "The JSONata query to filter the json items\nsee <https://try.jsonata.org> for more info."
+        },
+        {
+          "name": "graphql",
+          "description": "When declared, the child script tag is required and should be\nthe query text for the request. Also, this forces the HTTP\nmethod to 'POST'."
         },
         {
           "name": "mode",
@@ -1296,6 +1326,24 @@
           "description": "The keywords to add to the keywords meta-tag for this view."
         },
         {
+          "name": "page-robots",
+          "description": "The robots instruction for search indexing",
+          "values": [
+            {
+              "name": "all"
+            },
+            {
+              "name": "nofollow"
+            },
+            {
+              "name": "noindex"
+            },
+            {
+              "name": "none"
+            }
+          ]
+        },
+        {
           "name": "page-title",
           "description": "The title for this view. This is prefixed\nbefore the app title configured in n-views"
         },
@@ -1328,6 +1376,41 @@
         {
           "name": "Source",
           "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-view"
+        }
+      ]
+    },
+    {
+      "name": "n-view-detect",
+      "description": {
+        "kind": "markdown",
+        "value": "Hide or show content based on the active route."
+      },
+      "attributes": [
+        {
+          "name": "exact",
+          "description": "Only active on the exact href match,\nand not on child routes"
+        },
+        {
+          "name": "route",
+          "description": "The route that will toggle the active slot of this component"
+        },
+        {
+          "name": "route-match",
+          "description": "Optional Regex value to route match on"
+        },
+        {
+          "name": "strict",
+          "description": "Only active on the exact href match\nusing every aspect of the URL including\nparameters."
+        }
+      ],
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://nent.dev/components/n-view-detect"
+        },
+        {
+          "name": "Source",
+          "url": "https://github.com/nent/nent/tree/main/packages/core/src/components/n-view-detect"
         }
       ]
     },
@@ -1567,6 +1650,24 @@
           "description": "The keywords to add to the keywords meta-tag for this view."
         },
         {
+          "name": "page-robots",
+          "description": "The robots instruction for search indexing",
+          "values": [
+            {
+              "name": "all"
+            },
+            {
+              "name": "nofollow"
+            },
+            {
+              "name": "noindex"
+            },
+            {
+              "name": "none"
+            }
+          ]
+        },
+        {
           "name": "page-title",
           "description": "The title for this view. This is prefixed\nbefore the app title configured in n-views"
         },
@@ -1624,6 +1725,14 @@
         "value": "The root element is the base container for the view-engine and its\nchild elements. This element should contain root-level HTML that\nis global to every view along with \\<n-view\\>\nelements placed within any global-html."
       },
       "attributes": [
+        {
+          "name": "debug",
+          "description": "Turn on debugging to get helpful messages from the\napp, routing, data and action systems."
+        },
+        {
+          "name": "not-found",
+          "description": "Enable the not-found display.\nTo customize it, use:\nslot=\"not-found\""
+        },
         {
           "name": "root",
           "description": "This is the root path that the actual page is,\nif it isn't '/', then the router needs to know\nwhere to begin creating paths."

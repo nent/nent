@@ -100,8 +100,8 @@
     "youtube"
   ],
   "editor.codeActionsOnSave": {
-    "source.fixAll.markdownlint": false,
-    "source.organizeImports": false,
+    "source.fixAll.markdownlint": true,
+    "source.organizeImports": true,
     "source.fixAll.eslint": true
   },
   "[markdown]": {
@@ -111,7 +111,8 @@
       "strings": "on",
       "other": "on"
     },
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
   },
   "[typescript]": {
     "editor.formatOnSave": true,
@@ -317,12 +318,6 @@
   ],
   "commit-message-editor.view.saveAndClose": true,
   "html.format.wrapLineLength": 80,
-  "peacock.color": "#ae9ae4",
-  "jest.jestCommandLine": "node_modules/.bin/jest",
-  "jest.autoRun": {
-    "watch": false,
-    "onSave": "test-src-file"
-  },
   "testExplorer.gutterDecoration": true,
   "debug.allowBreakpointsEverywhere": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
@@ -330,10 +325,9 @@
   "stencilTools.component.alphabetizeImports": true,
   "typescript.format.enable": true,
   "jestrunner.jestPath": "${workFolder}/node_modules/.bin/jest",
-  "jestrunner.projectPath": "${workFolder}/packages/core",
-  "jestrunner.enableYarnPnpSupport": true,
-  "jestTestExplorer.pathToJest": "/usr/local/share/npm-global/bin/jest",
+  "jestTestExplorer.pathToJest": "${workFolder}/node_modules/.bin/jest",
   "jestTestExplorer.debugOutput": "internalConsole",
-  "jestTestExplorer.flattenExplorer": false,
-  "eslint.format.enable": true
+  "jestTestExplorer.flattenExplorer": false
+
+
 }

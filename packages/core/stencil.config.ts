@@ -36,13 +36,13 @@ const config: Config = {
     },
     {
       type: 'docs-readme',
-      footer: `NENT 2022 - all rights reserved`,
-      dependencies: false,
+      footer: `NENT v${version} - Copyright 2022 [all rights reserved]`,
+      dependencies: true,
       strict: true,
     },
     {
       type: 'docs-vscode',
-      file: 'dist/custom-elements.json',
+      file: 'dist/nent.html-data.json',
     },
     {
       type: 'docs-custom',

@@ -30,13 +30,13 @@
     "start:docs": "yarn workspace @nent/docs run start",
     "start:docs:sw": "yarn build && yarn serve",
     ":vscode  ---": "---------------",
-    "build:vscode": "cd tools/vscode && npm run build",
-    "publish:vscode": "cd tools/vscode && npm run publish",
+    "vscode:build": "yarn workspace nent run build",
+    "vscode:deploy": "yarn workspace nent run deploy",
     ":test ---": "---------------",
     "test": "yarn workspace @nent/core run test",
     ":lint ---": "---------------",
-    "lint": "eslint --ext .tsx,.ts packages/core/src/**",
-    "format": "eslint --ext .tsx,.ts --fix packages/core/src/** >/dev/null 2>&1 || true",
+    "lint": "eslint --ext .tsx,.ts,.md packages/core/src/**",
+    "format": "eslint --ext .tsx,.ts,.md --fix packages/core/src/** >/dev/null 2>&1 || true",
     ":docker ---": "---------------",
     "docker": "run-s build docker:build docker:push",
     "docker:build": "docker build -t nent/nent-docs .",
@@ -65,6 +65,7 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "17.0.3",
+    "@octokit/core": "4.0.4",
     "@popperjs/core": "2.11.5",
     "@stencil/core": "^2.17.2",
     "@stencil/eslint-plugin": "^0.4.0",
@@ -82,19 +83,20 @@
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
+    "eslint-plugin-markdownlint": "^0.4.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.30.1",
+    "gh-release": "^6.0.4",
     "glob-parent": "6.0.2",
     "husky": "8.0.1",
     "jest": "27.0.3",
     "jest-cli": "27.5.1",
     "lerna": "5.3.0",
+    "markdownlint": "^0.26.1",
     "normalize-url": "7.0.3",
     "npm-run-all": "4.1.5",
     "npm-watch": "0.11.0",
     "onchange": "7.1.0",
-    "@octokit/core": "4.0.4",
-    "gh-release": "^6.0.4",
     "pinst": "3.0.0",
     "prettier": "2.7.1",
     "prettier-eslint": "^15.0.1",
@@ -121,7 +123,5 @@
     "tools/docs",
     "tools/vscode"
   ],
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }

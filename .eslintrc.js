@@ -44,4 +44,11 @@ module.exports = {
     ],
   },
   ignorePatterns: ['__mocks__'],
+  overrides: [
+    {
+      files: ['*.md'],
+      parser: 'eslint-plugin-markdownlint/parser',
+      extends: ['plugin:markdownlint/recommended'],
+    },
+  ],
 }

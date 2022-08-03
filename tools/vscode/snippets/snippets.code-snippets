@@ -6,7 +6,7 @@
       "   src=\"https://cdn.jsdelivr.net/npm/@nent/core/dist/nent/nent.esm.js\">",
 			"</script>"
 		],
-		"description": "NENT Content Markdown Element"
+		"description": "NENT Script Reference"
 	},
   "NENT Content Markdown": {
 		"prefix": "n-cm",
@@ -22,14 +22,14 @@
   "NENT Views Router": {
 		"prefix": "n-vs",
 		"body": [
-			"<n-views start-path=\"$2\" app-title=\"$1\">",
+			"<n-views start-path=\"$2\">",
       "   <n-view path=\"$2\" page-title=\"$3\">",
       "     <div slot=\"content\">",
       "     </div>",
       "   </n-view>",
       "</n-views>",
 		],
-		"description": "NENT View Link element"
+		"description": "NENT View router"
 	},
   "NENT Views Route": {
 		"prefix": "n-v",
@@ -40,7 +40,7 @@
       "  </div>",
       "</n-view>",
 		],
-		"description": "NENT View Link element"
+		"description": "NENT View element"
 	},
 	"NENT View-Link": {
 		"prefix": "n-vl",
@@ -54,11 +54,20 @@
   "NENT View Link Next": {
 		"prefix": "n-vln",
 		"body": [
-			"<n-view-link path=\"$1\" active-class=\"\">",
+			"<n-view-link-next active-class=\"\">",
       "  $2",
-      "</n-view-link>",
+      "</n-view-link-next>",
 		],
-		"description": "NENT View Link element"
+		"description": "NENT View Link Next element"
+	},
+  "NENT View Link Back": {
+		"prefix": "n-vlb",
+		"body": [
+			"<n-view-link-back active-class=\"\">",
+      "  $2",
+      "</n-view-link-back>",
+		],
+		"description": "NENT View Link Back element"
 	},
   "NENT View-Link-List": {
 		"prefix": "n-vll",
@@ -66,7 +75,7 @@
 			"<n-view-link-list mode=\"$1\">",
       "</n-view-link-list>",
 		],
-		"description": "NENT View Link element"
+		"description": "NENT View Link Listelement"
 	},
   "NENT App Simple": {
 		"prefix": "n-app",
