@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth text-black font-sans text-base relative -z-20">
+
+<head class="text-black font-sans text-base">
+  <meta charset="utf-8">
+
+  <title>
+    {{ .Page.Title }} | {{ .Site.Title }}
+  </title>
+
+  <meta name="description" content="{{ .Params.description }}">
+
+  {{ partial "head" . }}
+  {{ partialCached "css" . }}
+</head>
+
+<body class="overflow-x-hidden max-w-screen md:min-h-screen relative">
+
+  {{- block "header" . -}}
+    {{- partial "nav" . -}}
+  {{- end -}}
+
+  {{- block "main" . }}
+  {{- end }}
+
+  {{- block "footer" . -}}
+    {{ partial "footer" . }}
+  {{- end -}}
+</body>
+
+</html>

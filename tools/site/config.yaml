@@ -1,0 +1,19 @@
+baseURL: http://example.org
+languageCode: en-us
+title: NENT - HTML-Only Applications
+publishDir: ./www
+disableHugoGeneratorInject: true
+enableInlineShortcodes: true
+sectionPagesMenu: true
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    renderer:
+      unsafe: true
+
+
+
+params:
+  fontUrl: "https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap"
+  nentRoot: "https://cdn.jsdelivr.net/npm/@nent/core/dist/nent"
+

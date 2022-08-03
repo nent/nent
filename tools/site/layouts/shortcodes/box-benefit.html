@@ -1,0 +1,10 @@
+{{- $src := .Get "src" -}}
+{{- $name := .Get "name" -}}
+
+<div class="contents">
+  <div class="text-center max-w-80 h-full p-6">
+    <img width="100" height="100" src="{{$src}}" alt="{{$name}}" class="mx-auto" loading="lazy">
+    <h4 class="font-bold mt-6 text-center">{{$name}}</h4>
+    {{ .Inner }}
+  </div>
+</div>

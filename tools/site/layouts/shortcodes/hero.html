@@ -1,0 +1,12 @@
+{{- $heading1 := .Get "heading1" -}}
+{{- $heading2 := .Get "heading2" -}}
+{{- $subheading := .Get "subheading" -}}
+
+<div class="container py-32 mx-auto text-center sm:px-4">
+  <h1 class="text-4xl font-extrabold leading-10 tracking-tight text-white sm:text-5xl sm:leading-none md:text-6xl xl:text-7xl">
+    <span class="block">{{ $heading1 }}</span>
+    <span class="relative inline-block mt-3 text-white">{{ $heading2}}</span></h1>
+  <div class="max-w-lg mx-auto mt-6 text-sm text-center text-indigo-200 md:mt-12 sm:text-base md:max-w-xl md:text-lg xl:text-xl">
+    {{$subheading}}</div>
+  {{ .Inner }}
+</div>

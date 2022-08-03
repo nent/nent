@@ -1,0 +1,10 @@
+
+{{- $bgColor := default  "bg-white" (.Get "bgColor") -}}
+{{- $color := default "text-black" (.Get "color")  -}}
+{{- $align := default "text-center" (.Get "align")  -}}
+
+<section class="w-full p-3 antialiased lg:p-6 {{ $bgColor}} {{ $color }}">
+  <div class="container max-w-6xl mx-auto {{ $align }}">
+  {{ .Inner }}
+  </div>
+</section>

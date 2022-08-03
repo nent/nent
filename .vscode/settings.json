@@ -327,7 +327,27 @@
   "jestrunner.jestPath": "${workFolder}/node_modules/.bin/jest",
   "jestTestExplorer.pathToJest": "${workFolder}/node_modules/.bin/jest",
   "jestTestExplorer.debugOutput": "internalConsole",
-  "jestTestExplorer.flattenExplorer": false
+  "jestTestExplorer.flattenExplorer": false,
+  "html.format.enable": false,
+  "colorInfo.languages": [
+
+    {
+      "selector": "css",
+      "colors": "css"
+    },
+    {
+      "selector": "sass",
+      "colors": "css"
+    },
+    {
+      "selector": "scss",
+      "colors": "css"
+    },
+    {
+      "selector": "less",
+      "colors": "css"
+    }
+  ]
 
 
 }

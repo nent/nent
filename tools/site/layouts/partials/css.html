@@ -1,0 +1,14 @@
+<!-- Styles -->
+{{- $fontUrl := .Site.Params.fontUrl -}}
+<link rel="preload" href="{{ $fontUrl }}" as="stylesheet" />
+{{ $styles := resources.Get "main.css" }}
+{{ $styles = $styles | resources.PostCSS }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{{ $fontUrl }}" >
+
+{{- with $styles -}}
+  <style>{{- .Content | safeCSS -}}</style>
+{{- end -}}
+
+

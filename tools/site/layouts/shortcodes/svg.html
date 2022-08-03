@@ -1,0 +1,6 @@
+{{ $name := .Get "name" }}
+{{ $class := print $name "-icon" }}
+{{ $src := printf "/svgs/%s.svg" $name }}
+
+{{ $image := printf "![%s](%s “%s”)" $name $src $class }}
+{{ $image | markdownify | safeHTML }}

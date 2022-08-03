@@ -1,0 +1,57 @@
+{{/* Original code from: https://laurakalbag.com/processing-responsive-images-with-hugo/ */}}
+{{/* Just modified a bit to work with render_image hook and output webp images */}}
+{{/* get file that matches the filename as specified as src="" */}}
+{{ $src := resources.Get (printf "%s" (.Destination | safeURL)) }}
+{{ $alt := .PlainText | safeHTML }}
+{{ $class := .Title | safeHTML }}
+
+{{/* So for posts that aren't setup in the page bundles, it doesn't fail */}}
+{{ if $src }}
+
+
+{{ $tinyWebP := default "500x webp" }}
+{{ $smallWebP := default "800x webp" }}
+{{ $mediumWebP := default "1200x webp" }}
+{{ $largeWebP := default "1500x webp" }}
+{{ $blurWebP := default "500x webp q10" }}
+
+{{/* resize the src image to the given sizes */}}
+{{/* We create a a temp scratch because it's not available in this context */}}
+{{ $data := newScratch }}
+{{ $data.Set "tiny" ($src.Resize $tinyWebP) }}
+{{ $data.Set "small" ($src.Resize $smallWebP) }}
+{{ $data.Set "medium" ($src.Resize $mediumWebP) }}
+{{ $data.Set "large" ($src.Resize $largeWebP) }}
+{{ $data.Set "blur" ($src.Resize $blurWebP ) }}
+
+{{/* add the processed images to the scratch */}}
+
+{{ $tiny := $data.Get "tiny" }}
+{{ $small := $data.Get "small" }}
+{{ $medium := $data.Get "medium" }}
+{{ $large := $data.Get "large" }}
+{{ $blur := $data.Get "blur" }}
+
+<a href="{{ $src.RelPermalink }}">
+  <picture>
+
+    <source media="(max-width: 376px)" srcset="{{with $tiny.RelPermalink }}{{.}}{{ end }}">
+
+    <source media="(max-width: 992px)" srcset="{{with $small.RelPermalink }}{{.}}{{ end }}">
+
+    <source media="(max-width: 1400px)" srcset="{{with $medium.RelPermalink }}{{.}}{{ end }}">
+
+    <source media="(min-width: 1400px)" srcset="{{with $large.RelPermalink }}{{.}}{{ end }}">
+
+    <img alt="{{ $alt }}" title="{{ $alt}}" class="{{ $class }}"
+      src="data:image/webp;base64,{{ $blur.Content | base64Encode }}" height="{{ $src.Height }}"
+      data-srcset="{{ $small.RelPermalink }} 376w, {{ $medium.RelPermalink }} 992w, {{ $large.RelPermalink }} 1400w"
+      width="{{ $src.Width }}" loading="lazy">
+
+  </picture>
+</a>
+
+{{/* Since I do image-response class, the only thing that really
+matters is the height and width matches the image aspect ratio */}}
+
+{{ end }}

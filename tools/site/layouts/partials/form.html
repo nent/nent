@@ -1,0 +1,75 @@
+{{ $program := .Page.Params.programCode }}
+{{ $storyUrl := $.Site.Params.storyUrl }}
+{{- $phoneNumber := $.Site.Data.global.phoneNumber -}}
+
+
+<h2 class="font-normal mb-4 lg:text-center text-2xl max-w-[25rem] mx-auto">Want to learn more about Hilbert <br> College
+  Global's
+  programs?</h2>
+<dxp-detect-event dxp-event="sent-lead">
+  <dxp-form append-data redirect-url="{{$storyUrl}}" slot="waiting" class="lg:text-center">
+    <dxp-action command="set-event" data-key="sent-lead"></dxp-action>
+    <dxp-action command="set-complete"></dxp-action>
+    <h3 class="font-body text-xl font-normal max-w-[35rem] mx-auto">Fill out the form below, and an admissions
+      representative will reach out
+      to you
+      via email or phone with more information.
+    </h3>
+    <div class="hide-labels max-w-[30rem] mx-auto mt-4 flex flex-col gap-2 text-left">
+      <dxp-input input-key="program" label="Program" set-value="{{$program}}"></dxp-input>
+      <dxp-input input-key="firstname" placeholder="First Name" label="First Name"></dxp-input>
+      <dxp-input input-key="lastname" placeholder="Last Name" label="Last Name"></dxp-input>
+      <dxp-input input-key="phone" placeholder="Phone Number" label="Phone"></dxp-input>
+      <dxp-input input-key="email" placeholder="Email Address" label="Email"></dxp-input>
+      <dxp-input input-key="zip" placeholder="Zip Code" label="Zip Code"></dxp-input>
+    </div>
+
+    <div class="text-center p-6">
+      <button type="submit" class="primary-button px-24 py-4 max-w-fit">
+        REQUEST INFO
+      </button>
+
+    </div>
+
+    <p class="text-center font-base">or call <a href="tel:{{$phoneNumber}}">{{$phoneNumber}}</a></p>
+
+    <p class="max-w-[500px] mx-auto text-gray-500 text-xs italics text-justify">
+      By submitting this form, I am providing my digital signature agreeing that Hilbert College may email me or contact
+      me regarding educational services by telephone and/or text message utilizing automated technology at the telephone
+      number(s) provided above. I understand this consent is not a condition to attend Hilbert College or to purchase
+      any other goods or services.</p>
+
+  </dxp-form>
+
+  <div slot="occurred">
+    <h2 id="form-h2-thankyou" class="text-primary">Thank you for your interest!</h2>
+    <h3 class=" text-2xl font-normal">Call now to speak with one of our career success advisors.</h3>
+    <h4 class=" align-center text-5xl mt-4">
+      <a href="tel:{{$phoneNumber}}">{{$phoneNumber}}</a>
+    </h4>
+
+  </div>
+</dxp-detect-event>
+
+<script>
+
+  document.body.addEventListener('dxp:initialized', e => {
+    window.experience = e.detail
+  })
+
+  let count = 0
+  const funcAttach = () => {
+    setTimeout(() => {
+      count++
+      var program = document.querySelector('dxp-input[input-key=program] sl-select')
+      if (program == null) {
+        if (count < 20) funcAttach()
+        return
+      }
+      program.addEventListener('sl-change', async () => {
+        window.experience.setData('ocid', program.value)
+      })
+    }, 500)
+  }
+  funcAttach()
+</script>
