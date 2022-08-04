@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.7](https://github.com/nent/nent/compare/v0.10.6...v0.10.7) (2022-08-04)
+
+
+### Bug Fixes
+
+* **🔧:** update to the vscode extension ([9704676](https://github.com/nent/nent/commit/970467632aa489a02a1260033d1a2220aceabc7f))
+
+
+### Reverts
+
+* **🔙:** removed 'not found' title change ([d164c96](https://github.com/nent/nent/commit/d164c967e4f7f4745e698d6be4418b90a2bc8b5c))
+
+
+
+
+
 ## [0.10.6](https://github.com/nent/nent/compare/v0.10.5...v0.10.6) (2022-08-02)
 
 
