@@ -197,12 +197,12 @@ export class RouterService {
    * If the route is not found, set the page title to "Not found" and the robots meta tag to "nofollow"
    */
   private allRoutesComplete() {
-    if (!this.hasExactRoute()) {
-      this.setPageTags({
-        title: 'Not found',
-        robots: 'nofollow',
-      })
-    }
+    //if (!this.hasExactRoute()) {
+    //  this.setPageTags({
+    //    title: 'Not found',
+    //    robots: 'nofollow',
+    //  })
+    //}
     this.listener.notifyRouteFinalized(this.location)
   }
 
