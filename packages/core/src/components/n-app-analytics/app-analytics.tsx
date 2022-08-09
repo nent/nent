@@ -17,7 +17,7 @@ import { AnalyticsActionListener } from './services/actions'
  */
 @Component({
   tag: 'n-app-analytics',
-  shadow: true,
+  shadow: false,
 })
 export class Analytics {
   private listener!: AnalyticsActionListener
