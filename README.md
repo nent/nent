@@ -8,6 +8,7 @@
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/@nent/core/badge)](https://www.jsdelivr.com/package/npm/@nent/core)
 [![codacy](https://app.codacy.com/project/badge/Grade/8e52f7ee9e654e87bd569b83f79578f4)](https://www.codacy.com/gh/nent/nent/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nent/nent&amp;utm_campaign=Badge_Grade)
 [![coverage](https://github.com/nent/nent/actions/workflows/main.yml/badge.svg)](https://github.com/nent/nent/actions/workflows/main.yml)
+[![open-collective](https://opencollective.com/nent/tiers/badge.svg)](https://opencollective.com/nent)
 
 ![NENT](https://files.nent.dev/assets/logo-white-bg.png)
 
