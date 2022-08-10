@@ -58,4 +58,4 @@ The example sets an offset for scrolling, a global page transition and has a non
 
 ----------------------------------------------
 
-NENT v0.10.6 - Copyright 2022 [all rights reserved]
+NENT v0.10.8 - Copyright 2022 [all rights reserved]

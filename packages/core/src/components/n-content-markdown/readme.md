@@ -96,4 +96,4 @@ Or, just include it in one of the [`n-view`](/components/n-view) or [`n-view-pro
 
 ----------------------------------------------
 
-NENT v0.10.6 - Copyright 2022 [all rights reserved]
+NENT v0.10.8 - Copyright 2022 [all rights reserved]

@@ -81,4 +81,4 @@ Add the `<n-video-switch>` element to any page to allow the user to adjust the a
 
 ----------------------------------------------
 
-NENT v0.10.6 - Copyright 2022 [all rights reserved]
+NENT v0.10.8 - Copyright 2022 [all rights reserved]
