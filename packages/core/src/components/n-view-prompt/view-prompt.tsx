@@ -4,10 +4,9 @@ import {
   h,
   Host,
   Prop,
-  State
+  State,
 } from '@stencil/core'
-import { eventBus } from '../../services/actions'
-import { ComponentRefresher, slugify } from '../../services/common'
+import { CommonStateSubscriber, slugify } from '../../services/common'
 import { debugIf, warn } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
 import { replaceHtmlInElement } from '../../services/content/elements'
@@ -36,10 +35,11 @@ import { routingState } from '../n-views/services/state'
   shadow: true,
 })
 export class ViewPrompt implements IView {
-  private dataSubscription!: ComponentRefresher
+  private dataSubscription!: CommonStateSubscriber
 
   @Element() el!: HTMLNViewPromptElement
   @State() match: MatchResults | null = null
+  @State() exactMatch = false
   @State() contentElement: HTMLElement | null = null
   private contentKey!: string
 
@@ -52,6 +52,24 @@ export class ViewPrompt implements IView {
    *
    */
   @Prop() pageTitle = ''
+
+  /**
+   * The page description for this view.
+   *
+   */
+  @Prop() pageDescription = ''
+
+  /**
+   * The keywords to add to the keywords meta-tag for this view.
+   *
+   */
+  @Prop() pageKeywords = ''
+
+  /**
+   * The robots instruction for search indexing
+   *
+   */
+  @Prop() pageRobots: 'all' | 'noindex' | 'nofollow' | 'none' = 'none'
 
   /**
    * Header height or offset for scroll-top on this
@@ -118,6 +136,11 @@ export class ViewPrompt implements IView {
   @Prop() resolveTokens: boolean = false
 
   /**
+   * Force render with data & route changes.
+   */
+  @Prop() noCache: boolean = false
+
+  /**
    * To debug timed elements, set this value to true.
    */
   @Prop() debug = false
@@ -150,14 +173,14 @@ export class ViewPrompt implements IView {
       this.el,
       this.parentView,
       (match: MatchResults | null) => {
-        this.match = match ? { ...match } : null
+        this.match = match ? ({ ...match } as MatchResults) : null
+        this.exactMatch = match?.isExact || false
       },
     )
 
     if (commonState.dataEnabled && this.resolveTokens) {
-      this.dataSubscription = new ComponentRefresher(
+      this.dataSubscription = new CommonStateSubscriber(
         this,
-        eventBus,
         'dataEnabled',
         DATA_EVENTS.DataChanged,
       )
@@ -168,7 +191,7 @@ export class ViewPrompt implements IView {
     debugIf(this.debug, `n-view-prompt: ${this.path} will render`)
 
     if (this.match?.isExact) {
-      debugIf(this.debug, `n-view-prompt: ${this.path} on-enter`)
+      debugIf(this.debug, `n-view-prompt: ${this.path} matched exact`)
       if (this.contentSrc && this.contentElement == null)
         this.contentElement = await resolveRemoteContentElement(
           window,
@@ -179,9 +202,6 @@ export class ViewPrompt implements IView {
           'content',
         )
       await recordVisit(this.visit as VisitStrategy, this.path)
-    } else {
-      // this.contentElement?.remove()
-      this.contentElement = null
     }
   }
 
@@ -192,6 +212,7 @@ export class ViewPrompt implements IView {
       `#${this.contentKey}`,
       this.contentElement,
     )
+
     return (
       <Host hidden={!this.match?.isExact}>
         <slot />
@@ -201,6 +222,10 @@ export class ViewPrompt implements IView {
   }
 
   async componentDidRender() {
+    if (!this.route?.match?.isExact) {
+      this.contentElement?.remove()
+      if (this.noCache) this.contentElement = null
+    }
     await this.route?.loadCompleted()
   }
 

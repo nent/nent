@@ -1,0 +1,48 @@
+<n-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
+  style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
+</n-content-reference>
+<n-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
+</n-content-reference>
+<div class="components d-block d-sm-flex">
+  <ul class="d-none d-sm-flex">
+    <n-content-repeat items-src="/dist/components.json"
+      when="{{route:component}}"
+      no-cache
+      filter="components">
+      <template>
+        <li class="mb-1">
+          <n-view-link path="/components/{{data:tag}}" >
+            {{data:tag}}
+          </n-view-link>
+        </li>
+      </template>
+    </n-content-repeat>
+  </ul>
+  <n-view no-cache
+    exact
+    class="flex-shrink"
+    path="/components/:component"
+    page-title="<{{route:component?Details}}>"
+    content-src="/pages/components/component.html">
+
+  </n-view>
+  <n-view no-cache
+    exact
+    class="flex-shrink"
+    path="/components/:component/:extension"
+    page-title="{{route:extension}}">
+    <div class="content">
+      <n-content-markdown when="{{route:extension}}"
+        src="/pages/components/{{route:component}}/{{route:extension}}.md"
+        class="d-block"
+        lang="html">
+      </n-content-markdown>
+
+    </div>
+
+
+  </n-view>
+
+</div>

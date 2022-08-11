@@ -1,4 +1,5 @@
 jest.mock('../../../services/common/logging')
+jest.mock('../../../services/data/evaluate.worker')
 
 import { MockWindow } from '@stencil/core/mock-doc'
 import { newSpecPage } from '@stencil/core/testing'
@@ -134,7 +135,7 @@ describe('elements-actions:', () => {
 
     const interfaceListener = new ElementsActionListener()
     interfaceListener.initialize(
-      fakeWindow.window,
+      fakeWindow.window as any,
       actionBus,
       eventBus,
     )
@@ -175,7 +176,7 @@ describe('elements-actions:', () => {
 
     const interfaceListener = new ElementsActionListener()
     interfaceListener.initialize(
-      fakeWindow.window,
+      fakeWindow.window as any,
       actionBus,
       eventBus,
     )
@@ -216,7 +217,7 @@ describe('elements-actions:', () => {
 
     const interfaceListener = new ElementsActionListener()
     interfaceListener.initialize(
-      fakeWindow.window,
+      fakeWindow.window as any,
       actionBus,
       eventBus,
     )
@@ -272,7 +273,7 @@ describe('elements-actions:', () => {
 
     const interfaceListener = new ElementsActionListener()
     interfaceListener.initialize(
-      fakeWindow.window,
+      fakeWindow.window as any,
       actionBus,
       eventBus,
     )

@@ -6,12 +6,12 @@ import {
   h,
   Host,
   Listen,
-  Prop
+  Prop,
 } from '@stencil/core'
 import {
   actionBus,
   EventAction,
-  eventBus
+  eventBus,
 } from '../../services/actions'
 import { debugIf, log } from '../../services/common/logging'
 import { commonState } from '../../services/common/state'
@@ -30,7 +30,7 @@ import { AppActionListener } from './services/actions'
  */
 @Component({
   tag: 'n-app',
-  styleUrl: 'app.css',
+  styles: '[n-cloak] { display: inherit; }',
   shadow: false,
 })
 export class App {
@@ -42,10 +42,20 @@ export class App {
 
   /**
    * This is the application / site title.
-   * If the views or dos have titles,
+   * If the views have titles,
    * this is added as a suffix.
    */
   @Prop() appTitle?: string
+
+  /**
+   * This is the application default page description.
+   */
+  @Prop() appDescription?: string
+
+  /**
+   * This is the application default page keywords.
+   */
+  @Prop() appKeywords?: string
 
   /**
    * Turn on debugging to get helpful messages from the
@@ -116,7 +126,7 @@ export class App {
   }
 
   render() {
-    return <Host></Host>
+    return <Host style={{ display: 'block' }}></Host>
   }
 
   componentDidLoad() {

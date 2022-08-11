@@ -1,4 +1,3 @@
-/* eslint-disable clean-regex/no-lazy-ends */
 /**
  * Throws an error if the value parameter is not defined.
  * @param {string} value the value that should not be null
@@ -103,7 +102,6 @@ export function getPropertyValue(
  *
  * @returns {Array<any>}
  */
-
 export function valueToArray(any: any): Array<any> {
   return any ? (Array.isArray(any) ? any : [any]) : []
 }

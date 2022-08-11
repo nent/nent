@@ -1,18 +1,16 @@
 module.exports = {
+  root: true,
   parserOptions: {
-    project: "./tsconfig.json",
-    ecmaVersion: 2017,
+    project: './tsconfig.json',
+    ecmaVersion: 2018,
   },
-  extends: [
-    "plugin:@stencil/recommended",
-    "plugin:clean-regex/recommended"
-  ],
+  extends: ['plugin:@stencil/recommended'],
   settings: {
     react: {
-      "version": "16.7"
-    }
+      version: '16.7',
+    },
   },
-  plugins: ["prettier", "clean-regex"],
+  plugins: ['prettier', '@typescript-eslint'],
   rules: {
     '@stencil/strict-boolean-conditions': 0,
     '@stencil/strict-mutable': 0,
@@ -38,17 +36,19 @@ module.exports = {
     'no-plusplus': 0,
     'class-methods-use-this': 0,
     'no-undef': 0,
-    'prettier/prettier': [1, {
-      'usePrettierRc': true
-    }]
+    'prettier/prettier': [
+      1,
+      {
+        usePrettierRc: true,
+      },
+    ],
   },
+  ignorePatterns: ['__mocks__'],
   overrides: [
     {
-      files: ['**/*.tsx'],
-      rules: {
-        'import/no-extraneous-dependencies': 0,
-      },
+      files: ['*.md'],
+      parser: 'eslint-plugin-markdownlint/parser',
+      extends: ['plugin:markdownlint/recommended'],
     },
   ],
-  ignorePatterns: ['__mocks__'],
 }

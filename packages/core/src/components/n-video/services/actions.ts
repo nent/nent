@@ -6,6 +6,8 @@ import {
   VIDEO_TOPIC,
 } from './interfaces'
 
+/* It listens to the `VIDEO_TOPIC` topic on the `actionBus` and executes the command on the
+`childVideo` element */
 export class VideoActionListener {
   private disposeHandle: () => void
   constructor(
@@ -52,6 +54,13 @@ export class VideoActionListener {
     }
   }
 
+  /**
+   * If the child video exists, set the child video's muted property to the value of the muted
+   * parameter, and if muted is true, emit the Muted event, otherwise emit the Unmuted event
+   * @param {boolean} muted - boolean - true if you want to mute the video, false if you want to unmute
+   * it.
+   * @returns the value of the childVideo.muted property.
+   */
   public mute(muted: boolean) {
     if (!this.childVideo) {
       return
@@ -65,21 +74,34 @@ export class VideoActionListener {
     }
   }
 
+  /**
+   * It plays the video.
+   */
   public async play() {
     await this.childVideo?.play?.call(this)
     this.eventBus.emit(VIDEO_EVENTS.Played)
   }
 
+  /**
+   * If the childVideo object has a pause method, call it
+   */
   public pause() {
     this.childVideo?.pause?.call(this)
     this.eventBus.emit(VIDEO_EVENTS.Paused)
   }
 
+  /**
+   * It resumes the video.
+   */
   public async resume() {
     await this.childVideo?.play?.call(this)
     this.eventBus.emit(VIDEO_EVENTS.Resumed)
   }
 
+  /**
+   * If the `disposeHandle` property is not null, then call the function that it points to, passing in
+   * the current instance of the class
+   */
   destroy() {
     this.disposeHandle?.call(this)
   }

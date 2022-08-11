@@ -5,12 +5,10 @@ import {
   Host,
   Method,
   Prop,
+  State,
 } from '@stencil/core'
-import {
-  actionBus,
-  EventAction,
-  IActionElement,
-} from '../../services/actions'
+import { EventAction, IActionElement } from '../../services/actions'
+import { ActionService } from '../../services/actions/service'
 import { debugIf } from '../../services/common/logging'
 import {
   AudioType,
@@ -35,12 +33,30 @@ import {
 })
 export class AudioMusicAction implements IActionElement {
   @Element() el!: HTMLNAudioActionMusicElement
+  @State() valid: boolean = true
+  private actionService!: ActionService
+  private dispose?: () => void
+
+  constructor() {
+    this.actionService = new ActionService(
+      this,
+      'n-audio-action-music',
+    )
+  }
+
+  get childScript(): HTMLScriptElement | null {
+    return this.el.querySelector('script')
+  }
+
+  get childInputs() {
+    return this.el.querySelectorAll('input,select,textarea')
+  }
 
   /**
    * Readonly topic
    *
    */
-  @Prop() readonly topic = 'audio'
+  @Prop() readonly topic = AUDIO_TOPIC
 
   /**
    * The command to execute.
@@ -64,44 +80,48 @@ export class AudioMusicAction implements IActionElement {
   @Prop() value?: string | boolean | number
 
   /**
-   * Get the underlying actionEvent instance. Used by the n-action-activator element.
+   * A predicate to evaluate prior to sending the action.
    */
-  @Method()
-  async getAction(): Promise<EventAction<any>> {
+  @Prop() when?: string
+
+  private getData() {
     return {
-      topic: AUDIO_TOPIC,
-      command: this.command,
-      data: {
-        type: AudioType.music,
-        trackId: this.trackId,
-        value: this.value,
-      },
+      type: AudioType.music,
+      trackId: this.trackId,
+      value: this.value,
     }
   }
 
+  /**
+   * Get the underlying actionEvent instance. Used by the n-action-activator element.
+   */
+  @Method()
+  async getAction(): Promise<EventAction<any> | null> {
+    const action = await this.actionService.getAction()
+    if (action == null) return null
+    Object.assign(action.data, this.getData())
+    return action
+  }
   /**
    * Send this action to the the action messaging system.
    */
   @Method()
   async sendAction(data?: Record<string, any>) {
-    const action = await this.getAction()
-
-    if (data) Object.assign(action.data, data)
-
     if (audioState.hasAudioComponent) {
-      actionBus.emit(action.topic, action)
+      Object.assign(data, this.getData())
+      this.actionService.sendAction(data)
     } else {
-      const dispose = onAudioStateChange(
+      this.dispose = onAudioStateChange(
         'hasAudioComponent',
         async loaded => {
           if (loaded) {
-            dispose()
-            actionBus.emit(action.topic, action)
+            this.actionService.sendAction(data)
             debugIf(
               audioState.debug,
               `n-audio-action-music: load-action sent for ${this.trackId}`,
             )
           }
+          this.dispose?.call(this)
         },
       )
     }
@@ -109,5 +129,9 @@ export class AudioMusicAction implements IActionElement {
 
   render() {
     return <Host></Host>
+  }
+
+  disconnectedCallback() {
+    this.dispose?.call(this)
   }
 }

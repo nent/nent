@@ -9,10 +9,14 @@ import { DATA_EVENTS, IDataProvider } from './interfaces'
 import { dataState } from './state'
 
 const disposers: Record<string, () => void> = {}
-
 const NEW_PROVIDER_ADDED = 'new-provider-added'
 const emitter = new EventEmitter()
 
+/**
+ * It adds a data provider to the data state
+ * @param {string} name - The name of the provider.
+ * @param {IDataProvider} provider - IDataProvider - This is the data provider that we're adding.
+ */
 export function addDataProvider(
   name: string,
   provider: IDataProvider,
@@ -49,6 +53,12 @@ export function addDataProvider(
   )
 }
 
+/**
+ * It returns a promise that resolves to the data provider with the given name, or null if the provider
+ * is not found
+ * @param {string} name - The name of the provider to get.
+ * @returns A promise that resolves to an IDataProvider or null.
+ */
 export async function getDataProvider(
   name: string,
 ): Promise<IDataProvider | null> {
@@ -76,16 +86,29 @@ export async function getDataProvider(
   })
 }
 
+/**
+ * `getDataProviders()` returns the `providers` property of the `dataState` object
+ * @returns The dataState.providers object
+ */
 export function getDataProviders() {
   return dataState.providers
 }
 
+/**
+ * It removes a data provider from the data state, calls the disposer function, and then deletes the
+ * disposer function
+ * @param {string} name - The name of the data provider.
+ */
 export function removeDataProvider(name: string) {
   delete dataState.providers[name]
   disposers[name]?.call(this)
   delete disposers[name]
 }
 
+/**
+ * It loops through all the data providers, calls their disposer function, and then deletes them from
+ * the dataState object
+ */
 export function clearDataProviders() {
   Object.keys(dataState.providers).forEach(key => {
     disposers[key]?.call(this)

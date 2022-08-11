@@ -5,7 +5,7 @@ import { IServiceProvider } from '../../services/data/interfaces'
 import {
   onVideoChange,
   videoState,
-  VIDEO_EVENTS
+  VIDEO_EVENTS,
 } from '../n-video/services/index'
 
 /**

@@ -2,7 +2,7 @@
 
 The `<n-data>` element enables the data system. Once enabled, [data expressions](/data/expressions) can be used to inject data into the [content](/content) or used for [ navigation](/routing/navigation).
 
-> See [data](/data) for full documentation
+> ℹ️ Note: See [data](/data) for full documentation
 
 
 <!-- Auto Generated Below -->
@@ -52,4 +52,4 @@ Enable the data provider system to enable token replacement.
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT v0.10.8 - Copyright 2022 [all rights reserved]

@@ -1,7 +1,7 @@
 const fs = require( 'fs' )
 const path = require( 'path' )
 
-const jsonFilePath = path.resolve( process.cwd(), './dist/custom-elements.json' )
+const jsonFilePath = path.resolve( process.cwd(), './dist/nent.html-data.json' )
 
 if ( !fs.existsSync( jsonFilePath ) )
   throw new Error( `Missing ${ jsonFilePath } file. Please build core components first: yarn build` )
@@ -23,3 +23,6 @@ jsonFileData.tags.forEach( tag => {
 } )
 
 fs.writeFileSync( jsonFilePath, JSON.stringify( jsonFileData, null, 2 ) )
+
+const vsCodePath = path.resolve( process.cwd(), '../../tools/vscode/nent.html-data.json' )
+fs.writeFileSync( vsCodePath, JSON.stringify( jsonFileData, null, 2 ) )

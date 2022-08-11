@@ -1,0 +1,22 @@
+<div class="content">
+  <ul class="float-end">
+    <n-content-repeat
+      items-src="/dist/components.json"
+      when="{{route:component}}"
+      filter="components[tag='{{route:component}}'].docsTags[name='extension']">
+      <template>
+        <li class="text-end">
+          <n-view-link link-class="text-capitalize m-0 fs-4"
+            path="/components/{{route:component}}/{{data:text}}">
+           {{data:text}}
+          </n-view-link>
+        </li>
+    </template>
+    </n-content-repeat>
+  </ul>
+  <n-content-markdown no-cache when="{{route:component}}"
+    src="/pages/components/{{route:component}}/readme.md"
+    class="flex-shrink fade-in">
+  </n-content-markdown>
+</div>
+

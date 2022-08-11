@@ -1,3 +1,4 @@
+jest.mock('../../../services/data/evaluate.worker')
 jest.mock('./track')
 
 import {
@@ -60,7 +61,7 @@ describe('player-sound', () => {
     expect(active).not.toBeNull()
     active.destroy = jest.fn()
 
-    expect(active?.playing).toBeTruthy()
+    expect(active?.playing()).toBeTruthy()
 
     active.onEnd!()
 

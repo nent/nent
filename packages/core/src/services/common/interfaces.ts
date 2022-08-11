@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export type Listener = (...args: any[]) => void
 
 export type IEvents = Record<string, Listener[]>
@@ -22,4 +24,11 @@ export interface IEventEmitter {
   emit(event: string, ...args: any[]): void
   once(event: string, listener: Listener): () => void
   destroy(): void
+}
+
+export type PageData = {
+  title?: string
+  description?: string
+  keywords?: string
+  robots?: string
 }

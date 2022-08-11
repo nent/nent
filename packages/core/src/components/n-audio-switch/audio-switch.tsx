@@ -1,18 +1,13 @@
 import { Component, h, Host, Prop } from '@stencil/core'
-import { eventBus } from '../../services/actions'
 import {
   commonState,
-  onCommonStateChange
+  onCommonStateChange,
 } from '../../services/common'
 import { getDataProvider } from '../../services/data/factory'
 import { IServiceProvider } from '../../services/data/interfaces'
 import {
-  AUDIO_EVENTS,
-  AUDIO_TOPIC
-} from '../n-audio/services/interfaces'
-import {
   audioState,
-  onAudioStateChange
+  onAudioStateChange,
 } from '../n-audio/services/state'
 
 /**
@@ -33,7 +28,7 @@ export class AudioSwitch {
     return `audio-${this.setting}`
   }
 
-  private set value(value: boolean) {
+  private setValue(value: boolean) {
     switch (this.setting) {
       case 'enabled': {
         commonState.audioEnabled = value
@@ -46,7 +41,7 @@ export class AudioSwitch {
     }
   }
 
-  private get value(): boolean {
+  private getValue(): boolean {
     switch (this.setting) {
       case 'enabled': {
         return commonState.audioEnabled
@@ -85,26 +80,22 @@ export class AudioSwitch {
     if (this.storage) {
       const value = await this.storage?.get(this.stateKey)
       if (value != null) {
-        this.value = value == 'true'
+        this.setValue(value == 'true')
       }
     }
 
     this.subscription =
       this.setting == 'muted'
-        ? onAudioStateChange(this.setting, async m => {
-            this.value = m
+        ? onAudioStateChange('muted', async m => {
             await this.storage?.set(this.stateKey, m.toString())
-            eventBus.emit(AUDIO_TOPIC, AUDIO_EVENTS.SoundChanged, m)
           })
         : onCommonStateChange('audioEnabled', async m => {
-            this.value = m
             await this.storage?.set(this.stateKey, m.toString())
-            eventBus.emit(AUDIO_TOPIC, AUDIO_EVENTS.SoundChanged, m)
           })
   }
 
   private toggle() {
-    this.value = this.checkbox?.checked || false
+    this.setValue(this.checkbox?.checked || false)
   }
 
   disconnectedCallback() {
@@ -122,7 +113,7 @@ export class AudioSwitch {
             this.checkbox = e
           }}
           onChange={() => this.toggle()}
-          checked={this.value}
+          checked={this.getValue()}
         ></input>
       </Host>
     )

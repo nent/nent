@@ -1,0 +1,114 @@
+<n-content-reveal direction="left"
+  delay="500"
+  duration="1000"
+  animation-distance="60%"
+  trigger-distance="50%">
+  <ul
+    class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
+    <li class="list-group-item fw-bold"> Action Elements</li>
+    <n-content-repeat items-src="/dist/components.json"
+      filter="components[docsTags[name='system' and text='actions']]">
+      <template>
+        <li class="list-group-item">
+          <a href="/components/{{data:tag}}"> &lt;{{data:tag}}&gt; </a>
+        </li>
+      </template>
+    </n-content-repeat>
+  </ul>
+</n-content-reveal>
+<div class="content">
+  <h1>Actions</h1>
+  <p class="lead"> Actions provide a declarative mechanism for expressing
+    reactive functionality directly in HTML, reducing the need to write and test
+    JavaScript. </p>
+  <p>The action system extends the functionality of other elements by
+    introducing a declarative way to express reactive functionality. </p>
+  <h2>Declarative Actions</h2>
+  <p> Actions could be thought of as commands, that are pre-configured to
+    execute in response to a declared event. Once activated, the action becomes
+    a command for the listener to execute. </p>
+  <p> The topic routes the action to the listener. The command is a function on
+    the listener. The listener executes the command using the action-data as
+    function parameters. </p>
+  <p> Actions provide a script-less way to enact functionality in response to a
+    user's actions. They can be used to update data in a store, call an API, or
+    set a cookie. See <a n-attached-click
+      href="#listeners">action listeners</a> below to see
+    what actions you can perform or how to install your own listeners. </p>
+  <h4>Action Properties:</h4>
+  <ul>
+    <li>
+      <dt>topic</dt>
+      <dd>The listener's topic (usually the subsystem).</dd>
+    </li>
+    <li>
+      <dt>command</dt>
+      <dd>The task or function to perform.</dd>
+    </li>
+    <li>
+      <dt>data</dt>
+      <dd>The arguments for the command, in a name-value format.</dd>
+    </li>
+  </ul>
+  <blockquote>
+    <b>NENT</b> elements use a command/event messaging system for
+    inter-element communication. Actions are commands declared with HTML.
+  </blockquote>
+  <h2>Activation</h2>
+  <p></p>
+  <p> Actions can also be expressed using the <a
+      href="/components/n-action"><b>&lt;n-action&gt;</b></a> element. They
+    should be wrapped within an Action Activator <a
+      href="/components/n-action-activator"><b>&lt;n-action-activator&gt;</b></a>
+    element to define how and when the actions within are activated. </p>
+  <n-content-markdown>
+    <script type="text/markdown">
+    ```html
+    <n-action-activator activate="...">
+      <n-action topic="app"
+        command="log"
+        data-message="Testing on-enter action"></n-action>
+    </n-action-activator>
+    ```
+  </script>
+  </n-content-markdown>
+  <h3>Advanced Activations</h3>
+  <p>Learn more ways to activate actions.</p>
+  <div class="button-nav">
+    <a class="btn btn-secondary"
+      href="/actions/activation">Activating Actions</a>
+  </div>
+  <a name="listeners">
+    <h2> Action Listeners </h2>
+  </a>
+  <p>Many NENT elements and systems support actions to make changes or react
+    to user-input. </p>
+  <h3>Component Actions</h3>
+  <p>Learn more about the actions supported in the following elements.</p>
+  <ul>
+    <n-content-repeat items-src="/dist/components.json"
+      filter="components[docsTags[name='extension' and text='actions']]">
+      <template>
+      <li>
+        <a href="/components/{{data:tag}}/actions"> {{data:tag}} actions
+        </a>
+      </li>
+    </template>
+    </n-content-repeat>
+  </ul>
+  <h3>Custom Actions</h3>
+  <p>You can also register your own action-listener through the <a
+      href="/components/n-app">n-app</a> element. </a></p>
+  <div class="button-nav">
+    <a class="btn btn-secondary"
+      href="/components/n-app/custom">Custom Actions</a>
+  </div>
+  <footer>
+    <n-view-link-back slot="start"
+      class="btn btn-primary btn-lg">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      class="btn btn-primary btn-lg">
+    </n-view-link-next>
+  </footer>
+</div>

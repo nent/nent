@@ -27,4 +27,4 @@ const include = document.querySelector('#markdown);
 include.removeAttribute('defer-load');
 ```
 
-Or, just include it in one of the [\<n-view\>](/components/n-view) or [\<n-view-prompt\>](/components/n-view-prompt) elements. These elements remove any **defer-load** attributes on child elements once their route is activated, giving us lazy-loaded routes with this element.
+Or, just include it in one of the [`n-view`](/components/n-view) or [`n-view-prompt`](/components/n-view-prompt) elements. These elements remove any **defer-load** attributes on child elements once their route is activated, giving us lazy-loaded routes with this element.

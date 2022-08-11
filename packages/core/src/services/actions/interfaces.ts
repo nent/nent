@@ -1,6 +1,6 @@
-import { IEventEmitter } from '../common/interfaces'
 /* istanbul ignore file */
 
+import { IEventEmitter } from '../common/interfaces'
 export interface IEventActionListener {
   initialize(
     win: Window,
@@ -40,6 +40,11 @@ export const EVENTS_DOM_EVENT = 'x:events'
 export interface IActionElement {
   command: string
   topic: string
+  valid: boolean
+  el: HTMLElement
+  when?: string
+  childScript: HTMLScriptElement | null
+  childInputs: NodeListOf<Element>
   getAction(): Promise<EventAction<any> | null>
   sendAction(data?: any): Promise<void>
 }

@@ -1,0 +1,89 @@
+<n-content-reveal direction="left"
+  delay="500"
+  duration="1000"
+  animation-distance="60%"
+  trigger-distance="50%">
+  <ul
+    class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
+    <li class="list-group-item fw-bold"> Presentation Elements</li>
+    <n-content-repeat items-src="/dist/components.json"
+      filter="components[docsTags[name='system' and text='presentation']]">
+      <template>
+        <li class="list-group-item">
+          <a href="/components/{{data:tag}}"> &lt;{{data:tag}}&gt; </a>
+        </li>
+      </template>
+    </n-content-repeat>
+  </ul>
+</n-content-reveal>
+<div class="">
+  <h1>Presentations</h1>
+  <p class="lead">
+    Synchronize elements modifications, animations and content
+    using time.
+  </p>
+  <h2>Enable Presentation</h2>
+  <p> To present a timed sequence, you must wrap content in the<a
+      href="/components/n-presentation"><b>&lt;n-presentation&gt;</b> </a>
+    element </p>
+  <n-content-markdown>
+    <script type="text/markdown">
+      ## Presentation Features
+
+      - Supports [video](/video):
+        * Video Timer becomes the basis for Timed Actions
+        * Auto-Play w/Global Setting
+        * Auto-Next available on Video End
+        * Video Supports Global Audio Preferences
+      - Supports [audio](/audio):
+        * Time & Event-based Sounds \* Voice Over
+        * Background Music
+        * Voice-overs
+      - Supports [actions](/actions):
+        * At a given time
+        * When a presentation is complete
+      - Built-in timer & optional duration:
+        * Synced to video (respecting scrub, pause, etc)
+          - OR -
+        * Based on time elapsed since the entrance
+        * Hide/show elements at certain times
+        * Time-based animation class toggling
+        * Time-based navigation or when the video ends.
+      - Automatic visibility resolution for child elements using special attributes.
+      - Automatic next and back handlers for child elements using special attributes.
+      - Automatic time/percentage value insertion for child elements using special attributes.
+
+      > To get started, decide on a timer:
+
+    </script>
+  </n-content-markdown>
+
+  <h3 class="mt-3"
+    hidden>Time-based Functionality</h3>
+  <div class="button-nav"
+    hidden>
+    <a href="/presentations/elements"
+      class="btn btn-secondary">
+      <i class="ri-code-line"></i> Update Elements w/Attributes </a>
+    <a href="/presentations/actions"
+      class="btn btn-secondary">
+      <i class="ri-flashlight-line"></i> Update Elements w/Actions </a>
+  </div>
+  <h3 class="mt-3">Timer Options</h3>
+  <div class="button-nav">
+    <a href="/presentations/element"
+      class="btn btn-secondary">
+      <i class="ri-timer-flash-line"></i> Element Timer </a>
+    <a href="/presentations/video"
+      class="btn btn-secondary">
+      <i class="ri-movie-line"></i> Video Timer </a>
+  </div>
+  <footer>
+    <n-view-link-back slot="start"
+      link-class="btn btn-primary btn-lg">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      link-class="btn btn-primary btn-lg">
+    </n-view-link-next>
+  </footer>
+</div>

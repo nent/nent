@@ -12,12 +12,23 @@ import { getAppProvider, setAppProvider } from './factory'
 import { APP_COMMANDS, APP_TOPIC } from './interfaces'
 import { DefaultAppProvider } from './providers/default'
 
+/* It listens for actions on the `APP_TOPIC` topic, and then calls the appropriate function on the
+`AppProvider` that is registered for the current document */
 export class AppActionListener implements IEventActionListener {
   actionsSubscription!: () => void
   defaultProvider!: any
   eventBus!: IEventEmitter
 
-  initialize(
+  /**
+   * > This function is called by the `AppManager` to initialize the `AppProvider` with the `Window`
+   * object, the `actionBus` and the `eventBus`
+   * @param {Window} win - Window - the window object
+   * @param {IEventEmitter} actionBus - This is the event bus that the app will use to listen for
+   * actions.
+   * @param {IEventEmitter} eventBus - This is the event bus that the app will use to communicate with
+   * the rest of the application.
+   */
+  public initialize(
     win: Window,
     actionBus: IEventEmitter,
     eventBus: IEventEmitter,
@@ -59,7 +70,10 @@ export class AppActionListener implements IEventActionListener {
     }
   }
 
-  destroy() {
+  /**
+   * It unsubscribes from the actions subscription and destroys the default provider.
+   */
+  public destroy() {
     this.actionsSubscription()
     this.defaultProvider?.destroy()
   }

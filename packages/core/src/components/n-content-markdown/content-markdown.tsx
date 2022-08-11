@@ -5,26 +5,27 @@ import {
   h,
   Host,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import {
   commonState,
-  onCommonStateChange
+  onCommonStateChange,
 } from '../../services/common'
-import { warn } from '../../services/common/logging'
+import { debugIf, error } from '../../services/common/logging'
 import { replaceHtmlInElement } from '../../services/content/elements'
 import {
   resolveRemoteContent,
-  resolveSrc
+  resolveSrc,
 } from '../../services/content/remote'
 import { resolveChildElementXAttributes } from '../../services/data/elements'
 import { evaluatePredicate } from '../../services/data/expressions'
 import { DATA_EVENTS } from '../../services/data/interfaces'
+import { filterData } from '../../services/data/jsonata.worker'
 import { resolveTokens } from '../../services/data/tokens'
-import { ROUTE_EVENTS } from '../n-views/services/interfaces'
+import { dedent } from '../n-content/services/utils'
 import { routingState } from '../n-views/services/state'
-import { renderMarkdown } from './markdown/remarkable.worker'
+import { renderMarkdown } from './services/remarkable.worker'
 
 /**
  * This element converts markdown text to HTML. It can render
@@ -41,10 +42,10 @@ import { renderMarkdown } from './markdown/remarkable.worker'
 export class ContentMarkdown {
   private readonly contentClass = 'rendered-content'
   private dataSubscription!: () => void
-  private routeSubscription!: () => void
   private renderCache: Record<string, HTMLElement> = {}
   @Element() el!: HTMLNContentMarkdownElement
-  @State() contentElement: HTMLElement | null = null
+  @State() location = routingState.location
+  private contentElement: HTMLElement | null = null
 
   /**
    * Remote Template URL
@@ -84,6 +85,12 @@ export class ContentMarkdown {
    */
   @Prop() noCache: boolean = false
 
+  /**
+   * The JSONata expression to select the markdown from a json response.
+   * see <https://try.jsonata.org> for more info.
+   */
+  @Prop() json?: string
+
   private async getContentKey() {
     return this.src
       ? await resolveSrc(this.src)
@@ -115,19 +122,6 @@ export class ContentMarkdown {
           },
         )
       }
-      if (commonState.routingEnabled) {
-        this.subscribeToRouteEvents()
-      } else {
-        const routeSubscription = onCommonStateChange(
-          'routingEnabled',
-          enabled => {
-            if (enabled) {
-              this.subscribeToRouteEvents()
-              routeSubscription()
-            }
-          },
-        )
-      }
     }
   }
 
@@ -135,16 +129,7 @@ export class ContentMarkdown {
     this.dataSubscription = eventBus.on(
       DATA_EVENTS.DataChanged,
       () => {
-        forceUpdate(this)
-      },
-    )
-  }
-
-  private subscribeToRouteEvents() {
-    this.routeSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteChanged,
-      () => {
-        forceUpdate(this)
+        forceUpdate(this.el)
       },
     )
   }
@@ -175,7 +160,7 @@ export class ContentMarkdown {
     div.innerHTML = (await renderMarkdown(content)) || ''
     div.className = this.contentClass
     if (commonState.elementsEnabled)
-      await resolveChildElementXAttributes(div)
+      resolveChildElementXAttributes(div)
     routingState.router?.captureInnerLinks(div)
     this.highlight(div)
     if (key && this.canCache) this.renderCache[key] = div
@@ -184,15 +169,26 @@ export class ContentMarkdown {
 
   private async getContentFromSrc() {
     try {
-      const content = await resolveRemoteContent(
+      let content = await resolveRemoteContent(
         window,
         this.src!,
         this.mode,
         this.resolveTokens,
       )
+      if (content && this.json) {
+        debugIf(
+          commonState.debug,
+          `n-content-markdown: filtering: ${this.json}`,
+        )
+        const data = JSON.parse(content)
+        content = await filterData(this.json, data)
+      }
+
       return content
-    } catch {
-      warn(`n-content-markdown: unable to retrieve from ${this.src}`)
+    } catch (err) {
+      error(
+        `n-content-markdown: unable to retrieve content from ${this.src}. ${err}`,
+      )
       return null
     }
   }
@@ -201,18 +197,10 @@ export class ContentMarkdown {
     const element = this.childScript
     if (!element?.textContent) return null
 
-    let content = this.dedent(element.textContent)
+    let content = dedent(element.textContent)
     if (this.resolveTokens) content = await resolveTokens(content)
 
     return content
-  }
-
-  private dedent(innerText: string) {
-    const string = innerText?.replace(/^\n/, '')
-    const match = string?.match(/^\s+/)
-    return match
-      ? string?.replace(new RegExp(`^${match[0]}`, 'gm'), '')
-      : string
   }
 
   private highlight(container: HTMLElement) {
@@ -234,6 +222,5 @@ export class ContentMarkdown {
 
   disconnectedCallback() {
     this.dataSubscription?.call(this)
-    this.routeSubscription?.call(this)
   }
 }

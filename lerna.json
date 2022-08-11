@@ -1,13 +1,21 @@
 {
-  "version": "0.6.12",
+  "version": "0.10.8",
   "npmClient": "yarn",
-  "useWorkspaces": true,
-  "publish": {
-    "ignoreChanges": [
-      "ignored-file",
-      "*.md"
-    ],
-    "message": "chore(👏): publish",
-    "registry": "https://registry.npmjs.org"
+  "useWorkspaces": false,
+  "packages": [
+    "packages/core",
+    "packages/create"
+  ],
+  "command": {
+    "publish": {
+      "conventionalCommits": true,
+      "ignoreChanges": [
+        "ignored-file",
+        "*.md"
+      ],
+      "yes": true,
+      "registry": "https://registry.npmjs.org",
+      "message": "release(📦): version published"
+    }
   }
 }

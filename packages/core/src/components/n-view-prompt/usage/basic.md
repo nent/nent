@@ -1,5 +1,5 @@
 
-Much like its parent, [\<n-view\>](/components/n-view), basic routing information is required.
+Much like its parent, [`n-view`](/components/n-view), basic routing information is required.
 
 ```html
 <n-view ...>
@@ -19,4 +19,4 @@ Much like its parent, [\<n-view\>](/components/n-view), basic routing informatio
 </n-view>
 ```
 
-> The **when** attribute is a data expression that overrides the **visit** strategy. It is a predicate that produces a boolean result. **true: visit=always** false: visit=optional
+> ℹ️ Note: The **when** attribute is a data expression that overrides the **visit** strategy. It is a predicate that produces a boolean result. **true: visit=always** false: visit=optional

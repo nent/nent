@@ -1,4 +1,5 @@
 jest.mock('../../services/data/evaluate.worker')
+jest.mock('../../services/data/jsonata.worker')
 jest.mock('../../services/common/logging')
 
 import { newSpecPage } from '@stencil/core/testing'
@@ -303,11 +304,11 @@ describe('n-content', () => {
     )
 
     await page.setContent(
-      `<n-content-include src="fake.html"></n-content-include>`,
+      `<n-content-include resolve-tokens src="fake.html"></n-content-include>`,
     )
 
     expect(page.root).toEqualHtml(`
-      <n-content-include src="fake.html">
+      <n-content-include resolve-tokens="" src="fake.html">
         <div class="remote-content">
           <h1>
             HI FRIEND!
@@ -324,10 +325,40 @@ describe('n-content', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-      <n-content-include src="fake.html">
+      <n-content-include resolve-tokens="" src="fake.html">
         <div class="remote-content">
           <h1>
           HI MAX!
+          </h1>
+        </div>
+      </n-content-include>
+    `)
+
+    page.root?.remove()
+  })
+
+  it('renders HTML from remote JSON', async () => {
+    const page = await newSpecPage({
+      components: [ContentInclude],
+    })
+
+    page.win.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        text: () =>
+          Promise.resolve(`{ "data": "<h1>HI FRIEND!</h1>" }`),
+      }),
+    )
+
+    await page.setContent(
+      `<n-content-include src="fake.json" json="data"></n-content-include>`,
+    )
+
+    expect(page.root).toEqualHtml(`
+      <n-content-include src="fake.json" json="data">
+        <div class="remote-content">
+          <h1>
+            HI FRIEND!
           </h1>
         </div>
       </n-content-include>

@@ -1,0 +1,59 @@
+<div class="content">
+  <h1>Navigation</h1>
+  <p class="lead">Getting around without page refreshes!</p>
+  <h2>How it Works</h2>
+  <p> Regular anchor tags (<b>&lt;a&gt;</b>) inside the <a
+      href="/components/n-views?group=navigation"><b>&lt;n-views&gt;</b></a> tag
+    will have their click intercepted for fast, in-place content replacement
+    without refreshing the entire page. </p>
+  <h3>Simple Navigation</h3>
+  <a hidden
+    href="/examples/simple.html"
+    target="_blank"
+    class="btn btn-light float-end my-2 ms-2">
+    <i class="ri-external-link-line"></i> Visit Demo</a>
+  <p> Every link on this page has been intercepted to try first to perform an
+    in-page content fetch, rather than a full page refresh. </p>
+  <n-content-markdown src="/pages/routing/navigation/default.md">
+  </n-content-markdown>
+  <h3>Automatic Links</h3>
+  <p>Nent can automatically create links to the
+    <a href="/components/n-view-link-next">&lt;n-view-link-next &gt;</a> view, or
+    <a href="/components/n-view-link-back">&lt;n-view-link-back &gt;</a> to the
+    previous view using special elements.
+    Also, you can create menus, breadcrumbs and even progress maps or tabs using
+    the <a href="/components/n-view-link-lists">&lt;n-view-link-list &gt;</a>
+    element.
+  </p>
+  <div class="button-nav">
+    <a href="/routing/navigation/next"
+      class="btn btn-info  btn-sm">
+      <i class="ri-arrow-right-line"></i> Next Link </a>
+    <a href="/routing/navigation/back"
+      class="btn btn-info btn-sm">
+      <i class="ri-arrow-left-line"></i> Back Link </a>
+    <a href="/routing/navigation/lists"
+      class="btn btn-info btn-sm">
+      <i class="ri-stack-line"></i> Link List </a>
+
+  </div>
+  <h3>Advanced Navigation Examples</h3>
+  <p> Guided navigation creates a back/next format with a convention-based next
+    route automatically determined by the router. </p>
+  <div class="button-nav">
+    <a href="/routing/navigation/guided"
+      class="btn btn-info btn-sm">
+      <i class="ri-gps-line"></i> Guided Navigation </a>
+    <a href="/routing/navigation/stepper"
+      class="btn btn-info btn-sm">
+      <i class="ri-database-line"></i> Stepper / Wizard </a>
+  </div>
+  <footer>
+    <n-view-link-back slot="start"
+      link-class="btn btn-secondary">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      link-class="btn btn-secondary">
+    </n-view-link-next>
+  </footer>
+</div>

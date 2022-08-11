@@ -22,7 +22,7 @@ The element listens for their click events and acts accordingly.
 </n-data-cookie>
 ```
 
-> The HTML inside the element is shown directly on the banner. Use it to display your terms, privacy policy and explanation for using the cookie.
+> ℹ️ Note: The HTML inside the element is shown directly on the banner. Use it to display your terms, privacy policy and explanation for using the cookie.
 
 Alternatively, you can skip this by including the 'skip-consent' attribute.
 
@@ -51,8 +51,8 @@ Alternatively, you can skip this by including the 'skip-consent' attribute.
 
 ## Events
 
-| Event        | Description                                        | Type                                   |
-| ------------ | -------------------------------------------------- | -------------------------------------- |
+| Event        | Description                                             | Type                                   |
+| ------------ | ------------------------------------------------------- | -------------------------------------- |
 | `didConsent` | This event is raised when the user consents to cookies. | `CustomEvent<{ consented: boolean; }>` |
 
 
@@ -71,4 +71,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT v0.10.8 - Copyright 2022 [all rights reserved]

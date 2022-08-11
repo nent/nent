@@ -6,10 +6,11 @@ import { Path } from './utils'
 export { LocationSegments }
 
 export enum ROUTE_EVENTS {
+  RouteChangeStart = 'route-change-start',
   RouteChanged = 'route-changed',
   RouteMatched = 'route-matched',
   RouteMatchedExact = 'route-matched-exact',
-  RouteFinalized = 'route-finalized',
+  RouteChangeFinish = 'route-change-finish',
   Initialized = 'initialized',
 }
 
@@ -57,10 +58,17 @@ export enum NAVIGATION_COMMANDS {
   goNext = 'go-next',
   goTo = 'go-to',
   goBack = 'go-back',
+  goToParent = 'go-to-parent',
+  back = 'back',
+  scrollTo = 'scroll-to',
 }
 
 export type NavigateTo = {
   path: string
+}
+
+export type ScrollToId = {
+  id: string
 }
 
 export const NAVIGATION_TOPIC = 'navigation'

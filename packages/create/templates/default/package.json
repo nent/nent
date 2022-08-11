@@ -3,28 +3,32 @@
   "description": "{{description}}",
   "version": "0.0.0",
   "author": "{{contact}}",
+  "license": "{{license}}",
   "scripts": {
-    "start": "vite",
-    "build": "tsc && vite build",
-    "serve": "vite preview"
+    "prebuild": "rm -fR dist",
+    "build": "yarn run build:public && yarn run build:app",
+    "prebuild:public": "mkdir -p dist",
+    "build:public": "cp -ru public/* -t dist",
+    "build:app": "cp -ru src/* -t dist",
+    "watch": "npm-watch",
+    "predev": "yarn run build",
+    "dev": "live-server dist --entry-file=index.html --watch & yarn run watch",
+    "preserve": "yarn run build",
+    "serve": "live-server dist --entry-file=index.html"
   },
+  "watch": {
+    "build:public": "public/**/*.*",
+    "build:app": [
+      "src/**/*.*"
+    ]
+  },
+  "private": true,
   "dependencies": {},
   "devDependencies": {
-    "@iconify/iconify": "2.0.3",
-    "@nent/core": "0.6.14",
-    "@tailwindcss/typography": "0.4.1",
-    "@types/workbox-build": "5.0.1",
-    "normalize-url": "7.0.0",
-    "postcss": "8.3.6",
-    "purge-icons": "0.7.0",
-    "tailwindcss": "2.2.7",
-    "typescript": "4.3.5",
-    "vite": "2.4.3",
-    "vite-plugin-cdn-import": "0.3.2",
-    "vite-plugin-purge-icons": "0.7.0",
-    "vite-plugin-pwa": "0.8.2",
-    "workbox-build": "6.1.5",
-    "workbox-window": "6.1.5"
+    "live-server": "^1.2.1",
+    "npm-watch": "^0.11.0"
   },
-  "license": "{{license}}"
+  "resolutions": {
+    "glob-parent": ">=5.1.2"
+  }
 }

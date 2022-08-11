@@ -2,7 +2,6 @@ jest.mock('../../services/common/logging')
 jest.mock('../../services/data/evaluate.worker')
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
-import { Elements } from '../n-elements/elements'
 import { App } from './app'
 
 describe('n-app', () => {
@@ -22,7 +21,7 @@ describe('n-app', () => {
       html: `<n-app></n-app>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-app>
+      <n-app style="display: block;">
       </n-app>
     `)
 
@@ -38,7 +37,7 @@ describe('n-app', () => {
       html: `<n-app debug></n-app>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-app debug="">
+      <n-app debug="" style="display:block;">
       </n-app>
     `)
     expect(actionBus.events['*'].length).toBe(1)
@@ -53,7 +52,7 @@ describe('n-app', () => {
       html: `<n-app></n-app>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-app>
+      <n-app style="display: block;">
       </n-app>
     `)
 
@@ -90,7 +89,7 @@ describe('n-app', () => {
       html: `<n-app></n-app>`,
     })
     expect(page.root).toEqualHtml(`
-      <n-app>
+      <n-app style="display: block;">
       </n-app>
     `)
 

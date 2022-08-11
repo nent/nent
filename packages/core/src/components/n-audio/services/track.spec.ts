@@ -1,4 +1,5 @@
 jest.mock('../../../services/common/logging')
+jest.mock('../../../services/data/evaluate.worker')
 
 import { EventEmitter } from '../../../services/common'
 import {
@@ -292,7 +293,7 @@ describe('audio-track', () => {
     const audioTrack = new AudioTrack(audio, () => {})
 
     // Expect result
-    expect(audioTrack.playing).toBeTruthy()
+    expect(audioTrack.playing()).toBeTruthy()
   })
 
   it('property: state, loaded', () => {
@@ -302,7 +303,7 @@ describe('audio-track', () => {
     const audioTrack = new AudioTrack(audio, () => {})
 
     // Expect result
-    expect(audioTrack.state).toBe('loaded')
+    expect(audioTrack.state()).toBe('loaded')
   })
 
   it('property: muted', () => {
@@ -310,10 +311,11 @@ describe('audio-track', () => {
 
     // Property call
     const audioTrack = new AudioTrack(audio, () => {})
+    // @ts-ignore
     audioTrack.sound.volume = () => 0
 
     // Expect result
-    expect(audioTrack.muted).toBeTruthy()
+    expect(audioTrack.muted()).toBeTruthy()
   })
 
   it('property: muted, false', () => {
@@ -321,10 +323,11 @@ describe('audio-track', () => {
 
     // Property call
     const audioTrack = new AudioTrack(audio, () => {})
+    // @ts-ignore
     audioTrack.sound.volume = () => 0.2
 
     // Expect result
-    expect(audioTrack.muted).toBeFalsy()
+    expect(audioTrack.muted()).toBeFalsy()
   })
 
   it('property: loop', () => {

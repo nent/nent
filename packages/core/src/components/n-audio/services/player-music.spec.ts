@@ -1,3 +1,4 @@
+jest.mock('../../../services/data/evaluate.worker')
 jest.mock('./track')
 
 import {
@@ -38,7 +39,7 @@ describe('player-music', () => {
     const track = musicPlayer.active
 
     expect(track).not.toBeNull()
-    expect(track?.playing).toBeTruthy()
+    expect(track?.playing()).toBeTruthy()
 
     expect(musicPlayer.queue.items.length).toBe(0)
   })
@@ -59,7 +60,7 @@ describe('player-music', () => {
     expect(active).not.toBeNull()
     active.destroy = jest.fn()
 
-    expect(active?.playing).toBeTruthy()
+    expect(active?.playing()).toBeTruthy()
     expect(changed).toBeTruthy()
 
     changed = false
@@ -125,7 +126,7 @@ describe('player-music', () => {
     expect(active).not.toBeNull()
     active.destroy = jest.fn()
 
-    expect(active?.playing).toBeTruthy()
+    expect(active?.playing()).toBeTruthy()
 
     active.onEnd!()
 

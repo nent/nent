@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export const AUDIO_TOPIC = 'audio'
 
 export interface AudioRequest {
@@ -16,8 +18,6 @@ export interface AudioInfo {
 }
 
 export enum AUDIO_COMMANDS {
-  enable = 'enable',
-  disable = 'disable',
   play = 'play',
   queue = 'queue',
   load = 'load',

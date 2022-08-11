@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous" />
+    <title>App</title>
+    <style>
+      [n-cloak] {
+        display: none;
+      }
+
+      nav {
+        border-bottom: 1px solid black;
+      }
+
+      nav h1 {
+        display: inline-block;
+      }
+
+      a.active:any-link {
+        text-decoration: none;
+        color: #000;
+      }
+    </style>
+    <!-- Experience UI -->
+    <script type="module"
+      src="https://cdn.jsdelivr.net/npm/@nent/core/dist/nent/nent.esm.js"></script>
+  </head>
+
+  <body>
+    <n-views app-title="App"
+      start-path="/home"
+      root="/examples/simple.html#">
+      <nav class="nav d-flex flex-row">
+        <n-view-link class="nav-link"
+          path="/home"
+          active-class="active"> Home </n-view-link>
+        <n-view-link class="nav-link"
+          path="/about"
+          active-class="active"> About </n-view-link>
+      </nav>
+      <div class="container">
+        <n-view path="home"
+          page-title="Home">
+          <h1>Home</h1>
+          <hr />
+          <div class="content">
+            <h2>Hello World!</h2>
+            <p>Now you have a basic content router.</p>
+          </div>
+        </n-view>
+        <n-view path="about"
+          page-title="About">
+          <h1>About</h1>
+          <hr />
+          <div class="content">
+            <h2>About World!</h2>
+            <p>AND an about page.</p>
+          </div>
+        </n-view>
+      </div>
+    </n-views>
+  </body>
+
+</html>

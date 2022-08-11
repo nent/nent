@@ -7,13 +7,14 @@ import {
   Host,
   Method,
   Prop,
-  State
+  State,
+  Build,
 } from '@stencil/core'
 import { eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common'
 import {
   IElementTimer,
-  ITimer
+  ITimer,
 } from '../n-presentation/services/interfaces'
 import { IView } from '../n-view/services/interfaces'
 import { Route } from '../n-view/services/route'
@@ -47,7 +48,7 @@ export class PresentationTimer implements IElementTimer {
 
   /**
    * Duration before the timer stops and raises
-   * the ended event. 0 = never
+   * the ended event (seconds). 0 = never
    */
   @Prop() duration: number = 0
 
@@ -80,6 +81,10 @@ export class PresentationTimer implements IElementTimer {
   })
   ready!: EventEmitter
   private navigationSubscription?: () => void
+  private now =
+    Build.isTesting || Build.isServer
+      ? () => new Date().getTime()
+      : () => performance.now()
 
   private get currentRoute(): Route | null {
     const parent =
@@ -94,7 +99,7 @@ export class PresentationTimer implements IElementTimer {
    */
   @Method()
   async begin() {
-    this.timer?.begin()
+    this.timer!.begin()
   }
 
   /**
@@ -102,7 +107,7 @@ export class PresentationTimer implements IElementTimer {
    */
   @Method()
   async stop() {
-    this.timer?.stop()
+    this.timer!.stop()
   }
 
   componentWillLoad() {
@@ -110,9 +115,9 @@ export class PresentationTimer implements IElementTimer {
       window,
       this.interval,
       this.duration,
-      () => performance.now(),
+      () => this.now(),
       () => {
-        this.elapsed = this.timer.currentTime.elapsed
+        this.elapsed = this.timer.currentTime.elapsedSeconds
       },
       this.debug,
     )

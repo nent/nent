@@ -9,15 +9,24 @@ import { ExpressionContext } from './interfaces'
 import { dataState } from './state'
 import { hasToken, resolveTokens } from './tokens'
 const operatorRegex = /(in |for |[><+\-=])/gi
+const jsonRegEx = /(\{.*?\})/g
+const alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
+/**
+ * It returns true if the given string contains an operator
+ * @param {string} value - The value of the attribute.
+ * @returns A boolean value.
+ */
 export function hasExpression(value: string) {
   return value.match(operatorRegex)
 }
 
-const jsonRegEx = /(\{.*?\})/g
-
-const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-
+/**
+ * It takes a string, finds all the JSON in it, replaces the JSON with a variable, and returns the
+ * string with the JSON replaced and an object with the JSON and the variable
+ * @param {string} expression - The expression to convert
+ * @returns An object with two properties: data and expression.
+ */
 export function convertFromJson(expression: string) {
   const data: any = {}
   let newExpression = removeLineFeeds(expression).split(`'`).join(`"`)
@@ -42,6 +51,12 @@ export function convertFromJson(expression: string) {
   }
 }
 
+/**
+ * It takes an expression and a context, and returns the result of evaluating the expression
+ * @param {string} expression - The expression to evaluate.
+ * @param {ExpressionContext} context - ExpressionContext = {}
+ * @returns A promise that resolves to a number, boolean, or string.
+ */
 async function evaluate(
   expression: string,
   context: ExpressionContext = {},

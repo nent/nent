@@ -1,4 +1,5 @@
 jest.mock('../../services/common/logging')
+jest.mock('../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import {
@@ -6,13 +7,21 @@ import {
   EventAction,
   eventBus,
 } from '../../services/actions'
+import { sleep } from '../../services/common'
 import { Action } from '../n-action/action'
+import { PresentationTimer } from '../n-presentation-timer/presentation-timer'
+import { RequestAnimationFrameMockSession } from '../n-presentation/mocks/animationFrame'
+import { Presentation } from '../n-presentation/presentation'
 import { ActionActivator } from './action-activator'
 
 describe('n-action-activator', () => {
-  beforeAll(() => {})
+  //let requestAnimationFrameMock: RequestAnimationFrameMockSession
 
-  afterAll(() => {
+  beforeEach(() => {
+    //requestAnimationFrameMock = new RequestAnimationFrameMockSession()
+  })
+
+  afterEach(() => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
   })
@@ -25,8 +34,8 @@ describe('n-action-activator', () => {
              </n-action-activator>`,
     })
     expect(page.root).toEqualHtml(
-      `<n-action-activator>
-      <div></div>
+      `<n-action-activator style="display: contents;">
+        <div></div>
       </n-action-activator>`,
     )
   })
@@ -39,10 +48,33 @@ describe('n-action-activator', () => {
              </n-action-activator>`,
     })
     expect(page.root).toEqualHtml(
-      `<n-action-activator>
-      <n-action topic="fake" command="noop"></n-action>
+      `<n-action-activator style="display: contents;">
+        <n-action topic="fake" command="noop"></n-action>
       </n-action-activator>`,
     )
+
+    page.root?.remove()
+  })
+
+  it('render event', async () => {
+    let action: EventAction<any>
+    actionBus.on('fake', e => {
+      action = e
+    })
+    const page = await newSpecPage({
+      components: [ActionActivator, Action],
+      html: `<n-action-activator activate="on-render">
+              <n-action topic="fake" command="noop"></n-action>
+             </n-action-activator>`,
+      hydrateClientSide: true,
+    })
+
+    await page.waitForChanges()
+    await sleep(1000)
+
+    expect(action!).toBeDefined()
+
+    page.root?.remove()
   })
 
   it('captures child actions', async () => {
@@ -64,6 +96,8 @@ describe('n-action-activator', () => {
     await activator?.activateActions()
 
     expect(command).toBe('pass')
+
+    page.root?.remove()
   })
 
   it('captures child actions, only fires once', async () => {
@@ -90,6 +124,8 @@ describe('n-action-activator', () => {
     await activator!.activateActions()
 
     expect(command).toBeNull()
+
+    page.root?.remove()
   })
 
   it('captures child element event', async () => {
@@ -159,6 +195,42 @@ describe('n-action-activator', () => {
     expect(eventAction!.data.hidden).toBe('fed-ex')
     expect(eventAction!.data.agree).toBe(true)
     expect(eventAction!.data[3]).toBe('index')
+
+    page.root?.remove()
+  })
+
+  it('fails with invalid child input values', async () => {
+    const page = await newSpecPage({
+      components: [ActionActivator, Action],
+      html: `<n-action-activator activate="on-element-event" target-element="button" >
+               <n-action topic="test" command="pass"></n-action>
+               <input type="text" name="text" required />
+               <button type="button">Click Me</button>
+             </n-action-activator>`,
+    })
+
+    await page.waitForChanges()
+
+    const activator = page.body.querySelector('n-action-activator')
+    expect(activator).toBeDefined()
+
+    const button = page.body.querySelector('button')
+
+    const input = page.body.querySelector('input')
+    input!.checkValidity = () => false
+
+    let eventAction: EventAction<any> | null = null
+    actionBus.on('test', e => {
+      eventAction = e
+    })
+
+    button?.click()
+
+    await page.waitForChanges()
+
+    expect(eventAction).toBeNull()
+
+    page.root?.remove()
   })
 
   it('captures child element event no selector', async () => {
@@ -218,5 +290,56 @@ describe('n-action-activator', () => {
     expect(command).toBeNull()
 
     activator?.remove()
+  })
+
+  it('timed-actions only send once', async () => {
+    const sentActions: Array<EventAction<any>> = []
+    actionBus.on('test', e => {
+      sentActions.push(e)
+    })
+
+    const page = await newSpecPage({
+      components: [
+        Presentation,
+        PresentationTimer,
+        ActionActivator,
+        Action,
+      ],
+      html: `
+        <n-presentation>
+          <n-presentation-timer duration="4" interval="0">
+          </n-presentation-timer>
+          <n-action-activator activate="at-time" time="2">
+            <n-action topic="test" command="do"></n-action>
+          </n-action-activator>
+        </n-presentation>
+      `,
+      hydrateClientSide: true,
+    })
+    await page.waitForChanges()
+
+    await sleep(1000)
+    await page.waitForChanges()
+
+    await sleep(1000)
+    await page.waitForChanges()
+
+    expect(sentActions.length).toBe(1)
+
+    await sleep(1000)
+    await page.waitForChanges()
+
+    await sleep(1000)
+    await page.waitForChanges()
+
+    expect(sentActions.length).toBe(1)
+
+    const sentAction = sentActions[0]
+
+    expect(sentAction).toBeDefined()
+    expect(sentAction.topic).toBe('test')
+    expect(sentAction.command).toBe('do')
+
+    page.root?.remove()
   })
 })

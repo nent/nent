@@ -5,7 +5,7 @@ import {
   Host,
   Method,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { actionBus, EventAction } from '../../services/actions'
 import { debugIf } from '../../services/common'
@@ -13,11 +13,13 @@ import {
   AudioInfo,
   AudioRequest,
   AudioType,
-  AUDIO_TOPIC
+  AUDIO_TOPIC,
+  DiscardStrategy,
+  LoadStrategy,
 } from '../n-audio/services/interfaces'
 import {
   audioState,
-  onAudioStateChange
+  onAudioStateChange,
 } from '../n-audio/services/state'
 
 /**
@@ -38,6 +40,7 @@ import {
 export class AudioMusicLoad {
   @Element() el!: HTMLNAudioActionMusicLoadElement
   @State() sent: boolean = false
+  private dispose?: () => void
 
   /**
    * The path to the audio-file.
@@ -82,14 +85,14 @@ export class AudioMusicLoad {
   > {
     return {
       topic: AUDIO_TOPIC,
-      command: this.mode,
+      command: this.mode || LoadStrategy.load,
       data: {
         trackId: this.trackId || this.src,
         src: this.src,
-        discard: this.discard,
+        discard: this.discard || DiscardStrategy.route,
         loop: this.loop,
         type: AudioType.music,
-        mode: this.mode,
+        mode: this.mode || LoadStrategy.load,
       },
     }
   }
@@ -104,11 +107,10 @@ export class AudioMusicLoad {
     if (audioState.hasAudioComponent) {
       actionBus.emit(action.topic, action)
     } else {
-      const dispose = onAudioStateChange(
+      this.dispose = onAudioStateChange(
         'hasAudioComponent',
         async loaded => {
           if (loaded) {
-            dispose()
             actionBus.emit(action.topic, action)
             debugIf(
               audioState.debug,
@@ -116,6 +118,7 @@ export class AudioMusicLoad {
             )
             this.sent = true
           }
+          this.dispose?.call(this)
         },
       )
     }
@@ -128,5 +131,9 @@ export class AudioMusicLoad {
 
   render() {
     return <Host></Host>
+  }
+
+  disconnectedCallback() {
+    this.dispose?.call(this)
   }
 }

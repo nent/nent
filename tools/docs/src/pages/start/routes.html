@@ -1,0 +1,27 @@
+<n-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
+  style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
+</n-content-reference>
+<n-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
+</n-content-reference>
+<n-view-prompt path="/start/install/select" when="!{{storage:installed}}"
+  page-title="Select Installation"
+  content-src="/pages/start/install/select.html">
+</n-view-prompt>
+<n-view path="/start/install" page-title="Installing NENT"
+  content-src="/pages/start/install/default.html">
+
+  <n-view path="cdn" visit="optional" page-title="Use CDN"
+    content-src="/pages/start/install/cdn.html">
+  </n-view>
+  <n-view path="npm" visit="optional" page-title="Use Node"
+    content-src="/pages/start/install/npm.html">
+  </n-view>
+</n-view>
+<n-view-prompt path="/start/develop" page-title="Developing w/NENT"
+  content-src="/pages/start/develop.html">
+</n-view-prompt>
+  <n-view-prompt path="/start/conventions" page-title="NENT Conventions"
+    content-src="/pages/start/conventions.html">
+    </n-view-prompt>

@@ -5,14 +5,14 @@ import {
   Host,
   Method,
   Prop,
-  State
+  State,
 } from '@stencil/core'
-import { eventBus } from '../../services/actions'
+
 import {
   commonState,
-  ComponentRefresher,
+  CommonStateSubscriber,
   debugIf,
-  slugify
+  slugify,
 } from '../../services/common'
 import { warn } from '../../services/common/logging'
 import { replaceHtmlInElement } from '../../services/content/elements'
@@ -49,7 +49,7 @@ import { markVisit } from './services/visits'
   shadow: true,
 })
 export class View implements IView {
-  private dataSubscription!: ComponentRefresher
+  private dataSubscription!: CommonStateSubscriber
 
   @Element() el!: HTMLNViewElement
   @State() match: MatchResults | null = null
@@ -68,6 +68,24 @@ export class View implements IView {
    *
    */
   @Prop() pageTitle = ''
+
+  /**
+   * The page description for this view.
+   *
+   */
+  @Prop() pageDescription = ''
+
+  /**
+   * The keywords to add to the keywords meta-tag for this view.
+   *
+   */
+  @Prop() pageKeywords = ''
+
+  /**
+   * The robots instruction for search indexing
+   *
+   */
+  @Prop() pageRobots: 'all' | 'noindex' | 'nofollow' | 'none' = 'all'
 
   /**
    * Header height or offset for scroll-top on this
@@ -131,6 +149,11 @@ export class View implements IView {
   @Prop() debug = false
 
   /**
+   * Force render with data & route changes.
+   */
+  @Prop() noCache: boolean = false
+
+  /**
    * Return all child elements used for processing. This function is
    * primarily meant for testing.
    *
@@ -168,7 +191,6 @@ export class View implements IView {
 
   async componentWillLoad() {
     debugIf(this.debug, `n-view: ${this.path} loading`)
-
     this.contentKey = `rem-content-${slugify(
       this.contentSrc || 'none',
     )}`
@@ -192,9 +214,8 @@ export class View implements IView {
     )
 
     if (commonState.dataEnabled && this.resolveTokens) {
-      this.dataSubscription = new ComponentRefresher(
+      this.dataSubscription = new CommonStateSubscriber(
         this,
-        eventBus,
         'dataEnabled',
         DATA_EVENTS.DataChanged,
       )
@@ -245,7 +266,7 @@ export class View implements IView {
           this.route.replaceWithRoute(nextDo.path)
           return
         } else {
-          if (this.contentSrc)
+          if (this.contentSrc && this.contentElement == null)
             this.contentElement = await resolveRemoteContentElement(
               window,
               this.contentSrc!,
@@ -267,6 +288,7 @@ export class View implements IView {
       `#${this.contentKey}`,
       this.contentElement,
     )
+
     return (
       <Host>
         <slot />
@@ -276,11 +298,9 @@ export class View implements IView {
   }
 
   async componentDidRender() {
-    debugIf(this.debug, `n-view: ${this.path} did render`)
-
     if (!this.route?.match?.isExact) {
       this.contentElement?.remove()
-      this.contentElement = null
+      if (this.noCache) this.contentElement = null
     }
     await this.route?.loadCompleted()
   }

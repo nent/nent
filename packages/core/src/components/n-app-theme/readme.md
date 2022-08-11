@@ -14,7 +14,7 @@ user and sets the interface state: theme, accordingly.
 Add this tag somewhere close to the top of the application to auto-adjust the theme class
 based on the user's preferences.
 
-Use it in conjunction with the [\<n-app-theme-switch\>](/components/n-app-theme-switch) element,
+Use it in conjunction with the [`n-app-theme-switch`](/components/n-app-theme-switch) element
 to give users control of which theme should be applied.
 
 ```html
@@ -45,10 +45,10 @@ To set a custom class name:
 | --------------- | ---------------- | -------------------------------------------------------------------------------------------------- | --------- | -------- |
 | `darkClass`     | `dark-class`     | Change the class name that is added to the target element when the theme is determined to be dark. | `string`  | `'dark'` |
 | `display`       | `display`        | Display the user's system preference.                                                              | `boolean` | `false`  |
-| `switch`        | `switch`         | This component displays the current theme, unless in switch-mode, it will show the opposite.       | `boolean` | `false`  |
+| `switch`        | `switch`         | This element displays the current theme, unless in switch-mode, it will show the opposite.         | `boolean` | `false`  |
 | `targetElement` | `target-element` | Change the element that is decorated with the dark-mode class                                      | `string`  | `'body'` |
 
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT v0.10.8 - Copyright 2022 [all rights reserved]

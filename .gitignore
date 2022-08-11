@@ -6,10 +6,11 @@ dist
 loader
 .eslintcache
 .env
-/examples
 /docs
 coverage
 stats
 
 # Local Netlify folder
 .netlify
+.DS_Store
+packages/core/stencil-stats.json

@@ -1,0 +1,105 @@
+{
+  "NENT Install": {
+		"prefix": "n-i",
+		"body": [
+			"<script type=\"module\" ",
+      "   src=\"https://cdn.jsdelivr.net/npm/@nent/core/dist/nent/nent.esm.js\">",
+			"</script>"
+		],
+		"description": "NENT Script Reference"
+	},
+  "NENT Content Markdown": {
+		"prefix": "n-cm",
+		"body": [
+			"<n-content-markdown>",
+			"  <script type=\"text/markdown\">",
+			"  $1",
+			"  </script>",
+			"</n-content-markdown>"
+		],
+		"description": "NENT Content Markdown Element"
+	},
+  "NENT Views Router": {
+		"prefix": "n-vs",
+		"body": [
+			"<n-views start-path=\"$2\">",
+      "   <n-view path=\"$2\" page-title=\"$3\">",
+      "     <div slot=\"content\">",
+      "     </div>",
+      "   </n-view>",
+      "</n-views>",
+		],
+		"description": "NENT View router"
+	},
+  "NENT Views Route": {
+		"prefix": "n-v",
+		"body": [
+      "<n-view path=\"$1\" page-title=\"$2\">",
+      "  <div slot=\"content\">",
+      "     $3",
+      "  </div>",
+      "</n-view>",
+		],
+		"description": "NENT View element"
+	},
+	"NENT View-Link": {
+		"prefix": "n-vl",
+		"body": [
+			"<n-view-link path=\"$1\" active-class=\"\">",
+      "  $2",
+      "</n-view-link>",
+		],
+		"description": "NENT View Link element"
+	},
+  "NENT View Link Next": {
+		"prefix": "n-vln",
+		"body": [
+			"<n-view-link-next active-class=\"\">",
+      "  $2",
+      "</n-view-link-next>",
+		],
+		"description": "NENT View Link Next element"
+	},
+  "NENT View Link Back": {
+		"prefix": "n-vlb",
+		"body": [
+			"<n-view-link-back active-class=\"\">",
+      "  $2",
+      "</n-view-link-back>",
+		],
+		"description": "NENT View Link Back element"
+	},
+  "NENT View-Link-List": {
+		"prefix": "n-vll",
+		"body": [
+			"<n-view-link-list mode=\"$1\">",
+      "</n-view-link-list>",
+		],
+		"description": "NENT View Link Listelement"
+	},
+  "NENT App Simple": {
+		"prefix": "n-app",
+		"body": [
+      "<n-app>",
+      "  <n-app-theme>",
+      "  </n-app-theme>",
+			"  <n-views start-path=\"$2\" app-title=\"$1\">",
+      "     <nav><n-view-link href=\"$2\">$3</n-view-link>",
+      "     <n-view path=\"$2\" page-title=\"$3\">",
+      "       <div slot=\"content\">",
+      "       </div>",
+      "     </n-view>",
+      "  </n-views>",
+      "  <n-elements>",
+      "  </n-elements>",
+      "  <n-data>",
+      "    <n-data-storage>",
+      "    </n-data-storage>",
+      "  </n-data>",
+      "  <n-app-analytics>",
+      "  </n-app-analytics>",
+      "</n-app>"
+		],
+		"description": "NENT Simple App"
+	},
+}

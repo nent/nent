@@ -1,0 +1,45 @@
+<n-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/prism.min.js"
+  style-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism.min.css">
+</n-content-reference>
+<n-content-reference
+  script-src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/plugins/autoloader/prism-autoloader.min.js">
+</n-content-reference>
+
+<n-view path="/routing/lazy"
+  page-title="Lazy Loaded"
+  content-src="/pages/routing/lazy.html">
+</n-view>
+<n-view path="/routing/child"
+  page-title="Child Routes"
+  content-src="/pages/routing/child/default.html">
+  <n-view path="/routing/child/deep"
+    page-title="Deep Child Route"
+    content-src="/pages/routing/child/deep.html">
+  </n-view>
+</n-view>
+<n-view path="/routing/dynamic"
+  page-title="Data Routes"
+  content-src="/pages/routing/dynamic/default.html"
+  no-cache>
+  <n-view-prompt path="/routing/dynamic/custom"
+    page-title="Custom Selection"
+    content-src="/pages/routing/dynamic/custom.html"
+    when="!{{storage:favorite}}">
+  </n-view-prompt>
+  <n-view path="/routing/dynamic/item/:item"
+    page-title="Data Route: {{route:item}}"
+    resolve-tokens no-cache
+    content-src="/pages/routing/dynamic/child.html">
+
+  </n-view>
+</n-view>
+<n-view path="/routing/navigation"
+  page-title="Navigation"
+  src="/pages/routing/navigation/routes.html"
+  content-src="/pages/routing/navigation/default.html">
+</n-view>
+<n-view path="/routing/provider"
+  page-title="Data Provider"
+  content-src="/pages/routing/provider.html">
+</n-view>

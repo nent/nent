@@ -1,0 +1,87 @@
+<n-audio-action-music-load track-id="music"
+  src="https://storage.googleapis.com/nent-static/docs/audio/music-2.mp3"
+  discard="route"
+  mode="load">
+</n-audio-action-music-load>
+<div class="content">
+  <h1>Controls</h1>
+  <h2>Player Controls</h2>
+  <h3>Control with Actions</h3>
+  <p> You can make any button control the audio, using the <a
+      href="/components/n-action-activator">
+      <b>&lt;n-action-activator&gt;</b>
+    </a> with the <a href="/components/n-audio-action-music">
+      <b>&lt;n-audio-action-music&gt;</b>
+    </a> elements. </p>
+  <h3>Play</h3>
+  <n-action-activator activate="on-element-event">
+    <n-audio-action-music command="play"
+      track-id="music">
+    </n-audio-action-music>
+    <button type="button" n-hide-when="{{audio:isPlaying}}"
+      class="btn btn-info">
+      <i class="ri-play-line"></i>
+      Play </button>
+  </n-action-activator>
+  <n-doc-source src="/pages/audio/controls.html"
+    from="17"
+    to="25">
+  </n-doc-source>
+  <h3>Pause / Resume</h3>
+  <n-action-activator activate="on-element-event">
+    <n-audio-action-music command="pause"
+      track-id="music">
+    </n-audio-action-music>
+    <button type="button" hidden n-show-when="{{audio:isPlaying}}"
+      class="btn btn-info">
+      <i class="ri-pause-line"></i> Pause </button>
+  </n-action-activator>
+  <n-action-activator activate="on-element-event">
+    <n-audio-action-music
+      command="resume" 
+      track-id="music">
+    </n-audio-action-music>
+    <button type="button"  n-hide-when="{{audio:isPlaying}}"∂
+      class="btn btn-info">
+      <i class="ri-play-line"></i> Resume </button>
+  </n-action-activator>
+  <n-doc-source src="/pages/audio/controls.html"
+    from="31"
+    to="46">
+  </n-doc-source>
+  <h3>Seek</h3>
+  <n-action-activator activate="on-element-event">
+    <n-audio-action-music command="seek"
+      track-id="music"
+      value="10">
+    </n-audio-action-music>
+    <button type="button"
+      class="btn btn-info">
+      <i class="ri-arrow-right-line"></i> Seek to 10 Seconds </button>
+  </n-action-activator>
+  <n-doc-source src="/pages/audio/controls.html"
+    from="52"
+    to="60">
+  </n-doc-source>
+  <h3>Stop</h3>
+  <n-action-activator activate="on-element-event">
+    <n-audio-action-music command="stop"
+      track-id="music">
+    </n-audio-action-music>
+    <button type="button"
+      class="btn btn-info">
+      <i class="ri-stop-line"></i> Stop </button>
+  </n-action-activator>
+  <n-doc-source src="/pages/audio/controls.html"
+    from="66"
+    to="73">
+  </n-doc-source>
+  <footer>
+    <n-view-link-back slot="start"
+      link-class="btn btn-primary">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      link-class="btn btn-secondary">
+    </n-view-link-next>
+  </footer>
+</div>

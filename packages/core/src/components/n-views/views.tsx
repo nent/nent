@@ -4,7 +4,8 @@ import {
   h,
   Host,
   Prop,
-  writeTask
+  State,
+  writeTask,
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { commonState, debugIf } from '../../services/common'
@@ -24,11 +25,12 @@ import { routingState } from './services/state'
  */
 @Component({
   tag: 'n-views',
-  styleUrl: 'views.css',
   shadow: false,
 })
 export class ViewRouter {
   @Element() el!: HTMLNViewsElement
+  @State() matchedPath?: string
+
   /**
    * This is the root path that the actual page is,
    * if it isn't '/', then the router needs to know
@@ -60,45 +62,74 @@ export class ViewRouter {
    */
   @Prop() scrollTopOffset?: number
 
-  private get parentApp() {
-    return this.el.closest('n-app')
-  }
+  /**
+   * Turn on debugging to get helpful messages from the
+   * app, routing, data and action systems.
+   */
+  @Prop() debug: boolean = false
+
+  /**
+   * Enable the not-found display.
+   * To customize it, use:
+   * slot="not-found"
+   */
+  @Prop() notFound: boolean = false
 
   componentWillLoad() {
-    commonState.routingEnabled = true
-    routingState.router = new RouterService(
+    let {
+      appTitle: title,
+      appDescription: description,
+      appKeywords: keywords,
+    } = this.el.closest('n-app') || {
+      appTitle: window.document.title,
+    }
+
+    const router = new RouterService(
       window,
       writeTask,
       eventBus,
       actionBus,
       this.root,
-      this.parentApp?.appTitle,
+      title,
+      description,
+      keywords,
       this.transition,
       this.scrollTopOffset,
+    )
+
+    commonState.routingEnabled = true
+    routingState.router = router
+    routingState.debug = this.debug || commonState.debug
+  }
+
+  render() {
+    return (
+      <Host style={{ display: 'block' }}>
+        <slot></slot>
+        {this.notFound ? (
+          <div hidden={routingState.hasExactRoute}>
+            <slot name="not-found"></slot>
+          </div>
+        ) : null}
+      </Host>
     )
   }
 
   componentDidLoad() {
     const startPath = this.startPath
     function start() {
-      if (routingState.router) {
-        routingState.router?.finalize(startPath)
-      }
+      routingState.router?.initialize(startPath)
+      debugIf(commonState.debug, 'n-views: initialized')
     }
     if (this.startDelay > 0)
       setTimeout(() => {
         start()
       }, this.startDelay * 1000)
     else start()
-    debugIf(commonState.debug, 'n-views: initialized')
   }
 
   disconnectedCallback() {
     commonState.routingEnabled = false
     routingState.router?.destroy()
-  }
-
-  render() {
-    return <Host></Host>
   }
 }

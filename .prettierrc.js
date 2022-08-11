@@ -1,7 +1,6 @@
 module.exports = {
   arrowParens: "avoid",
   bracketSpacing: true,
-  jsxBracketSameLine: false,
   jsxSingleQuote: false,
   quoteProps: "consistent",
   printWidth: 70,
@@ -11,5 +10,5 @@ module.exports = {
   tabWidth: 2,
   trailingComma: "all",
   useTabs: false,
-  embeddedLanguageFormatting: "auto"
+  embeddedLanguageFormatting: "auto",
 }

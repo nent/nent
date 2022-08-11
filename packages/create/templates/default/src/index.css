@@ -1,0 +1,80 @@
+
+
+body {
+  --background-color: #fff;
+  --text-color: #000;
+  font-size: 2rem;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+body.dark {
+  --background-color: #000;
+  --text-color: rgb(216, 216, 216);
+}
+
+n-app-theme-switch img {
+  color: #000;
+  cursor: pointer;
+}
+
+#dark-mode {
+  display: none;
+}
+body.dark .show-dark {
+  display: block;
+}
+body.dark .show-light {
+  display: none;
+}
+.show-light {
+  display:block;
+}
+.show-dark {
+  display: none;
+}
+
+h1 { font-weight: 500; font-size: 3rem;}
+h2 { font-weight: 500; font-size: 2.5rem;}
+h3 { font-weight: 500; font-size: 2rem;}
+h4 { font-weight: 500; font-size: 1.2rem;}
+h5 { font-weight: 500; font-size: 1rem;}
+
+nav {
+  background-color: var(--text-color);
+  padding: 1rem;
+  border-radius: 10px;
+
+}
+
+
+n-view-link {
+  display: block;
+}
+
+n-view-link a {
+  color: var(--background-color);
+}
+
+n-view-link a.active {
+  color: var(--background-color);
+  font-weight: bold;
+}
+
+n-views {
+  display: block;
+}
+
+n-view [slot='content'] {
+  display: block;
+  margin-top: 4rem;
+}
+
+
+
+pre {
+  color: #000;
+}

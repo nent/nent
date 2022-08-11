@@ -1,17 +1,39 @@
 # N-PRESENTATION-ACTION
 
+For use in the `n-presentation` element only. Action activation occurs when the `n-presentation` element reaches a certain time.
 
+> ℹ️ Note: This element combines the `n-action-activator` and `n-action` for convenience. It uses the activation strategy `at-time`.
 
 <!-- Auto Generated Below -->
 
 
+## Usage
+
+### Basic
+
+```html
+<n-presentation>
+  <n-video ...>
+  </n-video>
+  <n-presentation-action time="2" 
+    topic="elements"
+    command="add-class" 
+    data-selector="#animation"
+    data-class=".fadeIn">
+  </n-n-presentation-action>
+</n-presentation>
+```
+
+
+
 ## Properties
 
-| Property               | Attribute | Description                                         | Type                           | Default     |
-| ---------------------- | --------- | --------------------------------------------------- | ------------------------------ | ----------- |
-| `command` _(required)_ | `command` | The command to execute.                             | `string`                       | `undefined` |
-| `time`                 | `time`    | The time this should execute                        | `"end"`, `number`, `undefined` | `undefined` |
-| `topic` _(required)_   | `topic`   | This is the topic this action-command is targeting. | `string`                       | `undefined` |
+| Property               | Attribute | Description                                          | Type                           | Default     |
+| ---------------------- | --------- | ---------------------------------------------------- | ------------------------------ | ----------- |
+| `command` _(required)_ | `command` | The command to execute.                              | `string`                       | `undefined` |
+| `time`                 | `time`    | The time this should execute                         | `"end"`, `number`, `undefined` | `undefined` |
+| `topic` _(required)_   | `topic`   | This is the topic this action-command is targeting.  | `string`                       | `undefined` |
+| `when`                 | `when`    | A predicate to evaluate prior to sending the action. | `string`, `undefined`          | `undefined` |
 
 
 ## Methods
@@ -28,7 +50,7 @@ Type: `Promise<EventAction<any> | null>`
 
 ### `sendAction(data?: Record<string, any> | undefined) => Promise<void>`
 
-Send this action to the the action messaging system.
+Send this action to the action messaging system.
 
 #### Returns
 
@@ -39,4 +61,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT v0.10.8 - Copyright 2022 [all rights reserved]

@@ -35,7 +35,7 @@ describe('n-view', () => {
 
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display: block;">
         <n-view class="active exact" path="/">
           <mock:shadow-root>
             <slot></slot>
@@ -73,7 +73,7 @@ describe('n-view', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view class="active exact" src="fake.html" path="/test">
         <mock:shadow-root>
           <slot></slot>
@@ -113,7 +113,7 @@ describe('n-view', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view class="active exact" content-src="fake.html" path="/test">
         <mock:shadow-root>
           <slot></slot>
@@ -157,7 +157,7 @@ describe('n-view', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view class="active exact" content-src="fake.html" path="/test">
         <mock:shadow-root>
           <slot></slot>
@@ -186,7 +186,7 @@ describe('n-view', () => {
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
-    <n-views>
+    <n-views style="display: block;">
       <n-view content-src="fake.html" path="/test">
         <mock:shadow-root>
           <slot></slot>

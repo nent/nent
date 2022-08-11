@@ -1,6 +1,7 @@
 jest.mock('../../services/common/logging')
 jest.mock('../../services/data/evaluate.worker')
-jest.mock('./markdown/remarkable.worker')
+jest.mock('../../services/data/jsonata.worker')
+jest.mock('./services/remarkable.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
@@ -439,6 +440,60 @@ describe('n-content-markdown', () => {
           <h1>
           HI John!
           </h1>
+        </div>
+      </n-content-markdown>
+    `)
+
+    page.root?.remove()
+  })
+
+  it('renders markup from JSON, using a data expression', async () => {
+    const page = await newSpecPage({
+      components: [ContentMarkdown],
+    })
+
+    page.win.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve(`{ "data": "# HI WORLD! "}`),
+      }),
+    )
+
+    await page.setContent(
+      `<n-content-markdown json="data" src="fake.json"></n-content-markdown>`,
+    )
+
+    expect(page.root).toEqualHtml(`
+      <n-content-markdown json="data" src="fake.json">
+        <div class="rendered-content">
+          <h1>
+          HI WORLD!
+          </h1>
+        </div>
+      </n-content-markdown>
+    `)
+
+    page.root?.remove()
+  })
+
+  it('renders URLs as external links', async () => {
+    const page = await newSpecPage({
+      components: [ContentMarkdown],
+      html: `
+      <n-content-markdown>
+        <script>https://google.com</script>
+     </n-content-markdown>`,
+    })
+
+    await page.waitForChanges()
+
+    expect(page.root).toEqualHtml(`
+      <n-content-markdown>
+        <script>https://google.com</script>
+        <div class="rendered-content">
+         <p>
+          <a href="https://google.com" target="_blank">https://google.com</a>
+         </p>
         </div>
       </n-content-markdown>
     `)

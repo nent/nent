@@ -1,0 +1,55 @@
+<div class="content">
+  <h1>Partial Content</h1>
+  <p class="lead"> Optimize your HTML app, by leveraging lazy-loading and only
+    pulling in heavy dependencies when you absolutely need them. </p>
+  <h2>Include Remote HTML</h2>
+  <p>To make big applications manageable, developers adhere to a strict 'do not
+    repeat yourself' principle. If the same HTML exists in more than one
+    place, you'll want to manage it in a single place.</p>
+  <p>It makes updates much easier, and you can leverage its lazy-loading feature
+    to make the site render faster.</p>
+  <p>Organize these fragments however you like, then inject them into your
+    application, using the <a href="/components/n-content-include">
+      <b>&lt;n-content-include&gt;</b>
+    </a> element. </p>
+
+  <h3>Example Include:</h3>
+
+  <n-content-include src="/pages/content/included.html"> </n-content-include>
+  <n-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <n-content-include src="/pages/content/included.html"> </n-content-include>
+      ```
+    </script>
+  </n-content-markdown>
+  <h2>Guarantee Dependency References</h2>
+  <p> Once you start breaking your site up into fragments, you'll find it
+    improves performance to not pull in any remote scripts or style-sheets until
+    you need them. Using the <a href="/components/n-content-reference">
+      <b>&lt;n-content-reference&gt;</b>
+    </a> element, you decorate fragments with the remote dependencies that
+    HTML needs, and the element will make sure it's there. If the user already
+    went to a page-title with that element, it won't be added again. Keep your
+    HTML light and functional. </p>
+  <h3>Example Reference</h3>
+  <n-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <n-content-reference
+        script-src="https://cdn.google.com/apis/calender.js"
+      >
+      </n-content-reference>
+      <google-calendar></google-calendar>
+      ```
+    </script>
+  </n-content-markdown>
+  <footer>
+    <n-view-link-back slot="start"
+      link-class="btn btn-primary">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      class="btn btn-secondary">
+    </n-view-link-next>
+  </footer>
+</div>

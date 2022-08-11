@@ -52,6 +52,7 @@ export class ContentReveal {
     this.subject.style.setProperty('--distance', animationDistance)
   }
 
+  /* istanbul ignore next */
   private addIntersectionObserver() {
     this.io = new window.IntersectionObserver(
       (data: any) => {
@@ -85,6 +86,7 @@ export class ContentReveal {
       </div>
     )
   }
+
   disconnectedCallback() {
     this.removeIntersectionObserver()
   }

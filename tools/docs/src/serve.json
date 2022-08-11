@@ -1,0 +1,23 @@
+{
+  "headers": [
+    {
+      "source" : "**/*.@(jpg|jpeg|gif|png)",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "public, max-age=7200"
+      }]
+    },
+    {
+      "source" : "**/*.@(js|css|json)",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "public, max-age=500"
+      }]
+    }
+  ],
+  "rewrites": [{
+    "source":"**",
+    "destination": "/index.html",
+    "type": 302
+  }]
+}

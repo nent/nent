@@ -1,0 +1,85 @@
+{
+  "name": "nent",
+  "version": "0.10.6",
+  "displayName": "NENT",
+  "description": "Add NENT HTML-element hinting, snippets and autocomplete for HTML files. Learn more about building web application directly with HTML here: https://nent.dev",
+  "author": "support <support@nent.dev> (https://nent.dev)",
+  "homepage": "https://nent.dev",
+  "license": "MIT",
+  "publisher": "NENT",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nent/nent.git",
+    "directory": "packages/vscode"
+  },
+  "private": false,
+  "sideEffects": false,
+  "keywords": [
+    "nent",
+    "vscode",
+    "web-components",
+    "framework-agnostic"
+  ],
+  "bugs": {
+    "url": "https://github.com/nent/nent/issues",
+    "email": "tech@nent.dev"
+  },
+  "extensionKind": [
+    "workspace",
+    "ui"
+  ],
+  "badges": [
+    {
+      "description": "MIT",
+      "url": "https://badgen.net/github/license/nent/nent?icon=github",
+      "href": "https://github.com/nent/nent"
+    },
+    {
+      "description": "webnamespaces.org",
+      "url": "https://img.shields.io/static/v1?label=webnamespaces.org&color=blue&message=n-*",
+      "href": "https://webnamespaces.org"
+    },
+    {
+      "description": "npm",
+      "url": "https://badgen.net/npm/v/@nent/core?icon",
+      "href": "https://www.npmjs.com/package/@nent/core"
+    },
+
+    {
+      "description": "jsdelivr",
+      "url": "https://data.jsdelivr.com/v1/package/npm/@nent/core/badge",
+      "href": "https://www.jsdelivr.com/package/npm/@nent/core"
+    }
+  ],
+  "scripts": {
+    "prebuild": "rm -fR ./dist && mkdir ./dist",
+    "build": "vsce package -o ./dist/ --yarn",
+    "prepublish": "yarn build --yarn",
+    "publish": "vsce publish --yarn"
+  },
+  "engines": {
+    "vscode": "^1.67.0"
+  },
+  "preview": true,
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "contributes": {
+    "html": {
+      "customData": [
+        "./nent.html-data.json"
+      ]
+    },
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/snippets.code-snippets"
+      }
+    ]
+  },
+  "devDependencies": {
+    "vsce": "2.10.0"
+  }
+}

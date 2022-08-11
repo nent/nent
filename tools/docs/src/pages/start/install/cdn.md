@@ -1,0 +1,14 @@
+ ```html
+<head>
+  ...
+  <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@nent/core/dist/nent/nent.esm.js">
+  </script>
+  <script
+    nomodule
+    src="https://cdn.jsdelivr.net/npm/@nent/core/dist/nent/nent.js">
+  </script>
+  ...
+</head>
+```

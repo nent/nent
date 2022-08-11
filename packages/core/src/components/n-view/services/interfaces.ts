@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { ActionActivationStrategy } from '../../../services/actions/interfaces'
 import { MatchResults } from '../../n-views/services/interfaces'
 import { Route } from './route'
@@ -12,10 +14,9 @@ export interface IRoute {
     AtTime: ActionActivationStrategy,
     filter: (activator: any) => boolean,
   ): Promise<void>
-  goBack(): void
-  goNext(): void
-  goToRoute(path: string): void
-  goToParentRoute(): void
+  getPreviousRoute(): Promise<Route | null>
+  getNextRoute(): Promise<Route | null>
+  getParentRoute(): Route | null
 }
 
 export type RouteInfo = {
@@ -23,6 +24,8 @@ export type RouteInfo = {
   path: string
   routeElement: HTMLElement
   pageTitle: string
+  pageDescription: string
+  pageKeywords: string
 }
 
 export enum VisitStrategy {

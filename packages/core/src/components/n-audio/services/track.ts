@@ -8,6 +8,7 @@ import {
   LoadStrategy,
 } from './interfaces'
 
+/* It's a wrapper around the Howler library that allows us to play audio files */
 export class AudioTrack implements AudioInfo {
   public readonly sound!: Howl
   public trackId!: string
@@ -19,18 +20,12 @@ export class AudioTrack implements AudioInfo {
 
   public onEnd?: Listener
   public onLoad?: Listener
-  public get playing() {
-    return this.sound.playing()
-  }
 
-  public get muted() {
-    return this.sound.volume() == 0
-  }
-
-  public get state() {
-    return this.sound.state()
-  }
-
+  /**
+   * It creates a new Howl instance, and assigns it to the sound property of the AudioTrack instance
+   * @param {AudioInfo} audio - AudioInfo
+   * @param {Listener} [onEnd] - A callback function that is called when the audio track ends.
+   */
   constructor(audio: AudioInfo, onEnd?: Listener) {
     const { trackId, src, type, loop } = audio
     requireValue(trackId, 'trackId', 'n-audio: track')
@@ -69,6 +64,33 @@ export class AudioTrack implements AudioInfo {
     this.sound = sound
   }
 
+  /**
+   * It returns a boolean value that indicates whether the sound is currently playing
+   * @returns The sound is being returned.
+   */
+  public playing() {
+    return this.sound.playing()
+  }
+
+  /**
+   * It returns true if the volume of the sound is 0, and false otherwise
+   * @returns The volume of the sound.
+   */
+  public muted() {
+    return this.sound.volume() == 0
+  }
+
+  /**
+   * It returns the state of the sound
+   * @returns The state of the sound object.
+   */
+  public state() {
+    return this.sound.state()
+  }
+
+  /**
+   * If the sound is loaded, play it. If it's loading, wait for it to load and then play it
+   */
   public start() {
     if (this.sound.state() === 'loaded') {
       this.play()
@@ -79,37 +101,67 @@ export class AudioTrack implements AudioInfo {
     }
   }
 
+  /**
+   * "Play the sound, but fade it in over half a second."
+   *
+   * The first line sets the volume to 0. This is important because if we don't do this, the sound will
+   * play at full volume for a split second before fading in
+   */
   public play() {
     this.sound.volume(0)
     this.sound.play()
     this.sound.fade(0, window.Howler?.volume() || 0.5, 500)
   }
 
+  /**
+   * It pauses the sound
+   */
   public pause() {
     this.sound.pause()
   }
 
+  /**
+   * It fades the volume of the sound to 0 over 500 milliseconds, then stops the sound
+   */
   public stop() {
     this.sound.fade(window.Howler?.volume() || 0.5, 0, 500)
     this.sound.stop()
   }
 
+  /**
+   * It sets the mute property of the sound object to the value of the mute parameter
+   * @param {boolean} mute - boolean - true to mute, false to unmute
+   */
   public mute(mute: boolean) {
     this.sound.mute(mute)
   }
 
+  /**
+   * The resume function plays the sound
+   */
   public resume() {
     this.sound.play()
   }
 
+  /**
+   * This function sets the volume of the sound to the number passed in
+   * @param {number} set - The volume you want to set the sound to.
+   */
   public setVolume(set: number) {
     this.sound.volume(set)
   }
 
+  /**
+   * This function seeks to a specific time in the audio file
+   * @param {number} time - The time in seconds to seek to.
+   */
   public seek(time: number) {
     this.sound.seek(time)
   }
 
+  /**
+   * It unloads the sound from the game.
+   */
   public destroy() {
     this.sound.unload()
   }

@@ -1,0 +1,41 @@
+<div class="content">
+  <h1>Begin Tutorial</h1>
+  <p class="lead">This guide will walk you through the core systems and their
+    elements.</p>
+  <p>Continue through this walk-through to get an overview of the elements and
+    their functionality.</p>
+
+  <n-content-include src="/pages/guides.html">
+  </n-content-include>
+
+  <h2 style="margin-top: 3rem;">Conventions</h2>
+  <p>Before we dive in, there's a few things you should know...</p>
+  <div class="button-nav">
+    <n-view-link path="/start/install"
+      active-class="none"
+      link-class="btn btn-secondary btn-sm">
+      <i class="ri-install-line"></i>
+      Installation
+    </n-view-link>
+
+    <n-view-link path="/start/develop"
+      active-class="none"
+      link-class="btn btn-secondary btn-sm">
+      <i class="ri-git-pull-request-line"></i>
+      Developer Tools
+    </n-view-link>
+    <n-view-link path="/start/conventions"
+      active-class="none"
+      link-class="btn btn-secondary btn-sm">
+      <i class="ri-settings-6-line"></i>
+      Element Conventions
+    </n-view-link>
+
+  </div>
+  <footer>
+    <n-view-link-next slot="end"
+      link-class="btn btn-primary btn-lg">
+    </n-view-link-next>
+  </footer>
+
+</div>

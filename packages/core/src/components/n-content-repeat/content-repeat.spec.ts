@@ -1,5 +1,6 @@
-jest.mock('./filter/jsonata.worker')
+jest.mock('../../services/data/jsonata.worker')
 jest.mock('../../services/data/evaluate.worker')
+jest.mock('../../services/common/logging')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { actionBus, eventBus } from '../../services/actions'
@@ -7,7 +8,7 @@ import {
   commonState,
   commonStateDispose,
 } from '../../services/common/state'
-import { contentStateDispose } from '../../services/content'
+import { contentStateDispose } from '../../services/content/state'
 import { addDataProvider } from '../../services/data/factory'
 import { DATA_EVENTS } from '../../services/data/interfaces'
 import { InMemoryProvider } from '../../services/data/providers/memory'
@@ -17,10 +18,7 @@ import { ContentDataRepeat } from './content-repeat'
 import remoteData from './test/data.json'
 
 describe('n-content-repeat', () => {
-  let provider: InMemoryProvider
   beforeEach(() => {
-    commonState.dataEnabled = true
-    provider = new InMemoryProvider()
     commonState.dataEnabled = true
     commonState.routingEnabled = true
     commonState.elementsEnabled = true
@@ -28,11 +26,11 @@ describe('n-content-repeat', () => {
 
   afterEach(() => {
     dataStateDispose()
+    contentStateDispose()
+    commonStateDispose()
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
     jest.resetAllMocks()
-    contentStateDispose()
-    commonStateDispose()
   })
 
   it('renders', async () => {
@@ -52,28 +50,24 @@ describe('n-content-repeat', () => {
     page.root?.remove()
   })
 
-  it('renders, delayed enable', async () => {
-    commonState.dataEnabled = false
-    commonState.routingEnabled = false
-
-    const page = await newSpecPage({
-      components: [ContentDataRepeat],
-      html: `<n-content-repeat defer-load><div></div></n-content-repeat>`,
-    })
-    expect(page.root).toEqualHtml(`
-      <n-content-repeat defer-load="">
-        <div></div>
-      </n-content-repeat>
-    `)
-
-    commonState.dataEnabled = true
-    commonState.routingEnabled = true
-
-    eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
-    eventBus.emit(DATA_EVENTS.DataChanged, {})
-
-    page.root?.remove()
-  })
+  //it('renders, delayed enable', async () => {
+  //  commonState.dataEnabled = false
+  //  commonState.routingEnabled = false
+  //  const page = await newSpecPage({
+  //    components: [ContentDataRepeat],
+  //    html: `<n-content-repeat defer-load><div></div></n-content-repeat>`,
+  //  })
+  //  expect(page.root).toEqualHtml(`
+  //    <n-content-repeat defer-load="">
+  //      <div></div>
+  //    </n-content-repeat>
+  //  `)
+  //  commonState.dataEnabled = true
+  //  commonState.routingEnabled = true
+  //  eventBus.emit(ROUTE_EVENTS.RouteChanged, {})
+  //  eventBus.emit(DATA_EVENTS.DataChanged, {})
+  //  page.root?.remove()
+  //})
 
   it('render inline array', async () => {
     const page = await newSpecPage({
@@ -98,8 +92,9 @@ describe('n-content-repeat', () => {
   })
 
   it('render inline array from tokens', async () => {
+    let provider = new InMemoryProvider()
     addDataProvider('some', provider)
-    provider.set('list', '[0, 9, 8, 7]')
+    await provider.set('list', '[0, 9, 8, 7]')
 
     const page = await newSpecPage({
       components: [ContentDataRepeat],
@@ -120,6 +115,8 @@ describe('n-content-repeat', () => {
         </div>
       </n-content-repeat>
     `)
+    provider.destroy()
+
     page.root?.remove()
   })
 
@@ -205,7 +202,8 @@ describe('n-content-repeat', () => {
         }),
       )
 
-    await page.setContent(`<n-content-repeat items-src="items.json" no-cache>
+    await page.setContent(`
+      <n-content-repeat items-src="items.json" no-cache>
         <template><b>{{data:item}}</b></template>
       </n-content-repeat>`)
 

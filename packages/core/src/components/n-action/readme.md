@@ -1,8 +1,8 @@
 # N-ACTION
 
-This element holds the data that **is** the Action submitted through [Actions](/actions) bus. The parent tag defines how and when the child actions are submitted through [Actions](/actions).
+This element holds am action event and its data to be submitted through [Actions](/actions) bus. The parent tag defines how and when the child actions are submitted through [Actions](/actions). 
 
-> This element does not activate these actions automatically. They need to be activated through script, or by wrapping them in an [\<n-action-activator\>](/components/n-action-activator) tag.
+> ℹ️ This element does not activate these actions automatically. They need to be activated through script, or by wrapping them in an [`n-action-activator`](/components/n-action-activator) tag.
 
 
 ## Element
@@ -31,7 +31,7 @@ For most action-argument data, it is easiest to specify them as key-value pairs 
 </n-action>
 ```
 
-> NOTE: If a listener declares an argument using 'camelCase', it should be converted to 'kebab-case' in HTML, (words separated by dashes, all lowercase). It will be converted to 'camelCase' automatically when activated.
+> ℹ️ Note: If a listener declares an argument using 'camelCase', it should be converted to 'kebab-case' in HTML, (words separated by dashes, all lowercase). It will be converted to 'camelCase' automatically when activated.
 
 
 #### Real example
@@ -39,6 +39,34 @@ For most action-argument data, it is easiest to specify them as key-value pairs 
 ```html
 <n-action topic='navigation'
   command='go-to'
+  data-path='/some/path'>
+</n-action>
+```
+
+
+### Conditional
+
+To add a condition to your actions, add a when attribute to the action element with your predicate expression.
+
+```html
+<n-action topic='<topic>'
+  command='<command>'
+  when='<expression>'
+  data-(key)='value'>
+</n-action>
+...
+<n-data></n-data>
+```
+
+> ℹ️ Note: You must enable data services, by adding an `n-data` element to the page.
+
+
+#### Real example
+
+```html
+<n-action topic='navigation'
+  command='go-to'
+  when='{{storage:auto-navigate}}'
   data-path='/some/path'>
 </n-action>
 ```
@@ -73,13 +101,27 @@ For more complex data shapes, you can define the data parameters as JSON in a ch
 ```
 
 
+### Tokens
+
+If the `n-data` extension is enabled, you can use token-expressions as the value for actions:
+
+```html
+<n-action 
+  topic='<topic>'
+  command='<command>'
+  data-(key)='{{provider:key}}'>
+</n-action>
+```
+
+
 
 ## Properties
 
-| Property               | Attribute | Description                                         | Type     | Default     |
-| ---------------------- | --------- | --------------------------------------------------- | -------- | ----------- |
-| `command` _(required)_ | `command` | The command to execute.                             | `string` | `undefined` |
-| `topic` _(required)_   | `topic`   | This is the topic this action-command is targeting. | `string` | `undefined` |
+| Property               | Attribute | Description                                          | Type                  | Default     |
+| ---------------------- | --------- | ---------------------------------------------------- | --------------------- | ----------- |
+| `command` _(required)_ | `command` | The command to execute.                              | `string`              | `undefined` |
+| `topic` _(required)_   | `topic`   | This is the topic this action-command is targeting.  | `string`              | `undefined` |
+| `when`                 | `when`    | A predicate to evaluate prior to sending the action. | `string`, `undefined` | `undefined` |
 
 
 ## Methods
@@ -107,4 +149,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT v0.10.8 - Copyright 2022 [all rights reserved]

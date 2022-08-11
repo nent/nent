@@ -1,5 +1,3 @@
-//import { angularOutputTarget } from '@stencil/angular-output-target'
-//import { reactOutputTarget } from '@stencil/react-output-target'
 import { Config } from '@stencil/core'
 import { JsonDocs } from '@stencil/core/internal'
 import analyzer from 'rollup-plugin-analyzer'
@@ -9,6 +7,8 @@ import { version } from './package.json'
 const config: Config = {
   namespace: 'nent',
   hashFileNames: false,
+  preamble: 'NENT 2022',
+  invisiblePrehydration: false,
   rollupPlugins: {
     after: [
       analyzer({
@@ -20,17 +20,6 @@ const config: Config = {
     ],
   },
   outputTargets: [
-    // angularOutputTarget({
-    //   componentCorePackage: '@nent/core',
-    //   directivesProxyFile: '../core-angular/src/directives/proxies.ts',
-    //   excludeComponents: [ 'n-app', 'n-app-analytics'],
-    // }),
-    // reactOutputTarget({
-    //   componentCorePackage: '@nent/core',
-    //   proxiesFile: '../core-react/src/components.ts',
-    //   excludeComponents: [ 'n-app', 'n-app-analytics'],
-    //   loaderDir: 'dist/loader'
-    // }),
     {
       type: 'dist',
       esmLoaderPath: 'loader',
@@ -43,17 +32,17 @@ const config: Config = {
       ],
     },
     {
-      type: 'dist-custom-elements-bundle',
+      type: 'dist-custom-elements',
     },
     {
       type: 'docs-readme',
-      footer: `NENT 2021 - all rights reserved`,
-      dependencies: false,
+      footer: `NENT v${version} - Copyright 2022 [all rights reserved]`,
+      dependencies: true,
       strict: true,
     },
     {
       type: 'docs-vscode',
-      file: 'dist/custom-elements.json',
+      file: 'dist/nent.html-data.json',
     },
     {
       type: 'docs-custom',
@@ -66,6 +55,7 @@ const config: Config = {
       type: 'docs-json',
       file: 'dist/components.json',
     },
+    { type: 'stats' },
   ],
 }
 

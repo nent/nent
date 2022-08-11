@@ -1,0 +1,114 @@
+<n-content-reveal direction="left"
+  delay="500"
+  duration="1000"
+  animation-distance="60%"
+  trigger-distance="50%">
+  <ul
+    class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
+    <li class="list-group-item fw-bold">Data Elements</li>
+    <n-content-repeat items-src="/dist/components.json"
+      filter="components[docsTags[name='system' and text='data']]">
+      <template>
+        <li class="list-group-item">
+          <a href="/components/{{data:tag}}?group=data"> &lt;{{data:tag}}&gt;
+          </a>
+        </li>
+      </template>
+    </n-content-repeat>
+  </ul>
+</n-content-reveal>
+<div class="content">
+  <h1>Data</h1>
+  <p class="lead">Provide multiple ways to use data within your HTML.</p>
+  <h2>How it works</h2>
+  <p>The <a href="/components/n-data">
+      <b>&lt;n-data&gt;</b></a> element extends the functionality of other
+    elements by introducing a data-provider system along with an
+    expression-resolution system for using data in a simple, declarative way.
+  </p>
+  <p>Once enabled, data can be injected in HTML using tokens:
+  <pre>{{source:key}}</pre>
+  </p>
+  <h3>Token Expressions</h3>
+  <p>Learn more about expressions and predicates.</p>
+  <div class="button-nav">
+    <a href="/data/expressions"
+      class="btn btn-secondary"> Expressions & Predicates </a>
+  </div>
+  <h2>Content Repeat Example</h2>
+  <p>Assuming a list of URLs visited are stored within the browser's built-in
+    storage, you can render that list in your HTML by enabling the <a
+      href="/components/n-data">
+      <b>&lt;n-data&gt;</b></a> system and installing the <a
+      href="/components/n-data-storage">
+      <b>&lt;n-data-storage&gt;</b></a> provider. </p>
+  <p>The <a href="/components/n-content-repeat">
+      <b>&lt;n-content-repeat&gt;</b></a> element can then reference the list
+    using the expression: </p>
+  <pre>{{storage:visits}}</pre>
+  <n-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <n-data>
+        <n-data-storage></n-data-storage>
+      </n-data>
+      <ul>
+        <n-content-repeat items="{{storage:visits}}">
+          <template>
+            <li>{{data:item}}</li>
+          </template>
+        </n-content-repeat>
+      </ul>
+      ```
+    </script>
+  </n-content-markdown>
+  <h4>Results:</h3>
+    <ul>
+      <n-content-repeat items="{{storage:visits}}">
+        <template>
+        <li>{{data:item}}</li>
+      </template>
+      </n-content-repeat>
+    </ul>
+    <h3>Supporting Components</h3>
+    <p>Learn more about how data can be used in supporting elements.</p>
+    <h4>Extended Data Functionality</h4>
+    <ul>
+      <n-content-repeat items-src="/dist/components.json"
+        filter="components[docsTags[name='extension' and text='data']]">
+        <template>
+          <li>
+            <a href="/components/{{data:tag}}/data">{{data:tag}} data-extensions
+            </a>
+          </li>
+        </template>
+      </n-content-repeat>
+    </ul>
+    <h4>Data Providers</h4>
+    <ul>
+      <n-content-repeat items-src="/dist/components.json"
+        filter="components[docsTags[name='extension' and text='provider']]">
+        <template>
+          <li>
+            <a href="/components/{{data:tag}}/provider">{{data:tag}} provider
+            </a>
+          </li>
+        </template>
+      </n-content-repeat>
+    </ul>
+    <h3>Custom Provider</h3>
+    <p>You can also register your own data provider through the <a
+        href="/components/n-data">n-data</a> element. </a></p>
+    <div class="button-nav">
+      <a class="btn btn-secondary"
+        href="/components/n-data/custom">Custom Providers</a>
+    </div>
+    <footer>
+      <n-view-link-back slot="start"
+        class="btn btn-primary btn-lg">
+      </n-view-link-back>
+      <n-view-link-next slot="end"
+        class="btn btn-primary btn-lg">
+      </n-view-link-next>
+    </footer>
+</div>

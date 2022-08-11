@@ -37,7 +37,7 @@ document.body.dispatchEvent(event, { bubbles: true, composed: true})
 
 ```
 
-> Note: be sure the event is composed, so it can reach shadow-dom listeners.
+> ℹ️ Note: be sure the event is composed, so it can reach shadow-dom listeners.
 
 
 Then you can send [actions](/actions) declaratively, to execute those functions.

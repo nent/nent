@@ -1,0 +1,59 @@
+<div class="content">
+  <h1>Your Profile</h1>
+  <p>This data does not leave your browser. It is only for demonstration
+    purposes.</p>
+  <n-action-activator activate="on-element-event"
+    target-element="#name"
+    target-event="blur">
+    <n-action topic="storage"
+      command="set-data"> </n-action>
+    <div class="form-group mb-3">
+      <label for="name">Nickname</label>
+      <input type="text"
+        required
+        class="form-control"
+        id="name"
+        n-value-from="{{storage:name}}" />
+    </div>
+  </n-action-activator>
+  <div class="form-check form-switch">
+    <n-audio-switch input-class="form-check-input"
+      input-id="audioSwitch"
+      setting="enabled"> </n-audio-switch>
+    <label class="form-check-label"
+      for="audioSwitch">Audio Enabled</label>
+  </div>
+  <div class="form-check form-switch">
+    <n-video-switch input-class="form-check-input"
+      input-id="autoPlaySwitch"> </n-video-switch>
+    <label class="form-check-label"
+      for="autoPlaySwitch">Auto-play</label>
+  </div>
+  <div class="form-check form-switch">
+    <n-app-theme-switch input-class="form-check-input"
+      input-id="themeSwitch"> </n-app-theme-switch>
+    <label class="form-check-label"
+      for="themeSwitch">Dark-Mode</label>
+  </div>
+  <n-content-show hidden
+    when="{{cookie:consent}} == 'true'">
+    <h3>You gave us consent to set a cookie.</h3>
+    <p>This is just an example and not meant to be taken seriously.</p>
+    <n-action-activator target-element="#consent">
+      <n-action topic="cookie"
+        command="set-data"
+        data-consent="false"> </n-action>
+    </n-action-activator>
+    <button id="consent"
+      class="btn btn-light">Revoke Consent</button>
+  </n-content-show>
+  <footer>
+    <n-action-activator slot="end">
+      <n-action topic="navigation"
+        command="go-back"></n-action>
+      <button type="button"
+        class="btn btn-primary btn-lg">Return</button>
+    </n-action-activator>
+
+  </footer>
+</div>

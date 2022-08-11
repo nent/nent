@@ -1,8 +1,8 @@
 # N-AUDIO-ACTION-SOUND-LOAD
 
-The [\<n-audio-action-sound-load\>](/components/n-audio-action-sound-load) element represents audio files and play behaviors. They are all sent to the global-audio player to pre-load or play when the route is active. The player manages them according to their settings.
+The [`n-audio-action-sound-load`](/components/n-audio-action-sound-load) element represents audio files and play behaviors. They are all sent to the global-audio player to pre-load or play when the route is active. The player manages them according to their settings.
 
-> See the [audio](/audio) systems documentation for more information.
+> ℹ️ Note: See the [audio](/audio) systems documentation for more information.
 
 ## Usage
 
@@ -31,7 +31,7 @@ The [\<n-audio-action-sound-load\>](/components/n-audio-action-sound-load) eleme
 
 ## Timed
 
-For timed audio, the audio is sent upfront for pre-loading. Then at the given time, a separate [\<n-audio-action-sound\>](/components/n-audio-action-sound) event is dispatched to play it at a given time. This way, the audio is likely to play on time without any buffering.
+For timed audio, the audio is sent upfront for pre-loading. Then at the given time, a separate [`n-audio-action-sound`](/components/n-audio-action-sound) event is dispatched to play it at a given time. This way, the audio is likely to play on time without any buffering.
 
 The following demonstrates how to load a track, and wait 10 seconds until it plays. It's important to remember this time can be paused by the user, so it could be any amount of time if a video is playing.
 
@@ -86,7 +86,7 @@ If audio has replay set to true, re-entry to the originating state will re-activ
 | ---------------------- | ------------ | ------------------------------------------------------------------------------------------------------------ | ----------------------------- | ----------- |
 | `deferLoad`            | `defer-load` | If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute. | `boolean`                     | `false`     |
 | `discard`              | `discard`    | The discard strategy the player should use for this file.                                                    | `"next"`, `"none"`, `"route"` | `'route'`   |
-| `mode`                 | `mode`       | This is the loading strategy that determines what it should do after the file is retrieved.                      | `"load"`, `"play"`, `"queue"` | `'load'`    |
+| `mode`                 | `mode`       | This is the loading strategy that determines what it should do after the file is retrieved.                  | `"load"`, `"play"`, `"queue"` | `'load'`    |
 | `src` _(required)_     | `src`        | The path to the audio-file.                                                                                  | `string`                      | `undefined` |
 | `trackId` _(required)_ | `track-id`   | The identifier for this music track                                                                          | `string`                      | `undefined` |
 
@@ -116,4 +116,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT v0.10.8 - Copyright 2022 [all rights reserved]

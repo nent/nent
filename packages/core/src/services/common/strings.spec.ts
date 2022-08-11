@@ -1,49 +1,49 @@
-import { kebabToCamelCase, toBoolean } from './strings'
+import { capitalize, kebabToCamelCase, toBoolean } from './strings'
 
 describe('toBoolean', () => {
-  test('empty string', () => {
+  it('empty string', () => {
     let result: any = toBoolean('')
     expect(result).toBe(false)
   })
 
-  test('undefined', () => {
+  it('undefined', () => {
     let val: string
     // @ts-ignore
     let result: any = toBoolean(val)
     expect(result).toBe(false)
   })
 
-  test('"false"', () => {
+  it('"false"', () => {
     let result: any = toBoolean('false')
     expect(result).toBe(false)
   })
 
-  test('"0"', () => {
+  it('"0"', () => {
     let result: any = toBoolean('0')
     expect(result).toBe(false)
   })
 
-  test('"no"', () => {
+  it('"no"', () => {
     let result: any = toBoolean('no')
     expect(result).toBe(false)
   })
 
-  test('off', () => {
+  it('off', () => {
     let result: any = toBoolean('off')
     expect(result).toBe(false)
   })
 
-  test('true', () => {
+  it('true', () => {
     let result: any = toBoolean('off')
     expect(result).toBe(false)
   })
 
-  test('yes', () => {
+  it('yes', () => {
     let result: any = toBoolean('off')
     expect(result).toBe(false)
   })
 
-  test('on', () => {
+  it('on', () => {
     let result: any = toBoolean('off')
     expect(result).toBe(false)
   })
@@ -60,6 +60,14 @@ describe('kebabToCamelCase', () => {
 
   it('should translate bad casing', async () => {
     expect(camel).toBe('thisIsAWord')
+  })
+})
+
+describe('capitalize', () => {
+  let caps = capitalize('first letter capital')
+
+  it('should capitalize first letter of each word', async () => {
+    expect(caps).toBe('First Letter Capital')
   })
 })
 

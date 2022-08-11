@@ -1,13 +1,14 @@
 import {
   Component,
   Element,
+  forceUpdate,
   h,
   Host,
   Prop,
-  State
 } from '@stencil/core'
-import { eventBus } from '../../services/actions'
+
 import { ROUTE_EVENTS } from '../n-views/services/interfaces'
+import { RouterService } from '../n-views/services/router'
 import { routingState } from '../n-views/services/state'
 
 /**
@@ -19,15 +20,14 @@ import { routingState } from '../n-views/services/state'
  */
 @Component({
   tag: 'n-view-not-found',
-  shadow: false,
-  styles: `n-view-not-found { display: block; }`,
+  shadow: true,
+  styles: `:host { display: block; }`,
 })
 export class ViewNotFound {
-  private finalizeSubscription!: () => void
-  private routeFinalizeSubscription!: () => void
-  private exactMatchedSubscription!: () => void
+  private routeFinalizeSubscription?: () => void
+  private routeMatchedSubscription?: () => void
+  private routeChangeStartSubscription?: () => void
   @Element() el!: HTMLNViewNotFoundElement
-  @State() show: boolean = false
 
   /**
    * The title for this view. This is prefixed
@@ -48,59 +48,64 @@ export class ViewNotFound {
    */
   @Prop({ mutable: true }) transition?: string
 
-  private async setupView() {
-    if (!routingState.router?.hasRoutes) {
-      this.show = true
-      this.transition =
-        this.transition || routingState.router?.transition
+  private async setPageTags(router: RouterService) {
+    if (router.hasExactRoute()) return
+    await router.setPageTags({
+      title: this.pageTitle,
+      robots: 'nofollow',
+    })
+    router.scrollTo(this.scrollTopOffset)
+  }
+
+  componentWillLoad() {
+    const { router } = routingState
+    if (!router) {
       return
     }
-    this.show = !routingState.router.hasExactRoute()
-  }
 
-  async componentWillLoad() {
-    this.finalizeSubscription = eventBus.on(
-      ROUTE_EVENTS.Initialized,
+    this.transition = this.transition || router?.transition
+
+    this.routeChangeStartSubscription = router.eventBus.on(
+      ROUTE_EVENTS.RouteChanged,
       async () => {
-        await this.setupView()
+        forceUpdate(this)
+        await this.setPageTags(router)
       },
     )
 
-    this.routeFinalizeSubscription = eventBus.on(
-      ROUTE_EVENTS.RouteFinalized,
-      async () => {
-        await this.setupView()
-      },
-    )
-
-    this.exactMatchedSubscription = eventBus.on(
+    this.routeMatchedSubscription = router.eventBus.on(
       ROUTE_EVENTS.RouteMatchedExact,
       async () => {
-        this.show = false
+        forceUpdate(this)
+        await this.setPageTags(router)
       },
     )
-  }
 
-  async componentDidRender() {
-    if (this.show) {
-      routingState.router?.viewsUpdated({
-        scrollTopOffset: this.scrollTopOffset,
-      })
-      await routingState.router?.adjustTitle(this.pageTitle)
-    }
-  }
-
-  disconnectedCallback() {
-    this.finalizeSubscription?.call(this)
-    this.routeFinalizeSubscription?.call(this)
-    this.exactMatchedSubscription?.call(this)
+    this.routeFinalizeSubscription = router.eventBus.on(
+      ROUTE_EVENTS.RouteChangeFinish,
+      async () => {
+        await this.setPageTags(router)
+        forceUpdate(this)
+      },
+    )
   }
 
   render() {
+    const hide = routingState.router?.hasExactRoute() || false
     return (
-      <Host hidden={!this.show} class={this.transition}>
-        <slot />
+      <Host hidden={hide} class={this.transition}>
+        <slot></slot>
       </Host>
     )
+  }
+
+  async componentDidLoad() {
+    await this.setPageTags(routingState.router!)
+  }
+
+  disconnectedCallback() {
+    this.routeChangeStartSubscription?.call(this)
+    this.routeMatchedSubscription?.call(this)
+    this.routeFinalizeSubscription?.call(this)
   }
 }

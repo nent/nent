@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { IDataProvider } from '../../../services/data/interfaces'
 
 export enum DATA_PROVIDER {

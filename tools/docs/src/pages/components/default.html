@@ -1,0 +1,13 @@
+<h1>All Components</h1>
+<n-content-repeat items-src="/dist/components.json"
+  filter="components">
+  <template>
+    <div class="component-item accent">
+      <n-view-link path="/components/{{data:tag}}">
+        <h4>&lt;{{data:tag}}&gt;</h4>
+        <p>{{data:docs}}</p>
+      </n-view-link>
+    </div>
+  </template>
+</n-content-repeat>
+

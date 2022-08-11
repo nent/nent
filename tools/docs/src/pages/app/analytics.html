@@ -1,0 +1,39 @@
+<div class="content">
+  <h1>Application Analytics</h1>
+  <p>The <a href="/components/n-app-analytics">&lt; n-app-analytics &gt;</a>
+    element delegates internal analytics actions to DOM events allowing
+    developers to connect events to any analytics provider.</p>
+  <h2>Capturing Interactions</h2>
+  <p>This element adds an action listener to allow custom-events as well as
+    built-in events to be wired up for a multitude of analytics providers</p>
+  <h3>GTM Example</h3>
+  <p>The following example demonstrates the light-scripting required to pass
+    NENT events to GTM.</p>
+  <n-content-markdown src="/pages/app/analytics-gtm.md">
+  </n-content-markdown>
+  <h3>Custom Events</h3>
+  <p>You can also register custom events:</p>
+  <n-action-activator target-element="input[type=button]">
+    <n-action topic="analytics"
+      command="send-event">
+      <input type="button"
+        class="btn btn-info"
+        name="clicked"
+        value="Button 1" />
+    </n-action>
+  </n-action-activator>
+  <n-doc-source src="/pages/app/analytics.html"
+    from="14"
+    to="24">
+  </n-doc-source>
+
+  <n-doc-log></n-doc-log>
+  <footer>
+    <n-view-link-back slot="start"
+      link-class="btn btn-secondary">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      link-class="btn btn-primary">
+    </n-view-link-next>
+  </footer>
+</div>

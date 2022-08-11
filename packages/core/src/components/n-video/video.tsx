@@ -5,13 +5,13 @@ import {
   EventEmitter,
   h,
   Host,
-  Prop
+  Prop,
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf, warn } from '../../services/common/logging'
 import {
   IElementTimer,
-  ITimer
+  ITimer,
 } from '../n-presentation/services/interfaces'
 import { VideoActionListener } from './services/actions'
 import { VideoTimer } from './services/timer'

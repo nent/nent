@@ -1,21 +1,21 @@
 # N-VIEW-PROMPT
 
-The [\<n-view-prompt\>](/components/n-view-prompt) element represents a specialized child-route that can force a prompt before the parent route is displayed.
+The [`n-view-prompt`](/components/n-view-prompt) element represents a specialized child-route that can force a prompt before the parent route is displayed.
 
-> [\<n-view-prompt\>](/components/n-view-prompt) can be used to capture data, agree to terms or anything else the parent route may need.
+> ℹ️ Note: [`n-view-prompt`](/components/n-view-prompt) can be used to capture data, agree to terms or anything else the parent route may need.
 
 They are used to create presentations, wizards, input workflows, or step-by-step instructions.
 
 
 ### How it works
 
-When the parent [\<n-view\>](/components/n-view)'s route is activated, before rendering, it:
+When the parent [`n-view`](/components/n-view)'s route is activated, before rendering, it:
 
-1. Lists all direct-child [\<n-view-prompt\>](/components/n-view-prompt) items, one at a time in sequence.
+1. Lists all direct-child [`n-view-prompt`](/components/n-view-prompt) items, one at a time in sequence.
 2. Finds the first unvisited route respecting the **'visit'** requirement or [**'when'** predicate](/expression), if present.
 
    - **If found**: It pushes the page state to its URL, thus activated the child route.
-   - **Otherwise**: The [\<n-view\>](/components/n-view) is satisfied and can now render its own contents.
+   - **Otherwise**: The [`n-view`](/components/n-view) is satisfied and can now render its own contents.
 
 ## Samples
 
@@ -33,7 +33,7 @@ This route will be activated once for each new visit to the page. (Visit 'once' 
 </n-view-prompt>
 ```
 
-> By default, the visit strategy is 'once'. In this case, the visit is stored in the local storage. Any subsequent visits to this page with the same browser won't see it again.
+> ℹ️ Note: By default, the visit strategy is 'once'. In this case, the visit is stored in the local storage. Any subsequent visits to this page with the same browser won't see it again.
 
 ### Present Each Visit
 
@@ -49,7 +49,7 @@ This route will be activated once for each new session visit to the page.
 </n-view-prompt>
 ```
 
-> For **'always'**, the visit is stored in local-session which is destroyed when the browser tab is closed, but retained while on the site.
+> ℹ️ Note: For **'always'**, the visit is stored in local-session which is destroyed when the browser tab is closed, but retained while on the site.
 
 ### Collect Required Data
 
@@ -98,7 +98,7 @@ This evaluation has to take place before the route is activated as the underlyin
 
 ### Basic
 
-Much like its parent, [\<n-view\>](/components/n-view), basic routing information is required.
+Much like its parent, [`n-view`](/components/n-view), basic routing information is required.
 
 ```html
 <n-view ...>
@@ -118,7 +118,7 @@ Much like its parent, [\<n-view\>](/components/n-view), basic routing informatio
 </n-view>
 ```
 
-> The **when** attribute is a data expression that overrides the **visit** strategy. It is a predicate that produces a boolean result. **true: visit=always** false: visit=optional
+> ℹ️ Note: The **when** attribute is a data expression that overrides the **visit** strategy. It is a predicate that produces a boolean result. **true: visit=always** false: visit=optional
 
 
 
@@ -130,9 +130,13 @@ Much like its parent, [\<n-view\>](/components/n-view), basic routing informatio
 | `debug`              | `debug`             | To debug timed elements, set this value to true.                                                                                                                                                                                | `boolean`                                            | `false`     |
 | `exact`              | `exact`             | The url for this route should only be matched when it is exact.                                                                                                                                                                 | `boolean`                                            | `true`      |
 | `mode`               | `mode`              | Cross Origin Mode if the content is pulled from a remote location                                                                                                                                                               | `"cors"`, `"navigate"`, `"no-cors"`, `"same-origin"` | `'cors'`    |
+| `noCache`            | `no-cache`          | Force render with data & route changes.                                                                                                                                                                                         | `boolean`                                            | `false`     |
+| `pageDescription`    | `page-description`  | The page description for this view.                                                                                                                                                                                             | `string`                                             | `''`        |
+| `pageKeywords`       | `page-keywords`     | The keywords to add to the keywords meta-tag for this view.                                                                                                                                                                     | `string`                                             | `''`        |
+| `pageRobots`         | `page-robots`       | The robots instruction for search indexing                                                                                                                                                                                      | `"all"`, `"nofollow"`, `"noindex"`, `"none"`         | `'none'`    |
 | `pageTitle`          | `page-title`        | The title for this view. This is prefixed before the app title configured in n-views                                                                                                                                            | `string`                                             | `''`        |
 | `path` _(required)_  | `path`              | The path for this prompt route, including the parent's routes, excluding the router's root.                                                                                                                                     | `string`                                             | `undefined` |
-| `resolveTokens`      | `resolve-tokens`    | Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML | `boolean`                                            | `false`     |
+| `resolveTokens`      | `resolve-tokens`    | Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML | `boolean`                                            | `false`     |
 | `route` _(required)_ | --                  | Route information                                                                                                                                                                                                               | `Route`                                              | `undefined` |
 | `scrollTopOffset`    | `scroll-top-offset` | Header height or offset for scroll-top on this view.                                                                                                                                                                            | `number`, `undefined`                                | `undefined` |
 | `transition`         | `transition`        | Navigation transition between routes. This is a CSS animation class.                                                                                                                                                            | `string`, `undefined`                                | `undefined` |
@@ -142,4 +146,4 @@ Much like its parent, [\<n-view\>](/components/n-view), basic routing informatio
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT v0.10.8 - Copyright 2022 [all rights reserved]

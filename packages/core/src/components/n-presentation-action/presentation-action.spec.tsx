@@ -1,21 +1,25 @@
 jest.mock('../../services/common/logging')
-
+jest.mock('../../services/data/evaluate.worker')
 import { newSpecPage } from '@stencil/core/testing'
 import {
   actionBus,
   EventAction,
   eventBus,
 } from '../../services/actions'
-import { NPresentationAction } from './presentation-action'
+import { sleep } from '../../services/common'
+import { PresentationTimer } from '../n-presentation-timer/presentation-timer'
+import { Presentation } from '../n-presentation/presentation'
+import { PresentationAction } from './presentation-action'
 
 describe('n-presentation-action', () => {
-  afterEach(async () => {
+  afterEach(() => {
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
   })
+
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [NPresentationAction],
+      components: [PresentationAction],
       html: `<n-presentation-action></n-presentation-action>`,
     })
     expect(page.root).toEqualHtml(`
@@ -27,7 +31,7 @@ describe('n-presentation-action', () => {
 
   it('missing command', async () => {
     const page = await newSpecPage({
-      components: [NPresentationAction],
+      components: [PresentationAction],
       html: `<n-presentation-action topic="test"></n-presentation-action>`,
     })
     let action = await page.root!.getAction()
@@ -37,7 +41,7 @@ describe('n-presentation-action', () => {
 
   it('missing topic', async () => {
     const page = await newSpecPage({
-      components: [NPresentationAction],
+      components: [PresentationAction],
       html: `<n-presentation-action command="do"></n-presentation-action>`,
     })
     let action = await page.root!.getAction()
@@ -47,7 +51,7 @@ describe('n-presentation-action', () => {
 
   it('get-action & send-action', async () => {
     const page = await newSpecPage({
-      components: [NPresentationAction],
+      components: [PresentationAction],
       html: `<n-presentation-action topic="test" time="1" command="do" ></n-presentation-action>`,
     })
     expect(page.root).toEqualHtml(`
@@ -72,5 +76,55 @@ describe('n-presentation-action', () => {
     expect(sentAction!.topic).toBe('test')
     expect(sentAction!.command).toBe('do')
     expect(sentAction!.data.appends).toBeTruthy()
+  })
+
+  it('send-action happens only once', async () => {
+    const sentActions: Array<EventAction<any>> = []
+    actionBus.on('test', e => {
+      sentActions.push(e)
+    })
+    const page = await newSpecPage({
+      components: [
+        Presentation,
+        PresentationTimer,
+        PresentationAction,
+      ],
+      html: `<div></div>`,
+    })
+
+    await page.setContent(`
+      <n-presentation>
+        <n-presentation-timer duration="4" interval="0">
+        </n-presentation-timer>
+        <n-presentation-action time="2" topic="test" command="do">
+        </n-presentation-action>
+      </n-presentation>
+    `)
+
+    await page.waitForChanges()
+
+    await sleep(1000)
+    await page.waitForChanges()
+
+    await sleep(1000)
+    await page.waitForChanges()
+
+    expect(sentActions.length).toBe(1)
+
+    await sleep(1000)
+    await page.waitForChanges()
+
+    await sleep(1000)
+    await page.waitForChanges()
+
+    expect(sentActions.length).toBe(1)
+
+    const sentAction = sentActions[0]
+
+    expect(sentAction).toBeDefined()
+    expect(sentAction.topic).toBe('test')
+    expect(sentAction.command).toBe('do')
+
+    page.root?.remove()
   })
 })

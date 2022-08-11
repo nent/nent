@@ -1,0 +1,90 @@
+<n-content-reveal direction="left"
+  delay="500"
+  duration="1000"
+  animation-distance="60%"
+  trigger-distance="50%">
+  <ul
+    class="component-list list-group btn-group-xl float-end ms-2 d-none d-sm-block">
+    <li class="list-group-item fw-bold"> Audio Elements</li>
+    <n-content-repeat items-src="/dist/components.json"
+      filter="components[docsTags[name='system' and text='audio']]">
+      <template>
+        <li class="list-group-item">
+          <a href="/components/{{data:tag}}"> &lt;{{data:tag}}&gt; </a>
+        </li>
+      </template>
+    </n-content-repeat>
+  </ul>
+</n-content-reveal>
+<div class="">
+  <h1>Reactive Audio</h1>
+  <p class="lead">Reactive audio to accompany pages, actions, events or anything
+    else you can dream up.</p>
+  <h2>How it works</h2>
+  <p> The audio player element is a set of two HTML Audio players designed to
+    allow two layers of sound to play during an experience. There is both a
+    music and a sound layer for audio timed with the experience through
+    route-changes and declarative actions. </p>
+  <h4>Music</h4>
+  <p> The <strong>Music</strong> layer is meant to play background sounds or
+    music. It should never hold audio with singing, talking, or any annoying
+    sounds. These clips can loop. </p>
+  <h4>Sound</h4>
+  <p> The <strong>Sound</strong> layer is meant for short clips. The sound layer
+    should never have music or background sounds. </p>
+  <h4>Rules:</h4>
+  <ul>
+    <li>Many files can be configured and pre-loaded for each player.</li>
+    <li>Only one audio file can be playing per layer at a time.</li>
+    <li>Only the music audio can loop.</li>
+    <li>Looping audio loops until its deactivation event.</li>
+    <li> If audio is set to loop with no deactivation, any new configuration
+      will end it. For instance, if new audio is configured to activate in a
+      queued fashion, the looping audio should stop, allowing the queued
+      audio to play when it ends. </li>
+    <li>Hard deactivations ease out the audio with a .5 second fade-out before
+      playing the next clip.</li>
+    <li>Queued audio that doesn't get a chance to play before the next state
+      change is removed from the queue.</li>
+  </ul>
+  <h2>Enable Audio</h2>
+  <p> To enable audio, you must first add the <a
+      href="/components/n-audio"><b>&lt;n-audio&gt;</b> </a> element to the page. </p>
+  <n-content-markdown>
+    <script type="text/markdown">
+      ```html
+      <n-audio>
+      </n-audio>
+      ```
+    </script>
+  </n-content-markdown>
+  <h3 class="mt-3">Advanced Topics</h3>
+  <div class="button-nav">
+    <a href="/audio/controls"
+      class="btn btn-secondary">
+      <i class="ri-sound-module-line"></i> Controls </a>
+    <a href="/audio/music"
+      class="btn btn-secondary">
+      <i class="ri-music-line"></i> Music </a>
+    <a href="/audio/sound"
+      class="btn btn-secondary">
+      <i class="ri-volume-up-line"></i> Sounds </a>
+    <a href="/audio/both"
+      class="btn btn-secondary">
+      <i class="ri-music-2-line"></i> Music & Sounds </a>
+    <a href="/audio/timed"
+      class="btn btn-secondary">
+      <i class="ri-timer-flash-line"></i> Timed Sounds </a>
+    <a href="/audio/provider"
+      class="btn btn-secondary">
+      <i class="ri-database-line"></i> Data Provider </a>
+  </div>
+  <footer>
+    <n-view-link-back slot="start"
+      link-class="btn btn-primary btn-lg">
+    </n-view-link-back>
+    <n-view-link-next slot="end"
+      link-class="btn btn-primary btn-lg">
+    </n-view-link-next>
+  </footer>
+</div>

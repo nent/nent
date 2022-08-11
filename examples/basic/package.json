@@ -1,0 +1,32 @@
+{
+  "name": "@nent/example",
+  "version": "0.0.0",
+  "scripts": {
+    "prebuild": "rm -fR dist",
+    "build": "yarn run build:public && yarn run build:app",
+    "prebuild:public": "mkdir -p dist",
+    "build:public": "cp -ru public/* -t dist",
+    "build:app": "cp -ru src/* -t dist",
+    "watch": "npm-watch",
+    "predev": "yarn run build",
+    "dev": "live-server dist --entry-file=index.html --watch & yarn run watch",
+    "preserve": "yarn run build",
+    "serve": "live-server dist --entry-file=index.html"
+  },
+  "watch": {
+    "build:public": "public/**/*.*",
+    "build:app": [
+      "src/**/*.*"
+    ]
+  },
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "npm-watch": "^0.11.0"
+  },
+  "resolutions": {
+    "glob-parent": ">=5.1.2",
+    "set-value": ">=4.0.1"
+  }
+}

@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export const VIDEO_TOPIC = 'video'
 
 export enum VIDEO_COMMANDS {

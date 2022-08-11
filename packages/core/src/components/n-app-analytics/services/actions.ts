@@ -10,9 +10,19 @@ import {
   ANALYTICS_TOPIC,
 } from './interfaces'
 
+/* It listens for events on the `ANALYTICS_TOPIC` topic and calls the appropriate handler method */
 export class AnalyticsActionListener {
   private readonly removeSubscription: Array<() => void> = []
 
+  /**
+   * The constructor function is called when the class is instantiated. It takes in the `actions` and
+   * `events` objects, and subscribes to the `ANALYTICS_TOPIC` and `ROUTE_EVENTS.RouteChanged` events
+   * @param {IEventEmitter} actions - IEventEmitter - This is the event emitter that is used to listen
+   * for the ANALYTICS_TOPIC.
+   * @param {IEventEmitter} events - IEventEmitter - This is the event emitter that is used to listen
+   * to events.
+   * @param {boolean} [debug=false] - boolean - If true, will log all events to the console.
+   */
   constructor(
     private actions: IEventEmitter,
     private events: IEventEmitter,
@@ -63,7 +73,10 @@ export class AnalyticsActionListener {
     }
   }
 
-  destroy() {
+  /**
+   * It removes all subscriptions.
+   */
+  public destroy() {
     this.removeSubscription.forEach(d => d())
   }
 }

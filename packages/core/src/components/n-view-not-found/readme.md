@@ -39,4 +39,4 @@ Using the `<n-view-not-found>` element.
 
 ----------------------------------------------
 
-NENT 2021 - all rights reserved
+NENT v0.10.8 - Copyright 2022 [all rights reserved]

@@ -2,6 +2,13 @@
 
 import { TimedNode } from './interfaces'
 
+/**
+ * It takes a root element and a default duration, and returns an array of objects that describe the
+ * elements that have `n-in-time` and `n-out-time` attributes
+ * @param {HTMLElement} rootElement - The root element to search for timed nodes.
+ * @param {number} defaultDuration - The default duration of the animation.
+ * @returns An array of TimedNode objects.
+ */
 export function captureElementChildTimedNodes(
   rootElement: HTMLElement,
   defaultDuration: number,
@@ -29,17 +36,26 @@ export function captureElementChildTimedNodes(
   return timedNodes
 }
 
+/**
+ * It resolves the `n-time-to` and `n-percentage-to` attributes, and it resolves the `n-time-in` and
+ * `n-time-out` attributes
+ * @param {HTMLElement} rootElement - The root element of the component.
+ * @param {TimedNode[]} timedNodes - An array of TimedNode objects, which are defined as:
+ * @param {number} elapsedSeconds - The number of seconds that have elapsed since the start of the
+ * video.
+ * @param {number} percentage - The percentage of the video that has elapsed.
+ */
 export function resolveElementChildTimedNodesByTime(
   rootElement: HTMLElement,
   timedNodes: TimedNode[],
-  time: number,
+  elapsedSeconds: number,
   percentage: number,
 ) {
   timedNodes?.forEach(node => {
     if (
       node.start > -1 &&
-      time >= node.start &&
-      (node.end > -1 ? time < node.end : true)
+      elapsedSeconds >= node.start &&
+      (node.end > -1 ? elapsedSeconds < node.end : true)
     ) {
       // Time is after start and before end, if it exists
       if (
@@ -55,7 +71,7 @@ export function resolveElementChildTimedNodesByTime(
       }
     }
 
-    if (node.end > -1 && time > node.end) {
+    if (node.end > -1 && elapsedSeconds >= node.end) {
       // Time is after end, if it exists
 
       if (
@@ -83,7 +99,7 @@ export function resolveElementChildTimedNodesByTime(
   const timeValueElements =
     rootElement.querySelectorAll('[n-time-to]')
   timeValueElements?.forEach(el => {
-    const seconds = time
+    const seconds = elapsedSeconds
     const attributeName = el.getAttribute('n-time-to')
     if (attributeName) {
       el.setAttribute(attributeName, seconds.toString())
@@ -110,6 +126,12 @@ export function resolveElementChildTimedNodesByTime(
   })
 }
 
+/**
+ * It removes the `classIn` and `classOut` classes from the `timedNodes` and resets the `n-time-to` and
+ * `n-percentage-to` attributes to their initial values
+ * @param {HTMLElement} rootElement - The root element of the component.
+ * @param {TimedNode[]} timedNodes - This is an array of TimedNode objects.
+ */
 export function restoreElementChildTimedNodes(
   rootElement: HTMLElement,
   timedNodes: TimedNode[],

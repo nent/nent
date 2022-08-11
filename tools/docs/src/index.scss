@@ -1,0 +1,19 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Animation classes
+.fade-in {
+  -webkit-animation: fade-in 2s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: fade-in 2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}

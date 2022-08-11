@@ -9,7 +9,7 @@ import { dataStateDispose } from '../../services/data/state'
 import { Action } from '../n-action/action'
 import { Data } from '../n-data/data'
 import { DataStorage } from './data-storage'
-import { StorageService } from './storage/service'
+import { StorageService } from './services/storage'
 
 describe('n-data-storage', () => {
   afterEach(() => {

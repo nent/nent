@@ -3,7 +3,7 @@ import { actionBus, eventBus } from '../../services/actions'
 import {
   commonState,
   debugIf,
-  LocationSegments
+  LocationSegments,
 } from '../../services/common'
 import { ViewTime } from './services'
 import { AnalyticsActionListener } from './services/actions'
@@ -17,7 +17,7 @@ import { AnalyticsActionListener } from './services/actions'
  */
 @Component({
   tag: 'n-app-analytics',
-  shadow: true,
+  shadow: false,
 })
 export class Analytics {
   private listener!: AnalyticsActionListener

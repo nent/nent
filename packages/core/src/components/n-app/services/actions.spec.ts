@@ -1,10 +1,17 @@
-jest.mock('../../../services/common/logging')
-global.console.log = jest.fn()
-global.console.dir = jest.fn()
-global.console.table = jest.fn()
+jest.mock('../../../services/common/logging', () => {
+  return {
+    dir: jest.fn(),
+    log: jest.fn(),
+    warn: jest.fn(),
+    table: jest.fn(),
+    debugIf: jest.fn<boolean, any[]>(),
+  }
+})
+jest.mock('../../../services/data/evaluate.worker')
 
 import { newSpecPage } from '@stencil/core/testing'
 import { EventEmitter } from '../../../services/common/emitter'
+import { dir, log, warn } from '../../../services/common/logging'
 import { AppActionListener } from './actions'
 import { clearAppProvider, getAppProvider } from './factory'
 import { APP_COMMANDS, APP_TOPIC } from './interfaces'
@@ -21,6 +28,7 @@ describe('interface-actions:', () => {
   let eventBus: EventEmitter
 
   beforeAll(() => {
+    jest.restoreAllMocks()
     actionBus = new EventEmitter()
     eventBus = new EventEmitter()
   })
@@ -120,22 +128,28 @@ describe('interface-actions:', () => {
       },
     })
 
+    expect(log).toBeCalled()
+
     actionBus.emit(APP_TOPIC, {
       topic: APP_TOPIC,
-      command: 'warn',
+      command: APP_COMMANDS.Warn,
       data: {
         message: 'do not log in tests!',
       },
     })
 
+    expect(warn).toBeCalled()
+
     actionBus.emit(APP_TOPIC, {
       topic: APP_TOPIC,
-      command: 'dir',
+      command: APP_COMMANDS.Dir,
       data: {
         message: 'do not log in tests!',
       },
     })
 
-    subject.destroy()
+    expect(dir).toBeCalled()
+
+    page.root?.remove()
   })
 })

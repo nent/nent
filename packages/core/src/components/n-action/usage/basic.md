@@ -8,7 +8,7 @@ For most action-argument data, it is easiest to specify them as key-value pairs 
 </n-action>
 ```
 
-> NOTE: If a listener declares an argument using 'camelCase', it should be converted to 'kebab-case' in HTML, (words separated by dashes, all lowercase). It will be converted to 'camelCase' automatically when activated.
+> ℹ️ Note: If a listener declares an argument using 'camelCase', it should be converted to 'kebab-case' in HTML, (words separated by dashes, all lowercase). It will be converted to 'camelCase' automatically when activated.
 
 
 #### Real example

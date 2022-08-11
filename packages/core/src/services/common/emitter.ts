@@ -1,9 +1,8 @@
+/* istanbul ignore file */
+
 import { IEventEmitter, IEvents, Listener } from './interfaces'
 
 export class EventEmitter implements IEventEmitter {
-  destroy(): void {
-    throw new Error('Method not implemented.')
-  }
   readonly events: IEvents = {}
   private wildcardEvents: string[] = []
 
@@ -89,5 +88,9 @@ export class EventEmitter implements IEventEmitter {
     })
 
     return remove
+  }
+
+  destroy(): void {
+    this.removeAllListeners()
   }
 }

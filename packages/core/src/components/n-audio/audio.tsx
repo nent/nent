@@ -4,23 +4,23 @@ import {
   h,
   Host,
   Prop,
-  State
+  State,
 } from '@stencil/core'
 import { actionBus, eventBus } from '../../services/actions'
 import { debugIf } from '../../services/common/logging'
-import { commonState } from '../../services/common/state'
 import {
-  addDataProvider,
-  removeDataProvider
-} from '../../services/data/factory'
+  commonState,
+  onCommonStateChange,
+} from '../../services/common/state'
+import { getDataProvider } from '../../services/data/factory'
+import { IServiceProvider } from '../../services/data/interfaces'
 import { AudioActionListener } from './services/actions'
-import { AudioDataProvider } from './services/provider'
-import { audioState } from './services/state'
+import { audioState, onAudioStateChange } from './services/state'
 
 /**
  * Use this element only once per page to enable audio features.
  * It will add a CDN reference to Howler.js:
- * <https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.core.min.js>
+ * <https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.core.min.js>
  *
  * @system audio
  * @extension actions
@@ -35,9 +35,11 @@ import { audioState } from './services/state'
 export class Audio {
   private actionSubscription!: () => void
   private stateSubscription!: () => void
-  @Element() el!: HTMLNAudioElement
-  private provider?: AudioDataProvider
+  private audioStateSubscription?: () => void
+  private commonStateSubscription?: () => void
 
+  @Element() el!: HTMLNAudioElement
+  @State() loaded: boolean = false
   @State() error: string | null = null
   @State() stats = {
     m: 0,
@@ -55,7 +57,7 @@ export class Audio {
   /**
    * The Howler.js Script Reference
    */
-  @Prop() howlerVersion: string = '2.2.1'
+  @Prop() howlerVersion: string = '2.2.3'
 
   /**
    * The display mode enabled shows player state and stats.
@@ -79,22 +81,54 @@ export class Audio {
     commonState.audioEnabled = true
   }
 
-  componentWillLoad() {
+  async componentWillLoad() {
     debugIf(this.debug, 'n-audio: loading')
+
     audioState.debug = this.debug
 
     if (audioState.hasAudioComponent) {
       this.error = `Duplicate Audio Player`
       return
     }
+
+    if (commonState.dataEnabled) {
+      const storage = (await getDataProvider(
+        'storage',
+      )) as IServiceProvider
+
+      const storedValue = await storage?.get('audio-enabled')
+      if (storedValue) {
+        commonState.audioEnabled = storedValue != 'false'
+      }
+
+      audioState.muted = (await storage?.get('audio-muted')) == 'true'
+
+      this.audioStateSubscription = onAudioStateChange(
+        'muted',
+        async m => {
+          await storage?.set('audio-muted', m.toString())
+        },
+      )
+
+      this.commonStateSubscription = onCommonStateChange(
+        'audioEnabled',
+        async m => {
+          await storage?.set('audio-enabled', m.toString())
+        },
+      )
+    }
   }
 
   private registerServices() {
+    if (this.loaded) return
+
     debugIf(this.debug, `n-audio: loading listener`)
+
     this.actions = new AudioActionListener(
       window,
       eventBus,
       actionBus,
+      this.dataProvider,
       this.debug,
     )
 
@@ -107,11 +141,7 @@ export class Audio {
 
     audioState.hasAudioComponent = true
 
-    if (commonState.dataEnabled && this.dataProvider) {
-      debugIf(this.debug, `n-audio: loading provider`)
-      this.provider = new AudioDataProvider(this.actions)
-      addDataProvider('audio', this.provider)
-    }
+    this.loaded = true
   }
 
   private updateState() {
@@ -197,10 +227,8 @@ export class Audio {
     audioState.hasAudioComponent = false
     this.stateSubscription?.call(this)
     this.actionSubscription?.call(this)
-    if (this.provider) {
-      removeDataProvider('audio')
-      this.provider.destroy()
-    }
+    this.audioStateSubscription?.call(this)
+    this.commonStateSubscription?.call(this)
     this.actions?.destroy()
   }
 }

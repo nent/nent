@@ -7,7 +7,9 @@ import {
   commonState,
   commonStateDispose,
 } from '../../services/common'
+import { ViewLink } from '../n-view-link/view-link'
 import { ViewPrompt } from '../n-view-prompt/view-prompt'
+import { clearVisits } from '../n-view/services/visits'
 import { View } from '../n-view/view'
 import {
   routingState,
@@ -20,68 +22,78 @@ describe('n-view-link-back', () => {
   beforeEach(() => {
     commonState.dataEnabled = true
   })
-  afterEach(() => {
+  afterEach(async () => {
     commonStateDispose()
     routingStateDispose()
     actionBus.removeAllListeners()
     eventBus.removeAllListeners()
     jest.resetAllMocks()
+    await clearVisits()
   })
 
   it('renders', async () => {
     const page = await newSpecPage({
       components: [ViewLinkBack],
-      html: `<n-view-link-back></n-view-link-back>`,
+      html: `<n-view-link-back>Test</n-view-link-back>`,
     })
     expect(page.root).toEqualHtml(`
       <n-view-link-back>
+        <n-view-link active-class="none" path="">
+          Test
+        </n-view-link>
       </n-view-link-back>
     `)
   })
 
   it('render back view link', async () => {
     const page = await newSpecPage({
-      components: [ViewRouter, View, ViewLinkBack],
-      html: `<n-views >
-        <n-view path='/first'>
-        </n-view>
-        <n-view path='/second'>
-          <n-view-link-back></n-view-link-back>
-        </n-view>
-
-       </n-views>`,
+      components: [ViewRouter, View, ViewLinkBack, ViewLink],
+      html: `<n-views start-path="/second">
+              <n-view path='/first'>
+              </n-view>
+              <n-view path='/second'>
+                <n-view-link-back text="Back">
+                </n-view-link-back>
+              </n-view>
+            </n-views>`,
     })
 
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views start-path="/second" style="display:block;">
         <n-view path="/first">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
           </mock:shadow-root>
         </n-view>
-        <n-view path="/second">
+        <n-view class="active exact" path="/second">
           <mock:shadow-root>
             <slot></slot>
             <slot name="content"></slot>
           </mock:shadow-root>
-          <n-view-link-back>
-            <a href="/first" n-attached-click="" n-attached-key-press=""></a>
+          <n-view-link-back text="Back">
+            <n-view-link active-class="none" >
+              <a href="/first" n-attached-click="" n-attached-key-press="">
+                Back
+              </a>
+            </n-view-link>
           </n-view-link-back>
         </n-view>
       </n-views>
     `)
 
     const link = page.body.querySelector(
-      'n-view-link-back>a',
+      'n-view-link-back a',
     ) as HTMLAnchorElement
     expect(link).not.toBeUndefined()
 
-    link?.click()
+    link!.click()
 
-    expect(routingState.router?.location.pathname).toBe('/first')
-    page.root?.remove()
+    await page.waitForChanges()
+
+    expect(routingState.router!.location.pathname).toBe('/first')
+    page.root!.remove()
   })
 
   it('render parent view link', async () => {
@@ -90,7 +102,9 @@ describe('n-view-link-back', () => {
       html: `<n-views >
         <n-view path='/parent'>
           <n-view path='/child'>
-          <n-view-link-back></n-view-link-back>
+            <n-view-link-back>
+              Back
+            </n-view-link-back>
           </n-view>
         </n-view>
        </n-views>`,
@@ -98,7 +112,7 @@ describe('n-view-link-back', () => {
 
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display:block;">
         <n-view path="/parent">
           <mock:shadow-root>
             <slot></slot>
@@ -110,7 +124,9 @@ describe('n-view-link-back', () => {
               <slot name="content"></slot>
             </mock:shadow-root>
             <n-view-link-back>
-              <a href="/parent" n-attached-click="" n-attached-key-press=""></a>
+              <n-view-link active-class="none" path="/parent">
+                Back
+              </n-view-link>
             </n-view-link-back>
           </n-view>
         </n-view>
@@ -122,11 +138,19 @@ describe('n-view-link-back', () => {
 
   it('render parent view link from prompt', async () => {
     const page = await newSpecPage({
-      components: [ViewRouter, View, ViewPrompt, ViewLinkBack],
-      html: `<n-views >
+      components: [
+        ViewRouter,
+        View,
+        ViewPrompt,
+        ViewLinkBack,
+        ViewLink,
+      ],
+      html: `<n-views>
         <n-view path='/'>
           <n-view-prompt path='/child'>
-            <n-view-link-back></n-view-link-back>
+            <n-view-link-back>
+              <span></span>
+            </n-view-link-back>
           </n-view-prompt>
         </n-view>
        </n-views>`,
@@ -134,7 +158,7 @@ describe('n-view-link-back', () => {
 
     await page.waitForChanges()
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display:block;">
         <n-view class="active" path="/">
           <mock:shadow-root>
             <slot></slot>
@@ -146,7 +170,11 @@ describe('n-view-link-back', () => {
               <slot name="content"></slot>
             </mock:shadow-root>
             <n-view-link-back>
-              <a href="/" n-attached-click="" n-attached-key-press=""></a>
+              <n-view-link active-class="none">
+                <a class="none" href="/" n-attached-click="" n-attached-key-press="">
+                  <span></span>
+                </a>
+              </n-view-link>
             </n-view-link-back>
           </n-view-prompt>
         </n-view>
@@ -154,7 +182,7 @@ describe('n-view-link-back', () => {
     `)
 
     const link = page.body.querySelector(
-      'n-view-link-back>a',
+      'n-view-link-back a',
     ) as HTMLAnchorElement
     expect(link).not.toBeUndefined()
 
@@ -176,13 +204,16 @@ describe('n-view-link-back', () => {
         </n-view>
         <n-view path='/second'>
         </n-view>
-        <n-view-link-back></n-view-link-back>
+        <n-view-link-back>
+          Back
+        </n-view-link-back>
        </n-views>`,
     })
 
     await page.waitForChanges()
+
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display:block;">
         <n-view class="active exact" path="/">
           <mock:shadow-root>
             <slot></slot>
@@ -202,6 +233,9 @@ describe('n-view-link-back', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-link-back>
+          <n-view-link active-class="none" path="">
+            Back
+          </n-view-link>
         </n-view-link-back>
       </n-views>
     `)
@@ -209,8 +243,9 @@ describe('n-view-link-back', () => {
     routingState.router?.goToRoute('/second')
 
     await page.waitForChanges()
+
     expect(page.root).toEqualHtml(`
-      <n-views>
+      <n-views style="display:block;">
         <n-view  class="active" path="/">
           <mock:shadow-root>
             <slot></slot>
@@ -230,7 +265,9 @@ describe('n-view-link-back', () => {
           </mock:shadow-root>
         </n-view>
         <n-view-link-back>
-          <a href="/first" n-attached-click="" n-attached-key-press=""></a>
+          <n-view-link active-class="none" path="/first">
+            Back
+          </n-view-link>
         </n-view-link-back>
       </n-views>
     `)
