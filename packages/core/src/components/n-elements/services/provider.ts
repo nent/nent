@@ -53,7 +53,7 @@ export class ElementsDataProvider implements IDataProvider {
    * The function unsubscribes from the listenerSubscription, which is a subscription to the listener
    * function
    */
-   public destroy() {
+  public destroy() {
     this.listenerSubscription()
   }
 }

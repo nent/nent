@@ -115,7 +115,9 @@
     "testPathIgnorePatterns": [
       "<rootDir>/dist"
     ],
-    "testRunner": "jasmine2"
+    "testRunner": "jasmine2",
+    "testEnvironment": "node",
+    "testTimeout": 10000
   },
   "workspaces": [
     "packages/core",

@@ -76,7 +76,8 @@
       "<rootDir>/dist"
     ],
     "testRunner": "jasmine2",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testTimeout": 10000
   },
   "watch": {
     "build": {
