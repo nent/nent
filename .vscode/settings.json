@@ -92,7 +92,11 @@
   },
   "[markdown]": {
     "editor.wordWrap": "on",
-    "editor.quickSuggestions": true,
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    },
     "editor.formatOnSave": false
   },
   "eslint.validate": [
@@ -195,7 +199,10 @@
     "titleBar.activeBackground": "#ae9ae4",
     "titleBar.activeForeground": "#15202b",
     "titleBar.inactiveBackground": "#ae9ae499",
-    "titleBar.inactiveForeground": "#15202b99"
+    "titleBar.inactiveForeground": "#15202b99",
+    "sash.hoverBorder": "#cec2ef",
+    "statusBarItem.remoteBackground": "#ae9ae4",
+    "statusBarItem.remoteForeground": "#15202b"
   },
   "peacock.remoteColor": "#ae9ae4",
   "commit-message-editor.tokens": [
