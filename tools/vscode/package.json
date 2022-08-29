@@ -80,6 +80,6 @@
     ]
   },
   "devDependencies": {
-    "vsce": "2.10.2"
+    "vsce": "2.11.0"
   }
 }
