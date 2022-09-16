@@ -1,37 +1,4 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Contributing](#contributing)
-  - [Code of Conduct](#code-of-conduct)
-  - [How can I contribute?](#how-can-i-contribute)
-    - [Improve documentation](#improve-documentation)
-    - [Give feedback on issues](#give-feedback-on-issues)
-    - [Fix bugs and implement features](#fix-bugs-and-implement-features)
-  - [Using the issue tracker](#using-the-issue-tracker)
-    - [Bug report](#bug-report)
-    - [Feature request](#feature-request)
-    - [New plugin request](#new-plugin-request)
-  - [Submitting a Pull Request](#submitting-a-pull-request)
-  - [Coding rules](#coding-rules)
-    - [Source code](#source-code)
-    - [Documentation](#documentation)
-    - [Commit message guidelines](#commit-message-guidelines)
-      - [Atomic commits](#atomic-commits)
-      - [Commit message format](#commit-message-format)
-      - [Type](#type)
-      - [Subject](#subject)
-      - [Body](#body)
-      - [Footer](#footer)
-      - [Examples](#examples)
-  - [Working with the code](#working-with-the-code)
-    - [Set up the workspace](#set-up-the-workspace)
-    - [Lint](#lint)
-    - [Tests](#tests)
-    - [Commits](#commits)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<!-- markdownlint-disable MD029 -->
+[![Open in Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/vscode-remote-try-java)
 
 # Contributing
 
@@ -47,6 +14,9 @@ As a contributor, here are the guidelines we would like you to follow:
 - [Working with the code](#working-with-the-code)
 
 We also recommend that you read [How to Contribute to Open Source](https://opensource.guide/how-to-contribute).
+
+
+If you already have VS Code and Docker installed, you can click the badge above or [here](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/vscode-remote-try-java) to get started. Clicking these links will cause VS Code to automatically install the Remote - Containers extension if needed, clone the source code into a container volume, and spin up a dev container for use.
 
 ## Code of Conduct
 
