@@ -102,7 +102,7 @@
     "prettier-eslint": "^15.0.1",
     "puppeteer": "18.2.1",
     "rimraf": "3.0.2",
-    "rollup": "^2.77.2",
+    "rollup": "^3.0.0",
     "rollup-plugin-analyzer": "4.0.0",
     "rollup-plugin-visualizer": "5.8.2",
     "serve": "14.0.1",
