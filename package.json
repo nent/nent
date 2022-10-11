@@ -85,7 +85,7 @@
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-markdownlint": "^0.4.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.31.9",
+    "eslint-plugin-react": "7.31.10",
     "gh-release": "^6.0.4",
     "glob-parent": "6.0.2",
     "husky": "8.0.1",
