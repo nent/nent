@@ -108,7 +108,7 @@
     "serve": "14.0.1",
     "trim-newlines": "4.0.2",
     "typescript": "4.8.4",
-    "yargs": "17.6.1"
+    "yargs": "17.6.2"
   },
   "jest": {
     "preset": "@stencil/core/testing",
