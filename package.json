@@ -88,7 +88,7 @@
     "eslint-plugin-react": "7.31.10",
     "gh-release": "^6.0.4",
     "glob-parent": "6.0.2",
-    "husky": "8.0.1",
+    "husky": "8.0.2",
     "jest": "27.0.3",
     "jest-cli": "29.3.0",
     "lerna": "6.0.3",
