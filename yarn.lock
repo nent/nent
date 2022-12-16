@@ -8111,10 +8111,10 @@ json5@^2.2.0, json5@^2.2.1:
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.1.tgz#655d50ed1e6f95ad1a3caababd2b0efda10b395c"
   integrity sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==
 
-jsonata@1.8.6:
-  version "1.8.6"
-  resolved "https://registry.yarnpkg.com/jsonata/-/jsonata-1.8.6.tgz#e5f0e6ace870a34bac881a182ca2b31227122791"
-  integrity sha512-ZH2TPYdNP2JecOl/HvrH47Xc+9imibEMQ4YqKy/F/FrM+2a6vfbGxeCX23dB9Fr6uvGwv+ghf1KxWB3iZk09wA==
+jsonata@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jsonata/-/jsonata-2.0.0.tgz#b0b644bf2504fef23404ef706171d85ee1276822"
+  integrity sha512-xx3bfetSFwBc9BFv62yDF+6LzV8DlZCwNo0+sE+L8dj/8a8DJyLzEy8njVSURwSFbtNcjL59/EBjSg8519AFfQ==
 
 jsonc-parser@3.2.0:
   version "3.2.0"
