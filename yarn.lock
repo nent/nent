@@ -4325,13 +4325,13 @@ chalk@^4.0.0, chalk@^4.0.2, chalk@^4.1.0, chalk@^4.1.1, chalk@^4.1.2:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-changelog-parser@^2.0.0:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/changelog-parser/-/changelog-parser-2.8.1.tgz#1428998c275e4f7c0a855026dc60c66cde36bb87"
-  integrity sha512-tNUYFRCEeWTXmwLqoNtOEzx9wcytg72MmGQqsEs14ClYwIDln7sbQw7FJj/dulXgSlsxkemc9gpPQhZYZx1TPw==
+changelog-parser@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/changelog-parser/-/changelog-parser-3.0.1.tgz#c8c693c78756e5b93fbf09760b65ca95b05cef68"
+  integrity sha512-1AEVJgnFEO4v5ukfEH/j9cr2Z39Y/GCieNi605azhufAolXF4vQAwZBY8BrUVRkvlI3gwe3i621/PIAW0zmmEQ==
   dependencies:
     line-reader "^0.2.4"
-    remove-markdown "^0.2.2"
+    remove-markdown "^0.5.0"
 
 char-regex@^1.0.2:
   version "1.0.2"
@@ -6287,12 +6287,12 @@ gh-release-assets@^2.0.0:
     util-extend "^1.0.1"
 
 gh-release@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/gh-release/-/gh-release-7.0.0.tgz#6779ed6edf1cddd1f6689a8ea6ec02c7925eb5d4"
-  integrity sha512-Ugl1kHbyTe/KCPl8dmN9UGDNUw2K6Fh5owOvyllMsYGMyw4nklNBkgCad0a19xu3xR+/9iIV/5+wRIbo0S20Gg==
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/gh-release/-/gh-release-7.0.1.tgz#9a6a8d8118352bcbff9b52bf78f514ecf5c8e0e7"
+  integrity sha512-yWtXXBCn9V3v4r+cT1LOfBlkkGj7RnsqbwiXj7GSwqqTkxXFiQIEA2WDfQG14Nu/Y3dEklUncZ2W8MUu41Zong==
   dependencies:
     "@octokit/rest" "^19.0.5"
-    changelog-parser "^2.0.0"
+    changelog-parser "^3.0.0"
     deep-extend "^0.6.0"
     gauge "^v5.0.0"
     gh-release-assets "^2.0.0"
@@ -10404,10 +10404,10 @@ remixicon@2.5.0:
   resolved "https://registry.yarnpkg.com/remixicon/-/remixicon-2.5.0.tgz#b5e245894a1550aa23793f95daceadbf96ad1a41"
   integrity sha512-q54ra2QutYDZpuSnFjmeagmEiN9IMo56/zz5dDNitzKD23oFRw77cWo4TsrAdmdkPiEn8mxlrTqxnkujDbEGww==
 
-remove-markdown@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/remove-markdown/-/remove-markdown-0.2.2.tgz#66b0ceeba9fb77ca9636bb1b0307ce21a32a12a6"
-  integrity sha512-jwgEf3Yh/xi4WodWi/vPlasa9C9pMv1kz5ITOIAGjBW7PeZ/CHZCdBfJzQnn2VX2cBvf1xCuJv0tUJqn/FCMNA==
+remove-markdown@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/remove-markdown/-/remove-markdown-0.5.0.tgz#a596264bbd60b9ceab2e2ae86e5789eee91aee32"
+  integrity sha512-x917M80K97K5IN1L8lUvFehsfhR8cYjGQ/yAMRI9E7JIKivtl5Emo5iD13DhMr+VojzMCiYk8V2byNPwT/oapg==
 
 require-directory@^2.1.1:
   version "2.1.1"
