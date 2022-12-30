@@ -104,7 +104,7 @@
     "rimraf": "3.0.2",
     "rollup": "^3.0.0",
     "rollup-plugin-analyzer": "4.0.0",
-    "rollup-plugin-visualizer": "5.8.3",
+    "rollup-plugin-visualizer": "5.9.0",
     "serve": "14.1.2",
     "trim-newlines": "4.0.2",
     "typescript": "4.9.4",
