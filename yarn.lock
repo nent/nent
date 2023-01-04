@@ -3005,10 +3005,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stencil/core@2.20.0", "@stencil/core@^2.17.2":
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.20.0.tgz#0e68b5b42e727233803291eb0367ab2b53f7f1f3"
-  integrity sha512-ka+eOW+dNteXIfLCRipNbbAlBEQjqJ2fkx3fxzlKgnNHEQMdZiuIjlWt63KzvOJStNeuADdQXo89BB1dC2VRUw==
+"@stencil/core@2.21.0", "@stencil/core@^2.17.2":
+  version "2.21.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.21.0.tgz#d156e2e1ef41d6b5506880bf0cf80cf827bd1335"
+  integrity sha512-c4mVCl87wTV8u7ExQqiiQU5XrkzXjq8ll8skPlFHlJ7+5hGWhRpuVqKgVYJPN1mC/ucRqCUfjzSNUD7cFKHhkw==
 
 "@stencil/eslint-plugin@^0.4.0":
   version "0.4.0"
@@ -3031,10 +3031,10 @@
   resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-2.0.1.tgz#96cb9e56aa97c0f257626bbe258e2b4753e1e278"
   integrity sha512-66ZsqBIcK7B8Awjh7RfMVC6Q1OQPlQDNHqqBfMccH9iZiuUunDL9rzrIZAoUWHjjrxWocMMQR5YieTQSreC9DQ==
 
-"@stencil/store@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-2.0.1.tgz#55b27211a008717634caec1c6539d78d5659ec3a"
-  integrity sha512-zGVu8/zvMNouo068wppVihHBPejU1rbanfq5VHvgw7lCI2BzQVY+RFNlnWQ4PrGwSybLw50363y3MkClWF7k+A==
+"@stencil/store@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-2.0.2.tgz#e39b8bc555c19fc25294d641bec2bbf283e8d60e"
+  integrity sha512-4WhqqWoCOIJ4YS37r+3qDDa3/Se4u7HV1ddZN7mNQPtft8JP8iiGivU1zcVK2dig6db3Z5rKUNMmu7SKWo1wiQ==
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
