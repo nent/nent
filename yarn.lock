@@ -3026,15 +3026,15 @@
     autoprefixer "^10.3.6"
     postcss "~8.3.8"
 
-"@stencil/sass@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-2.0.1.tgz#96cb9e56aa97c0f257626bbe258e2b4753e1e278"
-  integrity sha512-66ZsqBIcK7B8Awjh7RfMVC6Q1OQPlQDNHqqBfMccH9iZiuUunDL9rzrIZAoUWHjjrxWocMMQR5YieTQSreC9DQ==
+"@stencil/sass@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-2.0.2.tgz#253c96e534b6021de7eac7b0910adf13e8e37509"
+  integrity sha512-+hdPubxA4cBEyJR0ge0aGl9FUr0y6e4yqcsfrxkocOT6Nv+Mi+QpfZ9kx1W3ECL640VRcHqQifPcnoauvmqPZg==
 
-"@stencil/store@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-2.0.1.tgz#55b27211a008717634caec1c6539d78d5659ec3a"
-  integrity sha512-zGVu8/zvMNouo068wppVihHBPejU1rbanfq5VHvgw7lCI2BzQVY+RFNlnWQ4PrGwSybLw50363y3MkClWF7k+A==
+"@stencil/store@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-2.0.2.tgz#e39b8bc555c19fc25294d641bec2bbf283e8d60e"
+  integrity sha512-4WhqqWoCOIJ4YS37r+3qDDa3/Se4u7HV1ddZN7mNQPtft8JP8iiGivU1zcVK2dig6db3Z5rKUNMmu7SKWo1wiQ==
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
