@@ -8217,10 +8217,10 @@ json5@^2.2.2:
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
 
-jsonata@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/jsonata/-/jsonata-2.0.0.tgz#b0b644bf2504fef23404ef706171d85ee1276822"
-  integrity sha512-xx3bfetSFwBc9BFv62yDF+6LzV8DlZCwNo0+sE+L8dj/8a8DJyLzEy8njVSURwSFbtNcjL59/EBjSg8519AFfQ==
+jsonata@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/jsonata/-/jsonata-2.0.1.tgz#9c3f849d714b15847896635620a0722a9bbacf4f"
+  integrity sha512-N6VlJPARx9+2+IvjkAuCz7JOh23kgk98EVRE3Xg8RZd9WhwoouR7v2lLpognSlTsMO/652KCGHfIOBn7NGOeyw==
 
 jsonc-parser@3.2.0:
   version "3.2.0"
