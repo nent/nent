@@ -6327,9 +6327,9 @@ gh-release-assets@^2.0.0:
     util-extend "^1.0.1"
 
 gh-release@^7.0.0:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/gh-release/-/gh-release-7.0.1.tgz#9a6a8d8118352bcbff9b52bf78f514ecf5c8e0e7"
-  integrity sha512-yWtXXBCn9V3v4r+cT1LOfBlkkGj7RnsqbwiXj7GSwqqTkxXFiQIEA2WDfQG14Nu/Y3dEklUncZ2W8MUu41Zong==
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/gh-release/-/gh-release-7.0.2.tgz#921c6a0193aac2e751bc94b7124a5cec518cd641"
+  integrity sha512-5gVe+BHFa9OtsjOa72hFRBsfsCIIMYbba35wtEJIkAzZjPXQkUmpLhyrIYYdouh0JRTNNwZ4sDD7eiUhE8T/IQ==
   dependencies:
     "@octokit/rest" "^19.0.5"
     changelog-parser "^3.0.0"
