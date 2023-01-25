@@ -63,7 +63,7 @@
     "rollup-plugin-visualizer": "^5.7.1"
   },
   "dependencies": {
-    "@stencil/core": "^2.17.2",
+    "@stencil/core": "^3.0.0",
     "@stencil/store": "2.0.3",
     "expr-eval": "2.0.2",
     "jsonata": "2.0.1",
