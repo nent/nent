@@ -10,6 +10,11 @@ By default, there is no styling added to the rendered HTML, so it blends with yo
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element converts markdown text to HTML. It can render
+from an inline-template or from a remote source.
+
 ## Usage
 
 ### Data-tokens

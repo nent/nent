@@ -72,6 +72,15 @@ If audio has replay set to true, re-entry to the originating state will re-activ
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element declares audio used within this \<n-view-prompt\> route.
+The \<n-audio-action-sound-load\> instructs the player to load audio files
+while defining play behaviors.
+
+The audio player will pre-load or play when the route is active.
+The player manages them according to their settings.
+
 ## Usage
 
 ### Basic
@@ -103,7 +112,7 @@ Type: `Promise<EventAction<any>>`
 
 
 
-### `sendAction(data?: Record<string, any> | undefined) => Promise<void>`
+### `sendAction(data?: Record<string, any>) => Promise<void>`
 
 Send this action to the the action messaging system.
 

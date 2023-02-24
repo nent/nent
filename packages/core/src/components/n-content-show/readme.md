@@ -14,6 +14,13 @@ This tag conditionally renders child elements based on the configured predicate 
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element conditionally renders child elements based on the
+configured predicate applied to the when value predicate.
+To learn more about predicates, check out the
+expressions documentation.
+
 ## Usage
 
 ### Basic

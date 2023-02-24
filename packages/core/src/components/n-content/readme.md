@@ -66,6 +66,10 @@ This component should surround the inner-content of a remote HTML file that can 
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This component should surround the inner-content of a remote HTML file that can be prioritized during SPA navigation.
+
 ----------------------------------------------
 
 NENT v0.10.8 - Copyright 2022 [all rights reserved]

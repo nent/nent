@@ -94,6 +94,14 @@ This evaluation has to take place before the route is activated as the underlyin
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element represents a specialized child-route for a parent \<n-view\> element.
+It represents a sub-route that has required and workflow behaviors.
+
+They are used to create, wizards, input workflows, or step by step instructions or
+wherever you want guided or automatic navigation.
+
 ## Usage
 
 ### Basic

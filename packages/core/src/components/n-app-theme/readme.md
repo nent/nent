@@ -7,6 +7,11 @@ user and sets the interface state: theme, accordingly.
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element checks for the preferred light/dark theme preference of the
+user and sets the ui state: theme, accordingly.
+
 ## Usage
 
 ### Basic

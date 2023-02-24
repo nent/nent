@@ -17,7 +17,24 @@ import { EventAction as EventAction1 } from "./services/actions/interfaces";
 import { ITimer } from "./components/n-presentation/services/interfaces";
 import { Route } from "./components/n-view/services/route";
 import { Path } from "./components/n-views/services/utils/path-regex";
+export { EventAction } from "./services/actions";
+export { LocationSegments } from "./services/common";
+export { ViewTime } from "./components/n-app-analytics/services";
+export { AudioActionListener } from "./components/n-audio/services/actions";
+export { AudioInfo, AudioRequest } from "./components/n-audio/services/interfaces";
+export { ReferenceCompleteResults } from "./services/content";
+export { CookieConsent } from "./components/n-data-cookie/services/interfaces";
+export { SetData } from "./components/n-data/services/interfaces";
+export { EventAction as EventAction1 } from "./services/actions/interfaces";
+export { ITimer } from "./components/n-presentation/services/interfaces";
+export { Route } from "./components/n-view/services/route";
+export { Path } from "./components/n-views/services/utils/path-regex";
 export namespace Components {
+    /**
+     * This element just holds data to express the actionEvent to fire. This element
+     * should always be the child of an n-action-activator.
+     * @system actions
+     */
     interface NAction {
         /**
           * The command to execute.
@@ -30,7 +47,7 @@ export namespace Components {
         /**
           * Send this action to the action messaging system.
          */
-        "sendAction": (data?: Record<string, any> | undefined) => Promise<void>;
+        "sendAction": (data?: Record<string, any>) => Promise<void>;
         /**
           * This is the topic this action-command is targeting.
          */
@@ -40,6 +57,12 @@ export namespace Components {
          */
         "when"?: string;
     }
+    /**
+     * This element defines how or when a group of actions are
+     * activated. The actions activated must be included between
+     * this elements tags.
+     * @system actions
+     */
     interface NActionActivator {
         /**
           * The activation strategy to use for the contained actions.
@@ -75,6 +98,16 @@ export namespace Components {
          */
         "time"?: number;
     }
+    /**
+     * This component enables app services. These are console logging,
+     * theming and event-delegation. As well as a plugin system to
+     * manage a UI kit to add components like Modals, Drawers,
+     * menus, etc.
+     * @system app
+     * @extension actions
+     * @extension custom
+     * @extension elements
+     */
     interface NApp {
         /**
           * This is the application default page description.
@@ -93,12 +126,23 @@ export namespace Components {
          */
         "debug": boolean;
     }
+    /**
+     * This element serves as a proxy to delegate event-based
+     * functions to be consumed by various analytics snippets.
+     * @system app
+     * @extension actions
+     */
     interface NAppAnalytics {
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
          */
         "debug": boolean;
     }
+    /**
+     * This element leverages the browser's web-share
+     * API to give the application a native-app feel.
+     * @system app
+     */
     interface NAppShare {
         /**
           * Headline for the share
@@ -108,7 +152,7 @@ export namespace Components {
           * Manual share method for more complex scenarios
           * @param data
          */
-        "share": (data?: { title?: string | undefined; text?: string | undefined; url?: string | undefined; } | null | undefined) => Promise<void>;
+        "share": (data?: { title?: string; text?: string; url?: string; } | null) => Promise<void>;
         /**
           * The textual body of web share
          */
@@ -118,6 +162,11 @@ export namespace Components {
          */
         "url"?: string;
     }
+    /**
+     * This element checks for the preferred light/dark theme preference of the
+     * user and sets the ui state: theme, accordingly.
+     * @system app
+     */
     interface NAppTheme {
         /**
           * Change the class name that is added to the target element when the theme is determined to be dark.
@@ -136,6 +185,12 @@ export namespace Components {
          */
         "targetElement": string;
     }
+    /**
+     * This element displays a checkbox to control the
+     * dark-theme setting applied to the ui.
+     * Default: user-preference
+     * @system app
+     */
     interface NAppThemeSwitch {
         /**
           * The class to add to the inner input.
@@ -146,6 +201,14 @@ export namespace Components {
          */
         "inputId"?: string;
     }
+    /**
+     * Use this element only once per page to enable audio features.
+     * It will add a CDN reference to Howler.js:
+     * <https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.core.min.js>
+     * @system audio
+     * @extension actions
+     * @extension provider
+     */
     interface NAudio {
         /**
           * A reference to the action listener for testing.
@@ -168,6 +231,13 @@ export namespace Components {
          */
         "howlerVersion": string;
     }
+    /**
+     * This element represents an action to be fired. This
+     * specialized action encapsulates required parameters
+     * needed for audio-based actions, for music.
+     * @system audio
+     * @system actions
+     */
     interface NAudioActionMusic {
         /**
           * The command to execute.
@@ -185,7 +255,7 @@ export namespace Components {
         /**
           * Send this action to the the action messaging system.
          */
-        "sendAction": (data?: Record<string, any> | undefined) => Promise<void>;
+        "sendAction": (data?: Record<string, any>) => Promise<void>;
         /**
           * Readonly topic
          */
@@ -203,6 +273,15 @@ export namespace Components {
          */
         "when"?: string;
     }
+    /**
+     * This element declares audio used within this \<n-view-prompt\> route.
+     * The \<n-audio-action-sound-load\> instructs the player to load audio files
+     * while defining play behaviors.
+     * The audio player will pre-load or play when the route is active.
+     * The player manages them according to their settings.
+     * @system audio
+     * @system actions
+     */
     interface NAudioActionMusicLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -227,7 +306,7 @@ export namespace Components {
         /**
           * Send this action to the the action messaging system.
          */
-        "sendAction": (data?: Record<string, any> | undefined) => Promise<void>;
+        "sendAction": (data?: Record<string, any>) => Promise<void>;
         /**
           * The path to the audio-file.
           * @required
@@ -238,6 +317,13 @@ export namespace Components {
          */
         "trackId": string;
     }
+    /**
+     * This element represents an action to be fired. This
+     * specialized action encapsulates required parameters
+     * needed for audio-based actions, for sound.
+     * @system audio
+     * @system actions
+     */
     interface NAudioActionSound {
         /**
           * The command to execute.
@@ -255,7 +341,7 @@ export namespace Components {
         /**
           * Send this action to the the action messaging system.
          */
-        "sendAction": (data?: Record<string, any> | undefined) => Promise<void>;
+        "sendAction": (data?: Record<string, any>) => Promise<void>;
         /**
           * Readonly topic
          */
@@ -273,6 +359,15 @@ export namespace Components {
          */
         "when"?: string;
     }
+    /**
+     * This element declares audio used within this \<n-view-prompt\> route.
+     * The \<n-audio-action-sound-load\> instructs the player to load audio files
+     * while defining play behaviors.
+     * The audio player will pre-load or play when the route is active.
+     * The player manages them according to their settings.
+     * @system audio
+     * @system actions
+     */
     interface NAudioActionSoundLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -293,7 +388,7 @@ export namespace Components {
         /**
           * Send this action to the the action messaging system.
          */
-        "sendAction": (data?: Record<string, any> | undefined) => Promise<void>;
+        "sendAction": (data?: Record<string, any>) => Promise<void>;
         /**
           * The path to the audio-file.
          */
@@ -303,6 +398,10 @@ export namespace Components {
          */
         "trackId": string;
     }
+    /**
+     * This element exposes a checkbox to enable or disable global audio for background sounds and video.
+     * @system audio
+     */
     interface NAudioSwitch {
         /**
           * The data provider to store the audio state in.
@@ -321,8 +420,19 @@ export namespace Components {
          */
         "setting": 'muted' | 'enabled';
     }
+    /**
+     * This component should surround the inner-content of a remote HTML file that can be prioritized during SPA navigation.
+     * @system content
+     */
     interface NContent {
     }
+    /**
+     * This element fetches remote HTML and renders it safely and directly
+     * into the page when and where you tell it too, as soon as it renders.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface NContentInclude {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -349,6 +459,13 @@ export namespace Components {
          */
         "when"?: string;
     }
+    /**
+     * This element converts markdown text to HTML. It can render
+     * from an inline-template or from a remote source.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface NContentMarkdown {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -379,6 +496,12 @@ export namespace Components {
          */
         "when"?: string;
     }
+    /**
+     * This element makes a single reference to script and css sources. It can
+     * be used by HTML fragment to ensure a reference is made, without worrying
+     * that it will create duplicate references.
+     * @system content
+     */
     interface NContentReference {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -413,6 +536,14 @@ export namespace Components {
          */
         "timeout": number;
     }
+    /**
+     * This tag renders a template for each item in the configured array.
+     * The item template uses value expressions to insert data from any
+     * data provider as well as the item in the array.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface NContentRepeat {
         /**
           * Turn on debug statements for load, update and render events.
@@ -444,6 +575,12 @@ export namespace Components {
          */
         "when"?: string;
     }
+    /**
+     * Use this element to add a little flair to any HTML.
+     * It creates an entrance animation using the configured
+     * attributes to add pop to any page.
+     * @system content
+     */
     interface NContentReveal {
         /**
           * How far the element moves in the animation (% of element width/height)
@@ -466,12 +603,28 @@ export namespace Components {
          */
         "triggerDistance": string;
     }
+    /**
+     * This element conditionally renders child elements based on the
+     * configured predicate applied to the when value predicate.
+     * To learn more about predicates, check out the
+     * expressions documentation.
+     * @system content
+     * @extension data
+     */
     interface NContentShow {
         /**
           * The data expression to obtain a predicate for conditionally rendering the inner-contents of this element.
          */
         "when": string;
     }
+    /**
+     * Render data directly into HTML using declarative expressions.
+     * This element renders the expression with all data-tokens
+     * replaced with the values provided by the provider.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface NContentTemplate {
         /**
           * Turn on debug statements for load, update and render events.
@@ -512,6 +665,14 @@ export namespace Components {
          */
         "when"?: string;
     }
+    /**
+     * This element enables the Data Provider system. It hosts
+     * the action-listener that registers providers.  Add this tag
+     * to that page to enable token-replacement.
+     * @system data
+     * @extension actions
+     * @extension custom
+     */
     interface NData {
         /**
           * Turn on debugging to get helpful messages from the data action systems.
@@ -522,6 +683,14 @@ export namespace Components {
          */
         "providerTimeout"?: number;
     }
+    /**
+     * This element enables the *Cookie Data Provider*,
+     * after requesting consent from the user. The consent
+     * message and the accept/reject button are customizable.
+     * @system data
+     * @extension actions
+     * @extension provider
+     */
     interface NDataCookie {
         /**
           * Provider name to use in nent expressions.
@@ -536,6 +705,13 @@ export namespace Components {
          */
         "skipConsent": boolean;
     }
+    /**
+     * This element enables the **Session Data Provider**.
+     * It leverages the short-lived browser storage.
+     * @system data
+     * @extension actions
+     * @extension provider
+     */
     interface NDataSession {
         /**
           * The key prefix to use in storage
@@ -546,6 +722,13 @@ export namespace Components {
          */
         "name": string;
     }
+    /**
+     * This element enables the **Storage Data Provider**, that
+     * leverages the browsers 'long-term' data storage.
+     * @system data
+     * @extension actions
+     * @extension provider
+     */
     interface NDataStorage {
         /**
           * The key prefix to use in storage
@@ -556,12 +739,29 @@ export namespace Components {
          */
         "name": string;
     }
+    /**
+     * This element enables element manipulation through the n-actions element.
+     * Add it to the page to perform actions like 'add-css', toggle
+     * attributes or to execute functions on the DOM without code.
+     * @system elements
+     * @extension actions
+     */
     interface NElements {
         /**
           * Turn on debug statements for load, update and render events.
          */
         "debug": boolean;
     }
+    /**
+     * This element encapsulates a timed presentation. This element uses
+     * a child n-presentation-timer or n-video element to create time-events
+     * then it delegates those events to time-based action-activators.
+     * If enabled, the n-attributes for time will also get processed. This
+     * element also has the ability to go to the next route using the active
+     * route's 'goNext' function.
+     * @system presentation
+     * @extension elements
+     */
     interface NPresentation {
         /**
           * Send analytics view-time percentages for this presentation using the event name
@@ -580,6 +780,13 @@ export namespace Components {
          */
         "timerElement": string | null;
     }
+    /**
+     * This specialized action contains the time attribute,
+     * allowing it to be activated directly within the n-presentation
+     * element (no n-action-activator needed)
+     * @system presentation
+     * @system actions
+     */
     interface NPresentationAction {
         /**
           * The command to execute.
@@ -588,11 +795,11 @@ export namespace Components {
         /**
           * Get the underlying actionEvent instance. Used by the n-action-activator element.
          */
-        "getAction": () => Promise<EventAction<any> | null>;
+        "getAction": () => Promise<EventAction1<any> | null>;
         /**
           * Send this action to the action messaging system.
          */
-        "sendAction": (data?: Record<string, any> | undefined) => Promise<void>;
+        "sendAction": (data?: Record<string, any>) => Promise<void>;
         /**
           * The time this should execute
          */
@@ -606,6 +813,12 @@ export namespace Components {
          */
         "when"?: string;
     }
+    /**
+     * This element creates a timer for the presentation
+     * element to use in place of a video, to time actions
+     * or manipulate HTML by time.
+     * @system presentation
+     */
     interface NPresentationTimer {
         /**
           * Begin the timer. This is called automatically by the presentation element.
@@ -640,6 +853,13 @@ export namespace Components {
          */
         "timer": ITimer;
     }
+    /**
+     * This element enables the UI services. These are typically
+     * web element plug-ins to manage things like Modals, Drawers,
+     * menus, etc. The basic provider is used to toggle dark-mode.
+     * @system video
+     * @extension actions
+     */
     interface NVideo {
         /**
           * To debug timed elements, set this value to true.
@@ -674,6 +894,12 @@ export namespace Components {
          */
         "timer": ITimer;
     }
+    /**
+     * This element displays a checkbox to control the autoplay setting,
+     * used for video playback - as well as automatic navigation to the
+     * next page, when a video ends. Default: enabled
+     * @system video
+     */
     interface NVideoSwitch {
         /**
           * The data provider to store the audio-enabled state in.
@@ -688,6 +914,15 @@ export namespace Components {
          */
         "inputId"?: string;
     }
+    /**
+     * The View element holds a segment of content visible only when
+     * a URL path matches. It defines a route and its content.
+     * This provides the declarative mechanism
+     * for in-page content/component routing by URL.
+     * @system routing
+     * @extension data
+     * @extension elements
+     */
     interface NView {
         /**
           * Remote URL for this Route's content.
@@ -754,6 +989,10 @@ export namespace Components {
          */
         "transition"?: string;
     }
+    /**
+     * Hide or show content based on the active route.
+     * @system routing
+     */
     interface NViewDetect {
         /**
           * Only active on the exact href match, and not on child routes
@@ -772,6 +1011,13 @@ export namespace Components {
          */
         "strict": boolean;
     }
+    /**
+     * The element should be used in-place of an `a` tag to navigate without
+     * refreshing the page. This element supports an active-class that will
+     * be applied when the route in **href** matches the route of the app.
+     * This is helpful for displaying active routes in menus, bread-crumbs and tabs.
+     * @system routing
+     */
     interface NViewLink {
         /**
           * The class to add when the matching route is active in the browser
@@ -802,6 +1048,9 @@ export namespace Components {
          */
         "validate": boolean;
     }
+    /**
+     * @system routing
+     */
     interface NViewLinkBack {
         /**
           * The class to add to the anchor tag.
@@ -812,6 +1061,14 @@ export namespace Components {
          */
         "text"?: string;
     }
+    /**
+     * Display a list of routes related to the current route.
+     * Modes:
+     * **siblings**: all routes at the same depth level (nav)
+     * **parents**: all parent routes. (breadcrumbs)
+     * **children**: all child routes within a hierarchy. (sub-menu)
+     * @system routing
+     */
     interface NViewLinkList {
         /**
           * The active-class to use with the n-view-link elements.
@@ -838,6 +1095,11 @@ export namespace Components {
          */
         "mode": 'children' | 'parents' | 'siblings';
     }
+    /**
+     * This element will automatically go to the next
+     * view in the view.
+     * @system routing
+     */
     interface NViewLinkNext {
         /**
           * The class to add to the anchor tag.
@@ -848,6 +1110,12 @@ export namespace Components {
          */
         "text"?: string;
     }
+    /**
+     * This element should be placed at the end of the content,
+     * inside the n-views element. It shows up when no views
+     * above it resolve.
+     * @system routing
+     */
     interface NViewNotFound {
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
@@ -862,6 +1130,15 @@ export namespace Components {
          */
         "transition"?: string;
     }
+    /**
+     * This element represents a specialized child-route for a parent \<n-view\> element.
+     * It represents a sub-route that has required and workflow behaviors.
+     * They are used to create, wizards, input workflows, or step by step instructions or
+     * wherever you want guided or automatic navigation.
+     * @system routing
+     * @extension data
+     * @extension elements
+     */
     interface NViewPrompt {
         /**
           * Remote URL for HTML content. Content from this URL will be assigned the 'content' slot.
@@ -928,6 +1205,16 @@ export namespace Components {
          */
         "when"?: string;
     }
+    /**
+     * The root element is the base container for the view-engine and its
+     * child elements. This element should contain root-level HTML that
+     * is global to every view along with \<n-view\>
+     * elements placed within any global-html.
+     * @system routing
+     * @extension actions
+     * @extension elements
+     * @extension provider
+     */
     interface NViews {
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
@@ -959,241 +1246,540 @@ export namespace Components {
         "transition"?: string;
     }
 }
+export interface NAppCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNAppElement;
+}
+export interface NAppAnalyticsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNAppAnalyticsElement;
+}
+export interface NContentReferenceCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNContentReferenceElement;
+}
+export interface NDataCookieCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNDataCookieElement;
+}
+export interface NPresentationTimerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNPresentationTimerElement;
+}
+export interface NVideoCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNVideoElement;
+}
 declare global {
+    /**
+     * This element just holds data to express the actionEvent to fire. This element
+     * should always be the child of an n-action-activator.
+     * @system actions
+     */
     interface HTMLNActionElement extends Components.NAction, HTMLStencilElement {
     }
     var HTMLNActionElement: {
         prototype: HTMLNActionElement;
         new (): HTMLNActionElement;
     };
+    /**
+     * This element defines how or when a group of actions are
+     * activated. The actions activated must be included between
+     * this elements tags.
+     * @system actions
+     */
     interface HTMLNActionActivatorElement extends Components.NActionActivator, HTMLStencilElement {
     }
     var HTMLNActionActivatorElement: {
         prototype: HTMLNActionActivatorElement;
         new (): HTMLNActionActivatorElement;
     };
+    /**
+     * This component enables app services. These are console logging,
+     * theming and event-delegation. As well as a plugin system to
+     * manage a UI kit to add components like Modals, Drawers,
+     * menus, etc.
+     * @system app
+     * @extension actions
+     * @extension custom
+     * @extension elements
+     */
     interface HTMLNAppElement extends Components.NApp, HTMLStencilElement {
     }
     var HTMLNAppElement: {
         prototype: HTMLNAppElement;
         new (): HTMLNAppElement;
     };
+    /**
+     * This element serves as a proxy to delegate event-based
+     * functions to be consumed by various analytics snippets.
+     * @system app
+     * @extension actions
+     */
     interface HTMLNAppAnalyticsElement extends Components.NAppAnalytics, HTMLStencilElement {
     }
     var HTMLNAppAnalyticsElement: {
         prototype: HTMLNAppAnalyticsElement;
         new (): HTMLNAppAnalyticsElement;
     };
+    /**
+     * This element leverages the browser's web-share
+     * API to give the application a native-app feel.
+     * @system app
+     */
     interface HTMLNAppShareElement extends Components.NAppShare, HTMLStencilElement {
     }
     var HTMLNAppShareElement: {
         prototype: HTMLNAppShareElement;
         new (): HTMLNAppShareElement;
     };
+    /**
+     * This element checks for the preferred light/dark theme preference of the
+     * user and sets the ui state: theme, accordingly.
+     * @system app
+     */
     interface HTMLNAppThemeElement extends Components.NAppTheme, HTMLStencilElement {
     }
     var HTMLNAppThemeElement: {
         prototype: HTMLNAppThemeElement;
         new (): HTMLNAppThemeElement;
     };
+    /**
+     * This element displays a checkbox to control the
+     * dark-theme setting applied to the ui.
+     * Default: user-preference
+     * @system app
+     */
     interface HTMLNAppThemeSwitchElement extends Components.NAppThemeSwitch, HTMLStencilElement {
     }
     var HTMLNAppThemeSwitchElement: {
         prototype: HTMLNAppThemeSwitchElement;
         new (): HTMLNAppThemeSwitchElement;
     };
+    /**
+     * Use this element only once per page to enable audio features.
+     * It will add a CDN reference to Howler.js:
+     * <https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.core.min.js>
+     * @system audio
+     * @extension actions
+     * @extension provider
+     */
     interface HTMLNAudioElement extends Components.NAudio, HTMLStencilElement {
     }
     var HTMLNAudioElement: {
         prototype: HTMLNAudioElement;
         new (): HTMLNAudioElement;
     };
+    /**
+     * This element represents an action to be fired. This
+     * specialized action encapsulates required parameters
+     * needed for audio-based actions, for music.
+     * @system audio
+     * @system actions
+     */
     interface HTMLNAudioActionMusicElement extends Components.NAudioActionMusic, HTMLStencilElement {
     }
     var HTMLNAudioActionMusicElement: {
         prototype: HTMLNAudioActionMusicElement;
         new (): HTMLNAudioActionMusicElement;
     };
+    /**
+     * This element declares audio used within this \<n-view-prompt\> route.
+     * The \<n-audio-action-sound-load\> instructs the player to load audio files
+     * while defining play behaviors.
+     * The audio player will pre-load or play when the route is active.
+     * The player manages them according to their settings.
+     * @system audio
+     * @system actions
+     */
     interface HTMLNAudioActionMusicLoadElement extends Components.NAudioActionMusicLoad, HTMLStencilElement {
     }
     var HTMLNAudioActionMusicLoadElement: {
         prototype: HTMLNAudioActionMusicLoadElement;
         new (): HTMLNAudioActionMusicLoadElement;
     };
+    /**
+     * This element represents an action to be fired. This
+     * specialized action encapsulates required parameters
+     * needed for audio-based actions, for sound.
+     * @system audio
+     * @system actions
+     */
     interface HTMLNAudioActionSoundElement extends Components.NAudioActionSound, HTMLStencilElement {
     }
     var HTMLNAudioActionSoundElement: {
         prototype: HTMLNAudioActionSoundElement;
         new (): HTMLNAudioActionSoundElement;
     };
+    /**
+     * This element declares audio used within this \<n-view-prompt\> route.
+     * The \<n-audio-action-sound-load\> instructs the player to load audio files
+     * while defining play behaviors.
+     * The audio player will pre-load or play when the route is active.
+     * The player manages them according to their settings.
+     * @system audio
+     * @system actions
+     */
     interface HTMLNAudioActionSoundLoadElement extends Components.NAudioActionSoundLoad, HTMLStencilElement {
     }
     var HTMLNAudioActionSoundLoadElement: {
         prototype: HTMLNAudioActionSoundLoadElement;
         new (): HTMLNAudioActionSoundLoadElement;
     };
+    /**
+     * This element exposes a checkbox to enable or disable global audio for background sounds and video.
+     * @system audio
+     */
     interface HTMLNAudioSwitchElement extends Components.NAudioSwitch, HTMLStencilElement {
     }
     var HTMLNAudioSwitchElement: {
         prototype: HTMLNAudioSwitchElement;
         new (): HTMLNAudioSwitchElement;
     };
+    /**
+     * This component should surround the inner-content of a remote HTML file that can be prioritized during SPA navigation.
+     * @system content
+     */
     interface HTMLNContentElement extends Components.NContent, HTMLStencilElement {
     }
     var HTMLNContentElement: {
         prototype: HTMLNContentElement;
         new (): HTMLNContentElement;
     };
+    /**
+     * This element fetches remote HTML and renders it safely and directly
+     * into the page when and where you tell it too, as soon as it renders.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface HTMLNContentIncludeElement extends Components.NContentInclude, HTMLStencilElement {
     }
     var HTMLNContentIncludeElement: {
         prototype: HTMLNContentIncludeElement;
         new (): HTMLNContentIncludeElement;
     };
+    /**
+     * This element converts markdown text to HTML. It can render
+     * from an inline-template or from a remote source.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface HTMLNContentMarkdownElement extends Components.NContentMarkdown, HTMLStencilElement {
     }
     var HTMLNContentMarkdownElement: {
         prototype: HTMLNContentMarkdownElement;
         new (): HTMLNContentMarkdownElement;
     };
+    /**
+     * This element makes a single reference to script and css sources. It can
+     * be used by HTML fragment to ensure a reference is made, without worrying
+     * that it will create duplicate references.
+     * @system content
+     */
     interface HTMLNContentReferenceElement extends Components.NContentReference, HTMLStencilElement {
     }
     var HTMLNContentReferenceElement: {
         prototype: HTMLNContentReferenceElement;
         new (): HTMLNContentReferenceElement;
     };
+    /**
+     * This tag renders a template for each item in the configured array.
+     * The item template uses value expressions to insert data from any
+     * data provider as well as the item in the array.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface HTMLNContentRepeatElement extends Components.NContentRepeat, HTMLStencilElement {
     }
     var HTMLNContentRepeatElement: {
         prototype: HTMLNContentRepeatElement;
         new (): HTMLNContentRepeatElement;
     };
+    /**
+     * Use this element to add a little flair to any HTML.
+     * It creates an entrance animation using the configured
+     * attributes to add pop to any page.
+     * @system content
+     */
     interface HTMLNContentRevealElement extends Components.NContentReveal, HTMLStencilElement {
     }
     var HTMLNContentRevealElement: {
         prototype: HTMLNContentRevealElement;
         new (): HTMLNContentRevealElement;
     };
+    /**
+     * This element conditionally renders child elements based on the
+     * configured predicate applied to the when value predicate.
+     * To learn more about predicates, check out the
+     * expressions documentation.
+     * @system content
+     * @extension data
+     */
     interface HTMLNContentShowElement extends Components.NContentShow, HTMLStencilElement {
     }
     var HTMLNContentShowElement: {
         prototype: HTMLNContentShowElement;
         new (): HTMLNContentShowElement;
     };
+    /**
+     * Render data directly into HTML using declarative expressions.
+     * This element renders the expression with all data-tokens
+     * replaced with the values provided by the provider.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface HTMLNContentTemplateElement extends Components.NContentTemplate, HTMLStencilElement {
     }
     var HTMLNContentTemplateElement: {
         prototype: HTMLNContentTemplateElement;
         new (): HTMLNContentTemplateElement;
     };
+    /**
+     * This element enables the Data Provider system. It hosts
+     * the action-listener that registers providers.  Add this tag
+     * to that page to enable token-replacement.
+     * @system data
+     * @extension actions
+     * @extension custom
+     */
     interface HTMLNDataElement extends Components.NData, HTMLStencilElement {
     }
     var HTMLNDataElement: {
         prototype: HTMLNDataElement;
         new (): HTMLNDataElement;
     };
+    /**
+     * This element enables the *Cookie Data Provider*,
+     * after requesting consent from the user. The consent
+     * message and the accept/reject button are customizable.
+     * @system data
+     * @extension actions
+     * @extension provider
+     */
     interface HTMLNDataCookieElement extends Components.NDataCookie, HTMLStencilElement {
     }
     var HTMLNDataCookieElement: {
         prototype: HTMLNDataCookieElement;
         new (): HTMLNDataCookieElement;
     };
+    /**
+     * This element enables the **Session Data Provider**.
+     * It leverages the short-lived browser storage.
+     * @system data
+     * @extension actions
+     * @extension provider
+     */
     interface HTMLNDataSessionElement extends Components.NDataSession, HTMLStencilElement {
     }
     var HTMLNDataSessionElement: {
         prototype: HTMLNDataSessionElement;
         new (): HTMLNDataSessionElement;
     };
+    /**
+     * This element enables the **Storage Data Provider**, that
+     * leverages the browsers 'long-term' data storage.
+     * @system data
+     * @extension actions
+     * @extension provider
+     */
     interface HTMLNDataStorageElement extends Components.NDataStorage, HTMLStencilElement {
     }
     var HTMLNDataStorageElement: {
         prototype: HTMLNDataStorageElement;
         new (): HTMLNDataStorageElement;
     };
+    /**
+     * This element enables element manipulation through the n-actions element.
+     * Add it to the page to perform actions like 'add-css', toggle
+     * attributes or to execute functions on the DOM without code.
+     * @system elements
+     * @extension actions
+     */
     interface HTMLNElementsElement extends Components.NElements, HTMLStencilElement {
     }
     var HTMLNElementsElement: {
         prototype: HTMLNElementsElement;
         new (): HTMLNElementsElement;
     };
+    /**
+     * This element encapsulates a timed presentation. This element uses
+     * a child n-presentation-timer or n-video element to create time-events
+     * then it delegates those events to time-based action-activators.
+     * If enabled, the n-attributes for time will also get processed. This
+     * element also has the ability to go to the next route using the active
+     * route's 'goNext' function.
+     * @system presentation
+     * @extension elements
+     */
     interface HTMLNPresentationElement extends Components.NPresentation, HTMLStencilElement {
     }
     var HTMLNPresentationElement: {
         prototype: HTMLNPresentationElement;
         new (): HTMLNPresentationElement;
     };
+    /**
+     * This specialized action contains the time attribute,
+     * allowing it to be activated directly within the n-presentation
+     * element (no n-action-activator needed)
+     * @system presentation
+     * @system actions
+     */
     interface HTMLNPresentationActionElement extends Components.NPresentationAction, HTMLStencilElement {
     }
     var HTMLNPresentationActionElement: {
         prototype: HTMLNPresentationActionElement;
         new (): HTMLNPresentationActionElement;
     };
+    /**
+     * This element creates a timer for the presentation
+     * element to use in place of a video, to time actions
+     * or manipulate HTML by time.
+     * @system presentation
+     */
     interface HTMLNPresentationTimerElement extends Components.NPresentationTimer, HTMLStencilElement {
     }
     var HTMLNPresentationTimerElement: {
         prototype: HTMLNPresentationTimerElement;
         new (): HTMLNPresentationTimerElement;
     };
+    /**
+     * This element enables the UI services. These are typically
+     * web element plug-ins to manage things like Modals, Drawers,
+     * menus, etc. The basic provider is used to toggle dark-mode.
+     * @system video
+     * @extension actions
+     */
     interface HTMLNVideoElement extends Components.NVideo, HTMLStencilElement {
     }
     var HTMLNVideoElement: {
         prototype: HTMLNVideoElement;
         new (): HTMLNVideoElement;
     };
+    /**
+     * This element displays a checkbox to control the autoplay setting,
+     * used for video playback - as well as automatic navigation to the
+     * next page, when a video ends. Default: enabled
+     * @system video
+     */
     interface HTMLNVideoSwitchElement extends Components.NVideoSwitch, HTMLStencilElement {
     }
     var HTMLNVideoSwitchElement: {
         prototype: HTMLNVideoSwitchElement;
         new (): HTMLNVideoSwitchElement;
     };
+    /**
+     * The View element holds a segment of content visible only when
+     * a URL path matches. It defines a route and its content.
+     * This provides the declarative mechanism
+     * for in-page content/component routing by URL.
+     * @system routing
+     * @extension data
+     * @extension elements
+     */
     interface HTMLNViewElement extends Components.NView, HTMLStencilElement {
     }
     var HTMLNViewElement: {
         prototype: HTMLNViewElement;
         new (): HTMLNViewElement;
     };
+    /**
+     * Hide or show content based on the active route.
+     * @system routing
+     */
     interface HTMLNViewDetectElement extends Components.NViewDetect, HTMLStencilElement {
     }
     var HTMLNViewDetectElement: {
         prototype: HTMLNViewDetectElement;
         new (): HTMLNViewDetectElement;
     };
+    /**
+     * The element should be used in-place of an `a` tag to navigate without
+     * refreshing the page. This element supports an active-class that will
+     * be applied when the route in **href** matches the route of the app.
+     * This is helpful for displaying active routes in menus, bread-crumbs and tabs.
+     * @system routing
+     */
     interface HTMLNViewLinkElement extends Components.NViewLink, HTMLStencilElement {
     }
     var HTMLNViewLinkElement: {
         prototype: HTMLNViewLinkElement;
         new (): HTMLNViewLinkElement;
     };
+    /**
+     * @system routing
+     */
     interface HTMLNViewLinkBackElement extends Components.NViewLinkBack, HTMLStencilElement {
     }
     var HTMLNViewLinkBackElement: {
         prototype: HTMLNViewLinkBackElement;
         new (): HTMLNViewLinkBackElement;
     };
+    /**
+     * Display a list of routes related to the current route.
+     * Modes:
+     * **siblings**: all routes at the same depth level (nav)
+     * **parents**: all parent routes. (breadcrumbs)
+     * **children**: all child routes within a hierarchy. (sub-menu)
+     * @system routing
+     */
     interface HTMLNViewLinkListElement extends Components.NViewLinkList, HTMLStencilElement {
     }
     var HTMLNViewLinkListElement: {
         prototype: HTMLNViewLinkListElement;
         new (): HTMLNViewLinkListElement;
     };
+    /**
+     * This element will automatically go to the next
+     * view in the view.
+     * @system routing
+     */
     interface HTMLNViewLinkNextElement extends Components.NViewLinkNext, HTMLStencilElement {
     }
     var HTMLNViewLinkNextElement: {
         prototype: HTMLNViewLinkNextElement;
         new (): HTMLNViewLinkNextElement;
     };
+    /**
+     * This element should be placed at the end of the content,
+     * inside the n-views element. It shows up when no views
+     * above it resolve.
+     * @system routing
+     */
     interface HTMLNViewNotFoundElement extends Components.NViewNotFound, HTMLStencilElement {
     }
     var HTMLNViewNotFoundElement: {
         prototype: HTMLNViewNotFoundElement;
         new (): HTMLNViewNotFoundElement;
     };
+    /**
+     * This element represents a specialized child-route for a parent \<n-view\> element.
+     * It represents a sub-route that has required and workflow behaviors.
+     * They are used to create, wizards, input workflows, or step by step instructions or
+     * wherever you want guided or automatic navigation.
+     * @system routing
+     * @extension data
+     * @extension elements
+     */
     interface HTMLNViewPromptElement extends Components.NViewPrompt, HTMLStencilElement {
     }
     var HTMLNViewPromptElement: {
         prototype: HTMLNViewPromptElement;
         new (): HTMLNViewPromptElement;
     };
+    /**
+     * The root element is the base container for the view-engine and its
+     * child elements. This element should contain root-level HTML that
+     * is global to every view along with \<n-view\>
+     * elements placed within any global-html.
+     * @system routing
+     * @extension actions
+     * @extension elements
+     * @extension provider
+     */
     interface HTMLNViewsElement extends Components.NViews, HTMLStencilElement {
     }
     var HTMLNViewsElement: {
@@ -1244,6 +1830,11 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * This element just holds data to express the actionEvent to fire. This element
+     * should always be the child of an n-action-activator.
+     * @system actions
+     */
     interface NAction {
         /**
           * The command to execute.
@@ -1258,6 +1849,12 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
+    /**
+     * This element defines how or when a group of actions are
+     * activated. The actions activated must be included between
+     * this elements tags.
+     * @system actions
+     */
     interface NActionActivator {
         /**
           * The activation strategy to use for the contained actions.
@@ -1289,6 +1886,16 @@ declare namespace LocalJSX {
          */
         "time"?: number;
     }
+    /**
+     * This component enables app services. These are console logging,
+     * theming and event-delegation. As well as a plugin system to
+     * manage a UI kit to add components like Modals, Drawers,
+     * menus, etc.
+     * @system app
+     * @extension actions
+     * @extension custom
+     * @extension elements
+     */
     interface NApp {
         /**
           * This is the application default page description.
@@ -1309,12 +1916,18 @@ declare namespace LocalJSX {
         /**
           * These events are command-requests for action handlers to perform tasks. Any outside handlers should cancel the event.
          */
-        "onNent:actions"?: (event: CustomEvent<any>) => void;
+        "onNent:actions"?: (event: NAppCustomEvent<any>) => void;
         /**
           * Listen for events that occurred within the nent event system.
          */
-        "onNent:events"?: (event: CustomEvent<any>) => void;
+        "onNent:events"?: (event: NAppCustomEvent<any>) => void;
     }
+    /**
+     * This element serves as a proxy to delegate event-based
+     * functions to be consumed by various analytics snippets.
+     * @system app
+     * @extension actions
+     */
     interface NAppAnalytics {
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
@@ -1323,16 +1936,21 @@ declare namespace LocalJSX {
         /**
           * Raised analytics events.
          */
-        "onCustom-event"?: (event: CustomEvent<any>) => void;
+        "onCustom-event"?: (event: NAppAnalyticsCustomEvent<any>) => void;
         /**
           * Page views.
          */
-        "onPage-view"?: (event: CustomEvent<LocationSegments>) => void;
+        "onPage-view"?: (event: NAppAnalyticsCustomEvent<LocationSegments>) => void;
         /**
           * View percentage views.
          */
-        "onView-time"?: (event: CustomEvent<ViewTime>) => void;
+        "onView-time"?: (event: NAppAnalyticsCustomEvent<ViewTime>) => void;
     }
+    /**
+     * This element leverages the browser's web-share
+     * API to give the application a native-app feel.
+     * @system app
+     */
     interface NAppShare {
         /**
           * Headline for the share
@@ -1347,6 +1965,11 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
+    /**
+     * This element checks for the preferred light/dark theme preference of the
+     * user and sets the ui state: theme, accordingly.
+     * @system app
+     */
     interface NAppTheme {
         /**
           * Change the class name that is added to the target element when the theme is determined to be dark.
@@ -1365,6 +1988,12 @@ declare namespace LocalJSX {
          */
         "targetElement"?: string;
     }
+    /**
+     * This element displays a checkbox to control the
+     * dark-theme setting applied to the ui.
+     * Default: user-preference
+     * @system app
+     */
     interface NAppThemeSwitch {
         /**
           * The class to add to the inner input.
@@ -1375,6 +2004,14 @@ declare namespace LocalJSX {
          */
         "inputId"?: string;
     }
+    /**
+     * Use this element only once per page to enable audio features.
+     * It will add a CDN reference to Howler.js:
+     * <https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.core.min.js>
+     * @system audio
+     * @extension actions
+     * @extension provider
+     */
     interface NAudio {
         /**
           * A reference to the action listener for testing.
@@ -1397,6 +2034,13 @@ declare namespace LocalJSX {
          */
         "howlerVersion"?: string;
     }
+    /**
+     * This element represents an action to be fired. This
+     * specialized action encapsulates required parameters
+     * needed for audio-based actions, for music.
+     * @system audio
+     * @system actions
+     */
     interface NAudioActionMusic {
         /**
           * The command to execute.
@@ -1424,6 +2068,15 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
+    /**
+     * This element declares audio used within this \<n-view-prompt\> route.
+     * The \<n-audio-action-sound-load\> instructs the player to load audio files
+     * while defining play behaviors.
+     * The audio player will pre-load or play when the route is active.
+     * The player manages them according to their settings.
+     * @system audio
+     * @system actions
+     */
     interface NAudioActionMusicLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -1451,6 +2104,13 @@ declare namespace LocalJSX {
          */
         "trackId": string;
     }
+    /**
+     * This element represents an action to be fired. This
+     * specialized action encapsulates required parameters
+     * needed for audio-based actions, for sound.
+     * @system audio
+     * @system actions
+     */
     interface NAudioActionSound {
         /**
           * The command to execute.
@@ -1478,6 +2138,15 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
+    /**
+     * This element declares audio used within this \<n-view-prompt\> route.
+     * The \<n-audio-action-sound-load\> instructs the player to load audio files
+     * while defining play behaviors.
+     * The audio player will pre-load or play when the route is active.
+     * The player manages them according to their settings.
+     * @system audio
+     * @system actions
+     */
     interface NAudioActionSoundLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -1500,6 +2169,10 @@ declare namespace LocalJSX {
          */
         "trackId": string;
     }
+    /**
+     * This element exposes a checkbox to enable or disable global audio for background sounds and video.
+     * @system audio
+     */
     interface NAudioSwitch {
         /**
           * The data provider to store the audio state in.
@@ -1518,8 +2191,19 @@ declare namespace LocalJSX {
          */
         "setting"?: 'muted' | 'enabled';
     }
+    /**
+     * This component should surround the inner-content of a remote HTML file that can be prioritized during SPA navigation.
+     * @system content
+     */
     interface NContent {
     }
+    /**
+     * This element fetches remote HTML and renders it safely and directly
+     * into the page when and where you tell it too, as soon as it renders.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface NContentInclude {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -1546,6 +2230,13 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
+    /**
+     * This element converts markdown text to HTML. It can render
+     * from an inline-template or from a remote source.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface NContentMarkdown {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -1576,6 +2267,12 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
+    /**
+     * This element makes a single reference to script and css sources. It can
+     * be used by HTML fragment to ensure a reference is made, without worrying
+     * that it will create duplicate references.
+     * @system content
+     */
     interface NContentReference {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
@@ -1596,7 +2293,7 @@ declare namespace LocalJSX {
         /**
           * This event is fired when the script and style elements are loaded or timed out. The value for each style and script will be true or false, for loaded or timedout, respectively.
          */
-        "onReferenced"?: (event: CustomEvent<ReferenceCompleteResults>) => void;
+        "onReferenced"?: (event: NContentReferenceCustomEvent<ReferenceCompleteResults>) => void;
         /**
           * The script file to reference.
          */
@@ -1610,6 +2307,14 @@ declare namespace LocalJSX {
          */
         "timeout"?: number;
     }
+    /**
+     * This tag renders a template for each item in the configured array.
+     * The item template uses value expressions to insert data from any
+     * data provider as well as the item in the array.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface NContentRepeat {
         /**
           * Turn on debug statements for load, update and render events.
@@ -1641,6 +2346,12 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
+    /**
+     * Use this element to add a little flair to any HTML.
+     * It creates an entrance animation using the configured
+     * attributes to add pop to any page.
+     * @system content
+     */
     interface NContentReveal {
         /**
           * How far the element moves in the animation (% of element width/height)
@@ -1663,12 +2374,28 @@ declare namespace LocalJSX {
          */
         "triggerDistance"?: string;
     }
+    /**
+     * This element conditionally renders child elements based on the
+     * configured predicate applied to the when value predicate.
+     * To learn more about predicates, check out the
+     * expressions documentation.
+     * @system content
+     * @extension data
+     */
     interface NContentShow {
         /**
           * The data expression to obtain a predicate for conditionally rendering the inner-contents of this element.
          */
         "when": string;
     }
+    /**
+     * Render data directly into HTML using declarative expressions.
+     * This element renders the expression with all data-tokens
+     * replaced with the values provided by the provider.
+     * @system content
+     * @extension data
+     * @extension elements
+     */
     interface NContentTemplate {
         /**
           * Turn on debug statements for load, update and render events.
@@ -1709,6 +2436,14 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
+    /**
+     * This element enables the Data Provider system. It hosts
+     * the action-listener that registers providers.  Add this tag
+     * to that page to enable token-replacement.
+     * @system data
+     * @extension actions
+     * @extension custom
+     */
     interface NData {
         /**
           * Turn on debugging to get helpful messages from the data action systems.
@@ -1719,6 +2454,14 @@ declare namespace LocalJSX {
          */
         "providerTimeout"?: number;
     }
+    /**
+     * This element enables the *Cookie Data Provider*,
+     * after requesting consent from the user. The consent
+     * message and the accept/reject button are customizable.
+     * @system data
+     * @extension actions
+     * @extension provider
+     */
     interface NDataCookie {
         /**
           * Provider name to use in nent expressions.
@@ -1727,12 +2470,19 @@ declare namespace LocalJSX {
         /**
           * This event is raised when the user consents to cookies.
          */
-        "onDidConsent"?: (event: CustomEvent<CookieConsent>) => void;
+        "onDidConsent"?: (event: NDataCookieCustomEvent<CookieConsent>) => void;
         /**
           * When skipConsent is true, the accept-cookies banner will not be displayed before accessing cookie-data.
          */
         "skipConsent"?: boolean;
     }
+    /**
+     * This element enables the **Session Data Provider**.
+     * It leverages the short-lived browser storage.
+     * @system data
+     * @extension actions
+     * @extension provider
+     */
     interface NDataSession {
         /**
           * The key prefix to use in storage
@@ -1743,6 +2493,13 @@ declare namespace LocalJSX {
          */
         "name"?: string;
     }
+    /**
+     * This element enables the **Storage Data Provider**, that
+     * leverages the browsers 'long-term' data storage.
+     * @system data
+     * @extension actions
+     * @extension provider
+     */
     interface NDataStorage {
         /**
           * The key prefix to use in storage
@@ -1753,12 +2510,29 @@ declare namespace LocalJSX {
          */
         "name"?: string;
     }
+    /**
+     * This element enables element manipulation through the n-actions element.
+     * Add it to the page to perform actions like 'add-css', toggle
+     * attributes or to execute functions on the DOM without code.
+     * @system elements
+     * @extension actions
+     */
     interface NElements {
         /**
           * Turn on debug statements for load, update and render events.
          */
         "debug"?: boolean;
     }
+    /**
+     * This element encapsulates a timed presentation. This element uses
+     * a child n-presentation-timer or n-video element to create time-events
+     * then it delegates those events to time-based action-activators.
+     * If enabled, the n-attributes for time will also get processed. This
+     * element also has the ability to go to the next route using the active
+     * route's 'goNext' function.
+     * @system presentation
+     * @extension elements
+     */
     interface NPresentation {
         /**
           * Send analytics view-time percentages for this presentation using the event name
@@ -1777,6 +2551,13 @@ declare namespace LocalJSX {
          */
         "timerElement"?: string | null;
     }
+    /**
+     * This specialized action contains the time attribute,
+     * allowing it to be activated directly within the n-presentation
+     * element (no n-action-activator needed)
+     * @system presentation
+     * @system actions
+     */
     interface NPresentationAction {
         /**
           * The command to execute.
@@ -1795,6 +2576,12 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
+    /**
+     * This element creates a timer for the presentation
+     * element to use in place of a video, to time actions
+     * or manipulate HTML by time.
+     * @system presentation
+     */
     interface NPresentationTimer {
         /**
           * To debug timed elements, set this value to true.
@@ -1819,12 +2606,19 @@ declare namespace LocalJSX {
         /**
           * Ready event letting the presentation layer know it can begin.
          */
-        "onReady"?: (event: CustomEvent<any>) => void;
+        "onReady"?: (event: NPresentationTimerCustomEvent<any>) => void;
         /**
           * Normalized timer.
          */
         "timer": ITimer;
     }
+    /**
+     * This element enables the UI services. These are typically
+     * web element plug-ins to manage things like Modals, Drawers,
+     * menus, etc. The basic provider is used to toggle dark-mode.
+     * @system video
+     * @extension actions
+     */
     interface NVideo {
         /**
           * To debug timed elements, set this value to true.
@@ -1841,7 +2635,7 @@ declare namespace LocalJSX {
         /**
           * Ready event letting the presentation layer know it can begin.
          */
-        "onReady"?: (event: CustomEvent<any>) => void;
+        "onReady"?: (event: NVideoCustomEvent<any>) => void;
         /**
           * Provide the ready event name. Default is ready
          */
@@ -1863,6 +2657,12 @@ declare namespace LocalJSX {
          */
         "timer": ITimer;
     }
+    /**
+     * This element displays a checkbox to control the autoplay setting,
+     * used for video playback - as well as automatic navigation to the
+     * next page, when a video ends. Default: enabled
+     * @system video
+     */
     interface NVideoSwitch {
         /**
           * The data provider to store the audio-enabled state in.
@@ -1877,6 +2677,15 @@ declare namespace LocalJSX {
          */
         "inputId"?: string;
     }
+    /**
+     * The View element holds a segment of content visible only when
+     * a URL path matches. It defines a route and its content.
+     * This provides the declarative mechanism
+     * for in-page content/component routing by URL.
+     * @system routing
+     * @extension data
+     * @extension elements
+     */
     interface NView {
         /**
           * Remote URL for this Route's content.
@@ -1939,6 +2748,10 @@ declare namespace LocalJSX {
          */
         "transition"?: string;
     }
+    /**
+     * Hide or show content based on the active route.
+     * @system routing
+     */
     interface NViewDetect {
         /**
           * Only active on the exact href match, and not on child routes
@@ -1957,6 +2770,13 @@ declare namespace LocalJSX {
          */
         "strict"?: boolean;
     }
+    /**
+     * The element should be used in-place of an `a` tag to navigate without
+     * refreshing the page. This element supports an active-class that will
+     * be applied when the route in **href** matches the route of the app.
+     * This is helpful for displaying active routes in menus, bread-crumbs and tabs.
+     * @system routing
+     */
     interface NViewLink {
         /**
           * The class to add when the matching route is active in the browser
@@ -1987,6 +2807,9 @@ declare namespace LocalJSX {
          */
         "validate"?: boolean;
     }
+    /**
+     * @system routing
+     */
     interface NViewLinkBack {
         /**
           * The class to add to the anchor tag.
@@ -1997,6 +2820,14 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
+    /**
+     * Display a list of routes related to the current route.
+     * Modes:
+     * **siblings**: all routes at the same depth level (nav)
+     * **parents**: all parent routes. (breadcrumbs)
+     * **children**: all child routes within a hierarchy. (sub-menu)
+     * @system routing
+     */
     interface NViewLinkList {
         /**
           * The active-class to use with the n-view-link elements.
@@ -2023,6 +2854,11 @@ declare namespace LocalJSX {
          */
         "mode"?: 'children' | 'parents' | 'siblings';
     }
+    /**
+     * This element will automatically go to the next
+     * view in the view.
+     * @system routing
+     */
     interface NViewLinkNext {
         /**
           * The class to add to the anchor tag.
@@ -2033,6 +2869,12 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
+    /**
+     * This element should be placed at the end of the content,
+     * inside the n-views element. It shows up when no views
+     * above it resolve.
+     * @system routing
+     */
     interface NViewNotFound {
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
@@ -2047,6 +2889,15 @@ declare namespace LocalJSX {
          */
         "transition"?: string;
     }
+    /**
+     * This element represents a specialized child-route for a parent \<n-view\> element.
+     * It represents a sub-route that has required and workflow behaviors.
+     * They are used to create, wizards, input workflows, or step by step instructions or
+     * wherever you want guided or automatic navigation.
+     * @system routing
+     * @extension data
+     * @extension elements
+     */
     interface NViewPrompt {
         /**
           * Remote URL for HTML content. Content from this URL will be assigned the 'content' slot.
@@ -2113,6 +2964,16 @@ declare namespace LocalJSX {
          */
         "when"?: string;
     }
+    /**
+     * The root element is the base container for the view-engine and its
+     * child elements. This element should contain root-level HTML that
+     * is global to every view along with \<n-view\>
+     * elements placed within any global-html.
+     * @system routing
+     * @extension actions
+     * @extension elements
+     * @extension provider
+     */
     interface NViews {
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
@@ -2190,45 +3051,320 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * This element just holds data to express the actionEvent to fire. This element
+             * should always be the child of an n-action-activator.
+             * @system actions
+             */
             "n-action": LocalJSX.NAction & JSXBase.HTMLAttributes<HTMLNActionElement>;
+            /**
+             * This element defines how or when a group of actions are
+             * activated. The actions activated must be included between
+             * this elements tags.
+             * @system actions
+             */
             "n-action-activator": LocalJSX.NActionActivator & JSXBase.HTMLAttributes<HTMLNActionActivatorElement>;
+            /**
+             * This component enables app services. These are console logging,
+             * theming and event-delegation. As well as a plugin system to
+             * manage a UI kit to add components like Modals, Drawers,
+             * menus, etc.
+             * @system app
+             * @extension actions
+             * @extension custom
+             * @extension elements
+             */
             "n-app": LocalJSX.NApp & JSXBase.HTMLAttributes<HTMLNAppElement>;
+            /**
+             * This element serves as a proxy to delegate event-based
+             * functions to be consumed by various analytics snippets.
+             * @system app
+             * @extension actions
+             */
             "n-app-analytics": LocalJSX.NAppAnalytics & JSXBase.HTMLAttributes<HTMLNAppAnalyticsElement>;
+            /**
+             * This element leverages the browser's web-share
+             * API to give the application a native-app feel.
+             * @system app
+             */
             "n-app-share": LocalJSX.NAppShare & JSXBase.HTMLAttributes<HTMLNAppShareElement>;
+            /**
+             * This element checks for the preferred light/dark theme preference of the
+             * user and sets the ui state: theme, accordingly.
+             * @system app
+             */
             "n-app-theme": LocalJSX.NAppTheme & JSXBase.HTMLAttributes<HTMLNAppThemeElement>;
+            /**
+             * This element displays a checkbox to control the
+             * dark-theme setting applied to the ui.
+             * Default: user-preference
+             * @system app
+             */
             "n-app-theme-switch": LocalJSX.NAppThemeSwitch & JSXBase.HTMLAttributes<HTMLNAppThemeSwitchElement>;
+            /**
+             * Use this element only once per page to enable audio features.
+             * It will add a CDN reference to Howler.js:
+             * <https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.core.min.js>
+             * @system audio
+             * @extension actions
+             * @extension provider
+             */
             "n-audio": LocalJSX.NAudio & JSXBase.HTMLAttributes<HTMLNAudioElement>;
+            /**
+             * This element represents an action to be fired. This
+             * specialized action encapsulates required parameters
+             * needed for audio-based actions, for music.
+             * @system audio
+             * @system actions
+             */
             "n-audio-action-music": LocalJSX.NAudioActionMusic & JSXBase.HTMLAttributes<HTMLNAudioActionMusicElement>;
+            /**
+             * This element declares audio used within this \<n-view-prompt\> route.
+             * The \<n-audio-action-sound-load\> instructs the player to load audio files
+             * while defining play behaviors.
+             * The audio player will pre-load or play when the route is active.
+             * The player manages them according to their settings.
+             * @system audio
+             * @system actions
+             */
             "n-audio-action-music-load": LocalJSX.NAudioActionMusicLoad & JSXBase.HTMLAttributes<HTMLNAudioActionMusicLoadElement>;
+            /**
+             * This element represents an action to be fired. This
+             * specialized action encapsulates required parameters
+             * needed for audio-based actions, for sound.
+             * @system audio
+             * @system actions
+             */
             "n-audio-action-sound": LocalJSX.NAudioActionSound & JSXBase.HTMLAttributes<HTMLNAudioActionSoundElement>;
+            /**
+             * This element declares audio used within this \<n-view-prompt\> route.
+             * The \<n-audio-action-sound-load\> instructs the player to load audio files
+             * while defining play behaviors.
+             * The audio player will pre-load or play when the route is active.
+             * The player manages them according to their settings.
+             * @system audio
+             * @system actions
+             */
             "n-audio-action-sound-load": LocalJSX.NAudioActionSoundLoad & JSXBase.HTMLAttributes<HTMLNAudioActionSoundLoadElement>;
+            /**
+             * This element exposes a checkbox to enable or disable global audio for background sounds and video.
+             * @system audio
+             */
             "n-audio-switch": LocalJSX.NAudioSwitch & JSXBase.HTMLAttributes<HTMLNAudioSwitchElement>;
+            /**
+             * This component should surround the inner-content of a remote HTML file that can be prioritized during SPA navigation.
+             * @system content
+             */
             "n-content": LocalJSX.NContent & JSXBase.HTMLAttributes<HTMLNContentElement>;
+            /**
+             * This element fetches remote HTML and renders it safely and directly
+             * into the page when and where you tell it too, as soon as it renders.
+             * @system content
+             * @extension data
+             * @extension elements
+             */
             "n-content-include": LocalJSX.NContentInclude & JSXBase.HTMLAttributes<HTMLNContentIncludeElement>;
+            /**
+             * This element converts markdown text to HTML. It can render
+             * from an inline-template or from a remote source.
+             * @system content
+             * @extension data
+             * @extension elements
+             */
             "n-content-markdown": LocalJSX.NContentMarkdown & JSXBase.HTMLAttributes<HTMLNContentMarkdownElement>;
+            /**
+             * This element makes a single reference to script and css sources. It can
+             * be used by HTML fragment to ensure a reference is made, without worrying
+             * that it will create duplicate references.
+             * @system content
+             */
             "n-content-reference": LocalJSX.NContentReference & JSXBase.HTMLAttributes<HTMLNContentReferenceElement>;
+            /**
+             * This tag renders a template for each item in the configured array.
+             * The item template uses value expressions to insert data from any
+             * data provider as well as the item in the array.
+             * @system content
+             * @extension data
+             * @extension elements
+             */
             "n-content-repeat": LocalJSX.NContentRepeat & JSXBase.HTMLAttributes<HTMLNContentRepeatElement>;
+            /**
+             * Use this element to add a little flair to any HTML.
+             * It creates an entrance animation using the configured
+             * attributes to add pop to any page.
+             * @system content
+             */
             "n-content-reveal": LocalJSX.NContentReveal & JSXBase.HTMLAttributes<HTMLNContentRevealElement>;
+            /**
+             * This element conditionally renders child elements based on the
+             * configured predicate applied to the when value predicate.
+             * To learn more about predicates, check out the
+             * expressions documentation.
+             * @system content
+             * @extension data
+             */
             "n-content-show": LocalJSX.NContentShow & JSXBase.HTMLAttributes<HTMLNContentShowElement>;
+            /**
+             * Render data directly into HTML using declarative expressions.
+             * This element renders the expression with all data-tokens
+             * replaced with the values provided by the provider.
+             * @system content
+             * @extension data
+             * @extension elements
+             */
             "n-content-template": LocalJSX.NContentTemplate & JSXBase.HTMLAttributes<HTMLNContentTemplateElement>;
+            /**
+             * This element enables the Data Provider system. It hosts
+             * the action-listener that registers providers.  Add this tag
+             * to that page to enable token-replacement.
+             * @system data
+             * @extension actions
+             * @extension custom
+             */
             "n-data": LocalJSX.NData & JSXBase.HTMLAttributes<HTMLNDataElement>;
+            /**
+             * This element enables the *Cookie Data Provider*,
+             * after requesting consent from the user. The consent
+             * message and the accept/reject button are customizable.
+             * @system data
+             * @extension actions
+             * @extension provider
+             */
             "n-data-cookie": LocalJSX.NDataCookie & JSXBase.HTMLAttributes<HTMLNDataCookieElement>;
+            /**
+             * This element enables the **Session Data Provider**.
+             * It leverages the short-lived browser storage.
+             * @system data
+             * @extension actions
+             * @extension provider
+             */
             "n-data-session": LocalJSX.NDataSession & JSXBase.HTMLAttributes<HTMLNDataSessionElement>;
+            /**
+             * This element enables the **Storage Data Provider**, that
+             * leverages the browsers 'long-term' data storage.
+             * @system data
+             * @extension actions
+             * @extension provider
+             */
             "n-data-storage": LocalJSX.NDataStorage & JSXBase.HTMLAttributes<HTMLNDataStorageElement>;
+            /**
+             * This element enables element manipulation through the n-actions element.
+             * Add it to the page to perform actions like 'add-css', toggle
+             * attributes or to execute functions on the DOM without code.
+             * @system elements
+             * @extension actions
+             */
             "n-elements": LocalJSX.NElements & JSXBase.HTMLAttributes<HTMLNElementsElement>;
+            /**
+             * This element encapsulates a timed presentation. This element uses
+             * a child n-presentation-timer or n-video element to create time-events
+             * then it delegates those events to time-based action-activators.
+             * If enabled, the n-attributes for time will also get processed. This
+             * element also has the ability to go to the next route using the active
+             * route's 'goNext' function.
+             * @system presentation
+             * @extension elements
+             */
             "n-presentation": LocalJSX.NPresentation & JSXBase.HTMLAttributes<HTMLNPresentationElement>;
+            /**
+             * This specialized action contains the time attribute,
+             * allowing it to be activated directly within the n-presentation
+             * element (no n-action-activator needed)
+             * @system presentation
+             * @system actions
+             */
             "n-presentation-action": LocalJSX.NPresentationAction & JSXBase.HTMLAttributes<HTMLNPresentationActionElement>;
+            /**
+             * This element creates a timer for the presentation
+             * element to use in place of a video, to time actions
+             * or manipulate HTML by time.
+             * @system presentation
+             */
             "n-presentation-timer": LocalJSX.NPresentationTimer & JSXBase.HTMLAttributes<HTMLNPresentationTimerElement>;
+            /**
+             * This element enables the UI services. These are typically
+             * web element plug-ins to manage things like Modals, Drawers,
+             * menus, etc. The basic provider is used to toggle dark-mode.
+             * @system video
+             * @extension actions
+             */
             "n-video": LocalJSX.NVideo & JSXBase.HTMLAttributes<HTMLNVideoElement>;
+            /**
+             * This element displays a checkbox to control the autoplay setting,
+             * used for video playback - as well as automatic navigation to the
+             * next page, when a video ends. Default: enabled
+             * @system video
+             */
             "n-video-switch": LocalJSX.NVideoSwitch & JSXBase.HTMLAttributes<HTMLNVideoSwitchElement>;
+            /**
+             * The View element holds a segment of content visible only when
+             * a URL path matches. It defines a route and its content.
+             * This provides the declarative mechanism
+             * for in-page content/component routing by URL.
+             * @system routing
+             * @extension data
+             * @extension elements
+             */
             "n-view": LocalJSX.NView & JSXBase.HTMLAttributes<HTMLNViewElement>;
+            /**
+             * Hide or show content based on the active route.
+             * @system routing
+             */
             "n-view-detect": LocalJSX.NViewDetect & JSXBase.HTMLAttributes<HTMLNViewDetectElement>;
+            /**
+             * The element should be used in-place of an `a` tag to navigate without
+             * refreshing the page. This element supports an active-class that will
+             * be applied when the route in **href** matches the route of the app.
+             * This is helpful for displaying active routes in menus, bread-crumbs and tabs.
+             * @system routing
+             */
             "n-view-link": LocalJSX.NViewLink & JSXBase.HTMLAttributes<HTMLNViewLinkElement>;
+            /**
+             * @system routing
+             */
             "n-view-link-back": LocalJSX.NViewLinkBack & JSXBase.HTMLAttributes<HTMLNViewLinkBackElement>;
+            /**
+             * Display a list of routes related to the current route.
+             * Modes:
+             * **siblings**: all routes at the same depth level (nav)
+             * **parents**: all parent routes. (breadcrumbs)
+             * **children**: all child routes within a hierarchy. (sub-menu)
+             * @system routing
+             */
             "n-view-link-list": LocalJSX.NViewLinkList & JSXBase.HTMLAttributes<HTMLNViewLinkListElement>;
+            /**
+             * This element will automatically go to the next
+             * view in the view.
+             * @system routing
+             */
             "n-view-link-next": LocalJSX.NViewLinkNext & JSXBase.HTMLAttributes<HTMLNViewLinkNextElement>;
+            /**
+             * This element should be placed at the end of the content,
+             * inside the n-views element. It shows up when no views
+             * above it resolve.
+             * @system routing
+             */
             "n-view-not-found": LocalJSX.NViewNotFound & JSXBase.HTMLAttributes<HTMLNViewNotFoundElement>;
+            /**
+             * This element represents a specialized child-route for a parent \<n-view\> element.
+             * It represents a sub-route that has required and workflow behaviors.
+             * They are used to create, wizards, input workflows, or step by step instructions or
+             * wherever you want guided or automatic navigation.
+             * @system routing
+             * @extension data
+             * @extension elements
+             */
             "n-view-prompt": LocalJSX.NViewPrompt & JSXBase.HTMLAttributes<HTMLNViewPromptElement>;
+            /**
+             * The root element is the base container for the view-engine and its
+             * child elements. This element should contain root-level HTML that
+             * is global to every view along with \<n-view\>
+             * elements placed within any global-html.
+             * @system routing
+             * @extension actions
+             * @extension elements
+             * @extension provider
+             */
             "n-views": LocalJSX.NViews & JSXBase.HTMLAttributes<HTMLNViewsElement>;
         }
     }

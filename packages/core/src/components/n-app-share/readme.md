@@ -6,6 +6,11 @@ The `<n-app-share>` element description
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element leverages the browser's web-share
+API to give the application a native-app feel.
+
 ## Usage
 
 ### Basic
@@ -33,7 +38,7 @@ Using the `<n-app-share>` element.
 
 ## Methods
 
-### `share(data?: { title?: string | undefined; text?: string | undefined; url?: string | undefined; } | null | undefined) => Promise<void>`
+### `share(data?: { title?: string; text?: string; url?: string; } | null) => Promise<void>`
 
 Manual share method for more complex scenarios
 

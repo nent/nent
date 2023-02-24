@@ -5,6 +5,11 @@ This element fetches remote HTML and renders it safely and directly into the pag
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element fetches remote HTML and renders it safely and directly
+into the page when and where you tell it too, as soon as it renders.
+
 ## Usage
 
 ### Basic

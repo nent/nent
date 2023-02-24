@@ -7,6 +7,12 @@ Default: enabled
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element displays a checkbox to control the autoplay setting,
+used for video playback - as well as automatic navigation to the
+next page, when a video ends. Default: enabled
+
 ## Usage
 
 ### Basic

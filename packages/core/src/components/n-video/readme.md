@@ -5,6 +5,12 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element enables the UI services. These are typically
+web element plug-ins to manage things like Modals, Drawers,
+menus, etc. The basic provider is used to toggle dark-mode.
+
 ## Usage
 
 ### Basic

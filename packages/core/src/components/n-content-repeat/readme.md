@@ -34,6 +34,12 @@ This element supports three ways to express the collection or where it comes fro
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This tag renders a template for each item in the configured array.
+The item template uses value expressions to insert data from any
+data provider as well as the item in the array.
+
 ## Usage
 
 ### Attributes

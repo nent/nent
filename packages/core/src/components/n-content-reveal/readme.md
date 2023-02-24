@@ -18,6 +18,12 @@ Use this element to add a little flair to any HTML. It creates an entrance anima
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Use this element to add a little flair to any HTML.
+It creates an entrance animation using the configured
+attributes to add pop to any page.
+
 ## Properties
 
 | Property            | Attribute            | Description                                                                      | Type                                  | Default |

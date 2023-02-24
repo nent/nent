@@ -29,6 +29,13 @@ Additionally, this element is required to add external elements that need to be 
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This component enables app services. These are console logging,
+theming and event-delegation. As well as a plugin system to
+manage a UI kit to add components like Modals, Drawers,
+menus, etc.
+
 ## Usage
 
 ### Basic

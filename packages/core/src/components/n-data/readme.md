@@ -8,6 +8,12 @@ The `<n-data>` element enables the data system. Once enabled, [data expressions]
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element enables the Data Provider system. It hosts
+the action-listener that registers providers.  Add this tag
+to that page to enable token-replacement.
+
 ## Usage
 
 ### Add-session

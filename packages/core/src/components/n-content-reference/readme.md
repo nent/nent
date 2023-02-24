@@ -16,6 +16,12 @@ If inline is present, the source would be nested inside this element, otherwise,
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element makes a single reference to script and css sources. It can
+be used by HTML fragment to ensure a reference is made, without worrying
+that it will create duplicate references.
+
 ## Usage
 
 ### Basic

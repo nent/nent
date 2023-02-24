@@ -5,6 +5,11 @@ This component automatically links to the next route, as defined in the HTML. It
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element will automatically go to the next
+view in the view.
+
 ## Usage
 
 ### Auto

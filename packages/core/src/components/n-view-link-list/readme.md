@@ -9,6 +9,14 @@ This makes it easy to list child-routes programmatically, versus hard-coded link
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Display a list of routes related to the current route.
+Modes:
+**siblings**: all routes at the same depth level (nav)
+**parents**: all parent routes. (breadcrumbs)
+**children**: all child routes within a hierarchy. (sub-menu)
+
 ## Usage
 
 ### Breadcrumbs

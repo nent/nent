@@ -60,6 +60,12 @@ Hard discards or play ease out the audio with a .5 second fade-out before playin
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Use this element only once per page to enable audio features.
+It will add a CDN reference to Howler.js:
+<https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.core.min.js>
+
 ## Usage
 
 ### Basic

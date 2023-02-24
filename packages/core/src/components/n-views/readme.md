@@ -10,6 +10,13 @@ For more routing information, check out the [routing](/routing) documentation.
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+The root element is the base container for the view-engine and its
+child elements. This element should contain root-level HTML that
+is global to every view along with \<n-view\>
+elements placed within any global-html.
+
 ## Usage
 
 ### Basic

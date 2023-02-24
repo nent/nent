@@ -20,6 +20,12 @@ Using the `<n-view-not-found>` element.
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element should be placed at the end of the content,
+inside the n-views element. It shows up when no views
+above it resolve.
+
 ## Usage
 
 ### Basic

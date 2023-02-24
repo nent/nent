@@ -7,6 +7,12 @@ For use in the `n-presentation` element only. Action activation occurs when the 
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This specialized action contains the time attribute,
+allowing it to be activated directly within the n-presentation
+element (no n-action-activator needed)
+
 ## Usage
 
 ### Basic
@@ -48,7 +54,7 @@ Type: `Promise<EventAction<any> | null>`
 
 
 
-### `sendAction(data?: Record<string, any> | undefined) => Promise<void>`
+### `sendAction(data?: Record<string, any>) => Promise<void>`
 
 Send this action to the action messaging system.
 

@@ -15,6 +15,16 @@ See [presentation elements](./elements) for more information.
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element encapsulates a timed presentation. This element uses
+a child n-presentation-timer or n-video element to create time-events
+then it delegates those events to time-based action-activators.
+
+If enabled, the n-attributes for time will also get processed. This
+element also has the ability to go to the next route using the active
+route's 'goNext' function.
+
 ## Usage
 
 ### Basic-with-timer

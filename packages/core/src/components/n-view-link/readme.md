@@ -7,6 +7,14 @@ The element should be used in place of an `a` tag to navigate without refreshing
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+The element should be used in-place of an `a` tag to navigate without
+refreshing the page. This element supports an active-class that will
+be applied when the route in **href** matches the route of the app.
+
+This is helpful for displaying active routes in menus, bread-crumbs and tabs.
+
 ## Usage
 
 ### Menu

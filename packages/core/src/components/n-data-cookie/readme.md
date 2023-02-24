@@ -33,6 +33,12 @@ Alternatively, you can skip this by including the 'skip-consent' attribute.
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element enables the *Cookie Data Provider*,
+after requesting consent from the user. The consent
+message and the accept/reject button are customizable.
+
 ## Usage
 
 ### Basic

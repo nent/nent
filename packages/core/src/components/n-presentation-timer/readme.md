@@ -5,6 +5,12 @@ The `n-presentation-timer` is useful when you want to create a timeline to stage
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element creates a timer for the presentation
+element to use in place of a video, to time actions
+or manipulate HTML by time.
+
 ## Usage
 
 ### Basic

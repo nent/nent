@@ -11,6 +11,11 @@ This element can respond to actions. See the  [actions](/components/n-app-analyt
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element serves as a proxy to delegate event-based
+functions to be consumed by various analytics snippets.
+
 ## Usage
 
 ### GTM

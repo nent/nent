@@ -7,6 +7,13 @@ Default: user-preference
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element displays a checkbox to control the
+dark-theme setting applied to the ui.
+
+Default: user-preference
+
 ## Usage
 
 ### Basic

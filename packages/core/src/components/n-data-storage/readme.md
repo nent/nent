@@ -13,6 +13,11 @@ Provider Key: '**storage**' (or custom)
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element enables the **Storage Data Provider**, that
+leverages the browsers 'long-term' data storage.
+
 ## Usage
 
 ### Basic

@@ -39,6 +39,13 @@ At that point, the inner HTML content is finally revealed. Using this convention
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+The View element holds a segment of content visible only when
+a URL path matches. It defines a route and its content.
+This provides the declarative mechanism
+for in-page content/component routing by URL.
+
 ## Usage
 
 ### Basic

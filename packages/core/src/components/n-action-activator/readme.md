@@ -49,6 +49,12 @@ Activation occurs when the presentation ends.
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element defines how or when a group of actions are
+activated. The actions activated must be included between
+this elements tags.
+
 ## Usage
 
 ### On-element-event

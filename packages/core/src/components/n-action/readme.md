@@ -18,6 +18,11 @@ This element holds am action event and its data to be submitted through [Actions
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element just holds data to express the actionEvent to fire. This element
+should always be the child of an n-action-activator.
+
 ## Usage
 
 ### Basic
@@ -136,7 +141,7 @@ Type: `Promise<EventAction<any> | null>`
 
 
 
-### `sendAction(data?: Record<string, any> | undefined) => Promise<void>`
+### `sendAction(data?: Record<string, any>) => Promise<void>`
 
 Send this action to the action messaging system.
 

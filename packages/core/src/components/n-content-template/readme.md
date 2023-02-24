@@ -15,6 +15,12 @@ Render data directly into HTML using declarative expressions. This element rende
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Render data directly into HTML using declarative expressions.
+This element renders the expression with all data-tokens
+replaced with the values provided by the provider.
+
 ## Usage
 
 ### Basic

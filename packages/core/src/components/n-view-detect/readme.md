@@ -31,6 +31,10 @@ The above example will toggle to the active slot when the app route is a child o
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Hide or show content based on the active route.
+
 ## Properties
 
 | Property             | Attribute     | Description                                                                             | Type                                                    | Default     |

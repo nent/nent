@@ -7,6 +7,12 @@ This element represents an action to be fired. This specialized action encapsula
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element represents an action to be fired. This
+specialized action encapsulates required parameters
+needed for audio-based actions, for music.
+
 ## Usage
 
 ### Basic
@@ -38,7 +44,7 @@ Type: `Promise<EventAction<any> | null>`
 
 
 
-### `sendAction(data?: Record<string, any> | undefined) => Promise<void>`
+### `sendAction(data?: Record<string, any>) => Promise<void>`
 
 Send this action to the the action messaging system.
 

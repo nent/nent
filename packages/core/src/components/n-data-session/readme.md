@@ -13,6 +13,11 @@ Provider Key: '**session**'
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+This element enables the **Session Data Provider**.
+It leverages the short-lived browser storage.
+
 ## Usage
 
 ### Basic
