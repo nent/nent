@@ -13,6 +13,7 @@ updates:
 
   # Maintain dependencies for npm
   - package-ecosystem: 'npm'
+    versioning-strategy: auto
     directory: /
     schedule:
       interval: daily
@@ -25,5 +26,6 @@ updates:
 
   - package-ecosystem: 'npm'
     directory: '/packages/create'
+    versioning-strategy: auto
     schedule:
       interval: 'daily'
