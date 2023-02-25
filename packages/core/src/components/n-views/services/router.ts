@@ -390,11 +390,14 @@ export class RouterService {
         .filter(v => v)
         .join(' | ')
 
-      const robotElement = this.win.document.querySelector('meta[name=robots]')
+      const robotElement = this.win.document.querySelector(
+        'meta[name=robots]',
+      )
       if (robots && robotElement) {
-        robotElement.content = robots
+        const metaTag = robotElement as HTMLMetaElement
+        metaTag.content = robots
       }
-      
+
       const canonicalLink = this.win.document.querySelector(
         'link[rel=canonical]',
       ) as HTMLLinkElement

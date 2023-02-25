@@ -106,7 +106,7 @@ export class AudioSoundAction implements IActionElement {
   @Method()
   async sendAction(data?: Record<string, any>) {
     if (audioState.hasAudioComponent) {
-      Object.assign(data, this.getData())
+      Object.assign(data || {}, this.getData())
       this.actionService.sendAction(data)
     } else {
       this.dispose = onAudioStateChange(
