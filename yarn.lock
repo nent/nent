@@ -5025,11 +5025,11 @@ eslint-plugin-jsx-a11y@6.7.1:
     semver "^6.3.0"
 
 eslint-plugin-markdownlint@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-markdownlint/-/eslint-plugin-markdownlint-0.4.0.tgz#ee70192efb05d451d5287c1b0454a280e5568f30"
-  integrity sha512-k5ZvMP11HJd3ggpmgfc+LSesx/QK75wsD7wQJjj2lLf0eJCMGQl8Osq0T4EmjJzBX0T0D3IlmArkhpj2wLg7Lg==
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-markdownlint/-/eslint-plugin-markdownlint-0.4.1.tgz#41a6c7fee89011f0b72a4a48058d3289718766af"
+  integrity sha512-X8Ovprt2COSwmZAlY1RNsuxI1QdFmf1sAtATQkibB4l+5SCrm5crj/lO9YsR+Dnn0dFel4hr0GK5tgzVzx0fpQ==
   dependencies:
-    markdownlint "0.26.0"
+    markdownlint "0.27.0"
 
 eslint-plugin-prettier@4.2.1:
   version "4.2.1"
@@ -8198,14 +8198,7 @@ markdown-it@^12.3.2:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-markdownlint@0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.26.0.tgz#1e800ecc709ed4061c18ab03f1cba23f58511421"
-  integrity sha512-I7nfRVwKVs/AJi4BlBkUCNj/S4HJjZSSM1wbzdy7vZerFkSGpbs7wX9Rk8rvopvZjTTKFPQWItqdbl2Hh6YXQQ==
-  dependencies:
-    markdown-it "13.0.1"
-
-markdownlint@^0.27.0:
+markdownlint@0.27.0, markdownlint@^0.27.0:
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.27.0.tgz#9dabf7710a4999e2835e3c68317f1acd0bc89049"
   integrity sha512-HtfVr/hzJJmE0C198F99JLaeada+646B5SaG2pVoEakLFI6iRGsvMqrnnrflq8hm1zQgwskEgqSnhDW11JBp0w==
