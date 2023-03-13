@@ -3726,9 +3726,9 @@ chardet@^0.7.0:
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
 check-peer-dependencies@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/check-peer-dependencies/-/check-peer-dependencies-4.1.0.tgz#17f2a5026df150f7dbe19b6aaa90a81e0740d6b9"
-  integrity sha512-nKBxfpKDFj0Pzd/8Myvb9ALnHarrOHupiCZ25AA84OIR9hOcLo7OQ0ofmxnIFLqUPVldF1RWPK0ayZq15ukcLw==
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/check-peer-dependencies/-/check-peer-dependencies-4.2.0.tgz#64caa7a4202ebcb570d9a55ddcbd4f2738f81993"
+  integrity sha512-IYLKCFvmOcc+yXvte3JRH0dwAueuMSRTZZqyvjstb3ENZ0Jdov7VHvHVHvnQNBDUwjotwUmuiQy9elYkpIcL3g==
   dependencies:
     resolve "^1.19.0"
     semver "^7.3.4"
