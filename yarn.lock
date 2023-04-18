@@ -7918,10 +7918,10 @@ json5@^2.2.2:
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
 
-jsonata@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/jsonata/-/jsonata-2.0.2.tgz#e41eb01e2aa05ac3cca3d25c04dd1ad3c4e0f723"
-  integrity sha512-CpwbpFNjuuukU+tIR6Qw+fhwQQ5iZGbB/Md8CVaU7/b/SI1RlQQVgf4rIEjoiG9/jDB7C45nKKwHXWKHQxvb7w==
+jsonata@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/jsonata/-/jsonata-2.0.3.tgz#f8971c2891cb1d6ebfeecbfe657ecc38c1b843a5"
+  integrity sha512-Up2H81MUtjqI/dWwWX7p4+bUMfMrQJVMN/jW6clFMTiYP528fBOBNtRu944QhKTs3+IsVWbgMeUTny5fw2VMUA==
 
 jsonc-parser@3.2.0:
   version "3.2.0"
@@ -10683,9 +10683,9 @@ rollup@^2.42.3, rollup@^2.43.1:
     fsevents "~2.3.2"
 
 rollup@^3.0.0:
-  version "3.20.4"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.20.4.tgz#cde35731c5c0c637de0b532d5d1a84bd802c128e"
-  integrity sha512-n7J4tuctZXUErM9Uc916httwqmTc63zzCr2+TLCiSCpfO/Xuk3g/marGN1IlRJZi+QF3XMYx75PxXRfZDVgaRw==
+  version "3.20.6"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.20.6.tgz#53c0fd73e397269d2ce5f0ec12851457dd53cacd"
+  integrity sha512-2yEB3nQXp/tBQDN0hJScJQheXdvU2wFhh6ld7K/aiZ1vYcak6N/BKjY1QrU6BvO2JWYS8bEs14FRaxXosxy2zw==
   optionalDependencies:
     fsevents "~2.3.2"
 
