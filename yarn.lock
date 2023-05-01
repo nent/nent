@@ -2562,10 +2562,10 @@
   resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.0.1.tgz#ef079a7fe93f824961f28b36b7ed88902b37eca4"
   integrity sha512-nAcD7MyUy+gieodk/mMSqYE4FERWf2Hiun+QR+srnugpclP2MMRq/Ik1SGUcFrWj+L6lSvoCyWimSEigf9aSBg==
 
-"@stencil/store@2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-2.0.5.tgz#d31245787bea97729ea0be872a9c73c7ddd3cab4"
-  integrity sha512-5X6/GREyC30NmKCPn0oGENmVmvCb8pZZL81JR4dpS/0DM/+Z4YQZE8V+SOdJcwpkjqtUMOzPfxTnOCVr0n6Dog==
+"@stencil/store@2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-2.0.6.tgz#46234b7b7e6877f5fc33c22587522c2016cdad97"
+  integrity sha512-hiMbebqE1C6bF1Hpmq4QFvPW3Yx63fDRw/88QUe5OBOLzwpwmt8dF6FWhs+O6R31xv+EEZPInp+LRVdIh9+PIg==
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
