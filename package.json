@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "17.6.5",
-    "@octokit/core": "4.2.1",
+    "@octokit/core": "4.2.4",
     "@popperjs/core": "2.11.8",
     "@stencil/core": "^3.0.0",
     "@stencil/eslint-plugin": "^0.4.0",
