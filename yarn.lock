@@ -10201,10 +10201,10 @@ remarkable@2.0.1:
     argparse "^1.0.10"
     autolinker "^3.11.0"
 
-remixicon@3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/remixicon/-/remixicon-3.3.0.tgz#2d610706a98a4bed093e9d5c2a28551632b11c68"
-  integrity sha512-iNeRbwVgd8Ef467IjMd/+joFWSBOYfqsLtxtSzsS8fWn75a1H7sgGu5uWE4c3NLjP2C1giFlx8gw63qZd96yJQ==
+remixicon@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/remixicon/-/remixicon-3.4.0.tgz#613f9889e8410c278978a2ce1b05852ecedb23ff"
+  integrity sha512-T1tJfMVNbmUIYdsrCJ//FOoQ/xgiWPuE3ZZvUeDRl5h/IZWKN2eTcKeUoro1g5aeJ/Rk1mZV6QPdF8qZxIu+3A==
 
 remove-markdown@^0.5.0:
   version "0.5.0"
