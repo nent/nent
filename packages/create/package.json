@@ -14,7 +14,7 @@
     "templates"
   ],
   "dependencies": {
-    "create-initializer": "1.2.0"
+    "create-initializer": "1.3.0"
   },
   "publishConfig": {
     "access": "public"
