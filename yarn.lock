@@ -2404,10 +2404,10 @@
     autoprefixer "^10.3.6"
     postcss "~8.3.8"
 
-"@stencil/sass@3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.0.4.tgz#275d58eb6f91438988c7433c0ac08ebff6f29e4c"
-  integrity sha512-k1dP0A2QBx62m250FATc1hErXxXs6Jnf4TBxdL1C/dc32Kzz2n5aCT4SodBz0ebT5WMnITauZyFqYxzCzDoKag==
+"@stencil/sass@3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.0.5.tgz#943c47bcf8215b9d2b877cafe189ba1cbb4bf313"
+  integrity sha512-9nyllMXOEvHywo6fP2iwXgnq32A+OOUE36Aq7iUjzwT3wdr04qsvupO1JNIyRvmvCDF15hOKXztrZH1/wDu2Zg==
 
 "@stencil/store@2.0.9":
   version "2.0.9"
