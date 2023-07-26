@@ -4540,6 +4540,11 @@ deprecation@^2.0.0:
   resolved "https://registry.yarnpkg.com/deprecation/-/deprecation-2.3.1.tgz#6368cbdb40abf3373b525ac87e4a260c3a700919"
   integrity sha512-xmHIy4F3scKVwMsQ4WnVaS8bHOx0DmVwRywosKhaILI0ywMDWPtBSku2HNxRvF7jtwDRsoEwYQSfbxj8b7RlJQ==
 
+detect-external-link@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/detect-external-link/-/detect-external-link-1.0.1.tgz#896d55581e498483846bc6216a31560789112cab"
+  integrity sha512-OHa4UGI9s+tJRgQllKO4rNyRlOvmN70iM5Qds56PsD1UXAU2h0IrTiXoETgqKSQwerSfFOHYsR0k+4WZZTg2UA==
+
 detect-indent@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-5.0.0.tgz#3871cc0a6a002e8c3e5b3cf7f336264675f06b9d"
@@ -10345,9 +10350,11 @@ regjsparser@^0.8.2:
     jsesc "~0.5.0"
 
 remarkable-external-link@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/remarkable-external-link/-/remarkable-external-link-2.1.0.tgz#a51bcaa196a1d88676e1ae4eee78ba0d42e076b2"
-  integrity sha512-R+HaXputhzlf5j02cf7POvs1HRf3qrZa36Qy/DMQEKn/H+nKVTTXUL0G8eWUAJl7ihX5mgkxQPRm7MeFiP29Pw==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/remarkable-external-link/-/remarkable-external-link-2.2.0.tgz#904eeac34b9e47d1e492bb537f7c42404dc4b1df"
+  integrity sha512-TvZfpKtK/RiKbBzCiJD7F4SdSz9v2sHQWlaewY41QNsEb1rHdFILJycLYl2RZN9RSgA7Tarpt3dk5q7/bwdKow==
+  dependencies:
+    detect-external-link "1.0.1"
 
 remarkable@2.0.1:
   version "2.0.1"
