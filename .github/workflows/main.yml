@@ -51,7 +51,7 @@ jobs:
         with:
           name: coverage-report
           path: ./packages/core/coverage/
-      - uses: coverallsapp/github-action@v2.2.1
+      - uses: coverallsapp/github-action@v2.2.2
         with:
           path-to-lcov: ./packages/core/coverage/lcov.info
           base-path: ./packages/core
