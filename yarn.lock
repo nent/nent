@@ -2686,9 +2686,9 @@
     puppeteer "*"
 
 "@types/remarkable@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@types/remarkable/-/remarkable-2.0.3.tgz#ba2e5edada8f0fe64c658beb2127e06ac0b9c1c8"
-  integrity sha512-QQUBeYApuHCNl9Br6ZoI3PlKmwZ69JHrlJktJXnjxobia9liZgsI70fm8PnCqVFAcefYK+9PGzR5L/hzCslNYQ==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@types/remarkable/-/remarkable-2.0.4.tgz#93b56fde4cf686f292f76937f4fb685915148ab0"
+  integrity sha512-enyIahDSUuzOpnAuBtgzMRt60GoWS3fPAd2NOsn8yAX9MWqid8Z7bel1tELLSZXR6q0vyH2L7Vg24xYEKWjpMg==
   dependencies:
     "@types/highlight.js" "^9.7.0"
     highlight.js "^9.7.0"
