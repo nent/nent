@@ -2697,11 +2697,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/highlight.js@^9.7.0":
-  version "9.12.4"
-  resolved "https://registry.yarnpkg.com/@types/highlight.js/-/highlight.js-9.12.4.tgz#8c3496bd1b50cc04aeefd691140aa571d4dbfa34"
-  integrity sha512-t2szdkwmg2JJyuCM20e8kR2X59WCE5Zkl4bzm1u1Oukjm79zpbiAv+QjnwLnuuV0WHEcX2NgUItu0pAMKuOPww==
-
 "@types/howler@2.2.10":
   version "2.2.10"
   resolved "https://registry.yarnpkg.com/@types/howler/-/howler-2.2.10.tgz#50f367252dd4901de4fa67c2dba0526622edc3a6"
@@ -2777,12 +2772,9 @@
     puppeteer "*"
 
 "@types/remarkable@^2.0.3":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@types/remarkable/-/remarkable-2.0.6.tgz#bc5eb8f6a5326fa41d7e86f48519912ac1568b64"
-  integrity sha512-pgCK3KZX3vw+xaxNKN9dmV71kC4ehe1dQxY5Ei7J/jmHYLq9TNVzeOciScC69fETqz8oTB0y8Et23zTB2o8clQ==
-  dependencies:
-    "@types/highlight.js" "^9.7.0"
-    highlight.js "^9.7.0"
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@types/remarkable/-/remarkable-2.0.7.tgz#2877a2173af9c90dad4d988bce17218a8a5b59fb"
+  integrity sha512-yjt139N0JY5sDbRq2iXVbu+IM3BGHis7YtPOqETJZrbV6VYeQPNaHuTYIAqxTRdwul6eDBCNlh1Txiu5c4fj6w==
 
 "@types/resolve@1.17.1":
   version "1.17.1"
@@ -6480,11 +6472,6 @@ hasbin@^1.2.3:
   integrity sha512-CCd8e/w2w28G8DyZvKgiHnQJ/5XXDz6qiUHnthvtag/6T5acUeN5lqq+HMoBqcmgWueWDhiCplrw0Kb1zDACRg==
   dependencies:
     async "~1.5"
-
-highlight.js@^9.7.0:
-  version "9.18.5"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.5.tgz#d18a359867f378c138d6819edfc2a8acd5f29825"
-  integrity sha512-a5bFyofd/BHCX52/8i8uJkjr9DYwXIPnM/plwI6W7ezItLGqzt7X2G2nXuYSfsIJdkwwj/g9DG1LkcGJI/dDoA==
 
 hosted-git-info@^2.1.4:
   version "2.8.9"
