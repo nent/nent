@@ -2751,10 +2751,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/rollup-plugin-visualizer@4.2.2":
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-visualizer/-/rollup-plugin-visualizer-4.2.2.tgz#2387887f7b28487282849b0616fb436a853260f6"
-  integrity sha512-nyouLyHC5wBrZOlg1KgEZvg83XcU7wzEOPlTYvKnePyZcUs/SHV/e5oK4M1IBf9Nruxw6xocS9vyeMR6wjUTlg==
+"@types/rollup-plugin-visualizer@4.2.3":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-visualizer/-/rollup-plugin-visualizer-4.2.3.tgz#e2e36fa95146f42bf6c0cb1ed31bd356d4ffbe63"
+  integrity sha512-eaAcHN/44KJ1uzLV7NYd6vTS3MsG7rev0eOJVpnsiNwNt/u8HFsOFr/71rZ4urR9il1r7FdZFP7Awky2sK7HAg==
   dependencies:
     "@types/node" "*"
     rollup "^2.42.3"
