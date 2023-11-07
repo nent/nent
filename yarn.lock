@@ -2660,10 +2660,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/howler@2.2.10":
-  version "2.2.10"
-  resolved "https://registry.yarnpkg.com/@types/howler/-/howler-2.2.10.tgz#50f367252dd4901de4fa67c2dba0526622edc3a6"
-  integrity sha512-MnDUQZBaDhIFTQATeO4tzOCBobtPjo2MmR0co70tMyk+HNUJB0loojn+PRkky7SrKzfvU90SqufIlQlCrtjr+A==
+"@types/howler@2.2.11":
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/@types/howler/-/howler-2.2.11.tgz#a75c4ab5666aee5fcfbd5de15d35dbaaa3d3f070"
+  integrity sha512-7aBoUL6RbSIrqKnpEgfa1wSNUBK06mn08siP2QI0zYk7MXfEJAaORc4tohamQYqCqVESoDyRWSdQn2BOKWj2Qw==
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.4"
@@ -2751,10 +2751,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/rollup-plugin-visualizer@4.2.2":
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-visualizer/-/rollup-plugin-visualizer-4.2.2.tgz#2387887f7b28487282849b0616fb436a853260f6"
-  integrity sha512-nyouLyHC5wBrZOlg1KgEZvg83XcU7wzEOPlTYvKnePyZcUs/SHV/e5oK4M1IBf9Nruxw6xocS9vyeMR6wjUTlg==
+"@types/rollup-plugin-visualizer@4.2.3":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-visualizer/-/rollup-plugin-visualizer-4.2.3.tgz#e2e36fa95146f42bf6c0cb1ed31bd356d4ffbe63"
+  integrity sha512-eaAcHN/44KJ1uzLV7NYd6vTS3MsG7rev0eOJVpnsiNwNt/u8HFsOFr/71rZ4urR9il1r7FdZFP7Awky2sK7HAg==
   dependencies:
     "@types/node" "*"
     rollup "^2.42.3"
