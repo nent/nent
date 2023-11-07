@@ -2740,9 +2740,9 @@
     puppeteer "*"
 
 "@types/remarkable@^2.0.3":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@types/remarkable/-/remarkable-2.0.7.tgz#2877a2173af9c90dad4d988bce17218a8a5b59fb"
-  integrity sha512-yjt139N0JY5sDbRq2iXVbu+IM3BGHis7YtPOqETJZrbV6VYeQPNaHuTYIAqxTRdwul6eDBCNlh1Txiu5c4fj6w==
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@types/remarkable/-/remarkable-2.0.8.tgz#e18816db814cdc087e86b0446f6883754d666088"
+  integrity sha512-eKXqPZfpQl1kOADjdKchHrp2gwn9qMnGXhH/AtZe0UrklzhGJkawJo/Y/D0AlWcdWoWamFNIum8+/nkAISQVGg==
 
 "@types/resolve@1.17.1":
   version "1.17.1"
