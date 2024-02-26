@@ -2544,10 +2544,10 @@
     autoprefixer "^10.3.6"
     postcss "~8.3.8"
 
-"@stencil/sass@3.0.9":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.0.9.tgz#bb16ea9a8392ceecdb59d095f468d1fd3ea96b0f"
-  integrity sha512-GtPMjf5r4/BVBCO3LvcoMSIfOa6T+0wq+SrTGEilC4NCZpuZdAlZffWxXi80caZ1jDclwdzJ2qGwEgCAfvGoNA==
+"@stencil/sass@3.0.10":
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.0.10.tgz#aaeb48f0cb2b19a79ecdd83c29c8a1307aac07a6"
+  integrity sha512-G4JdKDhEXEBS4+Riy5WVxPRXfHdfEwPopmPne8fm9ilQpaTRyl3BMpbxt63ijHtQjH0KtH8jxmRiTYamP4BfIA==
 
 "@stencil/store@2.0.14":
   version "2.0.14"
