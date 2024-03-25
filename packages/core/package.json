@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "@stencil/core": "^4.0.0",
-    "@stencil/store": "2.0.14",
+    "@stencil/store": "2.0.15",
     "expr-eval": "2.0.2",
     "jsonata": "2.0.4",
     "remarkable": "2.0.1",
