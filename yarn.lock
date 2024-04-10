@@ -2148,10 +2148,10 @@
   resolved "https://registry.yarnpkg.com/@octokit/auth-token/-/auth-token-5.0.0.tgz#16dfaf98154a28d44aa7f83229a08a0e01cc1aa3"
   integrity sha512-JpQdKWTuu79A6YDaOfl9/HFvdhEwlRSTE/MFLGl8eU+XK6jIuqhxEftJNDpQjem1J7GLcs+4sapP1JXNPTDP/A==
 
-"@octokit/core@6.1.1":
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/@octokit/core/-/core-6.1.1.tgz#c1c18a2cc755358b3c76d3520704e9d9836bee0d"
-  integrity sha512-uVypPdnZV7YoEa69Ky2kTSw3neFLGT0PZ54OwUMDph7w6TmhF0ZnoVcvb/kYnjDHCFo2mfoeRDYifLKhLNasUg==
+"@octokit/core@6.1.2":
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/@octokit/core/-/core-6.1.2.tgz#20442d0a97c411612da206411e356014d1d1bd17"
+  integrity sha512-hEb7Ma4cGJGEUNOAVmyfdB/3WirWMg5hDuNFVejGEDFqupeOysLc2sG6HJxY2etBp5YQu5Wtxwi020jS9xlUwg==
   dependencies:
     "@octokit/auth-token" "^5.0.0"
     "@octokit/graphql" "^8.0.0"
