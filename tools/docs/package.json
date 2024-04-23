@@ -36,7 +36,7 @@
     "remixicon": "4.2.0",
     "tailwindcss": "3.4.3",
     "workbox-build": "7.0.0",
-    "workbox-window": "7.0.0"
+    "workbox-window": "7.1.0"
   },
   "license": "MIT",
   "watch": {
