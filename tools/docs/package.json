@@ -26,7 +26,7 @@
     "@fullhuman/postcss-purgecss": "6.0.0",
     "@stencil/core": "4.17.1",
     "@stencil/postcss": "2.1.0",
-    "@stencil/sass": "3.0.11",
+    "@stencil/sass": "3.0.12",
     "@types/tailwindcss": "^3.1.0",
     "autoprefixer": "10.4.19",
     "bootstrap": "5.1.3",
