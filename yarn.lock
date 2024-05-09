@@ -9783,10 +9783,10 @@ npm-run-path@^5.1.0:
   dependencies:
     path-key "^4.0.0"
 
-npm-watch@0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/npm-watch/-/npm-watch-0.12.0.tgz#e85969cfea57d7603dff4b9f729219c4449a394a"
-  integrity sha512-4pBAB1bPcdvJRi+gQaHxAR7+oHuuZsntXMnkIAprwuM6xmFRI7RQW34AkJUin+q9RZutQG99MkWkkV3n21MdQg==
+npm-watch@0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/npm-watch/-/npm-watch-0.13.0.tgz#e0d166d57eb03a42392f7b90809fc5d7c226f6f7"
+  integrity sha512-MYcgocqCzYA44feZhFoYj69FfSaO0EeRE1gcRcmPaXIpNhUMAhNJ1pwic2C4Hn0OPOQmZKSl90CPgmwvOsVhTg==
   dependencies:
     nodemon "^3.0.1"
     through2 "^4.0.2"
