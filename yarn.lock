@@ -2684,10 +2684,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stencil/core@4.19.1", "@stencil/core@^4.0.0":
-  version "4.19.1"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.19.1.tgz#f497a26f50b0429024783e1eddcbc8ba5d875fdb"
-  integrity sha512-fjSBctHrobeSL2+XcuX7GVk/eaUhZ/lvIu21RJmzHAPcNyueuSAEv7J/Isn4UlYNk70o+yOK72H0FTlNkUibvw==
+"@stencil/core@4.19.2", "@stencil/core@^4.0.0":
+  version "4.19.2"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.19.2.tgz#02d377aa0133fa211f5e4c1ace4baa329ed1cde2"
+  integrity sha512-ZdnbHmHEl8E5vN0GWDtONe5w6j3CrSqqxZM4hNLBPkV/aouWKug7D5/Mi6RazfYO5U4fmHQYLwMz60rHcx0G4g==
 
 "@stencil/eslint-plugin@^0.4.0":
   version "0.4.0"
