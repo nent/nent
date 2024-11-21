@@ -23,7 +23,7 @@
     "publish": ""
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "6.0.0",
+    "@fullhuman/postcss-purgecss": "7.0.2",
     "@stencil/core": "4.22.3",
     "@stencil/postcss": "2.1.0",
     "@stencil/sass": "3.0.12",
