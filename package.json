@@ -100,7 +100,7 @@
     "pinst": "3.0.0",
     "prettier": "3.4.1",
     "prettier-eslint": "^16.1.1",
-    "puppeteer": "23.9.0",
+    "puppeteer": "23.10.0",
     "rimraf": "6.0.1",
     "rollup": "^4.0.0",
     "rollup-plugin-analyzer": "4.0.0",
