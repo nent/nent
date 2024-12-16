@@ -9348,9 +9348,9 @@ markdownlint@0.34.0:
     markdownlint-micromark "0.1.9"
 
 markdownlint@^0.37.0:
-  version "0.37.0"
-  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.37.0.tgz#a2caf01e87cfb82164d55ae5cc9e6666818a4534"
-  integrity sha512-kdw5PG3dQFkExmUdcNc7dVTxrQU+lBx2+HuNrfa/gaRHzHExQNGdTTtvz0YtpFabKijbs5a3rVlLY75x/6VB7A==
+  version "0.37.1"
+  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.37.1.tgz#e58632689682d8e73977201499d55cb158d581b9"
+  integrity sha512-Q7JexBa4ZB1rXJ2HGJF/fYUMeo4oBe5Zn1ZTlbwJ7BFC9V8lOZQoB3acBWW1f4FXmrlrwRYLLpWRfLCZXLo7kw==
   dependencies:
     markdown-it "14.1.0"
     micromark "4.0.1"
