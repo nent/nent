@@ -13057,10 +13057,10 @@ table@^6.0.9:
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
 
-tailwindcss@*, tailwindcss@4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.0.2.tgz#c31db4675b97487b8f23b96aa081d4802d4bcb69"
-  integrity sha512-cjWQjZEbzQNqH4IiSjRcYg96zjlu+rjzTFkqTc/fN3FNnIU4CoNlQvwCsIomwG/2EPWYT9ysFL1QF6Av3fZeNg==
+tailwindcss@*, tailwindcss@4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.0.3.tgz#8f34c24cd23e021662113bd4e13df1e700cb52f8"
+  integrity sha512-ImmZF0Lon5RrQpsEAKGxRvHwCvMgSC4XVlFRqmbzTEDb/3wvin9zfEZrMwgsa3yqBbPqahYcVI6lulM2S7IZAA==
 
 tar-fs@^2.0.0:
   version "2.1.1"
