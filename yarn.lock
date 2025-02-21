@@ -2938,12 +2938,12 @@
   resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-1.20.2.tgz#97d26e00cd4a0423b4af620abecf3e6f442b7975"
   integrity sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==
 
-"@types/rollup-plugin-visualizer@4.2.4":
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-visualizer/-/rollup-plugin-visualizer-4.2.4.tgz#c2b9cd6483800e26c01c8abb617ecc95de33aefd"
-  integrity sha512-BW4Q6D1Qy5gno5qHWrnMDC2dOe/TAKXvqCpckOggCCu+XpS+ZZJJ1lq1+K3bvYccoO3Y7f5kglbFAgYGqCgULg==
+"@types/rollup-plugin-visualizer@5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-visualizer/-/rollup-plugin-visualizer-5.0.3.tgz#a085aa77db81a3bf95a2da9e6fc2ddb49ec25549"
+  integrity sha512-eqlnKXp1TvvlUVPd+cBrTfD4v7TyshgoCT3ao490fkJdR6M8CPjZLc+MFBmXZjCRXk30yKAyZ2n381fXafAQOg==
   dependencies:
-    rollup "^2.42.3"
+    rollup-plugin-visualizer "*"
 
 "@types/stack-utils@^2.0.0":
   version "2.0.1"
@@ -12066,7 +12066,7 @@ rollup-plugin-analyzer@4.0.0:
   resolved "https://registry.yarnpkg.com/rollup-plugin-analyzer/-/rollup-plugin-analyzer-4.0.0.tgz#96b757ed64a098b59d72f085319e68cdd86d5798"
   integrity sha512-LL9GEt3bkXp6Wa19SNR5MWcvHNMvuTFYg+eYBZN2OIFhSWN+pEJUQXEKu5BsOeABob3x9PDaLKW7w5iOJnsESQ==
 
-rollup-plugin-visualizer@5.14.0, rollup-plugin-visualizer@^5.7.1:
+rollup-plugin-visualizer@*, rollup-plugin-visualizer@5.14.0, rollup-plugin-visualizer@^5.7.1:
   version "5.14.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-5.14.0.tgz#be82d43fb3c644e396e2d50ac8a53d354022d57c"
   integrity sha512-VlDXneTDaKsHIw8yzJAFWtrzguoJ/LnQ+lMpoVfYJ3jJF4Ihe5oYLAqLklIK/35lgUY+1yEzCkHyZ1j4A5w5fA==
@@ -12076,7 +12076,7 @@ rollup-plugin-visualizer@5.14.0, rollup-plugin-visualizer@^5.7.1:
     source-map "^0.7.4"
     yargs "^17.5.1"
 
-rollup@^2.42.3, rollup@^2.43.1:
+rollup@^2.43.1:
   version "2.79.2"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.79.2.tgz#f150e4a5db4b121a21a747d762f701e5e9f49090"
   integrity sha512-fS6iqSPZDs3dr/y7Od6y5nha8dW1YnbgtsyotCVvoFGKbERG++CVRFv1meyGDE1SNItQA8BrnCw7ScdAhRJ3XQ==
