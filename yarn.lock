@@ -2877,10 +2877,10 @@
     autoprefixer "^10.3.6"
     postcss "~8.3.8"
 
-"@stencil/sass@3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.2.0.tgz#c8e579f87d781abb0e8fa8e334371d5fdca6bda7"
-  integrity sha512-2Rxa3aeMb0z+NCs2/DoD9n4JL7pOMUjs9/gOS1Fm0a7p8jGV4SHmH9GrNOI+r8BfyvnTGthl9k45BWua5ud0Dw==
+"@stencil/sass@3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.2.1.tgz#b619dc19758665d8987e08b493d23beed9e2fa34"
+  integrity sha512-1PPZbN5/A3xE0AY+Ko+pch00r8rfry5lJhOzekKhNjqwbi55aPjL8wbVj+GorDQh+rF2NYQshrlITwuSSz9vGA==
   dependencies:
     sass-embedded "^1.85.1"
 
