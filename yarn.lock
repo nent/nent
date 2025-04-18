@@ -11646,9 +11646,9 @@ prepend-http@^2.0.0:
   integrity sha512-ravE6m9Atw9Z/jjttRUZ+clIXogdghyZAuWJ3qEzjT+jI/dL1ifAqhZeC5VHzQp1MSt1+jxKkFNemj/iO7tVUA==
 
 prettier-eslint@^16.1.1:
-  version "16.3.2"
-  resolved "https://registry.yarnpkg.com/prettier-eslint/-/prettier-eslint-16.3.2.tgz#6a396f4242f768c7b2fbc1094e55fd68237224f6"
-  integrity sha512-KwT/YWoJGbogsHLZ+Rji8ih6JaUqoA8Z4PAxomcVWhq3gYp5jXgSS/BzB3tm6lWS+Hd4VBF81jqMrdJhXKkhcg==
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/prettier-eslint/-/prettier-eslint-16.4.1.tgz#eaee9cdd55537af04d925853b32d46a0087c1e13"
+  integrity sha512-qf8Grhq68kg0tyhXVik2aOx72W8Jxre2ABXgV1pC3OCb3jOo40UZuvk3f/I3/ZA7Qw6qydZX4b7ySSCSgv4/8A==
   dependencies:
     "@typescript-eslint/parser" "^6.21.0"
     common-tags "^1.8.2"
