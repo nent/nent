@@ -12450,10 +12450,10 @@ rollup-plugin-analyzer@4.0.0:
   resolved "https://registry.yarnpkg.com/rollup-plugin-analyzer/-/rollup-plugin-analyzer-4.0.0.tgz#96b757ed64a098b59d72f085319e68cdd86d5798"
   integrity sha512-LL9GEt3bkXp6Wa19SNR5MWcvHNMvuTFYg+eYBZN2OIFhSWN+pEJUQXEKu5BsOeABob3x9PDaLKW7w5iOJnsESQ==
 
-rollup-plugin-visualizer@*, rollup-plugin-visualizer@6.0.1, rollup-plugin-visualizer@^6.0.0:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-6.0.1.tgz#dd00e7295335bb3a8a5fd8ec0ed922f479b31e00"
-  integrity sha512-NjlGElvLXCSZSAi3gNRZbfX3qlQbQcJ9TW97c5JpqfVwMhttj9YwEdPwcvbKj91RnMX2PWAjonvSEv6UEYtnRQ==
+rollup-plugin-visualizer@*, rollup-plugin-visualizer@6.0.3, rollup-plugin-visualizer@^6.0.0:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-6.0.3.tgz#d05bd17e358a6d04bf593cf73556219c9c6d8dad"
+  integrity sha512-ZU41GwrkDcCpVoffviuM9Clwjy5fcUxlz0oMoTXTYsK+tcIFzbdacnrr2n8TXcHxbGKKXtOdjxM2HUS4HjkwIw==
   dependencies:
     open "^8.0.0"
     picomatch "^4.0.2"
