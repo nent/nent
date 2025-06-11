@@ -14119,10 +14119,10 @@ table@^6.0.9:
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
 
-tailwindcss@*, tailwindcss@4.1.8:
-  version "4.1.8"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.1.8.tgz#5d66d095ee7d82f03d6dbc6158bc248e064a5c05"
-  integrity sha512-kjeW8gjdxasbmFKpVGrGd5T4i40mV5J2Rasw48QARfYeQ8YS9x02ON9SFWax3Qf616rt4Cp3nVNIj6Hd1mP3og==
+tailwindcss@*, tailwindcss@4.1.9:
+  version "4.1.9"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.1.9.tgz#bce35d7e381997a65d57f95214ba784844d9a943"
+  integrity sha512-anBZRcvfNMsQdHB9XSGzAtIQWlhs49uK75jfkwrqjRUbjt4d7q9RE1wR1xWyfYZhLFnFX4ahWp88Au2lcEw5IQ==
 
 tar-fs@^2.0.0:
   version "2.1.1"
