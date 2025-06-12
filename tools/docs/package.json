@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "7.0.2",
-    "@stencil/core": "4.33.1",
+    "@stencil/core": "4.34.0",
     "@stencil/postcss": "2.1.0",
     "@stencil/sass": "3.2.1",
     "@types/tailwindcss": "^3.1.0",
