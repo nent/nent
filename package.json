@@ -107,7 +107,7 @@
     "rollup-plugin-visualizer": "6.0.3",
     "serve": "14.2.4",
     "trim-newlines": "5.0.0",
-    "typescript": "5.8.3",
+    "typescript": "5.9.2",
     "yargs": "18.0.0"
   },
   "jest": {
