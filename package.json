@@ -68,7 +68,7 @@
     "@octokit/core": "7.0.3",
     "@popperjs/core": "2.11.8",
     "@stencil/core": "^4.0.0",
-    "@stencil/eslint-plugin": "^0.4.0",
+    "@stencil/eslint-plugin": "^1.1.0",
     "@types/jest": "27.0.3",
     "@types/puppeteer": "7.0.4",
     "@types/rollup-plugin-visualizer": "5.0.3",
