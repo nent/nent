@@ -90,7 +90,7 @@
     "glob-parent": "6.0.2",
     "husky": "9.1.7",
     "jest": "27.0.3",
-    "jest-cli": "30.1.1",
+    "jest-cli": "30.1.2",
     "lerna": "8.2.3",
     "markdownlint": "^0.38.0",
     "normalize-url": "8.0.2",
