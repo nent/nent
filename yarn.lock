@@ -2545,16 +2545,16 @@
   resolved "https://registry.yarnpkg.com/@octokit/auth-token/-/auth-token-6.0.0.tgz#b02e9c08a2d8937df09a2a981f226ad219174c53"
   integrity sha512-P4YJBPdPSpWTQ1NU4XYdvHvXJJDxM6YwpS0FZHRgP7YFkdVxsWcpWGy/NVqlAA7PcPCnMacXlRm1y2PFZRWL/w==
 
-"@octokit/core@7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@octokit/core/-/core-7.0.3.tgz#0b5288995fed66920128d41cfeea34979d48a360"
-  integrity sha512-oNXsh2ywth5aowwIa7RKtawnkdH6LgU1ztfP9AIUCQCvzysB+WeU8o2kyyosDPwBZutPpjZDKPQGIzzrfTWweQ==
+"@octokit/core@7.0.4":
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/@octokit/core/-/core-7.0.4.tgz#91efe208b52bbb47f997d634cdc95fc839a75e38"
+  integrity sha512-jOT8V1Ba5BdC79sKrRWDdMT5l1R+XNHTPR6CPWzUP2EcfAcvIHZWF0eAbmRcpOOP5gVIwnqNg0C4nvh6Abc3OA==
   dependencies:
     "@octokit/auth-token" "^6.0.0"
     "@octokit/graphql" "^9.0.1"
     "@octokit/request" "^10.0.2"
     "@octokit/request-error" "^7.0.0"
-    "@octokit/types" "^14.0.0"
+    "@octokit/types" "^15.0.0"
     before-after-hook "^4.0.0"
     universal-user-agent "^7.0.0"
 
@@ -2655,6 +2655,11 @@
   version "25.0.0"
   resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-25.0.0.tgz#adeead36992abf966e89dcd53518d8b0dc910e0d"
   integrity sha512-FZvktFu7HfOIJf2BScLKIEYjDsw6RKc7rBJCdvCTfKsVnx2GEB/Nbzjr29DUdb7vQhlzS/j8qDzdditP0OC6aw==
+
+"@octokit/openapi-types@^26.0.0":
+  version "26.0.0"
+  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-26.0.0.tgz#a528b560dbc4f02040dc08d19575498d57fff19d"
+  integrity sha512-7AtcfKtpo77j7Ts73b4OWhOZHTKo/gGY8bB3bNBQz4H+GRSWqx2yvj8TXRsbdTE0eRmYmXOEY66jM7mJ7LzfsA==
 
 "@octokit/plugin-enterprise-rest@6.0.1":
   version "6.0.1"
@@ -2796,6 +2801,13 @@
   integrity sha512-VVmZP0lEhbo2O1pdq63gZFiGCKkm8PPp8AUOijlwPO6hojEVjspA0MWKP7E4hbvGxzFKNqKr6p0IYtOH/Wf/zA==
   dependencies:
     "@octokit/openapi-types" "^25.0.0"
+
+"@octokit/types@^15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-15.0.0.tgz#6afe9b012115284ded9bf779e90d04081e0eadd3"
+  integrity sha512-8o6yDfmoGJUIeR9OfYU0/TUJTnMPG2r68+1yEdUeG2Fdqpj8Qetg0ziKIgcBm0RW/j29H41WP37CYCEhp6GoHQ==
+  dependencies:
+    "@octokit/openapi-types" "^26.0.0"
 
 "@octokit/types@^6.0.3", "@octokit/types@^6.16.1":
   version "6.41.0"
