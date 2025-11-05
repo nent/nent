@@ -3393,10 +3393,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stencil/core@4.38.2", "@stencil/core@^4.0.0":
-  version "4.38.2"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.38.2.tgz#8b8bcf9baef9f6fae2c94391a7082a7907a5b17b"
-  integrity sha512-opyjA+DYAtaKmaSnuC8Bb/PH7nuO+1GhVn6amsN8XT+TlT9biptlcpz4YWETwYZ+XxtX+nLdxWbW0TVafrqsvQ==
+"@stencil/core@4.38.3", "@stencil/core@^4.0.0":
+  version "4.38.3"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.38.3.tgz#2743e29db3fcf02016c8b66693c6ffecb18a2ba8"
+  integrity sha512-rSDzGUfi58X8K79ySjlM6KlY+mq7D+ittzgNAdYHcsXHc70sBpdatFhnbOg25uVDiMf7xRAH9slP38pPdXnZOQ==
   optionalDependencies:
     "@rollup/rollup-darwin-arm64" "4.34.9"
     "@rollup/rollup-darwin-x64" "4.34.9"
