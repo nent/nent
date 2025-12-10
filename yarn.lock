@@ -3246,10 +3246,10 @@
   dependencies:
     sass-embedded "^1.89.2"
 
-"@stencil/store@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-2.2.1.tgz#4fdac1850c9ff8574d87c839cf829e9f8744b396"
-  integrity sha512-RvshZ90bqNXaFG8/F1jhCZpmqQI0CK3P4Vkw6mtg5Cavl59JiBtqXBCocjc7uUhWd3/sq16gB8hMIPu4VWlwKw==
+"@stencil/store@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-2.2.2.tgz#2886e413be48fbe07863897c75534a750caf0157"
+  integrity sha512-6BxJblhIkSxflEft8eayYwEApTmsIaGeXsRDLI1AAM2BPPFPfrcsG1fBOcA61oMBaXmCGKt0AGTLbxSHnYazxQ==
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
