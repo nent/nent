@@ -64,7 +64,7 @@
     "set-value": ">=4.0.1"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "20.3.0",
+    "@commitlint/config-conventional": "20.3.1",
     "@octokit/core": "7.0.6",
     "@popperjs/core": "2.11.8",
     "@stencil/core": "^4.0.0",
