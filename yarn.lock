@@ -1321,7 +1321,7 @@
   dependencies:
     find-up "^7.0.0"
 
-"@commitlint/types@^20.2.0", "@commitlint/types@^20.3.1":
+"@commitlint/types@^20.3.1":
   version "20.3.1"
   resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-20.3.1.tgz#084cf4cb142826d7a0eab378f838514e3e75f048"
   integrity sha512-VmIFV/JkBRhDRRv7N5B7zEUkNZIx9Mp+8Pe65erz0rKycXLsi8Epcw0XJ+btSeRXgTzE7DyOyA9bkJ9mn/yqVQ==
@@ -3230,10 +3230,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stencil/core@4.41.0", "@stencil/core@^4.0.0":
-  version "4.41.0"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.41.0.tgz#4ae998802b04bf70b997b12c440164683eae7668"
-  integrity sha512-KDVea3bjv7qJS+Pk8GcrWqRws6kAJAKiUPIxdDqK3KYH2yWPmzCzJO2XKsVyiBWmhdm2Q2KSdlb/EMFArfREiw==
+"@stencil/core@4.41.1", "@stencil/core@^4.0.0":
+  version "4.41.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.41.1.tgz#99542b12d8a64294b239edb5c3fdbba3edc83c24"
+  integrity sha512-dX9o15OFnvXkg7eiquu5py2CPePJsduRVHmJvU3wbn3bpzjj08+Fc64lVQzTADqVKEsNvwQpyXjmWSS7iKgaBQ==
   optionalDependencies:
     "@rollup/rollup-darwin-arm64" "4.34.9"
     "@rollup/rollup-darwin-x64" "4.34.9"
