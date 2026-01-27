@@ -13148,10 +13148,10 @@ remarkable@2.0.1:
     argparse "^1.0.10"
     autolinker "^3.11.0"
 
-remixicon@4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/remixicon/-/remixicon-4.8.0.tgz#52d16cc63f8557140ed39d5cb9c6403bccdddb68"
-  integrity sha512-8qTM/bWkmsAWitvcL9XrVPVdqHRrdmnNp4zCFBdmIHBygxfHWwoK6NzitbiMyRzjcXKBMlS/ab5M65/ZlxJTVA==
+remixicon@4.9.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/remixicon/-/remixicon-4.9.0.tgz#098ea9988e4e8a48d8d33d635d3b0efb2d932c50"
+  integrity sha512-aeU8xMTuy1dciqJSRVYvYqhe2vg0Qc0gpsG1ypLgWFhdYRJNFeR6qLpQRkhkT6fgCkyz8j/OJ6YfDPw/U4gG1g==
 
 remove-markdown@^0.5.0:
   version "0.5.0"
