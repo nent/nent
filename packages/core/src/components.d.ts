@@ -66,6 +66,7 @@ export namespace Components {
     interface NActionActivator {
         /**
           * The activation strategy to use for the contained actions.
+          * @default 'on-element-event'
          */
         "activate": | 'on-render'
     | 'on-element-event'
@@ -79,10 +80,12 @@ export namespace Components {
         "activateActions": (once?: boolean) => Promise<void>;
         /**
           * Turn on debug statements for load, update and render events.
+          * @default false
          */
         "debug": boolean;
         /**
           * Limit the activation to ONCE. This could be helpful if an action has side-effects if it is run multiple times.  Note: the activation state is stored in memory and does not persist across refreshes.
+          * @default false
          */
         "once": boolean;
         /**
@@ -91,6 +94,7 @@ export namespace Components {
         "targetElement"?: string;
         /**
           * This is the name of the event/s to listen to on the target element separated by comma.
+          * @default 'click,keydown'
          */
         "targetEvent": string;
         /**
@@ -123,6 +127,7 @@ export namespace Components {
         "appTitle"?: string;
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+          * @default false
          */
         "debug": boolean;
     }
@@ -135,6 +140,7 @@ export namespace Components {
     interface NAppAnalytics {
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+          * @default false
          */
         "debug": boolean;
     }
@@ -170,18 +176,22 @@ export namespace Components {
     interface NAppTheme {
         /**
           * Change the class name that is added to the target element when the theme is determined to be dark.
+          * @default 'dark'
          */
         "darkClass": string;
         /**
           * Display the user's system preference.
+          * @default false
          */
         "display": boolean;
         /**
           * This element displays the current theme, unless in switch-mode, it will show the opposite.
+          * @default false
          */
         "switch": boolean;
         /**
           * Change the element that is decorated with the dark-mode class
+          * @default 'body'
          */
         "targetElement": string;
     }
@@ -198,6 +208,7 @@ export namespace Components {
         "inputClass"?: string;
         /**
           * The inner input ID
+          * @default 'dark-mode'
          */
         "inputId"?: string;
     }
@@ -216,18 +227,22 @@ export namespace Components {
         "actions"?: AudioActionListener;
         /**
           * Experimental support for providing audio-data in the data-provider system.
+          * @default false
          */
         "dataProvider": boolean;
         /**
           * Use debug for verbose logging. Useful for figuring things out.
+          * @default false
          */
         "debug": boolean;
         /**
           * The display mode enabled shows player state and stats. No track information or duration is to be displayed.
+          * @default false
          */
         "display": boolean;
         /**
           * The Howler.js Script Reference
+          * @default '2.2.3'
          */
         "howlerVersion": string;
     }
@@ -258,6 +273,7 @@ export namespace Components {
         "sendAction": (data?: Record<string, any>) => Promise<void>;
         /**
           * Readonly topic
+          * @default AUDIO_TOPIC
          */
         "topic": "audio";
         /**
@@ -285,10 +301,12 @@ export namespace Components {
     interface NAudioActionMusicLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad": boolean;
         /**
           * The discard strategy the player should use for this file.
+          * @default 'route'
          */
         "discard": 'route' | 'next' | 'none';
         /**
@@ -297,10 +315,12 @@ export namespace Components {
         "getAction": () => Promise<EventAction<AudioInfo | AudioRequest | any>>;
         /**
           * Set this to true to have the audio file loop.
+          * @default false
          */
         "loop": boolean;
         /**
           * This is the loading strategy that determines what it should do after the file is retrieved.
+          * @default 'queue'
          */
         "mode": 'queue' | 'play' | 'load';
         /**
@@ -344,6 +364,7 @@ export namespace Components {
         "sendAction": (data?: Record<string, any>) => Promise<void>;
         /**
           * Readonly topic
+          * @default 'audio'
          */
         "topic": "audio";
         /**
@@ -371,10 +392,12 @@ export namespace Components {
     interface NAudioActionSoundLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad": boolean;
         /**
           * The discard strategy the player should use for this file.
+          * @default 'route'
          */
         "discard": 'route' | 'next' | 'none';
         /**
@@ -383,6 +406,7 @@ export namespace Components {
         "getAction": () => Promise<EventAction<AudioInfo | AudioRequest | any>>;
         /**
           * This is the loading strategy that determines what it should do after the file is retrieved.
+          * @default 'load'
          */
         "mode": 'queue' | 'play' | 'load';
         /**
@@ -405,6 +429,7 @@ export namespace Components {
     interface NAudioSwitch {
         /**
           * The data provider to store the audio state in.
+          * @default 'storage'
          */
         "dataProvider": string;
         /**
@@ -417,6 +442,7 @@ export namespace Components {
         "inputId"?: string;
         /**
           * Which state property this switch controls.
+          * @default 'enabled'
          */
         "setting": 'muted' | 'enabled';
     }
@@ -436,6 +462,7 @@ export namespace Components {
     interface NContentInclude {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad": boolean;
         /**
@@ -444,10 +471,12 @@ export namespace Components {
         "json"?: string;
         /**
           * Cross Origin Mode
+          * @default 'cors'
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
           * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.
+          * @default false
          */
         "resolveTokens": boolean;
         /**
@@ -469,6 +498,7 @@ export namespace Components {
     interface NContentMarkdown {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad": boolean;
         /**
@@ -477,14 +507,17 @@ export namespace Components {
         "json"?: string;
         /**
           * Cross Origin Mode
+          * @default 'cors'
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
           * Force render with data & route changes.
+          * @default false
          */
         "noCache": boolean;
         /**
           * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.
+          * @default false
          */
         "resolveTokens": boolean;
         /**
@@ -505,6 +538,7 @@ export namespace Components {
     interface NContentReference {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad": boolean;
         /**
@@ -513,14 +547,17 @@ export namespace Components {
         "forceLoad": () => Promise<void>;
         /**
           * When inline the link/script tags are rendered in-place rather than added to the head.
+          * @default false
          */
         "inline": boolean;
         /**
           * Import the script file as a module.
+          * @default false
          */
         "module": boolean;
         /**
           * Declare the script only for use when modules aren't supported
+          * @default false
          */
         "noModule": boolean;
         /**
@@ -533,6 +570,7 @@ export namespace Components {
         "styleSrc"?: string;
         /**
           * Timeout (in milliseconds) to wait for the references to load.
+          * @default 1000
          */
         "timeout": number;
     }
@@ -547,10 +585,12 @@ export namespace Components {
     interface NContentRepeat {
         /**
           * Turn on debug statements for load, update and render events.
+          * @default false
          */
         "debug": boolean;
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad": boolean;
         /**
@@ -568,6 +608,7 @@ export namespace Components {
         "itemsSrc"?: string;
         /**
           * Force render with data & route changes.
+          * @default false
          */
         "noCache": boolean;
         /**
@@ -584,22 +625,27 @@ export namespace Components {
     interface NContentReveal {
         /**
           * How far the element moves in the animation (% of element width/height)
+          * @default '30%'
          */
         "animationDistance": string;
         /**
           * How long to delay the animation (ms)
+          * @default 0
          */
         "delay": number;
         /**
           * Direction the element moves when animating in
+          * @default 'up'
          */
         "direction": 'up' | 'down' | 'right' | 'left';
         /**
           * How long the animation runs (ms)
+          * @default 500
          */
         "duration": number;
         /**
           * How much of the element must be visible before it animates (% of element height)
+          * @default '33%'
          */
         "triggerDistance": string;
     }
@@ -628,10 +674,12 @@ export namespace Components {
     interface NContentTemplate {
         /**
           * Turn on debug statements for load, update and render events.
+          * @default false
          */
         "debug": boolean;
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad": boolean;
         /**
@@ -640,14 +688,17 @@ export namespace Components {
         "filter"?: string;
         /**
           * When declared, the child script tag is required and should be the query text for the request. Also, this forces the HTTP method to 'POST'.
+          * @default false
          */
         "graphql": boolean;
         /**
           * Cross Origin Mode
+          * @default 'cors'
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
           * Force render with data & route changes.
+          * @default false
          */
         "noCache": boolean;
         /**
@@ -676,6 +727,7 @@ export namespace Components {
     interface NData {
         /**
           * Turn on debugging to get helpful messages from the data action systems.
+          * @default false
          */
         "debug": boolean;
         /**
@@ -694,6 +746,7 @@ export namespace Components {
     interface NDataCookie {
         /**
           * Provider name to use in nent expressions.
+          * @default 'cookie'
          */
         "name": string;
         /**
@@ -702,6 +755,7 @@ export namespace Components {
         "registerProvider": () => Promise<void>;
         /**
           * When skipConsent is true, the accept-cookies banner will not be displayed before accessing cookie-data.
+          * @default false
          */
         "skipConsent": boolean;
     }
@@ -719,6 +773,7 @@ export namespace Components {
         "keyPrefix"?: string;
         /**
           * Provider name to use in nent expressions.
+          * @default 'session'
          */
         "name": string;
     }
@@ -736,6 +791,7 @@ export namespace Components {
         "keyPrefix"?: string;
         /**
           * Provider name to use in nent expressions.
+          * @default 'storage'
          */
         "name": string;
     }
@@ -749,6 +805,7 @@ export namespace Components {
     interface NElements {
         /**
           * Turn on debug statements for load, update and render events.
+          * @default false
          */
         "debug": boolean;
     }
@@ -769,14 +826,17 @@ export namespace Components {
         "analyticsEvent"?: string;
         /**
           * To debug timed elements, set this value to true.
+          * @default false
          */
         "debug": boolean;
         /**
           * Go to the next view after the timer ends
+          * @default false
          */
         "nextAfter": boolean | string;
         /**
           * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates one manually and starts it immediately
+          * @default null
          */
         "timerElement": string | null;
     }
@@ -826,22 +886,27 @@ export namespace Components {
         "begin": () => Promise<void>;
         /**
           * To debug timed elements, set this value to true.
+          * @default false
          */
         "debug": boolean;
         /**
           * If set, disables auto-starting the timer on render. This will be removed if in a view, when the view is activated or when the start method is called.
+          * @default false
          */
         "deferLoad": boolean;
         /**
           * Display elapsed seconds
+          * @default false
          */
         "display": boolean;
         /**
           * Duration before the timer stops and raises the ended event (seconds). 0 = never
+          * @default 0
          */
         "duration": number;
         /**
           * Interval in milliseconds to request between the getAnimationFrame. This affects the precision.
+          * @default 200
          */
         "interval": number;
         /**
@@ -863,30 +928,37 @@ export namespace Components {
     interface NVideo {
         /**
           * To debug timed elements, set this value to true.
+          * @default false
          */
         "debug": boolean;
         /**
           * Provide the element property name that holds the duration time in seconds. Default is duration
+          * @default 'duration'
          */
         "durationProperty": string;
         /**
           * Provider the end event name. Default is ended
+          * @default 'ended'
          */
         "endEvent": string;
         /**
           * Provide the ready event name. Default is ready
+          * @default 'ready'
          */
         "readyEvent": string;
         /**
           * Provide the element selector for the media object that can provide time-updates and media-end events.
+          * @default 'video'
          */
         "targetElement": string;
         /**
           * Provide the time-event name. Default is timeupdate
+          * @default 'timeupdate'
          */
         "timeEvent": string;
         /**
           * Provide the element property name that holds the current time in seconds. Default is currentTime
+          * @default 'currentTime'
          */
         "timeProperty": string;
         /**
@@ -903,6 +975,7 @@ export namespace Components {
     interface NVideoSwitch {
         /**
           * The data provider to store the audio-enabled state in.
+          * @default 'storage'
          */
         "dataProvider": string;
         /**
@@ -930,10 +1003,12 @@ export namespace Components {
         "contentSrc"?: string;
         /**
           * Turn on debug statements for load, update and render events.
+          * @default false
          */
         "debug": boolean;
         /**
           * The path for this route should only be matched when it is exact.
+          * @default false
          */
         "exact": boolean;
         /**
@@ -942,26 +1017,32 @@ export namespace Components {
         "getChildren": () => Promise<{ activators: HTMLNActionActivatorElement[]; views: HTMLNViewElement[]; dos: HTMLNViewPromptElement[]; }>;
         /**
           * Cross Origin Mode if the content is pulled from a remote location
+          * @default 'cors'
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
           * Force render with data & route changes.
+          * @default false
          */
         "noCache": boolean;
         /**
           * The page description for this view.
+          * @default ''
          */
         "pageDescription": string;
         /**
           * The keywords to add to the keywords meta-tag for this view.
+          * @default ''
          */
         "pageKeywords": string;
         /**
           * The robots instruction for search indexing
+          * @default 'all'
          */
         "pageRobots": 'all' | 'noindex' | 'nofollow' | 'none';
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
+          * @default ''
          */
         "pageTitle": string;
         /**
@@ -970,6 +1051,7 @@ export namespace Components {
         "path": string;
         /**
           * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
+          * @default false
          */
         "resolveTokens": boolean;
         /**
@@ -978,6 +1060,7 @@ export namespace Components {
         "route": Route;
         /**
           * Header height or offset for scroll-top on this view.
+          * @default 0
          */
         "scrollTopOffset": number;
         /**
@@ -996,6 +1079,7 @@ export namespace Components {
     interface NViewDetect {
         /**
           * Only active on the exact href match, and not on child routes
+          * @default false
          */
         "exact": boolean;
         /**
@@ -1008,6 +1092,7 @@ export namespace Components {
         "routeMatch"?: Path;
         /**
           * Only active on the exact href match using every aspect of the URL including parameters.
+          * @default true
          */
         "strict": boolean;
     }
@@ -1021,14 +1106,17 @@ export namespace Components {
     interface NViewLink {
         /**
           * The class to add when the matching route is active in the browser
+          * @default 'active'
          */
         "activeClass": string;
         /**
           * Provide log messages for path matching.
+          * @default false
          */
         "debug": boolean;
         /**
           * Only active on the exact href match, and not on child routes
+          * @default false
          */
         "exact": boolean;
         /**
@@ -1041,10 +1129,12 @@ export namespace Components {
         "path": string;
         /**
           * Only active on the exact href match using every aspect of the URL including parameters.
+          * @default true
          */
         "strict": boolean;
         /**
           * Validates any current-route inputs before navigating. Disables navigation if any inputs are invalid.
+          * @default false
          */
         "validate": boolean;
     }
@@ -1072,26 +1162,32 @@ export namespace Components {
     interface NViewLinkList {
         /**
           * The active-class to use with the n-view-link elements.
+          * @default 'active'
          */
         "activeClass"?: string;
         /**
           * Specify if the '/' route should be skipped in the list.
+          * @default false
          */
         "excludeRoot": boolean;
         /**
           * The list-item-class to use with the li tag
+          * @default ''
          */
         "itemClass"?: string;
         /**
           * The class to add to the anchor tag.
+          * @default ''
          */
         "linkClass"?: string;
         /**
           * The list-class to use with the UL tag
+          * @default ''
          */
         "listClass"?: string;
         /**
           * The display mode for which routes to display.
+          * @default 'parents'
          */
         "mode": 'children' | 'parents' | 'siblings';
     }
@@ -1119,10 +1215,12 @@ export namespace Components {
     interface NViewNotFound {
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
+          * @default 'Not Found'
          */
         "pageTitle": string;
         /**
           * Header height or offset for scroll-top on this view.
+          * @default 0
          */
         "scrollTopOffset": number;
         /**
@@ -1146,34 +1244,42 @@ export namespace Components {
         "contentSrc"?: string;
         /**
           * To debug timed elements, set this value to true.
+          * @default false
          */
         "debug": boolean;
         /**
           * The url for this route should only be matched when it is exact.
+          * @default true
          */
         "exact": boolean;
         /**
           * Cross Origin Mode if the content is pulled from a remote location
+          * @default 'cors'
          */
         "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
           * Force render with data & route changes.
+          * @default false
          */
         "noCache": boolean;
         /**
           * The page description for this view.
+          * @default ''
          */
         "pageDescription": string;
         /**
           * The keywords to add to the keywords meta-tag for this view.
+          * @default ''
          */
         "pageKeywords": string;
         /**
           * The robots instruction for search indexing
+          * @default 'none'
          */
         "pageRobots": 'all' | 'noindex' | 'nofollow' | 'none';
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
+          * @default ''
          */
         "pageTitle": string;
         /**
@@ -1182,6 +1288,7 @@ export namespace Components {
         "path": string;
         /**
           * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
+          * @default false
          */
         "resolveTokens": boolean;
         /**
@@ -1198,6 +1305,7 @@ export namespace Components {
         "transition"?: string;
         /**
           * The visit strategy for this do. once: persist the visit and never force it again always: do not persist, but don't don't show again in-session optional: do not force this view-do ever. It will be available by URL
+          * @default 'once'
          */
         "visit": 'once' | 'always' | 'optional';
         /**
@@ -1218,14 +1326,17 @@ export namespace Components {
     interface NViews {
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+          * @default false
          */
         "debug": boolean;
         /**
           * Enable the not-found display. To customize it, use: slot="not-found"
+          * @default false
          */
         "notFound": boolean;
         /**
           * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
+          * @default '/'
          */
         "root": string;
         /**
@@ -1234,6 +1345,7 @@ export namespace Components {
         "scrollTopOffset"?: number;
         /**
           * Delay redirecting to the start path by this value in seconds.
+          * @default 0
          */
         "startDelay": number;
         /**
@@ -1294,6 +1406,10 @@ declare global {
         prototype: HTMLNActionActivatorElement;
         new (): HTMLNActionActivatorElement;
     };
+    interface HTMLNAppElementEventMap {
+        "nent:events": any;
+        "nent:actions": any;
+    }
     /**
      * This component enables app services. These are console logging,
      * theming and event-delegation. As well as a plugin system to
@@ -1305,11 +1421,24 @@ declare global {
      * @extension elements
      */
     interface HTMLNAppElement extends Components.NApp, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLNAppElementEventMap>(type: K, listener: (this: HTMLNAppElement, ev: NAppCustomEvent<HTMLNAppElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLNAppElementEventMap>(type: K, listener: (this: HTMLNAppElement, ev: NAppCustomEvent<HTMLNAppElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLNAppElement: {
         prototype: HTMLNAppElement;
         new (): HTMLNAppElement;
     };
+    interface HTMLNAppAnalyticsElementEventMap {
+        "custom-event": any;
+        "page-view": LocationSegments;
+        "view-time": ViewTime;
+    }
     /**
      * This element serves as a proxy to delegate event-based
      * functions to be consumed by various analytics snippets.
@@ -1317,6 +1446,14 @@ declare global {
      * @extension actions
      */
     interface HTMLNAppAnalyticsElement extends Components.NAppAnalytics, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLNAppAnalyticsElementEventMap>(type: K, listener: (this: HTMLNAppAnalyticsElement, ev: NAppAnalyticsCustomEvent<HTMLNAppAnalyticsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLNAppAnalyticsElementEventMap>(type: K, listener: (this: HTMLNAppAnalyticsElement, ev: NAppAnalyticsCustomEvent<HTMLNAppAnalyticsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLNAppAnalyticsElement: {
         prototype: HTMLNAppAnalyticsElement;
@@ -1472,6 +1609,9 @@ declare global {
         prototype: HTMLNContentMarkdownElement;
         new (): HTMLNContentMarkdownElement;
     };
+    interface HTMLNContentReferenceElementEventMap {
+        "referenced": ReferenceCompleteResults;
+    }
     /**
      * This element makes a single reference to script and css sources. It can
      * be used by HTML fragment to ensure a reference is made, without worrying
@@ -1479,6 +1619,14 @@ declare global {
      * @system content
      */
     interface HTMLNContentReferenceElement extends Components.NContentReference, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLNContentReferenceElementEventMap>(type: K, listener: (this: HTMLNContentReferenceElement, ev: NContentReferenceCustomEvent<HTMLNContentReferenceElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLNContentReferenceElementEventMap>(type: K, listener: (this: HTMLNContentReferenceElement, ev: NContentReferenceCustomEvent<HTMLNContentReferenceElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLNContentReferenceElement: {
         prototype: HTMLNContentReferenceElement;
@@ -1552,6 +1700,9 @@ declare global {
         prototype: HTMLNDataElement;
         new (): HTMLNDataElement;
     };
+    interface HTMLNDataCookieElementEventMap {
+        "didConsent": CookieConsent;
+    }
     /**
      * This element enables the *Cookie Data Provider*,
      * after requesting consent from the user. The consent
@@ -1561,6 +1712,14 @@ declare global {
      * @extension provider
      */
     interface HTMLNDataCookieElement extends Components.NDataCookie, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLNDataCookieElementEventMap>(type: K, listener: (this: HTMLNDataCookieElement, ev: NDataCookieCustomEvent<HTMLNDataCookieElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLNDataCookieElementEventMap>(type: K, listener: (this: HTMLNDataCookieElement, ev: NDataCookieCustomEvent<HTMLNDataCookieElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLNDataCookieElement: {
         prototype: HTMLNDataCookieElement;
@@ -1634,6 +1793,9 @@ declare global {
         prototype: HTMLNPresentationActionElement;
         new (): HTMLNPresentationActionElement;
     };
+    interface HTMLNPresentationTimerElementEventMap {
+        "ready": any;
+    }
     /**
      * This element creates a timer for the presentation
      * element to use in place of a video, to time actions
@@ -1641,11 +1803,22 @@ declare global {
      * @system presentation
      */
     interface HTMLNPresentationTimerElement extends Components.NPresentationTimer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLNPresentationTimerElementEventMap>(type: K, listener: (this: HTMLNPresentationTimerElement, ev: NPresentationTimerCustomEvent<HTMLNPresentationTimerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLNPresentationTimerElementEventMap>(type: K, listener: (this: HTMLNPresentationTimerElement, ev: NPresentationTimerCustomEvent<HTMLNPresentationTimerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLNPresentationTimerElement: {
         prototype: HTMLNPresentationTimerElement;
         new (): HTMLNPresentationTimerElement;
     };
+    interface HTMLNVideoElementEventMap {
+        "ready": any;
+    }
     /**
      * This element enables the UI services. These are typically
      * web element plug-ins to manage things like Modals, Drawers,
@@ -1654,6 +1827,14 @@ declare global {
      * @extension actions
      */
     interface HTMLNVideoElement extends Components.NVideo, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLNVideoElementEventMap>(type: K, listener: (this: HTMLNVideoElement, ev: NVideoCustomEvent<HTMLNVideoElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLNVideoElementEventMap>(type: K, listener: (this: HTMLNVideoElement, ev: NVideoCustomEvent<HTMLNVideoElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLNVideoElement: {
         prototype: HTMLNVideoElement;
@@ -1830,6 +2011,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     /**
      * This element just holds data to express the actionEvent to fire. This element
      * should always be the child of an n-action-activator.
@@ -1858,6 +2041,7 @@ declare namespace LocalJSX {
     interface NActionActivator {
         /**
           * The activation strategy to use for the contained actions.
+          * @default 'on-element-event'
          */
         "activate"?: | 'on-render'
     | 'on-element-event'
@@ -1867,10 +2051,12 @@ declare namespace LocalJSX {
     | 'on-exit';
         /**
           * Turn on debug statements for load, update and render events.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * Limit the activation to ONCE. This could be helpful if an action has side-effects if it is run multiple times.  Note: the activation state is stored in memory and does not persist across refreshes.
+          * @default false
          */
         "once"?: boolean;
         /**
@@ -1879,6 +2065,7 @@ declare namespace LocalJSX {
         "targetElement"?: string;
         /**
           * This is the name of the event/s to listen to on the target element separated by comma.
+          * @default 'click,keydown'
          */
         "targetEvent"?: string;
         /**
@@ -1911,6 +2098,7 @@ declare namespace LocalJSX {
         "appTitle"?: string;
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+          * @default false
          */
         "debug"?: boolean;
         /**
@@ -1931,6 +2119,7 @@ declare namespace LocalJSX {
     interface NAppAnalytics {
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+          * @default false
          */
         "debug"?: boolean;
         /**
@@ -1973,18 +2162,22 @@ declare namespace LocalJSX {
     interface NAppTheme {
         /**
           * Change the class name that is added to the target element when the theme is determined to be dark.
+          * @default 'dark'
          */
         "darkClass"?: string;
         /**
           * Display the user's system preference.
+          * @default false
          */
         "display"?: boolean;
         /**
           * This element displays the current theme, unless in switch-mode, it will show the opposite.
+          * @default false
          */
         "switch"?: boolean;
         /**
           * Change the element that is decorated with the dark-mode class
+          * @default 'body'
          */
         "targetElement"?: string;
     }
@@ -2001,6 +2194,7 @@ declare namespace LocalJSX {
         "inputClass"?: string;
         /**
           * The inner input ID
+          * @default 'dark-mode'
          */
         "inputId"?: string;
     }
@@ -2019,18 +2213,22 @@ declare namespace LocalJSX {
         "actions"?: AudioActionListener;
         /**
           * Experimental support for providing audio-data in the data-provider system.
+          * @default false
          */
         "dataProvider"?: boolean;
         /**
           * Use debug for verbose logging. Useful for figuring things out.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * The display mode enabled shows player state and stats. No track information or duration is to be displayed.
+          * @default false
          */
         "display"?: boolean;
         /**
           * The Howler.js Script Reference
+          * @default '2.2.3'
          */
         "howlerVersion"?: string;
     }
@@ -2053,6 +2251,7 @@ declare namespace LocalJSX {
     | 'seek';
         /**
           * Readonly topic
+          * @default AUDIO_TOPIC
          */
         "topic"?: "audio";
         /**
@@ -2080,18 +2279,22 @@ declare namespace LocalJSX {
     interface NAudioActionMusicLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad"?: boolean;
         /**
           * The discard strategy the player should use for this file.
+          * @default 'route'
          */
         "discard"?: 'route' | 'next' | 'none';
         /**
           * Set this to true to have the audio file loop.
+          * @default false
          */
         "loop"?: boolean;
         /**
           * This is the loading strategy that determines what it should do after the file is retrieved.
+          * @default 'queue'
          */
         "mode"?: 'queue' | 'play' | 'load';
         /**
@@ -2123,6 +2326,7 @@ declare namespace LocalJSX {
     | 'seek';
         /**
           * Readonly topic
+          * @default 'audio'
          */
         "topic"?: "audio";
         /**
@@ -2150,14 +2354,17 @@ declare namespace LocalJSX {
     interface NAudioActionSoundLoad {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad"?: boolean;
         /**
           * The discard strategy the player should use for this file.
+          * @default 'route'
          */
         "discard"?: 'route' | 'next' | 'none';
         /**
           * This is the loading strategy that determines what it should do after the file is retrieved.
+          * @default 'load'
          */
         "mode"?: 'queue' | 'play' | 'load';
         /**
@@ -2176,6 +2383,7 @@ declare namespace LocalJSX {
     interface NAudioSwitch {
         /**
           * The data provider to store the audio state in.
+          * @default 'storage'
          */
         "dataProvider"?: string;
         /**
@@ -2188,6 +2396,7 @@ declare namespace LocalJSX {
         "inputId"?: string;
         /**
           * Which state property this switch controls.
+          * @default 'enabled'
          */
         "setting"?: 'muted' | 'enabled';
     }
@@ -2207,6 +2416,7 @@ declare namespace LocalJSX {
     interface NContentInclude {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad"?: boolean;
         /**
@@ -2215,10 +2425,12 @@ declare namespace LocalJSX {
         "json"?: string;
         /**
           * Cross Origin Mode
+          * @default 'cors'
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
           * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.
+          * @default false
          */
         "resolveTokens"?: boolean;
         /**
@@ -2240,6 +2452,7 @@ declare namespace LocalJSX {
     interface NContentMarkdown {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad"?: boolean;
         /**
@@ -2248,14 +2461,17 @@ declare namespace LocalJSX {
         "json"?: string;
         /**
           * Cross Origin Mode
+          * @default 'cors'
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
           * Force render with data & route changes.
+          * @default false
          */
         "noCache"?: boolean;
         /**
           * Before rendering HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.
+          * @default false
          */
         "resolveTokens"?: boolean;
         /**
@@ -2276,18 +2492,22 @@ declare namespace LocalJSX {
     interface NContentReference {
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad"?: boolean;
         /**
           * When inline the link/script tags are rendered in-place rather than added to the head.
+          * @default false
          */
         "inline"?: boolean;
         /**
           * Import the script file as a module.
+          * @default false
          */
         "module"?: boolean;
         /**
           * Declare the script only for use when modules aren't supported
+          * @default false
          */
         "noModule"?: boolean;
         /**
@@ -2304,6 +2524,7 @@ declare namespace LocalJSX {
         "styleSrc"?: string;
         /**
           * Timeout (in milliseconds) to wait for the references to load.
+          * @default 1000
          */
         "timeout"?: number;
     }
@@ -2318,10 +2539,12 @@ declare namespace LocalJSX {
     interface NContentRepeat {
         /**
           * Turn on debug statements for load, update and render events.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad"?: boolean;
         /**
@@ -2339,6 +2562,7 @@ declare namespace LocalJSX {
         "itemsSrc"?: string;
         /**
           * Force render with data & route changes.
+          * @default false
          */
         "noCache"?: boolean;
         /**
@@ -2355,22 +2579,27 @@ declare namespace LocalJSX {
     interface NContentReveal {
         /**
           * How far the element moves in the animation (% of element width/height)
+          * @default '30%'
          */
         "animationDistance"?: string;
         /**
           * How long to delay the animation (ms)
+          * @default 0
          */
         "delay"?: number;
         /**
           * Direction the element moves when animating in
+          * @default 'up'
          */
         "direction"?: 'up' | 'down' | 'right' | 'left';
         /**
           * How long the animation runs (ms)
+          * @default 500
          */
         "duration"?: number;
         /**
           * How much of the element must be visible before it animates (% of element height)
+          * @default '33%'
          */
         "triggerDistance"?: string;
     }
@@ -2399,10 +2628,12 @@ declare namespace LocalJSX {
     interface NContentTemplate {
         /**
           * Turn on debug statements for load, update and render events.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * If set, disables auto-rendering of this instance. To fetch the contents change to false or remove attribute.
+          * @default false
          */
         "deferLoad"?: boolean;
         /**
@@ -2411,14 +2642,17 @@ declare namespace LocalJSX {
         "filter"?: string;
         /**
           * When declared, the child script tag is required and should be the query text for the request. Also, this forces the HTTP method to 'POST'.
+          * @default false
          */
         "graphql"?: boolean;
         /**
           * Cross Origin Mode
+          * @default 'cors'
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
           * Force render with data & route changes.
+          * @default false
          */
         "noCache"?: boolean;
         /**
@@ -2447,6 +2681,7 @@ declare namespace LocalJSX {
     interface NData {
         /**
           * Turn on debugging to get helpful messages from the data action systems.
+          * @default false
          */
         "debug"?: boolean;
         /**
@@ -2465,6 +2700,7 @@ declare namespace LocalJSX {
     interface NDataCookie {
         /**
           * Provider name to use in nent expressions.
+          * @default 'cookie'
          */
         "name"?: string;
         /**
@@ -2473,6 +2709,7 @@ declare namespace LocalJSX {
         "onDidConsent"?: (event: NDataCookieCustomEvent<CookieConsent>) => void;
         /**
           * When skipConsent is true, the accept-cookies banner will not be displayed before accessing cookie-data.
+          * @default false
          */
         "skipConsent"?: boolean;
     }
@@ -2490,6 +2727,7 @@ declare namespace LocalJSX {
         "keyPrefix"?: string;
         /**
           * Provider name to use in nent expressions.
+          * @default 'session'
          */
         "name"?: string;
     }
@@ -2507,6 +2745,7 @@ declare namespace LocalJSX {
         "keyPrefix"?: string;
         /**
           * Provider name to use in nent expressions.
+          * @default 'storage'
          */
         "name"?: string;
     }
@@ -2520,6 +2759,7 @@ declare namespace LocalJSX {
     interface NElements {
         /**
           * Turn on debug statements for load, update and render events.
+          * @default false
          */
         "debug"?: boolean;
     }
@@ -2540,14 +2780,17 @@ declare namespace LocalJSX {
         "analyticsEvent"?: string;
         /**
           * To debug timed elements, set this value to true.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * Go to the next view after the timer ends
+          * @default false
          */
         "nextAfter"?: boolean | string;
         /**
           * The element selector for the timer-element to bind for interval events. If left blank, it looks first an n-timer, then for the first n-video.  If none are found, it creates one manually and starts it immediately
+          * @default null
          */
         "timerElement"?: string | null;
     }
@@ -2585,22 +2828,27 @@ declare namespace LocalJSX {
     interface NPresentationTimer {
         /**
           * To debug timed elements, set this value to true.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * If set, disables auto-starting the timer on render. This will be removed if in a view, when the view is activated or when the start method is called.
+          * @default false
          */
         "deferLoad"?: boolean;
         /**
           * Display elapsed seconds
+          * @default false
          */
         "display"?: boolean;
         /**
           * Duration before the timer stops and raises the ended event (seconds). 0 = never
+          * @default 0
          */
         "duration"?: number;
         /**
           * Interval in milliseconds to request between the getAnimationFrame. This affects the precision.
+          * @default 200
          */
         "interval"?: number;
         /**
@@ -2622,14 +2870,17 @@ declare namespace LocalJSX {
     interface NVideo {
         /**
           * To debug timed elements, set this value to true.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * Provide the element property name that holds the duration time in seconds. Default is duration
+          * @default 'duration'
          */
         "durationProperty"?: string;
         /**
           * Provider the end event name. Default is ended
+          * @default 'ended'
          */
         "endEvent"?: string;
         /**
@@ -2638,18 +2889,22 @@ declare namespace LocalJSX {
         "onReady"?: (event: NVideoCustomEvent<any>) => void;
         /**
           * Provide the ready event name. Default is ready
+          * @default 'ready'
          */
         "readyEvent"?: string;
         /**
           * Provide the element selector for the media object that can provide time-updates and media-end events.
+          * @default 'video'
          */
         "targetElement"?: string;
         /**
           * Provide the time-event name. Default is timeupdate
+          * @default 'timeupdate'
          */
         "timeEvent"?: string;
         /**
           * Provide the element property name that holds the current time in seconds. Default is currentTime
+          * @default 'currentTime'
          */
         "timeProperty"?: string;
         /**
@@ -2666,6 +2921,7 @@ declare namespace LocalJSX {
     interface NVideoSwitch {
         /**
           * The data provider to store the audio-enabled state in.
+          * @default 'storage'
          */
         "dataProvider"?: string;
         /**
@@ -2693,34 +2949,42 @@ declare namespace LocalJSX {
         "contentSrc"?: string;
         /**
           * Turn on debug statements for load, update and render events.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * The path for this route should only be matched when it is exact.
+          * @default false
          */
         "exact"?: boolean;
         /**
           * Cross Origin Mode if the content is pulled from a remote location
+          * @default 'cors'
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
           * Force render with data & route changes.
+          * @default false
          */
         "noCache"?: boolean;
         /**
           * The page description for this view.
+          * @default ''
          */
         "pageDescription"?: string;
         /**
           * The keywords to add to the keywords meta-tag for this view.
+          * @default ''
          */
         "pageKeywords"?: string;
         /**
           * The robots instruction for search indexing
+          * @default 'all'
          */
         "pageRobots"?: 'all' | 'noindex' | 'nofollow' | 'none';
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
+          * @default ''
          */
         "pageTitle"?: string;
         /**
@@ -2729,6 +2993,7 @@ declare namespace LocalJSX {
         "path": string;
         /**
           * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this element to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
+          * @default false
          */
         "resolveTokens"?: boolean;
         /**
@@ -2737,6 +3002,7 @@ declare namespace LocalJSX {
         "route": Route;
         /**
           * Header height or offset for scroll-top on this view.
+          * @default 0
          */
         "scrollTopOffset"?: number;
         /**
@@ -2755,6 +3021,7 @@ declare namespace LocalJSX {
     interface NViewDetect {
         /**
           * Only active on the exact href match, and not on child routes
+          * @default false
          */
         "exact"?: boolean;
         /**
@@ -2767,6 +3034,7 @@ declare namespace LocalJSX {
         "routeMatch"?: Path;
         /**
           * Only active on the exact href match using every aspect of the URL including parameters.
+          * @default true
          */
         "strict"?: boolean;
     }
@@ -2780,14 +3048,17 @@ declare namespace LocalJSX {
     interface NViewLink {
         /**
           * The class to add when the matching route is active in the browser
+          * @default 'active'
          */
         "activeClass"?: string;
         /**
           * Provide log messages for path matching.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * Only active on the exact href match, and not on child routes
+          * @default false
          */
         "exact"?: boolean;
         /**
@@ -2800,10 +3071,12 @@ declare namespace LocalJSX {
         "path": string;
         /**
           * Only active on the exact href match using every aspect of the URL including parameters.
+          * @default true
          */
         "strict"?: boolean;
         /**
           * Validates any current-route inputs before navigating. Disables navigation if any inputs are invalid.
+          * @default false
          */
         "validate"?: boolean;
     }
@@ -2831,26 +3104,32 @@ declare namespace LocalJSX {
     interface NViewLinkList {
         /**
           * The active-class to use with the n-view-link elements.
+          * @default 'active'
          */
         "activeClass"?: string;
         /**
           * Specify if the '/' route should be skipped in the list.
+          * @default false
          */
         "excludeRoot"?: boolean;
         /**
           * The list-item-class to use with the li tag
+          * @default ''
          */
         "itemClass"?: string;
         /**
           * The class to add to the anchor tag.
+          * @default ''
          */
         "linkClass"?: string;
         /**
           * The list-class to use with the UL tag
+          * @default ''
          */
         "listClass"?: string;
         /**
           * The display mode for which routes to display.
+          * @default 'parents'
          */
         "mode"?: 'children' | 'parents' | 'siblings';
     }
@@ -2878,10 +3157,12 @@ declare namespace LocalJSX {
     interface NViewNotFound {
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
+          * @default 'Not Found'
          */
         "pageTitle"?: string;
         /**
           * Header height or offset for scroll-top on this view.
+          * @default 0
          */
         "scrollTopOffset"?: number;
         /**
@@ -2905,34 +3186,42 @@ declare namespace LocalJSX {
         "contentSrc"?: string;
         /**
           * To debug timed elements, set this value to true.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * The url for this route should only be matched when it is exact.
+          * @default true
          */
         "exact"?: boolean;
         /**
           * Cross Origin Mode if the content is pulled from a remote location
+          * @default 'cors'
          */
         "mode"?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
         /**
           * Force render with data & route changes.
+          * @default false
          */
         "noCache"?: boolean;
         /**
           * The page description for this view.
+          * @default ''
          */
         "pageDescription"?: string;
         /**
           * The keywords to add to the keywords meta-tag for this view.
+          * @default ''
          */
         "pageKeywords"?: string;
         /**
           * The robots instruction for search indexing
+          * @default 'none'
          */
         "pageRobots"?: 'all' | 'noindex' | 'nofollow' | 'none';
         /**
           * The title for this view. This is prefixed before the app title configured in n-views
+          * @default ''
          */
         "pageTitle"?: string;
         /**
@@ -2941,6 +3230,7 @@ declare namespace LocalJSX {
         "path": string;
         /**
           * Before rendering remote HTML, replace any data-tokens with their resolved values. This also commands this component to re-render it's HTML for data-changes. This can affect performance.  IMPORTANT: ONLY WORKS ON REMOTE HTML
+          * @default false
          */
         "resolveTokens"?: boolean;
         /**
@@ -2957,6 +3247,7 @@ declare namespace LocalJSX {
         "transition"?: string;
         /**
           * The visit strategy for this do. once: persist the visit and never force it again always: do not persist, but don't don't show again in-session optional: do not force this view-do ever. It will be available by URL
+          * @default 'once'
          */
         "visit"?: 'once' | 'always' | 'optional';
         /**
@@ -2977,14 +3268,17 @@ declare namespace LocalJSX {
     interface NViews {
         /**
           * Turn on debugging to get helpful messages from the app, routing, data and action systems.
+          * @default false
          */
         "debug"?: boolean;
         /**
           * Enable the not-found display. To customize it, use: slot="not-found"
+          * @default false
          */
         "notFound"?: boolean;
         /**
           * This is the root path that the actual page is, if it isn't '/', then the router needs to know where to begin creating paths.
+          * @default '/'
          */
         "root"?: string;
         /**
@@ -2993,6 +3287,7 @@ declare namespace LocalJSX {
         "scrollTopOffset"?: number;
         /**
           * Delay redirecting to the start path by this value in seconds.
+          * @default 0
          */
         "startDelay"?: number;
         /**
@@ -3004,47 +3299,328 @@ declare namespace LocalJSX {
          */
         "transition"?: string;
     }
+
+    interface NActionAttributes {
+        "topic": string;
+        "command": string;
+        "when": string;
+    }
+    interface NActionActivatorAttributes {
+        "activate": | 'on-render'
+    | 'on-element-event'
+    | 'on-enter'
+    | 'at-time'
+    | 'at-time-end'
+    | 'on-exit';
+        "targetElement": string;
+        "targetEvent": string;
+        "time": number;
+        "debug": boolean;
+        "once": boolean;
+    }
+    interface NAppAttributes {
+        "appTitle": string;
+        "appDescription": string;
+        "appKeywords": string;
+        "debug": boolean;
+    }
+    interface NAppAnalyticsAttributes {
+        "debug": boolean;
+    }
+    interface NAppShareAttributes {
+        "headline": string;
+        "text": string;
+        "url": string;
+    }
+    interface NAppThemeAttributes {
+        "targetElement": string;
+        "darkClass": string;
+        "display": boolean;
+        "switch": boolean;
+    }
+    interface NAppThemeSwitchAttributes {
+        "inputClass": string;
+        "inputId": string;
+    }
+    interface NAudioAttributes {
+        "howlerVersion": string;
+        "display": boolean;
+        "debug": boolean;
+        "dataProvider": boolean;
+    }
+    interface NAudioActionMusicAttributes {
+        "topic": "audio";
+        "command": | 'start'
+    | 'pause'
+    | 'resume'
+    | 'mute'
+    | 'volume'
+    | 'seek';
+        "trackId": string;
+        "value": string;
+        "when": string;
+    }
+    interface NAudioActionMusicLoadAttributes {
+        "src": string;
+        "trackId": string;
+        "mode": 'queue' | 'play' | 'load';
+        "discard": 'route' | 'next' | 'none';
+        "loop": boolean;
+        "deferLoad": boolean;
+    }
+    interface NAudioActionSoundAttributes {
+        "topic": "audio";
+        "command": | 'start'
+    | 'pause'
+    | 'resume'
+    | 'mute'
+    | 'volume'
+    | 'seek';
+        "trackId": string;
+        "value": string;
+        "when": string;
+    }
+    interface NAudioActionSoundLoadAttributes {
+        "src": string;
+        "trackId": string;
+        "mode": 'queue' | 'play' | 'load';
+        "discard": 'route' | 'next' | 'none';
+        "deferLoad": boolean;
+    }
+    interface NAudioSwitchAttributes {
+        "setting": 'muted' | 'enabled';
+        "inputClass": string;
+        "inputId": string;
+        "dataProvider": string;
+    }
+    interface NContentIncludeAttributes {
+        "src": string;
+        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        "resolveTokens": boolean;
+        "deferLoad": boolean;
+        "when": string;
+        "json": string;
+    }
+    interface NContentMarkdownAttributes {
+        "src": string;
+        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        "resolveTokens": boolean;
+        "deferLoad": boolean;
+        "when": string;
+        "noCache": boolean;
+        "json": string;
+    }
+    interface NContentReferenceAttributes {
+        "styleSrc": string;
+        "scriptSrc": string;
+        "module": boolean;
+        "noModule": boolean;
+        "inline": boolean;
+        "deferLoad": boolean;
+        "timeout": number;
+    }
+    interface NContentRepeatAttributes {
+        "items": string;
+        "itemsSrc": string;
+        "filter": string;
+        "deferLoad": boolean;
+        "debug": boolean;
+        "noCache": boolean;
+        "when": string;
+    }
+    interface NContentRevealAttributes {
+        "direction": 'up' | 'down' | 'right' | 'left';
+        "delay": number;
+        "duration": number;
+        "animationDistance": string;
+        "triggerDistance": string;
+    }
+    interface NContentShowAttributes {
+        "when": string;
+    }
+    interface NContentTemplateAttributes {
+        "text": string;
+        "deferLoad": boolean;
+        "src": string;
+        "filter": string;
+        "debug": boolean;
+        "noCache": boolean;
+        "when": string;
+        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        "graphql": boolean;
+    }
+    interface NDataAttributes {
+        "debug": boolean;
+        "providerTimeout": number;
+    }
+    interface NDataCookieAttributes {
+        "skipConsent": boolean;
+        "name": string;
+    }
+    interface NDataSessionAttributes {
+        "keyPrefix": string;
+        "name": string;
+    }
+    interface NDataStorageAttributes {
+        "keyPrefix": string;
+        "name": string;
+    }
+    interface NElementsAttributes {
+        "debug": boolean;
+    }
+    interface NPresentationAttributes {
+        "timerElement": string | null;
+        "debug": boolean;
+        "nextAfter": string;
+        "analyticsEvent": string;
+    }
+    interface NPresentationActionAttributes {
+        "topic": string;
+        "command": string;
+        "time": string;
+        "when": string;
+    }
+    interface NPresentationTimerAttributes {
+        "debug": boolean;
+        "duration": number;
+        "interval": number;
+        "display": boolean;
+        "deferLoad": boolean;
+    }
+    interface NVideoAttributes {
+        "targetElement": string;
+        "timeEvent": string;
+        "readyEvent": string;
+        "timeProperty": string;
+        "durationProperty": string;
+        "endEvent": string;
+        "debug": boolean;
+    }
+    interface NVideoSwitchAttributes {
+        "inputClass": string;
+        "inputId": string;
+        "dataProvider": string;
+    }
+    interface NViewAttributes {
+        "pageTitle": string;
+        "pageDescription": string;
+        "pageKeywords": string;
+        "pageRobots": 'all' | 'noindex' | 'nofollow' | 'none';
+        "scrollTopOffset": number;
+        "transition": string;
+        "path": string;
+        "exact": boolean;
+        "src": string;
+        "contentSrc": string;
+        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        "resolveTokens": boolean;
+        "debug": boolean;
+        "noCache": boolean;
+    }
+    interface NViewDetectAttributes {
+        "route": string;
+        "routeMatch": Path;
+        "exact": boolean;
+        "strict": boolean;
+    }
+    interface NViewLinkAttributes {
+        "path": string;
+        "linkClass": string;
+        "activeClass": string;
+        "exact": boolean;
+        "strict": boolean;
+        "debug": boolean;
+        "validate": boolean;
+    }
+    interface NViewLinkBackAttributes {
+        "text": string;
+        "linkClass": string;
+    }
+    interface NViewLinkListAttributes {
+        "mode": 'children' | 'parents' | 'siblings';
+        "activeClass": string;
+        "linkClass": string;
+        "listClass": string;
+        "itemClass": string;
+        "excludeRoot": boolean;
+    }
+    interface NViewLinkNextAttributes {
+        "text": string;
+        "linkClass": string;
+    }
+    interface NViewNotFoundAttributes {
+        "pageTitle": string;
+        "scrollTopOffset": number;
+        "transition": string;
+    }
+    interface NViewPromptAttributes {
+        "pageTitle": string;
+        "pageDescription": string;
+        "pageKeywords": string;
+        "pageRobots": 'all' | 'noindex' | 'nofollow' | 'none';
+        "scrollTopOffset": number;
+        "transition": string;
+        "path": string;
+        "exact": boolean;
+        "visit": 'once' | 'always' | 'optional';
+        "when": string;
+        "contentSrc": string;
+        "mode": 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+        "resolveTokens": boolean;
+        "noCache": boolean;
+        "debug": boolean;
+    }
+    interface NViewsAttributes {
+        "root": string;
+        "transition": string;
+        "startPath": string;
+        "startDelay": number;
+        "scrollTopOffset": number;
+        "debug": boolean;
+        "notFound": boolean;
+    }
+
     interface IntrinsicElements {
-        "n-action": NAction;
-        "n-action-activator": NActionActivator;
-        "n-app": NApp;
-        "n-app-analytics": NAppAnalytics;
-        "n-app-share": NAppShare;
-        "n-app-theme": NAppTheme;
-        "n-app-theme-switch": NAppThemeSwitch;
-        "n-audio": NAudio;
-        "n-audio-action-music": NAudioActionMusic;
-        "n-audio-action-music-load": NAudioActionMusicLoad;
-        "n-audio-action-sound": NAudioActionSound;
-        "n-audio-action-sound-load": NAudioActionSoundLoad;
-        "n-audio-switch": NAudioSwitch;
+        "n-action": Omit<NAction, keyof NActionAttributes> & { [K in keyof NAction & keyof NActionAttributes]?: NAction[K] } & { [K in keyof NAction & keyof NActionAttributes as `attr:${K}`]?: NActionAttributes[K] } & { [K in keyof NAction & keyof NActionAttributes as `prop:${K}`]?: NAction[K] } & OneOf<"topic", NAction["topic"], NActionAttributes["topic"]> & OneOf<"command", NAction["command"], NActionAttributes["command"]>;
+        "n-action-activator": Omit<NActionActivator, keyof NActionActivatorAttributes> & { [K in keyof NActionActivator & keyof NActionActivatorAttributes]?: NActionActivator[K] } & { [K in keyof NActionActivator & keyof NActionActivatorAttributes as `attr:${K}`]?: NActionActivatorAttributes[K] } & { [K in keyof NActionActivator & keyof NActionActivatorAttributes as `prop:${K}`]?: NActionActivator[K] };
+        "n-app": Omit<NApp, keyof NAppAttributes> & { [K in keyof NApp & keyof NAppAttributes]?: NApp[K] } & { [K in keyof NApp & keyof NAppAttributes as `attr:${K}`]?: NAppAttributes[K] } & { [K in keyof NApp & keyof NAppAttributes as `prop:${K}`]?: NApp[K] };
+        "n-app-analytics": Omit<NAppAnalytics, keyof NAppAnalyticsAttributes> & { [K in keyof NAppAnalytics & keyof NAppAnalyticsAttributes]?: NAppAnalytics[K] } & { [K in keyof NAppAnalytics & keyof NAppAnalyticsAttributes as `attr:${K}`]?: NAppAnalyticsAttributes[K] } & { [K in keyof NAppAnalytics & keyof NAppAnalyticsAttributes as `prop:${K}`]?: NAppAnalytics[K] };
+        "n-app-share": Omit<NAppShare, keyof NAppShareAttributes> & { [K in keyof NAppShare & keyof NAppShareAttributes]?: NAppShare[K] } & { [K in keyof NAppShare & keyof NAppShareAttributes as `attr:${K}`]?: NAppShareAttributes[K] } & { [K in keyof NAppShare & keyof NAppShareAttributes as `prop:${K}`]?: NAppShare[K] };
+        "n-app-theme": Omit<NAppTheme, keyof NAppThemeAttributes> & { [K in keyof NAppTheme & keyof NAppThemeAttributes]?: NAppTheme[K] } & { [K in keyof NAppTheme & keyof NAppThemeAttributes as `attr:${K}`]?: NAppThemeAttributes[K] } & { [K in keyof NAppTheme & keyof NAppThemeAttributes as `prop:${K}`]?: NAppTheme[K] };
+        "n-app-theme-switch": Omit<NAppThemeSwitch, keyof NAppThemeSwitchAttributes> & { [K in keyof NAppThemeSwitch & keyof NAppThemeSwitchAttributes]?: NAppThemeSwitch[K] } & { [K in keyof NAppThemeSwitch & keyof NAppThemeSwitchAttributes as `attr:${K}`]?: NAppThemeSwitchAttributes[K] } & { [K in keyof NAppThemeSwitch & keyof NAppThemeSwitchAttributes as `prop:${K}`]?: NAppThemeSwitch[K] };
+        "n-audio": Omit<NAudio, keyof NAudioAttributes> & { [K in keyof NAudio & keyof NAudioAttributes]?: NAudio[K] } & { [K in keyof NAudio & keyof NAudioAttributes as `attr:${K}`]?: NAudioAttributes[K] } & { [K in keyof NAudio & keyof NAudioAttributes as `prop:${K}`]?: NAudio[K] };
+        "n-audio-action-music": Omit<NAudioActionMusic, keyof NAudioActionMusicAttributes> & { [K in keyof NAudioActionMusic & keyof NAudioActionMusicAttributes]?: NAudioActionMusic[K] } & { [K in keyof NAudioActionMusic & keyof NAudioActionMusicAttributes as `attr:${K}`]?: NAudioActionMusicAttributes[K] } & { [K in keyof NAudioActionMusic & keyof NAudioActionMusicAttributes as `prop:${K}`]?: NAudioActionMusic[K] } & OneOf<"command", NAudioActionMusic["command"], NAudioActionMusicAttributes["command"]>;
+        "n-audio-action-music-load": Omit<NAudioActionMusicLoad, keyof NAudioActionMusicLoadAttributes> & { [K in keyof NAudioActionMusicLoad & keyof NAudioActionMusicLoadAttributes]?: NAudioActionMusicLoad[K] } & { [K in keyof NAudioActionMusicLoad & keyof NAudioActionMusicLoadAttributes as `attr:${K}`]?: NAudioActionMusicLoadAttributes[K] } & { [K in keyof NAudioActionMusicLoad & keyof NAudioActionMusicLoadAttributes as `prop:${K}`]?: NAudioActionMusicLoad[K] } & OneOf<"src", NAudioActionMusicLoad["src"], NAudioActionMusicLoadAttributes["src"]> & OneOf<"trackId", NAudioActionMusicLoad["trackId"], NAudioActionMusicLoadAttributes["trackId"]>;
+        "n-audio-action-sound": Omit<NAudioActionSound, keyof NAudioActionSoundAttributes> & { [K in keyof NAudioActionSound & keyof NAudioActionSoundAttributes]?: NAudioActionSound[K] } & { [K in keyof NAudioActionSound & keyof NAudioActionSoundAttributes as `attr:${K}`]?: NAudioActionSoundAttributes[K] } & { [K in keyof NAudioActionSound & keyof NAudioActionSoundAttributes as `prop:${K}`]?: NAudioActionSound[K] } & OneOf<"command", NAudioActionSound["command"], NAudioActionSoundAttributes["command"]>;
+        "n-audio-action-sound-load": Omit<NAudioActionSoundLoad, keyof NAudioActionSoundLoadAttributes> & { [K in keyof NAudioActionSoundLoad & keyof NAudioActionSoundLoadAttributes]?: NAudioActionSoundLoad[K] } & { [K in keyof NAudioActionSoundLoad & keyof NAudioActionSoundLoadAttributes as `attr:${K}`]?: NAudioActionSoundLoadAttributes[K] } & { [K in keyof NAudioActionSoundLoad & keyof NAudioActionSoundLoadAttributes as `prop:${K}`]?: NAudioActionSoundLoad[K] } & OneOf<"src", NAudioActionSoundLoad["src"], NAudioActionSoundLoadAttributes["src"]> & OneOf<"trackId", NAudioActionSoundLoad["trackId"], NAudioActionSoundLoadAttributes["trackId"]>;
+        "n-audio-switch": Omit<NAudioSwitch, keyof NAudioSwitchAttributes> & { [K in keyof NAudioSwitch & keyof NAudioSwitchAttributes]?: NAudioSwitch[K] } & { [K in keyof NAudioSwitch & keyof NAudioSwitchAttributes as `attr:${K}`]?: NAudioSwitchAttributes[K] } & { [K in keyof NAudioSwitch & keyof NAudioSwitchAttributes as `prop:${K}`]?: NAudioSwitch[K] };
         "n-content": NContent;
-        "n-content-include": NContentInclude;
-        "n-content-markdown": NContentMarkdown;
-        "n-content-reference": NContentReference;
-        "n-content-repeat": NContentRepeat;
-        "n-content-reveal": NContentReveal;
-        "n-content-show": NContentShow;
-        "n-content-template": NContentTemplate;
-        "n-data": NData;
-        "n-data-cookie": NDataCookie;
-        "n-data-session": NDataSession;
-        "n-data-storage": NDataStorage;
-        "n-elements": NElements;
-        "n-presentation": NPresentation;
-        "n-presentation-action": NPresentationAction;
-        "n-presentation-timer": NPresentationTimer;
-        "n-video": NVideo;
-        "n-video-switch": NVideoSwitch;
-        "n-view": NView;
-        "n-view-detect": NViewDetect;
-        "n-view-link": NViewLink;
-        "n-view-link-back": NViewLinkBack;
-        "n-view-link-list": NViewLinkList;
-        "n-view-link-next": NViewLinkNext;
-        "n-view-not-found": NViewNotFound;
-        "n-view-prompt": NViewPrompt;
-        "n-views": NViews;
+        "n-content-include": Omit<NContentInclude, keyof NContentIncludeAttributes> & { [K in keyof NContentInclude & keyof NContentIncludeAttributes]?: NContentInclude[K] } & { [K in keyof NContentInclude & keyof NContentIncludeAttributes as `attr:${K}`]?: NContentIncludeAttributes[K] } & { [K in keyof NContentInclude & keyof NContentIncludeAttributes as `prop:${K}`]?: NContentInclude[K] } & OneOf<"src", NContentInclude["src"], NContentIncludeAttributes["src"]>;
+        "n-content-markdown": Omit<NContentMarkdown, keyof NContentMarkdownAttributes> & { [K in keyof NContentMarkdown & keyof NContentMarkdownAttributes]?: NContentMarkdown[K] } & { [K in keyof NContentMarkdown & keyof NContentMarkdownAttributes as `attr:${K}`]?: NContentMarkdownAttributes[K] } & { [K in keyof NContentMarkdown & keyof NContentMarkdownAttributes as `prop:${K}`]?: NContentMarkdown[K] };
+        "n-content-reference": Omit<NContentReference, keyof NContentReferenceAttributes> & { [K in keyof NContentReference & keyof NContentReferenceAttributes]?: NContentReference[K] } & { [K in keyof NContentReference & keyof NContentReferenceAttributes as `attr:${K}`]?: NContentReferenceAttributes[K] } & { [K in keyof NContentReference & keyof NContentReferenceAttributes as `prop:${K}`]?: NContentReference[K] };
+        "n-content-repeat": Omit<NContentRepeat, keyof NContentRepeatAttributes> & { [K in keyof NContentRepeat & keyof NContentRepeatAttributes]?: NContentRepeat[K] } & { [K in keyof NContentRepeat & keyof NContentRepeatAttributes as `attr:${K}`]?: NContentRepeatAttributes[K] } & { [K in keyof NContentRepeat & keyof NContentRepeatAttributes as `prop:${K}`]?: NContentRepeat[K] };
+        "n-content-reveal": Omit<NContentReveal, keyof NContentRevealAttributes> & { [K in keyof NContentReveal & keyof NContentRevealAttributes]?: NContentReveal[K] } & { [K in keyof NContentReveal & keyof NContentRevealAttributes as `attr:${K}`]?: NContentRevealAttributes[K] } & { [K in keyof NContentReveal & keyof NContentRevealAttributes as `prop:${K}`]?: NContentReveal[K] };
+        "n-content-show": Omit<NContentShow, keyof NContentShowAttributes> & { [K in keyof NContentShow & keyof NContentShowAttributes]?: NContentShow[K] } & { [K in keyof NContentShow & keyof NContentShowAttributes as `attr:${K}`]?: NContentShowAttributes[K] } & { [K in keyof NContentShow & keyof NContentShowAttributes as `prop:${K}`]?: NContentShow[K] } & OneOf<"when", NContentShow["when"], NContentShowAttributes["when"]>;
+        "n-content-template": Omit<NContentTemplate, keyof NContentTemplateAttributes> & { [K in keyof NContentTemplate & keyof NContentTemplateAttributes]?: NContentTemplate[K] } & { [K in keyof NContentTemplate & keyof NContentTemplateAttributes as `attr:${K}`]?: NContentTemplateAttributes[K] } & { [K in keyof NContentTemplate & keyof NContentTemplateAttributes as `prop:${K}`]?: NContentTemplate[K] };
+        "n-data": Omit<NData, keyof NDataAttributes> & { [K in keyof NData & keyof NDataAttributes]?: NData[K] } & { [K in keyof NData & keyof NDataAttributes as `attr:${K}`]?: NDataAttributes[K] } & { [K in keyof NData & keyof NDataAttributes as `prop:${K}`]?: NData[K] };
+        "n-data-cookie": Omit<NDataCookie, keyof NDataCookieAttributes> & { [K in keyof NDataCookie & keyof NDataCookieAttributes]?: NDataCookie[K] } & { [K in keyof NDataCookie & keyof NDataCookieAttributes as `attr:${K}`]?: NDataCookieAttributes[K] } & { [K in keyof NDataCookie & keyof NDataCookieAttributes as `prop:${K}`]?: NDataCookie[K] };
+        "n-data-session": Omit<NDataSession, keyof NDataSessionAttributes> & { [K in keyof NDataSession & keyof NDataSessionAttributes]?: NDataSession[K] } & { [K in keyof NDataSession & keyof NDataSessionAttributes as `attr:${K}`]?: NDataSessionAttributes[K] } & { [K in keyof NDataSession & keyof NDataSessionAttributes as `prop:${K}`]?: NDataSession[K] };
+        "n-data-storage": Omit<NDataStorage, keyof NDataStorageAttributes> & { [K in keyof NDataStorage & keyof NDataStorageAttributes]?: NDataStorage[K] } & { [K in keyof NDataStorage & keyof NDataStorageAttributes as `attr:${K}`]?: NDataStorageAttributes[K] } & { [K in keyof NDataStorage & keyof NDataStorageAttributes as `prop:${K}`]?: NDataStorage[K] };
+        "n-elements": Omit<NElements, keyof NElementsAttributes> & { [K in keyof NElements & keyof NElementsAttributes]?: NElements[K] } & { [K in keyof NElements & keyof NElementsAttributes as `attr:${K}`]?: NElementsAttributes[K] } & { [K in keyof NElements & keyof NElementsAttributes as `prop:${K}`]?: NElements[K] };
+        "n-presentation": Omit<NPresentation, keyof NPresentationAttributes> & { [K in keyof NPresentation & keyof NPresentationAttributes]?: NPresentation[K] } & { [K in keyof NPresentation & keyof NPresentationAttributes as `attr:${K}`]?: NPresentationAttributes[K] } & { [K in keyof NPresentation & keyof NPresentationAttributes as `prop:${K}`]?: NPresentation[K] };
+        "n-presentation-action": Omit<NPresentationAction, keyof NPresentationActionAttributes> & { [K in keyof NPresentationAction & keyof NPresentationActionAttributes]?: NPresentationAction[K] } & { [K in keyof NPresentationAction & keyof NPresentationActionAttributes as `attr:${K}`]?: NPresentationActionAttributes[K] } & { [K in keyof NPresentationAction & keyof NPresentationActionAttributes as `prop:${K}`]?: NPresentationAction[K] } & OneOf<"topic", NPresentationAction["topic"], NPresentationActionAttributes["topic"]> & OneOf<"command", NPresentationAction["command"], NPresentationActionAttributes["command"]>;
+        "n-presentation-timer": Omit<NPresentationTimer, keyof NPresentationTimerAttributes> & { [K in keyof NPresentationTimer & keyof NPresentationTimerAttributes]?: NPresentationTimer[K] } & { [K in keyof NPresentationTimer & keyof NPresentationTimerAttributes as `attr:${K}`]?: NPresentationTimerAttributes[K] } & { [K in keyof NPresentationTimer & keyof NPresentationTimerAttributes as `prop:${K}`]?: NPresentationTimer[K] };
+        "n-video": Omit<NVideo, keyof NVideoAttributes> & { [K in keyof NVideo & keyof NVideoAttributes]?: NVideo[K] } & { [K in keyof NVideo & keyof NVideoAttributes as `attr:${K}`]?: NVideoAttributes[K] } & { [K in keyof NVideo & keyof NVideoAttributes as `prop:${K}`]?: NVideo[K] };
+        "n-video-switch": Omit<NVideoSwitch, keyof NVideoSwitchAttributes> & { [K in keyof NVideoSwitch & keyof NVideoSwitchAttributes]?: NVideoSwitch[K] } & { [K in keyof NVideoSwitch & keyof NVideoSwitchAttributes as `attr:${K}`]?: NVideoSwitchAttributes[K] } & { [K in keyof NVideoSwitch & keyof NVideoSwitchAttributes as `prop:${K}`]?: NVideoSwitch[K] };
+        "n-view": Omit<NView, keyof NViewAttributes> & { [K in keyof NView & keyof NViewAttributes]?: NView[K] } & { [K in keyof NView & keyof NViewAttributes as `attr:${K}`]?: NViewAttributes[K] } & { [K in keyof NView & keyof NViewAttributes as `prop:${K}`]?: NView[K] } & OneOf<"path", NView["path"], NViewAttributes["path"]>;
+        "n-view-detect": Omit<NViewDetect, keyof NViewDetectAttributes> & { [K in keyof NViewDetect & keyof NViewDetectAttributes]?: NViewDetect[K] } & { [K in keyof NViewDetect & keyof NViewDetectAttributes as `attr:${K}`]?: NViewDetectAttributes[K] } & { [K in keyof NViewDetect & keyof NViewDetectAttributes as `prop:${K}`]?: NViewDetect[K] } & OneOf<"route", NViewDetect["route"], NViewDetectAttributes["route"]>;
+        "n-view-link": Omit<NViewLink, keyof NViewLinkAttributes> & { [K in keyof NViewLink & keyof NViewLinkAttributes]?: NViewLink[K] } & { [K in keyof NViewLink & keyof NViewLinkAttributes as `attr:${K}`]?: NViewLinkAttributes[K] } & { [K in keyof NViewLink & keyof NViewLinkAttributes as `prop:${K}`]?: NViewLink[K] } & OneOf<"path", NViewLink["path"], NViewLinkAttributes["path"]>;
+        "n-view-link-back": Omit<NViewLinkBack, keyof NViewLinkBackAttributes> & { [K in keyof NViewLinkBack & keyof NViewLinkBackAttributes]?: NViewLinkBack[K] } & { [K in keyof NViewLinkBack & keyof NViewLinkBackAttributes as `attr:${K}`]?: NViewLinkBackAttributes[K] } & { [K in keyof NViewLinkBack & keyof NViewLinkBackAttributes as `prop:${K}`]?: NViewLinkBack[K] };
+        "n-view-link-list": Omit<NViewLinkList, keyof NViewLinkListAttributes> & { [K in keyof NViewLinkList & keyof NViewLinkListAttributes]?: NViewLinkList[K] } & { [K in keyof NViewLinkList & keyof NViewLinkListAttributes as `attr:${K}`]?: NViewLinkListAttributes[K] } & { [K in keyof NViewLinkList & keyof NViewLinkListAttributes as `prop:${K}`]?: NViewLinkList[K] };
+        "n-view-link-next": Omit<NViewLinkNext, keyof NViewLinkNextAttributes> & { [K in keyof NViewLinkNext & keyof NViewLinkNextAttributes]?: NViewLinkNext[K] } & { [K in keyof NViewLinkNext & keyof NViewLinkNextAttributes as `attr:${K}`]?: NViewLinkNextAttributes[K] } & { [K in keyof NViewLinkNext & keyof NViewLinkNextAttributes as `prop:${K}`]?: NViewLinkNext[K] };
+        "n-view-not-found": Omit<NViewNotFound, keyof NViewNotFoundAttributes> & { [K in keyof NViewNotFound & keyof NViewNotFoundAttributes]?: NViewNotFound[K] } & { [K in keyof NViewNotFound & keyof NViewNotFoundAttributes as `attr:${K}`]?: NViewNotFoundAttributes[K] } & { [K in keyof NViewNotFound & keyof NViewNotFoundAttributes as `prop:${K}`]?: NViewNotFound[K] };
+        "n-view-prompt": Omit<NViewPrompt, keyof NViewPromptAttributes> & { [K in keyof NViewPrompt & keyof NViewPromptAttributes]?: NViewPrompt[K] } & { [K in keyof NViewPrompt & keyof NViewPromptAttributes as `attr:${K}`]?: NViewPromptAttributes[K] } & { [K in keyof NViewPrompt & keyof NViewPromptAttributes as `prop:${K}`]?: NViewPrompt[K] } & OneOf<"path", NViewPrompt["path"], NViewPromptAttributes["path"]>;
+        "n-views": Omit<NViews, keyof NViewsAttributes> & { [K in keyof NViews & keyof NViewsAttributes]?: NViews[K] } & { [K in keyof NViews & keyof NViewsAttributes as `attr:${K}`]?: NViewsAttributes[K] } & { [K in keyof NViews & keyof NViewsAttributes as `prop:${K}`]?: NViews[K] };
     }
 }
 export { LocalJSX as JSX };
@@ -3056,14 +3632,14 @@ declare module "@stencil/core" {
              * should always be the child of an n-action-activator.
              * @system actions
              */
-            "n-action": LocalJSX.NAction & JSXBase.HTMLAttributes<HTMLNActionElement>;
+            "n-action": LocalJSX.IntrinsicElements["n-action"] & JSXBase.HTMLAttributes<HTMLNActionElement>;
             /**
              * This element defines how or when a group of actions are
              * activated. The actions activated must be included between
              * this elements tags.
              * @system actions
              */
-            "n-action-activator": LocalJSX.NActionActivator & JSXBase.HTMLAttributes<HTMLNActionActivatorElement>;
+            "n-action-activator": LocalJSX.IntrinsicElements["n-action-activator"] & JSXBase.HTMLAttributes<HTMLNActionActivatorElement>;
             /**
              * This component enables app services. These are console logging,
              * theming and event-delegation. As well as a plugin system to
@@ -3074,33 +3650,33 @@ declare module "@stencil/core" {
              * @extension custom
              * @extension elements
              */
-            "n-app": LocalJSX.NApp & JSXBase.HTMLAttributes<HTMLNAppElement>;
+            "n-app": LocalJSX.IntrinsicElements["n-app"] & JSXBase.HTMLAttributes<HTMLNAppElement>;
             /**
              * This element serves as a proxy to delegate event-based
              * functions to be consumed by various analytics snippets.
              * @system app
              * @extension actions
              */
-            "n-app-analytics": LocalJSX.NAppAnalytics & JSXBase.HTMLAttributes<HTMLNAppAnalyticsElement>;
+            "n-app-analytics": LocalJSX.IntrinsicElements["n-app-analytics"] & JSXBase.HTMLAttributes<HTMLNAppAnalyticsElement>;
             /**
              * This element leverages the browser's web-share
              * API to give the application a native-app feel.
              * @system app
              */
-            "n-app-share": LocalJSX.NAppShare & JSXBase.HTMLAttributes<HTMLNAppShareElement>;
+            "n-app-share": LocalJSX.IntrinsicElements["n-app-share"] & JSXBase.HTMLAttributes<HTMLNAppShareElement>;
             /**
              * This element checks for the preferred light/dark theme preference of the
              * user and sets the ui state: theme, accordingly.
              * @system app
              */
-            "n-app-theme": LocalJSX.NAppTheme & JSXBase.HTMLAttributes<HTMLNAppThemeElement>;
+            "n-app-theme": LocalJSX.IntrinsicElements["n-app-theme"] & JSXBase.HTMLAttributes<HTMLNAppThemeElement>;
             /**
              * This element displays a checkbox to control the
              * dark-theme setting applied to the ui.
              * Default: user-preference
              * @system app
              */
-            "n-app-theme-switch": LocalJSX.NAppThemeSwitch & JSXBase.HTMLAttributes<HTMLNAppThemeSwitchElement>;
+            "n-app-theme-switch": LocalJSX.IntrinsicElements["n-app-theme-switch"] & JSXBase.HTMLAttributes<HTMLNAppThemeSwitchElement>;
             /**
              * Use this element only once per page to enable audio features.
              * It will add a CDN reference to Howler.js:
@@ -3109,7 +3685,7 @@ declare module "@stencil/core" {
              * @extension actions
              * @extension provider
              */
-            "n-audio": LocalJSX.NAudio & JSXBase.HTMLAttributes<HTMLNAudioElement>;
+            "n-audio": LocalJSX.IntrinsicElements["n-audio"] & JSXBase.HTMLAttributes<HTMLNAudioElement>;
             /**
              * This element represents an action to be fired. This
              * specialized action encapsulates required parameters
@@ -3117,7 +3693,7 @@ declare module "@stencil/core" {
              * @system audio
              * @system actions
              */
-            "n-audio-action-music": LocalJSX.NAudioActionMusic & JSXBase.HTMLAttributes<HTMLNAudioActionMusicElement>;
+            "n-audio-action-music": LocalJSX.IntrinsicElements["n-audio-action-music"] & JSXBase.HTMLAttributes<HTMLNAudioActionMusicElement>;
             /**
              * This element declares audio used within this \<n-view-prompt\> route.
              * The \<n-audio-action-sound-load\> instructs the player to load audio files
@@ -3127,7 +3703,7 @@ declare module "@stencil/core" {
              * @system audio
              * @system actions
              */
-            "n-audio-action-music-load": LocalJSX.NAudioActionMusicLoad & JSXBase.HTMLAttributes<HTMLNAudioActionMusicLoadElement>;
+            "n-audio-action-music-load": LocalJSX.IntrinsicElements["n-audio-action-music-load"] & JSXBase.HTMLAttributes<HTMLNAudioActionMusicLoadElement>;
             /**
              * This element represents an action to be fired. This
              * specialized action encapsulates required parameters
@@ -3135,7 +3711,7 @@ declare module "@stencil/core" {
              * @system audio
              * @system actions
              */
-            "n-audio-action-sound": LocalJSX.NAudioActionSound & JSXBase.HTMLAttributes<HTMLNAudioActionSoundElement>;
+            "n-audio-action-sound": LocalJSX.IntrinsicElements["n-audio-action-sound"] & JSXBase.HTMLAttributes<HTMLNAudioActionSoundElement>;
             /**
              * This element declares audio used within this \<n-view-prompt\> route.
              * The \<n-audio-action-sound-load\> instructs the player to load audio files
@@ -3145,17 +3721,17 @@ declare module "@stencil/core" {
              * @system audio
              * @system actions
              */
-            "n-audio-action-sound-load": LocalJSX.NAudioActionSoundLoad & JSXBase.HTMLAttributes<HTMLNAudioActionSoundLoadElement>;
+            "n-audio-action-sound-load": LocalJSX.IntrinsicElements["n-audio-action-sound-load"] & JSXBase.HTMLAttributes<HTMLNAudioActionSoundLoadElement>;
             /**
              * This element exposes a checkbox to enable or disable global audio for background sounds and video.
              * @system audio
              */
-            "n-audio-switch": LocalJSX.NAudioSwitch & JSXBase.HTMLAttributes<HTMLNAudioSwitchElement>;
+            "n-audio-switch": LocalJSX.IntrinsicElements["n-audio-switch"] & JSXBase.HTMLAttributes<HTMLNAudioSwitchElement>;
             /**
              * This component should surround the inner-content of a remote HTML file that can be prioritized during SPA navigation.
              * @system content
              */
-            "n-content": LocalJSX.NContent & JSXBase.HTMLAttributes<HTMLNContentElement>;
+            "n-content": LocalJSX.IntrinsicElements["n-content"] & JSXBase.HTMLAttributes<HTMLNContentElement>;
             /**
              * This element fetches remote HTML and renders it safely and directly
              * into the page when and where you tell it too, as soon as it renders.
@@ -3163,7 +3739,7 @@ declare module "@stencil/core" {
              * @extension data
              * @extension elements
              */
-            "n-content-include": LocalJSX.NContentInclude & JSXBase.HTMLAttributes<HTMLNContentIncludeElement>;
+            "n-content-include": LocalJSX.IntrinsicElements["n-content-include"] & JSXBase.HTMLAttributes<HTMLNContentIncludeElement>;
             /**
              * This element converts markdown text to HTML. It can render
              * from an inline-template or from a remote source.
@@ -3171,14 +3747,14 @@ declare module "@stencil/core" {
              * @extension data
              * @extension elements
              */
-            "n-content-markdown": LocalJSX.NContentMarkdown & JSXBase.HTMLAttributes<HTMLNContentMarkdownElement>;
+            "n-content-markdown": LocalJSX.IntrinsicElements["n-content-markdown"] & JSXBase.HTMLAttributes<HTMLNContentMarkdownElement>;
             /**
              * This element makes a single reference to script and css sources. It can
              * be used by HTML fragment to ensure a reference is made, without worrying
              * that it will create duplicate references.
              * @system content
              */
-            "n-content-reference": LocalJSX.NContentReference & JSXBase.HTMLAttributes<HTMLNContentReferenceElement>;
+            "n-content-reference": LocalJSX.IntrinsicElements["n-content-reference"] & JSXBase.HTMLAttributes<HTMLNContentReferenceElement>;
             /**
              * This tag renders a template for each item in the configured array.
              * The item template uses value expressions to insert data from any
@@ -3187,14 +3763,14 @@ declare module "@stencil/core" {
              * @extension data
              * @extension elements
              */
-            "n-content-repeat": LocalJSX.NContentRepeat & JSXBase.HTMLAttributes<HTMLNContentRepeatElement>;
+            "n-content-repeat": LocalJSX.IntrinsicElements["n-content-repeat"] & JSXBase.HTMLAttributes<HTMLNContentRepeatElement>;
             /**
              * Use this element to add a little flair to any HTML.
              * It creates an entrance animation using the configured
              * attributes to add pop to any page.
              * @system content
              */
-            "n-content-reveal": LocalJSX.NContentReveal & JSXBase.HTMLAttributes<HTMLNContentRevealElement>;
+            "n-content-reveal": LocalJSX.IntrinsicElements["n-content-reveal"] & JSXBase.HTMLAttributes<HTMLNContentRevealElement>;
             /**
              * This element conditionally renders child elements based on the
              * configured predicate applied to the when value predicate.
@@ -3203,7 +3779,7 @@ declare module "@stencil/core" {
              * @system content
              * @extension data
              */
-            "n-content-show": LocalJSX.NContentShow & JSXBase.HTMLAttributes<HTMLNContentShowElement>;
+            "n-content-show": LocalJSX.IntrinsicElements["n-content-show"] & JSXBase.HTMLAttributes<HTMLNContentShowElement>;
             /**
              * Render data directly into HTML using declarative expressions.
              * This element renders the expression with all data-tokens
@@ -3212,7 +3788,7 @@ declare module "@stencil/core" {
              * @extension data
              * @extension elements
              */
-            "n-content-template": LocalJSX.NContentTemplate & JSXBase.HTMLAttributes<HTMLNContentTemplateElement>;
+            "n-content-template": LocalJSX.IntrinsicElements["n-content-template"] & JSXBase.HTMLAttributes<HTMLNContentTemplateElement>;
             /**
              * This element enables the Data Provider system. It hosts
              * the action-listener that registers providers.  Add this tag
@@ -3221,7 +3797,7 @@ declare module "@stencil/core" {
              * @extension actions
              * @extension custom
              */
-            "n-data": LocalJSX.NData & JSXBase.HTMLAttributes<HTMLNDataElement>;
+            "n-data": LocalJSX.IntrinsicElements["n-data"] & JSXBase.HTMLAttributes<HTMLNDataElement>;
             /**
              * This element enables the *Cookie Data Provider*,
              * after requesting consent from the user. The consent
@@ -3230,7 +3806,7 @@ declare module "@stencil/core" {
              * @extension actions
              * @extension provider
              */
-            "n-data-cookie": LocalJSX.NDataCookie & JSXBase.HTMLAttributes<HTMLNDataCookieElement>;
+            "n-data-cookie": LocalJSX.IntrinsicElements["n-data-cookie"] & JSXBase.HTMLAttributes<HTMLNDataCookieElement>;
             /**
              * This element enables the **Session Data Provider**.
              * It leverages the short-lived browser storage.
@@ -3238,7 +3814,7 @@ declare module "@stencil/core" {
              * @extension actions
              * @extension provider
              */
-            "n-data-session": LocalJSX.NDataSession & JSXBase.HTMLAttributes<HTMLNDataSessionElement>;
+            "n-data-session": LocalJSX.IntrinsicElements["n-data-session"] & JSXBase.HTMLAttributes<HTMLNDataSessionElement>;
             /**
              * This element enables the **Storage Data Provider**, that
              * leverages the browsers 'long-term' data storage.
@@ -3246,7 +3822,7 @@ declare module "@stencil/core" {
              * @extension actions
              * @extension provider
              */
-            "n-data-storage": LocalJSX.NDataStorage & JSXBase.HTMLAttributes<HTMLNDataStorageElement>;
+            "n-data-storage": LocalJSX.IntrinsicElements["n-data-storage"] & JSXBase.HTMLAttributes<HTMLNDataStorageElement>;
             /**
              * This element enables element manipulation through the n-actions element.
              * Add it to the page to perform actions like 'add-css', toggle
@@ -3254,7 +3830,7 @@ declare module "@stencil/core" {
              * @system elements
              * @extension actions
              */
-            "n-elements": LocalJSX.NElements & JSXBase.HTMLAttributes<HTMLNElementsElement>;
+            "n-elements": LocalJSX.IntrinsicElements["n-elements"] & JSXBase.HTMLAttributes<HTMLNElementsElement>;
             /**
              * This element encapsulates a timed presentation. This element uses
              * a child n-presentation-timer or n-video element to create time-events
@@ -3265,7 +3841,7 @@ declare module "@stencil/core" {
              * @system presentation
              * @extension elements
              */
-            "n-presentation": LocalJSX.NPresentation & JSXBase.HTMLAttributes<HTMLNPresentationElement>;
+            "n-presentation": LocalJSX.IntrinsicElements["n-presentation"] & JSXBase.HTMLAttributes<HTMLNPresentationElement>;
             /**
              * This specialized action contains the time attribute,
              * allowing it to be activated directly within the n-presentation
@@ -3273,14 +3849,14 @@ declare module "@stencil/core" {
              * @system presentation
              * @system actions
              */
-            "n-presentation-action": LocalJSX.NPresentationAction & JSXBase.HTMLAttributes<HTMLNPresentationActionElement>;
+            "n-presentation-action": LocalJSX.IntrinsicElements["n-presentation-action"] & JSXBase.HTMLAttributes<HTMLNPresentationActionElement>;
             /**
              * This element creates a timer for the presentation
              * element to use in place of a video, to time actions
              * or manipulate HTML by time.
              * @system presentation
              */
-            "n-presentation-timer": LocalJSX.NPresentationTimer & JSXBase.HTMLAttributes<HTMLNPresentationTimerElement>;
+            "n-presentation-timer": LocalJSX.IntrinsicElements["n-presentation-timer"] & JSXBase.HTMLAttributes<HTMLNPresentationTimerElement>;
             /**
              * This element enables the UI services. These are typically
              * web element plug-ins to manage things like Modals, Drawers,
@@ -3288,14 +3864,14 @@ declare module "@stencil/core" {
              * @system video
              * @extension actions
              */
-            "n-video": LocalJSX.NVideo & JSXBase.HTMLAttributes<HTMLNVideoElement>;
+            "n-video": LocalJSX.IntrinsicElements["n-video"] & JSXBase.HTMLAttributes<HTMLNVideoElement>;
             /**
              * This element displays a checkbox to control the autoplay setting,
              * used for video playback - as well as automatic navigation to the
              * next page, when a video ends. Default: enabled
              * @system video
              */
-            "n-video-switch": LocalJSX.NVideoSwitch & JSXBase.HTMLAttributes<HTMLNVideoSwitchElement>;
+            "n-video-switch": LocalJSX.IntrinsicElements["n-video-switch"] & JSXBase.HTMLAttributes<HTMLNVideoSwitchElement>;
             /**
              * The View element holds a segment of content visible only when
              * a URL path matches. It defines a route and its content.
@@ -3305,12 +3881,12 @@ declare module "@stencil/core" {
              * @extension data
              * @extension elements
              */
-            "n-view": LocalJSX.NView & JSXBase.HTMLAttributes<HTMLNViewElement>;
+            "n-view": LocalJSX.IntrinsicElements["n-view"] & JSXBase.HTMLAttributes<HTMLNViewElement>;
             /**
              * Hide or show content based on the active route.
              * @system routing
              */
-            "n-view-detect": LocalJSX.NViewDetect & JSXBase.HTMLAttributes<HTMLNViewDetectElement>;
+            "n-view-detect": LocalJSX.IntrinsicElements["n-view-detect"] & JSXBase.HTMLAttributes<HTMLNViewDetectElement>;
             /**
              * The element should be used in-place of an `a` tag to navigate without
              * refreshing the page. This element supports an active-class that will
@@ -3318,11 +3894,11 @@ declare module "@stencil/core" {
              * This is helpful for displaying active routes in menus, bread-crumbs and tabs.
              * @system routing
              */
-            "n-view-link": LocalJSX.NViewLink & JSXBase.HTMLAttributes<HTMLNViewLinkElement>;
+            "n-view-link": LocalJSX.IntrinsicElements["n-view-link"] & JSXBase.HTMLAttributes<HTMLNViewLinkElement>;
             /**
              * @system routing
              */
-            "n-view-link-back": LocalJSX.NViewLinkBack & JSXBase.HTMLAttributes<HTMLNViewLinkBackElement>;
+            "n-view-link-back": LocalJSX.IntrinsicElements["n-view-link-back"] & JSXBase.HTMLAttributes<HTMLNViewLinkBackElement>;
             /**
              * Display a list of routes related to the current route.
              * Modes:
@@ -3331,20 +3907,20 @@ declare module "@stencil/core" {
              * **children**: all child routes within a hierarchy. (sub-menu)
              * @system routing
              */
-            "n-view-link-list": LocalJSX.NViewLinkList & JSXBase.HTMLAttributes<HTMLNViewLinkListElement>;
+            "n-view-link-list": LocalJSX.IntrinsicElements["n-view-link-list"] & JSXBase.HTMLAttributes<HTMLNViewLinkListElement>;
             /**
              * This element will automatically go to the next
              * view in the view.
              * @system routing
              */
-            "n-view-link-next": LocalJSX.NViewLinkNext & JSXBase.HTMLAttributes<HTMLNViewLinkNextElement>;
+            "n-view-link-next": LocalJSX.IntrinsicElements["n-view-link-next"] & JSXBase.HTMLAttributes<HTMLNViewLinkNextElement>;
             /**
              * This element should be placed at the end of the content,
              * inside the n-views element. It shows up when no views
              * above it resolve.
              * @system routing
              */
-            "n-view-not-found": LocalJSX.NViewNotFound & JSXBase.HTMLAttributes<HTMLNViewNotFoundElement>;
+            "n-view-not-found": LocalJSX.IntrinsicElements["n-view-not-found"] & JSXBase.HTMLAttributes<HTMLNViewNotFoundElement>;
             /**
              * This element represents a specialized child-route for a parent \<n-view\> element.
              * It represents a sub-route that has required and workflow behaviors.
@@ -3354,7 +3930,7 @@ declare module "@stencil/core" {
              * @extension data
              * @extension elements
              */
-            "n-view-prompt": LocalJSX.NViewPrompt & JSXBase.HTMLAttributes<HTMLNViewPromptElement>;
+            "n-view-prompt": LocalJSX.IntrinsicElements["n-view-prompt"] & JSXBase.HTMLAttributes<HTMLNViewPromptElement>;
             /**
              * The root element is the base container for the view-engine and its
              * child elements. This element should contain root-level HTML that
@@ -3365,7 +3941,7 @@ declare module "@stencil/core" {
              * @extension elements
              * @extension provider
              */
-            "n-views": LocalJSX.NViews & JSXBase.HTMLAttributes<HTMLNViewsElement>;
+            "n-views": LocalJSX.IntrinsicElements["n-views"] & JSXBase.HTMLAttributes<HTMLNViewsElement>;
         }
     }
 }
