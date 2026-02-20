@@ -187,20 +187,11 @@ describe('n-content-repeat', () => {
       components: [ContentDataRepeat],
     })
 
-    page.win.fetch = jest
-      .fn()
-      .mockImplementationOnce(() =>
-        Promise.resolve({
-          status: 200,
-          json: () => Promise.resolve([1, 2, 3]),
-        }),
-      )
-      .mockImplementationOnce(() =>
-        Promise.resolve({
-          status: 200,
-          json: () => Promise.resolve([1, 2, 3, 4, 5]),
-        }),
-      )
+    const fetchMock = jest.fn().mockResolvedValue({
+      status: 200,
+      json: () => Promise.resolve([1, 2, 3]),
+    })
+    page.win.fetch = fetchMock
 
     await page.setContent(`
       <n-content-repeat items-src="items.json" no-cache>
@@ -211,14 +202,19 @@ describe('n-content-repeat', () => {
 
     expect(page.root).toEqualHtml(`
       <n-content-repeat items-src="items.json" no-cache>
-        <template><b>{{data:item}}</b></template>
         <div class="data-content">
           <b>1</b>
           <b>2</b>
           <b>3</b>
         </div>
+        <template><b>{{data:item}}</b></template>
       </n-content-repeat>
     `)
+
+    fetchMock.mockResolvedValue({
+      status: 200,
+      json: () => Promise.resolve([1, 2, 3, 4, 5]),
+    })
 
     eventBus.emit(DATA_EVENTS.DataChanged, {})
 
@@ -226,7 +222,6 @@ describe('n-content-repeat', () => {
 
     expect(page.root).toEqualHtml(`
       <n-content-repeat items-src="items.json" no-cache>
-        <template><b>{{data:item}}</b></template>
         <div class="data-content">
           <b>1</b>
           <b>2</b>
@@ -234,6 +229,7 @@ describe('n-content-repeat', () => {
           <b>4</b>
           <b>5</b>
         </div>
+        <template><b>{{data:item}}</b></template>
       </n-content-repeat>
     `)
 

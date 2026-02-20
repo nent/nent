@@ -34,6 +34,8 @@ describe('n-view-link-list', () => {
       </n-views>`,
     })
 
+    await page.waitForChanges()
+
     expect(page.root).toEqualHtml(`
     <n-views style="display: block;">
       <n-view-link-list>

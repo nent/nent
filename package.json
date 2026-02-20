@@ -70,8 +70,6 @@
     "@stencil/core": "^4.0.0",
     "@stencil/eslint-plugin": "^1.1.0",
     "@types/jest": "29.5.14",
-    "@types/puppeteer": "7.0.4",
-    "@types/rollup-plugin-visualizer": "5.0.3",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "chalk": "5.6.2",

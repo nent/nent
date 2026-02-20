@@ -3344,13 +3344,6 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
   integrity sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==
 
-"@types/puppeteer@7.0.4":
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-7.0.4.tgz#6eb4081323e9075c1f4c353f93ee2ed6eed99487"
-  integrity sha512-ja78vquZc8y+GM2al07GZqWDKQskQXygCDiu0e3uO0DMRKqE0MjrFBFmTulfPYzLB6WnL7Kl2tFPy0WXSpPomg==
-  dependencies:
-    puppeteer "*"
-
 "@types/remarkable@^2.0.3":
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/@types/remarkable/-/remarkable-2.0.8.tgz#e18816db814cdc087e86b0446f6883754d666088"
@@ -3361,24 +3354,10 @@
   resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-1.20.2.tgz#97d26e00cd4a0423b4af620abecf3e6f442b7975"
   integrity sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==
 
-"@types/rollup-plugin-visualizer@5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-visualizer/-/rollup-plugin-visualizer-5.0.3.tgz#a085aa77db81a3bf95a2da9e6fc2ddb49ec25549"
-  integrity sha512-eqlnKXp1TvvlUVPd+cBrTfD4v7TyshgoCT3ao490fkJdR6M8CPjZLc+MFBmXZjCRXk30yKAyZ2n381fXafAQOg==
-  dependencies:
-    rollup-plugin-visualizer "*"
-
 "@types/stack-utils@^2.0.0":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
-
-"@types/tailwindcss@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@types/tailwindcss/-/tailwindcss-3.1.0.tgz#1185e4b3437c6e0f19d6cc8cd42738a94fd7b64f"
-  integrity sha512-JxPzrm609hzvF4nmOI3StLjbBEP3WWQxDDJESqR1nh94h7gyyy3XSl0hn5RBMJ9mPudlLjtaXs5YEBtLw7CnPA==
-  dependencies:
-    tailwindcss "*"
 
 "@types/trusted-types@^2.0.2":
   version "2.0.2"
@@ -11724,7 +11703,7 @@ puppeteer-core@24.37.5:
     webdriver-bidi-protocol "0.4.1"
     ws "^8.19.0"
 
-puppeteer@*, puppeteer@24.37.5:
+puppeteer@24.37.5:
   version "24.37.5"
   resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-24.37.5.tgz#c61932cdb2bc53d18970671be18d547216d295f0"
   integrity sha512-3PAOIQLceyEmn1Fi76GkGO2EVxztv5OtdlB1m8hMUZL3f8KDHnlvXbvCXv+Ls7KzF1R0KdKBqLuT/Hhrok12hQ==
@@ -12207,7 +12186,7 @@ rollup-plugin-analyzer@4.0.0:
   resolved "https://registry.yarnpkg.com/rollup-plugin-analyzer/-/rollup-plugin-analyzer-4.0.0.tgz#96b757ed64a098b59d72f085319e68cdd86d5798"
   integrity sha512-LL9GEt3bkXp6Wa19SNR5MWcvHNMvuTFYg+eYBZN2OIFhSWN+pEJUQXEKu5BsOeABob3x9PDaLKW7w5iOJnsESQ==
 
-rollup-plugin-visualizer@*, rollup-plugin-visualizer@6.0.8, rollup-plugin-visualizer@^6.0.0:
+rollup-plugin-visualizer@6.0.8, rollup-plugin-visualizer@^6.0.0:
   version "6.0.8"
   resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-6.0.8.tgz#1f593e758e14a270ae663ffaab501afdd6994196"
   integrity sha512-MmLbgYWDiDu8XKoePA1GtmRejl+4GWJTx156zjvycoxCbOq0PkNNwbepyB5tHCfDyRc8PKDLh2f/GLVGKNeV7w==
@@ -13341,7 +13320,7 @@ synckit@^0.11.12, synckit@^0.11.6:
   dependencies:
     "@pkgr/core" "^0.2.9"
 
-tailwindcss@*, tailwindcss@4.2.0:
+tailwindcss@4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.2.0.tgz#fe0a67ddebe0c383096f68d22c677ae8af428ded"
   integrity sha512-yYzTZ4++b7fNYxFfpnberEEKu43w44aqDMNM9MHMmcKuCH7lL8jJ4yJ7LGHv7rSwiqM0nkiobF9I6cLlpS2P7Q==
