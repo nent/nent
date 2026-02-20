@@ -64,7 +64,7 @@
     "jsonata": "2.1.0",
     "remarkable": "2.0.1",
     "remarkable-external-link": "^2.1.0",
-    "rollup-plugin-visualizer": "^6.0.0"
+    "rollup-plugin-visualizer": "^5.0.0"
   },
   "dependencies": {
     "@stencil/core": "^4.0.0",

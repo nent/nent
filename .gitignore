@@ -14,3 +14,4 @@ stats
 .netlify
 .DS_Store
 packages/core/stencil-stats.json
+packages/core/.stencil/
