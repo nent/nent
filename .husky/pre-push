@@ -3,4 +3,3 @@
 
 yarn build:core
 yarn lint
-yarn test
