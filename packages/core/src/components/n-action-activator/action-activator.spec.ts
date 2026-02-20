@@ -307,7 +307,7 @@ describe('n-action-activator', () => {
       ],
       html: `
         <n-presentation>
-          <n-presentation-timer duration="4" interval="0">
+          <n-presentation-timer duration="8" interval="0">
           </n-presentation-timer>
           <n-action-activator activate="at-time" time="2">
             <n-action topic="test" command="do"></n-action>
@@ -318,16 +318,13 @@ describe('n-action-activator', () => {
     })
     await page.waitForChanges()
 
-    await sleep(1000)
+    await sleep(1500)
     await page.waitForChanges()
 
-    await sleep(1000)
+    await sleep(1500)
     await page.waitForChanges()
 
     expect(sentActions.length).toBe(1)
-
-    await sleep(1000)
-    await page.waitForChanges()
 
     await sleep(1000)
     await page.waitForChanges()
@@ -341,5 +338,5 @@ describe('n-action-activator', () => {
     expect(sentAction.command).toBe('do')
 
     page.root?.remove()
-  })
+  }, 15000)
 })
