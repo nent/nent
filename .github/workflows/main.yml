@@ -31,7 +31,7 @@ jobs:
           node-version: 14.x
       - name: cache
         id: cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
@@ -47,11 +47,11 @@ jobs:
           yarn test
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: ./packages/core/coverage/
-      - uses: coverallsapp/github-action@v2.2.1
+      - uses: coverallsapp/github-action@v2.3.4
         with:
           path-to-lcov: ./packages/core/coverage/lcov.info
           base-path: ./packages/core
@@ -75,7 +75,7 @@ jobs:
         run: |
           git config --global user.name '@logrythmik'
           git config --global user.email 'logrythmik@users.noreply.github.com'
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         name: setup-node
         with:
           node-version: '16.x'
@@ -84,7 +84,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
       - name: cached
         id: cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}
