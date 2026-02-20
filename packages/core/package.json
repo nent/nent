@@ -60,15 +60,15 @@
     "@types/howler": "2.2.12",
     "@types/remarkable": "^2.0.3",
     "check-peer-dependencies": "^4.1.0",
-    "rollup-plugin-visualizer": "^6.0.0"
-  },
-  "dependencies": {
-    "@stencil/core": "^4.0.0",
-    "@stencil/store": "2.2.2",
     "expr-eval": "2.0.2",
     "jsonata": "2.1.0",
     "remarkable": "2.0.1",
-    "remarkable-external-link": "^2.1.0"
+    "remarkable-external-link": "^2.1.0",
+    "rollup-plugin-visualizer": "^5.0.0"
+  },
+  "dependencies": {
+    "@stencil/core": "^4.0.0",
+    "@stencil/store": "2.2.2"
   },
   "jest": {
     "preset": "@stencil/core/testing",

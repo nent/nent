@@ -145,6 +145,12 @@ Type: `Promise<EventAction<any> | null>`
 
 Send this action to the action messaging system.
 
+#### Parameters
+
+| Name   | Type                               | Description |
+| ------ | ---------------------------------- | ----------- |
+| `data` | `Record<string, any>`, `undefined` |             |
+
 #### Returns
 
 Type: `Promise<void>`
