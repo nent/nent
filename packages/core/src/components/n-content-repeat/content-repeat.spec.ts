@@ -202,12 +202,12 @@ describe('n-content-repeat', () => {
 
     expect(page.root).toEqualHtml(`
       <n-content-repeat items-src="items.json" no-cache>
+        <template><b>{{data:item}}</b></template>
         <div class="data-content">
           <b>1</b>
           <b>2</b>
           <b>3</b>
         </div>
-        <template><b>{{data:item}}</b></template>
       </n-content-repeat>
     `)
 

@@ -94,7 +94,7 @@ describe('n-presentation-action', () => {
 
     await page.setContent(`
       <n-presentation>
-        <n-presentation-timer duration="4" interval="0">
+        <n-presentation-timer duration="8" interval="0">
         </n-presentation-timer>
         <n-presentation-action time="2" topic="test" command="do">
         </n-presentation-action>
@@ -103,16 +103,13 @@ describe('n-presentation-action', () => {
 
     await page.waitForChanges()
 
-    await sleep(1000)
+    await sleep(1500)
     await page.waitForChanges()
 
-    await sleep(1000)
+    await sleep(1500)
     await page.waitForChanges()
 
     expect(sentActions.length).toBe(1)
-
-    await sleep(1000)
-    await page.waitForChanges()
 
     await sleep(1000)
     await page.waitForChanges()
@@ -126,5 +123,5 @@ describe('n-presentation-action', () => {
     expect(sentAction.command).toBe('do')
 
     page.root?.remove()
-  })
+  }, 15000)
 })

@@ -120,7 +120,7 @@ describe('n-content-reference', () => {
 
     const subjects = page.body.querySelectorAll('n-content-reference')
 
-    for (const s of subjects) {
+    for (const s of Array.from(subjects)) {
       await s.forceLoad()
     }
     await page.waitForChanges()

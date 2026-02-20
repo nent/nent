@@ -8,8 +8,7 @@ import {
 } from '@stencil/core'
 import { warn } from '../../services/common/logging'
 import {
-  hasReference,
-  markReference,
+  checkAndMarkReference,
   ReferenceCompleteResults,
   ReferenceType,
 } from '../../services/content'
@@ -104,8 +103,8 @@ export class ContentReference {
       if (url == undefined) {
         return resolve(false)
       }
-      const reffed = await hasReference(url)
-      if (reffed) {
+      const alreadyReffed = await checkAndMarkReference(url)
+      if (alreadyReffed) {
         return resolve(true)
       }
 
@@ -118,7 +117,6 @@ export class ContentReference {
         return resolve(loaded)
       })
       element.append(this.linkElement)
-      await markReference(url)
       setTimeout(() => {
         if (!loaded) {
           warn(
@@ -136,8 +134,8 @@ export class ContentReference {
       if (url == undefined) {
         return resolve(false)
       }
-      const reffed = await hasReference(url)
-      if (reffed) {
+      const alreadyReffed = await checkAndMarkReference(url)
+      if (alreadyReffed) {
         return resolve(true)
       }
       this.scriptElement =
@@ -153,12 +151,10 @@ export class ContentReference {
 
       this.scriptElement.addEventListener('load', async () => {
         loaded = true
-        await markReference(url)
         return resolve(loaded)
       })
 
       element.append(this.scriptElement)
-      await markReference(url)
       setTimeout(() => {
         if (!loaded) {
           warn(

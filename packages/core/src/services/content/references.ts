@@ -15,6 +15,26 @@ export async function hasReference(url: string) {
 }
 
 /**
+ * Atomically checks if a URL is already referenced and, if not, marks it.
+ * Returns true if the reference already existed (skip loading), false if
+ * newly added (proceed to load). Using a single mutex dispatch prevents
+ * the check-then-act race condition when multiple components render
+ * concurrently.
+ * @param {string} url - The URL to check and mark.
+ */
+export async function checkAndMarkReference(url: string): Promise<boolean> {
+  return await collectionMutex.dispatch(async () => {
+    if (contentState.references.includes(url)) {
+      return true
+    }
+    contentState.references = [
+      ...new Set([...contentState.references, url]),
+    ]
+    return false
+  })
+}
+
+/**
  * It takes a URL, adds it to the list of references, and returns a promise that resolves when the
  * operation is complete
  * @param {string} url - The URL of the reference to mark.
