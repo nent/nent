@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: version
-        uses: damienaicheh/extract-version-from-tag-action@v1.1.0
+        uses: damienaicheh/extract-version-from-tag-action@v1.3.0
       - name: twitter
         uses: mugi111/tweet-trigger-release@v1.2
         with:
