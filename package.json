@@ -61,6 +61,7 @@
   },
   "resolutions": {
     "json-schema": ">=0.4.0",
+    "semver": ">=7.5.2",
     "set-value": ">=4.0.1"
   },
   "devDependencies": {
