@@ -25,16 +25,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 14.x
+          node-version: 22.x
       - name: cache
         id: cache
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}-14.x
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}-22.x
           restore-keys: |
             nodeModules-
       - name: dependencies
@@ -67,7 +67,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: checkout
         with:
           fetch-depth: 0
@@ -78,7 +78,7 @@ jobs:
       - uses: actions/setup-node@v4
         name: setup-node
         with:
-          node-version: '16.x'
+          node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}

@@ -1,8 +1,34 @@
 import { Config } from '@stencil/core'
 import { JsonDocs } from '@stencil/core/internal'
+import { existsSync } from 'fs'
+import { dirname, join } from 'path'
 import analyzer from 'rollup-plugin-analyzer'
-import visualizer from 'rollup-plugin-visualizer'
 import { version } from './package.json'
+
+// rollup-plugin-visualizer v6+ is ESM-only; load via direct file path to
+// support CJS contexts (Node 22+ synchronous ESM require).
+function loadVisualizer(): (opts?: any) => any {
+  let dir: string = __dirname
+  while (dir !== dirname(dir)) {
+    const candidate = join(
+      dir,
+      'node_modules/rollup-plugin-visualizer/dist/plugin/index.js',
+    )
+    if (existsSync(candidate)) {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const mod = require(candidate)
+        return mod.visualizer || mod.default
+      } catch {
+        break
+      }
+    }
+    dir = dirname(dir)
+  }
+  return () => ({ name: 'visualizer-noop' })
+}
+
+const visualizer = loadVisualizer()
 
 const config: Config = {
   namespace: 'nent',
