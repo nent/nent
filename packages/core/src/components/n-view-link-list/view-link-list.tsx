@@ -115,6 +115,10 @@ export class ViewLinkList {
   }
 
   async componentWillRender() {
+    // Yield once to allow sibling components (n-view elements) to finish their
+    // componentWillLoad and emit RouteMatchedExact before we read this.route.
+    // Without this yield, the first render races with n-view's initialization.
+    await Promise.resolve()
     let routes = await this.getRoutes()
     if (this.mode == 'parents' && routes?.length && this.excludeRoot)
       routes.shift()
