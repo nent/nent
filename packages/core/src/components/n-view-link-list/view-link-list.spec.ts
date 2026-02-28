@@ -34,6 +34,10 @@ describe('n-view-link-list', () => {
       </n-views>`,
     })
 
+    await page.waitForChanges()
+    await page.waitForChanges()
+    await page.waitForChanges()
+
     expect(page.root).toEqualHtml(`
     <n-views style="display: block;">
       <n-view-link-list>
@@ -73,6 +77,8 @@ describe('n-view-link-list', () => {
     })
 
     await page.waitForChanges()
+    await page.waitForChanges()
+    await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
 
@@ -106,6 +112,8 @@ describe('n-view-link-list', () => {
       url: 'http://local.com/home/page1',
     })
 
+    await page.waitForChanges()
+    await page.waitForChanges()
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
@@ -160,6 +168,8 @@ describe('n-view-link-list', () => {
       url: 'http://local.com/home',
     })
 
+    await page.waitForChanges()
+    await page.waitForChanges()
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
@@ -340,6 +350,8 @@ describe('n-view-link-list', () => {
     })
 
     await page.waitForChanges()
+    await page.waitForChanges()
+    await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
     <n-views style="display: block;">
@@ -394,6 +406,8 @@ describe('n-view-link-list', () => {
       url: 'http://local.com/home/page1',
     })
 
+    await page.waitForChanges()
+    await page.waitForChanges()
     await page.waitForChanges()
 
     expect(page.root).toEqualHtml(`
