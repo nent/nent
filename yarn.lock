@@ -1320,7 +1320,7 @@
   dependencies:
     escalade "^3.2.0"
 
-"@commitlint/types@^20.4.0", "@commitlint/types@^20.4.3":
+"@commitlint/types@^20.4.3":
   version "20.4.3"
   resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-20.4.3.tgz#aa3fb9732dd42dea590d165214631ebc7b07eb59"
   integrity sha512-51OWa1Gi6ODOasPmfJPq6js4pZoomima4XLZZCrkldaH2V5Nb3bVhNXPeT6XV0gubbainSpTw4zi68NqAeCNCg==
@@ -5426,14 +5426,6 @@ conventional-commits-parser@^4.0.0:
     is-text-path "^1.0.1"
     meow "^8.1.2"
     split2 "^3.2.2"
-
-conventional-commits-parser@^6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/conventional-commits-parser/-/conventional-commits-parser-6.3.0.tgz#fc170753ca66f31940a438539bf48e4406ac54b5"
-  integrity sha512-RfOq/Cqy9xV9bOA8N+ZH6DlrDR+5S3Mi0B5kACEjESpE+AviIpAptx9a9cFpWCCvgRtWT+0BbUw+e1BZfts9jg==
-  dependencies:
-    "@simple-libs/stream-utils" "^1.2.0"
-    meow "^13.0.0"
 
 conventional-commits-parser@^6.3.0:
   version "6.3.0"
@@ -13252,10 +13244,10 @@ rollup-plugin-analyzer@4.0.0:
   resolved "https://registry.yarnpkg.com/rollup-plugin-analyzer/-/rollup-plugin-analyzer-4.0.0.tgz#96b757ed64a098b59d72f085319e68cdd86d5798"
   integrity sha512-LL9GEt3bkXp6Wa19SNR5MWcvHNMvuTFYg+eYBZN2OIFhSWN+pEJUQXEKu5BsOeABob3x9PDaLKW7w5iOJnsESQ==
 
-rollup-plugin-visualizer@*, rollup-plugin-visualizer@7.0.0, rollup-plugin-visualizer@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-7.0.0.tgz#7abacfae91efeda6f2e0a445f97a9997249e884c"
-  integrity sha512-loo4kmhTg7GMO0hqaUv/azvLPUT2B4jXU3gNMG35gm1mWKpOzhV6rspb/Mqmsfg7oOTdkzdmOckCIwGB5Ca1CA==
+rollup-plugin-visualizer@*, rollup-plugin-visualizer@7.0.1, rollup-plugin-visualizer@^7.0.0:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-7.0.1.tgz#291c10ff4a956d9b2483f8b4147b2bf0aacd3a6e"
+  integrity sha512-UJUT4+1Ho4OcWmPYU3sYXgUqI8B8Ayfe06MX7y0qCJ1K8aGoKtR/NDd/2nZqM7ADkrzny+I99Ul7GgyoiVNAgg==
   dependencies:
     open "^11.0.0"
     picomatch "^4.0.2"
