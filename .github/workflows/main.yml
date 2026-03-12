@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   test:
-    name: Test
+    name: Tests
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -63,7 +63,7 @@ jobs:
       #    coverage-reports: ./packages/core/coverage/lcov.info
 
   publish:
-    name: Publish
+    name: Publish NPM
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -110,7 +110,7 @@ jobs:
       #    yarn vscode publish
 
   docs:
-    name: Docs
+    name: Publish Docs
     needs: publish
     runs-on: ubuntu-latest
     environment:

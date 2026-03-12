@@ -16,6 +16,6 @@ export async function evalExpression(
   expression: string,
   context: ExpressionContext = {},
 ): Promise<number | boolean | string> {
-  if (expression == undefined || expression == null) return ''
+  if (expression == null) return ''
   return expressionEvaluator.evaluate(expression, context)
 }

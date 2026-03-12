@@ -6,7 +6,7 @@ import { isNotValue } from './values'
  * @return {boolean}
  */
 export function toBoolean(value: string) {
-  if (value == undefined || value == null) {
+  if (value == null) {
     return false
   }
 
