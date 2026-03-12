@@ -1,4 +1,5 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "types/jsx.d.ts", "src/components/n-audio/services/howler.d.ts"]
+  "include": ["src", "types/jsx.d.ts", "src/components/n-audio/services/howler.d.ts"],
+  "exclude": ["**/*.spec.ts"]
 }

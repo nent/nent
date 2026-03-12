@@ -42,6 +42,12 @@ Using the `<n-app-share>` element.
 
 Manual share method for more complex scenarios
 
+#### Parameters
+
+| Name   | Type                                                                                                           | Description |
+| ------ | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| `data` | `{ title?: string`, `undefined; text?: string`, `undefined; url?: string`, `undefined; }`, `null`, `undefined` |             |
+
 #### Returns
 
 Type: `Promise<void>`
