@@ -31,9 +31,9 @@ Using the `<n-app-share>` element.
 
 | Property   | Attribute  | Description                   | Type                  | Default     |
 | ---------- | ---------- | ----------------------------- | --------------------- | ----------- |
-| `headline` | `headline` | Headline for the share        | `string \| undefined` | `undefined` |
-| `text`     | `text`     | The textual body of web share | `string \| undefined` | `undefined` |
-| `url`      | `url`      | The URL we are sharing        | `string \| undefined` | `undefined` |
+| `headline` | `headline` | Headline for the share        | `string`, `undefined` | `undefined` |
+| `text`     | `text`     | The textual body of web share | `string`, `undefined` | `undefined` |
+| `url`      | `url`      | The URL we are sharing        | `string`, `undefined` | `undefined` |
 
 
 ## Methods
@@ -46,7 +46,7 @@ Manual share method for more complex scenarios
 
 | Name   | Type                                                                                                           | Description |
 | ------ | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| `data` | `{ title?: string \| undefined; text?: string \| undefined; url?: string \| undefined; } \| null \| undefined` |             |
+| `data` | `{ title?: string`, `undefined; text?: string`, `undefined; url?: string`, `undefined; }`, `null`, `undefined` |             |
 
 #### Returns
 

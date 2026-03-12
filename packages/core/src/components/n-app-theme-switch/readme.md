@@ -26,8 +26,8 @@ Add the `<n-app-theme-switch>` element to any page to allow the user to adjust t
 
 | Property     | Attribute     | Description                          | Type                  | Default       |
 | ------------ | ------------- | ------------------------------------ | --------------------- | ------------- |
-| `inputClass` | `input-class` | The class to add to the inner input. | `string \| undefined` | `undefined`   |
-| `inputId`    | `input-id`    | The inner input ID                   | `string \| undefined` | `'dark-mode'` |
+| `inputClass` | `input-class` | The class to add to the inner input. | `string`, `undefined` | `undefined`   |
+| `inputId`    | `input-id`    | The inner input ID                   | `string`, `undefined` | `'dark-mode'` |
 
 
 ----------------------------------------------

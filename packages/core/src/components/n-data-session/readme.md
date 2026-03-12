@@ -30,7 +30,7 @@ It leverages the short-lived browser storage.
 
 | Property    | Attribute    | Description                               | Type                  | Default     |
 | ----------- | ------------ | ----------------------------------------- | --------------------- | ----------- |
-| `keyPrefix` | `key-prefix` | The key prefix to use in storage          | `string \| undefined` | `undefined` |
+| `keyPrefix` | `key-prefix` | The key prefix to use in storage          | `string`, `undefined` | `undefined` |
 | `name`      | `name`       | Provider name to use in nent expressions. | `string`              | `'session'` |
 
 
