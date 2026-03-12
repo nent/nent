@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{C as e,d as o}from"./content-reference.js";const r=e,t=o;export{r as NContentReference,t as defineCustomElement}

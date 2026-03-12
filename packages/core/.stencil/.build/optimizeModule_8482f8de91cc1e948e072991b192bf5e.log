@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{forceUpdate as s}from"@stencil/core/internal/client";import{e as t}from"./index2.js";import{a as i,o as h}from"./state.js";class o{constructor(s,o,r,e=t){this.component=s,this.eventName=r,this.events=e,i[o]?this.subscribeToEvents():this.stateSubscription=h(o,(s=>{var t;s?this.subscribeToEvents():null===(t=this.subscription)||void 0===t||t.call(this)}))}subscribeToEvents(){this.subscription=this.events.on(this.eventName,(()=>{s(this.component)}))}destroy(){var s,t;null===(s=this.subscription)||void 0===s||s.call(this),null===(t=this.stateSubscription)||void 0===t||t.call(this)}}export{o as C}

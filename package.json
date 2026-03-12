@@ -35,7 +35,7 @@
     ":test ---": "---------------",
     "test": "yarn workspace @nent/core run test",
     ":lint ---": "---------------",
-    "lint": "eslint packages/core/src/**/*.{ts,tsx}",
+    "lint": "eslint \"packages/core/src/**/*.{ts,tsx}\"",
     "format": "eslint --fix packages/core/src/**/*.{ts,tsx} >/dev/null 2>&1 || true",
     ":docker ---": "---------------",
     "docker": "run-s build docker:build docker:push",

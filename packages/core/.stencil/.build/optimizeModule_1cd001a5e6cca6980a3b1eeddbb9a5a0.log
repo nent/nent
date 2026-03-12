@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+const e="audio";var u,d,a,o,s;!function(e){e.play="play",e.queue="queue",e.load="load",e.start="start",e.pause="pause",e.resume="resume",e.mute="mute",e.volume="volume",e.seek="seek",e.stop="stop"}(u||(u={})),function(e){e.Played="played",e.Queued="queued",e.Dequeued="dequeued",e.Loaded="loaded",e.Started="started",e.Paused="paused",e.Resumed="resumed",e.Stopped="stopped",e.Muted="muted",e.Ended="ended",e.Looped="looped",e.Errored="errored",e.Discarded="discarded",e.SoundChanged="muted"}(d||(d={})),function(e){e.route="route",e.next="next",e.none="none"}(a||(a={})),function(e){e.queue="queue",e.play="play",e.load="load"}(o||(o={})),function(e){e.sound="sound",e.music="music"}(s||(s={}));export{e as A,a as D,o as L,s as a,d as b,u as c}

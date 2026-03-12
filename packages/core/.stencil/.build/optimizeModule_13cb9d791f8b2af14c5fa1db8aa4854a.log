@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+(()=>{const e=(e,s)=>{const t=globalThis[s];return null!=t&&e instanceof t},s=t=>{if(null!=t){if(e(t,"ArrayBuffer")||e(t,"MessagePort")||e(t,"ImageBitmap")||e(t,"OffscreenCanvas"))return[t];if("object"==typeof t)return t.constructor===Object&&(t=Object.values(t)),Array.isArray(t)?t.flatMap(s):s(t.buffer)}return[]},t={},r="stencil.jsonata.worker",a=r+".cb";addEventListener("message",(async({data:e})=>{if(e&&e[0]===r){let n,o,c=e[1],i=e[2],f=e[3],l=0,u=f.length;try{for(;l<u;l++)if(Array.isArray(f[l])&&f[l][0]===a){const e=f[l][1];f[l]=(...s)=>{postMessage([a,e,s])}}n=await t[i](...f)}catch(e){n=null,o=e instanceof Error?{isError:!0,value:{message:e.message,name:e.name,stack:e.stack}}:{isError:!1,value:e},n=void 0}const j=s(n);postMessage([r,c,n,o],j)}})),self.importScripts("https://cdn.jsdelivr.net/npm/jsonata@1.8.6/jsonata.min.js"),t.filterData=async function(e,s){return self.jsonata(e).evaluate(s)}})();

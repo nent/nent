@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{proxyCustomElement as t,HTMLElement as e,h as n,Host as i,transformTag as s}from"@stencil/core/internal/client";import{A as c}from"./service.js";const r=t(class extends e{constructor(t){super(),!1!==t&&this.__registerHost(),this.valid=!0,this.actionService=new c(this,"n-action")}getAction(){return this.actionService.getAction()}sendAction(t){return this.actionService.sendAction(t)}get childScript(){return this.el.querySelector("script")}get childInputs(){return this.el.querySelectorAll("input,select,textarea")}render(){return n(i,{key:"6eabf2aca1eff90ea874de057e4b8af8d1c4733f"})}get el(){return this}},[0,"n-action",{topic:[1],command:[1],when:[1],valid:[32],getAction:[64],sendAction:[64]}]),o=r,a=function(){"undefined"!=typeof customElements&&["n-action"].forEach((t=>{"n-action"===t&&(customElements.get(s(t))||customElements.define(s(t),r))}))};export{o as NAction,a as defineCustomElement}

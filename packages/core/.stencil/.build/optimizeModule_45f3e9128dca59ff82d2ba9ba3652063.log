@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{E as s}from"./index-DpCQFM8a.js";import{D as t}from"./interfaces-BdhqlC34.js";class r{constructor(){this.data={},this.changed=new s}async get(s){return this.data[s]||null}async set(s,r){this.data[s]=r,this.changed.emit(t.DataChanged)}destroy(){this.changed.removeAllListeners()}}export{r as I}

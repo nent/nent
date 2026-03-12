@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{d as r}from"./expressions-HeQib3Vo.js";import"./index-Cf1RSiWU.js";import"./factory-Dlvq2a4G.js";import"./index-DpCQFM8a.js";import"./interfaces-BdhqlC34.js";import"./index-DBR7wVrJ.js";import"./values-BEwhhpZG.js";import"./promises-Dt-fkzOc.js";import"./logging-DgnbnuMa.js";import"./tokens-rvKw3pGY.js";import"./state-BMw_kJrP.js";import"./strings-BE_BqHaf.js";const t="remarkable.worker",s="stencil.remarkable.worker",e=new URL("remarkable.worker-Bg1ySf1R.js",import.meta.url).href;let o;try{o=r(e,t,s)}catch(i){const p=new Blob(['importScripts("'+e+'")'],{type:"text/javascript"}),m=URL.createObjectURL(p);o=r(m,t,s),URL.revokeObjectURL(m)}export{o as worker,s as workerMsgId,t as workerName,e as workerPath}

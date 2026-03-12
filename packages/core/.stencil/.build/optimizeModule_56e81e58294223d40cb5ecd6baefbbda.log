@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+const o=()=>{};export{o as g}

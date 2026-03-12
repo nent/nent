@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{V as o,d as s}from"./view-link.js";const i=o,r=s;export{i as NViewLink,r as defineCustomElement}

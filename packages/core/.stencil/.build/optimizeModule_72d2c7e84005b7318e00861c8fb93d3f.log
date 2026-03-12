@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+function t(t){return new Promise((n=>{setTimeout(n,t)}))}async function n(t,n){for(const o of t)if(await n(o))return o;return null}function o(t,n,o=!0,e=!1){let i,u=!1,r=0;function c(){i&&clearTimeout(i)}const f=(...f)=>{let s=Date.now()-r;function a(){r=Date.now(),n(f)}u||(e&&!i&&a(),c(),void 0===e&&s>t?a():!0!==o&&(i=setTimeout(e?function(){i=void 0}:a,void 0===e?t-s:t)))};return f.cancel=function(){c(),u=!0},f}function e(t,n,e=!1){return o(t,n,e,!0)}export{e as d,n as f,t as s,o as t}

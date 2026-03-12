@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+function n(n){const l=null==n?void 0:n.replace(/^\n/,""),o=null==l?void 0:l.match(/^\s+/);return o?null==l?void 0:l.replace(new RegExp(`^${o[0]}`,"gm"),""):l}export{n as d}

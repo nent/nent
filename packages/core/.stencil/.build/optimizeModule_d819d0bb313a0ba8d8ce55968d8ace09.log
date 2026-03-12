@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{b as s}from"./expressions.js";const o=s(import("./jsonata.worker2.js").then((s=>s.worker)),"stencil.jsonata.worker","filterData");export{o as f}

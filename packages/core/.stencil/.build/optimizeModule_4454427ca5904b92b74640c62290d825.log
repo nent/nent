@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{d as e}from"./expressions.js";const t="evaluate.worker",r="stencil.evaluate.worker",s=new URL("assets/evaluate.worker-Bx5zRwA-.js",import.meta.url).href;let a;try{a=e(s,t,r)}catch(o){const p=new Blob(['importScripts("'+s+'")'],{type:"text/javascript"}),c=URL.createObjectURL(p);a=e(c,t,r),URL.revokeObjectURL(c)}export{a as worker,r as workerMsgId,t as workerName,s as workerPath}

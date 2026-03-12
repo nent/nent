@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{proxyCustomElement as e,HTMLElement as t,h as s,Host as c,transformTag as n}from"@stencil/core/internal/client";import{s as i}from"./state2.js";const d=e(class extends t{constructor(e){super(),!1!==e&&this.__registerHost(),this.inputId="dark-mode"}render(){return s(c,{key:"c5d14d53d572450b4343d69ccabc313e58d99bcc",onClick:()=>{i.darkMode=!i.darkMode}},s("input",{key:"ee4a351b747dfb03f9ddf0f58a3c747b47a0cfed",type:"checkbox",ref:e=>{this.checkbox=e},class:this.inputClass,id:this.inputId,onChange:()=>{i.darkMode=this.checkbox.checked},checked:i.darkMode||!1}))}},[0,"n-app-theme-switch",{inputClass:[1,"input-class"],inputId:[1,"input-id"]}]),o=d,p=function(){"undefined"!=typeof customElements&&["n-app-theme-switch"].forEach((e=>{"n-app-theme-switch"===e&&(customElements.get(n(e))||customElements.define(n(e),d))}))};export{o as NAppThemeSwitch,p as defineCustomElement}
