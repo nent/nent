@@ -120,7 +120,10 @@ describe('n-content-reference', () => {
 
     const subjects = page.body.querySelectorAll('n-content-reference')
 
-    subjects.forEach(async s => await s.forceLoad())
+    for (const s of Array.from(subjects)) {
+      await s.forceLoad()
+    }
+    await page.waitForChanges()
 
     expect(subjects[0]).toEqualHtml(`
       <n-content-reference style-src="https://foo.css" inline="" module=""  timeout="300">

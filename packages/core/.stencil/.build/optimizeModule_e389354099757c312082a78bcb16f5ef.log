@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+var e;!function(e){e.OnRender="on-render",e.OnEnter="on-enter",e.OnExit="on-exit",e.AtTime="at-time",e.AtTimeEnd="at-time-end",e.OnElementEvent="on-element-event"}(e||(e={}));const n="x:actions",t="x:events";export{e as A,t as E,n as a}

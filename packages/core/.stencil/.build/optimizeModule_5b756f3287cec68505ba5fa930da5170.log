@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{a as n}from"./values.js";function r(n){if(null==n)return!1;const r=n.slice();return!(["false","no","off","!","0","null","undefined",""].includes(r.toLocaleLowerCase().trim())||!["true","yes","on"].includes(r.toLocaleLowerCase().trim())&&""===n)}function t(n){return n.toLowerCase().replace(/-./g,(n=>n[1].toUpperCase()))}function u(r){if(n(r))return r;let t=r.toLowerCase().split(" ");for(var u=0;u<t.length;u++)t[u]=t[u].charAt(0).toUpperCase()+t[u].slice(1);return t.join(" ")}function e(r){return n(r)?r:r.toString().toLowerCase().normalize("NFD").trim().replace(/\s+/g,"-").replace(/[^\w-]+/g,"").replace(/-{2,}/g,"-")}function s(r){return n(r)?r:r.split("\n").join("").split("\r").join("").split("\t").join("").replace(/\s{2,}/g," ")}export{u as c,t as k,s as r,e as s,r as t}

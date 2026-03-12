@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+var n;!function(n){n.OnInterval="on-interval",n.OnEnd="on-end"}(n||(n={}));export{n as T}

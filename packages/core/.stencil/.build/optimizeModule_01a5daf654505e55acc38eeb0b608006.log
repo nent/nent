@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{d as t}from"./expressions.js";const s="jsonata.worker",o="stencil.jsonata.worker",r=new URL("assets/jsonata.worker-B0pRnjEw.js",import.meta.url).href;let e;try{e=t(r,s,o)}catch(a){const n=new Blob(['importScripts("'+r+'")'],{type:"text/javascript"}),p=URL.createObjectURL(n);e=t(p,s,o),URL.revokeObjectURL(p)}export{e as worker,o as workerMsgId,s as workerName,r as workerPath}

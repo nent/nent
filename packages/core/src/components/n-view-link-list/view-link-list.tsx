@@ -115,6 +115,14 @@ export class ViewLinkList {
   }
 
   async componentWillRender() {
+    // Two yields are needed to handle the "late router init" case where
+    // n-view-link-list appears before n-views in the DOM:
+    // 1st yield: lets n-views' dispatch run, which queues n-view's dispatch
+    //    via its s-rc render callbacks after its updateComponent executes.
+    // 2nd yield: lets n-view's dispatch run, which creates the Route and
+    //    synchronously emits RouteMatchedExact, setting this.route.
+    await Promise.resolve()
+    await Promise.resolve()
     let routes = await this.getRoutes()
     if (this.mode == 'parents' && routes?.length && this.excludeRoot)
       routes.shift()

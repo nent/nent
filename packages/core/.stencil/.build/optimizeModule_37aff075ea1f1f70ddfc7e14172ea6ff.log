@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{c as o}from"./index-DBR7wVrJ.js";const s=o({darkMode:null}),{state:a,onChange:e}=s;export{e as o,a as s}

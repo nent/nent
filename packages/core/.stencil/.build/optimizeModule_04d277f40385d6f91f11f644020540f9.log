@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{f as s}from"./index-Cf1RSiWU.js";import{e as i}from"./index-DpCQFM8a.js";import{a as t,o as h}from"./state-BMw_kJrP.js";class o{constructor(s,o,r,a=i){this.component=s,this.eventName=r,this.events=a,t[o]?this.subscribeToEvents():this.stateSubscription=h(o,(s=>{var i;s?this.subscribeToEvents():null===(i=this.subscription)||void 0===i||i.call(this)}))}subscribeToEvents(){this.subscription=this.events.on(this.eventName,(()=>{s(this.component)}))}destroy(){var s,i;null===(s=this.subscription)||void 0===s||s.call(this),null===(i=this.stateSubscription)||void 0===i||i.call(this)}}export{o as C}

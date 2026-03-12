@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+const e="video";var a,u;!function(e){e.SetAutoPlay="set-auto-play",e.Play="play",e.Pause="pause",e.Resume="resume",e.Mute="mute"}(a||(a={})),function(e){e.AutoPlayChanged="autoplay",e.Played="played",e.Paused="paused",e.Resumed="resumed",e.Muted="muted",e.Unmuted="muted",e.Ended="ended"}(u||(u={}));export{u as V,e as a,a as b}

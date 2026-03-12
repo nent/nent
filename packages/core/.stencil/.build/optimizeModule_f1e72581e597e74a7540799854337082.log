@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{c as a}from"./index-DBR7wVrJ.js";class s{}const e=a({debug:!1,analyticsEnabled:!1,dataEnabled:!1,elementsEnabled:!1,routingEnabled:!1,audioEnabled:!0}),{state:n,onChange:d,reset:t,dispose:o}=e;export{s as C,n as a,o as d,d as o,t as r,e as s}

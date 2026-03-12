@@ -188,6 +188,12 @@ Activation occurs when the presentation has been playing for the given time with
 
 Manually activate all actions within this activator.
 
+#### Parameters
+
+| Name   | Type      | Description |
+| ------ | --------- | ----------- |
+| `once` | `boolean` |             |
+
 #### Returns
 
 Type: `Promise<void>`

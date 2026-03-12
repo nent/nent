@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+class s{constructor(){this.mutex=Promise.resolve()}lock(){let s=()=>{};return this.mutex=this.mutex.then((()=>new Promise(s))),new Promise((t=>{s=t}))}async dispatch(s){const t=await this.lock();try{return await Promise.resolve(s())}finally{t()}}}export{s as M}

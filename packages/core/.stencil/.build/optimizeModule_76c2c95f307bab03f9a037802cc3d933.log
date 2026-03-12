@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{M as a}from"./mutex.js";import{c as s}from"./index3.js";var n;!function(a){a.script="script",a.styles="styles"}(n||(n={}));class t{}const e=s({references:[],cache:{}}),{state:c,onChange:r,reset:i,dispose:o}=e,u=new a;async function y(a){return await u.dispatch((async()=>c.references.includes(a)))}async function f(a){return await u.dispatch((async()=>!!c.references.includes(a)||(c.references=[...new Set([...c.references,a])],!1)))}async function w(a){return await u.dispatch((async()=>{c.references=[...new Set([...c.references,a])]}))}async function m(){return await u.dispatch((async()=>{c.references=[]}))}export{n as R,t as S,m as a,c as b,f as c,o as d,y as h,w as m,r as o,i as r,e as s}

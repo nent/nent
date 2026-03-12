@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{M as a}from"./mutex-dQXxMCie.js";import{g as t}from"./factory-Dlvq2a4G.js";import{I as n}from"./memory-CLhlrmOP.js";const s="tracks",o=new n,r=new a;async function i(){const a=await r.lock();var n=await t("session")||o;const i=await n.get(s);return a(),i?function(a){return JSON.parse(a||"[]")}(i):[]}async function c(a){return(await i()).includes(a)}async function e(a){const n=await i();n.includes(a)||(n.push(a),await async function(a){return await r.dispatch((async()=>{const n=await t("session")||o;await n.set(s,function(a){return JSON.stringify(a||"[]")}(a))}))}(n))}export{e as m,c as p}

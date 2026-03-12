@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+var t,a;!function(t){t.RouteChangeStart="route-change-start",t.RouteChanged="route-changed",t.RouteMatched="route-matched",t.RouteMatchedExact="route-matched-exact",t.RouteChangeFinish="route-change-finish",t.Initialized="initialized"}(t||(t={})),function(t){t.goNext="go-next",t.goTo="go-to",t.goBack="go-back",t.goToParent="go-to-parent",t.back="back",t.scrollTo="scroll-to"}(a||(a={}));const o="navigation";export{o as N,t as R,a}

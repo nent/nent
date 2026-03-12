@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{d as r}from"./expressions.js";const e="remarkable.worker",t="stencil.remarkable.worker",s=new URL("assets/remarkable.worker-Bg1ySf1R.js",import.meta.url).href;let a;try{a=r(s,e,t)}catch(o){const m=new Blob(['importScripts("'+s+'")'],{type:"text/javascript"}),p=URL.createObjectURL(m);a=r(p,e,t),URL.revokeObjectURL(p)}export{a as worker,t as workerMsgId,e as workerName,s as workerPath}
