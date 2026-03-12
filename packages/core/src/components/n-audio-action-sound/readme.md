@@ -25,11 +25,11 @@ needed for audio-based actions, for sound.
 
 | Property               | Attribute  | Description                                          | Type                                                             | Default     |
 | ---------------------- | ---------- | ---------------------------------------------------- | ---------------------------------------------------------------- | ----------- |
-| `command` _(required)_ | `command`  | The command to execute.                              | `"mute"`, `"pause"`, `"resume"`, `"seek"`, `"start"`, `"volume"` | `undefined` |
+| `command` _(required)_ | `command`  | The command to execute.                              | `"mute" \| "pause" \| "resume" \| "seek" \| "start" \| "volume"` | `undefined` |
 | `topic`                | `topic`    | Readonly topic                                       | `"audio"`                                                        | `'audio'`   |
-| `trackId`              | `track-id` | The track to target.                                 | `string`, `undefined`                                            | `undefined` |
-| `value`                | `value`    | The value payload for the command.                   | `boolean`, `number`, `string`, `undefined`                       | `undefined` |
-| `when`                 | `when`     | A predicate to evaluate prior to sending the action. | `string`, `undefined`                                            | `undefined` |
+| `trackId`              | `track-id` | The track to target.                                 | `string \| undefined`                                            | `undefined` |
+| `value`                | `value`    | The value payload for the command.                   | `boolean \| number \| string \| undefined`                       | `undefined` |
+| `when`                 | `when`     | A predicate to evaluate prior to sending the action. | `string \| undefined`                                            | `undefined` |
 
 
 ## Methods
@@ -47,6 +47,12 @@ Type: `Promise<EventAction<any> | null>`
 ### `sendAction(data?: Record<string, any>) => Promise<void>`
 
 Send this action to the the action messaging system.
+
+#### Parameters
+
+| Name   | Type                               | Description |
+| ------ | ---------------------------------- | ----------- |
+| `data` | `Record<string, any> \| undefined` |             |
 
 #### Returns
 

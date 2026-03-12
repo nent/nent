@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{c as o}from"./index3.js";const t=o({router:null,location:null,hasExactRoute:!1,debug:!1}),{state:e,onChange:a}=t;let s=!1;a("router",(o=>{o&&0==s&&(o.eventBus.on("*",(()=>{e.hasExactRoute=!1,e.location=o.location,e.hasExactRoute=o.hasExactRoute()})),s=!0)}));export{a as o,e as s}

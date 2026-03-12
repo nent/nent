@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{A as a}from"./interfaces-B8i-nDNS.js";async function s(s,i,n=()=>!0){let t=i==a.AtTime||i==a.AtTimeEnd;await Promise.all(s.filter((a=>a.activate===i)).filter(n).map((async a=>{await a.activateActions(t)})))}async function i(a,s=()=>!0){await Promise.all(a.filter(s).map((async a=>{await a.sendAction()})))}export{s as a,i as s}

@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{r as t,h as n,H as c}from"./index-Cf1RSiWU.js";const e=class{constructor(n){t(this,n)}render(){return n(c,{key:"135124096176a07dcc981b177666d20c2d34509d"},n("slot",{key:"d541dc9a33d0babf930fba3f73d0b9ae91c89ae7"}))}};e.style="n-content: { display: contents; }";export{e as n_content}

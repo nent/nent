@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+function r(r){const a=[...Array.from(r.querySelectorAll("input")),...Array.from(r.querySelectorAll("textarea")),...Array.from(r.querySelectorAll("select")),...Array.from(r.querySelectorAll("*[n-validate]"))].map((r=>{var a,n;return!1!==(null===(a=r.checkValidity)||void 0===a?void 0:a.call(r))&&!1!==(null===(n=r.reportValidity)||void 0===n?void 0:n.call(r))}));return!r.querySelectorAll("*[invalid]").length&&!a.some((r=>0==r))}export{r as g}

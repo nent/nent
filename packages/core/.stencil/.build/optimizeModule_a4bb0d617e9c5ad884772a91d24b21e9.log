@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{r as e,h as s,H as t}from"./index-Cf1RSiWU.js";import{s as c}from"./state-DZDK-t56.js";import"./index-DBR7wVrJ.js";const d=class{constructor(s){e(this,s),this.inputId="dark-mode"}render(){return s(t,{key:"c5d14d53d572450b4343d69ccabc313e58d99bcc",onClick:()=>{c.darkMode=!c.darkMode}},s("input",{key:"ee4a351b747dfb03f9ddf0f58a3c747b47a0cfed",type:"checkbox",ref:e=>{this.checkbox=e},class:this.inputClass,id:this.inputId,onChange:()=>{c.darkMode=this.checkbox.checked},checked:c.darkMode||!1}))}};export{d as n_app_theme_switch}

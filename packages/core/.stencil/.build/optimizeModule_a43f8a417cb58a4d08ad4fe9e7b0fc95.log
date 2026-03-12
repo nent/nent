@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+function e(e,n,d){const s=n-e,a=d>0?s/d:0,t=d>0&&s>=d,o=1e3*d,r=Math.floor(s/1e3);return t?{hours:Math.floor(r/3600%24),minutes:Math.floor(r/60%60),seconds:Math.floor(r%60),elapsed:d,elapsedSeconds:r,percentage:1,duration:d,durationSeconds:o,ended:t}:s>0?{hours:Math.floor(r/3600%24),minutes:Math.floor(r/60%60),seconds:Math.floor(r%60),elapsed:s,elapsedSeconds:r,percentage:a,duration:d,durationSeconds:o,ended:t}:{hours:0,minutes:0,seconds:0,elapsed:s,elapsedSeconds:r,percentage:a,duration:d,durationSeconds:o,ended:t}}export{e as g}

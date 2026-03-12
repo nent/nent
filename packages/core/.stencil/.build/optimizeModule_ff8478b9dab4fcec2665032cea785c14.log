@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{c as o}from"./index3.js";const s=o({hasAudioComponent:!1,muted:!1,debug:!1,tracksPlayed:[]}),{state:a,onChange:e}=s;export{e as o,a as s}

@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{r as t,h as i,H as n,g as o}from"./index-Cf1RSiWU.js";const e=class{constructor(i){t(this,i)}componentWillLoad(){if(!this.url){let t=document.location.href;const i=document.querySelector("link[rel=canonical]");i&&(t=i.href),this.url=t}}async share(t){(null===navigator||void 0===navigator?void 0:navigator.share)&&await navigator.share({title:(null==t?void 0:t.title)||this.headline||document.title,text:(null==t?void 0:t.text)||this.text,url:(null==t?void 0:t.url)||this.url})}render(){return i(n,{key:"e8cd251e5b14cc90d36b5f078fe6cf59f760cec1",onClick:async()=>await this.share()},i("slot",{key:"e213dfdda7d61d1056d32fb390be8f069bf84702"}))}get el(){return o(this)}};e.style=":host{display:inline-block;cursor:pointer}";export{e as n_app_share}

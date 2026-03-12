@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{r as t,h as e,H as r,g as i}from"./index-Cf1RSiWU.js";import{A as s}from"./service-BUR87m_n.js";import"./index-DpCQFM8a.js";import"./logging-DgnbnuMa.js";import"./state-BMw_kJrP.js";import"./index-DBR7wVrJ.js";const n=class{constructor(e){t(this,e),this.valid=!0,this.actionService=new s(this,"n-action")}getAction(){return this.actionService.getAction()}sendAction(t){return this.actionService.sendAction(t)}get childScript(){return this.el.querySelector("script")}get childInputs(){return this.el.querySelectorAll("input,select,textarea")}render(){return e(r,{key:"6eabf2aca1eff90ea874de057e4b8af8d1c4733f"})}get el(){return i(this)}};export{n as n_action}

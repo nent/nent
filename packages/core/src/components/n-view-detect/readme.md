@@ -41,7 +41,7 @@ Hide or show content based on the active route.
 | -------------------- | ------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------- | ----------- |
 | `exact`              | `exact`       | Only active on the exact href match, and not on child routes                            | `boolean`                                               | `false`     |
 | `route` _(required)_ | `route`       | The route that will toggle the active slot of this component                            | `string`                                                | `undefined` |
-| `routeMatch`         | `route-match` | Optional Regex value to route match on                                                  | `(string`, `RegExp)[]`, `RegExp`, `string`, `undefined` | `undefined` |
+| `routeMatch`         | `route-match` | Optional Regex value to route match on                                                  | `(string \| RegExp)[] \| RegExp \| string \| undefined` | `undefined` |
 | `strict`             | `strict`      | Only active on the exact href match using every aspect of the URL including parameters. | `boolean`                                               | `true`      |
 
 

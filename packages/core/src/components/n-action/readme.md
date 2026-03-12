@@ -126,7 +126,7 @@ If the `n-data` extension is enabled, you can use token-expressions as the value
 | ---------------------- | --------- | ---------------------------------------------------- | --------------------- | ----------- |
 | `command` _(required)_ | `command` | The command to execute.                              | `string`              | `undefined` |
 | `topic` _(required)_   | `topic`   | This is the topic this action-command is targeting.  | `string`              | `undefined` |
-| `when`                 | `when`    | A predicate to evaluate prior to sending the action. | `string`, `undefined` | `undefined` |
+| `when`                 | `when`    | A predicate to evaluate prior to sending the action. | `string \| undefined` | `undefined` |
 
 
 ## Methods
@@ -144,6 +144,12 @@ Type: `Promise<EventAction<any> | null>`
 ### `sendAction(data?: Record<string, any>) => Promise<void>`
 
 Send this action to the action messaging system.
+
+#### Parameters
+
+| Name   | Type                               | Description |
+| ------ | ---------------------------------- | ----------- |
+| `data` | `Record<string, any> \| undefined` |             |
 
 #### Returns
 

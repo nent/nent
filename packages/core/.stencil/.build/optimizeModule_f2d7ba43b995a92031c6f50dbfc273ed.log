@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+import{proxyCustomElement as t,HTMLElement as e,h as n,Host as c,transformTag as s}from"@stencil/core/internal/client";const o=t(class extends e{constructor(t){super(),!1!==t&&this.__registerHost()}render(){return n(c,{key:"135124096176a07dcc981b177666d20c2d34509d"},n("slot",{key:"d541dc9a33d0babf930fba3f73d0b9ae91c89ae7"}))}static get style(){return"n-content: { display: contents; }"}},[260,"n-content"]),r=o,d=function(){"undefined"!=typeof customElements&&["n-content"].forEach((t=>{"n-content"===t&&(customElements.get(s(t))||customElements.define(s(t),o))}))};export{r as NContent,d as defineCustomElement}

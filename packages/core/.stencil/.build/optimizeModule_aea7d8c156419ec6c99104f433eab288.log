@@ -1,0 +1,4 @@
+/*!
+ * NENT 2022
+ */
+function n(n,r,u=null){if(t(n))throw new Error(`${u||"nent"} : A value for ${r} was not provided.`)}function r(n){return!1===t(n)}function t(n){return null==n}function u(n){return r(n)&&"object"==typeof n}function o(n){return"string"==typeof n}function e(n){if(!o(n))return!1;try{JSON.parse(n)}catch(n){return!1}return!0}function i(n,r,t=null){const u=t=>String.prototype.split.call(r,t).filter(Boolean).reduce(((n,r)=>null!=n?n[r]:n),n),o=u(/[,\[\]]+?/)||u(/[,\[\].]+?/);return void 0===o||o===n?t:o}function a(n){return n?Array.isArray(n)?n:[n]:[]}export{t as a,u as b,o as c,e as d,i as g,r as i,n as r,a as v}

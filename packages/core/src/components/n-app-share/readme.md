@@ -31,9 +31,9 @@ Using the `<n-app-share>` element.
 
 | Property   | Attribute  | Description                   | Type                  | Default     |
 | ---------- | ---------- | ----------------------------- | --------------------- | ----------- |
-| `headline` | `headline` | Headline for the share        | `string`, `undefined` | `undefined` |
-| `text`     | `text`     | The textual body of web share | `string`, `undefined` | `undefined` |
-| `url`      | `url`      | The URL we are sharing        | `string`, `undefined` | `undefined` |
+| `headline` | `headline` | Headline for the share        | `string \| undefined` | `undefined` |
+| `text`     | `text`     | The textual body of web share | `string \| undefined` | `undefined` |
+| `url`      | `url`      | The URL we are sharing        | `string \| undefined` | `undefined` |
 
 
 ## Methods
@@ -41,6 +41,12 @@ Using the `<n-app-share>` element.
 ### `share(data?: { title?: string; text?: string; url?: string; } | null) => Promise<void>`
 
 Manual share method for more complex scenarios
+
+#### Parameters
+
+| Name   | Type                                                                                                           | Description |
+| ------ | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| `data` | `{ title?: string \| undefined; text?: string \| undefined; url?: string \| undefined; } \| null \| undefined` |             |
 
 #### Returns
 

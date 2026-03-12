@@ -53,7 +53,7 @@ Enable the data provider system to enable token replacement.
 | Property          | Attribute          | Description                                                                                                                                                                                                  | Type                  | Default     |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------- | ----------- |
 | `debug`           | `debug`            | Turn on debugging to get helpful messages from the data action systems.                                                                                                                                      | `boolean`             | `false`     |
-| `providerTimeout` | `provider-timeout` | The wait-time, in seconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first predicate and the registration process. | `number`, `undefined` | `undefined` |
+| `providerTimeout` | `provider-timeout` | The wait-time, in seconds to wait for un-registered data providers found in an expression. This is to accommodate a possible lag between evaluation before the first predicate and the registration process. | `number \| undefined` | `undefined` |
 
 
 ----------------------------------------------

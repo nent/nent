@@ -38,8 +38,8 @@ The link will wrap whatever HTML you include between the tags.
 
 | Property    | Attribute    | Description                         | Type                  | Default     |
 | ----------- | ------------ | ----------------------------------- | --------------------- | ----------- |
-| `linkClass` | `link-class` | The class to add to the anchor tag. | `string`, `undefined` | `undefined` |
-| `text`      | `text`       | The link text                       | `string`, `undefined` | `undefined` |
+| `linkClass` | `link-class` | The class to add to the anchor tag. | `string \| undefined` | `undefined` |
+| `text`      | `text`       | The link text                       | `string \| undefined` | `undefined` |
 
 
 ## Dependencies
