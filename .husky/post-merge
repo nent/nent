@@ -1,0 +1,6 @@
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD 2>/dev/null || git diff --name-only HEAD~1 HEAD 2>/dev/null)"
+
+if echo "$changed_files" | grep -q "yarn.lock"; then
+  echo "yarn.lock changed, running yarn install..."
+  yarn install
+fi
