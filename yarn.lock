@@ -14176,10 +14176,10 @@ synckit@^0.11.12, synckit@^0.11.6, synckit@^0.11.8:
   dependencies:
     "@pkgr/core" "^0.2.9"
 
-tailwindcss@4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.2.3.tgz#2827c09ec9bec39e7cdf0bae357e21689b99cc09"
-  integrity sha512-fA/NX5gMf0ooCLISgB0wScaWgaj6rjTN2SVAwleURjiya7ITNkV+VMmoHtKkldP6CIZoYCZyxb8zP/e2TWoEtQ==
+tailwindcss@4.2.4:
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.2.4.tgz#f7e3090edb22d56394db4d68e6464d2628dc2aa9"
+  integrity sha512-HhKppgO81FQof5m6TEnuBWCZGgfRAWbaeOaGT00KOy/Pf/j6oUihdvBpA7ltCeAvZpFhW3j0PTclkxsd4IXYDA==
 
 tar-fs@^2.0.0:
   version "2.1.1"
