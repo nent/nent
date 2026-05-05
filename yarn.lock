@@ -15279,6 +15279,11 @@ workbox-core@7.4.0:
   resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-7.4.0.tgz#5cb59ae7655f2727423268fb1ba698f37809189d"
   integrity sha512-6BMfd8tYEnN4baG4emG9U0hdXM4gGuDU3ectXuVHnj71vwxTFI7WOpQJC4siTOlVtGqCUtj0ZQNsrvi6kZZTAQ==
 
+workbox-core@7.4.1:
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-7.4.1.tgz#5a8811ba5d25a2049821a7b66f63ee9b204dc691"
+  integrity sha512-DT+vu46eh/2vRsSHTY4Xmc32Z1rr9PRlQUXr1Dx30ZuXRWwOsvZgGgcwxcasubQLQmbTNYZjv44LkBAQ4tT5tQ==
+
 workbox-expiration@7.4.0:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/workbox-expiration/-/workbox-expiration-7.4.0.tgz#f7162a45ad8b28de84acea478df421b4d0065e61"
@@ -15366,6 +15371,14 @@ workbox-window@7.4.0:
   dependencies:
     "@types/trusted-types" "^2.0.2"
     workbox-core "7.4.0"
+
+workbox-window@7.4.1:
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/workbox-window/-/workbox-window-7.4.1.tgz#ab3bfb2db306fb1584e791cc9ea02bf6e2f69e19"
+  integrity sha512-notZDH2u8VXaqyuD7xaqIfEFi6SRM4SUSd7ewe9PDsVqADuepxX2ZMY3uvuZGxzY5ZOsGC/vD3A/3smFtJt4/A==
+  dependencies:
+    "@types/trusted-types" "^2.0.2"
+    workbox-core "7.4.1"
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
   version "7.0.0"
