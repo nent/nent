@@ -84,7 +84,7 @@
     "eslint-plugin-markdownlint": "^0.10.0",
     "eslint-plugin-prettier": "5.5.6",
     "eslint-plugin-react": "7.37.5",
-    "gh-release": "^7.0.0",
+    "gh-release": "^8.1.0",
     "glob-parent": "6.0.2",
     "husky": "9.1.7",
     "jest": "29.7.0",
