@@ -1227,15 +1227,7 @@
     tinyexec "^1.0.0"
     yargs "^18.0.0"
 
-"@commitlint/config-conventional@21.1.0":
-  version "21.1.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-21.1.0.tgz#e97ab3e2cab26771277f09ac76bfb4fbeb65c1d8"
-  integrity sha512-BIFl8xM+3SLy3jrblUC3wmQLCVbLty+++6o859BDCmybVrQdXmIWO+dlkGIbv/M2bBoC55wGuh0zGiw3TPjL1g==
-  dependencies:
-    "@commitlint/types" "^21.1.0"
-    conventional-changelog-conventionalcommits "^9.2.0"
-
-"@commitlint/config-conventional@^21.1.0":
+"@commitlint/config-conventional@21.1.0", "@commitlint/config-conventional@^21.1.0":
   version "21.1.0"
   resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-21.1.0.tgz#e97ab3e2cab26771277f09ac76bfb4fbeb65c1d8"
   integrity sha512-BIFl8xM+3SLy3jrblUC3wmQLCVbLty+++6o859BDCmybVrQdXmIWO+dlkGIbv/M2bBoC55wGuh0zGiw3TPjL1g==
@@ -1362,7 +1354,7 @@
   dependencies:
     escalade "^3.2.0"
 
-"@commitlint/types@^21.0.1", "@commitlint/types@^21.1.0":
+"@commitlint/types@^21.1.0":
   version "21.1.0"
   resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-21.1.0.tgz#174651d9d728f79603b4248a7c54a285761a21fe"
   integrity sha512-YodnnnH1Cp+08nP8HGNJAIuB6L3/vdCTHVRTfF8Ik/wRCLOTsU9zwv3yO1cSPQRDa9CLYtE+UJ2K67r7CwMSFw==
@@ -4078,10 +4070,10 @@ autolinker@^3.11.0:
   dependencies:
     tslib "^2.3.0"
 
-autoprefixer@10.5.1, autoprefixer@^10.3.6:
-  version "10.5.1"
-  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.5.1.tgz#e54daa8e80b8c54572cd9d5100bb58c866059014"
-  integrity sha512-jwM2pcTuCWUoN70FEvf5XrXyDbUgRURK4FnU8v0jWZZYU/KkVvN9T33mu1sVLFY9JW3kTWzKheEpn6xYLRc/VA==
+autoprefixer@10.5.2, autoprefixer@^10.3.6:
+  version "10.5.2"
+  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.5.2.tgz#5d7dcaab1c294038fe51e0fa3738d28e559caac0"
+  integrity sha512-rD5t5DwOjJdmSORcTq64j8MawTC+tbQ+HHqjR4NDumamy/ambn1UJrlKL+KdwujWxMkFjPM3pPHOEA9tl4767Q==
   dependencies:
     browserslist "^4.28.4"
     caniuse-lite "^1.0.30001799"
