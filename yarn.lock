@@ -9894,9 +9894,9 @@ markdownlint@0.40.0:
     string-width "8.1.0"
 
 markdownlint@^0.41.0:
-  version "0.41.0"
-  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.41.0.tgz#9b809fe3b62072ff45463039598633360982b9f9"
-  integrity sha512-xMUI3ChBuRuxuLF4ENvCZyS8z/+Jly1coUcZwErKLIB3sDj7ojpaTBa1e9YVPhSN4jGEIjYGQCldbTJS/hqS+A==
+  version "0.41.1"
+  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.41.1.tgz#8d92bb2708148ae54d0f122f8565638a22eb7ae6"
+  integrity sha512-qHKeU2E1bdyNAT077go2FVTNXvYcktN5IHtF6XyeD1l0PClxzSp2tUApAV14ORI8DGX4H9bNKZEzelZp4qn8IA==
   dependencies:
     micromark "4.0.2"
     micromark-core-commonmark "2.0.3"
