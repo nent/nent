@@ -3264,9 +3264,9 @@
     "@rollup/rollup-win32-x64-msvc" "4.44.0"
 
 "@stencil/eslint-plugin@^1.1.0":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@stencil/eslint-plugin/-/eslint-plugin-1.3.1.tgz#7c6dd1d1f8a648416bb8b828e1108b195a8e3edb"
-  integrity sha512-wwW84dxbembgtnMZvyzNlsnbiLFhip8G6aVe6NtSTa/IqqSAqTzf7QGWjY2XsUcssWSDsTODSTTE+qsXZHiF5w==
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@stencil/eslint-plugin/-/eslint-plugin-1.4.0.tgz#3503d33cc45cf3c73b50bea6f9ea46fca50cf967"
+  integrity sha512-JpM9jJxeC7hKfKsh7/237ATNuyXBKiX1TPxJ7XEKEPtjlX6NpN5NjcNwhfJgbMVf++hP8qhQh65Ey6rtBWrzUA==
   dependencies:
     eslint-utils "^3.0.0"
     jsdom "^27.0.1"
