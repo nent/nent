@@ -3332,10 +3332,10 @@
   dependencies:
     sass-embedded "^1.93.2"
 
-"@stencil/store@2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-2.2.2.tgz#2886e413be48fbe07863897c75534a750caf0157"
-  integrity sha512-6BxJblhIkSxflEft8eayYwEApTmsIaGeXsRDLI1AAM2BPPFPfrcsG1fBOcA61oMBaXmCGKt0AGTLbxSHnYazxQ==
+"@stencil/store@2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@stencil/store/-/store-2.2.3.tgz#d7336208de7da7fe6ec9cf168aeb57de1d3c4239"
+  integrity sha512-HMjN6MubWtZp0Nl91oyk/Qdi2ZWEJTL5YbcG9DtiGJ2ZKjQfrmvciQ9wFjdmyY2e9PZBOsbR75QAKkv/16ubrg==
 
 "@trickfilm400/rollup-plugin-off-main-thread@^3.0.0-pre1":
   version "3.0.0-pre1"
