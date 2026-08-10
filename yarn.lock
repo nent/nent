@@ -3325,10 +3325,10 @@
     autoprefixer "^10.3.6"
     postcss "~8.3.8"
 
-"@stencil/sass@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.3.2.tgz#8f3df20acfaa7c2619cef6982c689b32a14829ea"
-  integrity sha512-Hv9T2r0RTbpcerawHn1jQJ72z3jVK5Ew5PEKDLo6gBK+pdz8+zxWSCtRfbXLJgeG4UVR54vs0awq9/DXBithIw==
+"@stencil/sass@3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.3.3.tgz#7c765e901c32978d23d26f74be067f6030c978cc"
+  integrity sha512-NiaoOry3xvPcsRyQFHps/Ug8okgTVlPqHmJkx0QN0GSEcAB67ryF/4sGRejgpIMUidnyzl1OjGEHXFnq1L6phg==
   dependencies:
     sass-embedded "^1.93.2"
 
