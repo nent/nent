@@ -73,7 +73,7 @@
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "chalk": "6.0.0",
-    "commitlint": "21.2.1",
+    "commitlint": "21.2.2",
     "copyfiles": "2.4.1",
     "dotenv": "17.4.2",
     "eslint": "^9",
