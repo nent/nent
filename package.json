@@ -81,7 +81,7 @@
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-plugin-markdownlint": "^0.10.0",
+    "eslint-plugin-markdownlint": "^1.0.0",
     "eslint-plugin-prettier": "5.5.6",
     "eslint-plugin-react": "7.37.5",
     "gh-release": "^8.1.0",
