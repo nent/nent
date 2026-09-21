@@ -75,7 +75,7 @@
     "chalk": "6.0.0",
     "commitlint": "21.2.2",
     "copyfiles": "2.4.1",
-    "dotenv": "17.4.2",
+    "dotenv": "18.0.0",
     "eslint": "^9",
     "eslint-cli": "1.1.1",
     "eslint-plugin-eslint-comments": "3.2.0",
