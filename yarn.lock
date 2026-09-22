@@ -1227,12 +1227,12 @@
     tinyexec "^1.0.0"
     yargs "^18.0.0"
 
-"@commitlint/config-conventional@21.2.2", "@commitlint/config-conventional@^21.2.2":
-  version "21.2.2"
-  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-21.2.2.tgz#c8902f3ea1e741f55ec0fc7c177bcdf28ffd0082"
-  integrity sha512-NxA37SZviusFUEYOQZ5hNnZ1h7O/KiemPkxjOlpzKJNnWxThiwc6/SaZhaPa8fyLvfRBAywhQhJJk8XESHWlpQ==
+"@commitlint/config-conventional@21.2.3", "@commitlint/config-conventional@^21.2.2":
+  version "21.2.3"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-21.2.3.tgz#ae8a53f6671245ad0d55698b17c711d0b7e705d8"
+  integrity sha512-EP2n5DN2GwRWNVrLX0Jx3mpQlW5PfFi9HnD9OJ8hN/H0xFqpCFyHeGDhg+0P8/21iMMcdkcQgbNqmVklebqYsQ==
   dependencies:
-    "@commitlint/types" "^21.2.0"
+    "@commitlint/types" "^21.2.3"
     conventional-changelog-conventionalcommits "^10.0.0"
 
 "@commitlint/config-validator@^21.2.0":
@@ -1354,10 +1354,10 @@
   dependencies:
     escalade "^3.2.0"
 
-"@commitlint/types@^21.2.0":
-  version "21.2.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-21.2.0.tgz#da93897b416f788323f639cce6045310aeb03096"
-  integrity sha512-7zVFCDB2reMvJH5dmbKnOQPjZEvjdJTH8jc0U/PIPU1r3/+vf5pD1HlfitV2MWsWXrvu7u39iY1lyLUPOaN0Gw==
+"@commitlint/types@^21.2.0", "@commitlint/types@^21.2.3":
+  version "21.2.3"
+  resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-21.2.3.tgz#004da63f916654309485f5c1ec4dcba8bd2ebe78"
+  integrity sha512-sGEA473TlCvhCGNoTBY9OXZVWdscIXdGt0dm8EpB+2MRfmt8LNh/X56P/T3nCtEB+eH5qGEa3odphSAoUxSfSQ==
   dependencies:
     conventional-commits-parser "^7.0.0"
     picocolors "^1.1.1"
