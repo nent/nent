@@ -103,7 +103,7 @@
     "rollup": "^4.0.0",
     "rollup-plugin-analyzer": "4.0.0",
     "rollup-plugin-visualizer": "7.1.1",
-    "serve": "14.2.6",
+    "serve": "14.2.7",
     "trim-newlines": "5.0.0",
     "typescript": "6.0.3",
     "yargs": "18.2.0"
