@@ -9642,9 +9642,9 @@ markdownlint@0.41.1:
     string-width "8.2.1"
 
 markdownlint@^0.42.0:
-  version "0.42.0"
-  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.42.0.tgz#7cd7ad9d9afe5b2ac19aace77f8928c178507606"
-  integrity sha512-kzsCV/rPWRFn3jUhcB919YF4Qgeh0g9tcogoXFadGSo6Zxj6662YOqWXv0jDn8nv5KCCxDfMKJZv6N4HkNkvTg==
+  version "0.42.1"
+  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.42.1.tgz#c5c16f10235351cf182933ee691039a1944c1012"
+  integrity sha512-Otolm9JX12iO2NG5cetlKfzGygpiLSlHuqXKxoT6HGhN5HtbxprJPicKZqqCQd88qOvUi/TEs3o1AmcYioVscA==
   dependencies:
     micromark "4.0.3"
     micromark-core-commonmark "2.0.4"
@@ -9654,7 +9654,7 @@ markdownlint@^0.42.0:
     micromark-extension-gfm-table "2.1.2"
     micromark-extension-math "3.1.0"
     micromark-util-types "2.0.3"
-    re2js "2.8.6"
+    re2js "2.9.1"
     string-width "8.3.0"
 
 math-intrinsics@1.1.0, math-intrinsics@^1.0.0, math-intrinsics@^1.1.0:
@@ -11526,10 +11526,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-re2js@2.8.6:
-  version "2.8.6"
-  resolved "https://registry.yarnpkg.com/re2js/-/re2js-2.8.6.tgz#acbd17a1ad0e98c1f2ee0a2adc17ba0903d9ca95"
-  integrity sha512-xLgQil4kIUCrAzVk9fRSkxkFNwmygLFjVxXrLc65aE1F0+Zsb8rxumFBy4XKyvgMCTL6kilDq3EZ0piE2dP/Dg==
+re2js@2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/re2js/-/re2js-2.9.1.tgz#79e661007980cc6a07edf0d8bcbcbc94046aa381"
+  integrity sha512-JIT3bEEUZTOR2YS1walNEIfH4cF/cQeZcBUFq7ldqO6lR6g0X5CBq/S8rsa9omzZcsNf8qc36jCkWpKKtncrZg==
 
 "react-is-18@npm:react-is@^18.3.1":
   version "18.3.1"
